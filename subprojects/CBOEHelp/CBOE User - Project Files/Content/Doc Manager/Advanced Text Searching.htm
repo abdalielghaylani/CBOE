@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1300" MadCap:lastWidth="623">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>Doc Manager</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Advanced Text Searching</h1>
+        <p>Advanced text Searching facilitates the usage of specific operators to narrow the search and retrieve precise results.
+</p>
+        <p style="font-weight: bold;">Escape Characters 
+</p>
+        <p>In order to perform a search over words or symbols that have special meaning to query expressions, such as &amp; or |, you must escape them. There are two ways to escape characters in a query expression, using the curly brackets, {}and using a back slash, \. 
+</p>
+        <p style="font-weight: bold;">Curly Brackets
+</p>
+        <p>Any symbol or string within a set of curly brackets is considered a part of the escape sequence. When you use braces to escape a single character, the escaped character becomes a separate token in the query. The following table lists a few examples of using curly brackets to escape an ampersand (&amp;) and a dash (-):
+</p>
+        <table style="width: 100%;">
+            <col style="width: 311px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Instead Of</td>
+                    <td style="font-weight: bold;">Use</td>
+                </tr>
+                <tr>
+                    <td>AT&amp;T
+</td>
+                    <td>{AT&amp;T}
+</td>
+                </tr>
+                <tr>
+                    <td>high-voltage
+</td>
+                    <td>{high-voltage}
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">Back Slash
+</p>
+        <p>The backlash symbol can be used to escape only a single character or a symbol. Only the character/symbol immediately following the back slash is escaped. The following table lists a few examples of using a back slash to escape an ampersand (&amp;) and a dash (-):
+</p>
+        <table style="width: 100%;">
+            <col style="width: 311px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Instead Of</td>
+                    <td style="font-weight: bold;">Use</td>
+                </tr>
+                <tr>
+                    <td>AT&amp;T
+</td>
+                    <td>AT\&amp;T
+</td>
+                </tr>
+                <tr>
+                    <td>high-voltage
+</td>
+                    <td>high\-voltage
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The various types of Advanced text searching are as follows:
+</p>
+        <ul style="list-style-type: square;">
+            <li>ABOUT  
+ </li>
+            <li>AND (&amp;)  
+</li>
+            <li> EQUIValence (=)  
+ </li>
+            <li>fuzzy (?)  
+ </li>
+            <li>MINUS (-)  
+ </li>
+            <li>NEAR  
+ </li>
+            <li>NOT (~)  
+ </li>
+            <li>OR (|)  
+ </li>
+            <li>Soundex (!)  
+ </li>
+            <li>Stem ($) </li>
+        </ul>
+        <p><b>Stem
+</b>
+        </p>
+        <p>The Stem ($) operator is used in an advanced text search, to retrieve documents that contain words similar to the word used in a search. To use the Stem operator type a dollar sign ($), followed by the word on which the search is to be performed.
+</p>
+        <p>Use the stem operator to search for terms that have the same linguistic root as the query term. The Stem operator expands a query to include all terms with the same stem or root word as the search term.
+</p>
+        <p>The following table lists a few examples of using the Stem operator:
+</p>
+        <table style="width: 100%;">
+            <col style="width: 288px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Searching For... 
+</td>
+                    <td style="font-weight: bold;">Returns... </td>
+                </tr>
+                <tr>
+                    <td>$commit
+</td>
+                    <td>Any word with the root 'commit' appearing in the document’s text. Matches include commits, committing, committee, and committed.</td>
+                </tr>
+                <tr>
+                    <td>$chemist</td>
+                    <td>Any word with the root 'chemist' appearing in the document’s text. Matches include chemist, chemistry, and chemists.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Searching for Documents.htm">Searching for Documents</a>
+        </p>
+    </body>
+</html>

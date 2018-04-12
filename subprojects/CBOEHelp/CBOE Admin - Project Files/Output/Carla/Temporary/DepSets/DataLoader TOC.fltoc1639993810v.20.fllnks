@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="false" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/DataLoader/Data Loader Introduction.htm" />
+        <Link Url="Content/DataLoader/The Command-Line Version of Data Loader.htm" />
+        <Link Url="Content/DataLoader/The Command-Line Actions.htm" />
+        <Link Url="Content/DataLoader/Anatomy of the Command-Line.htm" />
+        <Link Url="Content/DataLoader/Individual Mapping Templates.htm" />
+        <Link Url="Content/DataLoader/Extended Mapping Features.htm" />
+        <Link Url="Content/DataLoader/Enabling the Pre-Load Record Matching.htm" />
+        <Link Url="Content/DataLoader/Optimizations for Bulk Loading.htm" />
+        <Link Url="Content/DataLoader/Read Records from the Source File.htm" />
+        <Link Url="Content/DataLoader/Validate Properties Values.htm" />
+        <Link Url="Content/DataLoader/Send Records to Application Server.htm" />
+        <Link Url="Content/DataLoader/Execute Addins.htm" />
+        <Link Url="Content/DataLoader/Chemical Structure Duplicate Check.htm" />
+        <Link Url="Content/DataLoader/Extended Duplicate Checking.htm" />
+        <Link Url="Content/DataLoader/Parse and Insert Records into Oracle Tables.htm" />
+        <Link Url="Content/DataLoader/Index Chemical Documents with CsCartridge.htm" />
+        <Link Url="Content/DataLoader/Disable Refresh of  Oracle Materialized Views.htm" />
+        <Link Url="Content/DataLoader/Fetch Newly Inserted Record.htm" />
+        <Link Url="Content/DataLoader/Oracle Optimizer Statistics.htm" />
+        <Link Url="Content/DataLoader/Missing Indexes.htm" />
+        <Link Url="Content/DataLoader/Application Tracing.htm" />
+        <Link Url="Content/DataLoader/Oracle Tracing.htm" />
+        <Link Url="Content/DataLoader/Sample Optimization SQL Scripts.htm" />
+        <Link Url="Content/DataLoader/XML Mapping Template for Data Loader.htm" />
+        <Link Url="Content/DataLoader/Workflow.htm" />
+        <Link Url="Content/DataLoader/Adding Data.htm" />
+        <Link Url="Content/DataLoader/Exporting Data.htm" />
+        <Link Url="Content/DataLoader/Importing a Data File to Load.htm" />
+        <Link Url="Content/DataLoader/Mapping Input and Output Fields.htm" />
+        <Link Url="Content/DataLoader/Configuring Job Settings.htm" />
+        <Link Url="Content/DataLoader/Accessing Data Loader.htm" />
+        <Link Url="Content/DataLoader/Getting Help.htm" />
+        <Link Url="Content/DataLoader/Working with Registration Enterprise.htm" />
+        <Link Url="Content/DataLoader/Loading Substances.htm" />
+        <Link Url="Content/DataLoader/Updating Batch Data.htm" />
+        <Link Url="Content/DataLoader/Sorting Data.htm" />
+        <Link Url="Content/DataLoader/Exporting Data to a Text File.htm" />
+        <Link Url="Content/DataLoader/Exporting Data to an XML.htm" />
+        <Link Url="Content/DataLoader/Managing Jobs.htm" />
+        <Link Url="Content/DataLoader/Saving a Job.htm" />
+        <Link Url="Content/DataLoader/Loading a Saved Job.htm" />
+        <Link Url="Content/DataLoader/Viewing Job Summary.htm" />
+        <Link Url="Content/DataLoader/Output Fields.htm" />
+        <Link Url="Content/DataLoader/Registration Information.htm" />
+        <Link Url="Content/DataLoader/Component Information.htm" />
+        <Link Url="Content/DataLoader/Fragment Information.htm" />
+        <Link Url="Content/DataLoader/Batch Information.htm" />
+        <Link Url="Content/DataLoader/Functions.htm" />
+        <Link Url="Content/DataLoader/Boolean Functions.htm" />
+        <Link Url="Content/DataLoader/Char Functions.htm" />
+        <Link Url="Content/DataLoader/CharArray Functions.htm" />
+        <Link Url="Content/DataLoader/DateTime Functions.htm" />
+        <Link Url="Content/DataLoader/Decimal Functions.htm" />
+        <Link Url="Content/DataLoader/Integer Functions.htm" />
+        <Link Url="Content/DataLoader/String Functions.htm" />
+        <Link Url="Content/DataLoader/StringArray Functions.htm" />
+        <Link Url="Content/DataLoader/New Data Loader.htm" />
+        <Link Url="Content/DataLoader/Accessing the New Data Loader.htm" />
+        <Link Url="Project/ConditionTagSets/Default.flcts" />
+    </Links>
+    <LongLinks />
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions>
+        <Condition Tag="Default.DataLoader Only" />
+    </FileConditions>
+    <FileTags />
+    <AllConditions>
+        <Condition Tag="Default.DataLoader Only" />
+    </AllConditions>
+    <Stylesheets />
+</CatapultFileLinkSet>

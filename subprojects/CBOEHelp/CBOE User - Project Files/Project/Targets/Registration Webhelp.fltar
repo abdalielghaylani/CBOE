@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="Registration User Guide"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/Old_Reg.flskn"
+  MasterToc="/Project/TOCs/Registration TOC.fltoc"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  ConditionTagExpression="include[Default.Registration] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or Default.Inventory or &quot;Default.Not supported in 1261&quot; or &quot;Default.Working with CBOE Applications&quot;] "
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
+  DefaultUrl="/Content/Reg 1104/Registration Introduction.htm"
+  InsertMOTW="true"></CatapultTarget>

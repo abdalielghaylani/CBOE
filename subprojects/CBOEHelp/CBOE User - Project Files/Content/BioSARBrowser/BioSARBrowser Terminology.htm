@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="655" MadCap:lastWidth="1105">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>BioSARBrowser Terminology</h1>
+        <p><b>Schema:</b> Details the structure of a particular
+database, which BioSAR Enterprise accesses. Each schema is made up of one or more
+tables and each table can contain multiple
+fields.
+In addition to describing the content of each
+table, a schema also defines the relationships
+between tables and fields contained in it. The
+relationships between tables and fields of a
+schema automatically generate when you
+enable the schema for use.
+Relationships across schemas can be linked.
+For example, if a registration ID&#160;number in the
+REGDB schema is included in the
+CHEMINVDB2 schema, you can link these two fields within the application.
+</p>
+        <p><b>Table:</b> Refers to a database table that exists in a
+schema in the Oracle instance. Tables define
+entities in the schema. For example, one
+schema might have a table defining a person
+with certain fields, such as an ID number, last name, and
+first name. Similarly, another table might
+define an order with fields like customer ID,
+product, and order date.
+</p>
+        <p><b>View:</b> Refers to a virtual table composed
+as a result of a query. You create views
+by assigning the results of a query to a new
+table in the database.
+For example, you can design a view made from tables defining person and order. This view can
+include the last name and first name of the person,
+as well as the order date. The view
+is accessed the same way the table is accessed, thereby eliminating the need for
+longer, more complicated SQL statements to
+access information.
+In database theory, a view is read-only, whereas
+a table can be modified. However, in BioSAR
+Enterprise, tables and views are treated as synonymous
+entities because you do not have
+direct access to the tables.
+</p>
+        <p><b>Form:</b> Each form created in BioSAR Enterprise is
+actually a combination of three forms: search form, list view form, and details view form.
+The three forms are interlinked.
+</p>
+        <p><b>Note</b>: The three inter-linked forms are collectively called a form group.</p>
+        <p>When creating forms, you can assign
+access rights to other users. If users, other than
+the creator, are given access to a form, the form
+is considered public.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="BioSARBrowser Introduction.htm">BioSARBrowser</a>
+        </p>
+    </body>
+</html>

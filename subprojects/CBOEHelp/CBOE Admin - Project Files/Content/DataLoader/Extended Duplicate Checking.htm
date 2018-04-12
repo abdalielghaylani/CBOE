@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="560" MadCap:lastWidth="893">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Extended Duplicate Checking</h1>
+        <p>This step is only performed if the "Find Custom Field Duplicates" addin is enabled.  The step involves a query matching a designated incoming property value against the contents of a corresponding column in a database. The query contains a filter of the form UPPER(&lt;COLUMNNAME&gt;) = UPPER('&lt;PROPERTYVALUE&gt;'). It is therefore critical that the designated database column is indexed using a unique functional index on the UPPER column value.
+</p>
+        <p>The table and column involved in the duplicate check query depends on the settings specified in the "Extended Duplicate Check" tab under Customize System Settings dialog.
+</p>
+        <ul style="list-style-type: square;">
+            <li>If type is set to "Property" and Level is set to "Structure" the table to index is REGDB.STRUCTURES</li>
+            <li>If type is set to "Property" and Level is set to "Component" the table to index is REGDB.COMPOUND_MOLECULE
+</li>
+        </ul>
+        <p>The name of the column to index will be determined by the property name indicated in the "Value" setting.
+
+</p>
+        <p>The index should be created using the following syntax:
+
+</p>
+        <p>CREATE UNIQUE INDEX &lt;INDEXNAME&gt; ON &lt;TABLENAME&gt;(UPPER(&lt;FIELDNAME&gt;));
+</p>
+        <p>This index should be created at the time when the "Find Custom Field Duplicates" addin is enabled and should not be dropped, unless the addin is disabled.</p>
+        <ul style="list-style-type: square;">
+            <li>If type is set to "Identifier" then there is no need to add a custom index.  A proper functional index alreday exists in the identifiers tables.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+    </body>
+</html>

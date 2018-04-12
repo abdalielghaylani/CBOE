@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="110" MadCap:lastWidth="832" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Data Loader|Optimizations for Bulk Loading" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Chemical Structure Duplicate Check</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Chemical Structure Duplicate Check</h1>
+        <p>This is the key step required to ensure that registered records are chemically de-duplicated.  The step involves a query matching the incoming chemical structure against the contents of the REGDB.STRUCTURES.STRUCTURE database column.  The query is performed by the CSCartridge.  It is critical that a property maintained CSCartridge Index exist on the above column.  This step is expected to get gradually slower as the number of records present in the database increases.  The time required to perform the structure match is dependent on the duplicate check parameters configured in the Registration System.  The duplicate search settings determine whether factors such as stereochemistry, charge, isotopic differences, and tautomerism should be examined in determining potential chemical matches. The default duplicate check settings for the web based Registration application are fairly broad.  They may typically flag several existing database records (different stereoisomer, isotopically substituted variation, differently charged structures), which the Registrar will visually inspect in order to choose the most optimal match.  These broad duplicate check settings will result in longer query times.  For bulk loading scenarios, where the data has already been de-duplicated in the originating system, and where there is no manual intervention by the Registrar to review the potential duplicates, it is better to use narrower match parameters that will result in faster and more targeted matches.  In particular, enabling the IDENTITY search parameter will result in the fastest possible load performance.
+</p>
+        <p>The duplicate check settings can be adjusted via the Customize Registration &gt; System Settings &gt; Duplicate Checking Tab in the Registration Web Application.
+      </p>
+        <p>Recommendations:
+	</p>
+        <blockquote>
+            <p>Before Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Set  System Setting&gt;  Duplicate Checking &gt; <ul style="list-style-type: square;"><li value="1">IDENTITY = YES
+</li><li value="2">TAUTOMER = NO</li><li value="3">RELATIVETETSTEREO = NO
+</li></ul></li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p>After Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Return Duplicate Check settings to pre-load state
+</li>
+            </ul>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

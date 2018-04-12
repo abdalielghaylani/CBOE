@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.Registration">
+  <TocEntry
+    Title="Registration"
+    Link="/Content/Reg 1104/Registration Introduction.htm"
+    conditions="Default.Registration">
+    <TocEntry
+      Title="Registration Terminology"
+      Link="/Content/Reg 1104/Registration Terminology.htm" />
+    <TocEntry
+      Title="The Registration Process"
+      Link="/Content/Reg 1104/The_registration_process.htm" />
+    <TocEntry
+      Title="Integration"
+      Link="/Content/Reg 1104/Integration.htm" />
+    <TocEntry
+      Title="Getting Started"
+      Link="/Content/Reg 1104/Getting_Started.htm">
+      <TocEntry
+        Title="Logging in"
+        Link="/Content/Reg 1104/Logging_in to Registration.htm" />
+      <TocEntry
+        Title="The Main Menu"
+        Link="/Content/Reg 1104/The_main_menu.htm" />
+      <TocEntry
+        Title="Logging out "
+        Link="/Content/Reg 1104/Logging_out.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Submitting New Records"
+      Link="/Content/Reg 1104/Submitting_New_Records.htm">
+      <TocEntry
+        Title="Parts of a Registry Record"
+        Link="/Content/Reg 1104/Parts_of_a_registry_reco.htm">
+        <TocEntry
+          Title="Required Fields"
+          Link="/Content/Reg 1104/Required_fields.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Creating a Registry Record"
+        Link="/Content/Reg 1104/Creating_a_registry_reco.htm">
+        <TocEntry
+          Title="Entering Registry Information"
+          Link="/Content/Reg 1104/Entering_registry_inform.htm" />
+        <TocEntry
+          Title="Entering Component Information"
+          Link="/Content/Reg 1104/Entering_component_infor.htm" />
+        <TocEntry
+          Title="Entering Fragment Information"
+          Link="/Content/Reg 1104/Entering_fragment_inform.htm" />
+        <TocEntry
+          Title="Entering Batch Information"
+          Link="/Content/Reg 1104/Entering_batch_informati.htm" />
+        <TocEntry
+          Title="Options in Submit Component Form"
+          Link="/Content/Reg 1104/Options_in_submit_record.htm">
+          <TocEntry
+            Title="Save Template"
+            Link="/Content/Reg 1104/Save Template.htm" />
+          <TocEntry
+            Title="Load Template"
+            Link="/Content/Reg 1104/Load Template.htm" />
+        </TocEntry>
+      </TocEntry>
+      <TocEntry
+        Title="Approving a Submitted Record"
+        Link="/Content/Reg 1104/Approving a Submitted Record.htm" />
+      <TocEntry
+        Title="Registering Components"
+        Link="/Content/Reg 1104/Registering Components.htm">
+        <TocEntry
+          Title="Direct register"
+          Link="/Content/Reg 1104/Direct_register.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Locking Registered Records"
+        Link="/Content/Reg 1104/Locking Registered Records.htm" />
+      <TocEntry
+        Title="Salt Suffix Support"
+        Link="/Content/Reg 1104/Salt Suffix Support.htm" />
+      <TocEntry
+        Title="Submitting Mixtures"
+        Link="/Content/Reg 1104/Submitting Mixtures.htm">
+        <TocEntry
+          Title="Simple Mixture Workflow"
+          Link="/Content/Reg 1104/Simple Mixture Workflow.htm" />
+        <TocEntry
+          Title="Complex Mixture Workflow"
+          Link="/Content/Reg 1104/Complex Mixture Workflow.htm" />
+        <TocEntry
+          Title="Editing Mixtures"
+          Link="/Content/Reg 1104/Editing Mixtures.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Managing Duplicates"
+        Link="/Content/Reg 1104/Managing Duplicates.htm">
+        <TocEntry
+          Title="CASE A"
+          Link="/Content/Reg 1104/CASE A.htm" />
+        <TocEntry
+          Title="CASE B"
+          Link="/Content/Reg 1104/CASE B.htm" />
+        <TocEntry
+          Title="CASE C"
+          Link="/Content/Reg 1104/CASE C.htm" />
+        <TocEntry
+          Title="CASE D"
+          Link="/Content/Reg 1104/CASE D.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="ChemDraw Chemical Warning"
+        Link="/Content/Reg 1104/ChemDraw Chemical Warning.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing Temporary Records"
+      Link="/Content/Reg 1104/Managing_temporary_recor.htm">
+      <TocEntry
+        Title="Searching records in the temporary table"
+        Link="/Content/Reg 1104/Searching_records_in_the.htm" />
+      <TocEntry
+        Title="Editing records in the temporary table"
+        Link="/Content/Reg 1104/Editing_records_in_the_t.htm" />
+      <TocEntry
+        Title="Deleting records from the temporary table"
+        Link="/Content/Reg 1104/Deleting_records_from_th.htm" />
+      <TocEntry
+        Title="Types of Searches"
+        Link="/Content/Reg 1104/Types_of_searches.htm">
+        <TocEntry
+          Title="Structure Search"
+          Link="/Content/Reg 1104/Structure Search.htm"
+          VolumeNumberReset="same" />
+        <TocEntry
+          Title="Text Search"
+          Link="/Content/Reg 1104/Text Search.htm" />
+        <TocEntry
+          Title="Numeric Search"
+          Link="/Content/Reg 1104/Numeric Search.htm" />
+        <TocEntry
+          Title="Formula Search"
+          Link="/Content/Reg 1104/Formula Search.htm" />
+        <TocEntry
+          Title="Date Search"
+          Link="/Content/Reg 1104/Date Search.htm">
+          <TocEntry
+            Title="Form View"
+            Link="/Content/Reg 1104/Form_view.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Boolean Search"
+          Link="/Content/Reg 1104/Boolean Search.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Managing Queries and Hitlist"
+      Link="/Content/Reg 1104/Managing_Queries_and_Hit.htm">
+      <TocEntry
+        Title="Query Management Tab"
+        Link="/Content/Reg 1104/Query_Management_tab.htm" />
+      <TocEntry
+        Title="Marking Records"
+        Link="/Content/Reg 1104/Marking_records.htm" />
+      <TocEntry
+        Title="Saving and Restoring Queries"
+        Link="/Content/Reg 1104/Saving and Restoring Queries.htm">
+        <TocEntry
+          Title="Saving Queries"
+          Link="/Content/Reg 1104/Saving_queries.htm" />
+        <TocEntry
+          Title="Restoring Queries"
+          Link="/Content/Reg 1104/Restoring Queries.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Refining the Search Results"
+        Link="/Content/Reg 1104/Refining_the_search_resu.htm" />
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/Reg 1104/Viewing_search_results.htm">
+        <TocEntry
+          Title="List View"
+          Link="/Content/Reg 1104/List_view.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Export Hits"
+        Link="/Content/Reg 1104/Export_hits.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Registering Records"
+      Link="/Content/Reg 1104/Registering_Records.htm">
+      <TocEntry
+        Title="Registering a Temporary Record"
+        Link="/Content/Reg 1104/Registering_a_temporary.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing the Registered Records"
+      Link="/Content/Reg 1104/Managing_the_Registered.htm">
+      <TocEntry
+        Title="Searching for Registered Compounds"
+        Link="/Content/Reg 1104/Searching_for_registered.htm">
+        <TocEntry
+          Title="SDF Search"
+          Link="/Content/Reg 1104/SDF Search.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Editing a Registered Record"
+        Link="/Content/Reg 1104/Editing_a_registered_rec.htm" />
+      <TocEntry
+        Title="Deleting a Registered Record"
+        Link="/Content/Reg 1104/Deleting a Registered Record.htm" />
+      <TocEntry
+        Title="Creating Containers"
+        Link="/Content/Reg 1104/Creating Containers.htm" />
+      <TocEntry
+        Title="Batches"
+        Link="/Content/Reg 1104/Batches.htm">
+        <TocEntry
+          Title="Adding a Batch"
+          Link="/Content/Reg 1104/Adding_a_batch.htm" />
+        <TocEntry
+          Title="Editing a Batch"
+          Link="/Content/Reg 1104/Editing_a_batch.htm" />
+        <TocEntry
+          Title="Deleting a Batch"
+          Link="/Content/Reg 1104/Deleting_a_batch.htm" />
+        <TocEntry
+          Title="Moving a batch"
+          Link="/Content/Reg 1104/Moving_a_batch.htm" />
+        <TocEntry
+          Title="Batch Highlighting"
+          Link="/Content/Reg 1104/Batch Highlighting.htm" />
+      </TocEntry>
+    </TocEntry>
+  </TocEntry>
+</CatapultToc>

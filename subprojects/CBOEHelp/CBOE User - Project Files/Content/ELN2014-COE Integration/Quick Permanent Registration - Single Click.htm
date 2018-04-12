@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2023" MadCap:lastWidth="1150" MadCap:conditions="Default.ELN2014-COE Integration">
+    <head>
+    </head>
+    <body>
+        <h1>Quick Permanent Registration - Single Click</h1>
+        <p>From the Samples section, you can push a sample to the Permanent table in Registration using the single click method. </p>
+        <p><b>Note</b>: The values set in the Registration User Preferences form automatically populate in their corresponding fields in the Registration form.</p>
+        <h4>To register a sample to the Permanent table:</h4>
+        <ol>
+            <li>Draw a reaction in the Reaction field and create samples. A Samples section is automatically created.</li>
+            <li>Assign a product to the created samples and navigate to the Samples section.</li>
+            <li>From the Home ribbon, click <b>Registration</b> and select <b>Quick Permanent Registration</b>.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/permanent registration.gif" />
+        </p>
+        <p>The Registration dialog displays the Reg ID and a Batch ID that display in the sample's Properties table.</p>
+        <p><b>Note</b>: If you have system administrator privileges, you can configure the following fields in the Properties table  as read-only: <b>Reg #</b>, <b>Temp&#160;ID</b>, and <b>Batch #</b>. Please see the Administrator Guide for more information about setting these fields as read-only. </p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/permanent reg conf.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="4">Click <b>OK</b> to close the dialog.</li>
+        </ol>
+        <h4>Notes:</h4>
+        <ul>
+            <li>If a sample has a temp ID, the permanent registration will fail.</li>
+            <li>Your system may be configured to resolve registration duplicates in various ways, as shown in the example below. Please refer to the <i>Administrator Guide</i> for more details.</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/duplicate resolution.gif" />
+        </p>
+        <p>There is one limitation for the Single Click Registration. </p>
+        <ul style="list-style-type: square;">
+            <li>If <b>New batch</b> option is checked, every time a duplicate is found, a new batch is created with the same Reg number.</li>
+            <li>If <b>Create Duplicate</b> option is checked, every time you want to register a structure that is already in the Chemical Registration Database, a duplicate is created with a different Reg number. </li>
+        </ul>
+        <p>The limitation is that if the system is re-configured to add a new batch, the registration will fail. When multiple duplicate compounds are found in the Registration Database, and you attempt to add a new batch to the duplicate compounds using Single Click Registration, the action fails, and the following error message displays:</p>
+        <p style="font-weight: bold;">
+            <img src="../Resources/Images/COE-ELN2014 Integration/registration fail.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Registering from the Samples Section.htm">Registering from the Samples Section</a>
+            <br /><a href="Registration-Inventory User Preferences.htm">Registration-Inventory User Preferences</a>
+        </p>
+    </body>
+</html>

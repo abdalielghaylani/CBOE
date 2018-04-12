@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileClass="" FileTitle="Chemoffice.ini Configuration File" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/CD_PLUGIN_THRESHOLD.htm" />
+        <Link Url="Content/COEWebserver/CD_PLUGIN_DOWNLOAD_PATH.htm" />
+        <Link Url="Content/COEWebserver/AppName.htm" />
+        <Link Url="Content/COEWebserver/WIZARD_APPNAMES.htm" />
+        <Link Url="Content/COEWebserver/CS_SECURITY.htm" />
+        <Link Url="Content/COEWebserver/FORCE_ORACLE_SESSION_CURSOR_SHARING.htm" />
+        <Link Url="Content/COEWebserver/SECTION.htm" />
+        <Link Url="Content/COEWebserver/DBNAMES.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH_DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH_START_PATH.htm" />
+        <Link Url="Content/COEWebserver/DBNAME_START_PATH.htm" />
+        <Link Url="Content/COEWebserver/DBNAME_DISPLAY_NAME.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/CD_PLUGIN_THRESHOLD.htm" />
+        <Link Url="Content/COEWebserver/CD_PLUGIN_DOWNLOAD_PATH.htm" />
+        <Link Url="Content/COEWebserver/AppName.htm" />
+        <Link Url="Content/COEWebserver/WIZARD_APPNAMES.htm" />
+        <Link Url="Content/COEWebserver/CS_SECURITY.htm" />
+        <Link Url="Content/COEWebserver/FORCE_ORACLE_SESSION_CURSOR_SHARING.htm" />
+        <Link Url="Content/COEWebserver/SECTION.htm" />
+        <Link Url="Content/COEWebserver/DBNAMES.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH_DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/GLOBAL_SEARCH_START_PATH.htm" />
+        <Link Url="Content/COEWebserver/DBNAME_START_PATH.htm" />
+        <Link Url="Content/COEWebserver/DBNAME_DISPLAY_NAME.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

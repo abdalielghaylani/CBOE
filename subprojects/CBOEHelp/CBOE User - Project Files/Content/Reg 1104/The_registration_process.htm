@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="6" MadCap:lastHeight="1126" MadCap:lastWidth="1176" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Introduction" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="default.xml" MadCap:SearchType="Stem" class="">
+    <head><title>The registration process</title>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1><span style="font-size: 24pt;">The Registration Process</span>
+        </h1>
+        <p>The registration process includes the following steps in order:</p>
+        <ol>
+            <li>The Submitter (typically a chemist/biologist), enters chemical data into Registration. The data is stored in a temporary database. The submitter can search, edit, or delete the data as desired.</li>
+            <li>The Reviewer checks and approves records in the temporary table for registration. This is applied when "ApprovalsEnabled" is set to True in the Registration system settings.</li>
+            <li>The Registrar (typically a senior chemist or lab manager with SET_APPROVED_FLAG&#160;and TOGGLE_APPROVED_FLAG privileges) reviews and registers submissions to the registry. The data is then stored in the permanent database. </li>
+            <li>The Registrar  (typically a senior chemist or lab manager with SET_LOCKED_FLAG&#160;and TOGGLE_LOCKED_FLAG privileges) locks registered records making them un-editable and indelible. This is applied when "LockingEnabled" is set to True in the Registration system settings.</li>
+        </ol>
+        <p>Note that both features, Approvals and Locking, are not related. You can have a system with one of the following settings:</p>
+        <ul style="list-style-type: square;">
+            <li>ApprovalsEnabled=True and LockingEnabled=False</li>
+            <li>ApprovalsEnabled=False and LockingEnabled=True</li>
+            <li>ApprovalsEnabled=True and LockingEnabled=True</li>
+            <li>ApprovalsEnabled=False and LockingEnabled=False</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/Registration full workflow.gif" />
+        </p>
+        <div class="Body">In registration system:</div>
+        <ul style="list-style-type: square;">
+            <li>Registration assigns a unique number to each record in the permanent table to identify it. The registration ID can be used to search the record. </li>
+            <li>Registration checks for duplicate records whenever a component is registered in the permanent table. Multiple cases are available here. for more details please refer to the "<a href="Managing Duplicates.htm">Managing Duplicates</a>" topic.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Registration Introduction.htm">Registration</a>
+            <br /><a href="Integration.htm">Integration </a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../" MadCap:HelpSystemFileName="Registration  Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Appendix: Inventory Enterprise INI Configuration Files</title>
+        <link href="SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">ChemBioOffice Enterprise</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Appendix: Inventory Enterprise INI Configuration Files</h1>
+        <p>This section describes the various <i>Invconfig.ini</i> configuration files used in Inventory Enterprise. The Inventory Enterprise INI configuration files fall into three categories:</p>
+        <ul>
+            <li value="1">CFServer.ini Configuration File</li>
+            <li value="2">ChemInv.ini Configuration File</li>
+            <li value="3">Invconfig.ini Configuration File</li>
+        </ul>
+        <p>The <i>Invconfig.ini</i> configuration file, found in <i>&lt;webroot&gt;/ChemOffice/ChemInv/Config</i> defines parameters that allow Inventory Enterprise to find necessary information and how to react in certain situations. When editing fields in this file, it is important to be sure what is going to change because many of these settings are necessary for the application to function properly. </p>
+        <h2>InvConfig.ini Configuration File</h2>
+        <h3>APPLICATION</h3>
+        <h4>INV_SERVER_NAME</h4>
+        <p><b>Example</b>: INV_SERVER_NAME = server1</p>
+        <p><b>Description</b>: Indicates what server the inventory schema resides on.</p>
+        <p><b>Default</b>: no default</p>
+        <p><b>Options</b>: A valid server name on the network.</p>
+        <h3>CHEMREG</h3>
+        <h4>REG_SERVER_NAME</h4>
+        <p><b>Example</b>: REG_SERVER_NAME = server1</p>
+        <p><b>Description</b>: Indicates what server the Registration schema resides on.</p>
+        <p><b>Default</b>: no default</p>
+        <p><b>Options</b>: A valid server name on the network.</p>
+        <h4>USE_NOTEBOOK_TABLE</h4>
+        <p><b>Example</b>: USE_NOTEBOOK_TABLE = 0</p>
+        <p><b>Description</b>: Indicates if the notebook table is used in the Registration System. This MUST match the Registration Enterprise setting.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>REG_CONTAINERS_ONLY</h4>
+        <p><b>Example</b>: REG_CONTAINERS_ONLY = false</p>
+        <p><b>Description</b>: Indicates the status of the container of Registration Enterprise.</p>
+        <p><b>Default</b>: false</p>
+        <p><b>Options</b>: false | true</p>
+        <h4>USE_REGISTRATION_MAP</h4>
+        <p><b>Example</b>: USE_REGISTRATION_MAP = False</p>
+        <p><b>Description</b>: Indicates if the registration values need to be used while creating container from Registration enterprise</p>
+        <p><b>Default</b>: false</p>
+        <p><b>Options</b>: False | True</p>
+        <h4>DEFAULT_CONTAINER_STATUSID</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_STATUSID = 1</p>
+        <p><b>Description</b>: Indicates the status of the container while creating container from Registration system.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 1 | valid container status id from database</p>
+        <h3>CHEMACX</h3>
+        <h4>ACX_SERVER_NAME</h4>
+        <p><b>Example</b>: ACX_SERVER_NAME = server1</p>
+        <p><b>Description</b>: Indicates what server the ChemACX database resides on.</p>
+        <p><b>Default</b>: NULL</p>
+        <p><b>Options</b>: A valid server name on the network</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_1_FIELD</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_1_FIELD = Field_1</p>
+        <p><b>Description</b>: The name of a field which should be added to the Send Hits to Inventory Manager from ChemACX dialog box (default configuration of dialog box is pictured below). Adding the name of a field here makes an additional field present in the dialog box allowing the user to populate that field during the import. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_TITLE and</p>
+        <p>IMPORT_CONTAINER_PICKLIST_1_SQL</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any valid Field name</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_1_SQL</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_1_SQL= "SELECT PickList_Display AS Value, substr(PickList_Display, 1 , 20) AS DisplayText FROM cheminvdb2.inv_picklists WHERE picklist_domain = 1 ORDER BY lower(DisplayText) ASC"</p>
+        <p><b>Description</b>: The SQL used to populate the field (in the interface) for the of a field in</p>
+        <p>IMPORT_CONTAINER_PICKLIST_1_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_FIELD and</p>
+        <p>IMPORT_CONTAINER_PICKLIST_1_TITLE</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any valid SQL statement.</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_1_TITLE</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_1_TITLE = Category</p>
+        <p><b>Description</b>: The label (in the interface) of a field in IMPORT_CONTAINER_PICKLIST_1_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_FIELD and IMPORT_CONTAINER_PICKLIST_1_SQL</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any text</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_2_FIELD</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_2_FIELD = Field_2</p>
+        <p><b>Description</b>: The name of a field which should be added to the Send Hits to Inventory Manager from ChemACX dialog box (default configuration of dialog box is pictured below). Adding the name of a field here makes an additional field present in the dialog box allowing the user to populate that field during the import. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_TITLE and IMPORT_CONTAINER_PICKLIST_2_SQL</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any valid Field name</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_2_SQL</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_2_SQL = "SELECT PickList_Display AS Value, substr(PickList_Display, 1 , 20) AS DisplayText FROM cheminvdb2.inv_picklists WHERE picklist_domain = 1 ORDER BY lower(DisplayText) ASC"</p>
+        <p><b>Description</b>: The SQL used to populate the field (in the interface) of a field in IMPORT_CONTAINER_PICKLIST_2_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_FIELD and IMPORT_CONTAINER_PICKLIST_2_TITLE</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any valid SQL statement</p>
+        <h4>IMPORT_CONTAINER_PICKLIST_2_TITLE</h4>
+        <p><b>Example</b>: IMPORT_CONTAINER_PICKLIST_1_TITLE = Category</p>
+        <p><b>Description</b>: The label (in the interface) of a field in IMPORT_CONTAINER_PICKLIST_2_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_FIELD and IMPORT_CONTAINER_PICKLIST_2_SQL</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: Any text</p>
+        <h4>MSDX_LOOK_AHEAD</h4>
+        <p><b>Example</b>: MSDX_LOOK_AHEAD = 1</p>
+        <p><b>Description</b>: Indicates if the MSDX lookup link should appear greyed out if there is no MSDX data available. A value of 1 makes the application look ahead to see if data exists and greys out the link if it doesn’t. This can slow down the loading process in some cases.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>MSDS_LOOK_AHEAD</h4>
+        <p><b>Example</b>: MSDS_LOOK_AHEAD = 1</p>
+        <p><b>Description</b>: Indicates if the MSDS lookup link should appear greyed out if there is no MSDS data available. A value of 1 makes the application look ahead to see if data exists and greys out the link if it doesn’t. This can slow down the loading process in some cases.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>SHOW_ACX_LOOKUP_LINK</h4>
+        <p><b>Example</b>: SHOW_ACX_LOOKUP_LINK = 1</p>
+        <p><b>Description</b>: Indicates if the ACX lookup link should be visible to users. A value of 1 makes the link visible.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>SHOW_MSDX_LOOKUP_LINK</h4>
+        <p><b>Example</b>: SHOW_MSDX_LOOKUP_LINK = 1</p>
+        <p><b>Description</b>: Indicates if the MSDX lookup link should be visible to users. A value of 1 makes the link visible.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>SHOW_MSDS_LOOKUP_LINK</h4>
+        <p><b>Example</b>: SHOW_MSDS_LOOKUP_LINK = 1</p>
+        <p><b>Description</b>: Indicates if the MSDS lookup link should be visible to users. A value of 1 makes the link visible.</p>
+        <p><b>Default</b>: 0</p>
+        <h3>SEARCH</h3>
+        <h4>LOG_SEARCHES</h4>
+        <p><b>Example</b>: LOG_SEARCHES = "False"</p>
+        <p><b>Description</b>: This setting is an internal setting which should not be changed.</p>
+        <p><b>Default</b>: n/a</p>
+        <p><b>Options</b>: n/a</p>
+        <h4>SEARCH_LOG_DB_CONNSTR</h4>
+        <p><b>Example</b>: SEARCH_LOG_DB_CONNSTR = ""</p>
+        <p><b>Description</b>: This setting is an internal setting which should not be changed.</p>
+        <p><b>Default</b>: n/a</p>
+        <p><b>Options</b>: n/a</p>
+        <h4>NP_SEARCH</h4>
+        <p><b>Example</b>: NP_SEARCH = "True"</p>
+        <p><b>Description</b>: Indicates if a no plugin search is available. After switching this flag, the no plugin search must also be implemented. If it isn’t implemented, changing this flag has no effect.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>SPECIAL_LOCATIONS</h4>
+        <p><b>Example</b>: SPECIAL_LOCATIONS = "1,2,3"</p>
+        <p><b>Description</b>: Indicates which locations will appear in the "Special Locations" window. The Special Locations window lists possible special locations. These locations are not recognized as special until a user selects the appropriate checkbox in the application.</p>
+        <p><b>Default</b>: "1,2,3"</p>
+        <p><b>Options</b>: Comma delimited list of valid location IDs</p>
+        <h4>DEFAULT_SEARCH_DATABASE</h4>
+        <p><b>Example</b>: DEFAULT_SEARCH_DATABASE="invreg"</p>
+        <p><b>Description</b>: Indicates the default database to be searched.</p>
+        <p><b>Default</b>: None</p>
+        <p><b>Options</b>: invreg|invacx|cheminv</p>
+        <h4>DEFAULT_SEARCH_TAB</h4>
+        <p><b>Example</b>: DEFAULT_SEARCH_TAB = "Simple"</p>
+        <p><b>Description</b>: Indicates the type of search is available for the user.</p>
+        <p><b>Default</b>: Simple</p>
+        <p><b>Options</b>: Simple|Advanced|Substructure|Batches|Global|Plate</p>
+        <h4>DEFAULT_EXCLUDE_SPECIAL_LOCATIONS</h4>
+        <p><b>Example</b>: DEFAULT_EXCLUDE_SPECIAL_LOCATIONS = "False"</p>
+        <p><b>Description</b>: Indicates which locations to be excluded while performing the search. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DEFAULT_SEARCH_SUBLOCATIONS</h4>
+        <p><b>Example</b>: DEAFULT_SEARCH_SUBLOCATIONS = "False"</p>
+        <p><b>Description</b>: Indicates that sub locations will be included in performing the search.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_SUBSTANCE_RESULT_AS_LIST</h4>
+        <p><b>Example</b>: DISPLAY_SUBSTANCE_RESULT_AS_LIST= "False"</p>
+        <p><b>Description</b>: Shows the substance result in a list form.False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_STRUCTURE</h4>
+        <p><b>Description</b>: Shows the substance Structure in result list form of substructure search. False turns off substance Structure, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_SUBSTANCE_NAME</h4>
+        <p><b>Description</b>: Shows the substance Name in result list form of substructure search. False turns off substance Name, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_COMPOUND_ID</h4>
+        <p><b>Description</b>: Shows the Compound ID in result list form of substructure search. False turns off Compound ID, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_CAS_NUMBER</h4>
+        <p><b>Description</b>: Shows the CAS Number in result list form of the substructure search. False turns off CAS Number, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_NUM_CONTAINERS</h4>
+        <p><b>Description</b>: Shows the Display number of containers in result list form of the substructure search. False turns off Display number of containers, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DISPLAY_RECORD_NUM</h4>
+        <p><b>Description</b>: Shows the Display Record number   in result list form of the substructure search. False turns off Display Record number   , true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>HIDE_BATCH_SEARCH_TAB</h4>
+        <p><b>Description</b>: Shows the Display Batch Search Tab   in Search mode. 1 turns off Display Batch Search Tab   , 0 turns it on.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h3>CONTAINERS</h3>
+        <h4>DEFAULT_CONTAINER_STATUS</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_STATUS = 1</p>
+        <p><b>Description</b>: Indicates what container status should appear as the default in the New Container dialog. The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: A valid container status ID.</p>
+        <h4>EXPIRATION_DATE_INCREMENT</h4>
+        <p><b>Example</b>: EXPIRATION_DATE_INCREMENT = 1</p>
+        <p><b>Description</b>: Indicates the default expiration date increment (in years). For example, a value of 1 would default the expiration date of a new container to 1 year from the current date.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: A positive number</p>
+        <h4>DISPLAY_CREATED_CONTAINERS_SUMMARY</h4>
+        <p><b>Example</b>: DISPLAY_CREATED_CONTAINERS_SUMMARY = "True"</p>
+        <p><b>Description</b>: Display summary of the new created containers. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>WARN_FOR_NO_COMPOUND</h4>
+        <p><b>Example</b>: WARN_FOR_NO_COMPOUND= 0</p>
+        <p><b>Description</b>: Displays a warning that no compound has been created for new container.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0|1</p>
+        <h4>CUSTOM_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_FIELDS = FIELD_1: Custom Field 1;0,FIELD_2:Custom Field 2;0</p>
+        <p><b>Description</b>: A comma delimted list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all relevant forms. Names of field are in the following format:</p>
+        <p>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt; where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>DISPLAY_EHS_DATA</h4>
+        <p><b>Example</b>: Display_ehs_data =”True”</p>
+        <p><b>Description</b>: Shows EH&amp;S tab in container details frame. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True|False</p>
+        <h4>MAX_UPDATEABLE_CONTAINERS</h4>
+        <p><b>Example</b>: Max_updateable_containers = 400</p>
+        <p><b>Description</b>: Allows to update number of containers in multi-select mode.</p>
+        <p><b>Default</b>: 400</p>
+        <p><b>Options</b>: a positive number</p>
+        <h4>AUTOGENERATE_FIRST_LABEL</h4>
+        <p><b>Example</b>: Autogenerate_first_label =0</p>
+        <p><b>Description</b>: Autogenerate the label on launching the print label dialog.  0 turns off the feature, 1 turns it on.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0|1</p>
+        <h4>AUTOLAUNCH_LABELPRINT_DIALOG</h4>
+        <p><b>Example</b>: Autolaunch_labelprint_dialog =0</p>
+        <p><b>Description</b>: Launch the Print dialog automatically. 0 turns off the feature, 1 turns it on.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0|1</p>
+        <h4>DEFAULT_CONTAINER_TYPE_ID</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_TYPE_ID= 1</p>
+        <p><b>Description</b>: Indicates what Container Type should appear as the default in the New Container dialog. The value must be a valid Container Type in the INV_CONTAINER_TYPES table.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: A valid Container Type id.</p>
+        <h4>DEFAULT_SUPPLIER_ID</h4>
+        <p><b>Example</b>: DEFAULT_SUPPLIER_ID = 1</p>
+        <p><b>Description</b>: Indicates what supplier id should appear as the default in the New Container dialog. The value must be a valid supplier id in the INV_SUPPLIERS table.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: A valid supplier id.</p>
+        <h4>SHOW_USER_PREFERENCES_LINK</h4>
+        <p><b>Example</b>: SHOW_USER_PREFERENCES_LINK = False</p>
+        <p><b>Description</b>: Indicates if the User Preferences link needs to be displayed. This link appears when ELN - CBOE integration is on. Server Configuration tool set the value for this parameter. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USERPREFERENCES_FIELDS</h4>
+        <p><b>Description</b>: USERPREFERENCES_FIELDS contains the list of all fields for the User Preferences. This key should not be modified. Currently 61 fields are added by default.</p>
+        <h4>UP_FIELD1 - UP_FIELD61</h4>
+        <p><b>Example</b>: UP_FIELD1 =Visible:Requred:Field Name:Display Name:Field Type:Control Type:SQL</p>
+        <p>Description: UP_FIELD&lt;n&gt; contains the properties of the User preferences fields.</p>
+        <p>The value of the ‘Visibility’ properties can be modified. 0 sets Visibility property to false, 1 set it on.</p>
+        <p>The value of the ‘Required’ properties can be modified. 0 sets Required property to false, 1 set it on.</p>
+        <p>The ‘field name’ is similar to the database field name in inv_containers table and this should not be modified.</p>
+        <p>The ‘display name’ can also be changed by the user.</p>
+        <p>‘Field Type’ should not be modified by the user.</p>
+        <p>‘Control Type’ should not be modified by the user.</p>
+        <p>‘SQL’ should not be modified by the user.</p>
+        <h3>PLATES</h3>
+        <h4>ENABLE_PLATE_MANAGEMENT</h4>
+        <p><b>Example</b>: ENABLE_PLATE_MANAGEMENT = "True"</p>
+        <p><b>Description</b>: Enables plate management if set to True.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>PLATE_DEFAULT_VOL_UNIT</h4>
+        <p><b>Example</b>: PLATE_DEFAULT_VOL_UNIT = 4</p>
+        <p><b>Description</b>: Indicates what the default volumetric units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p><b>Default</b>: 4</p>
+        <p><b>Options</b>: A valid Unit ID</p>
+        <h4>PLATE_DEFAULT_CONC_UNIT</h4>
+        <p><b>Example</b>: PLATE_DEFAULT_CONC_UNIT = 91</p>
+        <p><b>Description</b>: Indicates what the default concentration units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p><b>Default</b>: 91</p>
+        <p><b>Options</b>: A valid Unit ID</p>
+        <h4>PLATE_DEFAULT_MASS_UNIT</h4>
+        <p><b>Example</b>: PLATE_DEFAULT_MASS_UNIT = 8</p>
+        <p><b>Description</b>: Indicates what the default mass units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p><b>Default</b>: 8</p>
+        <p><b>Options</b>: A valid Unit ID</p>
+        <h4>CUSTOM_PLATE_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_PLATE_FIELDS = FIELD_1: Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field 2;0</p>
+        <p><b>Description</b>: A comma delimited list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all plate details forms. Names of fields are in the following format:</p>
+        <p>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt; where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>CUSTOM_WELL_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_WELL_FIELDS = FIELD_1:Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field2;0</p>
+        <p><b>Description</b>: A comma delimted list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all well details forms. Names of fields are in the following format:</p>
+        <p>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt; where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>USE_DEFAULT_PLATEVIEWER_CELL_SIZE</h4>
+        <p><b>Example</b>: USE_DEFAULT_PLATEVIEWER_CELL_SIZE = “True”</p>
+        <p><b>Description</b>: Indicates that how Plate viewer tab will look like. True will show the plate viewer in a fixed size, False will show Plate viewer in variable size based on plate wells.</p>
+        <p><b>Default</b>:  True</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>SUBSTANCES</h3>
+        <h4>GET_CARTRIDGE_MW_FORMULA</h4>
+        <p><b>Example</b>: GET_CARTRIDGE_MW_FORMULA = False</p>
+        <p><b>Description</b>: Indicates how the molecular weight and molecular formula are searched.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True|False</p>
+        <h4>ALT_IDS</h4>
+        <p><b>Example</b>: ALT_IDS = inv_compounds.ALT_ID_1:Substance ID 1;1-U,inv_compounds.ALT_ID_2:Substance ID 2;0</p>
+        <p><b>Description</b>: A comma delimted list of the alternate compound IDs. Alt IDs are in the following format:</p>
+        <p>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt; where Field_Name is the name of the alt ID field (as shown in the INI file), Field Label is how the alt id should show up in the interface, and the last parameter indicates if the field is required (1) or not (0). Add a -U to the end of an alt ID’s definition to make the ID a unique identifier.</p>
+        <p><b>Default</b>: inv_compounds.ALT_ID_1:Substance ID 1;1-U,inv_compounds.ALT_ID_2:Substance ID 2;0,inv_compounds.ALT_ID_3:Substance ID 3;0,inv_compounds.ALT_ID_4:Substance ID 4;0,inv_compounds.ALT_ID_5:Substance ID 5;0</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>DISPLAY_SAFETY_DATA</h4>
+        <p><b>Example</b>: DISPLAY_SAFETY_DATA =False</p>
+        <p><b>Description</b>: Indicates that if the safety data will be displayed in with the substance information. . If set to True, the Safety data will be displayed.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>BARCODES</h3>
+        <h4>REQUIRE_BARCODE</h4>
+        <p><b>Example</b>: REQUIRE_BARCODE = 1</p>
+        <p><b>Description</b>: Indicates if the container barcode should be required in the New Container dialog. If set to 1, the container barcode will be required.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h3>RETIRE</h3>
+        <h4>DEFAULT_RETIRED_LOCATION</h4>
+        <p><b>Example</b>: DEFAULT_RETIRED_LOCATION = 2</p>
+        <p><b>Description</b>: Indicates where retired containers are put by default.</p>
+        <p><b>Default</b>: 2</p>
+        <p><b>Options</b>: Any location ID.</p>
+        <h4>DEFAULT_RETIRED_STATUS</h4>
+        <p><b>Example</b>: DEFAULT_RETIRED_STATUS = 6</p>
+        <p><b>Description</b>: Indicates what status is given to retired containers by default.</p>
+        <p><b>Default</b>: 6</p>
+        <p><b>Options</b>: Any valid status ID.</p>
+        <h4>PLATE_DEFAULT_RETIRED_LOCATION</h4>
+        <p><b>Example</b>: PLATE_DEFAULT_RETIRED_LOCATION = 2</p>
+        <p><b>Description</b>: The location ID of the location where retired containers should be placed by default.</p>
+        <p><b>Default</b>: 2</p>
+        <p><b>Options</b>: Location ID</p>
+        <h4>PLATE_DEFAULT_RETIRED_STATUS</h4>
+        <p><b>Example</b>: PLATE_DEFAULT_RETIRED_STATUS = 6</p>
+        <p><b>Description</b>: The status ID of the status which should be assigned to retired containers by default.</p>
+        <p><b>Default</b>: 6</p>
+        <p><b>Options</b>: Status ID</p>
+        <h3>RECTIFICATION</h3>
+        <h4>DISABLE_CHECKBOXES_DURING_RECTIFICATION</h4>
+        <p><b>Example</b>: DISABLE_CHECKBOXES_DURING_RECTIFICATION = "False"</p>
+        <p><b>Description</b>: Indicates if, while rectifying a location, checkboxes should be available to manually check off containers listed (instead of having to scan in barcodes). True indicates no checkboxes are available, False indicates checkboxes are available.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>SECURITY</h3>
+        <h4>PERSIST_AUTHENTICATION_COOKIES</h4>
+        <p><b>Example</b>: Persist_authentication_cookies = “True”</p>
+        <p><b>Description</b>: Save the cookie on the system for a specified time. If sets to False the cookie is not saved on the system.</p>
+        <p><b>Default</b>:  True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>ENABLE_OWNERSHIP</h4>
+        <p><b>Example</b>: ENABLE_OWNERSHIP = "False"</p>
+        <p><b>Description</b>: Indicates for group Security is enable for containers/Locations/Plated</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>CHECKIN_CHECKOUT</h3>
+        <h4>SHOW_CHECKIN_DETAILS</h4>
+        <p><b>Example</b>: SHOW_CHECKIN_DETAILS = 1</p>
+        <p><b>Description</b>: Indicates if the fields defined in the CUSTOM_CHECKIN_DETAILS setting should be displayed in the Check In dialog.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>CUSTOM_CHECKIN_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_CHECKIN_FIELDS = FIELD_1:Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field 2;0</p>
+        <p><b>Description</b>: A comma delimted list of the optional customizable fields that are in use. If the field appears in this list, it will appear on the container checkin form. Names of fields are in the following format:</p>
+        <p>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt; where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p>Default: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h3>REQUESTS</h3>
+        <h4>ALLOW_REQUESTS</h4>
+        <p><b>Example</b>: ALLOW_REQUESTS = "False"</p>
+        <p><b>Description</b>: Indicates if users will be able to use the request feature of the software. False turns off the request feature, true turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>SHOW_REQUEST_SAMPLE</h4>
+        <p><b>Example</b>: SHOW_REQUEST_SAMPLE = 1</p>
+        <p><b>Description</b>: Indicates if the Request Sample feature should be turned on. The Request Sample feature allows you to request part of a container or batch of containers as opposed to the Request Container feature in which you request the whole container. In addition to the Request Sample feature, this setting also enables the Manage Sample Requests and Manage</p>
+        <p>Orders features, if set to 1.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>RETIRE_FULFILLED_CONTAINERS</h4>
+        <p><b>Example</b>: RETIRE_FULFILLED_CONTAINERS="True"</p>
+        <p><b>Description</b>: Indicates that containers whose requests are fulfilled gets retired.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True|False</p>
+        <h4>STATUS_REQUESTED_SAMPLES</h4>
+        <p><b>Example</b>: DEFAULT_SAMPLE_UOC="26=mg/ml"</p>
+        <p><b>Description</b>: Sets a default unit of concentration for a new sample.</p>
+        <p><b>Default</b>: None.</p>
+        <p><b>Options</b>: Any valid unit in which the concentration of the sample can be measured.</p>
+        <h4>DEFAULT_REQUEST_DELIVERY_LOCATION</h4>
+        <p><b>Example</b>: DEFAULT_REQUEST_DELIVERY_LOCATION = 2</p>
+        <p><b>Description</b>: Shows default delivery location id for samples which are part of a request.</p>
+        <p><b>Default</b>: any valid location id</p>
+        <p><b>Options</b>: any location id</p>
+        <h4>SHOW_CREATE_SAMPLE</h4>
+        <p><b>Example</b>: SHOW_CREATE_SAMPLE="True"</p>
+        <p><b>Description</b>: Indicates that the user can create a sample. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True|False</p>
+        <h4>SHOW_ADD_SAMPLE</h4>
+        <p><b>Example</b>: SHOW_ADD_SAMPLE =”True”</p>
+        <p><b>Description</b>: Indicates that the user can add a sample in Manage sample requests section. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True|False</p>
+        <h4>REQUEST_SAMPLE_BY_AMOUNT</h4>
+        <p><b>Example</b>: REQUEST_SAMPLE_BY_AMOUNT</p>
+        <p><b>Description</b>:</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>:</p>
+        <h4>CUSTOM_CREATEREQUEST_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_CREATEREQUEST_FIELDS = FIELD_1: Custom Field</p>
+        <p>1;0,FIELD_2:Custom Field 2;0</p>
+        <p><b>Description</b>: Displays fields when making a request on a container. For more details see custom fields.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>CUSTOM_FULFILLREQUEST_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_FULFILLREQUEST_FIELDS = FIELD_1: Custom Field 1;0, FIELD_2:Custom Field 2;0</p>
+        <p><b>Description</b>: Displays the fields when fulfilling a request. For more details see custom fields.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h4>BYPASS_REQUEST_APPROVAL</h4>
+        <p><b>Example</b>: BYPASS_REQUEST_APPROVAL = “False”</p>
+        <p><b>Description</b>: Indicates that the request approval is required. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>AUTOMATIC_RESERVATION</h4>
+        <p><b>Example</b>: AUTOMATIC_RESERVATION =0</p>
+        <p><b>Description</b>: Indicates that a new reservation will be created for newly created request. 0 turns off the feature, 1 turns it on.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0|1</p>
+        <h4>REQUIRE_APPROVAL_FOR_SAMPLES</h4>
+        <p><b>Example</b>: REQUIRE_APPROVAL_FOR_SAMPLES =”False”</p>
+        <p><b>Description</b>: Indicates that a request container link will be available after certifying a container. False turns off the feature, True turns it on.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USE_REG_REQUEST_MAP</h4>
+        <p><b>Example</b>: USE_REG_REQUEST_MAP</p>
+        <p><b>Description</b>: Indicates that the Registration values to be used while placing request from Registration system.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>BATCHES</h3>
+        <h4>CUSTOM_BATCH_PROPERTY_FIELDS</h4>
+        <p><b>Example</b>: CUSTOM_BATCH_PROPERTY_FIELDS = FIELD_1:Custom Field 1;0,FIELD_2:Custom Field 2;0</p>
+        <p><b>Description</b>: Displays fields associated with the batch of containers. For more details see custom fields.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <h3>SAMPLES</h3>
+        <h4>SHOW_SAMPLE</h4>
+        <p><b>Example</b>: SHOW_SAMPLE = "True"</p>
+        <p><b>Description</b>: Enables the sample container function is set to True.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DEFAULT_SAMPLE_UOM</h4>
+        <p><b>Example</b>: DEFAULT_SAMPLE_UOM="1=ml"</p>
+        <p><b>Description</b>: Sets a default unit of measurement for a new sample.</p>
+        <p><b>Default</b>: None.</p>
+        <p><b>Options</b>: Any valid unit in which the quantity of the sample can be measured.</p>
+        <h4>DEFAULT_SAMPLE_UOC</h4>
+        <p><b>Example</b>: DEFAULT_SAMPLE_UOC="26=mg/ml"</p>
+        <p><b>Description</b>: Sets a default unit of concentration for a new sample.</p>
+        <p><b>Default</b>: None.</p>
+        <p><b>Options</b>: Any valid unit in which the concentration of the sample can be measured.</p>
+        <h4>DEFAULT_SAMPLE_CONTAINER_TYPE_ID</h4>
+        <p><b>Example</b>: DEFAULT_SAMPLE_CONTAINER_TYPE_ID="2"</p>
+        <p><b>Description</b>: Sets default container type for a new sample.</p>
+        <p><b>Default</b>: None.</p>
+        <p><b>Options</b>: Any valid container type.</p>
+        <h4>DEFAULT_SAMPLE_REQUEST_CONC</h4>
+        <p><b>Example</b>: DEFAULT_SAMPLE_REQUEST_CONC="6=mg"</p>
+        <p><b>Description</b>: Sets a default unit of concentration for a sample that is requested from an already existing container.</p>
+        <p><b>Default</b>: None.</p>
+        <p><b>Options</b>: Any valid unit in which the concentration of the sample can be measured.</p>
+        <h4>SAMPLE_REQUIRE_CONCENTRATION</h4>
+        <p><b>Example</b>: SAMPLE_REQUIRE_CONCENTRATION = True</p>
+        <p><b>Description</b>: Indicates concentration requirement in the new sample screen. False turns off the feature, true turns it on.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True| False</p>
+        <h4>STATUS_ORDER_CONTAINERS</h4>
+        <p><b>Example</b>: STATUS_ORDER_CONTAINERS = 16</p>
+        <p><b>Description</b>: Indicates the status of the requested containers.</p>
+        <p><b>Default</b>: 16</p>
+        <p><b>Options</b>: Depends on the table INV_CONTAINER_STATUS</p>
+        <h4>DEFAULT_REALIQUOT_DISPOSED_LOC</h4>
+        <p><b>Example</b>: DEFAULT_REALIQUOT_DISPOSED_LOC = 2</p>
+        <p><b>Description</b>: Shows default location id for samples being aliquoted during sample fulfilment.</p>
+        <p><b>Default</b>: any valid Location ID</p>
+        <p><b>Options</b>: any valid Location ID</p>
+        <h4>SAMPLE_CREATE_LIMIT</h4>
+        <p><b>Example</b>: SAMPLE_CREATE_LIMIT = 200</p>
+        <p><b>Description</b>: Indicates a limit for a maximum number of samples created.</p>
+        <p><b>Default</b>: 200</p>
+        <p><b>Options</b>: any positive integer</p>
+        <h3>SPLITTING</h3>
+        <h4>SHOW_SPLIT</h4>
+        <p><b>Example</b>: SHOW_SPLIT = "True"</p>
+        <p><b>Description</b>: Enables the split container function is set to True.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h3>CERTIFICATION</h3>
+        <h4>SHOW_CERTIFY</h4>
+        <p><b>Example</b>: SHOW_CERTIFY = TRUE</p>
+        <p><b>Description</b>: Indicates if the Certify Container feature should be turned on. The Certify Container feature requires the INV_CERTIFY_CONTAINER privilege. In order to use this feature, the STATUS_CERTIFIED status must also be set.</p>
+        <p><b>Default</b>: TRUE</p>
+        <p><b>Options</b>: FALSE | TRUE</p>
+        <h4>STATUS_APPROVED</h4>
+        <p><b>Example</b>: STATUS_APPROVED = 1001</p>
+        <p><b>Description</b>: Indicates what state a container should be set to when approved through the Manage Approvals interface. The Manage Approvals interface is only available if SHOW_CERTIFY = 1 (the Certification workflow is turned on). The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Options</b>: A valid container status ID</p>
+        <h4>STATUS_CERTIFIED</h4>
+        <p><b>Example</b>: STATUS_CERTIFIED = 1001</p>
+        <p><b>Description</b>: Indicates what state a container should be set to when certified through the Certify Container feature. The Certify Container feature is only available if SHOW_CERTIFY = 1 (the Certification workflow is turned on). The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p><b>Default</b>:</p>
+        <p><b>Note</b>: There is no default value for STATUS_CERTIFIED.</p>
+        <p><b>Options</b>: A valid container status ID</p>
+        <h3>CONTAINER_ORDERING</h3>
+        <h4>BYPASS_ORDERING_SCREENS</h4>
+        <p><b>Example</b>: BYPASS_ORDERING_SCREENS = 0</p>
+        <p><b>Description</b>: Displays an ordering screen while ordering the containers from ChemACX to ChemInv.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>ALLOW_USER_TO_SET_DELIVERY_LOCATION</h4>
+        <p><b>Example</b>: ALLOW_USER_TO_SET_DELIVERY_LOCATION= 0</p>
+        <p><b>Description</b>: Indicates that a user can set the delivery location for the container.</p>
+        <p><b>Default</b>: 0</p>
+        <p><b>Options</b>: 0|1</p>
+        <h4>DEFAULT_CONTAINER_ORDER_PROJECT</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_PROJECT = 1</p>
+        <p><b>Description</b>: Indicates which project user wants to select by default while ordering the container.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 0| 1</p>
+        <h4>DEFAULT_CONTAINER_ORDER_JOB</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_JOB= 1</p>
+        <p><b>Description</b>: Indicates which job user wants to select by default while ordering the container.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>DEFAULT_CONTAINER_ORDER_DELIVERY_LOCATION</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_DELIVERY_LOCATION = 1</p>
+        <p><b>Description</b>: Indicates by default which location user wants to set the container.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: depends on the location id.</p>
+        <h4>DEFAULT_CONTAINER_ORDER_STATUS</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_STATUS = 3</p>
+        <p><b>Description</b>: Indicates the status of the ordered container.</p>
+        <p><b>Default</b>: any valid container status id</p>
+        <p><b>Options</b>: depends on the container status id</p>
+        <h4>DEFAULT_CONTAINER_ORDER_OWNER</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_OWNER = ""</p>
+        <p><b>Description</b>: Indicates which owner user wants to set by default while ordering the container.</p>
+        <p><b>Default</b>: ""</p>
+        <p><b>Options</b>: depends on the user id</p>
+        <h4>DEFAULT_CONTAINER_ORDER_UNIT_OF_MEAS</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_UNIT_OF_MEAS = 100</p>
+        <p><b>Description</b>: Displays default unit of measure ID for containers.</p>
+        <p><b>Default</b>: any valid unit id</p>
+        <p><b>Options</b>: unit id</p>
+        <h4>DEFAULT_CONTAINER_ORDER_SIZE</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_SIZE = 1</p>
+        <p><b>Description</b>: Indicates the size of the ordered container.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 0 | 1</p>
+        <h4>DEFAULT_CONTAINER_ORDER_REASON</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_REASON= 1</p>
+        <p><b>Description</b>: Indicates while ordering the container default selected reason.</p>
+        <p><b>Default</b>: any valid reason id</p>
+        <p><b>Options</b>: depends on container reason id.</p>
+        <h4>ORDER_WORKFLOW_OPTION</h4>
+        <p><b>Example</b>: ORDER_WORKFLOW_OPTION= 1</p>
+        <p><b>Description</b>: Indicates that which fields will be displayed while creating container from ACX.</p>
+        <p><b>Default</b>: 1</p>
+        <p><b>Options</b>: 1|2</p>
+        <h4>DEFAULT_CONTAINER_ORDER_DUE_DAYS</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_ORDER_DUE_DAYS= 2</p>
+        <p><b>Description</b>: Indicates while ordering a container, how many days will be added for the due date field.</p>
+        <p><b>Default</b>: 2</p>
+        <p><b>Options</b>: Any positive number</p>
+        <h3>INTERFACE</h3>
+        <h4>USE_CUSTOM_BANNER_FRAME_LINKS</h4>
+        <p><b>Example</b>: USE_CUSTOM_BANNER_FRAME_LINKS = "False"</p>
+        <p><b>Description</b>: Indicates if the application should look for a custom file to define the links found in the Banner Frame (top frame in search mode). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USE_CUSTOM_BROWSEBANNER_FRAME_LINKS</h4>
+        <p><b>Example</b>: USE_CUSTOM_BROWSEBANNER_FRAME_LINKS = "False"</p>
+        <p><b>Description</b>: Indicates if the application should look for a custom file to define the links found in the Browse Banner Frame (top frame in browse mode). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USE_CUSTOM_LIST_FRAME_LINKS</h4>
+        <p><b>Example</b>: USE_CUSTOM_LIST_FRAME_LINKS = "False"</p>
+        <p><b>Description</b>: Indicates if the application should look for a custom file to define the links found in the Container List Frame (middle, right hand side). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USE_CUSTOM_TAB_FRAME_LINKS</h4>
+        <p><b>Example</b>: USE_CUSTOM_TAB_FRAME_LINKS = "False"</p>
+        <p><b>Description</b>: Indicates if the application should look for a custom file to define the links found in the Container Tab Frame (lower right hand side). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>USE_CUSTOM_SEARCH_FORM_TABS</h4>
+        <p><b>Example</b>: USE_CUSTOM_SEARCH_FORM_TABS = "False"</p>
+        <p><b>Description</b>: Indicates if the application should look for a custom file to define new search forms (therefore new search form tabs). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p><b>Default</b>: False</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>HIDE_OTHER_TAB</h4>
+        <p><b>Example</b>: HIDE_OTHER_TAB = "True"</p>
+        <p><b>Description</b>: If set to true, this entry hides the Custom Fields tab in the container details frame.</p>
+        <p>The tab should probably only be set to visible (false) if there are custom fields defined.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>OTHER_TAB_POPUP_HELP</h4>
+        <p><b>Example</b>: OTHER_TAB_POPUP_HELP = "Custom configured fields"</p>
+        <p><b>Description</b>: The text which appears when the customer fields tab is moused over. This is only relevant if the custom fields tab is visible (HIDE_OTHER_TAB = "False").</p>
+        <p><b>Default</b>: Custom configured fields</p>
+        <p><b>Options</b>: Text (any string)</p>
+        <h4>OTHER_TAB_TEXT</h4>
+        <p><b>Example</b>: OTHER_TAB_TEXT = "Other"</p>
+        <p><b>Description</b>: The label on the Custom Fields Tab, if the tab is visible (HIDE_OTHER_TAB = "False").</p>
+        <p><b>Default</b>: Other</p>
+        <p><b>Options</b>: Text (any string)</p>
+        <h3>REPORTS</h3>
+        <h4>DEFAULT_CONTAINER_SEARCH_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_SEARCH_REPORT = "rptContainerSearchResults1"</p>
+        <p><b>Description</b>: The name of the default search report in the report writer Access database.</p>
+        <p><b>Default</b>: rptContainerSearchResults1</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_CONTAINER_LABEL_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_LABEL_REPORT = "rptContainerBarCodeLabels2"</p>
+        <p><b>Description</b>: The name of the default label report in the report writer Access database.</p>
+        <p><b>Default</b>: rptContainerBarCodeLabels2</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_CONTAINER_LOCATION_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_CONTAINER_LOCATION_REPORT = "rptLocationReport1"</p>
+        <p><b>Description</b>: The name of the default location report in the report writer Access database.</p>
+        <p><b>Default</b>: rptLocationReport1</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_PLATE_SEARCH_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_PLATE_SEARCH_REPORT = "rptPlateSearchResults1"</p>
+        <p><b>Description</b>: The name of the default search report in the report writer Access database.</p>
+        <p><b>Default</b>: rptPlateSearchResults1</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_PLATE_LABEL_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_PLATE_LABEL_REPORT = "rptPlateBarCodeLabels1"</p>
+        <p><b>Description</b>: The name of the default label report in the report writer Access database.</p>
+        <p><b>Default</b>: rptPlateBarCodeLabels1</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_PLATE_LOCATION_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_PLATE_LOCATION_REPORT = "rptPlateLocationReport1"</p>
+        <p><b>Description</b>: The name of the default location report in the report writer Access database.</p>
+        <p><b>Default</b>: rptPlateLocationReport1</p>
+        <p><b>Options</b>: Name of report in the database.</p>
+        <h4>DEFAULT_REPORT_FORMAT</h4>
+        <p><b>Example</b>: DEFAULT_REPORT_FORMAT = "PDF"</p>
+        <p><b>Description</b>: The default format for the report writer.</p>
+        <p><b>Default</b>: PDF</p>
+        <p><b>Options</b>: SNP | PDF (if installed)</p>
+        <h4>REPORT_DB_PATH</h4>
+        <p><b>Example</b>: REPORT_DB_PATH = C:\Chemoffice_data\ChemInv\ChemInv_reports.mdb</p>
+        <p><b>Description</b>: The path to the report writer Access database.</p>
+        <p><b>Default</b>: C:\Chemoffice_data\ChemInv\ChemInv_reports.mdb</p>
+        <p><b>Options</b>: Absolute or relative path to the report writer database.</p>
+        <h4>RPT_PATH</h4>
+        <p><b>Example</b>: RPT_PATH = "C:\Inetpub\wwwroot\ChemOffice\webserver_source\cfserverasp\RPT\"</p>
+        <p><b>Description</b>: The path to the necessary report writer files.</p>
+        <p><b>Default</b>: "C:\Inetpub\wwwroot\ChemOffice\webserver_source\cfserverasp\RPT\"</p>
+        <p><b>Options</b>: Absolute or relative path to the report writer files.</p>
+        <h4>REPORTS_HTTP_PATH</h4>
+        <p><b>Example</b>: REPORTS_HTTP_PATH = "/cfserverasp/RPT/Reports/"</p>
+        <p><b>Description</b>: The path used in a URL for the report writer.</p>
+        <p><b>Default</b>: "/cfserverasp/RPT/Reports/"</p>
+        <p><b>Options</b>: Absolute or relative path to the report writer files.</p>
+        <h4>USE_LPR_REPORTS</h4>
+        <p><b>Example</b>: USE_LPR_REPORTS = " True"</p>
+        <p><b>Description</b>: Indicates if the LPR reports to be used in the Inventory Label’s generation.</p>
+        <p><b>Default</b>: True</p>
+        <p><b>Options</b>: True | False</p>
+        <h4>DEFAULT_LOCATION_LABEL_REPORT</h4>
+        <p><b>Example</b>: DEFAULT_LOCATION_LABEL_REPORT= "rptLocationBarCodeLabels1"</p>
+        <p><b>Description</b>: Indicate which report will be selected while generating the report for a location.</p>
+        <p><b>Default</b>: rptLocationBarCodeLabels1</p>
+        <p><b>Options</b>: A valid report.</p>
+        <h3>MANAGE_TABLES</h3>
+        <h4>EDITABLE_TABLES</h4>
+        <p><b>Example</b>: EDITABLE_TABLES = inv_grid_format:Grid Format,inv_location_types:Location Types</p>
+        <p><b>Description</b>: A comma delimited list of tables that can be edited by the Edit Tables interface in the application. Names of tables are in the following format:</p>
+        <p>&lt;Oracle_Table&gt;:&lt;Display Name&gt; where Oracle_Table is the name of the table in Oracle and Display Name is how the table should be labeled in the interface.</p>
+        <p>Default: inv_container_status:Container Status,inv_container_types:Container</p>
+        <p>Types,inv_grid_format:Grid Format,inv_enumeration(eset_id_fk;3):Grid Format</p>
+        <p>Types,inv_location_types:Location Types,inv_enumeration(eset_id_fk;6):Plate Corners,</p>
+        <p>inv_enumeration(eset_id_fk;7):Plate Directions,inv_enumeration(eset_id_fk;4):Plate Inventory</p>
+        <p>Settings,inv_enumeration(eset_id_fk;5):Plate Libraries,inv_enumeration(eset_id_fk;2):Plate</p>
+        <p>Status,inv_plate_types:Plate Types,inv_reporttypes:Report Types,inv_reservation_types:Reservation</p>
+        <p>Types,inv_units:Units,inv_unit_types:Unit Types,inv_enumeration(eset_id_fk;1):Well Formats</p>
+        <p><b>Options</b>: A comma delimited list in the above format.</p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

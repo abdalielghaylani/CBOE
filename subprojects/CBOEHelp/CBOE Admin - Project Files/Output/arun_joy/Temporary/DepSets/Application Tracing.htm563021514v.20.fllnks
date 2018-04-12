@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet
+  FileSearchable="true"
+  FileTimeEstimate="0"
+  FilePriority="0">
+  <Links>
+    <Link
+      Url="Content/Application Tracing.htm" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing1.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing2.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing3.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing4.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing5.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing6.png" />
+  </Links>
+  <LongLinks>
+    <Link
+      Url="Content/Application Tracing.htm#Enabling_Tracing_in_Registration_Enterprise_and_Data_View_Manager" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing1.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing2.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing3.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing4.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing5.png" />
+    <Link
+      Url="Content/Resources/Images/BioSARBrowser/appln tracing6.png" />
+  </LongLinks>
+  <Anchors>
+    <Anchor
+      Name="Enabling_Tracing_in_Registration_Enterprise_and_Data_View_Manager" />
+  </Anchors>
+  <Keywords />
+  <Concepts />
+  <ConceptControlNames />
+  <IndexControlNames />
+  <Variables />
+  <FileConditions />
+  <FileTags />
+  <AllConditions />
+  <Stylesheets />
+</CatapultFileLinkSet>

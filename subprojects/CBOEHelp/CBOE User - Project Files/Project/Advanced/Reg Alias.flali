@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultAliasFile>
+    <Map Name="Registration_Help" Link="/Content/Reg 1104/Registration Introduction.htm" />
+    <Map Name="CBV_Help" Link="/Content/ChemBioViz/ChemBioViz Introduction.htm" />
+</CatapultAliasFile>

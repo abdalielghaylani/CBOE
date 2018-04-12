@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileTitle="Validation Rules" FileLanguage="en-us" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Resources/Images/Registration/validation rules.gif" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Resources/Images/Registration/validation rules.gif" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/SkinSupport/MadCap.css" />
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

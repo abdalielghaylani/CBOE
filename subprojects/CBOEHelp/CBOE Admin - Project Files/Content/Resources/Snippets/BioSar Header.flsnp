@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="74" MadCap:lastWidth="616">
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%; caption-side: top; width: 100%; margin-left: 0; margin-right: auto;">
+                <col style="width: 612px;" />
+                <tr valign="bottom" style="height: 30px;">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-style: italic;">BioSARBrowser</span>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td>
+                        <hr />
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-weight: bold;">Administrator's Guide</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Registration|Data Loader|Optimizations for Bulk Loading">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Oracle Optimizer Statistics</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Oracle Optimizer Statistics</h1>
+        <p>As always, Oracle performance is highly dependent on maintaining up-to-data statistics on all database objects in order to allow the Oracle query optimizer to chose the most efficient execution plan.  During bulk load operations, the state of the database objects will change significantly as the database starts in a nearly empty state and ends with substantial volume of data in many tables.  It is therefore critical to periodically gather optimizer statistics throughout the bulk load process.
+</p>
+        <p>Gathering Oracle Optimizer statistics is typically the purview of the Oracle DBA.  There are several different approaches to do so.  Below is a very simple script that gathers statistics for all the objects that may have an effect in the performance of Registration bulk loads.  Consult a professional DBA for alternate methods that may be more appropriate for the particular database configuration.  For example, on very large databases it may be preferable to gather statistics on a small percentage of rows rather than on all rows.
+</p>
+        <p>Connect system/manager@&amp;&amp;YourTNSName
+<br />Begin
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'REGDB', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'COEDB', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'CSCARTRIDGE', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'CHEMINVDB2', cascade =&gt; TRUE);
+<br />end;
+ </p>
+        <p>Recommendations:
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Breakup files to be loaded into manageable chunks of 10-50K records 
+</li>
+                <li value="2">Gather Optimizer Statistics between after loading some of the chucks
+</li>
+                <li value="3">Flush the SQL shared pool after gathering statistics
+ 
+ </li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p>connect system/manager@&amp;&amp;YourTNSName  
+ <br />alter system flush shared pool;
+</p>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

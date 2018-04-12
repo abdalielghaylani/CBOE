@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.BioSAR">
+  <TocEntry
+    Title="BioSARBrowser"
+    Link="/Content/BioSARBrowser/BioSARBrowser Introduction.htm"
+    StartSection="true"
+    MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+    PageNumber="1"
+    PageNumberReset="continue"
+    StartChapter="false"
+    ReplaceMergeNode="false"
+    conditions="Default.BioSAR">
+    <TocEntry
+      Title="BioSARBrowser Terminology"
+      Link="/Content/BioSARBrowser/BioSARBrowser Terminology.htm" />
+    <TocEntry
+      Title="Accessing BioSAR Enterprise"
+      Link="/Content/BioSARBrowser/Accessing BioSAR Enterprise.htm" />
+    <TocEntry
+      Title="Form Management"
+      Link="/Content/BioSARBrowser/Form Management.htm">
+      <TocEntry
+        Title="Creating a Form"
+        Link="/Content/BioSARBrowser/Creating a Form.htm" />
+      <TocEntry
+        Title="Editing a Form"
+        Link="/Content/BioSARBrowser/Editing a Form.htm" />
+      <TocEntry
+        Title="Renaming a Form"
+        Link="/Content/BioSARBrowser/Renaming a Form.htm" />
+      <TocEntry
+        Title="Duplicating a Form"
+        Link="/Content/BioSARBrowser/Duplicating a Form.htm" />
+      <TocEntry
+        Title="Deleting a Form"
+        Link="/Content/BioSARBrowser/Deleting a Form.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Searching"
+      Link="/Content/BioSARBrowser/Searching.htm">
+      <TocEntry
+        Title="Using Forms to Search Data"
+        Link="/Content/BioSARBrowser/Using Forms to Search Data.htm" />
+      <TocEntry
+        Title="Using Saved Queries"
+        Link="/Content/BioSARBrowser/Using Saved Queries.htm" />
+      <TocEntry
+        Title="Using the History"
+        Link="/Content/BioSARBrowser/Using the History.htm" />
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/BioSARBrowser/Viewing Search Results.htm" />
+      <TocEntry
+        Title="Generating Reports"
+        Link="/Content/BioSARBrowser/Generating Reports.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Organizing Projects"
+      Link="/Content/BioSARBrowser/Organizing Projects.htm" />
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/BioSARBrowser/Application Tracing.htm"></TocEntry>
+  </TocEntry>
+</CatapultToc>

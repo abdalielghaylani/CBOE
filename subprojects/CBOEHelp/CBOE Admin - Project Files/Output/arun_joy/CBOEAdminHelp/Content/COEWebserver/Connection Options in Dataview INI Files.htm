@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" class="" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Connection Options in Dataview INI Files</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" --><a name="type"></a>
+        <h1> Connection Options in&#160;Dataview INI Files</h1>
+        <h2> Connection Types</h2>
+        <h3>DBQ</h3>
+        <p>For DBQ, CONN_TYPE must be a full text specification with the following 
+minimum of information for each type of datasource. The ODBC control panel will 
+help you to&#160;determine information about drivers installed on the server. In 
+general this will use the default OLEDB driver and may not be optimized. The 
+default driver is MSDASQL.</p>
+        <blockquote>
+            <p><strong>ACCESS<br /></strong><i>database 
+ path</i>;DRIVER={<i>drivername</i>)<br /><em><strong>Example:</strong></em>CONNECTION_STRING = C:\ 
+ Samples\sample.MDB;<br />   
+    DRIVER={Microsoft Access Driver(*.mdb)}</p>
+            <p><strong>SQLSERVER 
+    <br /></strong>DRIVER={<i>drivername</i>};DATA 
+ SOURCE=<i>server_name</i>;INITIAL CATALOG<i>=database name<br /><strong>Example</strong>: </i>CONNECTION_STRING<i>=DRIVER={SQL Server}; <br />  DATA SOURCE = 
+ myServer;INITIAL CATALOB=sample</i></p>
+        </blockquote>
+        <blockquote>
+            <p><strong>ORACLE<br /></strong>DRIVER={<i>drivername</i>};<i> SERVER</i>=<i>net8 
+ service_name<br /><strong>Example:</strong></i>CONNECTION_STRING<i>=DRIVER-{Microsofr ODBC for Oracle}; <br />    SERVICE = 
+ my_world</i></p>
+        </blockquote>
+        <h3>DSN</h3>
+        <p>For DSN, define the DSN in the ODBC control panel.</p>
+        <blockquote>
+            <p><strong>ACCESS, SQLSERVER, ORACLE 
+  <br /></strong><i>Dsn name<br /><strong>Example:</strong></i>CONNECTION_STRING<i>=sample</i></p><i></i>
+            <p>Other data source specification will depend on the driver you are using. 
+ Often DSN: the connection string should be simply the name of the dsn, such 
+ as "sample_dsn" that you have created via the ODBC control panel on the 
+ server.</p>
+        </blockquote>
+        <h3>OLEDB</h3>
+        <p> When using OLEDB, specify the PROVIDER in addition to the other 
+information using slightly different keywords then DBQ. In general the ODBC 
+provider default is MSDASQL which is Microsofts global ODBC driver. Many 
+datasources also have Native providers that can increase performance over the 
+default Microsoft provider.</p>
+        <blockquote>
+            <p><strong>ACCESS:<br /></strong>PROVIDER=<i>provider_name;<br /></i>DATA SOURCE=<em>database path or 
+ DSN name<br /><br /><strong>Example:</strong> CONNECTION_STRING= 
+ Provider= Microsoft.Jet.OLEDB.4.0;<br />Data Source=C:\Samples\sample.MDB<br /></em>OR&#160;with a DSN<br /><em>CONNECTION_STRING= 
+ Provider=Microsoft.Jet.OLEDB.4.0;<br />Data Source=sample</em></p>
+        </blockquote>
+        <blockquote>
+            <p><strong>SQLSERVER<br /></strong>PROVIDER=<i>provider_name;<br /></i>DATA SOURCE=<i>server_name or dsn_namee 
+    </i>;<br />INITIAL 
+ CATALOG<em>=database name<br /> <br /><strong>Example:</strong> CONNECTION_STRING= 
+ PROVIDER=SQLOLEDB;<br />DATA SOURCE= 
+ myServer;<br /> INITIAL CATALOG=sample<br /></em>OR&#160;With 
+ a DSN<br /><em>CONNECTION_STRING= PROVIDER=SQLOLEDB;<br />DATA 
+ SOURCE= sample</em></p>
+            <p><strong>ORACLE<br /></strong>PROVIDER=<i>provider_name;<br /></i>DATA SOURCE=<em>net8_service_name or dsn_name<br /><strong>Example:</strong> CONNECTION_STRING= 
+ PROVIDER= 
+ MSDAORA;<br />DATA SOURCE= myWorld<br /></em>OR with 
+ DSN
+  <br /><em>CONNECTION_STRING= PROVIDER=MSDAORA;DATA 
+ SOURCE=sample</em></p>
+        </blockquote><a name="password"></a>
+        <h2>Connection Passwords Tables</h2>
+        <blockquote>
+            <p>Assuming a username of abigail and password of 
+ FbOr (in cases when there is a password):</p>
+            <p><strong>ACCESS </strong>
+            </p>
+            <p />
+            <table cellSpacing="3" cellPadding="3" border="1" width="600">
+                <tr style="COLOR: khaki;BACKGROUND-COLOR: darkblue;">
+                    <td />
+                    <td><strong>NO&#160;password</strong>
+                    </td>
+                    <td><strong>DBQ or DSN</strong>
+                    </td>
+                    <td><strong>OLEDB</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_USERNAME=</strong>
+                    </td>
+                    <td>""</td>
+                    <td>abigail</td>
+                    <td>User ID=abigail</td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_PASSWORD=</strong>
+                    </td>
+                    <td>""</td>
+                    <td>FbOr</td>
+                    <td>Password = FbOr </td>
+                </tr>
+            </table>
+            <p><strong>SQLSERVER </strong>
+            </p>
+            <p />
+            <table cellSpacing="3" cellPadding="3" border="1" width="600">
+                <tr style="COLOR: khaki;BACKGROUND-COLOR: darkblue;">
+                    <td />
+                    <td><strong>NO&#160;password</strong>
+                    </td>
+                    <td><strong>DBQ or DSN</strong>
+                    </td>
+                    <td><strong>OLEDB</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_USERNAME=</strong>
+                    </td>
+                    <td>""</td>
+                    <td>UID=abigail </td>
+                    <td>User ID=abigail</td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_PASSWORD=</strong>
+                    </td>
+                    <td>""</td>
+                    <td>PASSWORD=FbOr</td>
+                    <td>Password=FbOr </td>
+                </tr>
+            </table>
+            <p><strong>ORACLE</strong>
+            </p>
+            <p />
+            <table cellSpacing="3" cellPadding="3" border="1" width="600">
+                <tr style="COLOR: khaki;BACKGROUND-COLOR: darkblue;">
+                    <td />
+                    <td><strong>DBQ or DSN</strong>
+                    </td>
+                    <td><strong>OLEDB</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_USERNAME=</strong>
+                    </td>
+                    <td>UID=abigail </td>
+                    <td>User ID=abigail</td>
+                </tr>
+                <tr>
+                    <td style="COLOR: khaki;BACKGROUND-COLOR: darkblue;"><strong>CONNECTION_PASSWORD=</strong>
+                    </td>
+                    <td>PASSWORD=FbOr</td>
+                    <td>Password=FbOr </td>
+                </tr>
+            </table>
+        </blockquote><a name="datatypes"></a>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="17040" -->
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

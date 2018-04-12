@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet
+  FileTitle="Accessing the New Data Loader"
+  FileLanguage="en-us"
+  FileSearchable="true"
+  FileTimeEstimate="0"
+  FilePriority="0">
+  <Links>
+    <Link
+      Url="Content/SkinSupport/MadCap.css" />
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/SkinSupport/MadCapAll.js" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/new dataloader login.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/split file.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/new files.gif" />
+    <Link
+      Url="Content/DataLoader/Output Fields.htm" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/field mapping.gif" />
+    <Link
+      Url="Content/Registration/Row Level Security.htm" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/save settings new.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/load settings new.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import report.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/scan progress.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import report2.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/view form.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/batchmarkform.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import progress.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/chemicalwarning1.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/chemicalwarning2.gif" />
+    <Link
+      Url="Content/DataLoader/New Data Loader.htm" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+  </Links>
+  <LongLinks>
+    <Link
+      Url="Content/SkinSupport/MadCap.css" />
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/SkinSupport/MadCapAll.js" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/new dataloader login.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/split file.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/new files.gif" />
+    <Link
+      Url="Content/DataLoader/Output Fields.htm" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/field mapping.gif" />
+    <Link
+      Url="Content/Registration/Row Level Security.htm" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/save settings new.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/load settings new.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import report.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/scan progress.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import report2.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/view form.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/batchmarkform.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/import progress.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/chemicalwarning1.gif" />
+    <Link
+      Url="Content/Resources/Images/DataLoader/chemicalwarning2.gif" />
+    <Link
+      Url="Content/DataLoader/New Data Loader.htm" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+  </LongLinks>
+  <Anchors />
+  <Keywords />
+  <Concepts />
+  <ConceptControlNames />
+  <IndexControlNames />
+  <Variables />
+  <FileConditions>
+    <Condition
+      Tag="Default.DataLoader Only" />
+  </FileConditions>
+  <FileTags />
+  <AllConditions>
+    <Condition
+      Tag="Default.DataLoader Only" />
+  </AllConditions>
+  <Stylesheets>
+    <Url
+      Source="Content/SkinSupport/MadCap.css" />
+    <Url
+      Source="Content/Resources/Stylesheets/help_ie.css" />
+  </Stylesheets>
+</CatapultFileLinkSet>

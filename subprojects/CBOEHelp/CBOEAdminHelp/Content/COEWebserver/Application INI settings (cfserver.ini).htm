@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="ChemBioOffice WebServer|Customization and Administration|Customization of WebServer Applications|INI Configuration Files">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Application INI settings (cfserver.ini)</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Application INI settings (cfserver.ini)</h1>
+        <p>The cfserver.ini file is the application ini file.  It specifies the DataViews within the application as well as some application variables.  The file defines parameters that allow the ChemOffice WebServer application to find necessary information and how to react in certain situations. 
+
+</p>
+        <p>There is a cfserver.ini for each application located in: &lt;webroot&gt;/ChemOffice/&lt;app_name&gt;/config 
+where &lt;webroot&gt; is your server's webroot and &lt;app_name&gt; in the application name.
+
+</p>
+        <p>When an application is started from a closed state, which occurs when a request for any page within the application directory occurs, the global.asa application level functions and subroutines are run. These functions and subroutines read the ini files and store information in application objects regarding general information about how the application should function. These variables are created only when the application is started, and will remain constant throughout the life of the application unless, when a new user enters a page, a change is detected in one of the config files, at which time the application will reload the new variables.
+</p>
+        <p>When editing fields in this file, it is important to be sure what is going to change because many of these settings are necessary for the application to function properly. </p>
+        <p>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice WebServer application files to future versions of the application.  New versions of the ChemOffice WebServer use default configurations.
+</p>
+        <p>The following is a list of entries that are usually found in the cfserver.ini files for ChemOffice WebServer applications.  Click on an item in the list for more information. </p>
+        <p>If these entries are missing from the cfserver.ini file that you are trying to customize, the default value is used.  Adding the entry to the cfserver.ini file allows the administrator to explicitly specify the value. </p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td><b style="font-size: 14pt;">[GLOBALS]</b>
+                    </td>
+                    <td style="font-weight: bold;font-size: 14pt;">[DUPLICATE CHECKING]</td>
+                </tr>
+                <tr>
+                    <td><a href="ADJUST_NETSCAPE_WIDTHS.htm">ADJUST_NETSCAPE_WIDTHS</a>
+                    </td>
+                    <td><a href="ABSOLUTE_HITS_REL.htm">ABSOLUTE_HITS_REL</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_ADD_MODE.htm">ALLOW_ADD_MODE</a>
+                    </td>
+                    <td><a href="EXTRA_FRAGS_OK.htm">EXTRA_FRAGS_OK</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_FLAT_SDFILE_EXPORT.htm">ALLOW_FLAT_SDFILE_EXPORT</a>
+                    </td>
+                    <td><a href="EXTRA_FRAGS_OK_IF_RXN.htm">EXTRA_FRAGS_OK_IF_RXN</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_HITLIST_MANAGEMENT.htm">ALLOW_HITLIST_MANAGEMENT</a>
+                    </td>
+                    <td><a href="FRAGS_CAN_OVERLAP.htm">FRAGS_CAN_OVERLAP</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm">ALLOW_HITLIST_MNGMNT_FG_SELECTOR</a>
+                    </td>
+                    <td><a href="HIT_ANY_CHARGE_CARBON.htm">HIT_ANY_CHARGE_CARBON</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_PUBLIC_HITLISTS.htm">ALLOW_PUBLIC_HITLISTS</a>
+                    </td>
+                    <td><a href="HIT_ANY_CHARGE_HETERO.htm">HIT_ANY_CHARGE_HETERO</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_PUBLIC_QUERIES.htm">ALLOW_PUBLIC_QUERIES</a>
+                    </td>
+                    <td><a href="IDENTITY.htm">IDENTITY</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALLOW_QUERY_MANAGEMENT.htm">ALLOW_QUERY_MANAGEMENT</a>
+                    </td>
+                    <td><a href="MATCH_DB_STEREO.htm">MATCH_DB_STEREO</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ALWAYS_DISPLAY_ALERTS.htm">ALWAYS_DISPLAY_ALERTS</a>
+                    </td>
+                    <td><a href="RELATIVE_TET_STEREO.htm">RELATIVE_TET_STEREO</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="ANIMATED_GIF_PATH.htm">ANIMATED_GIF_PATH</a>
+                    </td>
+                    <td><a href="RXN_HIT_RXN_CENTER.htm">RXN_HIT_RXN_CENTER</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="APP_NAME.htm">APP_NAME</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="BODY_BACKGROUND.htm">BODY_BACKGROUND</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="BRACKET_IN_STRUC_HANDLING.htm">BRACKET_IN_STRUC_HANDLING</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="CDX_CACHING.htm">CDX_CACHING</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DATE_FORMAT.htm">DATE_FORMAT</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DB_NAMES.htm">DB_NAMES</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_FORM_IE.htm">DISPLAY_GIFS_ONLY_FORM_IE</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_FORM_NS.htm">DISPLAY_GIFS_ONLY_FORM_NS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_FORM_NS6.htm">DISPLAY_GIFS_ONLY_FORM_NS6</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_LIST_IE.htm">DISPLAY_GIFS_ONLY_LIST_IE</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_LIST_NS6.htm">DISPLAY_GIFS_ONLY_LIST_NS6</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="DISPLAY_GIFS_ONLY_LIST_NS.htm">DISPLAY_GIFS_ONLY_LIST_NS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="ENABLE_DETAIL_VIEW.htm">ENABLE_DETAIL_VIEW</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="EXPIRE_HITLIST_HISTORY_DAYS.htm">EXPIRE_HITLIST_HISTORY_DAYS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="EXPIRE_QUERY_HISTORY_DAYS.htm">EXPIRE_QUERY_HISTORY_DAYS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="EXPIRE_USER_SETTINGS_DAYS.htm">EXPIRE_USER_SETTINGS_DAYS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="FIELD_SPLIT_CHARACTER.htm">FIELD_SPLIT_CHARACTER</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="FORMULA_FORMAT.htm">FORMULA_FORMAT</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="GLOBAL_SEARCH_DBS.htm">GLOBAL_SEARCH_DBS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="GLOBAL_SEARCH_BASE_DB.htm">GLOBAL_SEARCH_BASE_DB</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="HIGHLIGHT_BACKGROUND.htm">HIGHLIGHT_BACKGROUND</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="HIGHLIGHT_REQUIRED_FIELDS.htm">HIGHLIGHT_REQUIRED_FIELDS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="MAIN_WINDOW.htm">MAIN_WINDOW</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="MARKED_HITS_MAX.htm">MARKED_HITS_MAX</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="NAV_BAR_WINDOW.htm">NAV_BAR_WINDOW</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="NAV_BUTTONS_GIF_PATH.htm">NAV_BUTTONS_GIF_PATH</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="NON_CHEMICAL_SUBMIT.htm">NON_CHEMICAL_SUBMIT</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_CANNOT_MATCH_USERNAME.htm">PWD_CANNOT_MATCH_USERNAME</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_ILLEGAL_CHARS.htm">PWD_ILLEGAL_CHARS</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_ILLEGAL_FIRSTCHAR.htm">PWD_ILLEGAL_FIRSTCHAR</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_ILLEGALWORD_LIST.htm">PWD_ILLEGALWORD_LIST</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_MAX_LENGTH.htm">PWD_MAX_LENGTH</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_MIN_LENGTH.htm">PWD_MIN_LENGTH</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="PWD_MUSTHAVE_CHARS.htm">PWD_MUSTHAVE_CHARS</a>*</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="RESIZE_GIFS.htm">RESIZE_GIFS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="SEARCH_DEFAULT_PREFS.htm">SEARCH_DEFAULT_PREFS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="SHOW_RETRIEVE_ALL_BTN.htm">SHOW_RETRIEVE_ALL_BTN</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="ini_settings/TEMP_DIR_NAME.htm">TEMP_DIR_NAME</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="ini_settings/TEMP_DIR_PATH.htm">TEMP_DIR_PATH</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="USE_SESSION_RECORD_COUNTS.htm">USE_SESSION_RECORD_COUNTS</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="USER_INFO_WINDOW.htm">USER_INFO_WINDOW</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a href="USERWINDOWBACKGROUND.htm">USERWINDOWBACKGROUND</a>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>* CS Security cfserver.ini ONLY
+
+</p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

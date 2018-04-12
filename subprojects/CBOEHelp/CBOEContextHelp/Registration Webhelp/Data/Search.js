@@ -1,0 +1,1 @@
+define({r:0.5,st:'Stem',n:1,t:[0,74,139],u:['../Content/ELN2014-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm'],s:['+','is','updat'],p:[['+',88],['assigning',117],['comments',12],['duplicated',29],['has',8],['listing',3],['open',86],['registered',93],['select',95],['the',28],['unlabeled',33]]});

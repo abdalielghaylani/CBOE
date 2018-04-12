@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="347" MadCap:lastWidth="689">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Missing Indexes</h1>
+        <p>On some systems the following database indexes may be missing and should be created to improve the performance of bulk loading:
+</p>
+        <p>Connect regdb/oracle@&amp;&amp;YourTNSName
+<br />create index index_compoundmol_strucid on compound_molecule(structureid);
+<br />create index index_mixcomp_mixcompound on mixture_component(mixtrureid, compoundid);
+</p>
+        <p>Some Addins perform database queries based on custom properties.  Ensure that any custom property that may be queried against by a custom Addin is also properly indexed. </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Data Loader Introduction.htm">Data Loader</a> <![CDATA[
+]]></p>
+    </body>
+</html>

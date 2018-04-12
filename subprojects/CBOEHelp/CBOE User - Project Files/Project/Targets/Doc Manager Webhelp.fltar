@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="Doc Manager User Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/Doc Manager Skin.flskn"
+  MasterToc="/Project/TOCs/Doc Manager TOC.fltoc"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  ConditionTagExpression="include[&quot;Default.Doc Manager&quot;] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Drug Deg&quot; or Default.Inventory or &quot;Default.Logging In to CBOE Manager&quot; or Default.PrintOnly or Default.Registration or Default.ScreenOnly or &quot;Default.Using the WebHelp&quot; or &quot;Default.Working with CBOE Applications&quot;] "
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  DefaultUrl="/Content/Doc Manager/Doc Manager Introduction.htm"
+  InsertMOTW="true"></CatapultTarget>

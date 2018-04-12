@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileTitle="Fragment Type and Fragment Tables" FileLanguage="en-us" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Resources/Images/Registration/fragment types.gif" />
+        <Link Url="Content/Resources/Images/Registration/fragment description.gif" />
+        <Link Url="Content/Resources/Images/Registration/fragments table.gif" />
+        <Link Url="Content/Resources/Images/Registration/add fragments.gif" />
+        <Link Url="Content/Registration/Manage Customizable Tables.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Resources/Images/Registration/fragment types.gif" />
+        <Link Url="Content/Resources/Images/Registration/fragment description.gif" />
+        <Link Url="Content/Resources/Images/Registration/fragments table.gif" />
+        <Link Url="Content/Resources/Images/Registration/add fragments.gif" />
+        <Link Url="Content/Registration/Manage Customizable Tables.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/SkinSupport/MadCap.css" />
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

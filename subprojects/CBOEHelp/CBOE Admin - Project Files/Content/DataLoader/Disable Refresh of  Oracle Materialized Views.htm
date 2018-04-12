@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="751" MadCap:lastWidth="689">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Disable Refresh of  Oracle Materialized Views</h1>
+        <p>In systems where the integration between the Chemical Inventory and Registration modules has been enabled, there may be Materialized Views of data inserted into the REGDB tables.  By default, these views are configured to update as each row is committed to the database.  The process of keeping Materialized Views up-to-date can significantly slow down performance of bulk load operations.  It is therefore beneficial to suspend the maintenance of Materialized Views that depend on REGDB data and to refresh them at the end of the load.
+</p>
+        <p>Recommendations (only for systems with ChemInv/Registration Integration enabled)
+</p>
+        <blockquote>
+            <p style="font-weight: bold;">Before Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Disable Materialized view refresh
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>connect cheminvdb2/oracle@&lt;TNSName&gt;
+<br />alter materialized view cheminvdb2.inv_vw_compounds refresh on demand;
+
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>Note: On some systems cheminvdb2.inv_vw_reg_batches may also be materialized and may need a similar treatment.
+
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Disable Materialized view refresh for any custom MVs (if applicable)
+
+
+  	</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p style="font-weight: bold;">After Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Re-enable Materialized view refresh
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>connect cheminvdb2/oracle@&lt;TNSName&gt;
+<br />begin
+    <br />DBMS_SNAPSHOT.REFRESH('cheminvdb2.inv_vw_compounds');
+<br />end;
+<br />/
+
+<br />alter materialized view cheminvdb2.inv_vw_compounds refresh on commit;
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Enable Materialized view refresh for any custom MVs (if applicable)
+</li>
+            </ul>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+    </body>
+</html>

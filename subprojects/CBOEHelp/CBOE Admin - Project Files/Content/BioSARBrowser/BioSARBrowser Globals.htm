@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="3249" MadCap:lastWidth="660">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>BioSARBrowser Globals</h1>
+        <p style="font-weight: bold;">ABOUT_WINDOW
+</p>
+        <p>Example: ABOUT_WINDOW = BioSAR Enterprise 9
+<br />Description: The text that appears in the about window describing the name of the data view.
+<br />Default: BioSAR Browser 9
+<br />Options: Up to one line of text
+</p>
+        <p style="font-weight: bold;">ADO_CONNECTION_NAMES
+</p>
+        <p>Example: ADO_CONNECTION_NAMES = base_connection
+<br />Description: Names of all ado connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. An ADO definition section describes variables for connecting to data source via ADO. In general there is only the default definition base_connection_group, since most views access the same database. However, this is flexible and allows more definitions then just the default. ADO_Connection_Names are referenced by individual tables.
+<br />Default: base_connection
+<br />Options: Comma delimited list of connection definitions found in the ini file
+</p>
+        <p style="font-weight: bold;">CHEM_CONNECTION_NAMES
+</p>
+        <p>Example: CHEM_CONNECTION_NAMES = NULL
+<br />Description: Names of all ChemFinder connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. A ChemFinder connection definition section describes variables for connecting to ChemFinder for searching of chemical information. In views that deal with reaction databases, there may be three (or more) definitions, one for the reaction, one for the solvent and one for the catalyst. (e.g.config/chemprep.ini file in the chemrxn application).
+<br />Default: NULL
+<br />Options: Comma delimited list of ChemFinder connection definitions found in the ini file.
+</p>
+        <p style="font-weight: bold;">DB_RECORD_COUNT
+</p>
+        <p>Example: DB_RECORD_COUNT = 0
+<br />Description: The number of records in the database. This appears in all input and result windows in the upper left corner next to TotalRecords.
+<br />Default: 0
+<br />Options: Any integer (equal to the number of records in the database)
+</p>
+        <p style="font-weight: bold;">DB_TYPE
+</p>
+        <p>Example: DB_TYPE = STRUC
+<br />Description: States the type of database.
+<br />Default: STRUC
+<br />Options:
+</p>
+        <p style="font-weight: bold;">DISPLAY_NAME
+</p>
+        <p>Example: DISPLAY_NAME = BioSAR Browser
+<br />Description: The name used in global search screens to identify the view.
+<br />Default: BioSAR Browser
+<br />Options: Any text
+</p>
+        <p style="font-weight: bold;">FIELD_MAP_GROUPS
+</p>
+        <p>Example: FIELD_MAP_GROUPS = NULL
+<br />Description: Names of field map group definition sections in the ini file. This must be comma delimited, with no spaces. If the field group names are not here, they will not be loaded by the application. Field Map groups specify field mapping used by global search. If global searching is not used, the FIELD_MAP_GROUPS (default group created by the wizard) can be set to NULL. FIELD_MAP_GROUPS are reference by formgroups.
+<br />Default: NULL
+<br />Options: Comma delimited list of field map group definitions found in the ini file.
+</p>
+        <p style="font-weight: bold;">FORM_GROUPS
+</p>
+        <p>Example: FORM_GROUPS = base_form_group,manage_users_form_group,manage_roles_form_group,manage_tables_form_group
+<br />Description: Names of form group definition sections in the ini file. This must be comma delimited, with no spaces. If the form group names are not here, they will not be loaded by the application. Form_groups specify a sub set of information including the input and result forms to use, the fields that can be searched, the table group to use for searching as well as additional information that will be described in later sections. The default formgroup is "base_form_group" this group is used most commonly. There may also be "basenp_form_group" which is used for input forms that do not have a plugin, "gs_form_group" used for performing global searches over many data views in the application; "add_record_form_group" which is reserved for future use but is not currently implemented and "drill_down_form_group" for displaying results for a drill down link contained in another form groups such as "base_form_group". Form_groups are referenced by hyperlinks from the main.asp page and carried throughout all functions and subroutines within ChemOffice Enterprise.
+<br />Default: base_form_group,manage_users_form_group,manage_roles_form_group,manage_tables_form_group
+<br />Options: Comma delimited list of form group definitions found in the ini file.
+</p>
+        <p style="font-weight: bold;">MAIN_PAGE
+</p>
+        <p>Example: MAIN_PAGE = 0
+<br />Description: Displays main page of the application.
+<br />Default: 0
+<br />Options: Should not be edited
+</p>
+        <p style="font-weight: bold;">MAXHITS
+</p>
+        <p>Example: MAXHITS = 1000
+<br />Description: The number of hits returned before a Get More button will appear.
+<br />Default: 1000
+<br />Options: Any integer
+</p>
+        <p style="font-weight: bold;">SUBFORM_VIEW_NAMES
+</p>
+        <p>Example: SUBFORM_VIEW_NAMES = NULL
+<br />Description: Internal Setting.
+<br />Default: NULL
+<br />Options: Should not be edited.
+</p>
+        <p style="font-weight: bold;">TABLE_ALIASES
+</p>
+        <p>Example: TABLE_ALIASES = MolTable,Sites,biosar_browser_PRIVILEGES,Privilege_Tables,Security_Roles,People
+<br />Description: Names of all table definition sections in the ini file. This list must be comma delimited with no spaces. If the table name is not here, it will not be loaded by the application. Table definition sections describe all the information needed by ChemOffice Enterprise for searching tables.
+<br />Default: MolTable,Sites,biosar_browser_PRIVILEGES,Privilege_Tables,Security_Roles,People
+<br />Options: Comma delimited list of tables
+</p>
+        <p style="font-weight: bold;">TABLE_GROUPS
+</p>
+        <p>Example: TABLE_GROUPS = base_table_group
+<br />Description: Name of table group definition sections in the ini file. This must be comma delimited, with no spaces. If the table group names are not here, they will not be loaded by the application. A table group specifies information about the order of searching tables, what the base table (searched via ADO) is and what the molecule table (searched via ChemFinder) is. The majority of applications use the default table group named "base_table_group". Table_groups are referenced by Form_Groups.
+<br />Default: base_table_group
+<br />Options: Comma delimited list of table group definitions found in the ini file.
+</p>
+        <p style="font-weight: bold;">BASE_CONNECTION
+CONN_TYPE
+</p>
+        <p>Example: CONN_TYPE = DBQ
+<br />Description: Specifies the type of connection string.
+<br />Default: DBQ 
+<br />Options: DBQ | DSN | OLEDB 
+</p>
+        <p style="font-weight: bold;">CONNECTION_PASSWORD
+</p>
+        <p>Example: CONNECTION_PASSWORD = "login_required"
+<br />Description: Contains the password for the connection. The way the password is entered is different for different datasources. Otherwise, this entry are probably left empty.
+<br />Default: "login_required"
+<br />Options: N/A
+</p>
+        <p style="font-weight: bold;">CONNECTION_STRING
+</p>
+        <p>Example: CONNECTION_STRING = C:\Inetpub\wwwroot\ChemOffice\BioSar_Browser\config\biosar_browser.udl
+<br />Description: The connection string for the CONN_TYPE specified.
+<br />Default: C:\Inetpub\wwwroot\ChemOffice\BioSar_Browser\config\biosar_browser.udl
+<br />Options: A Connection String
+</p>
+        <p style="font-weight: bold;">CONNECTION_TIMEOUT
+</p>
+        <p>Example: CONNECTION_TIMEOUT = 30
+<br />Description: The amount of time in minutes before a connection will automatically close upon no activity. We suggest 15 to 30 minutes.
+<br />Default: 30
+<br />Options: An integer indicating a number of minutes
+</p>
+        <p style="font-weight: bold;">CONNECTION_USERNAME
+</p>
+        <p>Example: CONNECTION_USERNAME = "login_required"
+<br />Description: Contains the username for the connection.
+<br />Default: "login_required"
+<br />Options: N/A
+</p>
+        <p style="font-weight: bold;">COMMAND_TIMEOUT
+</p>
+        <p>Example: COMMAND_TIMEOUT = 30
+<br />Description: The amount of time in minutes before a command object will automatically close upon no activity. We suggest 15 to 30 minutes.
+<br />Default: 30
+<br />Options: An integer indicating a number of minutes.
+</p>
+        <p style="font-weight: bold;">DBMS
+</p>
+        <p>Example: DBMS = ORACLE
+<br />Description: The version number for the ini file.
+<br />Default: ORACLE
+<br />Options: Should not be edited.
+</p>
+    </body>
+</html>

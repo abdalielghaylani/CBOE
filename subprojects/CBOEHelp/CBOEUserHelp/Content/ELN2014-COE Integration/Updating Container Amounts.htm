@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Applications User Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="E-Notebook 17.1 - COE 17.1 Integration|Sending Data into Inventory-Registration System|Sending Data to Inventory">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Updating Container Amounts</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="E-Notebook - COE Integration.htm">E-Notebook 17.1 - COE 17.1 Integration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Sending Data into Inventory-Registration System.htm">Sending Data into Inventory-Registration System</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Sending Data to Inventory.htm">Sending Data to Inventory</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Updating Container Amounts</span>
+        </div>
+        <h1 style="color: #ff6347;"><span style="color: #000000;">Updating Container Amounts</span>
+        </h1>
+        <p><b>Update Container Amounts</b> functionality allows to reduce the consumed amount/volume of the substance, usually these fields are Sample Mass and Volume. This is applied in the <b>Reaction</b> section&gt;&gt;<b>Reactants &amp; Products</b> table where inventory reagents are used and where users can do a bulk update, to Inventory containers, of the amount consumed for multiple containers. 
+
+</p>
+        <p>The Amount/Volume specified in E-Notebook is the consumed amount thus, will be reduced from the Inventory Container
+.</p>
+        <p style="font-weight: bold;">Example: </p>
+        <ul style="list-style-type: square;">
+            <li value="1">Container Name: Notebook-001-1, Container ID: C1042</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/CNT1.gif" />
+        </p>
+        <ul style="list-style-type: square;">
+            <li value="1">Container Name: Notebook-001-2, Container ID:&#160;C1048</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/CNT2.gif" />
+        </p>
+        <p>The Amount/Volume consumed by the container entries present in E-Notebook will be reduced from the container entries in Inventory.</p>
+        <h4>To update container amounts:</h4>
+        <ol>
+            <li value="1">Go to the Reactants table in the <b>Reaction</b> section. Pull reactants from Inventory system. Please refer to <a href="Retrieving Inventory Data.htm">Inventory Pull</a> chapter for more details.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/reactants TB.gif" />
+        </p>
+        <p style="font-style: italic;">Note that the container in the reactants table must have Barcode values.</p>
+        <ol data-mc-continue="true">
+            <li value="2">Make sure that Updated (check box) is unchecked.</li>
+            <li value="3">Modify the Sample mass / volume values.</li>
+        </ol>
+        <p><i>Note: You can only reduce the consumed amount</i>.</p>
+        <ol data-mc-continue="true">
+            <li value="4">Fill in the consumed volume and select <b>Update Container Amounts</b> option from the <b>Inventory</b> form tool menu.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/update CNT amounts2.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="5"><b>Update Container Amounts</b> dialog appears for confirmation. Click <b>Yes</b> to confirm your action.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/NSM/Update amounts confirmation.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="6">The <b>Inventory</b> dialog with the updated barcodes displays. Click <b>OK</b>.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/update cnt conf.gif" />
+        </p>
+        <p>Note that the corresponding checkboxes get automatically checked after the containers are updated.</p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/updated checkboxes.gif" />
+        </p>
+        <p>Once the container amounts are updated in E-Notebook, the amount/volume consumed by the containers in E-Notebook will be deducted from the amount/volume of the containers in the Inventory system.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Data to Inventory.htm">Sending Data to Inventory</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images_Common/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

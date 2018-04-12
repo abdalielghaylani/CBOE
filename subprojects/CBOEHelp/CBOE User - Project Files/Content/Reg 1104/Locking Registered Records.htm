@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="2484" MadCap:lastWidth="1176">
+    <head>
+    </head>
+    <body>
+        <h1>Locking Registered Records</h1>
+        <p>Users with specific privileges can lock permanent records. Locked registry records cannot be edited, however adding batches and adding identifiers is allowed.</p>
+        <p>In order to enable the Locking feature, you need to set "EnableLocked=True"</p>
+        <p>Locking requires the following privilege: <b>set_locked_flag</b></p>
+        <p>Revoking Locking requires the following privilege: <b>toggle_locked_flag</b></p>
+        <p>To lock a registered record:</p>
+        <ol>
+            <li>Log in to ChemBioOffice Enterprise </li>
+            <li>Click on Search Registry button under Registration section. The Search form displays. Enter specific criteria to search for specific records or click on <b>Retrieve All</b> button to display all the registered records. The following results window displays</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/Locking column.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>The locked column shows the status of the record, when the Thumb is up this means that the record is locked and when the Thumb is down this means that the record is unlocked. Note that you can filter the registered records by their status. You can then display all the unlocked records only.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/filter records.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>To lock a record, click on its corresponding Reg Number and click on the Thumb down to move it up.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/view component win.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>To lock multiple records at once, check the Marked checkbox corresponding to the records that you want to lock and click on Lock Marked link at the top of the list</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/lock marked.gif" />
+        </p>
+        <p>To unlock a locked record, just perform the same steps described above but click this time on the Thumb up to move it down.</p>
+        <p>When a record is locked, you won't be able to delete it, the "Delete Registry Record" option is disabled as shown below:</p>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/delete record disabled.gif" />
+        </p>
+        <p>Clicking on Edit button (Edit button is available if the user has "EDIT_COMPOUND_REG" privilege), the user will be able to add to a locked record the following:</p>
+        <ul style="list-style-type: square;">
+            <li> Identifiers in all information sections: registry identifiers, batch identifiers, structure identifiers and component identifiers</li>
+            <li>Projects</li>
+            <li>Batches (Add Batch button is available if the user has "ADD_BATCH_PERM" privilege)</li>
+        </ul>
+        <p>Registry Comments fields and all other fields will be disabled. </p>
+        <p>Note that when "EnableMoveBatch" is set to True in the system settings, the Move Batch button will be disabled when the record is locked.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="The_registration_process.htm">Registration Process</a>
+            <br /><a href="Registering Components.htm">Registering Components</a>
+        </p>
+    </body>
+</html>

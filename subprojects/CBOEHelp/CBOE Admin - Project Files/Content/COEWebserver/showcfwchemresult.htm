@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="6" MadCap:lastHeight="795" MadCap:lastWidth="780">
+    <head>
+        <script language="JavaScript">/*<![CDATA[*/
+
+<!--Hide JavaScript
+ if (navigator.appName == "Netscape"){
+ document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+ }
+ else{
+ document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+ }
+//-->
+
+/*]]>*/</script><title>showcfwchemresult</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="18474" -->
+        <h1>  ShowCFWChemResult</h1>
+        <p>This subroutine call appears in the following file:</p>
+        <ul>
+            <li>sample_reult_list.asp</li>
+        </ul>
+        <h4>Subroutine</h4><pre> 
+         ShowCFWChemResult 
+      dbkey,formgroup,chem_type,table.field,mol_id,output_type,width,height</pre>
+        <h4>Description
+
+      <p>          Shows 
+ chemical result</p><h4>Parameters</h4><p>dbkey =<em> 
+      &lt;dataview name&gt;</em>  &#160;
+      </p><p>formgroup =<em> &lt;formgroup name&gt;</em></p><h5 /><p>chem_type =<em> 
+      Structure|Formula|MolWeight&#160;&#160;</em></p><p><em>table.field = &lt;table and field name usign 
+ dot syntax&gt;</em></p><p><em>mol_id = mol_id of chemical record to 
+ retrieve</em></p><p><em>output_type = 
+ GIF|CDX</em><br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;only 
+ valid if chem_type=Structures, 0 if not applicable</p><p>width = <em>&lt;width of plugin, 0 if not 
+ applicable&gt;</em></p><p>height&#160;= <em>&lt;height of plugin, 0 if not 
+ applicable&gt;</em><br /></p><h4>Example</h4><pre>ShowCFWChemResult 
+      dbkey,formgroup,"Structure,"MolTable.Structure",BaseID,"cdx","212","156"</pre><!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan --></h4>
+    </body>
+</html>

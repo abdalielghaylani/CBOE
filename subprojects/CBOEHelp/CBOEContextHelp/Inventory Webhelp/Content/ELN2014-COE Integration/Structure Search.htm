@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.ELN2014-COE Integration" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Structure Search</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js">
+        </script>
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <h1>Structure Search</h1>
+        <p>Structure searching lets you search for records based on their chemical structures. Registration Enterprise provides three types of structure searches:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Substructure Searching</li>
+            <li value="2">Full Structure Searching</li>
+            <li value="3">Exact Searching</li>
+        </ul>
+        <h4><span style="color: #000000;">Substructure Searching</span>
+        </h4>
+        <div class="Body">Substructure searching is the default structure search type. It retrieves structures that meet the following criteria:</div>
+        <ul style="list-style-type: circle;">
+            <li value="1">Matches the basic chemical structure specified</li>
+            <li value="2">Contains additional attachments at open bond positions</li>
+        </ul>
+        <div class="Tip">To narrow or broaden search, attach different features such as atom lists and variable bond types to the structure using ChemDraw drawing tools. Below is an example of substructure searching:</div>
+        <p class="GraphicAnchor">
+            <img src="../Resources/Images/COE-ELN2014 Integration/substruct search_288x176.jpg" />
+        </p>
+        <h4><span style="color: #000000;">Full Structure Searching</span>
+        </h4>
+        <div class="Body">Full structure searching retrieves structures that match the structure specified in the query, without considering additional attachments. Isotopes are recognized as hits. Below is an example of full structure searching:</div>
+        <p class="GraphicAnchor">
+            <img src="../Resources/Images/COE-ELN2014 Integration/full struct search_242x146.jpg" />
+        </p>
+        <h4 class="Heading4"><span style="color: #000000;">Exact Searching</span>
+        </h4>
+        <div class="Body">Exact searching retrieves structures that are identical to the structure specified in the query. Isotopes are not recognized as hits. Below is an example of exact searching:</div>
+        <p class="GraphicAnchor">
+            <img src="../Resources/Images/COE-ELN2014 Integration/exact struct search_288x73.jpg" />
+        </p>
+        <h4 class="Heading4" style="font-size: 14pt;">Setting Search Preferences</h4>
+        <div class="Body">Setting the search preferences lets you control the manner in which the results are displayed. These are global settings  throughout the application.</div>
+        <p>
+            <div class="Body"><b>To access the search preference options:</b>
+            </div>
+            <ol>
+                <li value="1">Click <b>Options</b>attached to the structure window. </li>
+            </ol>
+            <p>
+                <img src="../Resources/Images/COE-ELN2014 Integration/options tab.gif" />
+            </p>
+        </p>
+        <p value="2">The Search Preferences dialog appears.</p>
+        <ol data-mc-continue="true">
+            <li value="2">Check the options you want to apply.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/search preferences.gif" />
+        </p>
+        <h5 class="Heading5"><span style="font-size: 14pt;">General tab in Search Preferences</span>
+        </h5>
+        <div class="Body">The various options under the General tab include:</div>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Hit any charge on heteroatom</b>:&#160;Allows uncharged atoms in the query to match charged atoms in the target. </li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Reaction query must hit reaction center</b>: Allows the reaction centers in the query to overlap with the reaction centers in the target.</li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Hit any charge on carbon</b>: Allows uncharged carbon atoms in the query to match charged carbon atoms in the target.</li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Permit extraneous fragments in Full Structure (exact) Searches</b> / <b>Permit extraneous fragments in Reaction Full Structure (exact) Searches</b>: Performs exact structure search.</li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="2"><b>Query fragments can overlap in target</b>: Allow fragments to overlap in the target.</li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="3"><b>Tautomeric</b>: Allows query to find tautomers.</li>
+        </ul>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Similarity search (20-100%)</b>: Retrieves chemicals that have structural features similar to the one specified in the query. It does not match specific atoms or bonds. It is useful if you have a general idea of the types of compounds you are searching for, but do not know the precise target compound. You can specify the degree of similarity. A lower value requires the target to be less similar.</li>
+            <li value="2"><b>Full structure similarity</b>: Retrieves structures that are similar to the full structure specified in the query.</li>
+        </ul>
+        <h5 class="Heading5"><span style="font-size: 14pt;">Stereochemistry Tab in Search Preferences</span>
+        </h5>
+        <p class="GraphicAnchor">
+            <img src="../Resources/Images/COE-ELN2014 Integration/stereochemistry tab.gif" />
+        </p>
+        <div class="Body">The various options under the Stereochemistry tab include:</div>
+        <ul style="list-style-type: square;">
+            <li value="1"><b>Tetrahedral stereo center hits</b>: To set the Tetrahedral stereo center hits, select:<ul style="list-style-type: square;"><li value="1"><span class="Action_Object" style="font-weight: bold;">Same</span>: Matches the target exactly.</li><li value="2"><span class="Action_Object" style="font-weight: bold;">Either</span>: Matches same or opposite configuration at the center of the target.</li><li value="3"><span class="Action_Object" style="font-weight: bold;">Any</span>: Matches any target.</li><li value="4"><span class="Action_Object" style="font-weight: bold;">Thick bonds represent relative stereochemistry</span>: Matches a relative relationship between centers. When activated, any thick bond drawn in the reference compound is interpreted as relative stereochemistry when searching, or comparing possible duplicates.</li></ul></li>
+            <li value="2"><b>Double bonds hits</b>: To sets the Double bonds hits, select:<ul style="list-style-type: square;"><li value="1"><span class="Action_Object" style="font-weight: bold;">Same</span>: Matches the target exactly.</li><li value="2"><span class="Action_Object" style="font-weight: bold;">Any</span>: Matches any configuration in the target.</li></ul></li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Retrieve Data from Registry System.htm">Retrieve Data from Registry System</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images_Common/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

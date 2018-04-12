@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="4126" MadCap:lastWidth="1006">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;margin-left: 0;margin-right: auto;width: 100%;">
+                <col />
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Accessing the Exposed Table</h1>
+        <p>To access the exposed BioAssay table using BioSAR Enterprise:</p>
+        <ol>
+            <li>Log into the BioSAR Enterprise as user, biosar_admin.</li>
+            <li>Click the Schema Management link to display the BIOASSAYHTS schema in the Schema Management page.</li>
+            <li>Expand the BIOASSAYHTS schema.</li>
+            <li>Set the schema password to Oracle.</li>
+            <li>Click the Integrate link within the BIOASSAYHTS schema. A table appears.</li>
+            <li>Click the Primary Key radio button corresponding to the ROW_ID field.
+<br /><br />If any of the fields in your table is of Attachment (Database Storage) type, then select the appropriate content type, such as MS Word, JPEG, or GIF. For this, you need to click the cell corresponding to the Content Type column and set the appropriate content type.<br /><br /></li>
+            <li>Click REGDB.REG_NUMBERS.REG_NUMBER in the column, Parent Column. The following list boxes appear:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay9.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click the radio button, This column has no parent column.</li>
+            <li>Click the Save Changes button.</li>
+            <li>Click the Security tab. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay10.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Add the BIOSAR_ADMIN user as a user with selected privileges.</li>
+            <li>Click the Save Changes button to display the Schema Management page.</li>
+            <li>Go to Forms &gt; Manage &gt; Forms.</li>
+            <li>Click the Create New Form button. The page for creating new form appears.</li>
+            <li>Type Integration in the Name text box.</li>
+            <li>Enter relevant description in the Description text box and click the Save Changes button. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay12_858x678.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click the Select Base Table link. The Choose Base Table page appears.</li>
+            <li>Select BIOASSAYHTS in the Schema list box and Integrate in the Base Table list box.
+The Results table of BioAssay is displayed as the table, Integrate in BioSAR.</li>
+            <li>Click the Save Changes button.</li>
+            <li>Click the Edit link in the Fields column. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay14_858x671.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click the tick marks in the Query, List, and Details columns.</li>
+            <li>Click the Save Changes button.
+<br /><br />If any of the fields in your table is of Attachment (Database Storage) type, then you need to edit the Field Options column in your Base Table table and set the Format attribute of the attachment field to NEW WINDOW. This will ensure that in the Results page, only a link is displayed corresponding to the attachment field and clicking the link opens a new window showing the graph or image stored in that attachment field. Attachment files like, JPEG and GIF images may be displayed in the Results page if you do not set the format in the base table. However, it is recommended that you display them in a new window.<br /><br /></li>
+            <li>Click the Save Changes button. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay15.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click the Open link. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser images/integratebiosar-bioassay16.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Type 5.23 in the IC50 field and click the Search button. The matching data in the Results table of BioAssay appear.
+</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Integrating with BioAssay.htm">Integrating with BioAssay</a>
+            <br /><a href="BioSARBrowser Introduction.htm">BioSARBrowser</a>
+        </p>
+    </body>
+</html>

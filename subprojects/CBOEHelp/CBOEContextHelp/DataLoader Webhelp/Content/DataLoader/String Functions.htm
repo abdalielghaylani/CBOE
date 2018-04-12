@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Data Loader|Functions">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>String Functions</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>String Functions</h1>
+        <ul style="list-style-type: square;">
+            <li value="1">Boolean.ToString(): Converts the Boolean
+type input value supplied to this function to
+its equivalent string representation.
+</li>
+            <li value="2">Char.ToString(): Converts the Char type
+input value supplied to this function to its
+equivalent string representation.
+</li>
+            <li value="3">Concat(String,String): Concatenates two
+instances of String type input values supplied
+to this function.
+</li>
+            <li value="4">Concat(String,String,String): Concatenates
+three instances of String type input values
+supplied to this function.
+</li>
+            <li value="5">Concat(String,String,String,String): Concatenates
+four instances of String type input
+values supplied to this function.
+</li>
+            <li value="6">Concat(StringArray): Concatenates the values
+of string array supplied to this function.
+</li>
+            <li value="7">ConvertFromUtf32(Integer): Converts the
+specified Unicode code point into a UTF-16
+encoded string.
+</li>
+            <li value="8">Copy(String): Creates a new instance of
+String using the String type input value supplied
+to this function.</li>
+            <li value="9"> DateTime.ToLongDateString(): Converts
+the specified DateTime type input value to
+its equivalent long date string representation.
+</li>
+            <li value="10">DateTime.ToLongTimeString(): Converts
+the specified DateTime type input value to
+its equivalent long time string representation.
+</li>
+            <li value="11">DateTime.ToShortDateString(): Converts
+the specified DateTime type input value to
+its equivalent short date string representation.
+</li>
+            <li value="12">DateTime.ToShortTimeString(): Converts
+the specified DateTime type input value to
+its equivalent short time string representation.
+</li>
+            <li value="13">DateTime.ToString(): Converts the specified
+DateTime type input value to its equivalent
+string representation.
+</li>
+            <li value="14">DateTime.ToString(String): Converts the
+specified DateTime type input value to its
+equivalent string representation using the
+specified format.
+</li>
+            <li value="15">Decimal.ToString(): Converts the specified
+Decimal type input value to its equivalent
+string representation.
+</li>
+            <li value="16">Decimal.ToString(String): Converts the
+specified Decimal type input value to its
+equivalent string representation using the
+specified format.
+</li>
+            <li value="17">Iif(Boolean,String,String): Evaluates the
+first Boolean expression; if result is True,
+the function returns the first string parameter
+else it returns the second string parameter
+</li>
+            <li value="18">Integer.ToString(): Converts the specified
+Integer type input value to its equivalent
+string representation.
+</li>
+            <li value="19">Integer.ToString(String): Converts the specified
+Integer type input value to its equivalent
+string representation using the
+specified format.
+</li>
+            <li value="20">Intern(String): Returns the system's reference
+using the specified format.
+</li>
+            <li value="21">IsInterned(String): Returns a reference to a
+specified string.
+</li>
+            <li value="22">Join(String,StringArray): Concatenates a
+specified separator string between each element
+of a specified string array, resulting in
+a single concatenated string.
+</li>
+            <li value="23">Join(String,StringArray,Integer,Integer):
+Concatenates a specified separator string
+between each element of a specified string
+array, resulting in a single concatenated
+string. Parameters specify the first array
+element and number of elements to use.
+</li>
+            <li value="24">String.Insert(Integer,String): Inserts a specific
+string (the second String type value)
+within the first String type input value at a
+specified index position.
+</li>
+            <li value="25">String.Normalize(): Returns a new string
+whose textual value is the same as the string
+supplied to this function, but whose binary
+representation is in Unicode normalization
+form C.
+</li>
+            <li value="26">String.PadLeft(Integer): Right-aligns the
+characters in the specified string, padding
+with spaces on the left for a specified total
+length.
+</li>
+            <li value="27">String.PadLeft(Integer,Char): Right-aligns
+the characters in the specified string, padding
+on the left with a specified Unicode
+character for a specified total length.
+</li>
+            <li value="28">String.PadRight(Integer): Left-aligns the
+characters in the specified string, padding
+with spaces on the right for a specified total
+length.
+</li>
+            <li value="29">String.PadLeft(Integer,Char): Left-aligns
+the characters in the specified string, padding
+on the right with a specified Unicode
+character for a specified total length.
+</li>
+            <li value="30">String.Remove(Integer): Deletes all the
+characters from the specified string beginning
+at a specified position and continuing
+through the last position.
+</li>
+            <li value="31">String.Remove(Integer,Integer): Deletes a
+specified number of characters from the
+specified beginning at a specified position.
+The first integer specifies the start position
+while the second integer specifies the number
+of characters to be deleted.
+26 Appendix
+Chapter 1
+</li>
+            <li value="32">String.Replace(Char,Char): Returns a new
+string in which all occurrences of a specified
+Unicode character in the specified
+string are replaced with another specified
+Unicode character. The first Unicode character
+supplied is the one that will be
+replaced. The second Unicode character
+supplied is the new character.
+</li>
+            <li value="33">String.Replace(String,String): Involves
+three strings. The first string is the base
+string; the second string is the one whose all
+ocurrences in the base string will be
+replaced by the third string involved in this
+function. The function returns a new string
+after the replacement operation.
+</li>
+            <li value="34">String.Substring(Integer): Retrieves a substring
+from the specified string. The substring
+starts at a position specified by the
+integer supplied to the function.
+</li>
+            <li value="35">String.Substring(Integer,Integer): Retrieves
+a substring from the specified string. The
+substring starts at the character position
+specified by the first integer and its length
+is specified by the second integer.
+</li>
+            <li value="36">String.ToLower(): Returns a copy of the
+specified string converted to lowercase,
+using the casing rules of the current culture.
+</li>
+            <li value="37">String.ToLowerInvariant(): Returns a copy
+the specified string converted to lowercase
+using the casing rules of the invariant culture.
+</li>
+            <li value="38">String.ToString(): Returns the specified
+instance of String; no actual conversion is
+performed.
+</li>
+            <li value="39">String.ToUpper(): Returns a copy of the
+specified string converted to uppercase,
+using the casing rules of the current culture.
+</li>
+            <li value="40">String.ToUpperInvariant(): Returns a copy
+the specified string converted to lowercase
+using the casing rules of the invariant culture.
+</li>
+            <li value="41">String.Trim(): Returns a new string in
+which all leading and trailing occurrences
+of a set of specified characters from the current
+String type input value are removed.
+</li>
+            <li value="42">String.Trim(CharArray): Removes all leading
+and trailing occurrences of a set of characters
+specified in a character array from
+the specified String type input value.
+</li>
+            <li value="43">String.TrimEnd(CharArray): Removes all
+trailing occurrences of a set of characters
+specified in a character array from the specified
+String type input value.
+</li>
+            <li value="44">String.TrimStart(CharArray): Removes all
+leading occurrences of a set of characters
+specified in a character array from the specified
+String type input value.
+</li>
+            <li value="45">ToString(Boolean): Converts the specified
+Boolean value to its equivalent string representation
+(either "True" or "False").
+</li>
+            <li value="46"> ToString(Char): Converts the specified
+Char value to its equivalent string representation.
+</li>
+            <li value="47">ToString(DateTime): Converts the specified
+DateTime value to its equivalent string representation.
+</li>
+            <li value="48"> ToString(Decimal): Converts the specified
+Decimal value to its equivalent string representation.
+</li>
+            <li value="49">ToString(Integer): Converts the specified
+integer to its equivalent string representation.
+</li>
+            <li value="50">ToString(Integer,Integer): Converts the first
+integer to its equivalent string representation
+in a base specified by the second integer
+supplied to this function.
+</li>
+            <li value="51"> ToString(String): Converts the specified
+string to its equivalent string representation.
+No actual conversion is performed.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Functions.htm">Functions</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

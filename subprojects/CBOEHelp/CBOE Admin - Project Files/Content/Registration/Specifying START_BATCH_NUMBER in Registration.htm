@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="754" MadCap:lastWidth="894">
+    <head>
+    </head>
+    <body>
+        <h1>Specifying START_BATCH_NUMBER in Registration</h1>
+        <p> By default, the system Batch number always starts with '1'. However, if you want to starts the Batch number with any other number other than '1', you make it possible by updating the <i>web.config</i> file.
+For example, if you update the <i>web.config</i> file with '0' as described below, the Batch number starts with zero. </p>
+        <p style="font-weight: bold;">To update the web.config file:</p>
+        <ol>
+            <li>Browse to <i>&lt;Install Directory&gt;\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\Registration\WebApp\.</i></li>
+            <li>Open the <b>Web.config</b> file for edit.</li>
+            <li>Update the tag mentioned below with the desired value. The default value is '1'. If you update it as '0', then the Batch number starts with zero. <p style="font-family: 'Courier New';font-size: 10pt;">&lt;add key="ConfigBatchNumber" value="1"/&gt;</p><p style="font-family: 'Courier New'; font-size: 10pt;"><img src="../Resources/Images/Registration/web_config.png" /></p></li>
+        </ol>
+        <h3>For DataLoader</h3>
+        <ol>
+            <li>Browse to &lt;Install Directory&gt;\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\DataLoader\.</li>
+            <li> Open the <b>DataLoader.exe.config</b> file for edit.</li>
+            <li>Update the tag mentioned below with the desired value. The default value is '1'. If you update it as '0', then the Batch number starts with zero.<p style="font-family: 'Courier New';font-size: 10pt;">&lt;add key="ConfigBatchNumber" value="1"/&gt;</p></li>
+        </ol>
+        <h3>For DataLoader 2</h3>
+        <ol>
+            <li>Browse to &lt;Install Directory&gt;\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\DataLoader2\.</li>
+            <li> Open the <b>DataLoaderGUI.exe.config</b> file for edit.</li>
+            <li>Update the tag mentioned below with the desired value. The default value is '1'. If you update it as '0', then the Batch number starts with zero.<p style="font-family: 'Courier New';font-size: 10pt;">&lt;add key="ConfigBatchNumber" value="1"/&gt;</p></li>
+        </ol>
+    </body>
+</html>

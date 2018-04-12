@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="ChemBioOffice WebServer|Customization and Administration|Customization of WebServer Applications|INI Configuration Files" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" class="" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Customizing Form Fields</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>Customizing WebServer Application Forms</h1>
+        <p>WebServer applications created using the Administrative Tools Wizard, use 
+the default options&#160;to display&#160;form fields.&#160; These 
+fields&#160;can appear in many different ways.&#160;The&#160;showinputfield and 
+ShowResult functions in the form ASP pages indicate how a field should be 
+displayed.&#160;</p>
+        <p>This is not valid for&#160;Registration System&#160;or&#160;Inventory Manager,&#160;which 
+use alternate ways to format the forms.&#160; Please see the application's Admin Guide for 
+more details.</p>
+        <p style="COLOR: firebrick;"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&#160; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em>
+        </p>
+        <h2>ShowInputField and ShowResult</h2>
+        <p>ShowInputField (for search forms) and ShowResult (for result 
+forms)&#160;are used in each application form ASP pages to define how a field 
+should be displayed.&#160; To find the appropriate field entry:</p>
+        <ol>
+            <li value="1">Open the ASP page defining the form you want to 
+ change.
+  </li>
+            <li value="2">Find the line&#160;starting with <a href="#ShowInputField">%ShowInputField</a> (for search forms)&#160;or <a href="#ShowResult">%ShowResult</a>       
+    (for result forms)&#160;and includes the field 
+ name as one of the inputs.</li>
+        </ol>
+        <h3> Syntax </h3>
+        <p>The syntax for any field entry 
+is:<br /><strong>   
+ %ShowInputField dbkey,formgroup,TableName.&lt;FieldName&gt;,&lt;Input Field&gt;,&lt;Option&gt; [; &lt;Display Field&gt; : 
+&lt;Option&gt;]</strong><br />The Display Field option is optional.&#160; So, the syntax for 
+a field with no Display Field Option (defaults to TEXT)&#160;is:<br /><strong>  
+  %ShowInputField dbkey,formgroup,TableName.&lt;FieldName&gt;,&lt;Input Field&gt;,&lt;Option&gt;</strong></p>
+        <p>Each Input Field types have their own Display Field options.&#160; Please see 
+below for more details about each type of field.</p>
+        <p>Please do not change the Fieldnames or add or remove any of the items in the 
+list. If you see NOT CONFIGURABLE next to the field this means&#160;the 
+field&#160;is not configurable.</p>
+        <p>For more information about another parameter in this 
+statement, please see the documentation for <a href="ShowInputField.htm">ShowInputField</a> or <a href="ShowResult.htm">ShowResult</a>                
+            
+  .</p><a name="ShowInputField"></a>
+        <h3>ShowInputField Options </h3>
+        <p>The ShowInputFields function allows the following types of fields:</p>
+        <ul>
+            <li value="1"><a href="#text">TEXT </a>
+            </li>
+            <li value="2"><a href="#checkbox">CHECKBOX </a>
+            </li>
+            <li value="3">TEXTAREA
+  </li>
+            <li value="4"><a href="#picklist">PICKLIST</a>
+            </li>
+        </ul><a name="ShowResult"></a>
+        <h3>ShowResult Options</h3>
+        <p>The ShowResults function allows the following types of fields:</p>
+        <ul>
+            <li value="1"><a href="#text">TEXT</a>
+            </li>
+            <li value="2"><a href="#checkbox">CHECKBOX&#160;</a>
+            </li>
+            <li value="3"><a href="#hyperlink">HYPERLINK</a>
+            </li>
+            <li value="4"><a href="#picklist">PICKLIST</a>&#160;(only seen this way in Edit mode) 
+  </li>
+            <li value="5">FORMULA (formatted with subscripted numbers)</li>
+        </ul><a name="text"></a>
+        <h2>TEXT Options</h2>
+        <p>TEXT fields can have a validate option associated with it.&#160; Validate 
+options indicate that after a user enters something in the field, the 
+application checks to see if what was entered is in the correct format.&#160; 
+</p>
+        <p>The following options are available:</p>
+        <p />
+        <table cellSpacing="2" cellPadding="2" width="75%" border="1">
+            <tr style="COLOR: khaki;" bgColor="darkblue">
+                <td><strong>Option</strong>
+                </td>
+                <td><strong>Description</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Valid Integer</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Float</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Positive Integer</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Positive Float</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Date in the form: mm/dd/yyyy</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>CAS Number</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>not empty</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>Formula</td>
+            </tr>
+        </table>
+        <p>To make a default value appear in the textbox, add an 
+exclamation point (!) followed by the value to the field definition.&#160;</p><a name="checkbox"></a>
+        <h2>CHECKBOX Options</h2>
+        <p>The&#160;following are the&#160;two options for a 
+Checkbox field:</p>
+        <p />
+        <table cellSpacing="2" cellPadding="2" width="75%" border="1">
+            <tr style="COLOR: khaki;" bgColor="darkblue">
+                <td><strong>Option</strong>
+                </td>
+                <td><strong>Description</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>Shows Raw Value</td>
+            </tr>
+            <tr>
+                <td>GIF</td>
+                <td>Shows a GIF with an X for values of "" or 0 and a CHECK for values of 
+ 1</td>
+            </tr>
+        </table><a name="hyperlink"></a>
+        <h2>HYPERLINK Options</h2>
+        <p>The format for Hyperlinks is HYPERLINK:Link_Type|Link_Name.&#160; </p>
+        <ul>
+            <li value="1">Link_Type is the type of the link (e.g. http, mailto, file, https, ftp) 
+  </li>
+            <li value="2">Link_Name is the name that should be displayed for the link.&#160; If this 
+ is left blank, the full link is displayed.</li>
+        </ul>
+        <p>The following shortcuts can also be used instead of the Link_Type|Link_Name 
+format:</p>
+        <p />
+        <table cellSpacing="2" cellPadding="2" width="75%" border="1">
+            <tr style="COLOR: khaki;" bgColor="darkblue">
+                <td><strong>Option</strong>
+                </td>
+                <td><strong>Description</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>LINK</td>
+                <td>displays the working link as the link text. Adds http:// if 
+ missing</td>
+            </tr>
+            <tr>
+                <td>FULL</td>
+                <td>displays the full value in the field as link text. Add http:// if 
+ missing</td>
+            </tr>
+        </table><a name="picklist"></a>
+        <h2>PICKLIST Options</h2>
+        <p> The picklist option consists of a list of items you want 
+in the listbox.&#160; Each item is separated by a pipe (|).&#160;&#160;The 
+default value (i.e. the value displayed in the listbox by default) is found at 
+the end of the list after an exclamation point (!).</p>
+        <p>For example, if the picklist is a field called&#160;Names with the following 
+options: Jane, John, and Bill where John is the default value, the field 
+definition would look like this:</p>
+        <p>"Table.Names"; "Names"; PICKLIST:Jane|Bill!John</p>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

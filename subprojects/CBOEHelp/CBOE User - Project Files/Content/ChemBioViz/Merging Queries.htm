@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1055" MadCap:lastWidth="881" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Merging Queries</h1>
+        <p>Merging is a Boolean method for combining two hitlists to create a new hitlist. For example, you can run a substructure query for phenol, another query for hydroxyl compounds, and then remove one set of results from the other. Alternatively, you can add two hitlists together (duplicates are removed in the merged list).
+</p>
+        <p>A merged query cannot be rerun. However, you can delete and recreate merged queries as desired. </p>
+        <p>To merge queries:
+ </p>
+        <ol>
+            <li> Perform the two queries you want to merge. 
+ </li>
+            <li>Open the Queries pane. Both queries appear in the Queries pane. 
+ </li>
+            <li> In the queries pane list, do one of the following: </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li> 
+
+Click+drag one query onto another. 
+</li>
+                <li>Right+click one of the queries and choose Select for Merge; right-click the other query and select Merge with.
+</li>
+            </ul>
+        </blockquote>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/5_1_276x177.jpg" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>The Merge Lists dialog box appears. A label is created for each query:&#160;L1 and L2.
+
+ </li>
+            <li> In the Merge Lists dialog box, indicate how you want to merge the two queries: 
+
+</li>
+        </ol>
+        <p><b>Intersect
+</b>
+        </p>
+        <p>Reports the results that meet the criteria of L1 and L2.
+</p>
+        <p><b>Subtract
+</b>
+        </p>
+        <p>Removes the results of L2 from L1.
+</p>
+        <p><b>Union
+</b>
+        </p>
+        <p>Reports results that meet the criteria of either L1 or L2.
+</p>
+        <p style="font-weight: bold;">Subtract from
+</p>
+        <p>Removes the results of L1 from L2.
+</p>
+        <p>Another method for merging queries is to assign one query as a target and merge other queries with it:
+ </p>
+        <ol>
+            <li> In the queries pane, right-click one of the listed queries and select "Select for merge" from the context menu. 
+ </li>
+            <li> Right-click another query in the list and select Merge with {the target query}. 
+</li>
+        </ol>
+    </body>
+</html>

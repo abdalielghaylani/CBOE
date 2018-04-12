@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="ChemBioViz User Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  MasterToc="/Project/TOCs/ChemBioViz TOC.fltoc"
+  Skin="/Project/Skins/CBV Skin.flskn"
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  ConditionTagExpression="include[&quot;Default.CBV Output Only&quot;] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or Default.Inventory or &quot;Default.Not supported in 1261&quot; or Default.Registration] "
+  DefaultUrl="/Content/ChemBioViz/ChemBioViz Introduction.htm"
+  GenerateAllSkins="true"
+  InsertMOTW="true"></CatapultTarget>

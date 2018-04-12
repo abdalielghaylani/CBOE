@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="2471" MadCap:lastWidth="528">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Upgrading Version 7.2 Wizard Applications to 9.0 </h1>
+        <p>There are no changes necessary for 8.0 wizard application to run with version 9.0.
+
+</p>
+        <p>The following files need to be updated in order to allow your wizard applications to run with ChemOffice WebServer 9.0: 
+<br />Note : All files for an application are found in &lt;webroot&gt;/ChemOffice/&lt;appname&gt;. 
+
+</p>
+        <ul style="list-style-type: square;">
+            <li>&lt;appname&gt;/global.asa
+</li>
+            <li>&lt;appname&gt;/navbar.asp 
+</li>
+            <li>&lt;appname&gt;/config/&lt;dbname&gt;.ini </li>
+            <li>&lt;appname&gt;/config/cfserver.ini
+</li>
+        </ul>
+        <p>To upgrade your wizard application: 
+
+</p>
+        <ol>
+            <li>Gather the following information: 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>&lt;appname&gt; - refers to the name of your applicaiton, which is the name of the root virtual directory. 
+</li>
+                <li>&lt;dbname&gt; - the name of the database you converted. The ini file in the /config directory will match this name (&lt;dbname&gt;.ini)
+</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Upgrade global.asa 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to the application's config directory.
+</li>
+                <li>Open global.asa in your current web application and copy the line:
+Application("appkey") = " &lt;Your Name app&gt;" 
+to the clipboard. 
+</li>
+                <li>Open &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/global.asa and replace 
+Application("appkey") = "#APP_KEY" 
+with the line you copied in step 2.  
+</li>
+                <li>Copy the new global.asa to your web application replacing the older version.  
+</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Upgrade Navbar.asp 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/
+</li>
+                <li>Copy the file navbar.asp to your web application (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;) replacing the older version. 
+</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Upgrade cfserver.ini 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to &lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ 
+</li>
+                <li>Open cfserver.ini and copy the following lines to your clipboard <br />Note: These lines will be populated with information - the example shows them as blank): 
+
+    </li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <blockquote>
+                            <p><i style="color: #ff4500;">appname= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">NAV_BUTTONS_GIF_PATH = 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">MAIN_WINDOW=     
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">NAV_BAR_WINDOW= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">USER_INFO_WINDOW = 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">TEMP_DIR_NAME= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">TEMP_DIR_PATH= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">dbnames= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">GLOBAL_SEARCH_DBS= sample 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">GLOBAL_SEARCH_BASE_DB= sample
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">ADD_MODE="TRUE"</i>
+                            </p>
+                        </blockquote>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_9.0 upgrade/upgrade_fields/ 
+</li>
+                <li>Open cfserver.ini and replace the items with the same name with those you copied in the previous step.  
+</li>
+                <li>Copy the new cfserver.ini to your web application (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ ) replacing the older version. 
+</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Upgrade &lt;dbname&gt; .ini 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to &lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ </li>
+                <li>Open your web application's &lt;dbname&gt; .ini 
+</li>
+                <li>Locate the Base_connection section.
+</li>
+                <li>Change the entries to match the following (using the appropriate server_drive and appname and dbname were indicated): 
+
+    <br /><i style="color: #ff4500;">CONN_TYPE = File Name 
+    </i><br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">CONNECTION_STRING = &lt;SERVER_DRIVE&gt;\Inetpub\wwwroot\ChemOffice\&lt;appname&gt;\</i>config\&lt;dbname&gt;.udl 
+</li>
+                <li>Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_9.0 upgrade/upgrade_fields/ 
+</li>
+                <li>Copy the file dbname.udl to your application's /config folder (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/). 
+</li>
+                <li>Rename the file to match the dbname of your ini file. 
+<br />For example if you application is names "sample" then the udl should be sample.udl. </li>
+                <li> 
+Open the udl (by double-clicking) and point it to the database that the web application is using. 
+</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Adding your web application to ChemOffice.ini  
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Browse to &lt;webroot&gt;/chemoffice/config/
+</li>
+                <li>Open chemoffice.ini </li>
+                <li>Add your application's name (i.e. appname) to the 
+
+    <i style="color: #ff4500;">WIZARD_APPNAMES=</i> 
+key.  
+</li>
+                <li>Enter a group to the file for your web application using the following format: 
+
+        <blockquote><p><span style="color: #ff4500;font-style: italic;">[&lt;appname&gt;]
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">SECTION =
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">WIZARD DBNAMES = &lt;dbname&gt;
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">&lt;dbname&gt;_DISPLAY_NAME=  &lt;appname&gt;-
+</span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">        &lt;dbname&gt;&lt;dbname&gt;_START_PATH="/&lt;appname&gt;/default.asp?formgroup=base_form_group&amp;
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">dbname=&lt;dbname&gt; " </span></p></blockquote></li>
+            </ul>
+        </blockquote>
+    </body>
+</html>

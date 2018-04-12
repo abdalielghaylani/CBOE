@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Data Loader|The Command-Line Version of Data Loader">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Individual Mapping Templates</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Individual Mapping Templates</h1>
+        <p>Although the prospect of editing xml can be a bit scary, it can actually be as simple as a copy-and-paste operation with a very small amount of editing. Users may undertake this task themselves using these templates.
+</p>
+        <p>When creating your first data-mapping file, start with an empty text file using Windows Notepad. The first step is to copy the mapping-container template.
+</p>
+        <p>Listing 1: Mapping-container template
+</p>
+        <p>&lt;mappings&gt;
+<br />&lt;destinationRecordType&gt;RegistryRecord&lt;/destinationRecordType&gt;
+<br />&lt;!-- put all mapping templates between here...--&gt;
+<br />&lt;!-- ...and here, one after another. --&gt;
+<br />&lt;/mappings&gt;
+</p>
+        <p>Once you have established how your data-file’s fields will be used, you copy the necessary template for each data-mapping into this file, starting at the location specified. The only things you need to edit are: </p>
+        <ol>
+            <li value="1"><span style="color: #008000;"><span style="background-color: #00ff00; color: #000000;">Green highlighted text</span></span>- value must match your Registration System’s configuration </li>
+            <li value="2"><span style="background-color: #ff00ff;">Pink highlighted text </span>- value must match a field in your data-file
+</li>
+        </ol>
+        <p style="font-weight: bold;">Compound custom property
+</p>
+        <p>&lt;mapping&gt;<br />&lt;enabled&gt;true&lt;/enabled&gt; &lt;objectBindingPath&gt;this.ComponentList[0].Compound.PropertyList['<span style="background-color: #00ff00;">PROPERTY_NAME</span>'].Value&lt;/objectBindingPath&gt;
+<br />&lt;memberInformation memberType="property"&gt;
+<br />&lt;type&gt;instance&lt;/type&gt;
+<br />&lt;description&gt;Component custom property&lt;/description&gt;
+<br />&lt;args&gt;
+<br />&lt;arg index="0" input="derived" type="string"&gt;<br />&lt;value&gt; <span style="background-color: #ff00ff;">field_name</span>&lt;/value&gt;
+&lt;/arg&gt;
+<br />&lt;/args&gt;
+<br />&lt;/memberInformation&gt;
+<br />&lt;/mapping&gt;
+</p>
+        <p style="font-weight: bold;">Compound identifier
+</p>
+        <p>&lt;mapping&gt;
+<br />&lt;enabled&gt;true&lt;/enabled&gt;
+<br />&lt;objectBindingPath&gt;this.ComponentList[0].Compound&lt;/objectBindingPath&gt;
+<br />&lt;memberInformation memberType="method"&gt;
+<br />&lt;type&gt;instance&lt;/type&gt;
+<br />&lt;name&gt;AddIdentifier&lt;/name&gt;
+<br />&lt;description&gt;new identifier&lt;/description&gt;
+<br />&lt;args&gt;
+<br />&lt;arg index="0" input="constant" type="string"&gt; <br />&lt;value&gt;<span style="background-color: #00ff7f;"><span style="background-color: #00ff00;">identifier name</span></span>&lt;/value&gt;
+<br />&lt;/arg&gt;
+<br />&lt;arg index="1" input="derived" type="string"&gt; <br />&lt;value&gt;<span style="background-color: #ff00ff;">field_name</span>&lt;/value&gt;
+<br />&lt;/arg&gt;
+<br />&lt;/args&gt;
+<br />&lt;/memberInformation&gt;
+<br />&lt;/mapping&gt;</p>
+        <p style="font-weight: bold;">Compound’s structure</p>
+        <p>For SDFile format, the pink text must be: structure.</p>
+        <p>For ChemFinder.Net, the pink text must be: structure.</p>
+        <p>All other file types: use the name of the field containing the structure.</p>
+        <p>&lt;mapping&gt;<br />&lt;enabled&gt;true&lt;/enabled&gt;<br />&lt;objectBindingPath&gt;this.ComponentList[0].Compound.BaseFragment.Structure.Value&lt;/objectBindingPath&gt;<br />&lt;memberInformation memberType="property"&gt;<br />&lt;type&gt;instance&lt;/type&gt;<br />&lt;name&gt;&lt;/name&gt;<br />&lt;description&gt;structural representation&lt;/description&gt;<br />&lt;args&gt;<br />&lt;arg index="0" input="derived" type="string"&gt; &lt;value&gt;<span style="background-color: #ff00ff;">structure_field_name</span>&lt;/value&gt;<br />&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;</p>
+        <p>Compound’s default structure</p>
+        <p>Use this mapping for scenarios when the data-file lacks a structure field altogether. Also, if the file has a structure field that is sometimes empty, the user can place this snippet immediately after the “Compound’s structure” snippet to provide a default structure to prevent the data-record being rejected as invalid.</p>
+        <p>The text highlighted in green can be a -1, a -2 or a -3, corresponding to the three ‘no-structure’ options in the Registration application.</p>
+        <p>&lt;mapping&gt;<br />&lt;enabled&gt;true&lt;/enabled&gt;<br />&lt;objectBindingPath&gt;this&lt;/objectBindingPath&gt;<br />&lt;memberInformation memberType="method"&gt;<br />&lt;type&gt;instance&lt;/type&gt;<br />&lt;name&gt;AssignDefaultStructureById&lt;/name&gt;<br />&lt;description&gt;Provide a default structure if none is been mapped&lt;/description&gt;<br />&lt;args&gt;<br />&lt;arg index="0" type="int" input="constant"&gt;<br />&lt;value&gt;0&lt;/value&gt;<br />&lt;/arg&gt;<br />&lt;arg index="1" type="int" input="constant"&gt;<br />&lt;!-- the default should be the 'No Structure' placeholder --&gt; &lt;value&gt;<span style="background-color: #00ff00;">-2</span>&lt;/value&gt;<br />&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="The Command-Line Version of Data Loader.htm">The Command-Line Version of Data Loader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

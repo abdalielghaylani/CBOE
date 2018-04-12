@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="1055" MadCap:lastWidth="1273" MadCap:conditions="Default.Web Registration Only">
+    <head>
+    </head>
+    <body>
+        <h1>ChemDraw Chemical Warning</h1>
+        <p>With ChemDraw Chemical Warning Checker enabled, Registration Enterprise checks for the correct chemical syntax of the structure drawn in the structure window. Based on the Admin preferences and the chemical warnings preferences enabled, it displays a wavy red box around the questionable object if it finds an error in your structure. When you mouse over the red box, a tool tip describing the error appears. See Figure below:</p>
+        <p>
+            <img src="../Resources/Images/Web Registration images/error.gif" />
+        </p>
+        <p>If ChemDraw Chemical Warning Checker is enabled, you will not be allowed to Submit or Register the component or mixture until the underlying error is resolved. Depending on the type of error, a message is displayed when you click Submit or Register. See Figure below:</p>
+        <p>
+            <img src="../Resources/Images/Web Registration images/warning msg.gif" />
+        </p>
+        <h2>ChemDraw Chemical Warning Preferences</h2>
+        <p>Following are the different ChemDraw Chemical warning preferences available:</p>
+        <ul style="list-style-type: square;">
+            <li><b>Valence and Charge Errors</b>- generated when an object drawn has an improper valence or charge associated with it.</li>
+            <li><b>Unbalanced Parentheses</b>- generated when parentheses cannot be matched into nested open-close pair.</li>
+            <li><b>Invalid Isotopes</b>- generated for invalid isotopes. For example, this warning is generated for every label that has a numeric superscript immediately preceding an atomic symbol, where the super-scripted number does not correspond to a recognized isotope. For example, <sup>24</sup>CH<sub>3-</sub>.</li>
+            <li><b>Isolated Bonds</b>- an unlabeled single bond is not attached to other bonds.</li>
+            <li><b>Atoms Near Other Bonds</b>- an atom is close to a bond but not attached to it.</li>
+            <li><b>Unspecified Stereo Chemistry</b>- an asymmetric center is without attached wedged, hashed, dashed, or bold bonds.</li>
+            <li><b>Ambiguous Stereochemistry</b>- a stereocenter where the absolute stereochemistry cannot be determined from the structure as drawn. For example, this warning would be generated for a carbon atom attached by bold bonds to four different ligands.</li>
+            <li><b>Stereobond between Chiral Atoms</b>- a stereobond connects two stereocenters.</li>
+            <li><b>Linear Atom</b>- an unlabeled atom is attached to exactly two identical bonds that create a 180 degree angle.</li>
+        </ul>
+    </body>
+</html>

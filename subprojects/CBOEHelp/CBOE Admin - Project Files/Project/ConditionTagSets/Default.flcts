@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultConditionTagSet>
+  <ConditionTag
+    Comment=""
+    Name="ScreenOnly"
+    BackgroundColor="Blue" />
+  <ConditionTag
+    Comment=""
+    Name="PrintOnly"
+    BackgroundColor="Red" />
+  <ConditionTag
+    BackgroundColor="#008000"
+    Name="DataLoader Only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#ffa500"
+    Name="BioSAR Browser only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#8b008b"
+    Name="COE Webserver only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#00bfff"
+    Name="Config Loader only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#000000"
+    Name="DataView Manager only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#8b4513"
+    Name="Doc Manager Enterprise"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#ff00ff"
+    Name="Drug Degradation only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#2f4f4f"
+    Name="Registration only"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#9acd32"
+    Name="Not supported"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#008b8b"
+    Name="Web Reg Only"
+    Comment="" />
+</CatapultConditionTagSet>

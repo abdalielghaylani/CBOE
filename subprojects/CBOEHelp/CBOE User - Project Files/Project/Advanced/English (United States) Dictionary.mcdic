@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpellingDictionary>
+    <Word>ChemACX</Word>
+    <Word>ChemBioViz</Word>
+    <Word>Textbox</Word>
+    <Word>RichtTextBox</Word>
+    <Word>ChemDrawBox</Word>
+    <Word>FormulaBox</Word>
+    <Word>PictureBox</Word>
+    <Word>MonthCalender</Word>
+    <Word>DateTimePicker</Word>
+    <Word>SubformGrid</Word>
+    <Word>ComboBox</Word>
+    <Word>CustomMenus</Word>
+    <Word>QueryTextBox</Word>
+    <Word>DocManager</Word>
+    <Word>BioSARBrowser</Word>
+    <Word>dataview</Word>
+    <Word>Spotfire</Word>
+    <Word>SDF</Word>
+    <Word>GHS</Word>
+    <Word>Labelling</Word>
+    <Word>labelling</Word>
+    <Word>ChemBioOffice</Word>
+    <Word>ChemBioFinder</Word>
+    <Word>SDFile</Word>
+    <Word>datasource</Word>
+</SpellingDictionary>

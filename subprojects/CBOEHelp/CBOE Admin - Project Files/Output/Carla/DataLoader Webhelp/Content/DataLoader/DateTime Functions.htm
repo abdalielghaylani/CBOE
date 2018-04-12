@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="110" MadCap:lastWidth="832" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Data Loader|Functions" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>DateTime Functions</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>DateTime Functions</h1>
+        <ul style="list-style-type: square;">
+            <li value="1">DateTime.AddDays(Decimal): Adds the
+specified number of days to the input field
+of DateTime type. The Decimal field supplied
+to this function specifies the number
+of days to be added.
+</li>
+            <li value="2">DateTime.AddHours(Decimal): Adds the
+specified number of hours to the input field
+of DateTime type. The Decimal field supplied
+to this function specifies the number
+of hours to be added.
+</li>
+            <li value="3">DateTime.AddMilliseconds(Decimal):
+Adds the specified number of milliseconds
+to the input field of DateTime type. The
+Decimal field supplied to this function
+specifies the number of milliseconds to be
+added.
+</li>
+            <li value="4">DateTime.AddMinutes(Decimal): Adds the
+specified number of minutes to the input
+field of DateTime type. The Decimal field
+supplied to this function specifies the number
+of minutes to be added.
+</li>
+            <li value="5">DateTime.AddMonths(Integer): Adds the
+specified number of months to the input
+field of DateTime type. The Integer field
+supplied to this function specifies the number
+of months to be added.
+</li>
+            <li value="6">DateTime.AddSeconds(Decimal): Adds the
+specified number of seconds to the input
+field of DateTime type. The Decimal field
+supplied to this function specifies the number
+of seconds to be added
+</li>
+            <li value="7">DateTime.AddYears(Integer): Adds the
+specified number of years to the input field
+of DateTime type. The Integer field supplied
+to this function specifies the number
+of years to be added.
+</li>
+            <li value="8">DateTime.get_Date(): Returns the date of
+the DateTime type input field supplied to
+this function.
+</li>
+            <li value="9">DateTime.ToLocalTime(): Converts the
+value of the DateTime type input field to
+local time.
+</li>
+            <li value="10">DateTime.ToUniversalTime(): Converts the
+value of the DateTime type input field to
+universal time.
+</li>
+            <li value="11">FromOADate(Decimal): Returns the Date-
+Time equivalent of the specified OLE
+Automation date.
+</li>
+        </ul>
+        <p><i><b>NOTE:</b> OLE Automation is an inter-process
+communication mechanism based on Component
+Object Model (COM). OLE Automation
+was intended for use by scripting languages,
+but is now used by languages that run on Windows.
+OLE Automation provides an infrastructure
+whereby applications called Automation
+Controllers can access and manipulate shared
+automation objects exported by other applications</i>.
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">get_Now(): Gets the current date and time
+as per local time.
+</li>
+            <li value="2">get_Today(): Gets the current local date as
+per local time.
+</li>
+            <li value="3">get_UtcNow(): Returns the current date and
+time on this computer in terms of Coordinated
+Universal Time (UTC).
+</li>
+            <li value="4">Iif(Boolean,DateTime,DateTime): Evaluates
+the Boolean expression; if result is
+True, the function returns the first Date-
+Time type parameter else it returns the second
+DateTime type parameter.
+</li>
+            <li value="5">Parse(String): Returns the DateTime equivalent
+of the specified string representation
+of a logical value.
+</li>
+            <li value="6">ToDateTime(Boolean): Returns the Date-
+Time equivalent of a Boolean type input
+field.
+</li>
+            <li value="7">ToDateTime(Char): Returns the DateTime
+equivalent of a Char type input field.
+</li>
+            <li value="8">ToDateTime(DateTime): Returns the Date-
+Time equivalent of a DateTime type input
+field. No actual conversion takes place.
+</li>
+            <li value="9">ToDateTime(Decimal): Returns the Date-
+Time equivalent of a Decimal type input
+field.
+</li>
+            <li value="10">ToDateTime(Integer): Returns the Date-
+Time equivalent of a Integer type input
+field.
+</li>
+            <li value="11">ToDateTime(String): Returns the Date-
+Time equivalent of a String type input field.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Functions.htm">Functions</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

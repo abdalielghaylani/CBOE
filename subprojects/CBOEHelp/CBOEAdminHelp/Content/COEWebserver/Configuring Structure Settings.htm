@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="ChemBioOffice WebServer|Customization and Administration|Customization of WebServer Applications|INI Configuration Files">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Configuring Structure Settings</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>  Configuring Structure Settings</h1>
+        <p>  Settings for structures are defined in a file called 
+MT.CDX.&#160; This file is found in the graphics folder in an application's 
+folder.&#160; For example, the MT.CDX file that defines the settings for the 
+Sample application is found in 
+<strong>&lt;webroot&gt;/chemoffice/sample/graphics</strong>   .</p>
+        <p>  The process for editing structure settings is the same 
+for each application.&#160; These&#160;settings will take effect&#160;for all 
+users of an application.&#160;The following describes how to change structure 
+settings for the sample application.&#160; To implement these instructions for 
+another application, substitute the sample directory with the application 
+directory you wish to change&#160;</p>
+        <p>  To edit structure settings for the sample application:</p>
+        <ol>
+            <li value="1">Browse to 
+  <strong>&lt;webroot&gt;/chemoffice/sample/graphics</strong>.
+  </li>
+            <li value="2">Double-click on the <strong>MT.CDX</strong> file.<br />The file 
+ opens in ChemDraw.&#160; The file appears to be empty. 
+  </li>
+            <li value="3">Under the File menu, there are 3 types of settings 
+ that can be changed: 
+  <ul><li value="1">Drawing Settings
+    </li><li value="2">Caption Text Settings
+    </li><li value="3">Label Text Settings</li></ul><br />Select the appropriate menu option.&#160; For more 
+ information about these menu options,&#160;please see Customizing ChemDraw in the ChemDraw Manual.<br />A dialog 
+ box appears.    
+  </li>
+            <li value="4">Make the changes desired.
+  </li>
+            <li value="5">Click OK.
+  </li>
+            <li value="6">Save and close the file (<strong>MT.CDX</strong>).
+  </li>
+            <li value="7">Browse to <strong>&lt;webroot&gt;/chemoffice/cfwtemp</strong>.
+  </li>
+            <li value="8">If there is a directory named sample (or the name of the application you 
+ are configuring settings for), delete the directory (i.e. delete 
+  <strong>&lt;webroot&gt;/chemoffice/cfwtemp/sample</strong>).<br />The next time 
+ that application is accessed, the settings will take 
+effect.</li>
+        </ol>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

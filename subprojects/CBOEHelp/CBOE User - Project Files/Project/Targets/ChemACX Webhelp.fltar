@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="ChemACX User Guide"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/ACX.flskn"
+  MasterToc="/Project/TOCs/ChemACX TOC.fltoc"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
+  ConditionTagExpression="include[Default.ChemACX] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or Default.Inventory or &quot;Default.Not supported in 1261&quot; or Default.Registration or &quot;Default.Working with CBOE Applications&quot;] "
+  DefaultUrl="/Content/ChemACX/ChemACX Introduction.htm"
+  InsertMOTW="true"></CatapultTarget>

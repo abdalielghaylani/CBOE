@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1542" MadCap:lastWidth="1176">
+    <head>
+    </head>
+    <body>
+        <h1>Enabling Group Security</h1>
+        <p>To enable the group security, perform the steps below:</p>
+        <p><b>Using the invconfig.ini</b>
+        </p>
+        <ol>
+            <li>On the ChemOfficeEnterprise server, go to C:\Inetpub\wwwroot\ChemOffice\ChemInv\config folder</li>
+            <li>Open invconfig.ini file in edit mode</li>
+            <li>Under [SECURITY] section set the following value ENABLE_OWNERSHIP= "True"</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/Enable ownership.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Perform an IISRESET</li>
+        </ol>
+        <p style="font-weight: bold;">Using the Server Configuration Tool</p>
+        <ol>
+            <li>Run the ChemBioOffice Enterprise Server Configuration Tool</li>
+            <li>Click on "App Settings" tab and check the Group Security checkbox</li>
+            <li>Click on Save Configuration button to save the changes</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/app settings.gif" />
+        </p>
+        <p><b>Requesting Samples</b>
+        </p>
+        <p>When group security feature is enabled, any user can request any sample even if he/she is a non-owner regardless of location. Users can request any sample to:</p>
+        <ul style="list-style-type: square;">
+            <li>The location for which they have the ownership (or their group has ownership)</li>
+            <li>The public locations</li>
+        </ul>
+        <p>The fulfillers can fill the request to:</p>
+        <ul style="list-style-type: square;">
+            <li> The requested location (even if they are not part of the ownership group) OR </li>
+            <li>Any location for which they have ownership (or their group has ownership) OR </li>
+            <li>A public location</li>
+        </ul>
+        <p><b>Moving Containers between Groups</b>
+        </p>
+        <p>While moving the container between Groups the workflow will be as follows:</p>
+        <p style="text-decoration: underline;">Scenario:</p>
+        <ul style="list-style-type: square;">
+            <li>User A is a member of Group A. Group A is the location admin of  Location A. There is a container Container A in Location A owned by Group A.</li>
+            <li>User B is a member of Group B. Group B is location admin of  Location B.</li>
+            <li>User C is a member of Group C. Group C is location admin of  Location C.</li>
+        </ul>
+        <p style="text-decoration: underline;">Use case:</p>
+        <p>User B needs the container A from Location A.</p>
+        <p style="text-decoration: underline;">Workflow:</p>
+        <ol>
+            <li>User A will move the container A to a public Location. Here container can be accessed and modified by anyone (UserA, UserB, UserC).</li>
+            <li>User B will move the container A to Location B, still the owner is Group A, any member of Group B ( owner of Location B) can modify anything on the container A. Group A users can also edit it here. That’s means containers can be modified by Containers Admins as well as Location Admins. Here User C cannot make edits to the container A.</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Location Administrator.htm">Location Administrator</a>
+            <br /><a href="Container Administrator.htm">Container Administrator</a>
+            <br /><a href="Plate Administrator.htm">Plate Administrator</a>
+        </p>
+    </body>
+</html>

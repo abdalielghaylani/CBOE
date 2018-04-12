@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Registration|Submitting New Records|Managing Duplicates">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>CASE C - Working with Multiple Components</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Registration Introduction.htm">Registration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Submitting_New_Records.htm">Submitting New Records</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Managing Duplicates.htm">Managing Duplicates</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">CASE C</span>
+        </div>
+        <h1>CASE C - Working with Multiple Components</h1>
+        <p>When the system has the following system settings:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">SBI = N/A </li>
+            <li value="2">EnableFragments = False</li>
+            <li value="3">EnableMixtures = True</li>
+        </ul>
+        <p>If the structure that the user wants to register is already in the Chemical Registration Database, a solving duplicate window will appear. The only field for checking duplicates is the structure one.</p>
+        <p>There are two levels of solving duplicates for Registry Records with multiple components:</p>
+        <ol>
+            <li value="1"><b>Solving Component Duplicates:</b> For each component we can review a list of duplicates of the specific components. We can decide to use the same Component ID or to create a new Component.</li>
+            <li value="2"><b>Solving Registry Record Duplicates:</b> Once the components are solved we have to solve registry record duplicates. Only Records with exactly the same components list will appear.</li>
+        </ol>
+        <p>Once the components are solved we have to solve registry record duplicates. Only Records with exactly the same components and fragment list will appear.</p>
+        <p>If the structure that the user wants to register is already in the Chemical Registration Database, a solving duplicate window will appear. The only field for checking duplicates is the structure one.
+</p>
+        <p>Many cases are provided here: </p>
+        <p><b>Note:</b>&#160;in the following cases, Source is the record that the user is registering and Conflict is the record that is already registered in the database.</p>
+        <ol style="list-style-type: upper-alpha;">
+            <li style="font-weight: bold;" value="1">Source = Single ; Conflict = Mixture</li>
+        </ol>
+        <p style="font-weight: normal;">When the user is registering a component that is duplicated in a Mixture. The following duplicate resolution options will be available:</p>
+        <p style="font-weight: normal;">
+            <img src="../Resources/Images/Reg 1104 images/case c1.gif" />
+        </p>
+        <blockquote>
+            <ul style="list-style-type: circle;">
+                <li value="1">Cancel: to cancel the registration process</li>
+                <li value="2">Duplicate:  to create a new registry record duplicating the compound information. Then the record will be duplicated with the following properties:<ul style="list-style-type: square;"><li value="1">Unique Reg Number</li><li value="2">Different Component ID</li><li value="3">Same Structure</li><li value="4">Different Structure ID</li></ul></li>
+                <li value="3">Use Component: to use the same Component ID. No component is created.</li>
+                <li value="4">Use Structure: to create a new Registry Record reusing the same structure ID. If there is a structure change both registry records will be affected.</li>
+            </ul>
+        </blockquote>
+        <ol style="list-style-type: upper-alpha;" data-mc-continue="true">
+            <li style="font-weight: bold;" value="2"><b>Source = Mixture ; Conflict = Mixture</b>
+            </li>
+        </ol>
+        <p>When a user is registering a mixture containing two components, and the mixture is entirely duplicated, the following dialog displays:</p>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/case c2.gif" />
+        </p>
+        <p>The two duplicated components should be resolved one by one. Click on "Resolve this Component" link and select the action that you want to perform. The options are:</p>
+        <blockquote>
+            <ul style="list-style-type: circle;">
+                <li value="1">Cancel: to cancel the registration process</li>
+                <li value="2">Duplicate: to create a new registry record duplicating the compound information. Then the record will be duplicated with the following properties:<ul style="list-style-type: square;"><li value="1">Unique Reg Number</li><li value="2">Different Component ID</li><li value="3">Same Structure</li><li value="4">Different Structure ID</li></ul></li>
+                <li value="3">Use Component:  to use the same Component ID. No component is created.</li>
+                <li value="4">Use Structure: to create a new Registry Record reusing the same structure ID. If there is a structure change both registry records will be affected</li>
+            </ul>
+        </blockquote>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/c2.1.gif" />
+        </p>
+        <p>When the components are resolved, the Duplicate Registry dialog displays:</p>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/duplciate registry.gif" />
+        </p>
+        <p>Select one of the following options to resolve the registry duplicate:</p>
+        <ul style="list-style-type: circle;">
+            <li value="1">Cancel: to cancel the registration process</li>
+            <li value="2">Add Batch: to add a batch to the currently displaying duplicated registry. This will conclude the duplicates resolution process.</li>
+            <li value="3">Duplicate: to create a new registry record duplicating the compound information. Then the record will be duplicated with the following properties:<ul style="list-style-type: square;"><li value="1">Unique Reg Number</li><li value="2">Different Component ID</li><li value="3">Same Structure</li></ul><ul style="list-style-type: square;"><li value="1">Different Structure ID</li></ul></li>
+        </ul>
+        <ol style="list-style-type: upper-alpha;" data-mc-continue="true">
+            <li style="font-weight: bold;" value="4"><b>Source: Mixture ; Conflict: Single</b>
+            </li>
+        </ol>
+        <p>When the user is registering a mixture containing a component that is duplicated in a registered record having a single component, the following dialog displays.</p>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/case c4.gif" />
+        </p>
+        <p>Click on resolve this component, the following options shown in the screenshot below will be available:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Cancel: to cancel the registration process</li>
+            <li value="2">Duplicate: to create a new registry record duplicating the compound information. Then the record will be duplicated with the following properties:<ul style="list-style-type: circle;"><li value="1">Unique Reg Number</li><li value="2">Different Component ID</li><li value="3">Same Structure</li></ul><ul style="list-style-type: circle;"><li value="1">Different Structure ID</li></ul></li>
+            <li value="3">Use Component:  to use the same Component ID. No component is created.</li>
+            <li value="4">Use Structure: to create a new Registry Record reusing the same structure ID. If there is a structure change both registry records will be affected</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/case c4.2.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Managing Duplicates.htm">Managing Duplicates</a>
+            <br /><a href="Submitting_New_Records.htm">Submitting New Records</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images_Common/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

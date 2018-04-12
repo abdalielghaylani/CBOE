@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Registration|Data Loader|Optimizations for Bulk Loading">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Disable Refresh of  Oracle Materialized Views</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Disable Refresh of  Oracle Materialized Views</h1>
+        <p>In systems where the integration between the Chemical Inventory and Registration modules has been enabled, there may be Materialized Views of data inserted into the REGDB tables.  By default, these views are configured to update as each row is committed to the database.  The process of keeping Materialized Views up-to-date can significantly slow down performance of bulk load operations.  It is therefore beneficial to suspend the maintenance of Materialized Views that depend on REGDB data and to refresh them at the end of the load.
+</p>
+        <p>Recommendations (only for systems with ChemInv/Registration Integration enabled)
+</p>
+        <blockquote>
+            <p style="font-weight: bold;">Before Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Disable Materialized view refresh
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>connect cheminvdb2/oracle@&lt;TNSName&gt;
+<br />alter materialized view cheminvdb2.inv_vw_compounds refresh on demand;
+
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>Note: On some systems cheminvdb2.inv_vw_reg_batches may also be materialized and may need a similar treatment.
+
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Disable Materialized view refresh for any custom MVs (if applicable)
+
+
+  	</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p style="font-weight: bold;">After Bulk Load:
+</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Re-enable Materialized view refresh
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>connect cheminvdb2/oracle@&lt;TNSName&gt;
+<br />begin
+    <br />DBMS_SNAPSHOT.REFRESH('cheminvdb2.inv_vw_compounds');
+<br />end;
+<br />/
+
+<br />alter materialized view cheminvdb2.inv_vw_compounds refresh on commit;
+</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Enable Materialized view refresh for any custom MVs (if applicable)
+</li>
+            </ul>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

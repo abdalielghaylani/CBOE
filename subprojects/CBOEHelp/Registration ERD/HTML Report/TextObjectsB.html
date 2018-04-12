@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="keywords" content="Toad Data Modeler, html, report">
+		<title>Toad Data Modeler - HTML Report</title>
+
+		<link rel="stylesheet" type="text/css" media="screen" href="classic_yellow.css" title="report">
+		<link rel="stylesheet" type="text/css" media="print" href="classic_yellow_print.css" title="report">
+	</head>
+
+<body class="rightPage">
+<a name = "TextObjName_1"></a>
+<div class="caption1">PACKAGES</div>
+<a name = "TextObject_1"></a>
+<div class="caption2">REGDB.CSCHEMREG</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE PACKAGE &quot;REGDB&quot;.&quot;CSCHEMREG&quot; <br>  AS<br>  Procedure GetPermregFromTempId(<br>  TempId in Batches.TEMP_ID%Type,<br>  BatchN OUT Batches.BATCH_NUMBER%Type,<br>  RegN out reg_numbers.reg_number%type);<br>  <br>  Function strreplace(str varchar2)return varchar2;<br>  <br>  Procedure TranslateIds(<br>  paramValue in out varchar2,<br>  paramName in varchar2<br>  );<br>  Procedure UpdateBatch(<br>  pBatchNumber in Batches.BATCH_NUMBER%Type,<br>  pREG_NUMBER in Reg_Numbers.REG_NUMBER%Type,<br>  pSCIENTIST_ID in CS_SECURITY.PEOPLE.USER_ID%Type default null,<br>  nSCIENTIST_ID in Batches.SCIENTIST_ID%Type default null,<br>  pBP in Batches.BP%Type default null,<br>  pMP in Batches.MP%Type default null,<br>  pH1NMR in Batches.H1NMR%Type default null,<br>  pC13NMR in Batches.C13NMR%Type default null,<br>  pMS in Batches.MS%Type default null,<br>  pIR in Batches.IR%Type default null,<br>  pGC in Batches.GC%Type default null,<br>  pPHYSICAL_FORM in Batches.PHYSICAL_FORM%Type default null,<br>  pCOLOR in Batches.COLOR%Type default null,<br>  pFLASHPOINT in Batches.FLASHPOINT%Type default null,<br>  pHPLC in Batches.HPLC%Type default null,<br>  pOPTICAL_ROTATION in Batches.OPTICAL_ROTATION%Type default null,<br>  pREFRACTIVE_INDEX in Batches.REFRACTIVE_INDEX%Type default null,<br>  pSALT_CODE in Salts.SALT_CODE%Type default null,<br>  pSALT_NAME in Batches.SALT_NAME%Type default null,<br>  pSALT_EQUIVALENTS in Batches.SALT_EQUIVALENTS%Type default null,<br>  pSOLVATE_NAME in Batches.SOLVATE_NAME%Type default null,<br>  pSOLVATE_EQUIVALENTS in Batches.SOLVATE_EQUIVALENTS%Type default null,<br>  pSOURCE in Batches.Source%Type default null,<br>  pVENDOR_NAME in Batches.VENDOR_NAME%Type default null,<br>  pVENDOR_ID in Batches.VENDOR_ID%Type default null,<br>  pPERCENT_ACTIVE in Batches.PERCENT_ACTIVE%Type default null,<br>  pAMOUNT_UNITS in Batches.AMOUNT_UNITS%Type default null,<br>  pPURITY in BATCHES.PURITY%Type default null,<br>  pLC_UV_MS in Batches.LC_UV_MS%Type default null,<br>  pCHN_COMBUSTION in Batches.CHN_COMBUSTION%Type default null,<br>  pUV_SPECTRUM in Batches.UV_SPECTRUM%Type default null,<br>  pAPPEARANCE in Batches.APPEARANCE%Type default null,<br>  pLOGD in Batches.LOGD%Type default null,<br>  pSOLUBILITY in Batches.SOLUBILITY%Type default null,<br>  pLAST_MOD_PERSON_ID in Batches.LAST_MOD_PERSON_ID%Type default null,<br>  pAMOUNT in Batches.AMOUNT%Type default null,<br>  pFIELD_1 in Batches.FIELD_1%Type default null,<br>  pFIELD_2 in Batches.FIELD_2%Type default null,<br>  pFIELD_3 in Batches.FIELD_3%Type default null,<br>  pFIELD_4 in Batches.FIELD_4%Type default null,<br>  pFIELD_5 in Batches.FIELD_5%Type default null,<br>  pFIELD_6 in Batches.FIELD_6%Type default null,<br>  pFIELD_7 in Batches.FIELD_7%Type default null,<br>  pFIELD_8 in Batches.FIELD_8%Type default null,<br>  pFIELD_9 in Batches.FIELD_9%Type default null,<br>  pFIELD_10 in Batches.FIELD_10%Type default null,<br>  pLOAD_ID in Batches.LOAD_ID%Type default null,<br>  --pDATETIME_STAMP in Batches.DATETIME_STAMP%Type default null,<br>  pINT_BATCH_FIELD_1 in Batches.INT_BATCH_FIELD_1%Type default null,<br>  pINT_BATCH_FIELD_2 in Batches.INT_BATCH_FIELD_2%Type default null,<br>  pINT_BATCH_FIELD_3 in Batches.INT_BATCH_FIELD_3%Type default null,<br>  pINT_BATCH_FIELD_4 in Batches.INT_BATCH_FIELD_4%Type default null,<br>  pINT_BATCH_FIELD_5 in Batches.INT_BATCH_FIELD_5%Type default null,<br>  pINT_BATCH_FIELD_6 in Batches.INT_BATCH_FIELD_6%Type default null,<br>  pREAL_BATCH_FIELD_1 in Batches.REAL_BATCH_FIELD_1%Type default null,<br>  pREAL_BATCH_FIELD_2 in Batches.REAL_BATCH_FIELD_2%Type default null,<br>  pREAL_BATCH_FIELD_3 in Batches.REAL_BATCH_FIELD_3%Type default null,<br>  pREAL_BATCH_FIELD_4 in Batches.REAL_BATCH_FIELD_4%Type default null,<br>  pREAL_BATCH_FIELD_5 in Batches.REAL_BATCH_FIELD_5%Type default null,<br>  pREAL_BATCH_FIELD_6 in Batches.REAL_BATCH_FIELD_6%Type default null,<br>  --pDATE_BATCH_FIELD_1 in Batches.DATE_BATCH_FIELD_1%Type default null,<br>  pDATE_BATCH_FIELD_1 in varchar2 default null,<br>  pDATE_BATCH_FIELD_2 in varchar2 default null,<br>  pDATE_BATCH_FIELD_3 in varchar2 default null,<br>  pDATE_BATCH_FIELD_4 in varchar2 default null,<br>  pDATE_BATCH_FIELD_5 in varchar2 default null,<br>  pDATE_BATCH_FIELD_6 in varchar2 default null,<br>  pREAL_CMPD_FIELD_1 in Compound_Molecule.REAL_CMPD_FIELD_1%Type default null,<br>  pREAL_CMPD_FIELD_2 in Compound_Molecule.REAL_CMPD_FIELD_2%Type default null,<br>  pREAL_CMPD_FIELD_3 in Compound_Molecule.REAL_CMPD_FIELD_3%Type default null,<br>  pREAL_CMPD_FIELD_4 in Compound_Molecule.REAL_CMPD_FIELD_4%Type default null,<br>  pPRODUCT_TYPE in COMPOUND_MOLECULE.PRODUCT_TYPE%Type default null,<br>  pCHIRAL in COMPOUND_MOLECULE.CHIRAL%Type default null,<br>  pCLOGP in COMPOUND_MOLECULE.CLOGP%Type default null,<br>  pH_BOND_DONORS in COMPOUND_MOLECULE.H_BOND_DONORS%Type default null,<br>  pH_BOND_ACCEPTORS in COMPOUND_MOLECULE.H_BOND_ACCEPTORS%Type default null,<br>  pMW_TEXT in COMPOUND_MOLECULE.MW_TEXT%Type default null,<br>  pMF_TEXT in COMPOUND_MOLECULE.MF_TEXT%Type default null,<br>  pCOMPOUND_TYPE in COMPOUND_TYPE.DESCRIPTION%Type default null,<br>  nCOMPOUND_TYPE in COMPOUND_MOLECULE.COMPOUND_TYPE%Type default null,<br>  pSTRUCTURE_COMMENTS_TXT in COMPOUND_MOLECULE.STRUCTURE_COMMENTS_TXT%Type default null,<br>  pTXT_CMPD_FIELD_1 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_1%Type default null,<br>  pTXT_CMPD_FIELD_2 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_2%Type default null,<br>  pTXT_CMPD_FIELD_3 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_3%Type default null,<br>  pTXT_CMPD_FIELD_4 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_4%Type default null,<br>  pINT_CMPD_FIELD_1 in COMPOUND_MOLECULE.INT_CMPD_FIELD_1%Type default null,<br>  pINT_CMPD_FIELD_2 in COMPOUND_MOLECULE.INT_CMPD_FIELD_2%Type default null,<br>  pINT_CMPD_FIELD_3 in COMPOUND_MOLECULE.INT_CMPD_FIELD_3%Type default null,<br>  pINT_CMPD_FIELD_4 in COMPOUND_MOLECULE.INT_CMPD_FIELD_4%Type default null,<br>  pDATE_CMPD_FIELD_1 in varchar2 default null,<br>  pDATE_CMPD_FIELD_2 in varchar2 default null,<br>  pDATE_CMPD_FIELD_3 in varchar2 default null,<br>  pDATE_CMPD_FIELD_4 in varchar2 default null,<br>  pAPPROVED in REG_APPROVED.APPROVED%Type default null,<br>  pSOLVATE_ID in Solvates.SOLVATE_ID%Type default null,<br>  pCompound_PROJECT_ID in PROJECTS.PROJECT_NAME%Type default null,<br>  nCompound_PROJECT_ID in TEMPORARY_STRUCTURES.PROJECT_ID%Type default null,<br>  pAPPROVED_TIME in REG_APPROVED.DATETIME_STAMP%Type default null,<br>  pAPPROVED_DATE in REG_APPROVED.DATETIME_STAMP%Type default null,<br>  pFORMULA_WEIGHT in TEMPORARY_STRUCTURES.FORMULA_WEIGHT%Type default null,<br>  pBATCH_PROJECT_ID in Batch_Projects.PROJECT_NAME%Type default null,<br>  nBATCH_PROJECT_ID in Batches.BATCH_PROJECT_ID%Type default null,<br>  fCHEMICAL_NAME in TEMPORARY_STRUCTURES.CHEMICAL_NAME%Type default null,<br>  fCHEM_NAME_AUTOGEN in TEMPORARY_STRUCTURES.CHEM_NAME_AUTOGEN%Type default null,<br>  fSYNONYM_R in TEMPORARY_STRUCTURES.SYNONYM_R%Type default null,<br>  fCAS_NUMBER in TEMPORARY_STRUCTURES.CAS_NUMBER%Type default null,<br>  fRNO_NUMBER in TEMPORARY_STRUCTURES.RNO_NUMBER%Type default null,<br>  fFEMA_GRAS_NUMBER in TEMPORARY_STRUCTURES.FEMA_GRAS_NUMBER%Type default null,<br>  fGROUP_CODE in TEMPORARY_STRUCTURES.GROUP_CODE%Type default null,<br>  pNOTEBOOK_PAGE in BATCHES.NOTEBOOK_PAGE%Type default null,<br>  pNOTEBOOK_TEXT in BATCHES.NOTEBOOK_TEXT%Type default null,<br>  pNOTEBOOK_INTERNAL_ID in NOTEBOOKS.NOTEBOOK_NAME%Type default null,<br>  nNOTEBOOK_INTERNAL_ID in BATCHES.NOTEBOOK_INTERNAL_ID%Type default null,<br>  pProducer in BATCHES.PRODUCER%Type default null,<br>  pLit_Ref in BATCHES.LIT_REF%Type default null,<br>  pBatch_Comment in BATCHES.BATCH_COMMENT%Type default null,<br>  pDateFormat in varchar2,<br>  pSTORAGE_REQ_AND_WARNINGS in BATCHES.STORAGE_REQ_AND_WARNINGS%Type default null,<br>  pPreparation in BATCHES.PREPARATION%Type default null,<br>  pBATCH_INTERNAL_ID out BATCHES.BATCH_INTERNAL_ID%Type<br>  );<br>  End; <br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "TextObjName_2"></a>
+<div class="caption1">PACKAGE BODIES</div>
+<a name = "TextObject_2"></a>
+<div class="caption2">REGDB.CSCHEMREG</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE PACKAGE BODY &quot;REGDB&quot;.&quot;CSCHEMREG&quot; <br>  IS<br>  Procedure GetPermregFromTempId(<br>  TempId in Batches.TEMP_ID%Type,<br>  BatchN OUT Batches.BATCH_NUMBER%Type,<br>  RegN OUT reg_numbers.reg_number%type)<br>  IS<br>  Begin<br>  Select b.Batch_Number, r.Reg_number into BatchN, RegN from Batches b , reg_numbers r where r.reg_id = b.reg_internal_id and b.Temp_Id= TempId;<br>  EXCEPTION<br>    WHEN NO_DATA_FOUND THEN<br>    dbms_output.put_line('Sorry there is No Data associated with the Temp Id you have given. Please search again using a different Temp Id!');<br>    raise;<br>  End GetPermregFromTempId;<br>  <br>  Function strreplace(str varchar2)<br>    return varchar2<br>  AS<br>    str_temp varchar2(4000);<br>  <br>  BEGIN<br>  --   RETURN REPLACE (TRANSLATE (str, '~`!@#$%^&amp;*()_+={}[]|\:;''&quot;,.&lt;&gt;?', '~'), '~','''');<br>  RETURN REPLACE (str, '''', '''''');<br>  END strreplace;<br>  <br>  Procedure TranslateIds(<br>  paramValue in out varchar2,<br>  paramName in varchar2<br>  )<br>  IS<br>  BatchesSql varchar (2000);<br>  Begin<br>  IF paramName='SCIENTIST_ID' THEN<br>  Select PERSON_ID into paramValue from CS_Security.People where USER_ID=paramValue;<br>  End IF;<br>  IF paramName='COMPOUND_PROJECT_ID' THEN<br>  Select PROJECT_INTERNAL_ID into paramValue from PROJECTS where PROJECT_NAME=paramValue;<br>  End IF;<br>  IF paramName='BATCH_PROJECT_ID' THEN<br>  Select Batch_Project_Id into paramValue from Batch_Projects where Project_Name=paramValue;<br>  End IF;<br>  IF paramName='COMPOUND_TYPE' THEN<br>  Select COMPOUND_TYPE into paramValue from COMPOUND_TYPE where Description=paramValue;<br>  End IF;<br>  IF paramName='NOTEBOOK_INTERNAL_ID' THEN<br>  Select NOTEBOOK_NUMBER into paramValue from NOTEBOOKS where NOTEBOOK_NAME=paramValue;<br>  End IF;<br>  END TranslateIds;<br>  Procedure UpdateBatch(<br>  pBatchNumber in Batches.BATCH_NUMBER%Type,<br>  pREG_NUMBER in Reg_Numbers.REG_NUMBER%Type,<br>  pSCIENTIST_ID in CS_SECURITY.PEOPLE.USER_ID%Type default null,<br>  nSCIENTIST_ID in Batches.SCIENTIST_ID%Type default null,<br>  pBP in Batches.BP%Type default null,<br>  pMP in Batches.MP%Type default null,<br>  pH1NMR in Batches.H1NMR%Type default null,<br>  pC13NMR in Batches.C13NMR%Type default null,<br>  pMS in Batches.MS%Type default null,<br>  pIR in Batches.IR%Type default null,<br>  pGC in Batches.GC%Type default null,<br>  pPHYSICAL_FORM in Batches.PHYSICAL_FORM%Type default null,<br>  pCOLOR in Batches.COLOR%Type default null,<br>  pFLASHPOINT in Batches.FLASHPOINT%Type default null,<br>  pHPLC in Batches.HPLC%Type default null,<br>  pOPTICAL_ROTATION in Batches.OPTICAL_ROTATION%Type default null,<br>  pREFRACTIVE_INDEX in Batches.REFRACTIVE_INDEX%Type default null,<br>  pSALT_CODE in Salts.SALT_CODE%Type default null,<br>  pSALT_NAME in Batches.SALT_NAME%Type default null,<br>  pSALT_EQUIVALENTS in Batches.SALT_EQUIVALENTS%Type default null,<br>  pSOLVATE_NAME in Batches.SOLVATE_NAME%Type default null,<br>  pSOLVATE_EQUIVALENTS in Batches.SOLVATE_EQUIVALENTS%Type default null,<br>  pSOURCE in Batches.Source%Type default null,<br>  pVENDOR_NAME in Batches.VENDOR_NAME%Type default null,<br>  pVENDOR_ID in Batches.VENDOR_ID%Type default null,<br>  pPERCENT_ACTIVE in Batches.PERCENT_ACTIVE%Type default null,<br>  pAMOUNT_UNITS in Batches.AMOUNT_UNITS%Type default null,<br>  pPURITY in BATCHES.PURITY%Type default null,<br>  pLC_UV_MS in Batches.LC_UV_MS%Type default null,<br>  pCHN_COMBUSTION in Batches.CHN_COMBUSTION%Type default null,<br>  pUV_SPECTRUM in Batches.UV_SPECTRUM%Type default null,<br>  pAPPEARANCE in Batches.APPEARANCE%Type default null,<br>  pLOGD in Batches.LOGD%Type default null,<br>  pSOLUBILITY in Batches.SOLUBILITY%Type default null,<br>  pLAST_MOD_PERSON_ID in Batches.LAST_MOD_PERSON_ID%Type default null,<br>  pAMOUNT in Batches.AMOUNT%Type default null,<br>  pFIELD_1 in Batches.FIELD_1%Type default null,<br>  pFIELD_2 in Batches.FIELD_2%Type default null,<br>  pFIELD_3 in Batches.FIELD_3%Type default null,<br>  pFIELD_4 in Batches.FIELD_4%Type default null,<br>  pFIELD_5 in Batches.FIELD_5%Type default null,<br>  pFIELD_6 in Batches.FIELD_6%Type default null,<br>  pFIELD_7 in Batches.FIELD_7%Type default null,<br>  pFIELD_8 in Batches.FIELD_8%Type default null,<br>  pFIELD_9 in Batches.FIELD_9%Type default null,<br>  pFIELD_10 in Batches.FIELD_10%Type default null,<br>  pLOAD_ID in Batches.LOAD_ID%Type default null,<br>  --pDATETIME_STAMP in Batches.DATETIME_STAMP%Type default null,<br>  pINT_BATCH_FIELD_1 in Batches.INT_BATCH_FIELD_1%Type default null,<br>  pINT_BATCH_FIELD_2 in Batches.INT_BATCH_FIELD_2%Type default null,<br>  pINT_BATCH_FIELD_3 in Batches.INT_BATCH_FIELD_3%Type default null,<br>  pINT_BATCH_FIELD_4 in Batches.INT_BATCH_FIELD_4%Type default null,<br>  pINT_BATCH_FIELD_5 in Batches.INT_BATCH_FIELD_5%Type default null,<br>  pINT_BATCH_FIELD_6 in Batches.INT_BATCH_FIELD_6%Type default null,<br>  pREAL_BATCH_FIELD_1 in Batches.REAL_BATCH_FIELD_1%Type default null,<br>  pREAL_BATCH_FIELD_2 in Batches.REAL_BATCH_FIELD_2%Type default null,<br>  pREAL_BATCH_FIELD_3 in Batches.REAL_BATCH_FIELD_3%Type default null,<br>  pREAL_BATCH_FIELD_4 in Batches.REAL_BATCH_FIELD_4%Type default null,<br>  pREAL_BATCH_FIELD_5 in Batches.REAL_BATCH_FIELD_5%Type default null,<br>  pREAL_BATCH_FIELD_6 in Batches.REAL_BATCH_FIELD_6%Type default null,<br>  --pDATE_BATCH_FIELD_1 in Batches.DATE_BATCH_FIELD_1%Type default null,<br>  pDATE_BATCH_FIELD_1 in varchar2 default null,<br>  pDATE_BATCH_FIELD_2 in varchar2 default null,<br>  pDATE_BATCH_FIELD_3 in varchar2 default null,<br>  pDATE_BATCH_FIELD_4 in varchar2 default null,<br>  pDATE_BATCH_FIELD_5 in varchar2 default null,<br>  pDATE_BATCH_FIELD_6 in varchar2 default null,<br>  pREAL_CMPD_FIELD_1 in Compound_Molecule.REAL_CMPD_FIELD_1%Type default null,<br>  pREAL_CMPD_FIELD_2 in Compound_Molecule.REAL_CMPD_FIELD_2%Type default null,<br>  pREAL_CMPD_FIELD_3 in Compound_Molecule.REAL_CMPD_FIELD_3%Type default null,<br>  pREAL_CMPD_FIELD_4 in Compound_Molecule.REAL_CMPD_FIELD_4%Type default null,<br>  pPRODUCT_TYPE in COMPOUND_MOLECULE.PRODUCT_TYPE%Type default null,<br>  pCHIRAL in COMPOUND_MOLECULE.CHIRAL%Type default null,<br>  pCLOGP in COMPOUND_MOLECULE.CLOGP%Type default null,<br>  pH_BOND_DONORS in COMPOUND_MOLECULE.H_BOND_DONORS%Type default null,<br>  pH_BOND_ACCEPTORS in COMPOUND_MOLECULE.H_BOND_ACCEPTORS%Type default null,<br>  pMW_TEXT in COMPOUND_MOLECULE.MW_TEXT%Type default null,<br>  pMF_TEXT in COMPOUND_MOLECULE.MF_TEXT%Type default null,<br>  pCOMPOUND_TYPE in COMPOUND_TYPE.DESCRIPTION%Type default null,<br>  nCOMPOUND_TYPE in COMPOUND_MOLECULE.COMPOUND_TYPE%Type default null,<br>  pSTRUCTURE_COMMENTS_TXT in COMPOUND_MOLECULE.STRUCTURE_COMMENTS_TXT%Type default null,<br>  pTXT_CMPD_FIELD_1 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_1%Type default null,<br>  pTXT_CMPD_FIELD_2 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_2%Type default null,<br>  pTXT_CMPD_FIELD_3 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_3%Type default null,<br>  pTXT_CMPD_FIELD_4 in COMPOUND_MOLECULE.TXT_CMPD_FIELD_4%Type default null,<br>  pINT_CMPD_FIELD_1 in COMPOUND_MOLECULE.INT_CMPD_FIELD_1%Type default null,<br>  pINT_CMPD_FIELD_2 in COMPOUND_MOLECULE.INT_CMPD_FIELD_2%Type default null,<br>  pINT_CMPD_FIELD_3 in COMPOUND_MOLECULE.INT_CMPD_FIELD_3%Type default null,<br>  pINT_CMPD_FIELD_4 in COMPOUND_MOLECULE.INT_CMPD_FIELD_4%Type default null,<br>  pDATE_CMPD_FIELD_1 in varchar2 default null,<br>  pDATE_CMPD_FIELD_2 in varchar2 default null,<br>  pDATE_CMPD_FIELD_3 in varchar2 default null,<br>  pDATE_CMPD_FIELD_4 in varchar2 default null,<br>  pAPPROVED in REG_APPROVED.APPROVED%Type default null,<br>  pSOLVATE_ID in Solvates.SOLVATE_ID%Type default null,<br>  pCompound_PROJECT_ID in PROJECTS.PROJECT_NAME%Type default null,<br>  nCompound_PROJECT_ID in TEMPORARY_STRUCTURES.PROJECT_ID%Type default null,<br>  pAPPROVED_TIME in REG_APPROVED.DATETIME_STAMP%Type default null,<br>  pAPPROVED_DATE in REG_APPROVED.DATETIME_STAMP%Type default null,<br>  pFORMULA_WEIGHT in TEMPORARY_STRUCTURES.FORMULA_WEIGHT%Type default null,<br>  pBATCH_PROJECT_ID in Batch_Projects.PROJECT_NAME%Type default null,<br>  nBATCH_PROJECT_ID in Batches.BATCH_PROJECT_ID%Type default null,<br>  fCHEMICAL_NAME in TEMPORARY_STRUCTURES.CHEMICAL_NAME%Type default null,<br>  fCHEM_NAME_AUTOGEN in TEMPORARY_STRUCTURES.CHEM_NAME_AUTOGEN%Type default null,<br>  fSYNONYM_R in TEMPORARY_STRUCTURES.SYNONYM_R%Type default null,<br>  fCAS_NUMBER in TEMPORARY_STRUCTURES.CAS_NUMBER%Type default null,<br>  fRNO_NUMBER in TEMPORARY_STRUCTURES.RNO_NUMBER%Type default null,<br>  fFEMA_GRAS_NUMBER in TEMPORARY_STRUCTURES.FEMA_GRAS_NUMBER%Type default null,<br>  fGROUP_CODE in TEMPORARY_STRUCTURES.GROUP_CODE%Type default null,<br>  pNOTEBOOK_PAGE in BATCHES.NOTEBOOK_PAGE%Type default null,<br>  pNOTEBOOK_TEXT in BATCHES.NOTEBOOK_TEXT%Type default null,<br>  pNOTEBOOK_INTERNAL_ID in NOTEBOOKS.NOTEBOOK_NAME%Type default null,<br>  nNOTEBOOK_INTERNAL_ID in BATCHES.NOTEBOOK_INTERNAL_ID%Type default null,<br>  pProducer in BATCHES.PRODUCER%Type default null,<br>  pLit_Ref in BATCHES.LIT_REF%Type default null,<br>  pBatch_Comment in BATCHES.BATCH_COMMENT%Type default null,<br>  pDateFormat in varchar2,<br>  pSTORAGE_REQ_AND_WARNINGS in BATCHES.STORAGE_REQ_AND_WARNINGS%Type default null,<br>  pPreparation in BATCHES.PREPARATION%Type default null,<br>  pBATCH_INTERNAL_ID out BATCHES.BATCH_INTERNAL_ID%Type<br>  )<br>  IS<br>  pLAST_MOD_DATE Date := SYSDATE;<br>  BatchesSql varchar (2000);<br>  ComMolSql varchar (2000);<br>  ComProjSql varchar (500);<br>  SaltsSql varchar(200);<br>  SolvateSql varchar(200);<br>  BatchProjSql varchar(200);<br>  ComTypeSql varchar(200);<br>  RegAppSql varchar(1000);<br>  AltIdsSql varchar(1000);<br>  RegSql varchar(1000);<br>  sSaltName Batches.SALT_NAME%Type;<br>  sSALT_MW Batches.SALT_MW%Type;<br>  sSaltCode Salts.SALT_CODE%Type;<br>  sSolvateId Solvates.SOLVATE_ID%Type;<br>  sSolvateMW Solvates.SOLVATE_MW%Type;<br>  sSolvateName Solvates.SOLVATE_NAME%Type;<br>  bBatch_Project_Id Batches.BATCH_PROJECT_ID%Type;<br>  cCOMPOUND_TYPE Compound_Molecule.COMPOUND_TYPE%Type;<br>  vRegInternalId Batches.REG_INTERNAL_ID%Type;<br>  vCPDINTERNALID Batches.CPD_INTERNAL_ID%Type;<br>  vRegN Reg_Numbers.REG_NUMBER%Type;<br>  solvate_rec Solvates%ROWTYPE;<br>  solvate_rec_Name Solvates%ROWTYPE;<br>  salts_rec Salts%ROWTYPE;<br>  salts_rec_Name Salts%ROWTYPE;<br>  Batches_Rec Batch_Projects%ROWTYPE;<br>  Compound_Rec Compound_Type%ROWTYPE;<br>  Out_Rec BATCHES%ROWTYPE;<br>  NOTEBOOK_Rec NOTEBOOKS%ROWTYPE;<br>  Batches_NBSql varchar(1000);<br>  OutSQL varchar(1000);<br>  Alt_rec ALT_IDS%ROWTYPE;<br>  dateSql varchar(500);<br>  BatchesScientistSql varchar(500);<br>  scientist_rec CS_SECURITY.PEOPLE%ROWTYPE;<br>  projSql varchar2(1000);<br>  comProj PROJECTS%ROWTYPE;<br>  Begin<br>  pBATCH_INTERNAL_ID := 0;<br>  BatchesSql:= 'Update BATCHES SET ';<br>  IF nSCIENTIST_ID IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'SCIENTIST_ID = '''||STRREPLACE(nSCIENTIST_ID)||''', ';<br>  END IF;<br>  IF pSCIENTIST_ID IS NOT NULL THEN<br>  BatchesScientistSql := 'Select * from CS_Security.People where USER_ID=:pSCIENTIST_ID';<br>  Execute Immediate BatchesScientistSql into scientist_rec using pSCIENTIST_ID;<br>  BatchesSql := BatchesSql  ||  'SCIENTIST_ID = '''||STRREPLACE(scientist_rec.Person_ID)||''', ';<br>  END IF;<br>  IF pBP IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'BP = '''||STRREPLACE(pBP)||''', ';<br>  END IF;<br>  IF pMP IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'MP = '''||STRREPLACE(pMP)||''', ';<br>  END IF;<br>  IF pH1NMR IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'H1NMR = '''||STRREPLACE(pH1NMR)||''', ';<br>  END IF;<br>  IF pC13NMR IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'C13NMR = '''||STRREPLACE(pC13NMR)||''', ';<br>  END IF;<br>  IF pMS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'MS = '''||STRREPLACE(pMS)||''', ';<br>  END IF;<br>  IF pIR IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'IR = '''||STRREPLACE(pIR)||''', ';<br>  END IF;<br>  IF pGC IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'GC = '''||STRREPLACE(pGC)||''', ';<br>  END IF;<br>  IF pPHYSICAL_FORM IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'PHYSICAL_FORM = '''||STRREPLACE(pPHYSICAL_FORM)||''', ';<br>  END IF;<br>  IF pCOLOR IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'COLOR = '''||STRREPLACE(pCOLOR)||''', ';<br>  END IF;<br>  IF pFLASHPOINT IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FLASHPOINT = '''||STRREPLACE(pFLASHPOINT)||''', ';<br>  END IF;<br>  IF pHPLC IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'HPLC = '''||STRREPLACE(pHPLC)||''', ';<br>  END IF;<br>  IF pOPTICAL_ROTATION IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'OPTICAL_ROTATION = '''||STRREPLACE(pOPTICAL_ROTATION)||''', ';<br>  END IF;<br>  IF pREFRACTIVE_INDEX IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REFRACTIVE_INDEX = '''||STRREPLACE(pREFRACTIVE_INDEX)||''', ';<br>  END IF;<br>  IF pSALT_CODE IS NOT NULL THEN<br>  SaltsSql := 'SELECT * from Salts Where Salt_Code = :pSALT_CODE';<br>  Execute Immediate SaltsSql into salts_rec using pSALT_CODE;<br>  BatchesSql := BatchesSql  ||  'SALT_INTERNAL_ID = '''||STRREPLACE(salts_rec.SALT_CODE)||''', ';<br>  BatchesSql := BatchesSql  ||  'SALT_NAME = '''||STRREPLACE(salts_rec.Salt_NAME)||''', ';<br>  BatchesSql := BatchesSql  ||  'SALT_MW = '''||STRREPLACE(salts_rec.SALT_MW)||''', ';<br>  END IF;<br>  IF pSALT_NAME IS NOT NULL THEN<br>  SaltsSql := 'SELECT * from Salts Where Salt_Name = :pSALT_NAME';<br>  Execute Immediate SaltsSql into salts_rec_Name using pSALT_NAME;<br>  BatchesSql := BatchesSql  ||  'SALT_INTERNAL_ID = '''||STRREPLACE(salts_rec_Name.SALT_CODE)||''', ';<br>  BatchesSql := BatchesSql  ||  'SALT_NAME = '''||STRREPLACE(salts_rec_Name.Salt_NAME)||''', ';<br>  BatchesSql := BatchesSql  ||  'SALT_MW = '''||STRREPLACE(salts_rec_Name.SALT_MW)||''', ';<br>  END IF;<br>  IF pSALT_EQUIVALENTS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'SALT_EQUIVALENTS = '''||STRREPLACE(pSALT_EQUIVALENTS)||''', ';<br>  END IF;<br>  IF pSOLVATE_NAME IS NOT NULL THEN<br>  SolvateSql := 'SELECT * from Solvates Where Solvates.SOLVATE_NAME=:pSOLVATE_NAME';<br>  Execute Immediate SolvateSql into solvate_rec_Name using pSOLVATE_NAME;<br>  BatchesSql := BatchesSql  ||  'SOLVATE_NAME = '''||STRREPLACE(solvate_rec_Name.SOLVATE_NAME)||''', ';<br>  BatchesSql := BatchesSql  ||  'SOLVATE_MW = '''||STRREPLACE(solvate_rec_Name.SOLVATE_MW)||''', ';<br>  BatchesSql := BatchesSql  ||  'SOLVATE_ID = '''||STRREPLACE(solvate_rec_Name.SOLVATE_ID)||''', ';<br>  END IF;<br>  IF pSOLVATE_ID IS NOT NULL THEN<br>  SolvateSql := 'SELECT * from Solvates Where Solvates.SOLVATE_ID=:pSOLVATE_ID';<br>  Execute Immediate SolvateSql into solvate_rec using pSolvate_Id;<br>  BatchesSql := BatchesSql  ||  'SOLVATE_NAME = '''||STRREPLACE(solvate_rec.SOLVATE_NAME)||''', ';<br>  BatchesSql := BatchesSql  ||  'SOLVATE_MW = '''||STRREPLACE(solvate_rec.SOLVATE_MW)||''', ';<br>  BatchesSql := BatchesSql  ||  'SOLVATE_ID = '''||STRREPLACE(solvate_rec.SOLVATE_ID)||''', ';<br>  END IF;<br>  IF pSOLVATE_EQUIVALENTS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'SOLVATE_EQUIVALENTS = '''||STRREPLACE(pSOLVATE_EQUIVALENTS)||''', ';<br>  END IF;<br>  IF pSource IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'Source = '''||STRREPLACE(pSource)||''', ';<br>  END IF;<br>  IF pVENDOR_NAME IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'VENDOR_NAME = '''||STRREPLACE(pVENDOR_NAME)||''', ';<br>  END IF;<br>  IF pVENDOR_ID IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'VENDOR_ID = '''||STRREPLACE(pVENDOR_ID)||''', ';<br>  END IF;<br>  IF pPERCENT_ACTIVE IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'PERCENT_ACTIVE = '''||STRREPLACE(pPERCENT_ACTIVE)||''', ';<br>  END IF;<br>  IF pAMOUNT_UNITS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'AMOUNT_UNITS = '''||STRREPLACE(pAMOUNT_UNITS)||''', ';<br>  END IF;<br>  IF pPURITY IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'PURITY = '''||STRREPLACE(pPURITY)||''', ';<br>  END IF;<br>  IF pLC_UV_MS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'LC_UV_MS = '''||STRREPLACE(pLC_UV_MS)||''', ';<br>  END IF;<br>  IF pCHN_COMBUSTION IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'CHN_COMBUSTION = '''||STRREPLACE(pCHN_COMBUSTION)||''', ';<br>  END IF;<br>  IF pUV_SPECTRUM IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'UV_SPECTRUM = '''||STRREPLACE(pUV_SPECTRUM)||''', ';<br>  END IF;<br>  IF pAPPEARANCE IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'APPEARANCE = '''||STRREPLACE(pAPPEARANCE)||''', ';<br>  END IF;<br>  IF pLOGD IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'LOGD = '''||STRREPLACE(pLOGD)||''', ';<br>  END IF;<br>  IF pSOLUBILITY IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'SOLUBILITY = '''||STRREPLACE(pSOLUBILITY)||''', ';<br>  END IF;<br>  IF pLAST_MOD_PERSON_ID IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'LAST_MOD_PERSON_ID = '''||STRREPLACE(pLAST_MOD_PERSON_ID)||''', ';<br>  END IF;<br>  IF pAMOUNT IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'AMOUNT = '''||STRREPLACE(pAMOUNT)||''', ';<br>  END IF;<br>  IF pFIELD_1 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_1 = '''||STRREPLACE(pFIELD_1)||''', ';<br>  END IF;<br>  IF pFIELD_2 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_2 = '''||STRREPLACE(pFIELD_2)||''', ';<br>  END IF;<br>  IF pFIELD_3 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_3 = '''||STRREPLACE(pFIELD_3)||''', ';<br>  END IF;<br>  IF pFIELD_4 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_4 = '''||STRREPLACE(pFIELD_4)||''', ';<br>  END IF;<br>  IF pFIELD_5 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_5 = '''||STRREPLACE(pFIELD_5)||''', ';<br>  END IF;<br>  IF pFIELD_6 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_6 = '''||STRREPLACE(pFIELD_6)||''', ';<br>  END IF;<br>  IF pFIELD_7 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_7 = '''||STRREPLACE(pFIELD_7)||''', ';<br>  END IF;<br>  IF pFIELD_8 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_8 = '''||STRREPLACE(pFIELD_8)||''', ';<br>  END IF;<br>  IF pFIELD_9 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_9 = '''||STRREPLACE(pFIELD_9)||''', ';<br>  END IF;<br>  IF pFIELD_10 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'FIELD_10 = '''||STRREPLACE(pFIELD_10)||''', ';<br>  END IF;<br>  IF pLOAD_ID IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'LOAD_ID = '''||STRREPLACE(pLOAD_ID)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_1 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_1 = '''||STRREPLACE(pINT_BATCH_FIELD_1)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_2 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_2 = '''||STRREPLACE(pINT_BATCH_FIELD_2)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_3 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_3 = '''||STRREPLACE(pINT_BATCH_FIELD_3)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_4 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_4 = '''||STRREPLACE(pINT_BATCH_FIELD_4)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_5 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_5 = '''||STRREPLACE(pINT_BATCH_FIELD_5)||''', ';<br>  END IF;<br>  IF pINT_BATCH_FIELD_6 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'INT_BATCH_FIELD_6 = '''||STRREPLACE(pINT_BATCH_FIELD_6)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_1 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_1 = '''||STRREPLACE(pREAL_BATCH_FIELD_1)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_2 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_2 = '''||STRREPLACE(pREAL_BATCH_FIELD_2)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_3 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_3 = '''||STRREPLACE(pREAL_BATCH_FIELD_3)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_4 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_4 = '''||STRREPLACE(pREAL_BATCH_FIELD_4)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_5 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_5 = '''||STRREPLACE(pREAL_BATCH_FIELD_5)||''', ';<br>  END IF;<br>  IF pREAL_BATCH_FIELD_6 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'REAL_BATCH_FIELD_6 = '''||STRREPLACE(pREAL_BATCH_FIELD_6)||''', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_1 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_1 = '||pDATE_BATCH_FIELD_1||', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_2 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_2 = '||pDATE_BATCH_FIELD_2||', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_3 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_3 = '||pDATE_BATCH_FIELD_3||', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_4 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_4 = '||pDATE_BATCH_FIELD_4||', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_5 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_5 = '||pDATE_BATCH_FIELD_5||', ';<br>  END IF;<br>  IF pDATE_BATCH_FIELD_6 IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'DATE_BATCH_FIELD_6 = '||pDATE_BATCH_FIELD_6||', ';<br>  END IF;<br>  IF nBatch_Project_Id IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'BATCH_PROJECT_ID = '''||STRREPLACE(nBatch_Project_Id)||''', ';<br>  END IF;<br>  IF pBatch_Project_Id IS NOT NULL THEN<br>  BatchProjSql := 'Select * from Batch_Projects where Project_Name=:pBatch_Project_Id';<br>  Execute Immediate BatchProjSql into Batches_Rec using pBatch_Project_Id;<br>  BatchesSql := BatchesSql  ||  'BATCH_PROJECT_ID = '''||STRREPLACE(Batches_Rec.Batch_Project_Id)||''', ';<br>  END IF;<br>  IF pNOTEBOOK_PAGE IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'NOTEBOOK_PAGE = '''||STRREPLACE(pNOTEBOOK_PAGE)||''', ';<br>  END IF;<br>  IF pNOTEBOOK_TEXT IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'NOTEBOOK_TEXT = '''||STRREPLACE(pNOTEBOOK_TEXT)||''', ';<br>  END IF;<br>  IF pNOTEBOOK_INTERNAL_ID IS NOT NULL THEN<br>  Batches_NBSql := 'Select * from NOTEBOOKS where NOTEBOOK_NAME=:pNOTEBOOK_INTERNAL_ID';<br>  Execute Immediate Batches_NBSql into NOTEBOOK_Rec using pNOTEBOOK_INTERNAL_ID;<br>  BatchesSql := BatchesSql  ||  'NOTEBOOK_INTERNAL_ID = '''||STRREPLACE(NOTEBOOK_Rec.NOTEBOOK_NUMBER)||''', ';<br>  END IF;<br>  IF nNOTEBOOK_INTERNAL_ID IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'NOTEBOOK_INTERNAL_ID = '''||STRREPLACE(nNOTEBOOK_INTERNAL_ID)||''', ';<br>  END IF;<br>  IF pProducer IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'Producer = '''||STRREPLACE(pProducer)||''', ';<br>  END IF;<br>  IF pLit_Ref IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'Lit_Ref = '''||STRREPLACE(pLit_Ref)||''', ';<br>  END IF;<br>  IF pBatch_Comment IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'Batch_Comment = '''||STRREPLACE(pBatch_Comment)||''', ';<br>  END IF;<br>  IF pSTORAGE_REQ_AND_WARNINGS IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'STORAGE_REQ_AND_WARNINGS = '''||STRREPLACE(pSTORAGE_REQ_AND_WARNINGS)||''', ';<br>  END IF;<br>  IF pPreparation IS NOT NULL THEN<br>  BatchesSql := BatchesSql  ||  'Preparation = '''||STRREPLACE(pPreparation)||''', ';<br>  END IF;<br>  BatchesSql := BatchesSql || 'LAST_MOD_DATE = ''' ||pLAST_MOD_DATE||''', ';<br>  BatchesSql := BatchesSql || 'Batch_Number = ''' ||pBatchNumber||'''';<br>  BatchesSql := BatchesSql || ' Where Batches.Batch_Number=''' ||pBatchNumber||''' AND Batches.Reg_Internal_Id=(Select REG_NUMBERS.REG_ID from REG_NUMBERS WHERE REG_NUMBERS.REG_NUMBER=:1) RETURNING CPD_INTERNAL_ID into :2';<br>  --Update batches set field_1=BatchesSql where Batches.BATCH_INTERNAL_ID=139;<br>  <br>  Execute Immediate BatchesSql using pREG_NUMBER, out vCPDINTERNALID;<br>  OutSql := 'SELECT * from BATCHES Where CPD_INTERNAL_ID = :vCPDINTERNALID AND Batches.Batch_Number=''' ||pBatchNumber||''' AND Batches.Reg_Internal_Id=(Select REG_NUMBERS.REG_ID from REG_NUMBERS WHERE REG_NUMBERS.REG_NUMBER=:pREG_NUMBER)';<br>  <br>  Execute Immediate OUTSql into Out_Rec using vCPDINTERNALID, pREG_NUMBER;<br>  --If vCPDINTERNALID IS NOT NULL THEN<br>  pBATCH_INTERNAL_ID := Out_Rec.BATCH_INTERNAL_ID;<br>  --END IF;<br>  RegAppSql := 'Update REG_APPROVED SET ';<br>  IF pAPPROVED IS NOT NULL THEN<br>  RegAppSql := RegAppSql  ||  'APPROVED = '''||STRREPLACE(pAPPROVED)||''',';<br>  END IF;<br>  IF pAPPROVED_TIME IS NOT NULL THEN<br>  RegAppSql := RegAppSql  ||  'DATETIME_STAMP = '''||STRREPLACE(pAPPROVED_TIME)||''', ';<br>  END IF;<br>  IF pAPPROVED_DATE IS NOT NULL THEN<br>  RegAppSql := RegAppSql  ||  'DATETIME_STAMP = '''||STRREPLACE(pAPPROVED_DATE)||''', ';<br>  END IF;<br>  RegAppSql := RegAppSql  ||  'BATCH_INTERNAL_ID = '''||pBATCH_INTERNAL_ID||'''';<br>  RegAppSql := RegAppSql || ' Where REG_APPROVED.REG_INTERNAL_ID= :vCPDINTERNALID';<br>  Execute immediate RegAppSql using vCPDINTERNALID;<br>  <br>  ComMolSql:= 'Update COMPOUND_MOLECULE SET ';<br>  IF pREAL_CMPD_FIELD_1 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'REAL_CMPD_FIELD_1 = '''||STRREPLACE(pREAL_CMPD_FIELD_1)||''',';<br>  END IF;<br>  IF pREAL_CMPD_FIELD_2 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'REAL_CMPD_FIELD_2 = '''||STRREPLACE(pREAL_CMPD_FIELD_2)||''',';<br>  END IF;<br>  IF pREAL_CMPD_FIELD_3 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'REAL_CMPD_FIELD_3 = '''||STRREPLACE(pREAL_CMPD_FIELD_3)||''',';<br>  END IF;<br>  IF pREAL_CMPD_FIELD_4 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'REAL_CMPD_FIELD_4 = '''||STRREPLACE(pREAL_CMPD_FIELD_4)||''',';<br>  END IF;<br>  IF pPRODUCT_TYPE IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'PRODUCT_TYPE = '''||STRREPLACE(pPRODUCT_TYPE)||''',';<br>  END IF;<br>  IF pCHIRAL IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'CHIRAL = '''||STRREPLACE(pCHIRAL)||''',';<br>  END IF;<br>  IF pCLOGP IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'CLOGP = '''||STRREPLACE(pCLOGP)||''',';<br>  END IF;<br>  IF pH_BOND_DONORS IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'H_BOND_DONORS = '''||STRREPLACE(pH_BOND_DONORS)||''',';<br>  END IF;<br>  IF pH_BOND_ACCEPTORS IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'H_BOND_ACCEPTORS = '''||STRREPLACE(pH_BOND_ACCEPTORS)||''',';<br>  END IF;<br>  IF pMW_TEXT IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'MW_TEXT = '''||STRREPLACE(pMW_TEXT)||''',';<br>  END IF;<br>  IF pMF_TEXT IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'MF_TEXT = '''||STRREPLACE(pMF_TEXT)||''',';<br>  END IF;<br>  IF nCOMPOUND_TYPE IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'COMPOUND_TYPE = '''||STRREPLACE(nCOMPOUND_TYPE)||''',';<br>  END IF;<br>  IF pCOMPOUND_TYPE IS NOT NULL THEN<br>  ComTypeSql := 'Select * from COMPOUND_TYPE where Description=:pCOMPOUND_TYPE';<br>  Execute immediate ComTypeSql into Compound_Rec using pCOMPOUND_TYPE;<br>  ComMolSql := ComMolSql  ||  'COMPOUND_TYPE = '''||Compound_Rec.COMPOUND_TYPE||''',';<br>  END IF;<br>  IF pSTRUCTURE_COMMENTS_TXT IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'STRUCTURE_COMMENTS_TXT = '''||STRREPLACE(pSTRUCTURE_COMMENTS_TXT)||''',';<br>  END IF;<br>  IF pTXT_CMPD_FIELD_1 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'TXT_CMPD_FIELD_1 = '''||STRREPLACE(pTXT_CMPD_FIELD_1)||''',';<br>  END IF;<br>  IF pTXT_CMPD_FIELD_2 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'TXT_CMPD_FIELD_2 = '''||STRREPLACE(pTXT_CMPD_FIELD_2)||''',';<br>  END IF;<br>  IF pTXT_CMPD_FIELD_3 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'TXT_CMPD_FIELD_3 = '''||STRREPLACE(pTXT_CMPD_FIELD_3)||''',';<br>  END IF;<br>  IF pTXT_CMPD_FIELD_4 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'TXT_CMPD_FIELD_4 = '''||STRREPLACE(pTXT_CMPD_FIELD_4)||''',';<br>  END IF;<br>  IF pINT_CMPD_FIELD_1 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'INT_CMPD_FIELD_1 = '''||STRREPLACE(pINT_CMPD_FIELD_1)||''',';<br>  END IF;<br>  IF pINT_CMPD_FIELD_2 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'INT_CMPD_FIELD_2 = '''||STRREPLACE(pINT_CMPD_FIELD_2)||''',';<br>  END IF;<br>  IF pINT_CMPD_FIELD_3 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'INT_CMPD_FIELD_3 = '''||STRREPLACE(pINT_CMPD_FIELD_3)||''',';<br>  END IF;<br>  IF pINT_CMPD_FIELD_4 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'INT_CMPD_FIELD_4 = '''||STRREPLACE(pINT_CMPD_FIELD_4)||''',';<br>  END IF;<br>  IF pDATE_CMPD_FIELD_1 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'DATE_CMPD_FIELD_1 = '||pDATE_CMPD_FIELD_1||',';<br>  END IF;<br>  IF pDATE_CMPD_FIELD_2 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'DATE_CMPD_FIELD_2 = '||pDATE_CMPD_FIELD_2||',';<br>  END IF;<br>  IF pDATE_CMPD_FIELD_3 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'DATE_CMPD_FIELD_3 = '||pDATE_CMPD_FIELD_3||',';<br>  END IF;<br>  IF pDATE_CMPD_FIELD_4 IS NOT NULL THEN<br>  ComMolSql := ComMolSql  ||  'DATE_CMPD_FIELD_4 = '||pDATE_CMPD_FIELD_4||',';<br>  END IF;<br>  ComMolSql := ComMolSql  ||  'Cpd_DataBase_Counter = '''||vCPDINTERNALID||'''';<br>  ComMolSql := ComMolSql || 'Where Compound_Molecule.Cpd_DataBase_Counter=:vCPDINTERNALID';<br>  Execute Immediate ComMolSql using vCPDINTERNALID;<br>  IF nCompound_PROJECT_ID IS NOT NULL THEN<br>  ComProjSql := 'Update COMPOUND_PROJECT SET PROJECT_INTERNAL_ID = '''||nCompound_PROJECT_ID||''' Where COMPOUND_PROJECT.CPD_INTERNAL_ID=:vCPDINTERNALID';<br>  Execute Immediate ComProjSql using vCPDINTERNALID;<br>  END IF;<br>  IF pCompound_PROJECT_ID IS NOT NULL THEN<br>  projSql := 'Select * from PROJECTS where PROJECT_NAME=:pCompound_PROJECT_ID';<br>  Execute immediate projSql into comProj using pCompound_PROJECT_ID;<br>  ComProjSql := 'Update COMPOUND_PROJECT SET PROJECT_INTERNAL_ID = '''||comProj.PROJECT_INTERNAL_ID||''' Where COMPOUND_PROJECT.CPD_INTERNAL_ID=:vCPDINTERNALID';<br>  Execute Immediate ComProjSql using vCPDINTERNALID;<br>  END IF;<br>  <br>  IF fCHEMICAL_NAME IS NOT NULL THEN<br>  AltIdsSql:= 'Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP) Values ( '''||vCPDINTERNALID||''', :fCHEMICAL_NAME ,'''||0||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fCHEMICAL_NAME;<br>  --Update Batches SET FIELD_10= AltIdsSql where REG_INTERNAL_ID='2';<br>  END IF;<br>  IF fCHEM_NAME_AUTOGEN IS NOT NULL THEN<br>  AltIdsSql:= 'Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fCHEM_NAME_AUTOGEN ,'''||6||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fCHEM_NAME_AUTOGEN;<br>  END IF;<br>  IF fSYNONYM_R IS NOT NULL THEN<br>  AltIdsSql:=' Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fSYNONYM_R ,'''||2||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fSYNONYM_R;<br>  END IF;<br>  IF fCAS_NUMBER IS NOT NULL THEN<br>  AltIdsSql:= 'Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fCAS_NUMBER ,'''||2||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fCAS_NUMBER;<br>  END IF;<br>  IF fRNO_NUMBER IS NOT NULL THEN<br>  AltIdsSql:=' Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fRNO_NUMBER ,'''||1||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fRNO_NUMBER;<br>  END IF;<br>  IF fFEMA_GRAS_NUMBER IS NOT NULL THEN<br>  AltIdsSql:= 'Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fFEMA_GRAS_NUMBER ,'''||4||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fFEMA_GRAS_NUMBER;<br>  END IF;<br>  IF fGROUP_CODE IS NOT NULL THEN<br>  AltIdsSql:= 'Insert into alt_ids (REG_INTERNAL_ID, IDENTIFIER, IDENTIFIER_TYPE, DATETIME_STAMP)<br>  Values ( '''||vCPDINTERNALID||''', :fGROUP_CODE ,'''||5||''', '''||pLAST_MOD_DATE||''')';<br>  Execute Immediate AltIdsSql using fGROUP_CODE;<br>  END IF;<br>  End UpdateBatch;<br>  END; <br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "TextObjName_28"></a>
+<div class="caption1">SEQUENCES</div>
+<a name = "TextObject_28"></a>
+<div class="caption2">REGDB.MOLID_SEQ</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;MOLID_SEQ&quot; INCREMENT BY 1 START WITH 2 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_10"></a>
+<div class="caption2">REGDB.SEQ_ALT_IDS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_ALT_IDS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_26"></a>
+<div class="caption2">REGDB.SEQ_BATCH_PROJ_UTIL</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_BATCH_PROJ_UTIL&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_24"></a>
+<div class="caption2">REGDB.SEQ_BATCH_PROJECTS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_BATCH_PROJECTS&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_14"></a>
+<div class="caption2">REGDB.SEQ_BATCHES</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_BATCHES&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_27"></a>
+<div class="caption2">REGDB.SEQ_CMPD_MOL_UTIL</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_CMPD_MOL_UTIL&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_3"></a>
+<div class="caption2">REGDB.SEQ_COMMIT_TYPES</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_COMMIT_TYPES&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_5"></a>
+<div class="caption2">REGDB.SEQ_COMPOUND_MOLECULE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_COMPOUND_MOLECULE&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_19"></a>
+<div class="caption2">REGDB.SEQ_COMPOUND_PROJECT</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_COMPOUND_PROJECT&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_21"></a>
+<div class="caption2">REGDB.SEQ_COMPOUND_SALT</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_COMPOUND_SALT&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_4"></a>
+<div class="caption2">REGDB.SEQ_COMPOUND_TYPE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_COMPOUND_TYPE&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_7"></a>
+<div class="caption2">REGDB.SEQ_EXPERIMENTS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_EXPERIMENTS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_15"></a>
+<div class="caption2">REGDB.SEQ_EXPERIMENTTYPE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_EXPERIMENTTYPE&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_29"></a>
+<div class="caption2">REGDB.SEQ_FRAGMENT_ID</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_FRAGMENT_ID&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_12"></a>
+<div class="caption2">REGDB.SEQ_IDENTIFIERS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_IDENTIFIERS&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_20"></a>
+<div class="caption2">REGDB.SEQ_NOTEBOOKS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_NOTEBOOKS&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_23"></a>
+<div class="caption2">REGDB.SEQ_PARAMETERS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_PARAMETERS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_17"></a>
+<div class="caption2">REGDB.SEQ_PARAMETERTYPE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_PARAMETERTYPE&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_6"></a>
+<div class="caption2">REGDB.SEQ_PROJECTS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_PROJECTS&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_22"></a>
+<div class="caption2">REGDB.SEQ_REG_NUMBERS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_REG_NUMBERS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_11"></a>
+<div class="caption2">REGDB.SEQ_RESULTS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_RESULTS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_18"></a>
+<div class="caption2">REGDB.SEQ_RESULTTYPE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_RESULTTYPE&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_8"></a>
+<div class="caption2">REGDB.SEQ_SALTS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_SALTS&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_13"></a>
+<div class="caption2">REGDB.SEQ_SEQUENCE</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_SEQUENCE&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_9"></a>
+<div class="caption2">REGDB.SEQ_SOLVATES</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_SOLVATES&quot; INCREMENT BY 1 START WITH 21 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_16"></a>
+<div class="caption2">REGDB.SEQ_TEMPORARY_STRUCTURES</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_TEMPORARY_STRUCTURES&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+<a name = "TextObject_25"></a>
+<div class="caption2">REGDB.SEQ_UTILIZATIONS</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE SEQUENCE &quot;REGDB&quot;.&quot;SEQ_UTILIZATIONS&quot; INCREMENT BY 1 START WITH 1 MAXVALUE 9.999999999999999e+26 MINVALUE 1 NOCYCLE CACHE 20 NOORDER<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+</body></html>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="532" MadCap:lastWidth="660">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Adding Roles</h1>
+        <p>If you are intending to use a schema with BioSAR Enterprise which is not configured for BioSAR Enterprise, you will need to grant select privileges to the biosar administrator role. 
+</p>
+        <p>For example, if the custom schema is called MyNewSchema and has tables Moltable and Synonyms, first create a role which has select privileges on the two tables: Grant select on Moltable, Synonyms to MyNewSchemaRole.
+</p>
+        <p>Now, grant this new role to the BioSAR Enterprise administrator user or role.
+</p>
+        <ul style="list-style-type: square;">
+            <li>To grant the role to a user: The user that should be granted this role is the user performing the schema management tasks (biosar_admin by default). Grant myNewSchemaRole to Biosar_admin.
+</li>
+            <li>To grant the role to the administrator role: Grant myNewSchemaRole to Biosar_browser_admin 
+</li>
+        </ul>
+        <p>Now that the roles have been granted to the administrator, this user granted the role, or a user with the biosar_browser_admin role can now login.
+</p>
+        <p>To start using the schema in BioSAR Enterprise:</p>
+        <ol>
+            <li>From the ChemOffice Enterprise home page, click Schema Management.</li>
+            <li>Click on MyNewSchema.</li>
+            <li>Enter a password for the schema. 
+</li>
+        </ol>
+    </body>
+</html>

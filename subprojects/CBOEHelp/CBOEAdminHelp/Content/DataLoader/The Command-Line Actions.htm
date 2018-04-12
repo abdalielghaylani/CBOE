@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Registration|Data Loader|The Command-Line Version of Data Loader">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>The Command-Line Actions</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>The Command-Line Actions</h1>
+        <p>The command-line version of the data-loading application has two primary classes of actions that can be taken. These are:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">‘Discovery’ actions to help the users explore a data-file and resolve potential problems, and
+</li>
+            <li value="2">‘Registration’ actions, which engages your Registration system to import data</li>
+        </ul>
+        <p style="font-size: 14pt;font-weight: bold;color: #0000cd;">Discovery actions</p>
+        <p>For any supported file type, the user may desire some information not related directly to the loading process itself. These tasks are designed to help prevent and trouble-shoot problems encountered during the Registration activities described below. They are NOT required steps or pre-requisites for any Registration activity.</p>
+        <blockquote>
+            <p><span style="color: #000000; font-weight: bold;">Count the total number of records</span>
+            </p>
+        </blockquote>
+        <p>Choosing this action will perform a count of all the available records available in a given text data-file (or a named MS Excel worksheet, or an MS Access file’s table). The user may decide to perform a file-split if the original file is very large so the loading can be broken down into multiple, but more manageable, tasks.</p>
+        <blockquote style="font-weight: bold;">
+            <p>Describe the data-fields in the file</p>
+        </blockquote>
+        <p>This option is most useful for text-based files (.TXT, .CSV, and .SDF, for example). SDFile format files may express different properties for different records, and test-based files do not expose whether the properties represent strings, numbers or dates.</p>
+        <blockquote>
+            <p style="font-weight: bold;">List tables from MS Excel / MS Access files</p>
+        </blockquote>
+        <p>The user may want to ensure that a certain worksheet or table exists in their data-file before starting any Registration activity. This utility will list the worksheets available in MSExcel files, and the tables available in MSAccess files.</p>
+        <blockquote>
+            <p style="color: #000000;font-weight: bold;">Validate a data-mapping file</p>
+        </blockquote>
+        <p>The most critical details of properly loading data are in the migration of the individual pieces of data to the correct Registration properties. This is performed by a set of XML-based instructions that direct the program to migrate each data-point. At this time, we have the limitation that the file must be configured manually, so it is important to be able to verify that any given data-mapping XML file is formed properly before trying to use it for any Registration activities.</p>
+        <blockquote>
+            <p style="font-weight: bold;">Split large data-files</p>
+        </blockquote>
+        <p>For very large files (or worksheets, or tables), it may be desirable to split the data into multiple files for later processing. This activity will allow the user to specify (using the /end command-line argument) the size (in terms of numbers of records) of the output files resulting from the parsing and splitting of the original data-file. The original file remains and is not edited in any way. For SDFiles, the output files are also SD format, but the remaining files are converted to tab-delimited TXT files that can be opened with any test-reader (or even MS Excel).</p>
+        <p style="font-size: 14pt;font-weight: bold;color: #0000cd;">Registration actions</p>
+        <p>The most important tasks that Data Loader can do involve data-validation, duplicate-checking and actual data-loading. </p>
+        <ul style="list-style-type: square;">
+            <li value="1">validate data </li>
+            <li value="2">check for duplicates </li>
+            <li value="3">import data</li>
+        </ul>
+        <p>There are really four (4) core tasks here; the options for the ‘import data’ task still include the ability to perform duplicate-checking and automated resolution during data-import.</p>
+        <p style="font-weight: bold;">Validation of Data</p>
+        <p>Data by itself is always valid, but when that data is compared to the user’s Registration configuration, some of it may cause conflicts. For example, if a ‘chemist’ field in a data-file doesn’t match any of the Registration chemists configured by the administrator, that data-point will be considered invalid, thus causing the record to appear invalid.</p>
+        <p>The purpose of this is to ensure that your data adheres to the rules of your Registration system. Before performing any large-scale data-loading, it can be useful to determine if the data will conform to these settings. Therefore, this activity serves several purposes:</p>
+        <ol>
+            <li value="1">Verifies that the mapping file conforms to the data-file. If you have mapped a field that doesn’t exist, that will be detected.</li>
+            <li value="2">Ensures that your data meet the customized restrictions and rules configured for the Registration system. Records are exported to two separate files (‘valid’ and ‘invalid’) so they can be reviewed and managed separately.</li>
+        </ol>
+        <p>This validation task is done internally as part of the ‘check for duplicates’ and ‘import data’ tasks.</p>
+        <p>However, it may be desirable to perform this activity before other Registration activities. For example, the user may decide the overall quality of the data is too low to proceed if too many of the records fail validation. Alternatively, if the validation failures all result from some limitation of a configuration setting, it can alert the administrator to update those settings.</p>
+        <p style="font-weight: bold;">Check for duplicates</p>
+        <p>This task performs all the steps of the validate data task, and then, for valid records, it will also check for registered matches using the pre-configured matching algorithm</p>
+        <p>This task may be time-consuming because of the need to compare local data from the data-file with database data. As before, the user is notified of those records that are invalid. Invalid records are NOT used for duplicate-checking.</p>
+        <p>After this task has completed, the original data file may be split into up to four (4) separate files:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">invalid records</li>
+            <li value="2">valid records that were found to be unique</li>
+            <li value="3">valid records that are Structure duplicates</li>
+            <li value="4">valid records that are Property or Identifier duplicates</li>
+        </ul>
+        <p>A common use will be to run the program a first time to perform the duplicate-checking activity and separate the data into these separate files. Then the user can run the program a second time, now using the resulting ‘valid’ files to perform the data importing using different import command-line settings as desired.</p>
+        <p style="font-weight: bold;">Import data</p>
+        <p>The backbone of the application is the ability to load your data into the Registration database. This task also performs all the steps of the validate data task, and then uses additional import-instructions and duplicate-resolution strategies (provided at the command-line) to upload the valid data to the database.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="The Command-Line Version of Data Loader.htm">The Command-Line Version of Data Loader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1723" MadCap:lastWidth="1231">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
+                        <p>Web Registration</p>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Web Registration - System Settings</h1>
+        <p>The administrator user has the privilege to manage the system settings and configuration in order to specify the Registration's workflow.</p>
+        <p>Multiple features may be enabled/disabled from the Registration system settings.</p>
+        <p>To open the Registration system settings:</p>
+        <ol>
+            <li value="1">Log in Web Registration with administrative privileges</li>
+            <li value="2">Click on <b>System Settings</b> from the <b>System Behaviors</b> dropdown list.</li>
+        </ol>
+        <p>The following window appears:</p>
+        <p>
+            <img src="../Resources/Images/Web Registration/System Settings.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>To enable a feature, the administrator has to set its value to True and to disable a feature, its value should be set to False in the table.</li>
+        </ol>
+        <p>Below are some of the Registration System Settings:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">ApprovalsEnabled: If set to true, it enables the approval workflow, including a new level to the registration workflow – the Reviewer. The reviewer is responsible for checking the submitted records and approving them.  Only approved records can be registered.  The workflow, and the ability to approve/remove approval of a submitted record are controlled by both a system level setting, ApprovalsEnabled,  as well as user privileges set_approval_flag and toggle_approval_flag.<br></br>If ApprovalsEnabled it is set to False, the registration workflow will only contain two levels, Submitter and Registrar.</li>
+            <li value="2">SameBatchesIdentity: If it is set to True, allows different options to appear during the duplicate resolution workflow and determines whether or not batches can be added to existing records or if unique records are created instead.</li>
+            <li value="3">CheckDuplication: If it is set to True, enables validation of duplication of structures and mixtures with identical compound before of the Registration.</li>
+            <li value="4">EnableMixtures: If it is set to True, enables managing more than one compound in a registry record. The submission of new components and the submission of mixtures are separate.<br></br>With the above settings, in the Main page of registration two icons will be available for the submit workflow: Submit New Component and a Submit New Mixture. Note that the user will not see the Submit New Mixture icon on the CBOEManager home page.</li>
+            <li value="5">AllowUnregisteredComponentsInMixtures: If set to True, allows components to be added to mixtures without being registered.</li>
+            <li value="6">AllowCreateCopySharedStructure: If set to True, allows to create copies of the edited linked structures while editing a mixture created from registered components.<br></br></li>
+            <li value="7">EnableSubmissionTemplates: If set to True, enables the ability to save and load submission data prior to actual submission or registration.</li>
+            <li value="8" MadCap:conditions="Default.Not supported">EnableSubmissionDuplicateChecking: If set to True, enables duplicate checking to occur when records are submitted and requires suggested action from submitter. Additionally the user can add additional comments.  This information is displayed in the detail view of review/register screen. In List view  if there were dups found on submission a “dups found” text will appear under the review link.</li>
+            <li value="9">EnableFragments: If set to True, enables the use of fragments to track salts and solvates.</li>
+            <li value="10">EnableDuplicateButton: If set to True, enables the display of Duplicate button during component duplicate resolution.</li>
+            <li value="11">EnableAuditing: If set to True, it will enable registration triggers in Oracle to create audit in Registration actions. This feature enables the audit of all actions on records in the following permanent registry tables: compound_molecule, structure, batches and mixtures has been added.  Changes are added to the Auditing_History table in the regdb schema.</li>
+            <li value="12">EnableAddBatchButton: If set to True, enables the display of Add Batch button during component duplicate resolution</li>
+            <li value="13" MadCap:conditions="Default.Not supported">EnableUseBatchPrefix: If set to true, it enables a prefix at the batch level instead of the prefix at the registry level. Only one should be available.</li>
+            <li value="14" MadCap:conditions="Default.Not supported">DefaultBatchPrefix: This is to enter the batchprefixID user wants to use while uploading records in bulk registration (used for DataLoader and InvLoader)</li>
+            <li value="15" MadCap:conditions="Default.Not supported">BatchHighlightingValue, BatchHighlightingTooltip and BatchHighlightingField: If values and entered, enables to highlight batches if the configured field has the configured value.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics:</b>
+            <br /><a href="Web Registration.htm">Web Registration</a>
+        </p>
+    </body>
+</html>

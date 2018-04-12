@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1747" MadCap:lastWidth="845">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Adding a New User Account</h1>
+        <p>You can add a new user account one of two ways. You can either type in the user’s information or retrieve the user’s information from an LDAP or Oracle server. After you retrieve the information, you can edit or add to it as needed.
+</p>
+        <p>To add a new user to an application:
+ </p>
+        <ol>
+            <li>In the Security section in the ChemBioOffice Enterprise Manager home page, click Manage Users. The Security Manager window opens. 
+ </li>
+            <li> In the Security Manager window, select the application in the View Users From drop down list. </li>
+        </ol>
+        <p><i><b>Tip:</b> Alternatively, you can select All CS Applications. This option lets you assign any role associated with any application.
+</i>
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click Add User. This window appears: 
+
+ 
+
+ 
+
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/ChemOfficeWebserver/adding a user account.gif" />
+        </p>
+        <p><i><b>Note:</b> The window will be titled either ‘Add LDAP User’ or ‘Add Oracle User’ depending on the type of your group’s user database.
+</i> <![CDATA[ ]]></p>
+        <ol MadCap:continue="true">
+            <li>Do one of the following: </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>If you are not retrieving the user information from a server, click Create an Exempt and type in the user’s information as you want it to appear on screen.
+</li>
+                <li>To retrieve the user information from a server, type in the User Name in the format in which it is stored, such as ‘JSmith’ or ‘JoeS’. Then click Get from LDAP (or Oracle) User. The form is populated with the retrieved information.
+ </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li> Continue to complete the form as described below. Fields that appear in red on your screen are required. 
+
+</li>
+        </ol>
+        <p style="font-weight: bold;">User code
+</p>
+        <p>Enter the user code.
+</p>
+        <p><b>Password
+</b>
+        </p>
+        <p>Enter a password for the user in the Password and Confirm Password fields. 
+</p>
+        <p><i><b>Note:</b> If you retrieve the user’s information from an LDAP or Oracle server, the stored password will be used and these fields will be grayed out.
+</i>
+        </p>
+        <p style="font-weight: bold;">First, Middle, and Last Names
+</p>
+        <p>Enter the name of the user in the fields as indicated.
+</p>
+        <p style="font-weight: bold;">Telephone, Email, and Address
+</p>
+        <p>Enter the user’s contact information as desired.
+</p>
+        <p style="font-weight: bold;">Supervisor
+</p>
+        <p>Enter the role of the user’s supervisor.
+</p>
+        <p><b>Site
+</b>
+        </p>
+        <p>Enter the site for the user
+</p>
+        <p style="font-weight: bold;">Assign Roles
+</p>
+        <p>Assign one or more roles to the user. The role(s) in the Current Roles window are currently assigned to the user. Roles in the Available Roles window are unassigned. To assign/unassign roles for the user, select role(s) in either window and click the arrow buttons (&lt;&lt; and &gt;&gt;) to move the roles to the desired window. To select multiple roles, CTRL+click each role.
+</p>
+        <p><b>Active
+</b>
+        </p>
+        <p>Select this checkbox to activate the account. Deselect it to make the account inactive when creating or modifying the account.
+ </p>
+        <ol MadCap:continue="true">
+            <li> Click Save. 
+
+</li>
+        </ol>
+        <p><i><b>Note:</b> Only those roles that are available for the application you selected are listed.
+</i>
+        </p>
+    </body>
+</html>

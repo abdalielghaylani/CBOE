@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="296" MadCap:lastWidth="660">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Report Generator Performance</h1>
+        <p>If performance of the report generator is very slow you can do one of the following: </p>
+        <ol style="list-style-type: lower-alpha;">
+            <li>Restart the application. This will truncate the csdohitlist table which has likely grown quite large. </li>
+            <li>Perform an analyze on the cs_security schema, in particular the csdohitlist table. </li>
+        </ol>
+        <p>You can run the analyze wizard in DBA Studio. In DBA Studio, simply right-click over a schema, table or index and choose Analyze. A 10% estimate is usually sufficient. Re-analysis should be done periodically to update statistics.
+</p>
+    </body>
+</html>

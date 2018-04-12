@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="BioSAR Browser Introduction|Custom StyleSheets" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Applying CSS to all Forms</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Applying CSS to all Forms</h1>
+        <p>To apply custom styles to all the forms:</p>
+        <ol>
+            <li value="1">Open the ‘styles’ folder located at: &lt;webroot&gt;biosar_browser\config\. In the ‘styles’ folder, by default, there will be four stylesheet files: customquery.css, customlist.css, customlistCD.css, and customdetail.css.
+<br /><br />customlistCD.css is the stylesheet that is used when you toggle the result list layout. CD stands for Columns Down<br /><br /></li>
+            <li value="2">Edit any of the four stylesheet files as desired. Changing styles in these files will change the format for all forms, which do not have their own custom stylesheets.
+<br /><br />It is recommended that you do not change styles related to position or layers. Such styles include float, position, and z-index.<br /><br /></li>
+            <li value="3">Perform iisreset.
+</li>
+        </ol>
+        <p>Applying Formgroup Specific Styles
+</p>
+        <p>To apply custom styles to specific formgroups:</p>
+        <ol>
+            <li value="1">Make a copy of customquery.css, customdetail.css, customlist.css, and customlistCD.css file in the ‘styles’ folder.</li>
+            <li value="2">Rename the duplicate copies to meet the following pattern: formgroup id + detail/list + .css. For example, 1021query.css, 1021detail.css,1021list.css, and 1021listCD.css. To determine the formgroup id:<ul style="list-style-type: square;"><li value="1">Open the form.</li><li value="2">Right-click the bottom frame and select Properties to display the Properties dialog box</li><li value="3">Look for the formgroup parameter in the Address (URL) field. You might need to select and scroll because the URL text is not displayed entirely in the Properties dialog box.</li></ul></li>
+            <li value="3">Edit any of the four duplicate stylesheet files as desired.</li>
+            <li value="4">Perform iisreset.
+</li>
+        </ol>
+        <p><b>Note:</b> <i>Once you apply a formgroup specific set of styles, the customquery.css, customdetail.css, customlist.css, and customlistCD.css files are completely ignored for that formgroup. Therefore, if you want a style change in the default custom styles and in a specific formgroup then you will need to apply your changes to both the original and duplicate stylesheet files.
+</i></p>
+        <p><b>Note:</b> <i>If you want to determine the style you wish to edit, find the style name in the html source file and edit it. To open the html source file, right-click the appropriate frame and select View Source.</i></p>
+        <p style="font-weight: bold;">Applying Label/Data Specific Styles
+</p>
+        <p>Certain styles can be applied based on text labels. For example, if you have a field called Reg Number and you want the field to be highlighted, you can apply a style specific to that field/column. The following figure shows the highlighted field, Reg Number:
+</p>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser/css_regnumber.gif" />
+        </p>
+        <p>To apply a custom style for a heading or label, create a style called columnNameClass + field name; replace any spaces in the field name with an underscore (_).
+</p>
+        <p>To change the style for the data, add a style called valueClass + field name. For example, to highlight the actual Reg Number data, create a class called valueClassReg_number as shown in the following code.
+</p>
+        <p>TD.parent_cell_value
+</p>
+        <p>{
+<br />FONT-SIZE: 9pt;
+<br />FLOAT: none;
+<br />VERTICAL-ALIGN: top;
+<br />FONT-FAMILY: 'Lucida Console';
+<br />POSITION: relative
+<br />}
+ 
+</p>
+        <p>TD.valueClassReg_number
+</p>
+        <p>{
+<br />FONT-SIZE: 9pt;
+<br />FLOAT: none;
+<br />COLOR:Red;
+<br />VERTICAL-ALIGN: top;
+<br />FONT-FAMILY: 'Lucida Console';
+<br />POSITION: relative
+<br />}
+</p>
+        <p>Styles are inherited from parent classes. For example, in list view, the column headings are inherited from TD.child_cell_value or from a custom class related to the name. In the detail view, it might inherit from child_cell_value or parent_cell_value.
+</p>
+        <p>In the TD.valueClassReg_number class, you can observe that apart from color, all the other style elements have been inherited from the TD.parent_cell_value class.
+</p>
+        <p>Examples of custom styles are included in the customdetail.css and customlist.css files. If at any point you are unsure the style that you need to customize, look in the html source file. For custom column label and value areas, their class attributes will have two classes defined. For example, CLASS="parent_cell_value valueClassReg_number".
+</p>
+        <p><b>Note:</b> <i>Typically, the style names in the list.css and the listCD.css are the same. Therefore, if you apply a style to one and want it in the other format as well, you can copy the custom style and put it in the other one.
+</i></p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="DocManager Enterprise|Searching for Documents" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Advanced Text Searching</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DocManager Enterprise</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Advanced Text Searching</h1>
+        <p>Advanced text Searching narrows the search
+and retrieve precise results by the using of specific
+operators.
+</p>
+        <p style="font-weight: bold;">Escape Characters
+</p>
+        <p>To search for words or symbols that have special
+meaning to query expressions, such as &amp;
+or |, you must escape them so that DocManager
+doesn't interpret them as search operators.
+There are two ways to escape characters in a
+query expression, using the curly brackets,
+{}and using a back slash, \.
+</p>
+        <p style="font-weight: bold;">Curly brackets
+</p>
+        <p>Any symbol or string within a set of curly
+brackets is considered a part of the escape
+sequence. When you use braces to escape a
+single character, the escaped character
+becomes a separate token in the query. The
+table below shows examples of how to use
+curly brackets to escape an ampersand (&amp;) and
+a dash (-):</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Instead of</b>
+                    </td>
+                    <td><b>Use</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AT&amp;T</td>
+                    <td>{AT&amp;T}</td>
+                </tr>
+                <tr>
+                    <td>high-voltage</td>
+                    <td>{high-voltage}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">back slash</p>
+        <p>The backlash symbol can be used to escape only a single character or a symbol. Only the character/symbol immediately following the back slash is escaped. The table below shows examples of how to use a back slash to escape an ampersand (&amp;) and a dash (-):</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Instead of</b>
+                    </td>
+                    <td><b>Use</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AT&amp;T</td>
+                    <td>AT\&amp;T</td>
+                </tr>
+                <tr>
+                    <td>high-voltage</td>
+                    <td>high\-voltage</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The various types of advanced text searching are:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">ABOUT</li>
+            <li value="2">AND (&amp;)</li>
+            <li value="3">EQUIValence (=)</li>
+            <li value="4">fuzzy (?)</li>
+            <li value="5">MINUS (-)</li>
+            <li value="6">NEAR</li>
+            <li value="7">NOT (~)</li>
+            <li value="8">OR (|)</li>
+            <li value="9">Soundex (!)</li>
+            <li value="10">Stem ($)</li>
+        </ul>
+        <p>ABOUT</p>
+        <p>The ABOUT operator, retrieves documents that contain information related to a word or phrase. Therefore, rather than searching for documents that contain specific words or phrases, you can search for documents that are about a certain subject, even if that subject is not mentioned explicitly in the document.</p>
+        <p>The ABOUT operator is useful when you have already built a knowledge base. For more information about building a suitable knowledge base for your installation, see the Oracle 9i Text guide.</p>
+        <p>The ABOUT operator is used, by entering the word ABOUT in all capital letters followed by the word or phrase on which to search in parentheses.</p>
+        <p>Searches using the ABOUT operator are case sensitive. For example, if you had added "carbon" and "carbon bi-products from synthesis at 25 degrees Celsius" to your knowledge base, the following table lists how your searches are interpreted:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ABOUT (carbon)</td>
+                    <td>Documents with words
+related to carbon in the
+document’s text. Matches
+include coal and diamond.</td>
+                </tr>
+                <tr>
+                    <td>ABOUT (carbon
+bi-products from
+syntheses at 25
+degrees Celsius)</td>
+                    <td>Documents with words
+related to "carbon bi-products
+from synthesis at 25
+degrees Celsius".</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The ABOUT operator becomes more effective when coupled with other operators, such as AND or NOT.</p>
+        <p>For example, if you had added "carbon" and "diamond" to your knowledge base, the table lists how your searches are interpreted:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ABOUT
+(carbon)
+AND
+diamond</td>
+                    <td>Documents with words related
+to carbon as well as the word
+diamond.</td>
+                </tr>
+                <tr>
+                    <td>ABOUT
+(carbon) NOT
+ABOUT
+(diamond)</td>
+                    <td>Documents with words related
+to carbon but excluding the
+word diamond.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>NOTE: For advanced Oracle users: The word or phrase specified in an ABOUT query does not have to exactly match the themes stored in the index. Oracle automatically normalizes the word or phrase before performing lookup in the Text index.</p>
+        <p><b>AND</b>
+        </p>
+        <p>The AND (&amp;) operator, retrieves documents that contain more than one word or phrase. The AND operator is used to search for documents that contain all the search items that you specify. For a document to be returned, it must contain at least one instance of each item. The AND operator is used by typing the first term, the word AND or &amp;, followed by another word or phrase.</p>
+        <p>Examples of using the AND operator are:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>carbon AND
+diamond</td>
+                    <td>Documents that include at
+least one instance of "carbon"
+and "diamond".</td>
+                </tr>
+                <tr>
+                    <td>carbon &amp;
+diamond</td>
+                    <td>Documents that include at
+least one instance of "carbon"
+and "diamond".</td>
+                </tr>
+                <tr>
+                    <td>carbon &amp;
+diamond &amp;
+graphite</td>
+                    <td>Documents that include at
+least one instance of "carbon",
+"diamond", and "graphite".</td>
+                </tr>
+                <tr>
+                    <td>thymidine
+synthesis
+AND carbon
+dioxide</td>
+                    <td>Documents that include at
+least one instance of "thymidine
+synthesis" and "carbon
+dioxide".</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b>EQUIValence</b>
+        </p>
+        <p>The EQUIValence (=) operator, lets you find documents that contain words that are interchangeable or similar. The EQUIValence operator is used to specify an acceptable substitution for a word in a query. The EQUIValence operator is used by writing EQUIV or =, followed by the phrase on which the search is to be performed.</p>
+        <p>The following table lists a few examples of using the EQUIValence operator:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>graphite
+EQUIV
+diamond</td>
+                    <td>The words graphite or
+diamond occurring anywhere
+within a document’s text.</td>
+                </tr>
+                <tr>
+                    <td>graphite =
+diamond</td>
+                    <td>The words graphite or
+diamond occurring anywhere
+within a document’s text.</td>
+                </tr>
+                <tr>
+                    <td>carbon dioxide
+= monoxide</td>
+                    <td>The words carbon dioxide,
+carbon monoxide, or both
+terms occurring anywhere
+within a document’s text.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>NOTE: The EQUIValent operator has higher precedence than all other operators except the expansion operators, such as fuzzy, soundex, and stem.</p>
+        <p><b>NOT</b>
+        </p>
+        <p>Use the NOT (~) operator to specify two terms so that the search retrieves documents that contain the first term, but not the second term. To use the NOT operator, type the term to be searched followed by either NOT or ~, and the term to be excluded.</p>
+        <p>Examples of using the NOT operator:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>carbon NOT
+diamond</td>
+                    <td>Documents that include "carbon"
+but not "diamond".</td>
+                </tr>
+                <tr>
+                    <td>carbon ~
+diamond</td>
+                    <td>Documents that include "carbon"
+but not "diamond".</td>
+                </tr>
+                <tr>
+                    <td>carbon NOT
+(diamond
+OR graphite)</td>
+                    <td>Documents that carbon but not
+diamond nor graphite.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>NOTE: The NOT operator does not affect other logical operators.</p>
+        <p><b>OR</b>
+        </p>
+        <p>The OR (|) operator retrieves documents that contain one or more terms (where each term is a word or phrase) that you specify. Type the first term followed by OR or the symbol, |, followed by another term.</p>
+        <p>Searching Examples of using the OR operator:</p>
+        <table style="width: 100%;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td><b>Searching For...</b>
+                    </td>
+                    <td><b>Returns...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>carbon OR
+diamond</td>
+                    <td>The words carbon, diamond, or
+both appearing anywhere in the
+document’s text.</td>
+                </tr>
+                <tr>
+                    <td>carbon |
+diamond</td>
+                    <td>The words carbon, diamond, or
+both appearing anywhere in the
+document’s text.</td>
+                </tr>
+                <tr>
+                    <td>carbon OR
+diamond OR
+graphite</td>
+                    <td>The words carbon, diamond,
+graphite, or any combination of
+the terms appearing anywhere in
+the document’s text</td>
+                </tr>
+                <tr>
+                    <td>thymidine
+synthesis OR
+carbon
+dioxide</td>
+                    <td>The words thymidine synthesis,
+carbon dioxide, or both terms
+appearing anywhere in the document’s
+text.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Searching for Documents.htm">Searching for Documents</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

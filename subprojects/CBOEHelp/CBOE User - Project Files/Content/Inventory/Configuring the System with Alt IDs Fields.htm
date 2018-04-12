@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="873" MadCap:lastWidth="1176">
+    <head>
+    </head>
+    <body>
+        <h1>Configuring the System with Alt-Ids Fields</h1>
+        <p>Alt-Ids fields may be configured in the invconfig.ini file. The user should have administrative privileges in order to edit the invconfig.ini file. Alt-Ids fields allow the user to enter additional information about a specific item.</p>
+        <p>The following example shows how to configure the system with Alt-Ids on the substance table:</p>
+        <ol>
+            <li>On the ChemOfficeEnterprise server, go to C:\Inetpub\wwwroot\ChemOffice\ChemInv\config folder</li>
+            <li>Open invconfig.ini file in edit mode</li>
+            <li>Modify the [SUBSTANCES] section as shown below:</li>
+        </ol>
+        <p style="font-style: italic;color: #0000ff;">[SUBSTANCES]</p>
+        <p style="font-style: italic;color: #0000ff;">GET_CARTRIDGE_MW_FORMULA="False"</p>
+        <p style="font-style: italic;color: #0000ff;">DISPLAY_SAFETY_DATA=TRUE</p>
+        <p style="font-style: italic;color: #0000ff;">/////////////////////////////////////////////////////////////////</p>
+        <p style="font-style: italic;color: #0000ff;">// Compound Alt Ids format: Field_Name:Field Label;Required-U.  The -U indicates Unique identifier</p>
+        <p style="font-style: italic;color: #0000ff;">// Example:</p>
+        <p style="font-style: italic;color: #0000ff;">// ALT_IDS = inv_compounds.ALT_ID_1:Substance ID <br />1;1-U,inv_compounds.ALT_ID_2:Substance ID <br />2;0,inv_compounds.ALT_ID_3:Substance ID <br />3;0,inv_compounds.ALT_ID_4:Substance ID <br />4;0,inv_compounds.ALT_ID_5:Substance ID 5;0</p>
+        <p style="font-style: italic;color: #0000ff;">// ALT_IDS=</p>
+        <p style="font-style: italic;color: #0000ff;">ALT_IDS=inv_compounds.ALT_ID_1:Hazard;0,inv_compounds.ALT_ID_2:Precaution;0</p>
+        <p>So that ALT_ID_1 is being used to store hazards and ALT_ID_2 field is being used to store precautions (both are strings).</p>
+        <p>Alt IDs should be defined in the following format:</p>
+        <p><b>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0/1&gt;</b>
+        </p>
+        <p>where:</p>
+        <ul style="list-style-type: square;">
+            <li><b>Field_Name</b> is the name of the alt ID field (as shown in the ini file)</li>
+            <li><b>Field_Label</b> is how the alt ID should show up in the interface</li>
+            <li>The <b>last parameter</b> indicates if the field is required (1) or not (0)</li>
+            <li>Add a <b>-U</b> at the end of an alt ID's definition to make the ID a unique identifier</li>
+        </ul>
+        <p><b>Note:</b>you have to use the table name as a prefix for the field name while defining the Alt_ID.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Administration.htm">Administration</a>
+        </p>
+    </body>
+</html>

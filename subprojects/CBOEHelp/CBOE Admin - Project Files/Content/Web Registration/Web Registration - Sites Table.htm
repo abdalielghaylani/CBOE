@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="916" MadCap:lastWidth="1231">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
+                        <p>Web Registration</p>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Web Registration - Sites Table</h1>
+        <p> Sites refer to different locations from where users can access the Registration application and submit/register records to the temporary/permanent database.</p>
+        <p>Let us say that a company has two branches, one in Boston and the other in London. Both branches are using the same product pointing to same server. The admin will do the following:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Create two sites BOS for Boston and LON for London</li>
+            <li value="2">Create two sequences BO and LN</li>
+            <li value="3">Assign BOS site to BO&#160;sequence and LON&#160;site to LN sequence</li>
+        </ul>
+        <p>Every record registered in Boston will have BO as prefix and every record registered in London will have LN&#160;as prefix. This is an implicit visual differentiation for finding the source of a registered record.</p>
+        <p style="font-weight: bold;font-size: 14pt;">Adding a new site:</p>
+        <ol>
+            <li value="1"> In the Web Registration Admin window, select <b>Sites</b> from the <b>Custom Tables</b> dropdown list</li>
+        </ol>
+        <p>The Sites window appears.</p>
+        <ol MadCap:continue="true">
+            <li>Click on the plus sign, a new row gets added to the table</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Web Registration/New site.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="2">Enter the Site Id in the Sites Id field. The Site Id is used to give a site of identifier for the site</li>
+            <li value="3">Enter the Site Name in the Sites Name field. The Site Names are displayed in the Site dropdown list</li>
+            <li value="5">Click on <b>Save</b> icon.</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics:</b>
+            <br /><a href="Manage Custom Tables.htm">Manage Custom Tables</a>
+        </p>
+    </body>
+</html>

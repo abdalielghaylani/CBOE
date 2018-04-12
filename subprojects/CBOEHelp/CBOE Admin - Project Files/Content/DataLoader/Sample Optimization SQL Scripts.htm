@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="984" MadCap:lastWidth="689">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Sample Optimization SQL Scripts</h1>
+        <p style="font-weight: bold;">Before Bulk Load</p>
+        <p>-- Script to revert changes after Registration Legacy and Bulk Loads</p>
+        <p>-- Before running the script:</p>
+        <p>-- 1. Enable Registration Addins previously disabled</p>
+        <p>-- 2. Re-enable Row Level Security if appropriate</p>
+        <p>-- 3. Reset Duplicate Check System Setting to previous state</p>
+        <p>connect regdb/oracle@&amp;&amp;YourTNSName</p>
+        <p>alter index regdb.mx3 parameters('DEFER');</p>
+        <p>connect cheminvdb2/oracle@&lt;TNSName&gt;</p>
+        <p>alter materialized view cheminvdb2.inv_vw_compounds refresh on demand;</p>
+        <p>-- Are there other custom MVs that may need to be re-enabled?</p>
+        <p><b>After Bulk Load</b>
+        </p>
+        <p>-- Script to revert changes after Registration Legacy and Bulk Loads</p>
+        <p>-- Before running the script:</p>
+        <p>-- 1. Enable Registration Addins previously disabled</p>
+        <p>-- 2. Re-enable Row Level Security if appropriate</p>
+        <p>-- 3. Reset Duplicate Check System Setting to previous state</p>
+        <p>connect regdb/oracle@&amp;&amp;YourTNSName</p>
+        <p>alter index regdb.mx3 parameters('SYNCHRONIZE');</p>
+        <p>connect cheminvdb2/oracle@&amp;&amp;YourTNSName</p>
+        <p>begin</p>
+        <p>DBMS_SNAPSHOT.REFRESH('cheminvdb2.inv_vw_compounds');</p>
+        <p>end;</p>
+        <p>/</p>
+        <p>alter materialized view cheminvdb2.inv_vw_compounds refresh on commit;</p>
+        <p>-- Are there other custom MVs that may need to be re-enabled?</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Data Loader Introduction.htm">Data Loader</a> <![CDATA[
+]]></p>
+    </body>
+</html>

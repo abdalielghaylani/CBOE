@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Registration|Customize Registration|Manage Customizable Tables" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>PickList Domain and PickList Values</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js">
+        </script>
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
+                        <p>Registration</p>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>PickList Domain and PickList Values</h1>
+        <p>Picklists are dropdown lists that provide users a list of all possible values for a field. 
+
+From the Table Editor, administrator can create a list of values to make a dropdown list field.
+
+The list of values are grouped in a Domain as shown in the example below:</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td><b>PickList Domain</b>
+                    </td>
+                    <td><b>PickList Values</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Compound Type
+</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">Intermediate
+</li>
+                            <li value="2">Final Product</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stereochemistry Comment
+</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">No Comment
+</li>
+                            <li value="2">Mixture of Isomers
+</li>
+                            <li value="3">Mixture of Diastereoisomers</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">Blue
+</li>
+                            <li value="2">Yellow
+</li>
+                            <li value="3">White
+</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b>Adding a New Row</b>
+        </p>
+        <p>To add a new row:</p>
+        <ol>
+            <li value="1">In the table editor page, select the "PICKLISTDOMAIN" table </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklistdomain.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="2">Click on Add button the following dialog displays:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/add a picklist row.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">If only a list of values is needed, enter the domain description and then click on Add button.</li>
+            <li value="4">If values come from another Table, enter the following information to build your own SQL and then click on Add button: 
+ 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"><b>External Table:</b> Enter the name of the table. If this table is from another schema than REGDB, then enter the schema name before the table name (Ex. COEDB.PEOPLE)
+ </li>
+                <li value="2"><b>External Column ID:</b> Enter the name of the column that contains the table ID
+ </li>
+                <li value="3"><b>External Column Display:</b> Enter the name of the column that contains the values to display in the dropdown list
+ </li>
+                <li value="4"><b>Additional SQL Filter:</b> Enter a clause to filter the values to display in the dropdown list.</li>
+                <li value="5"><b>Additional SQL SortOrder:</b>Enter a clause to specify the order of values to appear in the property's dropdown list. Note that the top most value will be selected as default value.</li>
+            </ul>
+        </blockquote>
+        <p><b style="font-size: 14pt;">Entering a List of Values</b>
+        </p>
+        <p>To enter a list of values:</p>
+        <ol>
+            <li value="1">In the table editor page, select the "PICKLIST VALUES" table.</li>
+            <li value="2">To add a new picklist, click on the Add button, the following window displays providing the ability to select the PICKLIST DOMAIN from the dropdown list and to enter the value for the new PICKLIST value.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklist values.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">Click on the Add button.</li>
+            <li value="4">The new value will be added to the PICKLIST table</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklist table.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Manage Customizable Tables.htm">Manage Customizable Tables</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

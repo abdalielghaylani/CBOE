@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="6" MadCap:lastHeight="1291" MadCap:lastWidth="960">
+    <head>
+        <script language="JavaScript">/*<![CDATA[*/
+
+<!--Hide JavaScript
+ if (navigator.appName == "Netscape"){
+ document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+ }
+ else{
+ document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+ }
+//-->
+
+/*]]>*/</script><title>ShowResult</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="18474" -->
+        <h1>  ShowResult</h1>
+        <p>This subroutine call appears in the following file:</p>
+        <ul>
+            <li>sample_result_list.asp</li>
+        </ul>
+        <h4>Subroutine</h4><pre> 
+      ShowResult 
+      dbkey,formgroup,rsname,table.field,style,width,height</pre>
+        <h4>Description</h4>
+        <p>     Shows results from a recordset in 
+ table format</p>
+        <h4>Parameters</h4>
+        <p>dbkey =<em> 
+      &lt;dataview name&gt;</em>  &#160;
+      </p>
+        <p>formgroup =<em> &lt;formgroup name&gt;</em></p>
+        <h5 />
+        <p>rsname&#160;=<em> 
+      &lt;name of recordset object crested at 
+ start of tile&gt;</em>      
+      &#160;
+      </p>
+        <p>table.field =<em> &lt;table and field name using 
+ dot syntax&gt;</em></p>
+        <p>style = 
+      <em>RAW|PLAIN|TEXT|HIDDEN|TEXTAREA|PICTURE<br /></em>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;raw 
+ :&#160;raw HTML output and a non-breaking 
+ space<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;plain 
+ :&#160;raw HTML 
+ output<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;text : 
+ output in a text 
+ box<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;hidden : 
+ output in a hidden 
+ field<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;textarea : 
+ output in textarea
+      <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;picture 
+:&#160;output in a structure window&#160;(indicates that the field is a LOB 
+containing an image)&#160;</p>
+        <blockquote dir="ltr" style="MARGIN-RIGHT: 0px;">The PICTURE style should be in the following 
+format:<br /><pre>PICTURE:MIME_TYPE:LOB_DISPLAY</pre><br />where:
+
+<ul><li>MIME_TYPE 
+  the mimetype of the image e.g. image/gif; image/jpeg, etc
+  </li><li>LOB_DISPLAY  is either IN_LINE (the 
+ default) or NEW_WINDOW. IN_LINE 
+ displays the image in the calling window, NEW_WINDOW displays a link that when 
+ clicked displays the image in a new window</li></ul>For Example: <pre>PICTURE:image/gif:IN_LINE</pre></blockquote>
+        <p>width = &lt;width of text box or rows of textarea, 0 if not 
+applicable&gt;</p>
+        <p>height = &lt;height of textarea, 0 if not applicable&gt;</p>
+        <h4>Example</h4>
+        <ul>
+            <li>Display MolTable.Molname in raw HTML output and a non-breaking space<br /><pre>ShowResult dbkey,formgroup,BaseRS,"MolTable.Molname","raw",0,0<br /></pre><br />&#160;
+  </li>
+            <li> Display Graphics.Graphic as a gif in the calling window<br /><pre>ShowResult dbkey,formgroup,GraphicsRS,"Graphics.Graphic","PICTURE:image/gif:IN_LINE", "80", "80"</pre></li>
+        </ul><pre>&#160;</pre>
+    </body>
+</html>

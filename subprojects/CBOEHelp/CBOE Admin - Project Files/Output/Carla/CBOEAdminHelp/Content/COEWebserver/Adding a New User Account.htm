@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="ChemBioOffice Enterprise|ChemBioOffice Security|Managing Users" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adding a New User Account</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Adding a New User Account</h1>
+        <p>You can add a new user account one of two ways. You can either type in the user’s information or retrieve the user’s information from an LDAP or Oracle server. After you retrieve the information, you can edit or add to it as needed.
+</p>
+        <p>To add a new user to an application:
+ </p>
+        <ol>
+            <li value="1">In the Security section in the ChemBioOffice Enterprise 2010 Manager home page, click Manage Users. The Security Manager window opens. 
+ </li>
+            <li value="2"> In the Security Manager window, select the application in the View Users From drop down list. </li>
+        </ol>
+        <p><i><b>Tip:</b> Alternatively, you can select All CS Applications. This option lets you assign any role associated with any application.
+</i>
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">Click Add User. This window appears: 
+
+ 
+
+ 
+
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/ChemOfficeWebserver/adding a user account.gif" />
+        </p>
+        <p><i><b>Note:</b> The window will be titled either ‘Add LDAP User’ or ‘Add Oracle User’ depending on the type of your group’s user database.
+</i> <![CDATA[ ]]></p>
+        <ol MadCap:continue="true">
+            <li value="4">Do one of the following: </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">If you are not retrieving the user information from a server, click Create an Exempt and type in the user’s information as you want it to appear on screen.
+</li>
+                <li value="2">To retrieve the user information from a server, type in the User Name in the format in which it is stored, such as ‘JSmith’ or ‘JoeS’. Then click Get from LDAP (or Oracle) User. The form is populated with the retrieved information.
+ </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li value="5"> Continue to complete the form as described below. Fields that appear in red on your screen are required. 
+
+</li>
+        </ol>
+        <p style="font-weight: bold;">User code
+</p>
+        <p>Enter the user code.
+</p>
+        <p><b>Password
+</b>
+        </p>
+        <p>Enter a password for the user in the Password and Confirm Password fields. 
+</p>
+        <p><i><b>Note:</b> If you retrieve the user’s information from an LDAP or Oracle server, the stored password will be used and these fields will be grayed out.
+</i>
+        </p>
+        <p style="font-weight: bold;">First, Middle, and Last Names
+</p>
+        <p>Enter the name of the user in the fields as indicated.
+</p>
+        <p style="font-weight: bold;">Telephone, Email, and Address
+</p>
+        <p>Enter the user’s contact information as desired.
+</p>
+        <p style="font-weight: bold;">Supervisor
+</p>
+        <p>Enter the role of the user’s supervisor.
+</p>
+        <p><b>Site
+</b>
+        </p>
+        <p>Enter the site for the user
+</p>
+        <p style="font-weight: bold;">Assign Roles
+</p>
+        <p>Assign one or more roles to the user. The role(s) in the Current Roles window are currently assigned to the user. Roles in the Available Roles window are unassigned. To assign/unassign roles for the user, select role(s) in either window and click the arrow buttons (&lt;&lt; and &gt;&gt;) to move the roles to the desired window. To select multiple roles, CTRL+click each role.
+</p>
+        <p><b>Active
+</b>
+        </p>
+        <p>Select this checkbox to activate the account. Deselect it to make the account inactive when creating or modifying the account.
+ </p>
+        <ol MadCap:continue="true">
+            <li value="6"> Click Save. 
+
+</li>
+        </ol>
+        <p><i><b>Note:</b> Only those roles that are available for the application you selected are listed.
+</i>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

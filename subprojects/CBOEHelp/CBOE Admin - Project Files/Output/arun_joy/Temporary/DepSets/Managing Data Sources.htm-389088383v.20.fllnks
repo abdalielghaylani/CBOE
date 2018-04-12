@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet
+  FileTitle="Managing Data Sources"
+  FileLanguage="en-us"
+  FileSearchable="true"
+  FileTimeEstimate="0"
+  FilePriority="0">
+  <Links>
+    <Link
+      Url="Content/SkinSupport/MadCap.css" />
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/SkinSupport/MadCapAll.js" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit master.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/manage data sources.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/add data source.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit data source.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit data source2.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/delete data source.gif" />
+    <Link
+      Url="Content/DataViewManager/The Master DataView.htm" />
+    <Link
+      Url="Content/DataViewManager/Creating DataViews.htm" />
+    <Link
+      Url="Content/DataViewManager/Editing DataViews.htm" />
+    <Link
+      Url="http://www.perkinelmer.com/informatics/support/" />
+    <Link
+      Url="Content/SkinSupport/MadCapBodyEnd.js" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+  </Links>
+  <LongLinks>
+    <Link
+      Url="Content/SkinSupport/MadCap.css" />
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/SkinSupport/MadCapAll.js" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit master.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/manage data sources.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/add data source.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit data source.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/edit data source2.gif" />
+    <Link
+      Url="Content/Resources/Images/DataViewManager/delete data source.gif" />
+    <Link
+      Url="Content/DataViewManager/The Master DataView.htm" />
+    <Link
+      Url="Content/DataViewManager/Creating DataViews.htm" />
+    <Link
+      Url="Content/DataViewManager/Editing DataViews.htm" />
+    <Link
+      Url="http://www.perkinelmer.com/informatics/support/" />
+    <Link
+      Url="Content/SkinSupport/MadCapBodyEnd.js" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+  </LongLinks>
+  <Anchors />
+  <Keywords />
+  <Concepts />
+  <ConceptControlNames />
+  <IndexControlNames />
+  <Variables />
+  <FileConditions>
+    <Condition
+      Tag="Default.DataView Manager only" />
+  </FileConditions>
+  <FileTags />
+  <AllConditions>
+    <Condition
+      Tag="Default.DataView Manager only" />
+  </AllConditions>
+  <Stylesheets>
+    <Url
+      Source="Content/SkinSupport/MadCap.css" />
+    <Url
+      Source="Content/Resources/Stylesheets/help_ie.css" />
+  </Stylesheets>
+</CatapultFileLinkSet>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.Doc Manager">
+  <TocEntry
+    Title="Doc Manager"
+    Link="/Content/Doc Manager/Doc Manager Introduction.htm"
+    conditions="Default.Doc Manager">
+    <TocEntry
+      Title="DocManager Basics"
+      Link="/Content/Doc Manager/DocManager Basics.htm" />
+    <TocEntry
+      Title="Logging In to DocManager"
+      Link="/Content/Doc Manager/Logging In to DocManager.htm" />
+    <TocEntry
+      Title="Searching for Documents"
+      Link="/Content/Doc Manager/Searching for Documents.htm">
+      <TocEntry
+        Title="Performing a Search"
+        Link="/Content/Doc Manager/Performing a Search.htm" />
+      <TocEntry
+        Title="Basic Text Searching"
+        Link="/Content/Doc Manager/Basic Text Searching.htm" />
+      <TocEntry
+        Title="Advanced Text Searching"
+        Link="/Content/Doc Manager/Advanced Text Searching.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/Doc Manager/Application Tracing.htm" />
+  </TocEntry>
+</CatapultToc>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="796" MadCap:lastWidth="1150" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Working with CBOE Applications|E-Notebook - COE Integration|Combi Chem Bulk Registration and Bulk Container Creation" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Applications User Guide.xml" MadCap:SearchType="Stem" MadCap:conditions="Default.ELN2014-COE Integration">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Fetch Register Number - Combi Chem</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Fetch Register Number - Parallel Synthesis</h1>
+        <p><b>Fetch Register Number</b> lets you query the database with a registration temp ID. If a registration number is available, the registration number and batch number are returned to the associated row in the Registration Table within the PS Registry Form section. 
+
+</p>
+        <p style="font-style: normal;"><b>Note</b>: You must have Registry permissions to perform this registry action.</p>
+        <p style="font-style: normal;"><b>To fetch register numbers:</b>
+        </p>
+        <ol>
+            <li value="1">Under the Selected column, check the compounds you want to fetch register numbers for.
+</li>
+            <li value="2">From the Home ribbon, click the Fetch Register Number form tool. </li>
+        </ol>
+        <p>If the TempID is present in the Registration Table and the registration number is available in the Registration System, the Fetch Register Number dialog appears and displays the registration and batch numbers, as shown in the example below.</p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/reg id fetched.gif" />
+        </p>
+        <p>If the Temp ID is present in the Registration Table and the registration number is unavailable in the Registration System, the Fetch Register Number dialog returns: “No Compound exists with the Temp id:...” as shown below.</p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/No temp ID.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">Click <b>OK</b> to close the Fetch Registration Number dialog. 
+</li>
+        </ol>
+        <p>The registration and batch numbers are populated in the Registration Table within the PS Registry Form section.
+</p>
+        <p><b>Note</b>: If Reg Number and Batch Number fields are already populated with data, the following message displays:&#160;“Clear the Reg Number field and Fetch again”.
+</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Parallel Synthesis Bulk Registration and Container Creation.htm">Parallel Synthesis Bulk Registration and Container Creation</a>
+        </p>
+    </body>
+</html>

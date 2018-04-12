@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/Resources/Images/DataViewManager/create from Master.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Dataview desc..gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Base table error.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV from master.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV add table.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV add table2.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/tables added.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/security settings1.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/security settings12.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/select base table1.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit table.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit table options.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/create an alias.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/tables relations.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/configure structure aggregate.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/query.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/dfq.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/summary table.gif" />
+        <Link Url="Content/DataViewManager/Duplicating a Table.htm" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit tags.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit tags2.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Tags.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/validation summary.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/home.gif" />
+        <Link Url="Content/DataViewManager/Creating DataViews.htm" />
+        <Link Url="Project/ConditionTagSets/Default.flcts" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/Resources/Images/DataViewManager/create from Master.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Dataview desc..gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Base table error.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV from master.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV add table.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/DV add table2.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/tables added.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/security settings1.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/security settings12.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/select base table1.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit table.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit table options.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/create an alias.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/tables relations.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/configure structure aggregate.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/query.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/dfq.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/summary table.gif" />
+        <Link Url="Content/DataViewManager/Duplicating a Table.htm" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit tags.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/edit tags2.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/Tags.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/validation summary.gif" />
+        <Link Url="Content/Resources/Images/DataViewManager/home.gif" />
+        <Link Url="Content/DataViewManager/Creating DataViews.htm" />
+        <Link Url="Project/ConditionTagSets/Default.flcts" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions>
+        <Condition Tag="Default.DataView Manager only" />
+    </FileConditions>
+    <FileTags />
+    <AllConditions>
+        <Condition Tag="Default.DataView Manager only" />
+    </AllConditions>
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

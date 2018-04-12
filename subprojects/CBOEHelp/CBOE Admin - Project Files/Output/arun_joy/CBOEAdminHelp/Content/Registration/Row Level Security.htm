@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Registration" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Row Level Security</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js">
+        </script>
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
+                        <p>Registration</p>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Row Level Security</h1>
+        <p>The Registration system can be optionally configured to implement project based virtual databases. This option known as “Row Level Security” (RLS) prevents certain users from accessing individual database rows based on their security clearance. Row level security is applied based on associations between users, projects, and registered compounds. A user will only see those registered compounds that are associated with projects to which he/she has been granted permissions. </p>
+        <p>RLS is the visibility control of the data based on projects:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">RLS-Batch: If the user is not assigned to a project, he/she is not able to see the particular batch data</li>
+            <li value="2">RLS-Registry:  If the user is not assigned to a project, he/she is not able to see the entire registry record data</li>
+        </ul>
+        <p>Edit or delete a record/batch is not allowed to users if they don’t have full visibility for the record. The only way to get around the rule is by giving the user the special administrator privilege: <a href="#RLS%20exempt%20BK" target="" title="" alt="" class="MCXref_0 selected">RLS Exempt privilege</a></p>
+        <p>Edit Scope is the editability control based on the key privileges: EDIT_SCOPE_SUPERVISOR and EDIT_SCOPE_ALL.</p>
+        <p>Note that RLS is dominating edit scope privileges. Even if the user has edit scope all privilege, he/she is not allowed to edit/delete the record/batch if he/she doesn’t have full visibility for the record.</p>
+        <p>The Row Level security feature can be enabled/disabled using the configuration tool dialog during the installation. </p>
+        <p>The enable/disable the RLS:</p>
+        <ol>
+            <li value="1">Go To <b>Start&gt;&gt;All Programs&gt;&gt;ChemBioOffice Enterprise&gt;&gt;Server Configuration Tool</b>. The Configuration Tool dialog displays. Select "RLS Settings" tab as shown in the screenshot below:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/app settings tab.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="2">From this tab, it is possible to Enable/Disable the RLS feature.</li>
+            <li value="3">To disable the feature, select the "RLS OFF" radio button, then users will be allowed to access whatever projects are available in the Projects table.</li>
+            <li value="4">When the RLS feature is set to true, then users can access projects to which they have specific access privileges or can access all public project. <br />To enable the RLS&#160;feature. Two options are available:</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Select RLS at Registry Level radion button, then the Project dropdown list will be available in the <b>Registry Information</b> section within the Submit Record page.</li>
+                <li value="2">Select RLS at Batch Level, then the Project dropdown list will be available in the <b>Batch Information</b> section within the Submit Record page.</li>
+            </ul>
+        </blockquote>
+        <p>The screen shot below, shows the RLS set to true at the Registry level:</p>
+        <p>
+            <img src="../Resources/Images/Registration/Projects field.gif" />
+        </p>
+        <p>When RLS&#160;is set to true, then the People table option will be available in the "Select a table/view" dropdown list under the Table Editor (Registration Enterprise&gt;&gt;Customize Registration&gt;&gt;Manage Customizable Tables&gt;&gt;)section.</p>
+        <p>
+            <img src="../Resources/Images/Registration/Table editor people.gif" />
+        </p>
+        <p><a name="RLS exempt BK"></a><b>RLS Exempt user</b>
+        </p>
+        <p>If a <b>Test</b> user having admin privileges creates <b>PRJ01</b> project as <b>private</b> project, then only Test user can access that project.</p>
+        <p>In general, users can access their private projects and all public projects.</p>
+        <p>The RLS Exempt user can access all projects (Private and Public) and their associated records. If any user has RLS_Exempt privilege checked then if we consider the example above, he/she can access the <b>PRJ01</b> project.</p>
+        <p style="font-weight: bold;">Batch level security</p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">The Batch level security feature allows the user to edit his/her own batches, but not the registry record as a whole when RLS&#160;is set at the Batch Level. Please refer to the following example for more information:</span>
+        </p>
+        <blockquote>
+            <p style="font-weight: bold;">User A</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Creates a record A</li>
+                <li value="2">Assigns a private and a public projects at the batch level</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p><b>User B</b>
+            </p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"> Is allowed to see the record A </li>
+                <li value="2">Is not allowed to edit the batch A</li>
+                <li value="3">Is allowed to add new batches to the record A</li>
+                <li value="4">Is only allowed to edit his/her newly added batches</li>
+            </ul>
+        </blockquote>
+        <p>If RLS is set at the Registry level, unauthorized users can add new batches but they cannot edit existing and even their newly added batches. Please refer to the following example for more information:</p>
+        <blockquote>
+            <p style="font-weight: bold;">User C</p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Creates a record C</li>
+                <li value="2">Assigns a private and a public projects at the Registry level</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p><b>User D</b>
+            </p>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"> Is allowed to see the record C </li>
+                <li value="2">Is not allowed to edit the batch C</li>
+                <li value="3">Is allowed to add new batches to the record C</li>
+                <li value="4">Is not allowed to edit his/her newly added batches</li>
+            </ul>
+        </blockquote>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

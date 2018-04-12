@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="7" MadCap:lastHeight="1983" MadCap:lastWidth="525">
+    <head>
+        <script language="JavaScript">/*<![CDATA[*/
+
+<!--Hide JavaScript
+ if (navigator.appName == "Netscape"){
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+ }
+ else{
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+ }
+//-->
+
+/*]]>*/</script><title>Adding Alternate Input-Result Forms</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>Adding Alternate Input/Result Forms</h1>
+        <p>          Often times it is helpful to be able to add customized 
+Input or Result forms for an application. 
+</p>
+        <p style="COLOR: firebrick;"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&#160; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em>
+        </p>
+        <p>                     
+To add a new form to an application: 
+</p>
+        <ol>
+            <li>Open the ini file for the data view of the application 
+ you want to add the input page to.
+  </li>
+            <li>Copy the entire "Base_Form_Group" shown below (this 
+ example comes from the Sample application). 
+  
+
+
+<blockquote><p>[BASE_FORM_GROUP]<br />INPUT_FORM_PATH=sample_input_form.asp<br />INPUT_FORM_MODE=search<br />RESULT_FORM_PATH=sample_result_list.asp<br />RESULT_FORM_MODE=list<br />PLUGIN_VALUE=True<br />STRUCTURE_FIELDS=MolTable.Structure<br />FORM_GROUP_FLAG=SINGLE_SEARCH<br />MW_FIELDS=MolTable.MolWeight<br />FORMULA_FIELDS=MolTable.Formula<br />SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms.SYN_ID;1,Synonyms.Synonym_r;0<br />REQUIRED_FIELDS=NULL<br />SDFILE_FIELDS=NULL<br />TABLE_GROUP=base_table_group<br />NUM_LIST_VIEW=5</p></blockquote></li>
+            <li>Paste&#160;the block of text&#160;below it's last 
+ entry. 
+  </li>
+            <li>          
+            
+    Rename the new group with a useful name. For 
+ example, name the group "Advanced_Form_Group" as shown below: 
+  
+
+
+<blockquote><p>[ADVANCED_FORM_GROUP]<br />INPUT_FORM_PATH=sample_input_form.asp<br />INPUT_FORM_MODE=search<br />RESULT_FORM_PATH=sample_result_list.asp<br />RESULT_FORM_MODE=list<br />PLUGIN_VALUE=True<br />STRUCTURE_FIELDS=MolTable.Structure<br />FORM_GROUP_FLAG=SINGLE_SEARCH<br />MW_FIELDS=MolTable.MolWeight<br />FORMULA_FIELDS=MolTable.Formula<br />SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms.SYN_ID;1,Synonyms.Synonym_r;0<br />REQUIRED_FIELDS=NULL<br />SDFILE_FIELDS=NULL<br />TABLE_GROUP=base_table_group<br />NUM_LIST_VIEW=5</p></blockquote></li>
+            <li>Change the value of the 
+  <strong>INPUT_FORM_PATH</strong>      key to the the 
+ new name of the input form. &#160; This form should be located in the same 
+ directory as the other forms (sample/sample/ in this example). 
+  </li>
+            <li> Edit the <strong>SEARCHABLE_ADO_FIELDS</strong> key to 
+ include all the fields (and there data types) that the input form will allow 
+ to search. Be sure the Table for the field is also defined in the form. If you 
+ need to add a table, see <a href="Adding Tables.htm">Adding Tables to a Dataview</a> for directions. 
+  </li>
+            <li> Edit the <strong>STRUCTURE_FIELDS</strong>, 
+  <strong>MW_FIELDS</strong>, and <strong>FORMULA_FIELDS</strong> keys so 
+ they&#160;specify the appropriate chemical field name and table. &#160; If one 
+ of these fields is not included on the input form then enter "NULL". 
+  <br /><strong>NOTE:</strong> It doesn't matter if there are fields in this 
+ key that are actually not on the form, however, if the converse is true, your 
+ query won't work. 
+  </li>
+            <li>Change the filename in the 
+  <strong>RESULT_FORM_PATH</strong> if you are using a different results view 
+ form from the base_form_group. <br /><br />You should have two result forms, one for list view and one for form view.&#160; As long
+ as you follow the proper naming conventions you only need to enter the name of the file
+ for list view. Proper naming conventions are <em>yourfilename + "_</em>file_list.asp"
+ for the list view and&#160; <em>yourfilename + "_</em>form.asp" for the single record form 
+ view.&#160; For example,&#160;&#160; if you the name of the list view file is 
+ &#160; is "advanced_result_list.asp" then the form page that is searched for 
+ is "advanced_form.asp" . <br /><br />If you 
+ don't like this naming scheme, you can enter the names that will be used by 
+ using the following format:          
+             
+  
+
+
+<blockquote><p>RESULT_FORM_VIEW=mylistview.asp;myformview.asp&#160; <strong>Always put the list view
+ form first.</strong></p></blockquote></li>
+            <li>Specify the default result view in the 
+  <strong>RESULT_FORM_MODE</strong> key.&#160; The options are "list" for the 
+ list view and "edit" for the form view (the later name is historical not 
+ logical). 
+  </li>
+            <li>Enter the number of records you want in the list view.&#160; Keep in mind 
+ that entering greater then 20 will result in slow processing since a lot of 
+ structures will need to be fetched.&#160; We reccommend 5 to 10. 
+  </li>
+            <li>Add the new group's name to <strong>FORM_GROUPS</strong> key in the 
+  <strong>GLOBALS</strong> section at the top of the file. Add the name in lower 
+ case to the end of the list preceded by a comma.
+  
+
+<blockquote><p>FORM_GROUPS=base_form_group,basenp_form_group,gs_form_group,add_record_form_group,drill_down_form_group,advanced_form_group</p></blockquote></li>
+        </ol>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+    </body>
+</html>

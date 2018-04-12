@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="Drug Degradation User Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/Drug Deg Skin.flskn"
+  MasterToc="/Project/TOCs/Drug Degradation TOC.fltoc"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  ConditionTagExpression="include[&quot;Default.Drug Deg&quot;] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or Default.Inventory or Default.Registration] "
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  DefaultUrl="/Content/Drug Degradation Database/Drug Degradation Database Introduction.htm"
+  InsertMOTW="true"></CatapultTarget>

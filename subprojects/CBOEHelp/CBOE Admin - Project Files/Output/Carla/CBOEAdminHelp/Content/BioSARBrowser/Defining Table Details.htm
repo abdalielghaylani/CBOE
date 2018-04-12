@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="BioSAR Browser Introduction|Schema Management" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Defining Table Details</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Defining Table Details</h1>
+        <p>To define the details of a table contained in a schema:</p>
+        <ol>
+            <li value="1">Expand the schema whose table details you want to define.</li>
+            <li value="2">Expand the Edit Table Fields link, if it is not yet expanded. The following page appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser/table fields.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">Click the table that you need to define in detail. The page for defining the selected table appears:
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/BioSARBrowser/field properties.gif" />
+        </p>
+        <p>The page consists of three tabs, as follows: 
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Tables: Lets you to edit the properties of tables and fields in the table.
+</li>
+            <li value="2">Security: Lets you to manage the security of the table.
+</li>
+            <li value="3">Organization: Lets you to assign the table to projects.
+</li>
+        </ul>
+        <ol MadCap:continue="true">
+            <li value="4">Define the table information according to your requirements.</li>
+            <li value="5">Click the Save Changes button.
+</li>
+        </ol>
+        <p style="font-weight: bold;color: #0000ff;">Tables Tab
+</p>
+        <p>The Tables tab corresponding to a table lets you edit the table definition and the table fields.
+</p>
+        <p>The Tables tab lets you define various properties, as follows:
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Table Properties 
+<ul style="list-style-type: square;"><li value="1">Table display name
+</li><li value="2">Primary key
+</li><li value="3">Default column order 
+</li></ul></li>
+            <li value="2">Field Properties 
+<ul style="list-style-type: square;"><li value="1">Fields that are visible to users </li><li value="2">Display name
+</li><li value="3">Display description
+</li><li value="4">A lookup table
+</li><li value="5">A parent column
+</li><li value="6">The index type
+</li><li value="7">The content type
+</li></ul></li>
+        </ul>
+        <p style="font-weight: bold;">Table Primary Key
+</p>
+        <p>The primary key is a field that contains a unique value for each row. The primary key is usually the ID number of an entity record. BioSAR Enterprise requires every table to have a primary key even if the table does not have a primary key defined in the database. Each table can have only one primary key, and the primary key must be an integer.
+</p>
+        <p>To choose the primary key for a table, select its radio button in the Primary Key column.
+</p>
+        <p style="font-weight: bold;">Default Column Order
+</p>
+        <p>Default Column Order determines the default order of fields in a table. If you select the fields to use in a form, the order they will appear in the form, by default, is indicated by the corresponding value in the Default Column Order column. 
+</p>
+        <p>The field with a lower value in the Default Column Order column will appear first. For example, if the value of Default Column Order for field A is 2 and that of field B is 10, the field A will be the first column and the field B will be the second column.
+</p>
+        <p style="font-weight: bold;">Table Display Name
+</p>
+        <p>The display name for a table is the name of the table that BioSAR Enterprise displays. A user with appropriate privileges can set the display name of a table so that it is different from the actual name of the table in the database. By default, the display name and the actual name of a table are same. However, it is often more desirable to enter a more descriptive name for the table.
+</p>
+        <p style="font-weight: bold;">Table Fields
+</p>
+        <p>The fields contained in a table have various attributes, such as name and visibility. These attributes allow users to identify and access required information.
+</p>
+        <p style="font-weight: bold;">Field Visibility
+</p>
+        <p>This attribute determines whether users can see a particular field. To make a field visible to users, select the corresponding check box in the Visible? column.
+</p>
+        <p style="font-weight: bold;">Field Name
+</p>
+        <p>The field name is the name of the table field that BioSAR Enterprise displays to the user. By default, the field name and the name of the field in the database are the same. However, if you want to change the field name for the field, enter the new name in the text box in the Display Name column.
+</p>
+        <p style="font-weight: bold;"><span style="font-weight: bold;">Field Description
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">The field names are often in abbreviated form. The field description property helps you to provide more information about the fields. For example, when defining a field, you can enter the field name as Cus_ID and enter “Customer Identity” in the Description column. By default, the display name and descriptive name of a field are the same.
+ 
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: bold;">Field Lookup Table
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">The lookup table feature is used to draw more information about a field in a table by linking it to another table containing related information.
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">For example, the reg_batch_view table in BioSAR Enterprise contains information about the registration numbers as well as batch numbers. Hence, when the field reg_number appears in a BioAssay table, the reg_batch_view table of BioSAR Enterprise can serve as the lookup table and provide the batch number for the corresponding reg_number field.
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">The lookup table feature is enabled through the Lookup Table column. 
+</span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">To link a table with another table using the lookup table feature, you need to define various properties of the lookup table. </span>
+        </p>
+        <p style="font-weight: bold;"><span style="font-weight: normal;">These properties are:
+</span>
+        </p>
+        <ul style="list-style-type: square;">
+            <li style="font-weight: bold;" value="1"><span style="font-weight: normal;">Linking Column
+</span>
+            </li>
+            <li style="font-weight: bold;" value="2"><span style="font-weight: normal;">Display Column
+</span>
+            </li>
+            <li style="font-weight: bold;" value="3"><span style="font-weight: normal;">Join Type
+</span>
+            </li>
+            <li style="font-weight: normal;" value="4"><span style="font-weight: normal;">Sort Direction
+</span>
+            </li>
+        </ul>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li style="font-weight: normal;" value="1"><b>Linking Column
+</b>
+                </li>
+            </ul>
+        </blockquote>
+        <p style="font-weight: normal;">The Linking column is the column in the lookup table that has the same value as the field whose lookup table is being defined. 
+For example, assume that there are two tables in the REGDB schema: EXPERIMENTS and EXPERIMENTTYPE. Also assume that both the tables contain a field called EXPERIMENT_TYPE_ID.
+</p>
+        <p style="font-weight: normal;">The EXPERIMENT_TYPE_ID field in the EXPERIMENTS table may not provide much information to a user.
+</p>
+        <p style="font-weight: normal;">However, the EXPERIMENTTYPE table provides detailed information about the experiments.
+</p>
+        <p style="font-weight: normal;">Since, the EXPERIMENTTYPE table also contains the EXPERIMENT_TYPE_ID field, this field serves as the linking column and helps to relate the two tables.
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li style="font-weight: bold;" value="1">Display Column
+</li>
+            </ul>
+        </blockquote>
+        <p style="font-weight: normal;">The display column is the value that is displayed in forms in place of actual field values.
+</p>
+        <p style="font-weight: normal;">In the above example, two tables are linked together. Assume that the EXPERIEMENTS table contains a field called EXPERIMENT_TYPE_NAME in addition to the EXPERIMENT_TYPE_ID field. EXPERIMENT_TYPE_NAME field contains a name for each ID. Therefore, EXPERIMENT_TYPE_NAME is displayed in forms and it is the display column for EXPERIMENT_TYPE_ID.
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li style="font-weight: bold;" value="1">Join Type
+</li>
+            </ul>
+        </blockquote>
+        <p style="font-weight: normal;">Join refers to the procedure of combining two tables, resulting in a new, temporary table. In BioSAR Enterprise, joins can be of four types, as follows:
+</p>
+        <ul style="list-style-type: circle;">
+            <li style="font-weight: normal;" value="1">INNER
+</li>
+            <li style="font-weight: normal;" value="2">INNER: Case Insensitive
+</li>
+            <li style="font-weight: normal;" value="3">OUTER
+</li>
+            <li style="font-weight: normal;" value="4">OUTER: Case Insensitive
+</li>
+        </ul>
+        <p style="font-weight: normal;">The INNER join operation selects rows from a parent table and its child tables in such a way that the values in one column of parent table matches the values in certain columns of the child tables. For example, assume that there is a parent table P, as follows: </p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td><b style="font-size: 12pt;">Dept_ID</b>
+                    </td>
+                    <td><b style="font-size: 12pt;">Dept_Name</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Biology</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Chemistry</td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>Botany</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: normal;">Assume that the child table C is as follows:
+</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Dept_Head</td>
+                    <td style="font-weight: bold;">Dept_ID</td>
+                </tr>
+                <tr>
+                    <td>James</td>
+                    <td>101</td>
+                </tr>
+                <tr>
+                    <td>Jones</td>
+                    <td>102</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: normal;">The result of inner join on the parent table will be as follows:
+</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Dept_ID</td>
+                    <td style="font-weight: bold;">Dept_Name</td>
+                    <td style="font-weight: bold;">Dept_Head</td>
+                    <td style="font-weight: bold;">Dept_ID</td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Biology</td>
+                    <td>James</td>
+                    <td>101</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Chemistry</td>
+                    <td>Jones</td>
+                    <td>102</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: normal;">By default, INNER join is case sensitive. If you want to avoid case sensitivity, select INNER: Case Insensitive from the Join Type list.
+</p>
+        <p style="font-weight: normal;">The OUTER join operation selects rows from parent table and child tables so that the resultant column includes all rows from parent table and matched rows of child table. A field in a result row will be null if the child table did not contain a matching row. By default, OUTER join is case sensitive. If you want to avoid case sensitivity, select “OUTER: Case Insensitive” from the Join Type list.
+</p>
+        <p style="font-weight: bold;">Sort Direction
+</p>
+        <p style="font-weight: normal;">You can sort the columns in either ascending or descending order.
+</p>
+        <p style="font-weight: bold;">Defining a Lookup Table
+</p>
+        <p style="font-weight: normal;">To define a lookup table for a field:
+</p>
+        <ol>
+            <li style="font-weight: normal;" value="1">Open the table in the Schema Management interface.</li>
+            <li style="font-weight: normal;" value="2">Click the Choose link in the Lookup Table column corresponding to the field name in the Tables tab. </li>
+        </ol>
+        <ol MadCap:continue="true">
+            <li style="font-weight: normal;" value="3">Select from the Lookup Schema list box the schema where the lookup table exists. The Lookup Table list box is populated.
+</li>
+            <li style="font-weight: normal;" value="4">Select the lookup table from the Lookup Table list box. The Linking Column, Display Column, Join Type, and Sort Direction list boxes is populated.</li>
+            <li style="font-weight: normal;" value="5">Select relevant list items in the Linking Column, Display Column, Join Type, and Sort Direction list boxes, according to your requirements.</li>
+            <li style="font-weight: normal;" value="6">Click the Save Changes button to save the changes.
+ </li>
+        </ol>
+        <p style="font-weight: bold;">Field Parent Column
+</p>
+        <p style="font-weight: normal;">The parent column of a field defines a table, which is related to many tables in the same way. In contrast to a lookup table, which has a one-to-one relationship with its related table, a parent table has a one-to-many relationship.
+</p>
+        <p style="font-weight: normal;">For example, the REG_NUMBERS table is a parent of the BATCHES table because one compound can contain many batches. For each REGDB.REG_NUMBERS.REG_ID field in the REG_NUMBERS table, there are one or more matching records in the BATCHES table. The BATCHES.REG_INTERNAL_ID field in the BATCHES table contains the same value as REGDB.REG_NUMBERS.REG_ID.
+</p>
+        <p style="font-weight: normal;"><b style="font-style: italic;">Note:</b><i> During installation, parent columns are automatically recorded for ChemOffice Enterprise schemas.
+</i>
+        </p>
+        <p style="font-weight: normal;">Defining a Parent Column
+</p>
+        <p style="font-weight: normal;">To define a parent column for a field:</p>
+        <ol>
+            <li style="font-weight: normal;" value="1">Click the Choose link in the Parent Column column corresponding to the field name in the Tables tab.</li>
+        </ol>
+        <p style="font-weight: normal;">
+            <img src="../Resources/Images/BioSARBrowser/parent column.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li style="font-weight: normal;" value="2">Select the schema where the parent table exists, in the Parent Schema list box. The Parent Table list box is populated automatically.</li>
+            <li style="font-weight: normal;" value="3">Select the parent table in the Parent Table list box. The Parent Column list box is populated automatically.</li>
+            <li style="font-weight: normal;" value="4">Select the parent column and join type according to your requirements.</li>
+            <li style="font-weight: normal;" value="5">Click the Save Changes button.</li>
+        </ol>
+        <p style="font-weight: normal;">
+            <img src="../Resources/Images/BioSARBrowser/view mixture batch.gif" />
+        </p>
+        <p style="font-weight: bold;">Field Index Type
+</p>
+        <p style="font-weight: normal;">The index type for a field is valid only if the field contains an object that is indexed. Currently, the only supported index type is the Oracle Cartridge (CS_CARTRIDGE). Fields containing non-indexed objects, such as GIF and JPEG images, should be assigned the index type, NO_INDEX. 
+</p>
+        <p style="font-weight: bold;">Field Content Type 
+</p>
+        <p style="font-weight: normal;">Content type refers to the HTTP MIME_TYPE of object contained in a field. Examples of Content type are chemical/x-cdx and IMAGE/gif.
+</p>
+        <p style="font-weight: normal;"><b style="color: #0000ff;">Security Tab
+</b>
+        </p>
+        <p style="font-weight: normal;">The Security tab lets you adjust the security level on tables by assigning different privileges to other users or roles.
+You can add or remove privileges from users/roles by selecting a user or role in the BioSAR Users and Roles list and then clicking the Add or Remove button.
+</p>
+        <p style="font-weight: normal;">
+            <img src="../Resources/Images/BioSARBrowser/security tab.gif" />
+        </p>
+        <p style="font-weight: normal;"><i><b>Note:</b> If the list of permitted users and roles contains an item with the specifier, USER NESTED or ROLE NESTED, the privileges are applied indirectly through another role or a non-BioSAR role. Grants to non-BioSAR roles cannot be revoked through the Security tab.
+Organization Tab.</i>
+        </p>
+        <p style="font-weight: normal;"><b style="color: #0000ff;">Organization Tab
+</b>
+        </p>
+        <p style="font-weight: normal;">The Organization tab lets you add tables to any number of projects in the system and change project assignments. This allows you to find tables more easily when designing forms.
+</p>
+        <p style="font-weight: bold;">Adding Tables
+</p>
+        <p style="font-weight: normal;">To add a table to a project:</p>
+        <ol>
+            <li style="font-weight: normal;" value="1">Open the table through the Schema Management page.</li>
+            <li style="font-weight: normal;" value="2">Click the Organization tab.
+</li>
+            <li style="font-weight: normal;" value="3">Click the Add to Project Category link to display the TreeView window.</li>
+        </ol>
+        <p style="font-weight: normal;">
+            <img src="../Resources/Images/BioSARBrowser/organization tab.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li style="font-weight: normal;" value="4">Click on the project name to select it. A success message is displayed.</li>
+            <li style="font-weight: normal;" value="5">Click the OK button. The added items will be displayed.
+</li>
+        </ol>
+        <p style="font-weight: bold;">Changing Project Assignments
+</p>
+        <p style="font-weight: normal;">To change the project assignment:</p>
+        <ol>
+            <li style="font-weight: normal;" value="1">Click the Move link corresponding to the project name to display the TreeView window.</li>
+            <li style="font-weight: normal;" value="2">Select the project by clicking the project name. A success message is displayed.</li>
+            <li style="font-weight: normal;" value="3">Click the OK button.
+</li>
+        </ol>
+        <p style="font-weight: bold;">Deleting Project Assignment
+</p>
+        <p style="font-weight: normal;">To delete a project assignment, click the Delete link corresponding to the project name.
+</p>
+        <p style="font-weight: normal;">Once the administrator has exposed schemas and created relation between them, the user can start then creating forms. For more details, please refer to the ChemBioOffice user's guide.</p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

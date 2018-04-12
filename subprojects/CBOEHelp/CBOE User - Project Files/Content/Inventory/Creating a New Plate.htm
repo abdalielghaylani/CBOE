@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="4456" MadCap:lastWidth="1176">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Creating a New Plate</h1>
+        <p>Plates are created in Inventory Enterprise using:
+</p>
+        <ul style="list-style-type: square;">
+            <li>Excel spreadsheets 
+ </li>
+            <li>Text files
+ </li>
+            <li>Inventory Loaders (Inventory Loader and InvLoader are synonymous and both nomenclatures are used in this guide.)
+
+</li>
+        </ul>
+        <p style="font-weight: bold;">Creating a Plate from Excel Spreadsheets</p>
+        <p>You create plates from data contained in an Excel spreadsheet, with the following considerations:
+
+ </p>
+        <ul style="list-style-type: square;">
+            <li>You need to reformat the plates, especially when you want to merge the <b>4 96 well plate</b> into <b>1 384 well plate</b>. You can perform this action using the <b>4 96 Well to 1 384 Well Map</b> template. 
+ </li>
+            <li>You need to create multiple daughter plates in a single step. You can perform this action using the <b>Daughter</b> template. 
+
+</li>
+        </ul>
+        <p style="font-style: italic;"><b>Note:</b>   If you want to daughter only one plate from the parent plate, you create the daughter plate using the <b>Create Daughter Plates</b> link in the Plate Details frame.
+</p>
+        <p>The columns in the Excel spreadsheet used in this section are:
+
+ </p>
+        <ul style="list-style-type: square;">
+            <li><b>No</b>: Specifies a sequential number corresponding to each parent plate. 
+ </li>
+            <li><b>Quadrant 1, Quadrant 2, Quadrant 3, Quadrant 4</b>: Specify barcodes of the parent plates. </li>
+            <li><b>Plate Format</b>: Specifies format of the target plates. 
+ </li>
+            <li> <b>Plate Type</b>: Specifies type of the target plates. </li>
+            <li><b>Plate Template</b>: Specifies name of the plate maps, from which the target plates are created. </li>
+            <li><b>Barcode</b>: Specifies barcode of the target plates. 
+ </li>
+            <li> <b>Copies</b>: Specifies the number of copies  created for the target plates. 
+ </li>
+            <li><b>Assign to Library</b>: Specifies the library to which the target plates are assigned. 
+ </li>
+            <li> <b>Place in Location</b>: Specifies the location at which the target plates are stored. 
+ </li>
+            <li> <b>Status</b>: Specifies the status assigned to the target plates. </li>
+        </ul>
+        <p style="font-size: 11pt;font-weight: bold;">To create plates from an Excel spreadsheet:
+
+ </p>
+        <ol>
+            <li>From the ChemBioOffice Enterprise home page, Inventory Enterprise section, click the <b>Tasks</b> link. The administrative menu appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/create plates.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Under Plate Management, click <b>Create Plates from Excel</b>. The following dialog appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate from excel.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click <b>Browse</b> to locate the Excel spreadsheet from which the plates will be created. 
+ </li>
+            <li> Click <b>OK</b>. The new plates are created in the specified location. 
+
+</li>
+        </ol>
+        <p style="font-weight: bold;">Creating a Plate from Text File
+</p>
+        <p>Inventory Enterprise lets you create plates from data contained in a text file. The following example displays a sample text file that can be used to create plates in Inventory Enterprise.</p>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate inv text file.gif" />
+        </p>
+        <p>The text file in the preceding example consists of one header line and four columns. The four columns of the text file are:
+
+ </p>
+        <ul style="list-style-type: square;">
+            <li><b>Target plate barcode</b>: Specifies barcode of the target plate. 
+ </li>
+            <li> <b>Target well coordinates</b>: Specifies coordinates of the wells of the target plate. </li>
+            <li><b>Source plate barcode</b>: Specifies barcode of the source plate. 
+ </li>
+            <li><b>Source well coordinates</b>: Specifies coordinates of the wells of the source plate. 
+
+</li>
+        </ul>
+        <p>To create a plate from a text file, you should have a <b>Plate Import</b> template for the text file. </p>
+        <p>However, if the template is not available, you can create a new <b>Plate Import</b> template for the text file.
+
+</p>
+        <p style="font-weight: bold;">Creating New Plate Import Template
+</p>
+        <p>To create a Plate Import template for the preceding text file:
+
+ </p>
+        <ol>
+            <li>Click the Tasks link within the Inventory Enterprise section in the ChemBioOffice Enterprise home page. The administrative menu window appears. 
+ </li>
+            <li>Click the Plate Settings link. The following window appears as: </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate_inventory_new_textfile2.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click the New link next to the Plate Import Templates drop down list. The following window appears as: </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate_inventory_new_textfile3.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li> Fill in the following properties: 
+ </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Enter the name of the template in the Template Name text box. 
+ </li>
+                <li> Enter remarks in the Remarks text box. </li>
+                <li> Enter 1 in the File Header Lines text box. </li>
+                <li>Enter 4 in the Data Columns text box, as the text file contains four columns. 
+ </li>
+                <li>Enter tab in the Data Column Delimiter text box, as the text file is tab delimited. 
+ </li>
+                <li> Select the Well Coordinates check box, as the text file contains well coordinates and not the well numbers. 
+ </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li> Click Next. The preceding window is populated with some additional fields, as shown in this figure: </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate_inventory_new_textfile4.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Do the following: 
+ </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Select Target Plate Barcode from the Column 1 Mapping drop down list. 
+ </li>
+                <li>Select Target Well from the Column 2 Mapping drop down list. </li>
+                <li>Select Source Plate Barcode from the Column 3 Mapping drop down list. 
+ </li>
+                <li>Select Source Well from the Column 4 Mapping drop down list. 
+ </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Click OK. A window informing you that the template is created successfully appears. 
+ </li>
+            <li>Click OK. 
+ </li>
+            <li>Click the Close button. </li>
+        </ol>
+        <p>After creating the Plate Import template for a text file, you can create two types of plates, which are:
+</p>
+        <ul style="list-style-type: square;">
+            <li>Target plates: refers to the plates that are created from existing plates existing in Inventory Enterprise. 
+ </li>
+            <li> Source plates: refers to the new plates that are created with the new compounds. While creating a source plate, you cannot insert compounds in it. </li>
+        </ul>
+        <p style="font-weight: bold;">Creating a Target Plate
+</p>
+        <p>To create a target plate from a text file:
+
+ </p>
+        <ol>
+            <li>Click the Tasks link within the Inventory Enterprise section in the ChemBioOffice Enterprise home page. The administrative menu window appears. 
+ </li>
+            <li>Click the Create Plates from Text File link. The Create Plates From Text File window appears as: </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/plate_inventory_new_textfile5.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Do the following: </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Select appropriate Plate Import template from the Import Template drop down list. </li>
+                <li>Click the Browse button next to the Text File text box and locate the text file from which the plate is to be created. 
+ </li>
+                <li>Click the Browse button next to the Location ID text box and select the location where the new plate is to be added. 
+ </li>
+                <li> Select plate type from the Plate Type drop down list. </li>
+                <li>Select plate format from the Plate Format drop down list. 
+ </li>
+                <li>Select plate status from the Plate Status drop down list. 
+ </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Click OK. 
+
+</li>
+        </ol>
+        <p style="font-weight: bold;">Creating a Source Plate
+</p>
+        <p>To create a source plate from a text file:
+
+ </p>
+        <ol>
+            <li>Click the Tasks link within the Inventory Enterprise section ChemBioOffice Enterprise home page. The administrative menu window appears. 
+ </li>
+            <li>Click the Create Plates from Text File link. The Create Plates From Text File window appears. 
+ </li>
+            <li>Select the Create Source Plate(s) radio button. 
+ </li>
+            <li>Set the fields in the Create Plates From Text File window in the similar manner as they are set for the target plates. 
+ </li>
+            <li>Click OK. 
+</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Plate Inventory.htm">Plate Inventory</a>
+            <br /><a href="Inventory Introduction.htm">Inventory</a>
+        </p>
+    </body>
+</html>

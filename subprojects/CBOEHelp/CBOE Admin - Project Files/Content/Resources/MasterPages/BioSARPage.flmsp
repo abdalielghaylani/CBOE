@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="172" MadCap:lastWidth="616">
+    <head>
+        <link href="../Stylesheets/Styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <MadCap:snippetBlock src="../Snippets/BioSar Header.flsnp" />
+        <MadCap:bodyProxy />
+        <MadCap:snippetBlock src="../Snippets/Footer.flsnp" />
+    </body>
+</html>

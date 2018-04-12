@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1080" MadCap:lastWidth="1011" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Feature Disabling</h1>
+        <p>The "FeatsDisabled" value is a combination of features to be disabled. This setting is in app.config and may also be in the user's local ChemBioViz Settings file.</p>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/feats disabled.gif" />
+        </p>
+        <p>The default value zero, means that all features are enabled. To disable features, enter a sum of bit values:</p>
+        <ul style="list-style-type: square;">
+            <li>Plotting = 0x01: hides plot control panel, removes chart control from toolbox</li>
+            <li>GrandChild = 0x02: prevents creation of grandchild subforms when creating form from dataview or when configuring subform box in form editor</li>
+            <li>DrillDown = 0x04: prevents double-click on subform row from opening drill-down form</li>
+            <li>TreeFolder = 0x08: prevents creating new folder in form or query tree</li>
+            <li>ActionMenus = 0x10: prevents displaying custom action menus</li>
+            <li>QueryTextBox = 0x20: creates standard text boxes for query forms, not query boxes</li>
+            <li>SubformQueryBoxes = 0x40: prevents auto-generation of subform query boxes</li>
+            <li>CardView = 0x80: prevents changing grid to card view (choice removed from menu)</li>
+            <li>Export = 0x100: removes Export menu and SD submenu</li>
+            <li>ComboBoxes = 0x200: removes combo box from toolbox in form editor</li>
+        </ul>
+        <p style="font-weight: bold;">Example: </p>
+        <p>To disable plotting, action menus, and combo boxes, set FeatsDisabled to 0x(1 + 10 + 200) = 0x211 = 529.</p>
+    </body>
+</html>

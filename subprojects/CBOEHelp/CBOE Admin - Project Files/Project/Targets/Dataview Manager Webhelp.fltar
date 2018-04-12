@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="Dataview Manager Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  MasterToc="/Project/TOCs/Dataview Manager TOC.fltoc"
+  DefaultUrl="/Content/DataViewManager/DataView Manager Introduction.htm"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  ConditionTagExpression="include[&quot;Default.DataView Manager only&quot;] exclude[&quot;Default.BioSAR Browser only&quot; or &quot;Default.COE Webserver only&quot; or &quot;Default.Config Loader only&quot; or &quot;Default.DataLoader Only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot; or Default.PrintOnly or &quot;Default.Registration only&quot; or Default.ScreenOnly] "
+  Skin="/Project/Skins/Dataview Manager Skin.flskn"
+  InsertMOTW="true"
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  conditions="Default.DataView Manager only"></CatapultTarget>

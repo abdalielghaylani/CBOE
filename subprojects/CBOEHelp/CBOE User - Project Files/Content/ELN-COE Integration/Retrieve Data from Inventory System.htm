@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="2186" MadCap:lastWidth="1344" MadCap:conditions="Default.Not supported in 1261">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>COE-ELN Integration</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Retrieve Data from Inventory System</h1>
+        <p>The user is allowed to pull data from Inventory system and to use the structures in the Reaction section.</p>
+        <p>To retrieve data from Inventory:</p>
+        <ol>
+            <li>Log in to E-Notebook</li>
+            <li>Create an experiment and then add Reaction section</li>
+            <li>In the Reaction toolbar, click on the Add button, the following dialog appears</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN Integration/Inventory Search.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Select an appropriate datasource: “Inventory Search” from the ‘Search in’ drop down list</li>
+            <li>The search form consists of a ChemDraw control to render structures for exact and substructure searching</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN Integration/structure search.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>A set of text boxes are available for entering textual search data. The textboxes are as follows:</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Substance Name</li>
+                <li>CAS Registry Number</li>
+                <li>ACX ID</li>
+                <li>Container Barcode</li>
+                <li>Molecular Formula</li>
+                <li>MolWeight Range</li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Check the <b>Exclude Special Locations</b> check box, to avoid fetching compounds from Inventory special locations . Special locations are configured by your system administrator in the Cows Web.config file.</li>
+            <li>Enter Search criteria and click on the search button to execute the search</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN Integration/Search form.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>
+                <p>A clear button is available for clearing the form</p>
+            </li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Inventory Pull.htm">Inventory Pull</a>
+            <br />
+        </p>
+    </body>
+</html>

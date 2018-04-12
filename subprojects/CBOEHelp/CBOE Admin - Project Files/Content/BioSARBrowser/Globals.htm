@@ -1,0 +1,755 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="12323" MadCap:lastWidth="660">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Globals</h1>
+        <p style="font-weight: bold;">ADJUST_NETSCAPE_WIDTHS
+</p>
+        <p>Example: ADJUST_NETSCAPE_WIDTHS = 1
+<br />Description: Corrects for the differences in widths in Netscape compared to IE. 1 will scale Netscape pages, 0 will not make any changes.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ADMIN_REQUIRED
+</p>
+        <p>Example: ADMIN_REQUIRED = 1
+<br />Description: Set to True(1) flags the system indicating that username and passwords are required. Editing this value will cause unpredictable behavior.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ADOCONN_PWDKeyword
+</p>
+        <p>Example: ADOCONN_PWDKeyword = password
+<br />Description: Enables the BioSAR Enterprise application to build the ADO connection string for connecting to the database. The value of ADOCONN_PWDKeyword depends on the ADO provider being used for connecting to the database. For example, currently all ChemOffice WebServer applications use OLEDB Providers. Therefore, the value of ADOCONN_PWDKeyword is always 'password'. However, if you use a DSN or ODBC Driver for database connection, the value of ADOCONN_PWDKeyword will be 'pwd'.
+</p>
+        <p><i>Note: It is recommended that the value of ADOCONN_PWDKeyword should not be changed without explicit request from the support staff of the ChemOffice product.
+</i>
+        </p>
+        <p>Default: password
+<br />Options: Should not be edited.
+</p>
+        <p style="font-weight: bold;">ADOCONN_UserIDKeyword
+</p>
+        <p>Example: ADOCONN_UserIDKeyword = user id
+<br />Description: Enables the BioSAR Enterprise application to build the ADO connection string for connecting to the database. The value of ADOCONN_UserIDKeyword depends on the ADO provider being used for connecting to the database. For example, currently all ChemOffice WebServer applications use OLEDB Providers. Therefore, the value of ADOCONN_UserIDKeyword is always 'user id'. However, if you use a DSN or ODBC Driver for database connection, the value of ADOCONN_UserIDKeyword will be 'uid'.
+</p>
+        <p><i>Note: It is recommended that the value of ADOCONN_UserIDKeyword should not be changed without explicit request from the support staff of the ChemOffice product.
+</i>
+        </p>
+        <p>Default: user id
+<br />Options: Should not be edited
+</p>
+        <p style="font-weight: bold;">ALLOW_COOKIE_LOGIN
+</p>
+        <p>Example: ALLOW_COOKIE_LOGIN = 1
+<br />Description: Internal setting for disabling/enabling the global login feature.
+<br />Default: = 1
+<br />Options: Should not be edited.
+</p>
+        <p style="font-weight: bold;">ALLOW_FLAT_SDFILE_EXPORT
+</p>
+        <p>Example: ALLOW_FLAT_SDFILE_EXPORT = 1
+<br />Description: Determines if SDFiles can be exported in flat format. Hits can be exported as SDFiles in either flat or nested. 1 indicates flat SDFile export is allowed. If set to 0, the user will not be given the option, and all SDFiles will be exported in the nested format.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_HITLIST_MANAGEMENT
+</p>
+        <p>Example: ALLOW_HITLIST_MANAGEMENT = 1
+<br />Description: Determines if hitlist management can be accessed from the application. Hitlist management allows users to add, subtract, create the intersection, and union of hitlists. 1 indicates hitlist management is allowed.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_HITLIST_MNGMNT_FG_SELECTOR
+</p>
+        <p>Example: ALLOW_HITLIST_MNGMNT_FG_SELECTOR = 1
+<br />Description: Using hitlist management you can recover and operate on lists that were saved under a given form group. That is, hitlists are formgroup specific so the hitlist dialogs show lists from the currently open formgroup. BioSAR Enterprise is an exception because it deals with multiple form groups simultaneously. If ALLOW_HITLIST_MNGMNT_FG_SELECTOR is set to 1, an additional drop down list in the hitlist management dialog appears to allow you to select which hitlist you want to save (the hitlist from which formgroup).
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_PUBLIC_HITLISTS
+</p>
+        <p>Example: ALLOW_PUBLIC_HITLISTS = 1
+<br />Description: Determines if saved hitlists can be made public. Making a hitlist public allows all other users of the application to access that hitlist. 1 indicates hitlists can be made public.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_PUBLIC_QUERIES
+</p>
+        <p>Example: ALLOW_PUBLIC_QUERIES = 1
+ 
+<br />Description: Determines if saved queries can be made public. Making a query public allows all other users of the application to access that query. 1 indicates queries can be made public.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_QUERY_MANAGEMENT
+</p>
+        <p>Example: ALLOW_QUERY_MANAGEMENT = 1
+<br />Description: Determines if query management can be accessed from the application. Query management allows users save and recover queries. 1 indicates query management is allowed.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_QUERY_MNGMNT_FG_SELECTOR
+</p>
+        <p>Example: ALLOW_QUERY_MNGMNT_FG_SELECTOR = 1
+<br />Description: Using query management you can recover queries that were saved under a given form group. That is, queries are formgroup specific so the query dialogs show queries from the currently open formgroup. BioSAR Enterprise is an exception because it deals with multiple form groups simultaneously. If ALLOW_QUERY_MNGMNT_FG_SELECTOR is set to 1, an additional drop down list in the query management dialog appears to allow you to select which query you want to save (the query from which formgroup).
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALLOW_SORT_ALL_FIELDS
+</p>
+        <p>Example: ALLOW_SORT_ALL_FIELDS = 0
+<br />Description: When set to the default (0), only fields from the base table are shown in the sort by drop down list found on query forms. If set to 1 then the base table and the child table fields are shown. In this later case, choosing from a child record will result in a sort, but also a duplication of each child record in the resulting list.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ALWAYS_DISPLAY_ALERTS
+</p>
+        <p>Example: ALWAYS_DISPLAY_ALERTS = 0
+<br />Description: Indicates if a user should receive alerts (e.g. compound was registered). 1 turns on all alerts. 0 removes alerts which are not required.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">APP_NAME
+</p>
+        <p>Example: APP_NAME = biosar_browser
+<br />Description: name of the application displayed in some parts of the user interface.
+<br />Default: biosar_browser
+<br />Options: </p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Application Name</td>
+                    <td style="font-weight: bold;">APP_NAME value
+</td>
+                </tr>
+                <tr>
+                    <td>Sample </td>
+                    <td>sample 
+</td>
+                </tr>
+                <tr>
+                    <td>Registration Enterprise </td>
+                    <td>chem_reg 
+</td>
+                </tr>
+                <tr>
+                    <td>Inventory Enterprise</td>
+                    <td>cheminv 
+</td>
+                </tr>
+                <tr>
+                    <td>Mixture Registration 
+</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>BioSAR Enterprise 
+</td>
+                    <td>biosar_browser 
+</td>
+                </tr>
+                <tr>
+                    <td>ChemACX 
+ </td>
+                    <td>chemacx 
+</td>
+                </tr>
+                <tr>
+                    <td>Documentation Manager </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">APP_TYPE
+</p>
+        <p>Example: APP_TYPE = databrowser
+<br />Description: Tells the system that this is a data browsing application.
+<br />Default: databrowser
+<br />Options: databrowser
+</p>
+        <p style="font-weight: bold;">biosar_browser_PWD
+</p>
+        <p>Example: biosar_browser_PWD = ORACLE
+<br />Description: The cs_security schema owner's password.
+<br />Default: ORACLE
+<br />Options: Valid password for the username in biosar_browser_PWD.
+</p>
+        <p style="font-weight: bold;">biosar_browser_USERNAME
+</p>
+        <p>Example: biosar_browser_USERNAME = cs_security
+<br />Description: The cs_security schema owner.
+<br />Default: cs_Security
+<br />Options: Valid username for the cs_security schema
+</p>
+        <p style="font-weight: bold;">BIOVIZ_INTEGRATION
+</p>
+        <p>Example: BIOVIZ_INTEGRATION = 0
+<br />Description: Allows users to include integration with BioViz as an option in their form if set to 1.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">BODY_BACKGROUND
+</p>
+        <p>Example: BODY_BACKGROUND = "#FFFFFF"
+<br />Description: Indicates the background that should be used for the body section of the page.
+<br />Default: "#FFFFFF"
+<br />Options: A color (recorded in HEX format) or a relative path to a GIF
+</p>
+        <p style="font-weight: bold;">CDX_CACHING
+</p>
+        <p>Example: CDX_CACHING = true
+<br />Description: If set to True, the application will cache cdx files. Registration Enterprise overrides this value internally, so changing the setting will not make a difference in Registration Enterprise.
+<br />Default: true
+<br />Options: true | false
+</p>
+        <p style="font-weight: bold;">DATE_FORMAT
+</p>
+        <p>Example: DATE_FORMAT = 8
+<br />Description: Indicates which international date format to use. The choices are:
+</p>
+        <ul style="list-style-type: square;">
+            <li>8 - US - mm/dd/yyyy 
+</li>
+            <li>9 - Europe - dd/mm/yyyy 
+</li>
+            <li>10 - Japanese - yyyy/mm/dd
+</li>
+        </ul>
+        <p>Default: 8
+<br />Options: 8 | 9 | 10
+</p>
+        <p style="font-weight: bold;">DB_NAMES
+</p>
+        <p>Example: DB_NAMES = biosar_browser
+<br />Description: The name of the directory containing the forms necessary for proper operation of the application. Editing this value may cause unpredictable behavior.
+<br />Default: biosar_browser
+<br />Options: Usually the name of the application. If you would like to enter a list of directories, separate the list with a comma.</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Application Name</td>
+                    <td style="font-weight: bold;">DB_NAMES value
+</td>
+                </tr>
+                <tr>
+                    <td>Sample </td>
+                    <td>sample 
+</td>
+                </tr>
+                <tr>
+                    <td>Registration Enterprise </td>
+                    <td>chem_reg 
+</td>
+                </tr>
+                <tr>
+                    <td>Inventory Enterprise</td>
+                    <td>cheminv 
+</td>
+                </tr>
+                <tr>
+                    <td>Mixture Registration 
+</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>BioSAR Enterprise 
+</td>
+                    <td>biosar_browser 
+</td>
+                </tr>
+                <tr>
+                    <td>ChemACX </td>
+                    <td>chemacx 
+</td>
+                </tr>
+                <tr>
+                    <td>Documentation Manager </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">DB_PWD
+</p>
+        <p>Example: DBA_PWD = MANAGER
+<br />Description: The password that can be used for accessing limited dba functions for users with permissions allowing adding users/roles.
+<br />Default: MANAGER
+<br />Options: A DBA password with correct permissions
+</p>
+        <p style="font-weight: bold;">DBA_USERNAME
+</p>
+        <p>Example: DBA_USERNAME = SYSTEM
+<br />Description: The username that can be used for accessing limited dba functions for users with permissions allowing adding users/roles.
+<br />Default: SYSTEM
+<br />Options: A DBA username with correct permissions
+</p>
+        <p style="font-weight: bold;">DEFAULT_COLUMN_LAYOUT
+</p>
+        <p>Example: DEFAULT_COLUMN_LAYOUT = fields_across
+<br />Description: Indicates that by default, the list view layout will be in the fields across layout (i.e. each field is to the right of the one before it. The other option is to "stack" the fields where each field is below the one before it (fields_down).
+<br />Default: fields_across
+<br />Options: fields_across | fields_down
+</p>
+        <p style="font-weight: bold;">DELETE_METADATA_WHEN_UNEXPOSING_TABLE_OR_VIEW
+</p>
+        <p>Example: DELETE_METADATA_WHEN_UNEXPOSING_TABLE_OR_VIEW = 1
+<br />Description: Determines tables/views presence within the BioSAR forms. 0 indicates “Visible” feature for the table and 1 indicates “Exposed” feature for the table.
+<br />If set to 0, Visible option appears on the Schema Management &gt; Edit Exposed Tables, for Table Name. Non-visibility for any table hides table to the user but internally works as a normal table. <br />If set to 1, Exposed option appears on the Schema Management &gt; Edit Exposed Tables, for Table Name. Un-exposing tables/views will remove them from the BioSAR schema. As a consequence, the tables/views will be removed from any form referencing them as a child table. Further, all forms that use unexposed tables as a base table will be deleted. 
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ENABLE_QUERY_MANAGER
+</p>
+        <p>Example: ENABLE_QUERY_MANAGER = 1
+<br />Description: Determines if the query manager can be accessed from the application. Query management allows users save and recover queries. 1 indicates query the manager is enabled.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ENABLE_REPORT_GENERATION
+</p>
+        <p>Example: ENABLE_REPORT_GENERATION = 1
+<br />Description: Determines if users can generate reports from their hitlists. 1 indicates reports can be generated and the Reports link is available.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ENABLE_SDFILE_SEARCH
+</p>
+        <p>Example: ENABLE_SDFILE_SEARCH = 1
+<br />Description: Determines if user can search records from the SD files. If set to 1, “Structures From SD File” option displays on the search window to support facility for SD file search.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ENCRYPT_PWD
+</p>
+        <p>Example: ENCRYPT_PWD = FALSE
+<br />Description: When this setting is turned on for the first time, the user names and passwords (listed under the ENCRYPT_PWD_KEYS setting) in this file should be entered in plain text ahead of time. When the application is accessed for the first time the passwords will be encrypted and inserted into this INI file as encrypted text. If a password is changed, change all passwords in this INI file back to plain text and restart the application. The passwords will again be encrypted and stored.
+<br />Default: FALSE
+<br />Options: TRUE | FALSE
+</p>
+        <p style="font-weight: bold;">ENCRYPT_PWD_KEYS
+</p>
+        <p>Example: ENCRYPT_PWD_KEYS = BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD
+<br />Description: A comma delimited list of password settings to be encrypted.
+<br />Default: BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD
+<br />Options: The names of password settings in the cfserver.ini file to be encrypted
+</p>
+        <p style="font-weight: bold;">ENCRYPT_PWD_SECTION
+</p>
+        <p>Example: ENCRYPT_PWD_SECTION = GLOBALS
+<br />Description: This setting identifies the heading name that the password settings are found under in the cfserver.ini file<br />Default: GLOBALS
+<br />Options: The name of a heading in the cfserver.ini file
+</p>
+        <p style="font-weight: bold;">EXCEL_INTEGRATION
+</p>
+        <p>Example: EXCEL_INTEGRATION = 1
+<br />Description: Allows users to include integration with MS Excel as an option in their form if set to 1.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">EXPIRE_HITLIST_HISTORY_DAYS
+</p>
+        <p>Example: EXPIRE_HITLIST_HISTORY_DAYS = 30
+<br />Description: The value of this setting is in days. After the number of days specified, hitlist history entries are removed<br />Default: 30
+<br />Options: An integer indicating a number of days
+</p>
+        <p style="font-weight: bold;">EXPIRE_MARKED_HITS_DAYS
+</p>
+        <p>Example: EXPIRE_MARKED_HITS_DAYS = 365
+<br />Description: The value of this setting is in days. After the number of days specified, the marked hits list is cleared.<br />Default: 365
+<br />Options: An integer indicating a number of days
+</p>
+        <p style="font-weight: bold;">EXPIRE_QUERY_HISTORY_DAYS
+</p>
+        <p>Example: EXPIRE_QUERY_HISTORY_DAYS = 2
+<br />Description: The value of this setting is in days. After the number of days specified, queries in the history are removed.
+<br />Default: 2
+<br />Options: An integer indicating a number of days
+</p>
+        <p style="font-weight: bold;">FORM_MANAGEMENT_SCHEMA
+</p>
+        <p>Example: FORM_MANAGEMENT_SCHEMA = BIOSARDB
+<br />Description: The value of this setting is the name of the BioSAR Enterprise schema. This field should not need to be edited.
+<br />Default: BIOSARDB
+<br />Options: The name of the BioSAR Browser Oracle schema
+</p>
+        <p style="font-weight: bold;">FORMAT_FORMULA
+</p>
+        <p>Example: FORMAT_FORMULA = 1
+<br />Description: Indicates if super- and sub- scripts should be used when displaying a molecular formula. 0 removes formatting.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">FORMGROUP_UNIQUE_IDENTIFIER
+</p>
+        <p>Example: FORMGROUP_UNIQUE_IDENTIFIER = FORMGROUP_ID
+<br />Description: Indicates what field is used as the unique identifier for each formgroup. This is necessary to identify the selected formgroup at given times in the application so this field should have a distinct value for each formgroup.<br />Default: FORMGROUP_ID
+<br />Options: Any valid field in formgroup definitions
+</p>
+        <p style="font-weight: bold;">GET_MW_FORMULA_METHOD
+</p>
+        <p>Example: GET_MW_FORMULA_METHOD = PLSQL
+<br />Description: Indicates how the molecular weight and molecular formula are searched. The options are as follows:
+</p>
+        <ul style="list-style-type: square;">
+            <li>PLSQL: Retrieves molecular weight and formula using the fastindexaccess procedure.
+</li>
+            <li>STANDARD: Uses the Oracle Cartridge functions.
+</li>
+            <li>JOIN: Uses a direct join to the cartridge tables. This option requires a dba grant select on these tables either to public or to individual roles. The tables are in the following format:
+<ul style="list-style-type: square;"><li>Molweight: &lt;SchemaName&gt;_&lt;index_name&gt;_W
+For example - Regdb_mx_W in the Molecular Weight table for the regdb schema where the index table in mx.
+</li><li>Molecular Formula: &lt;SchemaName&gt;_&lt;index_name&gt;_A 
+For example - Regdb_mx_A in the Molecular Formula table for the regdb schema where the index table in mx.
+</li></ul></li>
+        </ul>
+        <p>The PLSQL option requires no additional changes to the database and will improve searching speed (over the STANDARD option with CS Oracle Cartridge version 2.1) by an average of five times.
+<br />Default: PLSQL
+<br />Options: PLSQL | STANDARD | JOIN
+</p>
+        <p style="font-weight: bold;">GLOBAL_SEARCH_DBS
+</p>
+        <p>Example: GLOBAL_SEARCH_DBS = biosar_browser
+<br />Description: An internal setting required for global searching.
+<br />Default: biosar_browser
+<br />Options: The name of an application, or list of applications separated by a comma.</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Application Name</td>
+                    <td style="font-weight: bold;">DB_NAMES value
+</td>
+                </tr>
+                <tr>
+                    <td>Sample </td>
+                    <td>sample 
+</td>
+                </tr>
+                <tr>
+                    <td>Registration Enterprise </td>
+                    <td>chem_reg 
+</td>
+                </tr>
+                <tr>
+                    <td>Inventory Enterprise</td>
+                    <td>cheminv 
+</td>
+                </tr>
+                <tr>
+                    <td>Mixture Registration 
+</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>BioSAR Enterprise 
+</td>
+                    <td>biosar_browser 
+</td>
+                </tr>
+                <tr>
+                    <td>ChemACX </td>
+                    <td>chemacx 
+</td>
+                </tr>
+                <tr>
+                    <td>Documentation Manager </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">GLOBAL_SEARCH_BASE_DB
+</p>
+        <p>Example: GLOBAL_SEARCH_BASE_DB = biosar_browser
+<br />Description: An internal setting required for global searching.
+<br />Default: biosar_browser
+<br />Options: The name of an application.
+</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">Application Name</td>
+                    <td style="font-weight: bold;">DB_NAMES value
+</td>
+                </tr>
+                <tr>
+                    <td>Sample </td>
+                    <td>sample 
+</td>
+                </tr>
+                <tr>
+                    <td>Registration Enterprise </td>
+                    <td>chem_reg 
+</td>
+                </tr>
+                <tr>
+                    <td>Inventory Enterprise</td>
+                    <td>cheminv 
+</td>
+                </tr>
+                <tr>
+                    <td>Mixture Registration 
+</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>BioSAR Enterprise 
+</td>
+                    <td>biosar_browser 
+</td>
+                </tr>
+                <tr>
+                    <td>ChemACX </td>
+                    <td>chemacx 
+</td>
+                </tr>
+                <tr>
+                    <td>Documentation Manager </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">HIGHLIGHT_BACKGROUND
+</p>
+        <p>Example: HIGHLIGHT_BACKGROUND="border= ""1"" bordercolor= ""#cc0033"""
+<br />Description: Color used to make the highlighted border for required fields. Only matters if HIGHLIGHT_REQUIRED_FIELDS = 1.
+<br />Default: "border=""1"" bordercolor = ""#cc0033"""
+<br />Options: Border size and color (in hex format)
+</p>
+        <p style="font-weight: bold;">HIGHLIGHT_REQUIRED_FIELDS
+</p>
+        <p>Example: HIGHLIGHT_REQUIRED_FIELDS = 1
+<br />Description: 1 indicates required fields (listed in another location in the cfserver.ini) should appear with a border around them in edit mode. 0 indicates no border.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">INLINE_STRUC_HIT_TO_PAGE_RATIO
+</p>
+        <p>Example: 
+INLINE_STRUC_HIT_TO_PAGE_RATIO = 20
+<br />Description: Indicates when the base64 structures should be displayed in-line on a search results list view page. The ratio calculated is (# of hits displayed per page / total # of hits). If the ratio is greater than the percent indicated in this setting, the records are displayed by making a call to the database for each base64 display. Otherwise, the records are displayed in-line. </p>
+        <p>Note: This setting is only available to browsers using Active X version 8.x
+</p>
+        <p>Default: 20
+<br />Options: a positive integer between 1 and 100
+</p>
+        <p style="font-weight: bold;">MAIN_WINDOW
+</p>
+        <p>Example: MAIN_WINDOW = top.frames["main"]
+<br />Description: The frame name for the central frame used internally by javascript. Editing this value may cause unpredictable behavior.
+<br />Default: top.frames["main"]
+<br />Options: Should not be edited
+</p>
+        <p style="font-weight: bold;">MW_ROUND_DIGIT
+</p>
+        <p>Example: MW_ROUND_DIGIT = 5 
+<br />Description: This is to set the rounding of the Molecular Weight. If set to 2 (or other numbers), the MW will be rounded to two digits like 123.45.
+<br />Default: 5
+<br />Options: Any Integer
+</p>
+        <p style="font-weight: bold;">NAV_BAR_WINDOW
+</p>
+        <p>Example: NAV_BAR_WINDOW = top.frames["navbar"]
+<br />Description: The frame name for the top most frame used internally by javascript. Editing this value may cause unpredictable behavior.
+<br />Default: top.frames["navbar"]
+<br />Options: Should not be edited
+</p>
+        <p style="font-weight: bold;">NAV_BUTTONS_GIF_PATH
+</p>
+        <p>Example: NAV_BUTTONS_GIF_PATH = /biosar_browser/graphics/
+<br />Description: Default graphics path
+<br />Default: /biosar_browser/graphics/
+<br />Options: Absolute or relative path to a directory containing images.
+</p>
+        <p style="font-weight: bold;">OPTIMIZE_RESULT_DISPLAY_AREA
+</p>
+        <p>Example: OPTIMIZE_RESULT_DISPLAY_AREA = 0
+<br />Description: This controls the appearance of the result display. Setting this to 1 will change the display so the logo and form name area are removed and some additional space optimizations are performed.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">ORA_SERVICENAME
+</p>
+        <p>Example: ORA_SERVICENAME = SERVER1
+<br />Description: The oracle net 8 service name where the regdb schema resides.
+<br />Default: YOUR ORACLE SERVICE NAME
+<br />Options: The name of the Oracle service
+</p>
+        <p style="font-weight: bold;">ORA_SQLLDRPATH
+</p>
+        <p>Example: ORA_SQLLDRPATH = sqlldr.exe
+<br />Description: The path to the oracle sqlldr executable. This may need to be set to a full path name.
+<br />Default: sqlldr.exe
+<br />Options: Relative or absolute path to the sqlldr executable
+</p>
+        <p style="font-weight: bold;">PreventReportAboveMax
+</p>
+        <p>Example: PreventReportAboveMax = True
+<br />Description: When set to False, it is assumed that the display message (PreventReportAboveMaxMessage) is a warning thereby allowing the report to be run. If set to true it does not allow a full hitlist to be generated in a report - only the hitlist up to the ReportMaxHits will appear in the report.
+<br />Default: True
+<br />Options: True | False
+</p>
+        <p style="font-weight: bold;">PreventReportAboveMaxMessage
+</p>
+        <p>Example: PreventReportAboveMaxMessage = "Your hitlist exceeds the report maximum of #REPORT_MAX_HITS#. Only the first #REPORT_MAX_HITS# will be in the generated report."
+<br />Description: Message text displayed when PreventReportAboveMax = True.
+<br />Default: ="Your hitlist exceeds the report maximum of #REPORT_MAX_HITS#. Only the first #REPORT_MAX_HITS# will be in the generated report."
+<br />Options: Any text that you would like used as the message
+</p>
+        <p style="font-weight: bold;">PRIV_TABLE_NAME
+</p>
+        <p>Example: PRIV_TABLE_NAME = Biosar_Browser_Privileges
+<br />Description: The table name in the cs_security schema that stores the flags for the privileges that toggle buttons in the user interface.
+<br />Default: Biosar_Browser_Privileges
+<br />Options: Table name
+</p>
+        <p style="font-weight: bold;">ReportAboveMaxWarningMessage
+</p>
+        <p>Example: ReportAboveMaxWarningMessage = "This report will require a long time to generated. It is suggested that you run this at a time when the server activity is low."
+<br />Description: Message text displayed when PreventReportAboveMax = False and the number of hits to be reported is high.
+<br />Default: "This report will require a long time to generated. It is suggested that you run this at a time when the server activity is low."
+<br />Options: Any text that you would like used as the message
+</p>
+        <p style="font-weight: bold;">ReportMaxHits
+</p>
+        <p>Example: ReportMaxHits = 500
+<br />Description: Displays a message when a hitlist count is greater then the number specified.
+<br />Default: 500
+<br />Options: Any Integer
+</p>
+        <p style="font-weight: bold;">REPORTS_MDB_PATH
+</p>
+        <p>Example: REPORTS_MDB_PATH = "c:\chemoffice_data\biosar_browser\"
+<br />Description: This setting allows the default location of the reports mdb files, it also supports facility for optional configuration option to allow overriding of the path to the reports mdb files.
+<br />Default: "c:\chemoffice_data\biosar_browser\"
+<br />Options: Any location or path of mdb folder
+</p>
+        <p style="font-weight: bold;">SEC_PWD
+</p>
+        <p>Example: SEC_PWD = ORACLE
+<br />Description: The CS_Security schema password.
+<br />Default: ORACLE
+<br />Options: A password for the CS_Security schema.
+</p>
+        <p style="font-weight: bold;">SEC_USERNAME
+</p>
+        <p>Example: SEC_USERNAME = CS_SECURITY
+<br />Description: The CS_Security schema owner.
+<br />Default: CS_SECURITY
+<br />Options: A username for the CS_Security schema
+</p>
+        <p style="font-weight: bold;">SHOW_ONLY_CHILD_DATA_AS_DEFAULT
+</p>
+        <p>Example: SHOW_ONLY_CHILD_DATA_AS_DEFAULT = 0
+<br />Description: Determines the default state of the Show Child Data radiobutton on all search forms. If set to 1, the Show Only Child Date Matching Entered Criteria option is selected by default.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">SHOW_SUBTABLE_BORDERS
+</p>
+        <p>Example: SHOW_SUBTABLE_BORDERS = 0
+<br />Description: When set to the default(0), fields in sub tables of list and detail view have no table border. If set to true, uses a border="1".
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">SHOW_SUBTABLE_HEADERS_ONCE
+</p>
+        <p>Example: SHOW_SUBTABLE_HEADERS_ONCE = 1
+<br />Description: If set to 1, headers for sub tables in list view are only shown once, at the top of the page.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML
+</p>
+        <p>Example: STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML = 1
+<br />Description: While integrating a form with BioViz, if a user chooses to export data to BioViz, the BioSAR Enterprise application exports a .bsbxml file. If STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML is set to 1, there is an encrypted password in the .bsbxml file for the user. If set to 0, the password field is left blank and the user needs to enter password while opening the .bsbxml file in ChemFinder.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR
+</p>
+        <p>Example: TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR = 7
+<br />Description: The field, TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR determines the number of horizontal points required to display each character in a table cell. This field is also called conversion factor and is dependent on the font type and size. The default font and size for a table cell is Lucida Console, 9pt. For the Lucida Console font the conversion factor has been determined to be 7.
+<br />Default: 7
+<br />Options: The value of this field can be changed based upon your requirements.
+</p>
+        <p><i><b>Note:</b> This parameter will need to be changed only if the font type or size for the classes, TD.parent_table_cell_value and TD.child_table_cell_value is changed via the cascading style sheet, biosar_ie.css file located at biosar_browser/source/.
+</i>
+        </p>
+        <p style="font-weight: bold;">TEMP_DIR_NAME
+</p>
+        <p>Example: TEMP_DIR_NAME = CFWTEMP
+<br />Description: The name of the virtual directory which stores temporary files. Editing this value may cause unpredictable behavior
+<br />Default: CFWTEMP
+<br />Options: This can be changed to whatever you would like the name of the temp directory to be. The path to the directory is found in TEMP_DIR_PATH.
+</p>
+        <p style="font-weight: bold;">TEMP_DIR_PATH
+</p>
+        <p>Example: TEMP_DIR_PATH = C:\Inetpub\wwwroot\ChemOffice\cfwtemp
+<br />Description: The path to the directory where temporary files are stored. If the installation is not made to the C drive, this must be edited.
+<br />Default: C:\Inetpub\wwwroot\ChemOffice\cfwtemp
+<br />Options: This can be changed to wherever you would like the temp directory to exist. The name of the directory is found in TEMP_DIR_NAME.
+ 
+</p>
+        <p style="font-weight: bold;">TOO_MANY_HITS_MAXIMUM_RETRIEVABLE
+</p>
+        <p>Example: TOO_MANY_HITS_MAXIMUM_RETRIEVABLE = 2000
+<br />Description: Indicates the maximum number of records to be displayed in list view. If this number is exceeded, the user is given a warning saying the maximum number of hits has been exceeded. If this happens, all hits can be exported and the full list is used in hit list handling functions.
+<br />Default: 2000
+<br />Options: A positive number.
+</p>
+        <p style="font-weight: bold;">UNCORRELATED_SDF_FLATENING
+</p>
+        <p>Example: UNCORRELATED_SDF_FLATENING = 1
+<br />Description: If set to 1, it determines the relationship of the uncorrelated flattening of child record in sdf export. This will result in a lower number of records in the resulting flattened sdf because each record will contain data from only one child table. If set to 0 then you will get all child tables to appear in each record and resulting in a full cartesian product.
+<br />Default: 1
+<br />Options: 1 | 0
+</p>
+        <p style="font-weight: bold;">USE_ANIMATED_GIF
+</p>
+        <p>Example: USE_ANIMATED_GIF = 1
+<br />Description: Indicates a GIF should be used for the progress icon.
+<br />Default: 1
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">USER_INFO_WINDOW
+</p>
+        <p>Example: USER_INFO_WINDOW = top.frames["userinfo"]
+<br />Description: The frame name for the left most frame used internally by javascript. Editing this value may cause unpredictable behavior.
+<br />Default: top.frames["userinfo"]
+<br />Options: Should not be edited
+</p>
+        <p style="font-weight: bold;">USERWINDOWBACKGROUND
+</p>
+        <p>Example: USERWINDOWBACKGROUND = "#FFFFFF"
+<br />Description: Determines the background gif to be used in the left most frame of the window.
+<br />Default: "#FFFFFF"
+<br />Options: A hexadecimal number representing a color or path to a GIF
+</p>
+        <p style="font-weight: bold;">USE_LEADING_HINT
+</p>
+        <p>Example: USE_LEADING_HINT = 1
+<br />Description: Supports to account the display behavior which usually causes by slow searches and missing indexes.<br />Default: N/A
+<br />Options: 0 | 1
+</p>
+        <p style="font-weight: bold;">TRUNCATE_CELL_DATA
+</p>
+        <p>Example: TRUNCATE_CELL_DATA = 0
+<br />Description: Internal setting for truncating cell data to a specific number of digits.
+<br />Default: 0
+<br />Options: 0 | 1
+</p>
+    </body>
+</html>

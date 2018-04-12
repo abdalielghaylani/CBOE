@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="7" MadCap:lastHeight="1278" MadCap:lastWidth="411">
+    <head>
+        <script language="JavaScript">/*<![CDATA[*/
+
+<!--Hide JavaScript
+ if (navigator.appName == "Netscape"){
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+ }
+ else{
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+ }
+//-->
+
+/*]]>*/</script><title>Changing The User Interface</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>Changing The User Interface</h1>
+        <p style="COLOR: firebrick;"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&#160; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em>
+        </p>
+        <h2>Changing Buttons/Graphics</h2>
+        <p>&#160;&#160;&#160; To change the buttons/graphics for 
+ a single web application: 
+  </p>
+        <ol>
+            <li>Open the cfserver.ini file for the application and 
+ change the path specified for the graphics to a location within your web 
+ application.&#160; For example <strong>/sample/graphics/navbuttons</strong>. 
+ NAV_BUTTONS_GIF_PATH=/cfserverasp/source/graphics/navbuttons/
+  
+    </li>
+            <li>Save the cfserver.ini file. 
+    </li>
+            <li>Copy the folder 
+    <strong>/cfserverasp/source/graphics/navbuttons</strong>  too 
+ the directory entered in step 1. 
+    </li>
+            <li>Change the files that you want, but keep the names the same. You now have your own
+ custom set of graphics that will affect the web application whose cfserver.ini file you
+ edited.</li>
+        </ol>
+        <h2>Removing Frames</h2>
+        <p>If you remove frames you will lose some of the advanced functionality of 
+ the ChemOffice WebServer, but it will still function.&#160; For instance, you 
+ will not be able to use mark hits and save query functionality and the browse 
+ buttons for a recordset will need to appear at the bottom of the main page so 
+ they will be updated properly. </p>
+        <ol>
+            <li>Remove frames in the default.asp file for the web 
+ application. 
+    </li>
+            <li>Use the function calls in the navbar.asp file 
+ to&#160;retrieve the buttons you want to put in the main page. If you only 
+ want a single button rather then a group use the syntax 
+    <strong>GetButton('search')</strong>         
+                      
+              to 
+ display the search button, etc. 
+    </li>
+            <li>Change the settings in the cfserver.ini file.&#160; 
+ Be aware that by changing to no frames you will lose the user_info 
+ functionality which includes mark hits and save/restore query.<span></span><dl><span><dd>MAIN_WINDOW=no_frames 
+        <dd>NAV_BAR_WINDOW=no_frames</dd></dd></span><span><dd>USER_INFO_WINDOW=no_frames 
+        </dd></span></dl></li>
+        </ol>
+        <h2> Changing the Frameset Definition</h2>
+        <p>Within the default.asp file you can change the frame definition for a web 
+ application. The only thing to be cautious about is maintaining the names 
+ "navbar", "user_info" and main.&#160; These are what the web server is looking 
+ for to perform many of it's basic and advanced functions in a frame 
+ environment. </p>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+    </body>
+</html>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="4460" MadCap:lastWidth="1150" MadCap:conditions="Default.ELN2014-COE Integration">
+    <head>
+    </head>
+    <body>
+        <h1>Creating Container - NSM</h1>
+        <p>The <b>Create Container</b> method gathers the information on the Inventory form and attempts to create a container into the Inventory system. Upon successful container creation, a Barcode Number and Compound ID are returned to the Container Properties list of the Inventory Form. 
+
+</p>
+        <p style="font-weight: bold;">To create a new container:</p>
+        <ol>
+            <li value="1">From the <b>Home</b> ribbon, select <b>Open Inventory Form</b> option from the <b>Send to Inventory</b>form tool. The Select Compound for Net Container dialog appears where you select a product molecule for container creation.</li>
+            <li>Select the desired structure and click <b>OK</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/select cmp for new container.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>The <b>Open Inventory Form</b> appears and displays the data associated with the selected product in the <b>Reaction W COE Integration</b> section.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Open Inventory form.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="4">Fill in the mandatory fields.</li>
+            <li value="5">Select <b>Create Container</b> option from the <b>Inventory</b> form tool.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/create CNT.gif" />
+        </p>
+        <p>A <b>Barcode</b> and a <b>Compound ID</b> are automatically created, confirming the container has been pushed from E-Notebook to Inventory, and that the container is accessible in the Inventory system. </p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/CNT properties populated.gif" />
+        </p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/CNT created.gif" />
+        </p>
+        <p><b>Note</b>: If the substance associated with the container (you are creating) already exists in the Inventory system, you must resolve the substance conflicts. See the example below.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/conflicts.gif" />
+        </p>
+        <p>You can select one of the following options:</p>
+        <ul style="list-style-type: square;">
+            <li>Select the existing substance</li>
+            <li>Create duplicate from the conflicting substance</li>
+        </ul>
+        <h4>To select an existing substance:</h4>
+        <ol>
+            <li>Click  <b>Select</b> from the <b>Existing Substance 1</b> section in the Resolve Substance screen.</li>
+            <li>The following dialog appears displaying the selected compound ID. Click <b>Submit</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/selected CMP ID.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>The container with the existing Compound ID, but with a different Barcode Number, is created and returned to the Container Properties list in the Inventory Form.</li>
+        </ol>
+        <h4>To create duplicate from existing substance:</h4>
+        <ol>
+            <li>Click <b>Create Duplicate</b> from the <b>Conflicting Substance</b> section in the Resolve Substance screen.</li>
+        </ol>
+        <p>A duplicate substance is created.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/duplicate substance created.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Click  <b>Select</b>. The following dialog displays. </li>
+            <li>Click  <b>Submit</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/selected CMP ID2.gif" />
+        </p>
+        <p>Once the container is pushed from E-Notebook to Inventory, the container becomes accessible in the Inventory system.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/duplicate is available.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Open Inventory Form.htm">Open Inventory Form</a>
+            <br /><a href="Sending Inventory Data - Non Sample Management (NSM).htm">Sending Inventory Data - Non Sample Management</a>
+        </p>
+    </body>
+</html>

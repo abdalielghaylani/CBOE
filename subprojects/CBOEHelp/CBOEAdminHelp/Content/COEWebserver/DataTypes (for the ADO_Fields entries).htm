@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>DataTypes (for the ADO_Fields entries)</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>DataTypes (for the ADO_Fields&#160;entries)</h1><a name="datatypes"></a>
+        <h3>  &#160;</h3>
+        <table border="1" width="620" style="COLOR: black;">
+            <tbody style="COLOR: black;" vAlign="top">
+                <tr style="COLOR: khaki;BACKGROUND-COLOR: darkblue;">
+                    <td width="10%"><strong>Value</strong>
+                    </td>
+                    <td width="30%"><strong>DataType</strong>
+                    </td>
+                    <td width="60%"><strong>Example</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a name="0"></a>0</td>
+                    <td>text - Text field,&#160;formatted for SQL as a LIKE clause.&#160; 
+ This&#160;is the default for text fields.</td>
+                    <td>User enters benzene,*benz, benz* <br />         
+       SQL is formatted as chemical_name LIKE "benzene"</td>
+                </tr>
+                <tr>
+                    <td><a name="1"></a>1</td>
+                    <td>integer</td>
+                    <td>User enters 1, 1-10, &gt; 1. <br />SQL is formatted 
+ as: <br />REG_NUMBERS.Sequence_Number = 1 or REG_NUMBERS.Sequence_Number 
+ BETWEEN 10 AND 20, etc.</td>
+                </tr>
+                <tr>
+                    <td><a name="2"></a>2</td>
+                    <td>float</td>
+                    <td>Floats are always formmatted as if it were a 
+ range. Batches.SALT_MW BETWEEN 123.1500001 AND 123.2499999</td>
+                </tr>
+                <tr>
+                    <td><a name="3"></a>3</td>
+                    <td>text - Text field&#160;is formatted for SQL with "=" this has to be 
+ set manually as 0 is the default</td>
+                    <td>User enters benzene,*benz, benz* <br />    SQL is formatted as:&#160;chemical_name= 
+ "benzene"</td>
+                </tr>
+                <tr>
+                    <td><a name="4"></a>4</td>
+                    <td>comma delimited numerical list - forces an IN clause&#160;&#160;</td>
+                    <td>User enters 1,2,3,4&#160;<br />SQL is formatted as 
+ reg_numbers.reg_number IN('AB-00001','AB-000002')</td>
+                </tr>
+                <tr>
+                    <td><a name="5"></a>5</td>
+                    <td>comma delimited textual list - forces an IN clause&#160;&#160;</td>
+                    <td>User enters AB-00001,AB-00002 <br />    SQL is formatted as reg_numbers.reg_number 
+ IN(1,2,3,4)</td>
+                </tr>
+                <tr>
+                    <td><a name="6"></a>6</td>
+                    <td>boolean</td>
+                    <td>choices are 0 or 1</td>
+                </tr>
+                <tr>
+                    <td><a name="7"></a>7</td>
+                    <td>memo - forces text to be interperted as a LIKE</td>
+                    <td>
+                        <p>User enters benzene<br />SQL is formatted as&#160;chemical_name LIKE 
+ '%benzene%"&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a name="8"></a>8</td>
+                    <td>date - type mm/dd/yyyy&#160; </td>
+                    <td>User enters 10/20/2002&#160;<br />SQL is formatted 
+ as: <br />ORACLE 
+ Reg_Numbers.Registry_Date=TO_DATE('10/20/2000','MM,DD,YYYY') ACCESS, 
+ SQLSERVER: Reg_Numbers.Registry_Date=#10/20/2000#</td>
+                </tr>
+                <tr>
+                    <td><a name="9"></a>9</td>
+                    <td>date - type dd/mm/yyy </td>
+                    <td>User enters 20/10/2002&#160;<br />SQL is formatted 
+ as: <br />ORACLE 
+ Reg_Numbers.Registry_Date=TO_DATE('20/10/2000','DD,MM,YYYY') ACCESS, 
+ SQLSERVER: Reg_Numbers.Registry_Date=#20/10/2000#</td>
+                </tr>
+                <tr>
+                    <td><a name="13"></a>13</td>
+                    <td>Number(Real) - removes padding from a number. </td>
+                    <td>User enters " 1 ", it will be translated as "1". 
+ This is trimmed prior to formatting as type <a href="#1">1</a>           
+              .</td>
+                </tr>
+                <tr>
+                    <td><a name="20"></a>20</td>
+                    <td>Number(Real) - does NOT remove padding</td>
+                    <td>User enters " benzene", it will be translated as 
+ " benzene" (the space remains).</td>
+                </tr>
+                <tr>
+                    <td><a name="23"></a>23</td>
+                    <td>text - user input is exactly as is</td>
+                    <td>Unlike <a href="#3">3</a> , the user input is interperted as 
+ is.</td>
+                </tr>
+                <tr>
+                    <td><a name="25"></a>25</td>
+                    <td>FullText - ACCESS uses MS Index Server, Oracle uses Intermedia</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td><a name="26"></a>26</td>
+                    <td>comma delimited textual list - forces an IN clause&#160;&#160;</td>
+                    <td>Equivalent to <a href="#5">5</a>  .</td>
+                </tr>
+                <tr>
+                    <td><a name="33"></a>33</td>
+                    <td>number range</td>
+                    <td>          
+               A&#160;special range search option used in 
+ the Merck Index.</td>
+                </tr>
+                <tr>
+                    <td><a name="35"></a>35</td>
+                    <td>converts boolean to NULL</td>
+                    <td>User enry of 1 and 0&#160;is interperted as IS 
+ NOT NULL and IS NULL, respectiviely.</td>
+                </tr>
+                <tr>
+                    <td><a name="36"></a>36</td>
+                    <td>text - allows sql to be appended onto a sql 
+ string with an "AND "</td>
+                    <td>Mostly useful for subselects in a hidden field. 
+ the Hidden field named "alt_ids.identifier_type" might have the text as 
+ follows:
+      <br /><em>"alt_ids.identifier_type IN(select 
+ identifier_type form identifers where 
+ identifier_descriptor='chemical_name')" this would be added to the running 
+ sql clause as sql = sql &amp; " AND " &amp; alt_ids.identifier_type IN(select identifier_type form identifers 
+ where identifier_descriptor= 
+ 'chemical_name') Append_to_string = True</em></td>
+                </tr>
+                <tr>
+                    <td><a name="38"></a>38</td>
+                    <td>text - normalizes a name</td>
+                    <td>Used&#160;by chemindex. Formatted as type <a href="#0">0</a>      
+          after the Input is passed through multiple 
+ functions.&#160; The search must be done against an appropriate 
+ field in the database which contains the normalized data.</td>
+                </tr>
+                <tr>
+                    <td><a name="39"></a>39</td>
+                    <td>text</td>
+                    <td>Same result as <a href="#38">38</a> but formatted 
+ like type <a href="#3">3</a>      
+        .</td>
+                </tr>
+                <tr>
+                    <td><a name="40"></a>40</td>
+                    <td>Full Text - full text search without using MS 
+ Index Server or Oracle Intermedia</td>
+                    <td>Formatted as type <a href="#0">0</a> after the 
+ Input is passed multiple functions.&#160;Performs a&#160; full_text search 
+ without using MS Index Server or Oracle Intermedia:<br />strFieldDelimiter = 
+ 
+ 
+ "'" RangeSearch = True strDataType = 0
+     </td>
+                </tr>
+                <tr>
+                    <td><a name="41"></a>41</td>
+                    <td>Full Text - full text search without using MS 
+ Index Server or Oracle Intermedia</td>
+                    <td>Formatted as type <a href="#7">7</a>        
+           after the Input is passed. 
+ through&#160;multiple&#160;functions.&#160;Performs a full_text search without using MS Index Server or Oracle 
+ Intermedia.</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="17040" -->
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

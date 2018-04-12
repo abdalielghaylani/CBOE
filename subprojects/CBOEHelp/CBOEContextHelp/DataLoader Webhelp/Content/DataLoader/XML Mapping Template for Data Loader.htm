@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Data Loader">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XML Mapping Template for Data Loader</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>XML Mapping Template for Data Loader</h1>
+        <p style="font-weight: bold;">XML MAPPING TEMPLATE FOR IDENTIFIERS</p>
+        <table style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;margin-left: 0;margin-right: auto;">
+            <col style="width: 437px;" />
+            <col style="width: 373px;" />
+            <tbody>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">&lt;mapping&gt;<br />&lt;enabled&gt;True&lt;/enabled&gt;<br />&lt;ObjectBindingPath&gt;<span style="background-color: #ffff00;">BINDING_PATH</span>&lt;/ObjectBindingPath&gt;<br />&lt;memberInformation memberType="method"&gt;<br />&lt;type&gt;instance&lt;/type&gt;<br />&lt;name&gt;AddIdentifier&lt;/name&gt;<br />&lt;description&gt;new identifier&lt;/description&gt;<br />&lt;args&gt;<br />&lt;arg index="0" input="constant" type="string"&gt;<br />&lt;value&gt;<span style="background-color: #7fff00;">IDENTIFIER_NAME</span>&lt;/value&gt;&lt;/arg&gt;<br />&lt;arg index="1" input="derived" type="string"&gt;<br />&lt;value&gt;<span style="background-color: #00bfff;">SD_FIELD</span>&lt;/value&gt;&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;<br /></td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">
+                        <p><span style="background-color: #ffff00;">BINDING_PATH</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">For REGISTRY property : this</li>
+                            <li value="2">For COMPONENT Property : this.ComponentList[0].Compound</li>
+                            <li value="3">For BATCH Property : this.BatchList[0]</li>
+                            <li value="4">For BASE_FRAGMENT Property : this.ComponentList[0].Compound.BaseFragment.Structure</li>
+                        </ul>
+                        <p><span style="background-color: #7fff00;">IDENTIFIER_NAME</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">The Name of the Identifier in the Registration Configuration</li>
+                        </ul>
+                        <p><span style="background-color: #00bfff;">SD_FIELD</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">The Name of the Field in the input file</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">XML MAPPING TEMPLATE FOR PROPERTIES</p>
+        <table style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;margin-left: 0;margin-right: auto;">
+            <col style="width: 437px;" />
+            <col style="width: 373px;" />
+            <tbody>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">&lt;mapping&gt;<br />&lt;enabled&gt;True&lt;/enabled&gt;<br />&lt;ObjectBindingPath&gt;<span style="background-color: #ffff00;">BINDING_PATH.<span style="background-color: #ffffff;">PropertyList['<span style="background-color: #dda0dd;">PROPERTY_NAME</span>'].Value</span></span>&lt;/ObjectBindingPath&gt;<br />&lt;memberInformation memberType="property"&gt;<br />&lt;type&gt;instance&lt;/type&gt;<br />&lt;description&gt;custom property&lt;/description&gt;<br />&lt;args&gt;<br />&lt;arg index="0" input="derived" type="string"&gt;<br />&lt;value&gt;<span style="background-color: #00bfff;">SD_FIELD</span>&lt;/value&gt;&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;<br /></td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">
+                        <p><span style="background-color: #ffff00;">BINDING_PATH</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">For REGISTRY property : this</li>
+                            <li value="2">For COMPONENT Property : this.ComponentList[0].Compound</li>
+                            <li value="3">For BATCH Property : this.BatchList[0]</li>
+                            <li value="4">For BASE_FRAGMENT Property : this.ComponentList[0].Compound.BaseFragment.Structure</li>
+                        </ul>
+                        <p><span style="background-color: #dda0dd;">PROPERTY_NAME</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">The Name of the Property in the Registration Configuration</li>
+                        </ul>
+                        <p><span style="background-color: #00bfff;">SD_FIELD</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">The Name of the Field in the input file</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b>XML MAPPING TEMPLATE FOR PROJECT</b>
+        </p>
+        <table style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;margin-left: 0;margin-right: auto;">
+            <col style="width: 437px;" />
+            <col style="width: 373px;" />
+            <tbody>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">&lt;mapping&gt;<br />&lt;enabled&gt;True&lt;/enabled&gt;<br />&lt;ObjectBindingPath&gt;<span style="background-color: #ffff00;">BINDING_PATH.</span>&lt;/ObjectBindingPath&gt;<br />&lt;memberInformation memberType="method"&gt;<br />&lt;type&gt;instance&lt;/type&gt;<br />&lt;name&gt;AddProject&lt;/name&gt;<br />&lt;description&gt;new project&lt;/description&gt;<br />&lt;args&gt;<br />&lt;arg index="0" input="derived" type="string"&gt;<br />&lt;value&gt;<span style="background-color: #00bfff;">SD_FIELD</span>&lt;/value&gt;&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;<br /></td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">
+                        <p><span style="background-color: #ffff00;">BINDING_PATH</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">For Project at the BATCH level : this.BatchList[0]</li>
+                        </ul>
+                        <p style="color: #00bfff;"><span style="color: #000000; background-color: #00bfff;">SD_FIELD</span>
+                        </p>
+                        <ul style="list-style-type: square;">
+                            <li value="1">The Name of the Field in the input file</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Data Loader Introduction.htm">Data Loader</a> <![CDATA[
+]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

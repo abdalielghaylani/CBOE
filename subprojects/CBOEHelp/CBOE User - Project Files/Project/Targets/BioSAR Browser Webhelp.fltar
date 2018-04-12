@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="BioSAR Browser User Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/BioSARBrowser Skin.flskn"
+  MasterToc="/Project/TOCs/BioSAR Browser TOC.fltoc"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  ConditionTagExpression="include[Default.BioSAR] exclude[&quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or Default.Inventory or Default.Registration] "
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  DefaultUrl="/Content/BioSARBrowser/BioSARBrowser Introduction.htm"
+  InsertMOTW="true"></CatapultTarget>

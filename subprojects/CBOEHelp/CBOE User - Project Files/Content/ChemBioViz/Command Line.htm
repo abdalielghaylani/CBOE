@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1908" MadCap:lastWidth="1011" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Command Line</h1>
+        <p>You can run ChemBioViz from the DOS command line so that other applications can launch ChemBioViz and pass information to it as it starts up.
+</p>
+        <p>The command line options are listed below. To view this list at any time, open a DOS window and type:<br /><span style="color: #6495ed;font-style: italic;"><span style="color: #0000ff;">ChemBioViz.net.exe /?</span></span><span style="color: #0000ff;">  <![CDATA[ ]]></span></p>
+        <p>The command line format for launching ChemBioViz is:
+<br /><i style="color: #0000ff;">chembioviz.net.exe [&lt;form&gt;] [/option=value ...] </i><br />where <i style="color: #0000ff;">&lt;form&gt;</i> can be one of these values:
+</p>
+        <ul style="list-style-type: square;">
+            <li>The pathname to an XML file
+</li>
+            <li>The name of a public or user form (If the name contains spaces, enclose in double quotes).
+</li>
+            <li>Blank (if no form is to be opened on startup.)
+</li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p><i style="color: #0000ff;">/login=name,password</i>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>Description:<br />Automatically log into ChemBioViz upon startup, bypassing the login dialog box. You pass the name/password from another ChemBioOffice Enterprise application. The /server option is required when using /login.
+<br /></li>
+            <li>Examples:<br /><i style="color: #0000ff;">chembioviz.net.exe C:\myform.xml /login=me,mypass /server=abc.camsoft.com /query=Q2 
+</i><br style="font-style: italic;color: #0000ff;" /><i style="color: #0000ff;">chembioviz.net.exe /server=2-tier/myoracleservice /login=me,mypass </i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p><i style="color: #0000ff;">/auth=auth_ticket
+</i>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>Description
+Automatically log into ChemBioViz upon startup, bypassing the login dialog box by using an authentication ticket. You pass an encryption authentication ticket from another ChemBioOffice Enterprise application. The /server option is required when using<i style="color: #0000ff;"> /login</i>.
+</li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/server=name 
+</p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />server address. This option is ignored if there is no <i><span style="color: #0000ff;">/login</span> <![CDATA[ ]]></i>or <i style="color: #0000ff;">/auth</i> for 2-tier use <i style="color: #0000ff;">server=2-Tier[/oraservice]</i><br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe "CS Demo Props" /login=me,mypass /server=abc.camsoft.com </i><br style="font-style: italic;color: #0000ff;" /><i style="color: #0000ff;">chembioviz.net.exe /server=2-tier/myoracleservice /login=me,mypass </i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p><i style="color: #0000ff;">/search=fieldname:query 
+</i>
+            <br />
+        </p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />perform text or numeric search on open
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe CS_Demo /public /search=molweight:&gt;200</i> <![CDATA[ ]]></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/query=queryname </p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />Run named query on open
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe C:\myform.xml /login=xxx /server=xxx /query=Formula:C7-8</i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/public 
+</p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />named form is in Public collection
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe CS_Demo /public /search=molweight:&gt;200 </i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/user or /private </p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />named form is in User collection
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe CS_Demo /public /search=molweight:&gt;200 </i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/nopanel 
+</p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />hide explorer panel on startup
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe /nopanel </i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/print 
+</p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />Print a hitlist. You must specify the login options and the hitlist query.
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">chembioviz.net.exe C:\myform.xml /print /login=name,pwd /server=mothball /query=mol_id:1-100</i></li>
+        </ul>
+        <p><b>Option
+</b>
+        </p>
+        <p style="font-style: italic;color: #0000ff;">/help or /? </p>
+        <ul style="list-style-type: square;">
+            <li>Description
+<br />display the command line options listed in this guide
+<br /></li>
+            <li>Example
+<br /><i style="color: #0000ff;">/help or /? </i></li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Keyboard Shortcuts.htm">Keyboard Shortcuts</a>
+        </p>
+    </body>
+</html>

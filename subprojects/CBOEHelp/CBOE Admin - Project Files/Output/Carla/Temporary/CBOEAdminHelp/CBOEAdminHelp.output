@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTargetOutput
+  GeneratedTarget="/Output/Carla/CBOEAdminHelp/ChemBioOffice Enterprise Administrator Guide.htm"
+  BuildVersion="9.1.2.0"
+  AliasFile="/Output/Carla/CBOEAdminHelp/Data/Alias.xml">
+  <Files />
+  <Skins>
+    <Url
+      Source="Output/Carla/CBOEAdminHelp/Data/SkinDataLoader Skin/Skin.xml" />
+    <Url
+      Source="Output/Carla/CBOEAdminHelp/Data/SkinDataview Manager Skin/Skin.xml" />
+    <Url
+      Source="Output/Carla/CBOEAdminHelp/Data/SkinDefault/Skin.xml" />
+  </Skins>
+</CatapultTargetOutput>

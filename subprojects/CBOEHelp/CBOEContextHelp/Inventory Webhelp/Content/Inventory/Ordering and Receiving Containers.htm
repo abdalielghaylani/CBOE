@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Inventory|Container Management">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Ordering and Receiving Containers</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Ordering and Receiving Containers</h1>
+        <p>The Ordering and Receiving feature lets you place an order for a container through ChemACX and get it delivered to the desired Inventory location, which is set as default. Therefore, it is important when ordering a container, you have set a default location. To set a location as the default location, see <b style="font-weight: normal; color: #000000; font-style: italic;">Make Default</b> in <a href="Location Management.htm">Location Management</a>.
+
+</p>
+        <p style="font-weight: bold;">Placing an Order
+
+</p>
+        <p>Placing an order involves searching compounds through ChemACX and filling a shopping cart. 
+
+</p>
+        <p style="font-size: 11pt;font-weight: bold;">To place an order:
+
+ </p>
+        <ol>
+            <li value="1">Login to the ChemACX application. The following window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_1.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="2">Click <b>Search</b> to search for the chemical you want to place in the shopping cart. The following window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_2.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="3">You can click <b>Details</b> for any compound for more information. The following window appears, for example:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_3.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="4">Select an item from the All Vendors list. The following window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_4.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="5">Check the checkbox next to <b>add to cart</b> to add a substance. 
+ </li>
+            <li value="6"> Click the VIEW SHOPPING CART icon in the ChemACX interface. The Shopping Cart Frameset window displays.</li>
+            <li value="7">Click <b>Send to Inventory Manager</b>. </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_5.gif" />
+        </p>
+        <p>A confirmation screen appears as: </p>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_6.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="8">Click <b>Browse</b> to open a list of destination locations. </li>
+            <li value="9"><b>Destination Location</b>: Select a destination location from the list. </li>
+        </ol>
+        <p><i><b>Note:</b> Regardless of the destination location you specify, by default, the ordered container displays within the “On Order” section in Inventory Enterprise. You can change this behavior so the ordered container displays under the specified destination location. You have to configure a parameter within the invconfig.ini file. For more information, see your system administrator.
+</i> <![CDATA[ ]]></p>
+        <ol data-mc-continue="true">
+            <li value="10"><b>Project</b>: Select the project associated with this order from the drop-down list.</li>
+            <li value="11"><b>Job</b>: Select the job associated with this order from the drop-down list.</li>
+            <li value="12"><b>Due Date</b>: Use the calendar tool to enter a due date for this order.</li>
+            <li value="13"><b>Order Reason</b>: Select a reason for this order from the drop-down list. 
+
+</li>
+        </ol>
+        <p><i><b>Note:</b> When the invconfig,ini file is configured to change the default behavior of the ordering process, ChemACX does not prompt you to enter the order details mentioned in this step. The only fields that appear on the confirmation screen of ChemACX form are the destination location and the owner.</i>
+        </p>
+        <ol data-mc-continue="true">
+            <li value="14">Click <b>OK</b>. The following window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_7.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="15">Click <b>Commit</b>. The following window appears.  </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/ordering_receiving_8.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="16">Click the View link. The ordered container is displayed in the Container Management area. The container is in On Order location. </li>
+        </ol>
+        <p style="font-weight: bold;">Receiving an Order</p>
+        <p><span style="font-size: 11pt; font-weight: bold;">To receive a placed order:</span> <![CDATA[
+
+ ]]></p>
+        <ol>
+            <li value="1"> Open the Administrative Menu window. 
+ </li>
+            <li value="2">From the Container Management section, click <b>Manage Container Receiving</b>. The Receive Ordered Compounds window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/manage_container_receiving1.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="3">Specify a filter criteria, such as CAS Number. </li>
+            <li value="4">Click <b>Filter</b>. The following window appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/manage_container_receiving2.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="5">Specify a scan barcode for the container to be received. 
+ </li>
+            <li value="6"> Click <b>OK</b> at the bottom of the window. The status of the container changes to Received. 
+ </li>
+            <li value="7"> Click <b>Close</b> to close the window. 
+
+</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Container Management.htm">Container Management</a>
+            <br /><a href="Inventory Introduction.htm">Inventory</a> <![CDATA[
+
+]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images_Common/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

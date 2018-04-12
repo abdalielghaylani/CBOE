@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="DataLoader Guide"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  DefaultUrl="/Content/DataLoader/Data Loader Introduction.htm"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  MasterToc="/Project/TOCs/DataLoader TOC.fltoc"
+  ConditionTagExpression="include[&quot;Default.DataLoader Only&quot;] exclude[&quot;Default.BioSAR Browser only&quot; or &quot;Default.COE Webserver only&quot; or &quot;Default.Config Loader only&quot; or &quot;Default.DataView Manager only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot; or &quot;Default.Registration only&quot;] "
+  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  InsertMOTW="true"></CatapultTarget>

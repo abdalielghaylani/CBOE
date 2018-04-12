@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.Inventory">
+  <TocEntry
+    Title="Inventory"
+    Link="/Content/Inventory/Inventory Introduction.htm"
+    conditions="Default.Inventory">
+    <TocEntry
+      Title="Inventory Terminology"
+      Link="/Content/Inventory/Inventory Terminology.htm" />
+    <TocEntry
+      Title="Container Management"
+      Link="/Content/Inventory/Container Management.htm">
+      <TocEntry
+        Title="Location Management"
+        Link="/Content/Inventory/Location Management.htm" />
+      <TocEntry
+        Title="Creating a New Container"
+        Link="/Content/Inventory/Creating a New Container.htm" />
+      <TocEntry
+        Title="Grid Management"
+        Link="/Content/Inventory/Grid Management.htm" />
+      <TocEntry
+        Title="Searching for a Container"
+        Link="/Content/Inventory/Searching for a Container.htm" />
+      <TocEntry
+        Title="Viewing Contents of a Container"
+        Link="/Content/Inventory/Viewing Contents of a Container.htm" />
+      <TocEntry
+        Title="Managing Grouping Fields"
+        Link="/Content/Inventory/Managing Grouping Fields.htm" />
+      <TocEntry
+        Title="Ordering and Receiving Containers"
+        Link="/Content/Inventory/Ordering and Receiving Containers.htm" />
+      <TocEntry
+        Title="Requesting a Sample"
+        Link="/Content/Inventory/Requesting a Sample.htm">
+        <TocEntry
+          Title="Reviewing a Request"
+          Link="/Content/Inventory/Reviewing a Request.htm" />
+        <TocEntry
+          Title="Accepting a Request"
+          Link="/Content/Inventory/Accepting a Request.htm">
+          <TocEntry
+            Title="Adding a Sample"
+            Link="/Content/Inventory/Adding a Sample.htm" />
+        </TocEntry>
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Searching Inventory Enterprise"
+      Link="/Content/Inventory/Searching Inventory Enterprise.htm">
+      <TocEntry
+        Title="Simple Search"
+        Link="/Content/Inventory/Simple Search.htm" />
+      <TocEntry
+        Title="Advanced Search"
+        Link="/Content/Inventory/Advanced Search.htm" />
+      <TocEntry
+        Title="Substructure Search"
+        Link="/Content/Inventory/Substructure Search.htm" />
+      <TocEntry
+        Title="Batch Search"
+        Link="/Content/Inventory/Batch Search.htm" />
+      <TocEntry
+        Title="Global Search"
+        Link="/Content/Inventory/Global Search.htm" />
+      <TocEntry
+        Title="Plate Search"
+        Link="/Content/Inventory/Plate Search.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Substance Management"
+      Link="/Content/Inventory/Substance Management.htm">
+      <TocEntry
+        Title="Creating a New Substance"
+        Link="/Content/Inventory/Creating a New Substance.htm" />
+      <TocEntry
+        Title="Searching for a Substance"
+        Link="/Content/Inventory/Searching for a Substance.htm" />
+      <TocEntry
+        Title="Adding the Health and Safety Data"
+        Link="/Content/Inventory/Adding the Health and Safety Data.htm">
+        <TocEntry
+          Title="Hazards and Precautions"
+          Link="/Content/Inventory/Hazards and Precautions.htm" />
+        <TocEntry
+          Title="Reporting Safety Data"
+          Link="/Content/Inventory/Reporting Safety Data.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Plate Inventory"
+      Link="/Content/Inventory/Plate Inventory.htm">
+      <TocEntry
+        Title="Creating a New Plate"
+        Link="/Content/Inventory/Creating a New Plate.htm" />
+      <TocEntry
+        Title="Searching for a Plate"
+        Link="/Content/Inventory/Searching for a Plate.htm" />
+      <TocEntry
+        Title="Viewing Contents of a Plate"
+        Link="/Content/Inventory/Viewing Contents of a Plate.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Reports Management"
+      Link="/Content/Inventory/Reports Management.htm">
+      <TocEntry
+        Title="Creating Report Layout"
+        Link="/Content/Inventory/Creating Report Layout.htm" />
+      <TocEntry
+        Title="Editing Report Layout"
+        Link="/Content/Inventory/Editing Report Layout.htm" />
+      <TocEntry
+        Title="Deleting Report Layout"
+        Link="/Content/Inventory/Deleting Report Layout.htm" />
+      <TocEntry
+        Title="Generating a Standard Report"
+        Link="/Content/Inventory/Generating a Standard Report.htm" />
+      <TocEntry
+        Title="Generating a Custom Report"
+        Link="/Content/Inventory/Generating a Custom Report.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Administration"
+      Link="/Content/Inventory/Administration.htm">
+      <TocEntry
+        Title="Managing Users and Roles"
+        Link="/Content/Inventory/Managing Users and Roles.htm" />
+      <TocEntry
+        Title="Enabling Group Security"
+        Link="/Content/Inventory/Enabling Group Security.htm">
+        <TocEntry
+          Title="Location Administrator"
+          Link="/Content/Inventory/Location Administrator.htm">
+          <TocEntry
+            Title="Making a Location Public"
+            Link="/Content/Inventory/Making a Location Public.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Container Administrator"
+          Link="/Content/Inventory/Container Administrator.htm" />
+        <TocEntry
+          Title="Plate Administrator"
+          Link="/Content/Inventory/Plate Administrator.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Enabling Safety Data"
+        Link="/Content/Inventory/Enabling Safety Data.htm" />
+      <TocEntry
+        Title="Configuring the System with Alt-Ids Fields"
+        Link="/Content/Inventory/Configuring the System with Alt IDs Fields.htm" />
+      <TocEntry
+        Title="Inventory Tasks"
+        Link="/Content/Inventory/Inventory Tasks.htm" />
+      <TocEntry
+        Title="Enabling Application Tracing"
+        Link="/Content/Inventory/Application Tracing.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Inventory Enterprise Form Fields"
+      Link="/Content/Inventory/Inventory Enterprise Form Fields.htm">
+      <TocEntry
+        Title="InvLoader"
+        Link="/Content/Inventory/InvLoader.htm">
+        <TocEntry
+          Title="Configuring Registration Fields for InvLoader"
+          Link="/Content/Inventory/Configuring Registration Fields for InvLoader.htm" />
+        <TocEntry
+          Title="Loading Compounds"
+          Link="/Content/Inventory/Loading Compounds.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Roles"
+      Link="/Content/Inventory/Roles.htm" />
+    <TocEntry
+      Title="Privileges"
+      Link="/Content/Inventory/Privileges.htm" />
+  </TocEntry>
+</CatapultToc>

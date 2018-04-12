@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.DataLoader Only">
+  <TocEntry
+    Title="Data Loader"
+    Link="/Content/DataLoader/Data Loader Introduction.htm">
+    <TocEntry
+      Title="The Command-Line Version of Data Loader"
+      Link="/Content/DataLoader/The Command-Line Version of Data Loader.htm">
+      <TocEntry
+        Title="The Command-Line Actions"
+        Link="/Content/DataLoader/The Command-Line Actions.htm" />
+      <TocEntry
+        Title="Anatomy of the Command-Line"
+        Link="/Content/DataLoader/Anatomy of the Command-Line.htm" />
+      <TocEntry
+        Title="Individual Mapping Templates"
+        Link="/Content/DataLoader/Individual Mapping Templates.htm" />
+      <TocEntry
+        Title="Extended Mapping Features"
+        Link="/Content/DataLoader/Extended Mapping Features.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Enabling the Pre-Load Record Matching"
+      Link="/Content/DataLoader/Enabling the Pre-Load Record Matching.htm" />
+    <TocEntry
+      Title="Optimizations for Bulk Loading"
+      Link="/Content/DataLoader/Optimizations for Bulk Loading.htm">
+      <TocEntry
+        Title="Read Records from the Source File"
+        Link="/Content/DataLoader/Read Records from the Source File.htm" />
+      <TocEntry
+        Title="Validate Properties Values"
+        Link="/Content/DataLoader/Validate Properties Values.htm" />
+      <TocEntry
+        Title="Send Records to Application Server"
+        Link="/Content/DataLoader/Send Records to Application Server.htm" />
+      <TocEntry
+        Title="Execute Addins"
+        Link="/Content/DataLoader/Execute Addins.htm" />
+      <TocEntry
+        Title="Chemical Structure Duplicate Check"
+        Link="/Content/DataLoader/Chemical Structure Duplicate Check.htm" />
+      <TocEntry
+        Title="Extended Duplicate Checking"
+        Link="/Content/DataLoader/Extended Duplicate Checking.htm" />
+      <TocEntry
+        Title="Parse and Insert Records into Oracle Tables"
+        Link="/Content/DataLoader/Parse and Insert Records into Oracle Tables.htm" />
+      <TocEntry
+        Title="Index Chemical Documents with CsCartridge"
+        Link="/Content/DataLoader/Index Chemical Documents with CsCartridge.htm" />
+      <TocEntry
+        Title="Disable Refresh of  Oracle Materialized Views"
+        Link="/Content/DataLoader/Disable Refresh of  Oracle Materialized Views.htm" />
+      <TocEntry
+        Title="Fetch Newly Inserted Record"
+        Link="/Content/DataLoader/Fetch Newly Inserted Record.htm" />
+      <TocEntry
+        Title="Oracle Optimizer Statistics"
+        Link="/Content/DataLoader/Oracle Optimizer Statistics.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Missing Indexes"
+      Link="/Content/DataLoader/Missing Indexes.htm" />
+    <TocEntry
+      Title="Application Tracing"
+      Link="/Content/DataLoader/Application Tracing.htm" />
+    <TocEntry
+      Title="Oracle Tracing"
+      Link="/Content/DataLoader/Oracle Tracing.htm" />
+    <TocEntry
+      Title="Sample Optimization SQL Scripts"
+      Link="/Content/DataLoader/Sample Optimization SQL Scripts.htm" />
+    <TocEntry
+      Title="XML Mapping Template for Data Loader"
+      Link="/Content/DataLoader/XML Mapping Template for Data Loader.htm" />
+    <TocEntry
+      Title="Workflow"
+      Link="/Content/DataLoader/Workflow.htm">
+      <TocEntry
+        Title="Adding Data"
+        Link="/Content/DataLoader/Adding Data.htm" />
+      <TocEntry
+        Title="Exporting Data"
+        Link="/Content/DataLoader/Exporting Data.htm" />
+      <TocEntry
+        Title="Importing a Data File to Load"
+        Link="/Content/DataLoader/Importing a Data File to Load.htm" />
+      <TocEntry
+        Title="Mapping Input and Output Fields"
+        Link="/Content/DataLoader/Mapping Input and Output Fields.htm" />
+      <TocEntry
+        Title="Configuring Job Settings"
+        Link="/Content/DataLoader/Configuring Job Settings.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Accessing Data Loader"
+      Link="/Content/DataLoader/Accessing Data Loader.htm" />
+    <TocEntry
+      Title="Getting Help"
+      Link="/Content/DataLoader/Getting Help.htm" />
+    <TocEntry
+      Title="Working with Registration Enterprise"
+      Link="/Content/DataLoader/Working with Registration Enterprise.htm">
+      <TocEntry
+        Title="Loading Substances"
+        Link="/Content/DataLoader/Loading Substances.htm" />
+      <TocEntry
+        Title="Updating Batch Data"
+        Link="/Content/DataLoader/Updating Batch Data.htm" />
+      <TocEntry
+        Title="Sorting Data"
+        Link="/Content/DataLoader/Sorting Data.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Exporting Data to a Text File"
+      Link="/Content/DataLoader/Exporting Data to a Text File.htm" />
+    <TocEntry
+      Title="Exporting Data to an XML"
+      Link="/Content/DataLoader/Exporting Data to an XML.htm" />
+    <TocEntry
+      Title="Managing Jobs"
+      Link="/Content/DataLoader/Managing Jobs.htm">
+      <TocEntry
+        Title="Saving a Job"
+        Link="/Content/DataLoader/Saving a Job.htm" />
+      <TocEntry
+        Title="Loading a Saved Job"
+        Link="/Content/DataLoader/Loading a Saved Job.htm" />
+      <TocEntry
+        Title="Viewing Job Summary"
+        Link="/Content/DataLoader/Viewing Job Summary.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Output Fields"
+      Link="/Content/DataLoader/Output Fields.htm">
+      <TocEntry
+        Title="Registration Information"
+        Link="/Content/DataLoader/Registration Information.htm" />
+      <TocEntry
+        Title="Component Information"
+        Link="/Content/DataLoader/Component Information.htm" />
+      <TocEntry
+        Title="Fragment Information"
+        Link="/Content/DataLoader/Fragment Information.htm" />
+      <TocEntry
+        Title="Batch Information"
+        Link="/Content/DataLoader/Batch Information.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Functions"
+      Link="/Content/DataLoader/Functions.htm">
+      <TocEntry
+        Title="Boolean Functions"
+        Link="/Content/DataLoader/Boolean Functions.htm" />
+      <TocEntry
+        Title="Char Functions"
+        Link="/Content/DataLoader/Char Functions.htm" />
+      <TocEntry
+        Title="CharArray Functions"
+        Link="/Content/DataLoader/CharArray Functions.htm" />
+      <TocEntry
+        Title="DateTime Functions"
+        Link="/Content/DataLoader/DateTime Functions.htm" />
+      <TocEntry
+        Title="Decimal Functions"
+        Link="/Content/DataLoader/Decimal Functions.htm" />
+      <TocEntry
+        Title="Integer Functions"
+        Link="/Content/DataLoader/Integer Functions.htm" />
+      <TocEntry
+        Title="String Functions"
+        Link="/Content/DataLoader/String Functions.htm" />
+      <TocEntry
+        Title="StringArray Functions"
+        Link="/Content/DataLoader/StringArray Functions.htm" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="New Data Loader"
+    Link="/Content/DataLoader/New Data Loader.htm">
+    <TocEntry
+      Title="Accessing the New Data Loader"
+      Link="/Content/DataLoader/Accessing the New Data Loader.htm" />
+  </TocEntry>
+</CatapultToc>

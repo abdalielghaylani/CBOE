@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="2912" MadCap:lastWidth="1011" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Button</h1>
+        <p>Buttons enable users to trigger actions such as launch an application, display a message, or go to a Web site in a browser window. Here are two examples:
+ 
+
+ 
+
+ 
+
+ 
+
+</p>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/9_3_225x25.jpg" />
+        </p>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/ButtonLaunchReg.png" />
+        </p>
+        <p>Buttons can also perform actions based on information in the current database record. For example, if the record includes the chemical name s-Triazine, the button can trigger a Web-based search for that name:
+</p>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/ButtonLaunchInternetSearch.png" />
+        </p>
+        <p> 
+
+ 
+
+When you create a button, you assign three basic properties to it:
+</p>
+        <ul style="list-style-type: square;">
+            <li>The argument (a string of text or data) on which the button performs the action
+</li>
+            <li>The label that appears on the button
+</li>
+            <li>The action that the button performs</li>
+        </ul>
+        <p><b style="font-size: 14pt;">Adding a button to a Form</b>
+        </p>
+        <p>To add a button:
+ </p>
+        <ol>
+            <li> In the form editor, click+drag the Button icon from the Toolbox onto the form. </li>
+            <li>Select the button. 
+ </li>
+            <li>In the Properties window, select (Advanced) in the Misc. section. 
+ </li>
+            <li> Click on the browsing button.The CBV Button Properties dialog box opens. </li>
+            <li> Select the action from the drop-down list.  
+ </li>
+            <li>In the Button Label text box, enter the label to appear on the button (such as Go to PerkinElmer.com). 
+ </li>
+            <li> In the Argument text box, enter the action to perform when the user clicks the button. 
+ </li>
+            <li> (Optional) To add a variable to either the argument or label 
+ </li>
+        </ol>
+        <blockquote>
+            <ol style="list-style-type: lower-alpha;">
+                <li> Select from one of the Variable drop-down lists: </li>
+            </ol>
+            <blockquote>
+                <ul style="list-style-type: square;">
+                    <li>Select from Data field to add a database field variable.
+</li>
+                    <li>Select from Variable to add a system variable.
+ </li>
+                </ul>
+            </blockquote>
+            <ol style="list-style-type: lower-alpha;" start="2">
+                <li>Place the cursor in the Argument text box where you want the variable to appear. 
+ </li>
+                <li>Click Insert. 
+ </li>
+            </ol>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Click OK. </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/CBV btn properties.gif" />
+        </p>
+        <p style="font-weight: bold;"><span style="font-size: 14pt;">Assigning Properties to a Button</span>
+        </p>
+        <ul style="list-style-type: square;">
+            <li style="font-weight: bold;font-size: 14pt;color: #0000ff;">Assigning an Argument
+</li>
+        </ul>
+        <p>The argument provides information needed to perform the action. For example, to create a button that launches a Web site, the argument would include the URL; alternatively, a button that displays a popup message would contain the message text or a variable that represents data to display.
+</p>
+        <ul style="list-style-type: square;">
+            <li style="font-weight: bold;font-size: 14pt;color: #0000ff;">About variables
+</li>
+        </ul>
+        <p>A button argument can have one or more variables. A variable represents data that ChemBioViz uses to execute the button action. For example, to enable users to search the Internet for the MSDS of the chemical product currently displayed in the form, you might use this argument:
+</p>
+        <p><i style="color: #0000ff;">MSDS %PRODUCT:PRODNAME% </i>
+        </p>
+        <p>where MSDS is ordinary text and the variable<i style="color: #0000ff;">%PRODUCT:PRODNAME%</i> is a field name in the form that represents the product currently displayed. Variables may be either system data or a field from the current table.
+</p>
+        <p>There are several system data variables:
+</p>
+        <p style="font-weight: bold;">AuthenticationTicket
+</p>
+        <p>An encrypted string that contains login data for passing to other ChemBioOffice Enterprise applications
+</p>
+        <p style="font-weight: bold;">UserName
+</p>
+        <p>The name of the logged-in user
+</p>
+        <p style="font-weight: bold;">DatabaseName
+</p>
+        <p>The name of the current data view
+</p>
+        <p style="font-weight: bold;">TableName
+</p>
+        <p>The name of the base table connected to the current form
+</p>
+        <p style="font-weight: bold;">FormName
+</p>
+        <p>The name or local path of the current form.
+</p>
+        <p style="font-weight: bold;">TodaysDate
+</p>
+        <p>The date in culture-dependent “long date string” format
+</p>
+        <p style="font-weight: bold;">AppDataPath
+</p>
+        <p>The path to the ChemBioViz data folder, that contains settings and user files
+</p>
+        <p style="font-weight: bold;">StartupPath
+</p>
+        <p>The path where ChemBioViz exe is located
+</p>
+        <ul style="list-style-type: square;">
+            <li style="font-weight: bold;font-size: 14pt;color: #0000ff;"><span style="color: #0000ff;">Assigning Labels</span> <![CDATA[ ]]></li>
+        </ul>
+        <p>A button label can include text and variables. To change the font, select the desired options in the Appearance section of the Properties window.
+</p>
+        <ul style="list-style-type: square;">
+            <li style="font-weight: bold;font-size: 14pt;color: #0000ff;">Assigning Actions
+</li>
+        </ul>
+        <p>Only one action at a time can be assigned to a button.The actions you can assign are:
+</p>
+        <p><b>None
+</b>
+        </p>
+        <p>No action on click. (Even when no action is specified, a button click generates an event which can be caught by an external application.) 
+</p>
+        <p style="font-weight: bold;">Launch Program
+</p>
+        <p>Launch a software application. The argument is the program name or path and can include a parameter list. You must provide the program’s full path. For example, to open the file filename using the program Application, the argument would be:
+“C:\Application.exe” “C:\filename.txt”.
+</p>
+        <p style="font-weight: bold;">Launch URL
+</p>
+        <p>Launch a Web site in a browser window. The argument is the full URL.
+</p>
+        <p style="font-weight: bold;">Launch Document
+</p>
+        <p>Open a document in its native application. The argument must be the full path name to the file.
+</p>
+        <p style="font-weight: bold;">Open Form
+</p>
+        <p>Open a ChemBioViz form. The argument is the name of public or private form or the path to a local form file. Include the path if the form you want to open has the same name as another form.
+</p>
+        <p style="font-weight: bold;">Google
+</p>
+        <p>Perform an Internet search using Google. The argument is the search query (may not work on all browsers).</p>
+        <p><b>Message
+</b>
+        </p>
+        <p>Display a message in an alert box. Argument is the message to be displayed.
+</p>
+        <p style="font-weight: bold;">Change Tab
+</p>
+        <p>Bring a specified tab to the front. The argument is the tab name.
+
+</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Form Element Types.htm">Form Element Types</a>
+        </p>
+    </body>
+</html>

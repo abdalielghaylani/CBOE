@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="Microsoft HTML Help Target"
+  Type="HtmlHelp"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  OutputFile="ChemBioOffice Enterprise Applications User Guide"></CatapultTarget>

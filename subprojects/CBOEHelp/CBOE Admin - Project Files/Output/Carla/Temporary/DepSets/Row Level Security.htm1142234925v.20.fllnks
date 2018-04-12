@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileTitle="Row Level Security" FileLanguage="en-us" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Registration/Row Level Security.htm" />
+        <Link Url="Content/Resources/Images/Registration/app settings tab.gif" />
+        <Link Url="Content/Resources/Images/Registration/Projects field.gif" />
+        <Link Url="Content/Resources/Images/Registration/Table editor people.gif" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/SkinSupport/MadCap.css" />
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/SkinSupport/MadCapAll.js" />
+        <Link Url="Content/Registration/Row Level Security.htm#RLS%20exempt%20BK" />
+        <Link Url="Content/Resources/Images/Registration/app settings tab.gif" />
+        <Link Url="Content/Resources/Images/Registration/Projects field.gif" />
+        <Link Url="Content/Resources/Images/Registration/Table editor people.gif" />
+    </LongLinks>
+    <Anchors>
+        <Anchor Name="RLS exempt BK" />
+    </Anchors>
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/SkinSupport/MadCap.css" />
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

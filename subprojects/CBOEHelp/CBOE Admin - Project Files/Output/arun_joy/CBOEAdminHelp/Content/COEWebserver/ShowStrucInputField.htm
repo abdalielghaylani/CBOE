@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" class="" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ShowStrucInputField</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="18474" -->
+        <h1>  ShowStrucInputField</h1>
+        <p>This subroutine call appears in the following file:</p>
+        <ul>
+            <li value="1">sample_input_form.asp</li>
+        </ul>
+        <h4>Subroutine</h4><pre>ShowStrucInputField 
+      dbkey,formgroup,table.field,fieldtype,width,height,search_options,display_options</pre>
+        <h4>Description</h4>
+        <p>Shows the ChemDraw plugin box for structure input and displays options 
+ for search</p>
+        <h4>Parameters</h4>
+        <p>dbkey =<em> 
+      &lt;dataview name&gt;</em>  &#160;
+      </p>
+        <p>formgroup =<em> &lt;formgroup name&gt;</em></p>
+        <h5 />
+        <p>table.field =<em> &lt;table and field name 
+ using dot syntax&gt;</em>      
+      &#160;
+      </p>
+        <p>fieldtype =<em> &lt;indicates chemical 
+ information&gt;</em>  
+      &#160;
+      </p>
+        <p>width =<em> &lt;width of plugin 
+ box&#160;&gt;</em>   &#160;
+      </p>
+        <p>height =<em> &lt;height of plugin box&gt; 
+      </em></p>
+        <h5 />
+        <p>search_options = 
+      <em>All_Options|SubStructure|Exact|Tanimoto</em>&#160; 
+      <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;All_Options: 
+ show drop down list with options<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Substructure:&#160;always 
+ substructure search<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Exact: 
+ always exact search<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Tanimoto: 
+ always similarity search
+      </p>
+        <p>display_options = 
+      <em>None|Select_List|Select_List_Edit<br /></em>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;None: 
+ no display type needed<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Select_list: 
+ shows chocies - substructure, exact, similarity<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Select_List_Edit: 
+ structure button<br /></p>
+        <h4>Example</h4><pre>ShowStrucInputField 
+      dbkey,formgroup,"MolTable.Structure","5","340","AllOptions","Select_List"</pre>
+        <!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan -->
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

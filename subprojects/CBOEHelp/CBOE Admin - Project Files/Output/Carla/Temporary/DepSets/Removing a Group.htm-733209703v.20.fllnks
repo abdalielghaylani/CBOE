@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Images/delete button.gif" />
+        <Link Url="Content/Resources/Images/delete group.gif" />
+        <Link Url="Content/Manage Group Section.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Images/delete button.gif" />
+        <Link Url="Content/Resources/Images/delete group.gif" />
+        <Link Url="Content/Manage Group Section.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets />
+</CatapultFileLinkSet>

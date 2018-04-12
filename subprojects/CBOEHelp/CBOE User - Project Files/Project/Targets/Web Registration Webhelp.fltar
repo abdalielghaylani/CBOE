@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="Web Registration User Guide"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  OutputFile="Web Registration User guide"
+  AliasFile="/Project/Advanced/Reg Alias.flali"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
+  ConditionTagExpression="include[&quot;Default.Web Registration Only&quot;] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or &quot;Default.ELN2014-COE Integration&quot; or Default.Inventory or &quot;Default.Logging In to CBOE Manager&quot; or &quot;Default.Not needed in Web Reg&quot; or &quot;Default.Not supported in 1261&quot; or Default.Registration or &quot;Default.Using the WebHelp&quot; or &quot;Default.Working with CBOE Applications&quot;] "
+  MasterToc="/Project/TOCs/Web Registration TOC.fltoc"
+  Skin="/Project/Skins/New_Reg.flskn"
+  InsertMOTW="true"
+  DefaultUrl="/Content/Web Registration/Web Registration Introduction.htm"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"></CatapultTarget>

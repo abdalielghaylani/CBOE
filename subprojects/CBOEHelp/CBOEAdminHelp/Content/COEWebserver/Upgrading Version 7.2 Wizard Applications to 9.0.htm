@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="ChemBioOffice WebServer|Customization and Administration">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Upgrading Version 7.2 Wizard Applications to 9.0 </title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Upgrading Version 7.2 Wizard Applications to 9.0 </h1>
+        <p>There are no changes necessary for 8.0 wizard application to run with version 9.0.
+
+</p>
+        <p>The following files need to be updated in order to allow your wizard applications to run with ChemOffice WebServer 9.0: 
+<br />Note : All files for an application are found in &lt;webroot&gt;/ChemOffice/&lt;appname&gt;. 
+
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">&lt;appname&gt;/global.asa
+</li>
+            <li value="2">&lt;appname&gt;/navbar.asp 
+</li>
+            <li value="3">&lt;appname&gt;/config/&lt;dbname&gt;.ini </li>
+            <li value="4">&lt;appname&gt;/config/cfserver.ini
+</li>
+        </ul>
+        <p>To upgrade your wizard application: 
+
+</p>
+        <ol>
+            <li value="1">Gather the following information: 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">&lt;appname&gt; - refers to the name of your applicaiton, which is the name of the root virtual directory. 
+</li>
+                <li value="2">&lt;dbname&gt; - the name of the database you converted. The ini file in the /config directory will match this name (&lt;dbname&gt;.ini)
+</li>
+            </ul>
+        </blockquote>
+        <ol data-mc-continue="true">
+            <li value="2">Upgrade global.asa 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to the application's config directory.
+</li>
+                <li value="2">Open global.asa in your current web application and copy the line:
+Application("appkey") = " &lt;Your Name app&gt;" 
+to the clipboard. 
+</li>
+                <li value="3">Open &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/global.asa and replace 
+Application("appkey") = "#APP_KEY" 
+with the line you copied in step 2.  
+</li>
+                <li value="4">Copy the new global.asa to your web application replacing the older version.  
+</li>
+            </ul>
+        </blockquote>
+        <ol data-mc-continue="true">
+            <li value="3">Upgrade Navbar.asp 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/
+</li>
+                <li value="2">Copy the file navbar.asp to your web application (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;) replacing the older version. 
+</li>
+            </ul>
+        </blockquote>
+        <ol data-mc-continue="true">
+            <li value="4">Upgrade cfserver.ini 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to &lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ 
+</li>
+                <li value="2">Open cfserver.ini and copy the following lines to your clipboard <br />Note: These lines will be populated with information - the example shows them as blank): 
+
+    </li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <blockquote>
+                            <p><i style="color: #ff4500;">appname= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">NAV_BUTTONS_GIF_PATH = 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">MAIN_WINDOW=     
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">NAV_BAR_WINDOW= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">USER_INFO_WINDOW = 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">TEMP_DIR_NAME= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">TEMP_DIR_PATH= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">dbnames= 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">GLOBAL_SEARCH_DBS= sample 
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">GLOBAL_SEARCH_BASE_DB= sample
+    </i>
+                                <br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">ADD_MODE="TRUE"</i>
+                            </p>
+                        </blockquote>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_9.0 upgrade/upgrade_fields/ 
+</li>
+                <li value="2">Open cfserver.ini and replace the items with the same name with those you copied in the previous step.  
+</li>
+                <li value="3">Copy the new cfserver.ini to your web application (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ ) replacing the older version. 
+</li>
+            </ul>
+        </blockquote>
+        <ol data-mc-continue="true">
+            <li value="5">Upgrade &lt;dbname&gt; .ini 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to &lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/ </li>
+                <li value="2">Open your web application's &lt;dbname&gt; .ini 
+</li>
+                <li value="3">Locate the Base_connection section.
+</li>
+                <li value="4">Change the entries to match the following (using the appropriate server_drive and appname and dbname were indicated): 
+
+    <br /><i style="color: #ff4500;">CONN_TYPE = File Name 
+    </i><br style="font-style: italic;color: #ff4500;" /><i style="color: #ff4500;">CONNECTION_STRING = &lt;SERVER_DRIVE&gt;\Inetpub\wwwroot\ChemOffice\&lt;appname&gt;\</i>config\&lt;dbname&gt;.udl 
+</li>
+                <li value="5">Browse to &lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_9.0 upgrade/upgrade_fields/ 
+</li>
+                <li value="6">Copy the file dbname.udl to your application's /config folder (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/). 
+</li>
+                <li value="7">Rename the file to match the dbname of your ini file. 
+<br />For example if you application is names "sample" then the udl should be sample.udl. </li>
+                <li value="8"> 
+Open the udl (by double-clicking) and point it to the database that the web application is using. 
+</li>
+            </ul>
+        </blockquote>
+        <ol data-mc-continue="true">
+            <li value="6">Adding your web application to ChemOffice.ini  
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Browse to &lt;webroot&gt;/chemoffice/config/
+</li>
+                <li value="2">Open chemoffice.ini </li>
+                <li value="3">Add your application's name (i.e. appname) to the 
+
+    <i style="color: #ff4500;">WIZARD_APPNAMES=</i> 
+key.  
+</li>
+                <li value="4">Enter a group to the file for your web application using the following format: 
+
+        <blockquote><p><span style="color: #ff4500;font-style: italic;">[&lt;appname&gt;]
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">SECTION =
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">WIZARD DBNAMES = &lt;dbname&gt;
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">&lt;dbname&gt;_DISPLAY_NAME=  &lt;appname&gt;-
+</span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">        &lt;dbname&gt;&lt;dbname&gt;_START_PATH="/&lt;appname&gt;/default.asp?formgroup=base_form_group&amp;
+        </span><br style="color: #ff4500;font-style: italic;" /><span style="color: #ff4500;font-style: italic;">dbname=&lt;dbname&gt; " </span></p></blockquote></li>
+            </ul>
+        </blockquote>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

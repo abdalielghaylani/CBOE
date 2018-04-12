@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1803" MadCap:lastWidth="874" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Hyperlinks</h1>
+        <p>Hyperlinks behave like buttons but you use them in either a subform or grid instead of using them in a form. A hyperlink appears in each row, enabling users to perform a record-dependent action.
+ 
+
+ 
+
+</p>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/HyperlinkDemo.png" />
+        </p>
+        <p>To create a hyperlink, you first create a button on a form and connect it to the table data:
+ </p>
+        <ol>
+            <li>In the form editor, create a button to perform an action. See "<a href="Button.htm">Button</a>". 
+ </li>
+            <li> In the Properties pane, expand Data&gt;&gt;DataBindings and then select (Advanced) 
+ </li>
+            <li> Click on the ellipsis button <img src="../Resources/Images/ChemBioViz images/9_20_24x23.jpg" />. The Formatting and Advanced Binding dialog box opens. 
+ </li>
+            <li>In the Binding drop-down list, select the field that you want to bind to the button. The field may be either on a subform field or the main form. 
+ </li>
+            <li>Click OK. 
+
+If you bound the button to a subform field, then the process is completed. </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/Formatting and Advanced Binding.gif" />
+        </p>
+        <p>If you bound the button to a field in the main form, do one of the following:
+</p>
+        <ul style="list-style-type: square;">
+            <li>If no grid with the bound column exists, create a new grid: right-click the form tab and select Add Tab&gt;Grid from Form.
+</li>
+            <li>If a grid with the bound column already exists, save, close, and reopen the form.
+</li>
+        </ul>
+        <p style="font-weight: bold;">Executing the hyperlink
+</p>
+        <p>In the grid or subform, double-click the hyperlink.
+</p>
+        <p style="font-weight: bold;">Hiding the form button
+</p>
+        <p>To retain the hyperlink, you must keep the button on the form. However, you can hide it.
+</p>
+        <p>To hide the button:
+ </p>
+        <ol>
+            <li> In the form editor, select the button. 
+ </li>
+            <li> In the Properties pane, select Visible in the Behavior section. 
+ </li>
+            <li> In the Behavior drop-down list, select False. 
+ </li>
+            <li> Exit the form editor. 
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/ChemBioViz images/visible option.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Form Element Types.htm">Form Element Types</a>
+        </p>
+    </body>
+</html>

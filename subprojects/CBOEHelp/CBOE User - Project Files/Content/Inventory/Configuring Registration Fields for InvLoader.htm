@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1915" MadCap:lastWidth="1176">
+    <head>
+    </head>
+    <body>
+        <h1>Configuring Registration Fields for InvLoader</h1>
+        <p>By default, Invloader is configured with the default set of fields that are installed with a fresh installation of COE Registration. This is done in the invloader.xml file.
+There are three sections in the invloader.xml file that need to be considered for some of the default mapping fields shipped with invloader. The “mapping for loading plates and registering”, the “mapping for loading containers for registering”, and the “xpath specification for the registration field”.  When adding a field, you need to decide if it is valid for plates or containers, and add the field to the regfields section with appropriate xpath that corresponds to the registration systems prototype xml.
+Customers who have added fields to the system will have altered prototype xml. This can be retrieved from the database regdb.coeobjectconfig.
+
+</p>
+        <p style="font-weight: bold;font-size: 14pt;">Adding Registration Fields:
+
+</p>
+        <p>To add a registration field, under fields section:
+
+</p>
+        <ol>
+            <li>Log in to the CBOE middle tier
+</li>
+            <li>Open the Invloader.xml with an xml editor tool. (In general the Invloader.xml file is located at: C:\Inetpub\wwwroot\ChemOffice\ChemInv\Installation\Invloader)
+</li>
+            <li>Under fields, add a new entry with target CONTAINER and CLASS REG.  The designator, by convention is “C_” + the field name.  XMLParent is always REGISTERSUBSTANCE; xmlposition is always ELEMENT for containers (REGSUBSTANCE for plates).  Field is the name of the field that must be in the &lt;regFields section. Display is what is displayed in the invloader GUI and type is the type of the field. 
+
+</li>
+        </ol>
+        <p><b style="color: #ff0000;">Example:</b>
+        </p>
+        <p><i>&lt;field target="CONTAINER" class="REG" designator="C_PATENT_NUMBER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="PATENT_NUMBER" display="Reg Comments" type="eText"/&gt;</i> <![CDATA[ ]]></p>
+        <p style="font-weight: bold;font-size: 14pt;">Defining the Field’s xpath:
+
+</p>
+        <p>In the &lt;regFields&gt; section you define the xpath within the registration prototype xml that target the particular field. To do that:
+
+</p>
+        <ol>
+            <li>Log in to the  CBOE middle tier
+</li>
+            <li>Start Benthic software or any other database tool
+</li>
+            <li>Run the following  query: select XML from REGDB.COEOBJECTCONFIG
+</li>
+            <li>Copy the Table’s xml content and save it as a xml file, this will help you finding the fields paths
+</li>
+            <li>Open the InvLoader.xml in Edit Mode, where you can add new fields
+</li>
+            <li>Under regfields  Insert a new entry and start typing tags and values or Copy an exiting entry and edit the content by specifying the field name, field type and field path. The Full element contains the attributes name (e.g. name=”PATENT_NUMBER”) of the field, the type (e.g. type=”COMPOUND”) and the xpath. 
+
+</li>
+        </ol>
+        <p><b style="color: #ff0000;">Example:</b> <![CDATA[ ]]></p>
+        <p><i>&lt;regfield name="PATENT_NUMBER" type="COMPOUND"&gt;/MultiCompoundRegistryRecord/PropertyList/Property[@name="PATENT_NUMBER"]&lt;/regfield&gt;
+</i>
+        </p>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>In this example we will add the “PATENT_NUMBER” field. In order to specify the field’s path, open the saved xml in step 4 with any xml editor tool and extract the path from the Higher Parent level descending to the lower level as shown in the screenshot below:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml2.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Fill in the values in the Invloader.xml as shown below:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml3.gif" />
+        </p>
+        <p>Note that for any property in the Registry component we have:</p>
+        <ul style="list-style-type: square;">
+            <li>Two types:<ul style="list-style-type: circle;"><li>Compound</li><li>Batch</li></ul></li>
+            <li>Five Paths corresponding to the five different properties:<ul style="list-style-type: circle;"><li>REGISTRY LEVEL: /MultiCompoundRegistryRecord/PropertyList/Property[@name="Property Name"]</li><li>COMPONENT LEVEL: /MultiCompoundRegistryRecord/ComponentList/Compound/PropertyList/Property[@name="Property Name"]</li><li>STRUCTURE LEVEL: /MultiCompoundRegistryRecord/ComponentList/Compound/BaseFragment/Structure/PropertyList/Property[@name="Property Name"]</li><li>Batch LEVEL:/MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name=" Property Name "]</li><li>BatchComponent:  /MultiCompoundRegistryRecord/BatchList/Batch/BatchComponentList/BatchComponent/PropertyList/Property[@name=" Property Name "]</li></ul></li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="InvLoader.htm">InvLoader</a>
+        </p>
+    </body>
+</html>

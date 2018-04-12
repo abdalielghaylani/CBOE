@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1034" MadCap:lastWidth="914" MadCap:conditions="Default.Not supported in 1261">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>COE-ELN Integration</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Registry/Inventory/ACX Pull</h1>
+        <p>The main purpose for the add-in is to search Inventory, Registry and ChemACX systems and select a compound to add to a reaction drawing. In addition to adding the structure to the reaction drawing, other data associated with the structure may be added to the Reactants or Products table of the section.  
+
+</p>
+        <p>The Reaction toolbar add-ins will be configured on the reaction toolbar field of the standard E-Notebook reaction section and will be launched from the reaction toolbar “Add” button.</p>
+        <p>
+            <img src="../Resources/Images/Reg 1104 images/add btn.gif" />
+        </p>
+        <p>The add-in form contains three tabs: Search, Results and Hit Lists.</p>
+        <p><b>Search tab</b>: allows users to enter search criteria and initiate a search. The search form consists of a ChemDraw control to render structures for exact and substructure searching.  A clear button is available for clearing the form and a Search button to execute the search.  A set of text boxes are available for entering textual search data.</p>
+        <p><b>Results tab</b>: displays the search results and consists of three grid controls and a ChemDraw control for displaying chemical structures.  The grid controls include a compound grid, a container (or batch grid for registration) and a properties grid. Users can click on a row in the compound grid and the corresponding chemical structure will be displayed in the ChemDraw control and all associated container (or batches for registration) will be displayed in the container grid. When a row in the container grid is selected, the properties will be displayed in the properties grid in list format easy viewing. Users may add the compound to the underlying Reaction section</p>
+        <p><b>Hit Lists tab</b>: allows users to retrieve data from named hit lists that were previously saved to the Inventory or Registration database. This allows users to perform and save complicated searches from the Inventory or Registration systems, save the results as a hit list and access that hit list in ELN via the Add-in. The available hit lists consist of the authenticated user’s private hit lists and all public hit lists. Searches should be done in the “Substructure Search” tab within the Webserver Inventory. Hit lists created by means other than using the “Substructure search” tab will not be available in the hit list dropdown list.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Inventory Pull.htm">Inventory Pull</a>
+            <br /><a href="Registry Pull.htm">Registry Pull</a>
+            <br /><a href="ChemACX Pull.htm">ChemACX Pull</a>
+        </p>
+    </body>
+</html>

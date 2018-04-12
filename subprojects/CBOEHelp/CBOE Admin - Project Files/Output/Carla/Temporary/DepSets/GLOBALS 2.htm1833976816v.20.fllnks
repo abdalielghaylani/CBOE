@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/ABOUT_WINDOW.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/MAXHITS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_RECORD_COUNT.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_TYPE.htm" />
+        <Link Url="Content/COEWebserver/MAIN_PAGE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_ALIASES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SUBFORM_VIEW_NAMES.htm" />
+        <Link Url="Content/COEWebserver/ADO_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FIELD_MAP_GROUPS.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/ABOUT_WINDOW.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/MAXHITS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_RECORD_COUNT.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_TYPE.htm" />
+        <Link Url="Content/COEWebserver/MAIN_PAGE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_ALIASES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SUBFORM_VIEW_NAMES.htm" />
+        <Link Url="Content/COEWebserver/ADO_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FIELD_MAP_GROUPS.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

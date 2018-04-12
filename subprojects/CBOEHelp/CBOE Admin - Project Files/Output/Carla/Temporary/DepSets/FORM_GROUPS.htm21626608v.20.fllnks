@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileClass="" FileTitle="FORM_GROUPS" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/base_form_group.htm" />
+        <Link Url="Content/COEWebserver/basenp_form_group.htm" />
+        <Link Url="Content/COEWebserver/add_record_form_group.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/base_form_group.htm" />
+        <Link Url="Content/COEWebserver/basenp_form_group.htm" />
+        <Link Url="Content/COEWebserver/add_record_form_group.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

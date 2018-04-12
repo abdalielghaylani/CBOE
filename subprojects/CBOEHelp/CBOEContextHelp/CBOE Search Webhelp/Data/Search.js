@@ -1,0 +1,1 @@
+define({r:0.5,st:'Stem',n:1,t:[0,73],u:['../Content/CBOE Search/Basic Searching.htm'],s:['+','properli'],p:[['+',55],['can',86],['drawing',80],['in',60],['numbers',71],['related',56],['system',86],['using',65]]});

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileClass="" FileTitle="DataView INI settings (e.g. sample.ini)" FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/Application INI settings (cfserver.ini).htm" />
+        <Link Url="Content/COEWebserver/ABOUT_WINDOW.htm" />
+        <Link Url="Content/COEWebserver/BASE_TABLE_GROUP.htm" />
+        <Link Url="Content/COEWebserver/ADO_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/BASE_TABLE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/INPUT_FORM_PATH.htm" />
+        <Link Url="Content/COEWebserver/CHEM_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/MOLECULE_TABLE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/INPUT_FORM_MODE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_RECORD_COUNT.htm" />
+        <Link Url="Content/COEWebserver/TABLE_SQL_ORDER.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/RESULT_FORM_PATH.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_TYPE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/RESULT_FORM_MODE.htm" />
+        <Link Url="Content/COEWebserver/MOLTABLE.htm" />
+        <Link Url="http://misty/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/data_ini_settings/PLUGIN_VALUE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FIELD_MAP_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_ALIASES.htm" />
+        <Link Url="Content/COEWebserver/SYNONYMS_R.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/STRUCTURE_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SUBFORM_VIEW_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUP_FLAG.htm" />
+        <Link Url="Content/COEWebserver/MAIN_PAGE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/MW_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/MAXHITS.htm" />
+        <Link Url="Content/COEWebserver/ini_settings/temp_dir_path.htm" />
+        <Link Url="Content/COEWebserver/BASE_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORMULA_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SEARCHABLE_ADO_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/REQUIRED_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SDFILE_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUP.htm" />
+        <Link Url="Content/COEWebserver/BASE_CONNECTION.htm" />
+        <Link Url="Content/COEWebserver/PLUGIN_VALUE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/NUM_LIST_VIEW.htm" />
+        <Link Url="Content/COEWebserver/CONN_TYPE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_PASSWORD.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_STRING.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_TIMEOUT.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/COMMAND_TIMEOUT.htm" />
+        <Link Url="Content/COEWebserver/CONNECTION_USERNAME.htm" />
+        <Link Url="Content/COEWebserver/BASE_CFW_FORM.htm" />
+        <Link Url="Content/COEWebserver/BASENP_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/STRUC_DB_PATH.htm" />
+        <Link Url="Content/COEWebserver/ADD_RECORD_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/STRUC_ENGINE.htm" />
+        <Link Url="Content/COEWebserver/STRUC_FORM_NAME.htm" />
+        <Link Url="Content/COEWebserver/STRUC_TABLE_NAME.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_LINK.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_SERVER.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_LINK.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_SERVER.htm" />
+        <Link Url="Content/COEWebserver/NCI_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/NCI_LINK.htm" />
+        <Link Url="Content/COEWebserver/NCI_SERVER.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/COEWebserver/Application INI settings (cfserver.ini).htm" />
+        <Link Url="Content/COEWebserver/ABOUT_WINDOW.htm" />
+        <Link Url="Content/COEWebserver/BASE_TABLE_GROUP.htm" />
+        <Link Url="Content/COEWebserver/ADO_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DISPLAY_NAME.htm" />
+        <Link Url="Content/COEWebserver/BASE_TABLE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/INPUT_FORM_PATH.htm" />
+        <Link Url="Content/COEWebserver/CHEM_CONNECTION_NAMES.htm" />
+        <Link Url="Content/COEWebserver/MOLECULE_TABLE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/INPUT_FORM_MODE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_RECORD_COUNT.htm" />
+        <Link Url="Content/COEWebserver/TABLE_SQL_ORDER.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/RESULT_FORM_PATH.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/DB_TYPE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/RESULT_FORM_MODE.htm" />
+        <Link Url="Content/COEWebserver/MOLTABLE.htm" />
+        <Link Url="http://misty/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/data_ini_settings/PLUGIN_VALUE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FIELD_MAP_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_ALIASES.htm" />
+        <Link Url="Content/COEWebserver/SYNONYMS_R.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/STRUCTURE_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SUBFORM_VIEW_NAMES.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORM_GROUP_FLAG.htm" />
+        <Link Url="Content/COEWebserver/MAIN_PAGE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/MW_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/MAXHITS.htm" />
+        <Link Url="Content/COEWebserver/ini_settings/temp_dir_path.htm" />
+        <Link Url="Content/COEWebserver/BASE_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/FORMULA_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUPS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SEARCHABLE_ADO_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/REQUIRED_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/SDFILE_FIELDS.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/TABLE_GROUP.htm" />
+        <Link Url="Content/COEWebserver/BASE_CONNECTION.htm" />
+        <Link Url="Content/COEWebserver/PLUGIN_VALUE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/NUM_LIST_VIEW.htm" />
+        <Link Url="Content/COEWebserver/CONN_TYPE.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_PASSWORD.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_STRING.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/CONNECTION_TIMEOUT.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/COMMAND_TIMEOUT.htm" />
+        <Link Url="Content/COEWebserver/CONNECTION_USERNAME.htm" />
+        <Link Url="Content/COEWebserver/BASE_CFW_FORM.htm" />
+        <Link Url="Content/COEWebserver/BASENP_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/data_ini_settings/STRUC_DB_PATH.htm" />
+        <Link Url="Content/COEWebserver/ADD_RECORD_FORM_GROUP.htm" />
+        <Link Url="Content/COEWebserver/STRUC_ENGINE.htm" />
+        <Link Url="Content/COEWebserver/STRUC_FORM_NAME.htm" />
+        <Link Url="Content/COEWebserver/STRUC_TABLE_NAME.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_LINK.htm" />
+        <Link Url="Content/COEWebserver/CHEMACX_SERVER.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_LINK.htm" />
+        <Link Url="Content/COEWebserver/THEMERCKINDEX_SERVER.htm" />
+        <Link Url="Content/COEWebserver/NCI_BUTTON.htm" />
+        <Link Url="Content/COEWebserver/NCI_LINK.htm" />
+        <Link Url="Content/COEWebserver/NCI_SERVER.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

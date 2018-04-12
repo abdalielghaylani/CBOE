@@ -1,0 +1,1597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="Working with CBOE Applications"
+    Link="/Content/Working with CBOE Applications.htm">
+    <TocEntry
+      Title="Logging In to CBOE Manager"
+      Link="/Content/Logging In to CBOE Manager.htm"></TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="BioSARBrowser"
+    Link="/Content/BioSARBrowser/BioSARBrowser Introduction.htm"
+    StartSection="true"
+    MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+    PageNumber="1"
+    PageNumberReset="continue"
+    StartChapter="false"
+    ReplaceMergeNode="false"
+    conditions="Default.BioSAR,Default.Not supported in 1261">
+    <TocEntry
+      Title="BioSARBrowser Terminology"
+      Link="/Content/BioSARBrowser/BioSARBrowser Terminology.htm" />
+    <TocEntry
+      Title="Accessing BioSAR Enterprise"
+      Link="/Content/BioSARBrowser/Accessing BioSAR Enterprise.htm" />
+    <TocEntry
+      Title="Form Management"
+      Link="/Content/BioSARBrowser/Form Management.htm">
+      <TocEntry
+        Title="Creating a Form"
+        Link="/Content/BioSARBrowser/Creating a Form.htm" />
+      <TocEntry
+        Title="Editing a Form"
+        Link="/Content/BioSARBrowser/Editing a Form.htm" />
+      <TocEntry
+        Title="Renaming a Form"
+        Link="/Content/BioSARBrowser/Renaming a Form.htm" />
+      <TocEntry
+        Title="Duplicating a Form"
+        Link="/Content/BioSARBrowser/Duplicating a Form.htm" />
+      <TocEntry
+        Title="Deleting a Form"
+        Link="/Content/BioSARBrowser/Deleting a Form.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Searching"
+      Link="/Content/BioSARBrowser/Searching.htm">
+      <TocEntry
+        Title="Using Forms to Search Data"
+        Link="/Content/BioSARBrowser/Using Forms to Search Data.htm" />
+      <TocEntry
+        Title="Using Saved Queries"
+        Link="/Content/BioSARBrowser/Using Saved Queries.htm" />
+      <TocEntry
+        Title="Using the History"
+        Link="/Content/BioSARBrowser/Using the History.htm" />
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/BioSARBrowser/Viewing Search Results.htm" />
+      <TocEntry
+        Title="Generating Reports"
+        Link="/Content/BioSARBrowser/Generating Reports.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Organizing Projects"
+      Link="/Content/BioSARBrowser/Organizing Projects.htm"></TocEntry>
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/BioSARBrowser/Application Tracing.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="ChemACX"
+    Link="/Content/ChemACX/ChemACX Introduction.htm"
+    conditions="Default.ChemACX">
+    <TocEntry
+      Title="ChemACX Database"
+      Link="/Content/ChemACX/ChemACX Database.htm" />
+    <TocEntry
+      Title="Opening ChemACX"
+      Link="/Content/ChemACX/Opening ChemACX.htm" />
+    <TocEntry
+      Title="Searching the Database"
+      Link="/Content/ChemACX/Searching the Database.htm">
+      <TocEntry
+        Title="Non-Plugin Searches"
+        Link="/Content/ChemACX/Non-Plugin Searches.htm" />
+      <TocEntry
+        Title="Favorite Vendors List"
+        Link="/Content/ChemACX/Favorite Vendors List.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Viewing Search Results"
+      Link="/Content/ChemACX/Viewing Search Results.htm">
+      <TocEntry
+        Title="List View"
+        Link="/Content/ChemACX/List View.htm" />
+      <TocEntry
+        Title="Details View"
+        Link="/Content/ChemACX/Details View.htm" />
+      <TocEntry
+        Title="Browsing Vendor Information"
+        Link="/Content/ChemACX/Browsing Vendor Information.htm" />
+      <TocEntry
+        Title="Accessing MSDS Data"
+        Link="/Content/ChemACX/Accessing MSDX Data.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Using the Shopping Cart"
+      Link="/Content/ChemACX/Using the Shopping Cart.htm">
+      <TocEntry
+        Title="Adding Items"
+        Link="/Content/ChemACX/Adding Items.htm" />
+      <TocEntry
+        Title="Removing Items"
+        Link="/Content/ChemACX/Removing Items.htm" />
+      <TocEntry
+        Title="Ordering Chemicals"
+        Link="/Content/ChemACX/Ordering Chemicals.htm" />
+      <TocEntry
+        Title="Exporting the Chemicals to Excel"
+        Link="/Content/ChemACX/Exporting the Chemicals to Excel.htm" />
+      <TocEntry
+        Title="Exporting to a Word Template"
+        Link="/Content/ChemACX/Exporting to a Word Template.htm" />
+      <TocEntry
+        Title="Printing the Shopping Cart"
+        Link="/Content/ChemACX/Printing the Shopping Cart.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="ChemACX Integration"
+      Link="/Content/ChemACX/ChemACX Integration.htm">
+      <TocEntry
+        Title="Registering ChemACX Chemicals"
+        Link="/Content/ChemACX/Registering ChemACX Chemicals.htm" />
+      <TocEntry
+        Title="Creating Inventory Containers"
+        Link="/Content/ChemACX/Creating Inventory Containers.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Vendor Participation"
+      Link="/Content/ChemACX/Vendor Participation.htm" />
+    <TocEntry
+      Title="ChemACX Form Fields"
+      Link="/Content/ChemACX/ChemACX Form Fields.htm"></TocEntry>
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/ChemACX/Application Tracing.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="ChemBioViz"
+    Link="/Content/ChemBioViz/ChemBioViz Introduction.htm"
+    conditions="Default.CBV Output Only,Default.CBV and CBOE Search Output Only,Default.Not supported in 1261"
+    StartSection="false"
+    ComputeToc="false"
+    ReplaceMergeNode="false">
+    <TocEntry
+      Title="Logging In to ChemBioViz"
+      Link="/Content/ChemBioViz/Logging In to ChemBioViz.htm" />
+    <TocEntry
+      Title="The ChemBioViz Environment"
+      Link="/Content/ChemBioViz/The ChemBioViz Environment.htm">
+      <TocEntry
+        Title="Navigation Pane"
+        Link="/Content/ChemBioViz/Navigation Pane.htm" />
+      <TocEntry
+        Title="Record Numbers Box"
+        Link="/Content/ChemBioViz/Record Numbers Box.htm" />
+      <TocEntry
+        Title="Tabs "
+        Link="/Content/ChemBioViz/Tabs.htm" />
+      <TocEntry
+        Title="Main Window"
+        Link="/Content/ChemBioViz/Main Window.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Sample Files"
+      Link="/Content/ChemBioViz/Sample Files.htm" />
+    <TocEntry
+      Title="Forms"
+      Link="/Content/ChemBioViz/Forms.htm">
+      <TocEntry
+        Title="Public Forms"
+        Link="/Content/ChemBioViz/Public Forms.htm" />
+      <TocEntry
+        Title="Private Forms"
+        Link="/Content/ChemBioViz/Private Forms.htm" />
+      <TocEntry
+        Title="Opening a Form"
+        Link="/Content/ChemBioViz/Opening a Form.htm" />
+      <TocEntry
+        Title="Generating Forms"
+        Link="/Content/ChemBioViz/Generating Forms.htm" />
+      <TocEntry
+        Title="Creating a Form"
+        Link="/Content/ChemBioViz/Creating a Form.htm">
+        <TocEntry
+          Title="Duplicating a Form"
+          Link="/Content/ChemBioViz/Duplicating a Form.htm" />
+        <TocEntry
+          Title="Using a Blank Form"
+          Link="/Content/ChemBioViz/Using a Blank Form.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Saving a Form"
+        Link="/Content/ChemBioViz/Saving a Form.htm">
+        <TocEntry
+          Title="Saving a Form Locally"
+          Link="/Content/ChemBioViz/Saving a Form Locally.htm" />
+        <TocEntry
+          Title="Saving a Form on a Network"
+          Link="/Content/ChemBioViz/Saving a Form on a Network.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Drill Down Forms"
+        Link="/Content/ChemBioViz/Drill Down Forms.htm" />
+      <TocEntry
+        Title="Managing Forms"
+        Link="/Content/ChemBioViz/Managing Forms.htm">
+        <TocEntry
+          Title="Adding Subfolders"
+          Link="/Content/ChemBioViz/Adding Subfolders.htm" />
+        <TocEntry
+          Title="Form Properties"
+          Link="/Content/ChemBioViz/Form Properties.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Editing Forms"
+      Link="/Content/ChemBioViz/Editing Forms.htm">
+      <TocEntry
+        Title="About Form Elements"
+        Link="/Content/ChemBioViz/About Form Elements.htm" />
+      <TocEntry
+        Title="Adding Elements to Forms"
+        Link="/Content/ChemBioViz/Adding Elements to Forms.htm" />
+      <TocEntry
+        Title="Form Element Types"
+        Link="/Content/ChemBioViz/Form Element Types.htm">
+        <TocEntry
+          Title="Button"
+          Link="/Content/ChemBioViz/Button.htm" />
+        <TocEntry
+          Title="Hyperlinks"
+          Link="/Content/ChemBioViz/Hyperlinks.htm" />
+        <TocEntry
+          Title="Textbox"
+          Link="/Content/ChemBioViz/Textbox.htm" />
+        <TocEntry
+          Title="CheckBox"
+          Link="/Content/ChemBioViz/CheckBox.htm" />
+        <TocEntry
+          Title="RichtTextBox"
+          Link="/Content/ChemBioViz/RichtTextBox.htm" />
+        <TocEntry
+          Title="ChemDrawBox"
+          Link="/Content/ChemBioViz/ChemDrawBox.htm" />
+        <TocEntry
+          Title="FormulaBox"
+          Link="/Content/ChemBioViz/FormulaBox.htm" />
+        <TocEntry
+          Title="PictureBox"
+          Link="/Content/ChemBioViz/PictureBox.htm" />
+        <TocEntry
+          Title="MonthCalendar"
+          Link="/Content/ChemBioViz/MonthCalendar.htm" />
+        <TocEntry
+          Title="DateTimePicker"
+          Link="/Content/ChemBioViz/DateTimePicker.htm" />
+        <TocEntry
+          Title="SubformGrid"
+          Link="/Content/ChemBioViz/SubformGrid.htm" />
+        <TocEntry
+          Title="Custom Menus"
+          Link="/Content/ChemBioViz/Custom Menus.htm" />
+        <TocEntry
+          Title="QueryText box"
+          Link="/Content/ChemBioViz/QueryText box.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Editing Form Elements"
+        Link="/Content/ChemBioViz/Editing Form Elements.htm">
+        <TocEntry
+          Title="Editing Element Appearance"
+          Link="/Content/ChemBioViz/Editing Element Appearance.htm" />
+        <TocEntry
+          Title="Binding Data to an Element"
+          Link="/Content/ChemBioViz/Binding Data to an Element.htm">
+          <TocEntry
+            Title="Smart Tags"
+            Link="/Content/ChemBioViz/Smart Tags.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Deleting Form Elements"
+          Link="/Content/ChemBioViz/Deleting Form Elements.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Feature Disabling"
+        Link="/Content/ChemBioViz/Feature Disabling.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Queries"
+      Link="/Content/ChemBioViz/Queries.htm">
+      <TocEntry
+        Title="Selecting a Form"
+        Link="/Content/ChemBioViz/Selecting a Form.htm" />
+      <TocEntry
+        Title="Entering Query Parameters"
+        Link="/Content/ChemBioViz/Entering Query Parameters.htm">
+        <TocEntry
+          Title="Drawing Query Structures"
+          Link="/Content/ChemBioViz/Drawing Query Structures.htm" />
+        <TocEntry
+          Title="Entering Text Values"
+          Link="/Content/ChemBioViz/Entering Text Values.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Performing a Simple Query"
+        Link="/Content/ChemBioViz/Performing a Simple Query.htm" />
+      <TocEntry
+        Title="The Queries Pane"
+        Link="/Content/ChemBioViz/The Queries Pane.htm" />
+      <TocEntry
+        Title="Query Options"
+        Link="/Content/ChemBioViz/Query Options.htm" />
+      <TocEntry
+        Title="Managing the Query List"
+        Link="/Content/ChemBioViz/Managing the Query List.htm" />
+      <TocEntry
+        Title="Structure Search Types"
+        Link="/Content/ChemBioViz/Structure Search Types.htm">
+        <TocEntry
+          Title="Advanced Query Options"
+          Link="/Content/ChemBioViz/Advanced Query Options.htm" />
+        <TocEntry
+          Title="Understanding Session Queries"
+          Link="/Content/ChemBioViz/Understanding Session Queries.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Merging Queries"
+        Link="/Content/ChemBioViz/Merging Queries.htm" />
+      <TocEntry
+        Title="Viewing Results"
+        Link="/Content/ChemBioViz/Viewing Results.htm">
+        <TocEntry
+          Title="Form View"
+          Link="/Content/ChemBioViz/Form View.htm" />
+        <TocEntry
+          Title="Table View"
+          Link="/Content/ChemBioViz/Table View.htm" />
+        <TocEntry
+          Title="Table Style"
+          Link="/Content/ChemBioViz/Table Style.htm" />
+        <TocEntry
+          Title="Card View"
+          Link="/Content/ChemBioViz/Card View.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Filtering Child Hits Based on Query"
+        Link="/Content/ChemBioViz/Filtering Child Hits Based on Query.htm" />
+      <TocEntry
+        Title="Highlighting Substructure Hits"
+        Link="/Content/ChemBioViz/Highlighting Substructure Hits.htm" />
+      <TocEntry
+        Title="Copying Selected Results"
+        Link="/Content/ChemBioViz/Copying Selected Results.htm" />
+      <TocEntry
+        Title="Exporting Results"
+        Link="/Content/ChemBioViz/Exporting Results.htm">
+        <TocEntry
+          Title="Export to SD File"
+          Link="/Content/ChemBioViz/Export to SD File.htm" />
+        <TocEntry
+          Title="Export Delimited Text"
+          Link="/Content/ChemBioViz/Export Delimited Text.htm" />
+        <TocEntry
+          Title="Export to ChemDraw for Excel"
+          Link="/Content/ChemBioViz/Export to ChemDraw for Excel.htm" />
+        <TocEntry
+          Title="Export to CBV Excel"
+          Link="/Content/ChemBioViz/Export to CBV Excel.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Printing Results"
+        Link="/Content/ChemBioViz/Printing Results.htm">
+        <TocEntry
+          Title="Printing Selected Results"
+          Link="/Content/ChemBioViz/Printing Selected Results.htm" />
+        <TocEntry
+          Title="Print Setup"
+          Link="/Content/ChemBioViz/Print Setup.htm" />
+        <TocEntry
+          Title="Print Preview"
+          Link="/Content/ChemBioViz/Print Preview.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="ChemBioViz - Spotfire Integration"
+      Link="/Content/ChemBioViz/ChemBioViz - Spotfire Integration.htm"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Editing ChemBioViz Results Criteria within Spotfire"
+        Link="/Content/ChemBioViz/Editing ChemBioViz Results Criteria within Spotfire.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Open Analysis"
+        Link="/Content/ChemBioViz/Open Analysis.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Spotfire Preferences"
+        Link="/Content/ChemBioViz/Spotfire Preferences.htm"
+        conditions="Default.Not supported in 1261" />
+    </TocEntry>
+    <TocEntry
+      Title="Customizing ChemBioViz"
+      Link="/Content/ChemBioViz/Customizing ChemBioViz.htm">
+      <TocEntry
+        Title="Interface Style"
+        Link="/Content/ChemBioViz/Interface Style.htm" />
+      <TocEntry
+        Title="Main Toolbar"
+        Link="/Content/ChemBioViz/Main Toolbar.htm" />
+      <TocEntry
+        Title="Arranging the Interface"
+        Link="/Content/ChemBioViz/Arranging the Interface.htm">
+        <TocEntry
+          Title="Docking Windows"
+          Link="/Content/ChemBioViz/Docking Windows.htm" />
+        <TocEntry
+          Title="Locking Toolbars"
+          Link="/Content/ChemBioViz/Locking Toolbars.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Displaying Navigation Buttons"
+        Link="/Content/ChemBioViz/Displaying Navigation Buttons.htm" />
+      <TocEntry
+        Title="Command Line"
+        Link="/Content/ChemBioViz/Command Line.htm">
+        <TocEntry
+          Title="Keyboard Shortcuts"
+          Link="/Content/ChemBioViz/Keyboard Shortcuts.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Plotting Data"
+      Link="/Content/ChemBioViz/Plotting Data.htm">
+      <TocEntry
+        Title="Standard vs. Subform Plots"
+        Link="/Content/ChemBioViz/Standard vs. Subform Plots.htm">
+        <TocEntry
+          Title="1D vs. 2D plots"
+          Link="/Content/ChemBioViz/1D vs. 2D plots.htm" />
+        <TocEntry
+          Title="Creating a Plot"
+          Link="/Content/ChemBioViz/Creating a Plot.htm">
+          <TocEntry
+            Title="Building a Plot"
+            Link="/Content/ChemBioViz/Building a Plot.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Viewing Plots "
+          Link="/Content/ChemBioViz/Viewing Plots.htm">
+          <TocEntry
+            Title="Selecting Data Fields "
+            Link="/Content/ChemBioViz/Selecting Data Fields.htm" />
+          <TocEntry
+            Title="Highlighting Current Record "
+            Link="/Content/ChemBioViz/Highlighting Current Record.htm" />
+          <TocEntry
+            Title="Viewing Point Data"
+            Link="/Content/ChemBioViz/Viewing Point Data.htm" />
+          <TocEntry
+            Title="Selecting Points"
+            Link="/Content/ChemBioViz/Selecting Points.htm" />
+          <TocEntry
+            Title="Zooming"
+            Link="/Content/ChemBioViz/Zooming.htm" />
+          <TocEntry
+            Title="Hitlist from Selected Points"
+            Link="/Content/ChemBioViz/Hitlist from Selected Points.htm" />
+          <TocEntry
+            Title="Filters"
+            Link="/Content/ChemBioViz/Filters.htm" />
+          <TocEntry
+            Title="Customizing Colors and Labels"
+            Link="/Content/ChemBioViz/Customizing Colors and Labels.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Advanced Plot Properties"
+          Link="/Content/ChemBioViz/Advanced Plot Properties.htm" />
+      </TocEntry>
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="ChemBioViz Excel"
+    Link="/Content/ChemBioViz Excel/ChemBioViz Excel Introduction.htm"
+    conditions="Default.ChemBioViz Excel,Default.Not supported in 1261">
+    <TocEntry
+      Title="Getting Started"
+      Link="/Content/ChemBioViz Excel/Getting Started.htm" />
+    <TocEntry
+      Title="Selecting a Dataview"
+      Link="/Content/ChemBioViz Excel/Selecting a Dataview.htm" />
+    <TocEntry
+      Title="Setting up Data"
+      Link="/Content/ChemBioViz Excel/Setting up Data.htm">
+      <TocEntry
+        Title="Autosizing Columns"
+        Link="/Content/ChemBioViz Excel/Autosizing Columns.htm" />
+      <TocEntry
+        Title="Displaying Header"
+        Link="/Content/ChemBioViz Excel/Displaying Header.htm" />
+      <TocEntry
+        Title="Inserting Columns"
+        Link="/Content/ChemBioViz Excel/Inserting Columns.htm" />
+      <TocEntry
+        Title="Deleting Columns"
+        Link="/Content/ChemBioViz Excel/Deleting Columns.htm" />
+      <TocEntry
+        Title="Setting ChemBioViz Options"
+        Link="/Content/ChemBioViz Excel/Setting ChemBioViz Options.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Searching"
+      Link="/Content/ChemBioViz Excel/Searching.htm">
+      <TocEntry
+        Title="Search Operators"
+        Link="/Content/ChemBioViz Excel/Search Operators.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Displaying Search Results"
+      Link="/Content/ChemBioViz Excel/Displaying Search Results.htm">
+      <TocEntry
+        Title="Numeric"
+        Link="/Content/ChemBioViz Excel/Numeric.htm" />
+      <TocEntry
+        Title="OLE"
+        Link="/Content/ChemBioViz Excel/OLE.htm" />
+      <TocEntry
+        Title="Structure"
+        Link="/Content/ChemBioViz Excel/Structure.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Configuring Worksheet Options"
+      Link="/Content/ChemBioViz Excel/Configuring Worksheet Options.htm">
+      <TocEntry
+        Title="Creating List from Selection"
+        Link="/Content/ChemBioViz Excel/Creating List from Selection.htm" />
+      <TocEntry
+        Title="Clearing Results"
+        Link="/Content/ChemBioViz Excel/Clearing Results.htm" />
+      <TocEntry
+        Title="Clearing Search Criteria"
+        Link="/Content/ChemBioViz Excel/Clearing Search Criteria.htm" />
+      <TocEntry
+        Title="Logging Errors"
+        Link="/Content/ChemBioViz Excel/Logging Errors.htm" />
+      <TocEntry
+        Title="Setting Search Preferences"
+        Link="/Content/ChemBioViz Excel/Setting Search Preferences.htm" />
+      <TocEntry
+        Title="Viewing Worksheet Properties"
+        Link="/Content/ChemBioViz Excel/Viewing Worksheet Properties.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Refreshing the Worksheet"
+      Link="/Content/ChemBioViz Excel/Refreshing the Worksheet.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="Doc Manager"
+    Link="/Content/Doc Manager/Doc Manager Introduction.htm"
+    conditions="Default.Doc Manager,Default.Not supported in 1261">
+    <TocEntry
+      Title="DocManager Basics"
+      Link="/Content/Doc Manager/DocManager Basics.htm" />
+    <TocEntry
+      Title="Logging In to DocManager"
+      Link="/Content/Doc Manager/Logging In to DocManager.htm" />
+    <TocEntry
+      Title="Searching for Documents"
+      Link="/Content/Doc Manager/Searching for Documents.htm">
+      <TocEntry
+        Title="Performing a Search"
+        Link="/Content/Doc Manager/Performing a Search.htm" />
+      <TocEntry
+        Title="Basic Text Searching"
+        Link="/Content/Doc Manager/Basic Text Searching.htm" />
+      <TocEntry
+        Title="Advanced Text Searching"
+        Link="/Content/Doc Manager/Advanced Text Searching.htm" />
+      <TocEntry
+        Title="Enabling Application Tracing"
+        Link="/Content/Doc Manager/Application Tracing.htm" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Drug Degradation Database"
+    Link="/Content/Drug Degradation Database/Drug Degradation Database Introduction.htm"
+    conditions="Default.Drug Deg,Default.Not supported in 1261">
+    <TocEntry
+      Title="Logging In to Drug Degradation Database"
+      Link="/Content/Drug Degradation Database/Logging In to Drug Degradation Database.htm" />
+    <TocEntry
+      Title="Searching for Compounds"
+      Link="/Content/Drug Degradation Database/Searching for Compounds.htm"></TocEntry>
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/Drug Degradation Database/Application Tracing.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="Inventory"
+    Link="/Content/Inventory/Inventory Introduction.htm"
+    conditions="Default.Inventory">
+    <TocEntry
+      Title="Inventory Terminology"
+      Link="/Content/Inventory/Inventory Terminology.htm" />
+    <TocEntry
+      Title="Container Management"
+      Link="/Content/Inventory/Container Management.htm">
+      <TocEntry
+        Title="Location Management"
+        Link="/Content/Inventory/Location Management.htm" />
+      <TocEntry
+        Title="Creating a New Container"
+        Link="/Content/Inventory/Creating a New Container.htm" />
+      <TocEntry
+        Title="Grid Management"
+        Link="/Content/Inventory/Grid Management.htm" />
+      <TocEntry
+        Title="Searching for a Container"
+        Link="/Content/Inventory/Searching for a Container.htm" />
+      <TocEntry
+        Title="Viewing Contents of a Container"
+        Link="/Content/Inventory/Viewing Contents of a Container.htm" />
+      <TocEntry
+        Title="Managing Grouping Fields"
+        Link="/Content/Inventory/Managing Grouping Fields.htm" />
+      <TocEntry
+        Title="Ordering and Receiving Containers"
+        Link="/Content/Inventory/Ordering and Receiving Containers.htm" />
+      <TocEntry
+        Title="Requesting a Sample"
+        Link="/Content/Inventory/Requesting a Sample.htm">
+        <TocEntry
+          Title="Reviewing a Request"
+          Link="/Content/Inventory/Reviewing a Request.htm" />
+        <TocEntry
+          Title="Accepting a Request"
+          Link="/Content/Inventory/Accepting a Request.htm">
+          <TocEntry
+            Title="Adding a Sample"
+            Link="/Content/Inventory/Adding a Sample.htm" />
+        </TocEntry>
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Searching Inventory Enterprise"
+      Link="/Content/Inventory/Searching Inventory Enterprise.htm">
+      <TocEntry
+        Title="Simple Search"
+        Link="/Content/Inventory/Simple Search.htm" />
+      <TocEntry
+        Title="Advanced Search"
+        Link="/Content/Inventory/Advanced Search.htm" />
+      <TocEntry
+        Title="Substructure Search"
+        Link="/Content/Inventory/Substructure Search.htm" />
+      <TocEntry
+        Title="Batch Search"
+        Link="/Content/Inventory/Batch Search.htm" />
+      <TocEntry
+        Title="Global Search"
+        Link="/Content/Inventory/Global Search.htm" />
+      <TocEntry
+        Title="Plate Search"
+        Link="/Content/Inventory/Plate Search.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Substance Management"
+      Link="/Content/Inventory/Substance Management.htm">
+      <TocEntry
+        Title="Creating a New Substance"
+        Link="/Content/Inventory/Creating a New Substance.htm" />
+      <TocEntry
+        Title="Searching for a Substance"
+        Link="/Content/Inventory/Searching for a Substance.htm" />
+      <TocEntry
+        Title="Adding the Health and Safety Data"
+        Link="/Content/Inventory/Adding the Health and Safety Data.htm">
+        <TocEntry
+          Title="Hazards and Precautions"
+          Link="/Content/Inventory/Hazards and Precautions.htm" />
+        <TocEntry
+          Title="Reporting Safety Data"
+          Link="/Content/Inventory/Reporting Safety Data.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Plate Inventory"
+      Link="/Content/Inventory/Plate Inventory.htm">
+      <TocEntry
+        Title="Creating a New Plate"
+        Link="/Content/Inventory/Creating a New Plate.htm" />
+      <TocEntry
+        Title="Searching for a Plate"
+        Link="/Content/Inventory/Searching for a Plate.htm" />
+      <TocEntry
+        Title="Viewing Contents of a Plate"
+        Link="/Content/Inventory/Viewing Contents of a Plate.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Reports Management"
+      Link="/Content/Inventory/Reports Management.htm">
+      <TocEntry
+        Title="Creating Report Layout"
+        Link="/Content/Inventory/Creating Report Layout.htm" />
+      <TocEntry
+        Title="Editing Report Layout"
+        Link="/Content/Inventory/Editing Report Layout.htm" />
+      <TocEntry
+        Title="Deleting Report Layout"
+        Link="/Content/Inventory/Deleting Report Layout.htm" />
+      <TocEntry
+        Title="Generating a Standard Report"
+        Link="/Content/Inventory/Generating a Standard Report.htm" />
+      <TocEntry
+        Title="Generating a Custom Report"
+        Link="/Content/Inventory/Generating a Custom Report.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Administration"
+      Link="/Content/Inventory/Administration.htm">
+      <TocEntry
+        Title="Managing Users and Roles"
+        Link="/Content/Inventory/Managing Users and Roles.htm" />
+      <TocEntry
+        Title="Enabling Group Security"
+        Link="/Content/Inventory/Enabling Group Security.htm">
+        <TocEntry
+          Title="Location Administrator"
+          Link="/Content/Inventory/Location Administrator.htm">
+          <TocEntry
+            Title="Making a Location Public"
+            Link="/Content/Inventory/Making a Location Public.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Container Administrator"
+          Link="/Content/Inventory/Container Administrator.htm" />
+        <TocEntry
+          Title="Plate Administrator"
+          Link="/Content/Inventory/Plate Administrator.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Enabling Safety Data"
+        Link="/Content/Inventory/Enabling Safety Data.htm" />
+      <TocEntry
+        Title="Configuring the System with Alt-Ids Fields"
+        Link="/Content/Inventory/Configuring the System with Alt IDs Fields.htm" />
+      <TocEntry
+        Title="Inventory Tasks"
+        Link="/Content/Inventory/Inventory Tasks.htm"></TocEntry>
+      <TocEntry
+        Title="Enabling Application Tracing"
+        Link="/Content/Inventory/Application Tracing.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Inventory Enterprise Form Fields"
+      Link="/Content/Inventory/Inventory Enterprise Form Fields.htm">
+      <TocEntry
+        Title="InvLoader"
+        Link="/Content/Inventory/InvLoader.htm">
+        <TocEntry
+          Title="Configuring Registration Fields for InvLoader"
+          Link="/Content/Inventory/Configuring Registration Fields for InvLoader.htm" />
+        <TocEntry
+          Title="Loading Compounds"
+          Link="/Content/Inventory/Loading Compounds.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Roles"
+      Link="/Content/Inventory/Roles.htm" />
+    <TocEntry
+      Title="Privileges"
+      Link="/Content/Inventory/Privileges.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="Registration"
+    Link="/Content/Reg 1104/Registration Introduction.htm"
+    conditions="Default.Registration">
+    <TocEntry
+      Title="Registration Terminology"
+      Link="/Content/Reg 1104/Registration Terminology.htm" />
+    <TocEntry
+      Title="The Registration Process"
+      Link="/Content/Reg 1104/The_registration_process.htm" />
+    <TocEntry
+      Title="Integration"
+      Link="/Content/Reg 1104/Integration.htm" />
+    <TocEntry
+      Title="Getting Started"
+      Link="/Content/Reg 1104/Getting_Started.htm">
+      <TocEntry
+        Title="Logging in"
+        Link="/Content/Reg 1104/Logging_in to Registration.htm" />
+      <TocEntry
+        Title="The Main Menu"
+        Link="/Content/Reg 1104/The_main_menu.htm" />
+      <TocEntry
+        Title="Logging out "
+        Link="/Content/Reg 1104/Logging_out.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Submitting New Records"
+      Link="/Content/Reg 1104/Submitting_New_Records.htm">
+      <TocEntry
+        Title="Parts of a Registry Record"
+        Link="/Content/Reg 1104/Parts_of_a_registry_reco.htm">
+        <TocEntry
+          Title="Required Fields"
+          Link="/Content/Reg 1104/Required_fields.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Creating a Registry Record"
+        Link="/Content/Reg 1104/Creating_a_registry_reco.htm">
+        <TocEntry
+          Title="Entering Registry Information"
+          Link="/Content/Reg 1104/Entering_registry_inform.htm" />
+        <TocEntry
+          Title="Entering Component Information"
+          Link="/Content/Reg 1104/Entering_component_infor.htm" />
+        <TocEntry
+          Title="Entering Fragment Information"
+          Link="/Content/Reg 1104/Entering_fragment_inform.htm" />
+        <TocEntry
+          Title="Entering Batch Information"
+          Link="/Content/Reg 1104/Entering_batch_informati.htm" />
+        <TocEntry
+          Title="Options in Submit Component Form"
+          Link="/Content/Reg 1104/Options_in_submit_record.htm">
+          <TocEntry
+            Title="Save Template"
+            Link="/Content/Reg 1104/Save Template.htm" />
+          <TocEntry
+            Title="Load Template"
+            Link="/Content/Reg 1104/Load Template.htm" />
+        </TocEntry>
+      </TocEntry>
+      <TocEntry
+        Title="Approving a Submitted Record"
+        Link="/Content/Reg 1104/Approving a Submitted Record.htm" />
+      <TocEntry
+        Title="Registering Components"
+        Link="/Content/Reg 1104/Registering Components.htm">
+        <TocEntry
+          Title="Direct register"
+          Link="/Content/Reg 1104/Direct_register.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Locking Registered Records"
+        Link="/Content/Reg 1104/Locking Registered Records.htm" />
+      <TocEntry
+        Title="Salt Suffix Support"
+        Link="/Content/Reg 1104/Salt Suffix Support.htm" />
+      <TocEntry
+        Title="Submitting Mixtures"
+        Link="/Content/Reg 1104/Submitting Mixtures.htm">
+        <TocEntry
+          Title="Simple Mixture Workflow"
+          Link="/Content/Reg 1104/Simple Mixture Workflow.htm" />
+        <TocEntry
+          Title="Complex Mixture Workflow"
+          Link="/Content/Reg 1104/Complex Mixture Workflow.htm" />
+        <TocEntry
+          Title="Editing Mixtures"
+          Link="/Content/Reg 1104/Editing Mixtures.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Managing Duplicates"
+        Link="/Content/Reg 1104/Managing Duplicates.htm">
+        <TocEntry
+          Title="CASE A"
+          Link="/Content/Reg 1104/CASE A.htm" />
+        <TocEntry
+          Title="CASE B"
+          Link="/Content/Reg 1104/CASE B.htm" />
+        <TocEntry
+          Title="CASE C"
+          Link="/Content/Reg 1104/CASE C.htm" />
+        <TocEntry
+          Title="CASE D"
+          Link="/Content/Reg 1104/CASE D.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="ChemDraw Chemical Warning"
+        Link="/Content/Reg 1104/ChemDraw Chemical Warning.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing Temporary Records"
+      Link="/Content/Reg 1104/Managing_temporary_recor.htm">
+      <TocEntry
+        Title="Searching records in the temporary table"
+        Link="/Content/Reg 1104/Searching_records_in_the.htm" />
+      <TocEntry
+        Title="Editing records in the temporary table"
+        Link="/Content/Reg 1104/Editing_records_in_the_t.htm" />
+      <TocEntry
+        Title="Deleting records from the temporary table"
+        Link="/Content/Reg 1104/Deleting_records_from_th.htm" />
+      <TocEntry
+        Title="Types of Searches"
+        Link="/Content/Reg 1104/Types_of_searches.htm">
+        <TocEntry
+          Title="Structure Search"
+          Link="/Content/Reg 1104/Structure Search.htm"
+          VolumeNumberReset="same" />
+        <TocEntry
+          Title="Text Search"
+          Link="/Content/Reg 1104/Text Search.htm" />
+        <TocEntry
+          Title="Numeric Search"
+          Link="/Content/Reg 1104/Numeric Search.htm" />
+        <TocEntry
+          Title="Formula Search"
+          Link="/Content/Reg 1104/Formula Search.htm" />
+        <TocEntry
+          Title="Date Search"
+          Link="/Content/Reg 1104/Date Search.htm">
+          <TocEntry
+            Title="Form View"
+            Link="/Content/Reg 1104/Form_view.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Boolean Search"
+          Link="/Content/Reg 1104/Boolean Search.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Managing Queries and Hitlist"
+      Link="/Content/Reg 1104/Managing_Queries_and_Hit.htm">
+      <TocEntry
+        Title="Query Management Tab"
+        Link="/Content/Reg 1104/Query_Management_tab.htm" />
+      <TocEntry
+        Title="Marking Records"
+        Link="/Content/Reg 1104/Marking_records.htm" />
+      <TocEntry
+        Title="Saving and Restoring Queries"
+        Link="/Content/Reg 1104/Saving and Restoring Queries.htm">
+        <TocEntry
+          Title="Saving Queries"
+          Link="/Content/Reg 1104/Saving_queries.htm" />
+        <TocEntry
+          Title="Restoring Queries"
+          Link="/Content/Reg 1104/Restoring Queries.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Refining the Search Results"
+        Link="/Content/Reg 1104/Refining_the_search_resu.htm" />
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/Reg 1104/Viewing_search_results.htm">
+        <TocEntry
+          Title="List View"
+          Link="/Content/Reg 1104/List_view.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Export Hits"
+        Link="/Content/Reg 1104/Export_hits.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Registering Records"
+      Link="/Content/Reg 1104/Registering_Records.htm">
+      <TocEntry
+        Title="Registering a Temporary Record"
+        Link="/Content/Reg 1104/Registering_a_temporary.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing the Registered Records"
+      Link="/Content/Reg 1104/Managing_the_Registered.htm">
+      <TocEntry
+        Title="Searching for Registered Compounds"
+        Link="/Content/Reg 1104/Searching_for_registered.htm">
+        <TocEntry
+          Title="SDF Search"
+          Link="/Content/Reg 1104/SDF Search.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Editing a Registered Record"
+        Link="/Content/Reg 1104/Editing_a_registered_rec.htm" />
+      <TocEntry
+        Title="Deleting a Registered Record"
+        Link="/Content/Reg 1104/Deleting a Registered Record.htm" />
+      <TocEntry
+        Title="Creating Containers"
+        Link="/Content/Reg 1104/Creating Containers.htm" />
+      <TocEntry
+        Title="Batches"
+        Link="/Content/Reg 1104/Batches.htm">
+        <TocEntry
+          Title="Adding a Batch"
+          Link="/Content/Reg 1104/Adding_a_batch.htm" />
+        <TocEntry
+          Title="Editing a Batch"
+          Link="/Content/Reg 1104/Editing_a_batch.htm" />
+        <TocEntry
+          Title="Deleting a Batch"
+          Link="/Content/Reg 1104/Deleting_a_batch.htm" />
+        <TocEntry
+          Title="Moving a batch"
+          Link="/Content/Reg 1104/Moving_a_batch.htm" />
+        <TocEntry
+          Title="Batch Highlighting"
+          Link="/Content/Reg 1104/Batch Highlighting.htm" />
+      </TocEntry>
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Web Registration Introduction"
+    Link="/Content/Web Registration/Web Registration Introduction.htm"
+    conditions="Default.Not supported in 1261"
+    ReplaceMergeNode="false">
+    <TocEntry
+      Title="Logging In to Web Registration"
+      Link="/Content/Web Registration/Logging In to Web Registration.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false"></TocEntry>
+    <TocEntry
+      Title="Searching the Temporary Registry"
+      Link="/Content/Web Registration/Searching the Temporary Registry.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false">
+      <TocEntry
+        Title="Filter Row"
+        Link="/Content/Web Registration/Filter Row.htm"
+        conditions="Default.Not supported in 1261,Default.Not needed in Web Reg"
+        ReplaceMergeNode="false" />
+      <TocEntry
+        Title="Managing Queries"
+        Link="/Content/Web Registration/Managing Queries.htm"
+        conditions="Default.Not supported in 1261"
+        ReplaceMergeNode="false">
+        <TocEntry
+          Title="Editing a Query"
+          Link="/Content/Web Registration/Editing a Query.htm"
+          conditions="Default.Not supported in 1261"
+          ReplaceMergeNode="false" />
+        <TocEntry
+          Title="Deleting a Query"
+          Link="/Content/Web Registration/Deleting a Query.htm"
+          conditions="Default.Not supported in 1261"
+          ReplaceMergeNode="false" />
+        <TocEntry
+          Title="Restoring a Query"
+          Link="/Content/Web Registration/Restoring a Query.htm"
+          conditions="Default.Not supported in 1261"
+          ReplaceMergeNode="false" />
+        <TocEntry
+          Title="Performing a Query"
+          Link="/Content/Web Registration/Performing a Query.htm"
+          conditions="Default.Not supported in 1261"
+          ReplaceMergeNode="false" />
+        <TocEntry
+          Title="Saving a Query"
+          Link="/Content/Web Registration/Saving a Query.htm"
+          conditions="Default.Not supported in 1261"
+          ReplaceMergeNode="false" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Exporting Records"
+      Link="/Content/Web Registration/Exporting Records.htm"
+      conditions="Default.Not supported in 1261" />
+    <TocEntry
+      Title="Printing Records"
+      Link="/Content/Web Registration/Printing Records.htm"
+      conditions="Default.Not supported in 1261" />
+    <TocEntry
+      Title="Submitting a New Compound"
+      Link="/Content/Web Registration/Submitting a New Compound.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false">
+      <TocEntry
+        Title="Save as Template"
+        Link="/Content/Web Registration/Save as Template.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Load from Templates"
+        Link="/Content/Web Registration/Load from Templates.htm"
+        conditions="Default.Not supported in 1261" />
+    </TocEntry>
+    <TocEntry
+      Title="Approving and Registering a Compound"
+      Link="/Content/Web Registration/Approving and Registering a Compound.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false" />
+    <TocEntry
+      Title="Marking Records"
+      Link="/Content/Web Registration/Marking Records.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false">
+      <TocEntry
+        Title="Bulk Compounds Approval"
+        Link="/Content/Web Registration/Bulk Compounds Approval.htm"
+        conditions="Default.Not supported in 1261"
+        ReplaceMergeNode="false" />
+    </TocEntry>
+    <TocEntry
+      Title="Searching the Registration Records"
+      Link="/Content/Web Registration/Searching the Registration Records.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false" />
+    <TocEntry
+      Title="Duplicate Resolution"
+      Link="/Content/Web Registration/Duplicate Resolution.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false" />
+  </TocEntry>
+  <TocEntry
+    Title="CBOE Search"
+    Link="/Content/CBOE Search/CBOE Search Introduction.htm"
+    conditions="Default.CBV and CBOE Search Output Only">
+    <TocEntry
+      Title="Searching Databases"
+      Link="/Content/CBOE Search/Searching Databases.htm">
+      <TocEntry
+        Title="Basic Searching"
+        Link="/Content/CBOE Search/Basic Searching.htm">
+        <TocEntry
+          Title="Clearing the Search Form"
+          Link="/Content/CBOE Search/Clearing the Search Form.htm" />
+        <TocEntry
+          Title="Retrieving All Records"
+          Link="/Content/CBOE Search/Retrieving All Records.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/CBOE Search/Viewing Search Results.htm">
+        <TocEntry
+          Title="Navigating Through Records"
+          Link="/Content/CBOE Search/Navigating Through Records.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Text Searching"
+        Link="/Content/CBOE Search/Text Searching.htm" />
+      <TocEntry
+        Title="Structure Searching"
+        Link="/Content/CBOE Search/Structure Searching.htm">
+        <TocEntry
+          Title="Substructure"
+          Link="/Content/CBOE Search/Substructure.htm" />
+        <TocEntry
+          Title="Full Structure"
+          Link="/Content/CBOE Search/Full Structure.htm" />
+        <TocEntry
+          Title="Exact Structure"
+          Link="/Content/CBOE Search/Exact Structure.htm" />
+        <TocEntry
+          Title="Similarity (Tanimoto)"
+          Link="/Content/CBOE Search/Similarity (Tanimoto).htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Formula Searching"
+        Link="/Content/CBOE Search/Formula Searching.htm" />
+      <TocEntry
+        Title="Numerical Searching"
+        Link="/Content/CBOE Search/Numerical Searching.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Refining Search Results"
+      Link="/Content/CBOE Search/Refining Search Results.htm">
+      <TocEntry
+        Title="Undoing a Refined Search"
+        Link="/Content/CBOE Search/Undoing a Refined Search.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Setting Search Preferences"
+      Link="/Content/CBOE Search/Setting Search Preferences.htm" />
+    <TocEntry
+      Title="Managing Queries"
+      Link="/Content/CBOE Search/Managing Queries.htm">
+      <TocEntry
+        Title="Saving a Query"
+        Link="/Content/CBOE Search/Saving Queries.htm" />
+      <TocEntry
+        Title="Restoring a Query"
+        Link="/Content/CBOE Search/Restoring Queries.htm" />
+      <TocEntry
+        Title="Editing a Query"
+        Link="/Content/CBOE Search/Editing Query.htm" />
+      <TocEntry
+        Title="Deleting a Query"
+        Link="/Content/CBOE Search/Deleting a Query.htm"></TocEntry>
+      <TocEntry
+        Title="Query History"
+        Link="/Content/CBOE Search/Query History.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing Hit Lists"
+      Link="/Content/CBOE Search/Managing Hit Lists.htm">
+      <TocEntry
+        Title="Saving Hit Lists"
+        Link="/Content/CBOE Search/Saving Hit Lists.htm" />
+      <TocEntry
+        Title="Restoring Hit Lists"
+        Link="/Content/CBOE Search/Restoring Hit Lists.htm" />
+      <TocEntry
+        Title="Editing a Hit List"
+        Link="/Content/CBOE Search/Editing a Hit List.htm" />
+      <TocEntry
+        Title="Deleting a Hit List"
+        Link="/Content/CBOE Search/Deleting a Hit List.htm"></TocEntry>
+      <TocEntry
+        Title="Hit List History"
+        Link="/Content/CBOE Search/Hit List History.htm" />
+      <TocEntry
+        Title="Marking Records"
+        Link="/Content/CBOE Search/Marking Records.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Exporting Search Results"
+      Link="/Content/CBOE Search/Exporting Search Results.htm">
+      <TocEntry
+        Title="Creating an Export Template"
+        Link="/Content/CBOE Search/Creating an Export Template.htm" />
+      <TocEntry
+        Title="Printing"
+        Link="/Content/CBOE Search/Printing.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Retrieving Server Information"
+      Link="/Content/CBOE Search/Retrieving Server Information.htm" />
+    <TocEntry
+      Title="Home"
+      Link="/Content/CBOE Search/Home.htm" />
+    <TocEntry
+      Title="Logging Off"
+      Link="/Content/CBOE Search/Logging Off.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="E-Notebook - COE Integration"
+    Link="/Content/ELN-COE Integration/E-Notebook - COE Integration.htm"
+    conditions="Default.Not supported in 1261">
+    <TocEntry
+      Title="Registry/Inventory/ACX Pull"
+      Link="/Content/ELN-COE Integration/Registry-Inventory-ACX Pull.htm"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Inventory Pull"
+        Link="/Content/ELN-COE Integration/Inventory Pull.htm"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Retrieve Data from Inventory System"
+          Link="/Content/ELN-COE Integration/Retrieve Data from Inventory System.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Displaying Inventory Search Results"
+          Link="/Content/ELN-COE Integration/Displaying Inventory Search Results.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Retrieve Data from Saved Hit Lists"
+          Link="/Content/ELN-COE Integration/Retrieve Data from Saved Hit Lists.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Add Compound from Inventory System to a Reaction Drawing"
+          Link="/Content/ELN-COE Integration/Add Compound from Inventory System to a Reaction Drawing.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Fetch Data from Barcode"
+          Link="/Content/ELN-COE Integration/Fetch Data from Barcode.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Launch Inventory Form from E-Notebook"
+          Link="/Content/ELN-COE Integration/Launch Inventory Form from E-Notebook.htm"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
+        Title="Registry Pull"
+        Link="/Content/ELN-COE Integration/Registry Pull.htm"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Retrieve Data from Registry System"
+          Link="/Content/ELN-COE Integration/Retrieve Data from Registry System.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Display Search Results from Registry System"
+          Link="/Content/ELN-COE Integration/Display Search Results from Registry System.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Add Compound from Registry system to a reaction drawing"
+          Link="/Content/ELN-COE Integration/Add Compound from Registry system to a reaction drawing.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Launch Registry Form after Registry Pull"
+          Link="/Content/ELN-COE Integration/Launch Registry Form after Registry Pull.htm"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
+        Title="ChemACX Pull"
+        Link="/Content/ELN-COE Integration/ChemACX Pull.htm"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Retrieve Data from ChemACX"
+          Link="/Content/ELN-COE Integration/Retrieve Data from ChemACX.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Display the Search Results from ACX System"
+          Link="/Content/ELN-COE Integration/Display the Search Results from ACX System.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Add Compound from ACX system to a Reaction Drawing"
+          Link="/Content/ELN-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Registry/Inventory Push"
+      Link="/Content/ELN-COE Integration/Registry-Inventory Push.htm"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Registration Push"
+        Link="/Content/ELN-COE Integration/Registration Push.htm"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Reg Temp"
+          Link="/Content/ELN-COE Integration/Reg Temp.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Reg Perm"
+          Link="/Content/ELN-COE Integration/Reg Perm.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Push to Registration"
+          Link="/Content/ELN-COE Integration/Registering from the Samples Section.htm"
+          conditions="Default.Not supported in 1261">
+          <TocEntry
+            Title="Launch Registry Form from E-Notebook"
+            Link="/Content/ELN-COE Integration/Launch Registry Form from E-Notebook.htm"
+            conditions="Default.Not supported in 1261" />
+        </TocEntry>
+      </TocEntry>
+      <TocEntry
+        Title="Inventory Push"
+        Link="/Content/ELN-COE Integration/Inventory Push.htm"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Creating Container"
+          Link="/Content/ELN-COE Integration/Creating Container.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Print Barcode"
+          Link="/Content/ELN-COE Integration/Print Barcode.htm"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Combi Chem Bulk Registration and Bulk Container Creation"
+      Link="/Content/ELN-COE Integration/Combi Chem Bulk Registration and Bulk Container Creation.htm"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Registering MPS Products"
+        Link="/Content/ELN-COE Integration/Registering MPS Products.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Fetch Register Number - Combi Chem"
+        Link="/Content/ELN-COE Integration/Fetch Register Number - Combi Chem.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Bulk Container Creation"
+        Link="/Content/ELN-COE Integration/Bulk Container Creation.htm"
+        conditions="Default.Not supported in 1261" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="E-Notebook 17.1 - COE 17.1 Integration"
+    Link="/Content/ELN2014-COE Integration/E-Notebook - COE Integration.htm">
+    <TocEntry
+      Title="Retrieving Data from ChemOffice Enterprise Applications"
+      Link="/Content/ELN2014-COE Integration/Retrieving Data from ChemOffice Enterprise Applications.htm">
+      <TocEntry
+        Title="Retrieving Inventory Data"
+        Link="/Content/ELN2014-COE Integration/Retrieving Inventory Data.htm">
+        <TocEntry
+          Title="Retrieve Data from Inventory System"
+          Link="/Content/ELN2014-COE Integration/Retrieve Data from Inventory System.htm" />
+        <TocEntry
+          Title="Displaying Inventory Search Results"
+          Link="/Content/ELN2014-COE Integration/Displaying Inventory Search Results.htm" />
+        <TocEntry
+          Title="Retrieve Data from Saved Hit Lists"
+          Link="/Content/ELN2014-COE Integration/Retrieve Data from Saved Hit Lists.htm" />
+        <TocEntry
+          Title="Add Compound from Inventory System to a Reaction Drawing"
+          Link="/Content/ELN2014-COE Integration/Add Compound from Inventory System to a Reaction Drawing.htm" />
+        <TocEntry
+          Title="Launch Inventory Form from E-Notebook"
+          Link="/Content/ELN2014-COE Integration/Launch Inventory Form from E-Notebook.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Retrieving Registration Data"
+        Link="/Content/ELN2014-COE Integration/Retrieving Registration Data.htm">
+        <TocEntry
+          Title="Retrieve Data from Registry System"
+          Link="/Content/ELN2014-COE Integration/Retrieve Data from Registry System.htm">
+          <TocEntry
+            Title="Structure Search"
+            Link="/Content/ELN2014-COE Integration/Structure Search.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Display the Search Results from ACX System"
+          Link="/Content/ELN2014-COE Integration/Display the Search Results from ACX System.htm" />
+        <TocEntry
+          Title="Add Compound from Registry system to a reaction drawing"
+          Link="/Content/ELN2014-COE Integration/Add Compound from Registry system to a reaction drawing.htm" />
+        <TocEntry
+          Title="Launch Registry Form from E-Notebook"
+          Link="/Content/ELN2014-COE Integration/Launch Registry Form from E-Notebook.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Retrieving ChemACX Data"
+        Link="/Content/ELN2014-COE Integration/Retrieving Chem ACX Data.htm">
+        <TocEntry
+          Title="Retrieve Data from ChemACX"
+          Link="/Content/ELN2014-COE Integration/Retrieve Data from ChemACX.htm" />
+        <TocEntry
+          Title="Display the Search Results from ACX System"
+          Link="/Content/ELN2014-COE Integration/Display the Search Results from ACX System.htm" />
+        <TocEntry
+          Title="Add Compound from ACX system to a Reaction Drawing"
+          Link="/Content/ELN2014-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Sending Data into Inventory-Registration System"
+      Link="/Content/ELN2014-COE Integration/Sending Data into Inventory-Registration System.htm">
+      <TocEntry
+        Title="Sending Data to Registration"
+        Link="/Content/ELN2014-COE Integration/Sending Data to Registration.htm">
+        <TocEntry
+          Title="Quick Temporary Registration"
+          Link="/Content/ELN2014-COE Integration/Quick Temporary Registration.htm">
+          <TocEntry
+            Title="Open Registrations"
+            Link="/Content/ELN2014-COE Integration/Open Registrations.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Quick Permanent Registration"
+          Link="/Content/ELN2014-COE Integration/Quick Permanent Registration.htm" />
+        <TocEntry
+          Title="Launch Registry Form from E-Notebook"
+          Link="/Content/ELN2014-COE Integration/Launch Registry Form from E-Notebook.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Registration-Inventory User Preferences"
+        Link="/Content/ELN2014-COE Integration/Registration-Inventory User Preferences.htm">
+        <TocEntry
+          Title="Registration User Preferences"
+          Link="/Content/ELN2014-COE Integration/Registration User Preferences.htm" />
+        <TocEntry
+          Title="Inventory User Preferences"
+          Link="/Content/ELN2014-COE Integration/Inventory User Preferences.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Registering from the Samples Section"
+        Link="/Content/ELN2014-COE Integration/Registering from the Samples Section.htm">
+        <TocEntry
+          Title="Quick Temporary Registration - Single Click"
+          Link="/Content/ELN2014-COE Integration/Quick Temporary Registration - Single Click.htm" />
+        <TocEntry
+          Title="Quick Permanent Registration - Single Click"
+          Link="/Content/ELN2014-COE Integration/Quick Permanent Registration - Single Click.htm" />
+        <TocEntry
+          Title="Manual Registration"
+          Link="/Content/ELN2014-COE Integration/Manual Registration.htm" />
+        <TocEntry
+          Title="Fetch Register Number"
+          Link="/Content/ELN2014-COE Integration/Fetch Register Number.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Sending Data to Inventory"
+        Link="/Content/ELN2014-COE Integration/Sending Data to Inventory.htm">
+        <TocEntry
+          Title="Quick Container Creation"
+          Link="/Content/ELN2014-COE Integration/Quick Container Creation.htm" />
+        <TocEntry
+          Title="Manual Container Creation"
+          Link="/Content/ELN2014-COE Integration/Manual Container Creation.htm" />
+        <TocEntry
+          Title="Updating Container Amounts"
+          Link="/Content/ELN2014-COE Integration/Updating Container Amounts.htm" />
+        <TocEntry
+          Title="Print Barcode"
+          Link="/Content/ELN2014-COE Integration/Print Barcode.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Retrieving Inventory Data - Non Sample Management (NSM)"
+      Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieving Inventory Data - Non Sample Management (NSM).htm">
+      <TocEntry
+        Title="Retrieve Data from Inventory System - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieve Data from Inventory System - NSM.htm" />
+      <TocEntry
+        Title="Displaying Inventory Search Results"
+        Link="/Content/ELN2014-COE Integration/Displaying Inventory Search Results.htm" />
+      <TocEntry
+        Title="Retrieve Data from Saved Hit Lists"
+        Link="/Content/ELN2014-COE Integration/Retrieve Data from Saved Hit Lists.htm" />
+      <TocEntry
+        Title="Adding Compounds from Inventory System to a Reaction Drawing - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Add Compound from Inventory to a Reaction Drawing-NSM.htm" />
+      <TocEntry
+        Title="Launch Inventory Form from E-Notebook - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Launch Inventory Form from E-Notebook - NSM.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Retrieving Registration Data - Non Sample Management (NSM)"
+      Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieving Registration Data - NSM.htm">
+      <TocEntry
+        Title="Retrieve Data from Registry System - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieve Data from Registry System - NSM.htm" />
+      <TocEntry
+        Title="Display Search Results from Registry System - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Display Search Results from Registry System - NSM.htm" />
+      <TocEntry
+        Title="Add Compound from Registry System to a Reaction Drawing - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Add Compound from Registry to a Reaction Drawing-NSM.htm" />
+      <TocEntry
+        Title="Launch Registry Form from E-Notebook - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Launch Registry Form from E-Notebook - NSM.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Retrieving ChemACX Data - Non Sample Management (NSM)"
+      Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieving ChemACX Data - Non Sample Management (NSM).htm">
+      <TocEntry
+        Title="Retrieve Data from ChemACX - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Retrieve Data from ChemACX - NSM.htm" />
+      <TocEntry
+        Title="Display the Search Results from ACX System"
+        Link="/Content/ELN2014-COE Integration/Display the Search Results from ACX System.htm" />
+      <TocEntry
+        Title="Adding Compounds from ACX System to a Reaction Drawing - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Add Compound from ACX to a Reaction Drawing-NSM.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Sending Inventory Data - Non Sample Management (NSM)"
+      Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Sending Inventory Data - Non Sample Management (NSM).htm">
+      <TocEntry
+        Title="Open Inventory Form"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Open Inventory Form.htm">
+        <TocEntry
+          Title="Creating Container - NSM"
+          Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Creating Container - NSM.htm" />
+        <TocEntry
+          Title="Updating Container"
+          Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Updating Container.htm" />
+        <TocEntry
+          Title="Print Barcode - NSM"
+          Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Print Barcode - NSM.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Update Container Amounts"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Update Container Amounts.htm" />
+      <TocEntry
+        Title="Launch Inventory Form from E-Notebook"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Launch Inventory Form from E-Notebook.htm" />
+      <TocEntry
+        Title="Bulk Container Creation"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Bulk Container Creation.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Sending Registration Data - Non Sample Management (NSM)"
+      Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Sending Registration Data - Non Sample Management (NSM).htm">
+      <TocEntry
+        Title="Register Compound"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Register Compound.htm" />
+      <TocEntry
+        Title="Fetch Register Number - NSM"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Fetch Register Number - NSM.htm" />
+      <TocEntry
+        Title="Launch Registry Form from E-Notebook"
+        Link="/Content/ELN2014-COE Integration/Non Sample Management Workflow/Launch Registry Form from E-Notebook.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Combi Chem Bulk Registration and Bulk Container Creation"
+      Link="/Content/ELN2014-COE Integration/Parallel Synthesis Bulk Registration and Container Creation.htm">
+      <TocEntry
+        Title="Registering MPS Products"
+        Link="/Content/ELN2014-COE Integration/Registering PS Products.htm" />
+      <TocEntry
+        Title="Fetch Register Number - Combi Chem"
+        Link="/Content/ELN2014-COE Integration/Fetch Register Number - Parallel Synthesis.htm" />
+      <TocEntry
+        Title="Bulk Container Creation"
+        Link="/Content/ELN2014-COE Integration/Bulk Container Creation.htm" />
+    </TocEntry>
+  </TocEntry>
+</CatapultToc>

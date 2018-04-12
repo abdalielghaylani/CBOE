@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.CBV Output Only">
+  <TocEntry
+    Title="ChemBioViz"
+    Link="/Content/ChemBioViz/ChemBioViz Introduction.htm"
+    conditions="Default.CBV Output Only,Default.CBV and CBOE Search Output Only">
+    <TocEntry
+      Title="Logging In to ChemBioViz"
+      Link="/Content/ChemBioViz/Logging In to ChemBioViz.htm" />
+    <TocEntry
+      Title="The ChemBioViz Environment"
+      Link="/Content/ChemBioViz/The ChemBioViz Environment.htm">
+      <TocEntry
+        Title="Navigation Pane"
+        Link="/Content/ChemBioViz/Navigation Pane.htm" />
+      <TocEntry
+        Title="Record Numbers Box"
+        Link="/Content/ChemBioViz/Record Numbers Box.htm" />
+      <TocEntry
+        Title="Tabs "
+        Link="/Content/ChemBioViz/Tabs.htm" />
+      <TocEntry
+        Title="Main Window"
+        Link="/Content/ChemBioViz/Main Window.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Sample Files"
+      Link="/Content/ChemBioViz/Sample Files.htm" />
+    <TocEntry
+      Title="Forms"
+      Link="/Content/ChemBioViz/Forms.htm">
+      <TocEntry
+        Title="Public Forms"
+        Link="/Content/ChemBioViz/Public Forms.htm" />
+      <TocEntry
+        Title="Private Forms"
+        Link="/Content/ChemBioViz/Private Forms.htm" />
+      <TocEntry
+        Title="Opening a Form"
+        Link="/Content/ChemBioViz/Opening a Form.htm" />
+      <TocEntry
+        Title="Generating Forms"
+        Link="/Content/ChemBioViz/Generating Forms.htm" />
+      <TocEntry
+        Title="Creating a Form"
+        Link="/Content/ChemBioViz/Creating a Form.htm">
+        <TocEntry
+          Title="Duplicating a Form"
+          Link="/Content/ChemBioViz/Duplicating a Form.htm" />
+        <TocEntry
+          Title="Using a Blank Form"
+          Link="/Content/ChemBioViz/Using a Blank Form.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Saving a Form"
+        Link="/Content/ChemBioViz/Saving a Form.htm">
+        <TocEntry
+          Title="Saving a Form Locally"
+          Link="/Content/ChemBioViz/Saving a Form Locally.htm" />
+        <TocEntry
+          Title="Saving a Form on a Network"
+          Link="/Content/ChemBioViz/Saving a Form on a Network.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Drill Down Forms"
+        Link="/Content/ChemBioViz/Drill Down Forms.htm" />
+      <TocEntry
+        Title="Managing Forms"
+        Link="/Content/ChemBioViz/Managing Forms.htm">
+        <TocEntry
+          Title="Adding Subfolders"
+          Link="/Content/ChemBioViz/Adding Subfolders.htm" />
+        <TocEntry
+          Title="Form Properties"
+          Link="/Content/ChemBioViz/Form Properties.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Editing Forms"
+      Link="/Content/ChemBioViz/Editing Forms.htm">
+      <TocEntry
+        Title="About Form Elements"
+        Link="/Content/ChemBioViz/About Form Elements.htm" />
+      <TocEntry
+        Title="Adding Elements to Forms"
+        Link="/Content/ChemBioViz/Adding Elements to Forms.htm" />
+      <TocEntry
+        Title="Form Element Types"
+        Link="/Content/ChemBioViz/Form Element Types.htm">
+        <TocEntry
+          Title="Button"
+          Link="/Content/ChemBioViz/Button.htm" />
+        <TocEntry
+          Title="Hyperlinks"
+          Link="/Content/ChemBioViz/Hyperlinks.htm" />
+        <TocEntry
+          Title="Textbox"
+          Link="/Content/ChemBioViz/Textbox.htm" />
+        <TocEntry
+          Title="CheckBox"
+          Link="/Content/ChemBioViz/CheckBox.htm" />
+        <TocEntry
+          Title="RichtTextBox"
+          Link="/Content/ChemBioViz/RichtTextBox.htm" />
+        <TocEntry
+          Title="ChemDrawBox"
+          Link="/Content/ChemBioViz/ChemDrawBox.htm" />
+        <TocEntry
+          Title="FormulaBox"
+          Link="/Content/ChemBioViz/FormulaBox.htm" />
+        <TocEntry
+          Title="PictureBox"
+          Link="/Content/ChemBioViz/PictureBox.htm" />
+        <TocEntry
+          Title="MonthCalendar"
+          Link="/Content/ChemBioViz/MonthCalendar.htm" />
+        <TocEntry
+          Title="DateTimePicker"
+          Link="/Content/ChemBioViz/DateTimePicker.htm" />
+        <TocEntry
+          Title="SubformGrid"
+          Link="/Content/ChemBioViz/SubformGrid.htm" />
+        <TocEntry
+          Title="Custom Menus"
+          Link="/Content/ChemBioViz/Custom Menus.htm" />
+        <TocEntry
+          Title="QueryText box"
+          Link="/Content/ChemBioViz/QueryText box.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Editing Form Elements"
+        Link="/Content/ChemBioViz/Editing Form Elements.htm">
+        <TocEntry
+          Title="Editing Element Appearance"
+          Link="/Content/ChemBioViz/Editing Element Appearance.htm" />
+        <TocEntry
+          Title="Binding Data to an Element"
+          Link="/Content/ChemBioViz/Binding Data to an Element.htm">
+          <TocEntry
+            Title="Smart Tags"
+            Link="/Content/ChemBioViz/Smart Tags.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Deleting Form Elements"
+          Link="/Content/ChemBioViz/Deleting Form Elements.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Feature Disabling"
+        Link="/Content/ChemBioViz/Feature Disabling.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Queries"
+      Link="/Content/ChemBioViz/Queries.htm">
+      <TocEntry
+        Title="Selecting a Form"
+        Link="/Content/ChemBioViz/Selecting a Form.htm" />
+      <TocEntry
+        Title="Entering Query Parameters"
+        Link="/Content/ChemBioViz/Entering Query Parameters.htm">
+        <TocEntry
+          Title="Drawing Query Structures"
+          Link="/Content/ChemBioViz/Drawing Query Structures.htm" />
+        <TocEntry
+          Title="Entering Text Values"
+          Link="/Content/ChemBioViz/Entering Text Values.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Performing a Simple Query"
+        Link="/Content/ChemBioViz/Performing a Simple Query.htm" />
+      <TocEntry
+        Title="The Queries Pane"
+        Link="/Content/ChemBioViz/The Queries Pane.htm" />
+      <TocEntry
+        Title="Query Options"
+        Link="/Content/ChemBioViz/Query Options.htm" />
+      <TocEntry
+        Title="Managing the Query List"
+        Link="/Content/ChemBioViz/Managing the Query List.htm" />
+      <TocEntry
+        Title="Structure Search Types"
+        Link="/Content/ChemBioViz/Structure Search Types.htm">
+        <TocEntry
+          Title="Advanced Query Options"
+          Link="/Content/ChemBioViz/Advanced Query Options.htm" />
+        <TocEntry
+          Title="Understanding Session Queries"
+          Link="/Content/ChemBioViz/Understanding Session Queries.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Merging Queries"
+        Link="/Content/ChemBioViz/Merging Queries.htm" />
+      <TocEntry
+        Title="Viewing Results"
+        Link="/Content/ChemBioViz/Viewing Results.htm">
+        <TocEntry
+          Title="Form View"
+          Link="/Content/ChemBioViz/Form View.htm" />
+        <TocEntry
+          Title="Table View"
+          Link="/Content/ChemBioViz/Table View.htm" />
+        <TocEntry
+          Title="Table Style"
+          Link="/Content/ChemBioViz/Table Style.htm" />
+        <TocEntry
+          Title="Card View"
+          Link="/Content/ChemBioViz/Card View.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Filtering Child Hits Based on Query"
+        Link="/Content/ChemBioViz/Filtering Child Hits Based on Query.htm" />
+      <TocEntry
+        Title="Highlighting Substructure Hits"
+        Link="/Content/ChemBioViz/Highlighting Substructure Hits.htm" />
+      <TocEntry
+        Title="Copying Selected Results"
+        Link="/Content/ChemBioViz/Copying Selected Results.htm" />
+      <TocEntry
+        Title="Exporting Results"
+        Link="/Content/ChemBioViz/Exporting Results.htm">
+        <TocEntry
+          Title="Export to SD File"
+          Link="/Content/ChemBioViz/Export to SD File.htm" />
+        <TocEntry
+          Title="Export Delimited Text"
+          Link="/Content/ChemBioViz/Export Delimited Text.htm" />
+        <TocEntry
+          Title="Export to ChemDraw for Excel"
+          Link="/Content/ChemBioViz/Export to ChemDraw for Excel.htm" />
+        <TocEntry
+          Title="Export to CBV Excel"
+          Link="/Content/ChemBioViz/Export to CBV Excel.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Printing Results"
+        Link="/Content/ChemBioViz/Printing Results.htm">
+        <TocEntry
+          Title="Printing Selected Results"
+          Link="/Content/ChemBioViz/Printing Selected Results.htm" />
+        <TocEntry
+          Title="Print Setup"
+          Link="/Content/ChemBioViz/Print Setup.htm" />
+        <TocEntry
+          Title="Print Preview"
+          Link="/Content/ChemBioViz/Print Preview.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="ChemBioViz - Spotfire Integration"
+      Link="/Content/ChemBioViz/ChemBioViz - Spotfire Integration.htm"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Editing ChemBioViz Results Criteria within Spotfire"
+        Link="/Content/ChemBioViz/Editing ChemBioViz Results Criteria within Spotfire.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Open Analysis"
+        Link="/Content/ChemBioViz/Open Analysis.htm"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Spotfire Preferences"
+        Link="/Content/ChemBioViz/Spotfire Preferences.htm"
+        conditions="Default.Not supported in 1261" />
+    </TocEntry>
+    <TocEntry
+      Title="Customizing ChemBioViz"
+      Link="/Content/ChemBioViz/Customizing ChemBioViz.htm">
+      <TocEntry
+        Title="Interface Style"
+        Link="/Content/ChemBioViz/Interface Style.htm" />
+      <TocEntry
+        Title="Main Toolbar"
+        Link="/Content/ChemBioViz/Main Toolbar.htm" />
+      <TocEntry
+        Title="Arranging the Interface"
+        Link="/Content/ChemBioViz/Arranging the Interface.htm">
+        <TocEntry
+          Title="Docking Windows"
+          Link="/Content/ChemBioViz/Docking Windows.htm" />
+        <TocEntry
+          Title="Locking Toolbars"
+          Link="/Content/ChemBioViz/Locking Toolbars.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Displaying Navigation Buttons"
+        Link="/Content/ChemBioViz/Displaying Navigation Buttons.htm" />
+      <TocEntry
+        Title="Command Line"
+        Link="/Content/ChemBioViz/Command Line.htm">
+        <TocEntry
+          Title="Keyboard Shortcuts"
+          Link="/Content/ChemBioViz/Keyboard Shortcuts.htm" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Plotting Data"
+      Link="/Content/ChemBioViz/Plotting Data.htm">
+      <TocEntry
+        Title="Standard vs. Subform Plots"
+        Link="/Content/ChemBioViz/Standard vs. Subform Plots.htm">
+        <TocEntry
+          Title="1D vs. 2D plots"
+          Link="/Content/ChemBioViz/1D vs. 2D plots.htm" />
+        <TocEntry
+          Title="Creating a Plot"
+          Link="/Content/ChemBioViz/Creating a Plot.htm">
+          <TocEntry
+            Title="Building a Plot"
+            Link="/Content/ChemBioViz/Building a Plot.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Viewing Plots "
+          Link="/Content/ChemBioViz/Viewing Plots.htm">
+          <TocEntry
+            Title="Selecting Data Fields "
+            Link="/Content/ChemBioViz/Selecting Data Fields.htm" />
+          <TocEntry
+            Title="Highlighting Current Record "
+            Link="/Content/ChemBioViz/Highlighting Current Record.htm" />
+          <TocEntry
+            Title="Viewing Point Data"
+            Link="/Content/ChemBioViz/Viewing Point Data.htm" />
+          <TocEntry
+            Title="Selecting Points"
+            Link="/Content/ChemBioViz/Selecting Points.htm" />
+          <TocEntry
+            Title="Zooming"
+            Link="/Content/ChemBioViz/Zooming.htm" />
+          <TocEntry
+            Title="Hitlist from Selected Points"
+            Link="/Content/ChemBioViz/Hitlist from Selected Points.htm" />
+          <TocEntry
+            Title="Filters"
+            Link="/Content/ChemBioViz/Filters.htm" />
+          <TocEntry
+            Title="Customizing Colors and Labels"
+            Link="/Content/ChemBioViz/Customizing Colors and Labels.htm" />
+        </TocEntry>
+        <TocEntry
+          Title="Advanced Plot Properties"
+          Link="/Content/ChemBioViz/Advanced Plot Properties.htm" />
+      </TocEntry>
+    </TocEntry>
+  </TocEntry>
+</CatapultToc>

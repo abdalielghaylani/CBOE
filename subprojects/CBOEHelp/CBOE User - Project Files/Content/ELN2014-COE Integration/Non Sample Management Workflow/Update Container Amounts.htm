@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2670" MadCap:lastWidth="1150" MadCap:conditions="Default.ELN2014-COE Integration">
+    <head>
+    </head>
+    <body>
+        <h1>Update Container Amounts</h1>
+        <p style="font-weight: normal;"><b>Update Container Amounts</b> functionality lets you reduce the consumed amount/volume of a substance, usually these fields are: sample mass and volume. This is applied in the Reaction W COE Integration section &gt; Reactants &amp; Products table where inventory reagents are used, and where you can perform a bulk update to an inventory container--of the amount consumed for multiple containers. 
+
+</p>
+        <p style="font-weight: normal;">The amount/volume specified in E-Notebook is the consumed amount and, therefore, is reduced from the inventory container.</p>
+        <p style="font-weight: bold;">Example: </p>
+        <ul style="list-style-type: square;">
+            <li>Container Name:Test 1, Container ID: C1141</li>
+        </ul>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Example1.gif" />
+        </p>
+        <ul style="list-style-type: square;">
+            <li>Container Name: Test 2, Container ID:&#160;C1142</li>
+        </ul>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Example2.gif" />
+        </p>
+        <p>The amount/volume consumed by the container entries present in E-Notebook are reduced from the container entries in the Inventory system.</p>
+        <h4>To update Container Amounts:</h4>
+        <ol>
+            <li>Navigate to the Reactants table in the Reaction W COE Integration section.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Reactants table.gif" />
+        </p>
+        <p style="font-style: normal;"><b>Note</b>: The container in the Reactants &amp;&#160;Products table must have Barcode values.</p>
+        <ol MadCap:continue="true">
+            <li>Ensure the Updated (check box) is unchecked.</li>
+            <li>Modify the <b>Sample Mass</b> and <b>Vol</b> (volume) values.</li>
+        </ol>
+        <p><b>Note</b>: &#160;You can only reduce the consumed amount.</p>
+        <ol MadCap:continue="true">
+            <li>Fill in the consumed volume. </li>
+            <li value="5">Click the <b>Send to Inventory</b> form tool and select <b>Update Container Amounts</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Update CNT amounts.gif" />
+        </p>
+        <p>The Update Container Amounts dialog appears for confirmation. </p>
+        <ol>
+            <li value="6">Click <b>Yes</b> to confirm your action.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Update amounts confirmation.gif" />
+        </p>
+        <p>The <b>Update Container Amount</b> dialog with the created barcodes displays. </p>
+        <ol>
+            <li value="7">Click <b>OK</b>.</li>
+        </ol>
+        <p>Once the container amounts are updated in E-Notebook, the amount/volume consumed by the containers in E-Notebook is deducted form the amount/volume of the containers in the Inventory system.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Inventory Data - Non Sample Management (NSM).htm">Sending Inventory Data - Non Sample Management</a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="3096" MadCap:lastWidth="689" MadCap:conditions="Default.DataLoader Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Boolean Functions</h1>
+        <p>The Boolean functions return only Boolean
+value: True or False. These functions are applicable
+only if the output field is of Boolean
+type. Depending on the function you select,
+you would need to select one or more input
+fields to be supplied to the selected function.
+Use the Fields button on the Calculation dialog
+box to select the input fields after you have
+selected a function.</p>
+        <p>The Boolean functions supported by Data
+Loader are:
+</p>
+        <ul style="list-style-type: square;">
+            <li>Boolean.Equals(Boolean): Matches two
+input fields of Boolean type and returns
+True if both are equal. Else, returns False.
+</li>
+            <li>Char.Equals(Char): Matches two input
+fields of Char type and returns True if both
+are equal. Else, returns False.
+</li>
+            <li>DateTime.Equals(DateTime): Matches two
+input fields of DateTime type and returns
+True if both are equal. Else, returns False.
+</li>
+            <li>DateTime.IsDaylightSavingTime():
+Returns True if the input field selected is a
+daylight saving time. Else, returns False.
+</li>
+            <li>Decimal.Equals(Decimal): Matches two
+input fields of Decimal type and returns
+True if both are equal. Else, returns False.
+</li>
+            <li>Equals(DateTime,DateTime): Returns True
+if the input fields of DateTime type supplied
+to this function are equal. Else, returns
+False.
+</li>
+            <li>Equals(String,String): Returns True if the
+input fields of String type supplied to this
+function are equal. Else, returns False.
+</li>
+            <li>Iif(Boolean,Boolean,Boolean): Evaluates
+the first Boolean expression; if result is
+True, the function returns the second Boolean
+parameter else it returns the third Boolean
+parameter.
+</li>
+            <li>Interger.Equals(Integer): Returns True if
+the input fields of Integer type supplied to
+this function are equal. Else, returns False.
+</li>
+            <li>IsControl(Char): Returns True if the input
+field of Char type supplied to this function
+is a control character. Else, returns False.
+</li>
+        </ul>
+        <p><i><b>NOTE:</b> A ‘control character’ is a character
+which does not have a direct visual appearance,
+but rather causes some other display
+action to occur, such as a transition to a new
+line. Examples are tab, carriage return, and
+line feed.
+</i>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>IsControl(String, Integer): Returns True if
+the character at the position specified by the
+Integer field, in the String type input field is
+a control character. Else, returns False.
+</li>
+            <li>IsDigit(Char): Returns True if the input
+field of Char type supplied to this function
+is a digit. Else, returns False.
+</li>
+            <li>IsDigit(String,Integer): Returns True if the
+character at the position specified by the
+Integer field, in the String type input field is
+a digit. Else, returns False.
+</li>
+            <li>IsHighSurrogate(Char): Returns True if the
+input field of Char type supplied to this
+function is a high surrogate. Else, returns
+False.
+</li>
+        </ul>
+        <p><i><b>NOTE:</b> Surrogate pairs are character representations
+that represent a single character
+consisting of a sequence of two Unicode values.
+In a coded pair, the first value is a high surrogate
+and the second is a low surrogate. A high
+surrogate is a character in the range U+D800
+through U+DBFF. A low surrogate is a character
+in the range U+DC00 through U+DFFF.
+Surrogate pairs extend the character set
+beyond the Unicode character.</i>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>IsHighSurrogate(String,Integer): Returns
+True if the character at the position specified
+by the Integer field, in the String type
+input field is a high surrogate. Else, returns
+False.
+</li>
+            <li>IsInfinity(Decimal): Returns True if the
+input field of Decimal type is an infinity
+value; else, returns False. An infinity value
+can be the result of arithmetic overflow,
+division by zero, or other exceptional operations.
+</li>
+            <li>IsLeapYear(Integer): Returns True if the
+input field of Integer type is a leap year.
+Else, returns False.
+</li>
+            <li>IsLetter(Char): Returns True if the input
+field of Char type is categorized as a Unicode
+letter. Else, returns False.
+</li>
+            <li>IsLetter(String,Integer): Returns True if the
+character at the position specified by the
+Integer field, in the String type input field is
+categorized as a Unicode letter. Else,
+returns False.
+</li>
+            <li>IsLetterOrDigit(Char): Returns True if the
+input field of Char type is categorized as a
+Unicode letter or digit. Else, returns False.
+</li>
+            <li>IsLetterOrDigit(String,Integer): Returns
+True if the character at the position specified
+by the Integer field, in the String type
+input field is categorized as a Unicode letter
+or digit. Else, returns False.
+</li>
+            <li>IsLower(Char): Returns True if the input
+field of Char type is in lower case. Else,
+returns False.
+</li>
+            <li>IsLower(String,Integer): Returns True if the
+character at the position specified by the
+Integer field, in the String type input field is
+in lower case. Else, returns False.
+</li>
+            <li>IsLowSurrogate(Char): Returns True if the
+input field of Char type supplied to this
+function is a low surrogate. Else, returns
+False.
+</li>
+            <li>IsLowSurrogate(String,Integer): Returns
+True if the character at the position specified
+by the Integer field, in the String type
+input field is a low surrogate. Else, returns
+False.
+</li>
+            <li>IsNaN(Decimal): Returns True if the input
+field of Decimal type supplied to this function
+is not a number. Else, returns False.
+</li>
+            <li>IsNegativeInfinity(Decimal): Returns True
+if the input field of Decimal type supplied
+to this function is a negative infinity. Else,
+returns False.
+</li>
+            <li>IsNull(Boolean): Returns True if the input
+field of Boolean type supplied to this function
+is a null reference. Else, returns False.
+</li>
+            <li>IsNull(Char): Returns True if the input field
+of Char type supplied to this function is a
+null reference. Else, returns False.
+</li>
+            <li>IsNull(DateTime): Returns True if the input
+field of DateTime type supplied to this
+function is a null reference. Else, returns
+False.
+</li>
+            <li>IsNull(Decimal): Returns True if the input
+field of Decimal type supplied to this function
+is a null reference. Else, returns False.
+</li>
+            <li>IsNull(Integer): Returns True if the input
+field of Integer type supplied to this function
+is a null reference. Else, returns False.
+</li>
+            <li>IsNull(String): Returns True if the input
+field of String type supplied to this function
+is a null reference. Else, returns False.
+</li>
+            <li>IsNullOrEmpty(String): Returns True if the
+input field of String type supplied to this
+function is a null reference or an empty
+string. Else, returns False.</li>
+            <li>IsNumber(Char): Returns True if the input
+field of Char type supplied to this function
+is a number. Else, returns False.</li>
+            <li>IsNumber(String,Integer): Returns True if
+the character at the position specified by the
+Integer field, in the String type input field is
+a number. Else, returns False.
+</li>
+            <li>IsPositiveInfinity(Decimal): Returns True if
+the input field of Decimal type supplied to
+this function is a positive infinity. Else,
+returns False.
+</li>
+            <li>IsPunctuation(Char): Returns True if the
+input field of Char type supplied to this
+function is a punctuation mark, such as
+comma or semi colon. Else, returns False.
+</li>
+            <li>IsSeparator(Char): Returns True if the input
+field of Char type supplied to this function
+is a separator. Else, returns False.
+</li>
+            <li>IsSurrogate(Char): Returns True if the input
+field of Char type supplied to this function
+is a surrogate. Else, returns False.
+</li>
+            <li>IsSurrogate(String,Integer): Returns True if
+the character at the position specified by the
+Integer field, in the String type input field is
+a surrogate. Else, returns False.
+</li>
+            <li>IsSurrogatePair(Char,Char): Returns True if
+the input fields of Char type supplied to this
+function are parts of a surrogate pair. Else,
+returns False.
+</li>
+            <li>IsSurrogatePair(String,Integer): Returns
+True if two adjacent Char objects at the
+position specified by the Integer field, in
+the String type input field form a surrogate
+pair. Else, returns False.
+</li>
+            <li>IsSymbol(Char): Returns True if the input
+field of Char type supplied to this function
+is a symbol. Else, returns False.
+</li>
+            <li>IsSymbol(String,Integer): Returns True if
+the character at the position specified by the
+Integer field, in the String type input field is
+a symbol. Else, returns False.
+</li>
+            <li>IsUpper(Char): Returns True if the input
+field of Char type supplied to this function
+is an uppercase alphabet. Else, returns
+False.
+</li>
+            <li>IsUpper(String,Integer): Returns True if the
+character at the position specified by the
+Integer field, in the String type input field is
+an uppercase alphabet. Else, returns False.
+</li>
+            <li>IsWhiteSpace(Char): Returns True if the
+input field of Char type supplied to this
+function is a blank space. Else, returns
+False.
+</li>
+            <li>IsWhiteSpace(String,Integer): Returns True
+if the character at the position specified by
+the Integer field, in the String type input
+field is a blank space. Else, returns False.
+</li>
+            <li>op_Equality(DateTime,DateTime): Returns
+True if the input fields of DateTime type
+supplied to this function are equal. Else,
+returns False.
+</li>
+            <li>op_Equality(String,String): Returns True if
+the input fields of String type supplied to
+this function are equal. Else, returns False.
+</li>
+            <li>op_GreaterThan(DateTime,DateTime):
+Returns True if the first input field of Date-
+Time type supplied to this function is
+greater than the second input field. Else,
+returns False.
+</li>
+            <li>op_GreaterThanOrEqual(DateTime,Date-
+Time): Returns True if the first input field
+of DateTime type supplied to this function
+is greater than or equal to the second input
+field. Else, returns False
+</li>
+            <li>op_Inequality(DateTime,DateTime):
+Returns True if the input fields of DateTime
+type supplied to this function are not equal.
+Else, returns False.</li>
+            <li>op_Inequality(String,String): Returns True
+if the input fields of String type supplied to
+this function are not equal. Else, returns
+False.
+</li>
+            <li>op_LessThan(DateTime,DateTime):
+Returns True if the first input field of Date-
+Time type supplied to this function is lesser
+than the second input field. Else, returns
+False
+</li>
+            <li>op_LessThanOrEqual(DateTime,Date-
+Time): Returns True if the first input field
+of DateTime type supplied to this function
+is lesser than or equal to the second input
+field. Else, returns False.</li>
+            <li>Parse(String): Returns the Boolean equivalent
+of the specified string representation of
+a logical value.
+</li>
+            <li>String.Contains(String): Returns True if the
+first input field of String type occurs within
+the second String type field. Else, returns
+False.
+</li>
+            <li>String.EndsWith(String): Returns True if
+the end of the first input field of String type
+matches the second String type field. Else,
+returns False.
+</li>
+            <li>String.Equals(String): Returns True if the
+first input field of String type is equal to the
+second String type field. Else, returns False.
+</li>
+            <li>String.IsNormalized(): Returns True if the
+input field of String type supplied to this
+function is in Normalization Form C
+(NFC). Else, returns False.
+</li>
+        </ul>
+        <p><i><b>NOTE:</b> The Unicode standard defines a process
+called normalization. In this process, a
+function returns one binary representation
+when any of the equivalent binary representations
+of a character is supplied to the function.
+Normalization can be performed with several
+algorithms called normalization forms, that
+obey different rules. The .NET Framework currently
+supports normalization forms C, D, KC,
+and KD. Normalization forms C (NFC) is one
+of these normalization forms.</i>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>String.StartsWith(String): Returns True if
+the beginning of the first input field of
+String type matches the second String type
+field. Else, returns False.
+</li>
+            <li>ToBoolean(Boolean): Returns the Boolean
+equivalent of a Boolean type input field.
+There is no actual conversion in this case.
+</li>
+            <li>ToBoolean(Char): Returns the Boolean
+equivalent of a Char type input field.</li>
+            <li> ToBoolean(DateTime): Returns the Boolean
+equivalent of a DateTime type input
+field.
+</li>
+            <li>ToBoolean(Decimal): Returns the Boolean
+equivalent of a Decimal type input field.
+</li>
+            <li>ToBoolean(Integer): Returns the Boolean
+equivalent of an Integer type input field.
+</li>
+            <li>ToBoolean(String): Returns the Boolean
+equivalent of a String type input field.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Functions.htm">Functions</a>
+        </p>
+    </body>
+</html>

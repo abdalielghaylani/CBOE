@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Registration|Customize Registration|Manage Customizable Tables">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>PickList Domain and PickList Values</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js">
+        </script>
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>PickList Domain and PickList Values</h1>
+        <p>Picklists are dropdown lists that provide users a list of all possible values for a field. 
+
+From the Table Editor, administrator can create a list of values to make a dropdown list field.
+
+The list of values are grouped in a Domain as shown in the example below:</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td><b>PickList Domain</b>
+                    </td>
+                    <td><b>PickList Values</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Compound Type
+</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">Intermediate
+</li>
+                            <li value="2">Final Product</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stereochemistry Comment
+</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">No Comment
+</li>
+                            <li value="2">Mixture of Isomers
+</li>
+                            <li value="3">Mixture of Diastereoisomers</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li value="1">Blue
+</li>
+                            <li value="2">Yellow
+</li>
+                            <li value="3">White
+</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><b>Adding a New Row</b>
+        </p>
+        <p>To add a new row:</p>
+        <ol>
+            <li value="1">In the table editor page, select the "PICKLISTDOMAIN" table </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklistdomain.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="2">Click on Add button the following dialog displays:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/add a picklist row.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="3">If only a list of values is needed, enter the domain description and then click on Add button.</li>
+            <li value="4">If values come from another Table, enter the following information to build your own SQL and then click on Add button: 
+ 
+</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"><b>External Table:</b> Enter the name of the table. If this table is from another schema than REGDB, then enter the schema name before the table name (Ex. COEDB.PEOPLE)
+ </li>
+                <li value="2"><b>External Column ID:</b> Enter the name of the column that contains the table ID
+ </li>
+                <li value="3"><b>External Column Display:</b> Enter the name of the column that contains the values to display in the dropdown list
+ </li>
+                <li value="4"><b>Additional SQL Filter:</b> Enter a clause to filter the values to display in the dropdown list.</li>
+                <li value="5"><b>Additional SQL SortOrder:</b>Enter a clause to specify the order of values to appear in the property's dropdown list. Note that the top most value will be selected as default value.</li>
+            </ul>
+        </blockquote>
+        <p><b style="font-size: 14pt;">Entering a List of Values</b>
+        </p>
+        <p>To enter a list of values:</p>
+        <ol>
+            <li value="1">In the table editor page, select the "PICKLIST VALUES" table.</li>
+            <li value="2">To add a new picklist, click on the Add button, the following window displays providing the ability to select the PICKLIST DOMAIN from the dropdown list and to enter the value for the new PICKLIST value.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklist values.gif" />
+        </p>
+        <ol data-mc-continue="true">
+            <li value="3">Click on the Add button.</li>
+            <li value="4">The new value will be added to the PICKLIST table</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Registration/picklist table.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Manage Customizable Tables.htm">Manage Customizable Tables</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

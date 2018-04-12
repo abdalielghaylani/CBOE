@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/DataLoader/Read Records from the Source File.htm" />
+        <Link Url="Content/DataLoader/Validate Properties Values.htm" />
+        <Link Url="Content/DataLoader/Send Records to Application Server.htm" />
+        <Link Url="Content/DataLoader/Execute Addins.htm" />
+        <Link Url="Content/DataLoader/Chemical Structure Duplicate Check.htm" />
+        <Link Url="Content/DataLoader/Extended Duplicate Checking.htm" />
+        <Link Url="Content/DataLoader/Parse and Insert Records into Oracle Tables.htm" />
+        <Link Url="Content/DataLoader/Index Chemical Documents with CsCartridge.htm" />
+        <Link Url="Content/DataLoader/Disable Refresh of  Oracle Materialized Views.htm" />
+        <Link Url="Content/DataLoader/Fetch Newly Inserted Record.htm" />
+        <Link Url="Content/DataLoader/Oracle Optimizer Statistics.htm" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/DataLoader/Read Records from the Source File.htm" />
+        <Link Url="Content/DataLoader/Validate Properties Values.htm" />
+        <Link Url="Content/DataLoader/Send Records to Application Server.htm" />
+        <Link Url="Content/DataLoader/Execute Addins.htm" />
+        <Link Url="Content/DataLoader/Chemical Structure Duplicate Check.htm" />
+        <Link Url="Content/DataLoader/Extended Duplicate Checking.htm" />
+        <Link Url="Content/DataLoader/Parse and Insert Records into Oracle Tables.htm" />
+        <Link Url="Content/DataLoader/Index Chemical Documents with CsCartridge.htm" />
+        <Link Url="Content/DataLoader/Disable Refresh of  Oracle Materialized Views.htm" />
+        <Link Url="Content/DataLoader/Fetch Newly Inserted Record.htm" />
+        <Link Url="Content/DataLoader/Oracle Optimizer Statistics.htm" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions />
+    <FileTags />
+    <AllConditions />
+    <Stylesheets />
+</CatapultFileLinkSet>

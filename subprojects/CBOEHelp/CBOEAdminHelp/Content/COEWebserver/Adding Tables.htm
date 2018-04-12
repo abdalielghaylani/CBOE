@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="" data-mc-search-type="Stem" data-mc-help-system-file-name="ChemBioOffice Enterprise Administrator Guide.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="ChemBioOffice WebServer|Customization and Administration|Customization of WebServer Applications|INI Configuration Files|DataView INI settings (e.g. sample.ini)">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adding Tables</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>  Adding Tables</h1>
+        <p style="COLOR: firebrick;"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&#160; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em>
+        </p>
+        <p>To add a new table to a pre-exiting data view:
+
+</p>
+        <ol>
+            <li value="1">Open the ini file for the data view.&#160; For example 
+ to add a table to the sample application, sample dataview, open the config 
+ file at: 
+
+
+  <blockquote><p>chemoffice/sample/config/sample.ini</p></blockquote></li>
+            <li value="2">In the GLOBALS section add the table name to the list 
+ for the key shown below, for example, i've added Products 
+
+  <blockquote><p>TABLE_ALIASES=MolTable,Synonyms,Products</p></blockquote></li>
+            <li value="3">In the Base_table_group section, add the table to the 
+ appropriate place in the TABLE_SQL_ORDER. If tables are nested the join 
+ statements need to be defined in an order to allows defining tables above in 
+ the nesting first.&#160; In this instance the Products table can simply be put 
+ last.&#160; The base table always should go first. 
+  <blockquote><p>[BASE_TABLE_GROUP]<br />BASE_TABLE=MolTable<br />MOLECULE_TABLE=MolTable<br />TABLE_SQL_ORDER=MolTable,Synonyms, Products</p></blockquote></li>
+            <li value="4">Copy an existing table definition, such as SYNONYMS 
+ and paste the copy.&#160; Rename the group name in brackets with the name of 
+ the table you entered above. Below is an example of the SYNONYMS table copies 
+ and renamed. 
+
+  <blockquote><p>[PRODUCTS]<br />TABLE_NAME=Synonyms<br />RELATIONAL_FIELDS=SYN_ID;1,Synonym_r;0<br />PRIMARY_KEY=SYN_ID<br />SQL_SYNTAX=ORACLE<br />SELECT_KEYWORD=NULL<br />SELECT_ADDITIONAL=NULL<br />SELECT_JOIN=Synonyms.SYN_ID=MolTable.MOL_ID<br />SELECT_LINKS=Synonyms.SYN_ID;1,MolTable.MOL_ID;1<br />INTER_TABLES=MolTable<br />ADO_CONNECTION=base_connection<br />CHEM_CONNECTION=NULL<br />STRUC_FIELD_ID=NULL</p></blockquote></li>
+            <li value="5">Change the <strong>TABLE_NAME</strong> to the exact 
+ name that the sql will use.&#160; This is the name used to build the sql 
+ statement and may differ from the group name.&#160; This would be the case 
+ when you have the same table defined within different relations. 
+  <p /><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; TABLE_NAME=Products</p></li>
+            <li value="6">
+                <p>Add the <strong>Relational_Fields</strong>   that will be in the input form.&#160; The format 
+ is fieldname;datatype.</p>
+                <blockquote>
+                    <p> RELATIONAL_FIELDS=PROD_ID;1,NAME;0<br /></p>
+                </blockquote>
+            </li>
+            <li value="7">Add the <strong>Primary_Key</strong>    for this table as related 
+ to the current table view. &#160; This is not necessarily the real primary 
+key.
+  <p /><p>&#160;&#160;&#160; PRIMARY_KEY=PROD_ID<br /></p></li>
+            <li value="8">Enter&#160;the type of sql syntax to use, this should 
+ match the type of database you are searching the options are ACCESS, ORACLE 
+ and SQLSERVER
+  <p /><blockquote><p>SQL_SYNTAX=ACCESS<br /></p></blockquote></li>
+            <li value="9">If this table is the base table add a 
+  <strong>SELECT_KEYWORD</strong> like DISTINCT.&#160; In this case it is not so 
+ it is NULL
+  <blockquote><p>SELECT_KEYWORD=NULL</p></blockquote></li>
+            <li value="10">If there&#160;is any modifying sql you want added to the end of the select 
+ string LIKE "NAME is not NULL" add it here, otherwise leave it null.
+    <blockquote>SELECT_ADDITIONAL=NULL
+    <p /></blockquote></li>
+            <li value="11">Add the Join statement as it relates to the table it 
+ is linking.
+
+  <blockquote><p>SELECT_JOIN=Products.Prod_ID=MolTable.MOL_ID</p></blockquote></li>
+            <li value="12">Add the same information in a slightly different 
+ format, which includes the datatypes of the linking fields.
+  <p /><blockquote><p>SELECT_LINKS=Products.Prod_ID;1,MolTable.MOL_ID;1
+    </p></blockquote></li>
+            <li value="13">If this table is not the base table, add all the 
+ tables that are required in a select statement to perform a search.&#160; For 
+ instance if this table where nested, then you would add additional tables 
+ separated by a comma.
+  <p /><blockquote /><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ INTER_TABLES= MolTable</p></li>
+            <li value="14">Enter the name of the <strong>ADO_CONNECTION</strong> group name to use when getting information from this
+ table if it is used in a select statement on it's own.&#160; If this were the base table,
+ this would be the connection that is always used to get the base recordset. The
+ group names are defined in the globals section<br /><blockquote><p>ADO_CONNECTION=base_connection</p></blockquote></li>
+            <li value="15">If this table contains structures that you want to 
+ display, add the <strong>CHEM_CONNECTION</strong> group name that is 
+ used.&#160; These names are found in the globals section, otherwise enter 
+ NULL.&#160; If not NULL then enter the field name that ChemFinder uses to 
+ identify the structure in the <strong>STRUC_FIELD_ID</strong>            
+                 
+                  
+         field.<br /><blockquote><p>CHEM_CONNECTION=NULL<br />STRUC_FIELD_ID=NULL</p></blockquote></li>
+            <li value="16">In the <strong>SEARCHABLE_ADO_FIELDS</strong> key for each form_group that has an input form that you will
+ put the fields of this table (non-chemical), add them to the list. Be sure to use
+ tablename.fieldname;fieldtype syntax and separate entries by a comma. 
+    <blockquote><p>SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms.SYN_ID;1,Synonyms.Synonym_r;0</p></blockquote></li>
+            <li value="17">If the table has a chemical connection, then add the chemical 
+ field names to the following key entries.&#160; Separate entries by a 
+ comma. In the example, the Product table DOESN'T contain structures so no 
+ changes where made.: 
+
+  <blockquote><p>STRUCTURE_FIELDS=MolTable.Structure<br />MW_FIELDS=MolTable.MolWeight <br />FORMULA_FIELDS=MolTable.Formula</p></blockquote></li>
+            <li value="18">Save the ini file.&#160; Log off the application and 
+ then log in, the ini file will be reloaded. 
+  </li>
+            <li value="19">You can now add the fields to your input and result forms.</li>
+        </ol>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <hr style="font-family: Arial;font-size: 10pt;background-image: url('../Resources/Images/CD_new2.png');border-left-style: inset;border-left-width: 1px;border-right-style: inset;border-right-width: 1px;border-top-style: inset;border-top-width: 1px;border-bottom-style: inset;border-bottom-width: 1px;" />
+        <table style="width: 100%;">
+            <col style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;" />
+            <col style="width: 884px;font-family: 'Frutiger LT Std 47 Light Cn';" />
+            <tbody>
+                <tr>
+                    <td style="font-family: 'Frutiger LT Std 47 Light Cn';font-size: 9pt;">&#160;</td>
+                    <td style="text-align: right;font-size: 9pt;">
+                        <img src="../Resources/Images/footer_logo_126x76.png" style="font-family: 'Frutiger LT Std 47 Light Cn';width: 126;height: 76;" />
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><span style="font-family: 'Frutiger LT Std 47 Light Cn'; font-size: 9pt;"><span style="font-family: 'Frutiger LT Std 47 Light Cn';">940 Winter Street | Waltham, MA 02451 USA</span></span>
+                        <br style="font-family: 'Frutiger LT Std 47 Light Cn';" /><a href="http://www.perkinelmer.com/informatics/support" style="font-family: 'Frutiger LT Std 47 Light Cn';" target="_blank">www.perkinelmer.com/informatics/support</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

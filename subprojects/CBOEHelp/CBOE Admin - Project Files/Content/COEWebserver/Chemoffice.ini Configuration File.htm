@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="6" MadCap:lastHeight="840" MadCap:lastWidth="424">
+    <head><title>Chemoffice.ini Configuration File</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Chemoffice.ini Configuration File</h1>
+        <p>The ChemOffice.ini file is necessary for any ChemOffice WebServer application to function properly.  This file gives the WebServer basic information about the applications such as a start path and database names.
+
+</p>
+        <p>The file starts with the following GLOBAL settings:
+
+</p>
+        <ul style="list-style-type: square;">
+            <li><a href="CD_PLUGIN_THRESHOLD.htm">CD_PLUGIN_THRESHOLD</a>
+            </li>
+            <li><a href="CD_PLUGIN_DOWNLOAD_PATH.htm">CD_PLUGIN_DOWNLOAD_PATH</a>
+            </li>
+            <li><a href="AppName.htm">AppName</a>
+            </li>
+            <li><a href="WIZARD_APPNAMES.htm">WIZARD_APPNAMES</a>
+            </li>
+            <li><a href="CS_SECURITY.htm">CS_SECURITY</a>
+            </li>
+            <li><a href="FORCE_ORACLE_SESSION_CURSOR_SHARING.htm">FORCE_ORACLE_SESSION_CURSOR_SHARING</a>
+            </li>
+        </ul>
+        <p>and then continues with a section for each application.  Application sections begin with a section heading (the application name in brackets.  For example, the following is the default application definition for Sample: </p>
+        <p><span style="color: #ff4500;">[SAMPLE] </span>
+            <br style="color: #ff4500;font-style: normal;" /><span style="color: #ff4500;">SECTION=CO_WebServer_STANDARD </span>
+            <br style="color: #ff4500;font-style: normal;" /><span style="color: #ff4500;">DBNAMES=SAMPLE
+</span>
+            <br style="color: #ff4500;font-style: normal;" /><span style="color: #ff4500;">SAMPLE_START_PATH="/sample/default.asp?formgroup=base_form_group&amp;dbname=sample" 
+</span>
+            <br style="color: #ff4500;font-style: normal;" /><span style="color: #ff4500;">SAMPLE_DISPLAY_NAME="Sample" </span>
+        </p>
+        <p>Each application section can contain the following settings (any missing settings are set to the default):
+
+</p>
+        <ul style="list-style-type: square;">
+            <li><a href="SECTION.htm">SECTION</a>
+            </li>
+            <li><a href="DBNAMES.htm">DBNAMES</a>
+            </li>
+            <li><a href="GLOBAL_SEARCH.htm">GLOBAL_SEARCH</a>
+            </li>
+            <li><a href="GLOBAL_SEARCH_DISPLAY_NAME.htm">GLOBAL_SEARCH_DISPLAY_NAME</a>
+            </li>
+            <li><a href="GLOBAL_SEARCH_START_PATH.htm">GLOBAL_SEARCH_START_PATH</a>
+            </li>
+            <li><a href="DBNAME_START_PATH.htm">&lt;DBNAME&gt;_START_PATH </a>
+            </li>
+            <li><a href="DBNAME_DISPLAY_NAME.htm">&lt;DBNAME&gt;_DISPLAY_NAME
+</a>
+            </li>
+        </ul>
+    </body>
+</html>

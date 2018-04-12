@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="796" MadCap:lastWidth="672">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>SEARCH_DEFAULT_PREFS</h1>
+        <p>Example: SEARCH_DEFAULT_PREFS = <br />S1:true,S2:true,S3:true,S4:true,S5:true,S6:90,S7:true,S8:true,S9:true,S10:true,S11:false,S12:false,S13:false
+</p>
+        <p>Description: The default settings for search preferences.  This is a comma separated list with each element having the following format:
+<br />&lt;S#&gt;:&lt;true|false&gt;
+<br />where S# is the ID for a particular search preference.</p>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;">ID</td>
+                    <td style="font-weight: bold;">Search Preference</td>
+                </tr>
+                <tr>
+                    <td>S1</td>
+                    <td>MATCH_TET_STEREO</td>
+                </tr>
+                <tr>
+                    <td>S2</td>
+                    <td>MATCH_TET_DB </td>
+                </tr>
+                <tr>
+                    <td>S3</td>
+                    <td>HIT_ANY_CHARGE_CARBON </td>
+                </tr>
+                <tr>
+                    <td>S4</td>
+                    <td>RXN_HIT_RXN_CENTER </td>
+                </tr>
+                <tr>
+                    <td>S5</td>
+                    <td>HIT_ANY_CHARGE_HETERO </td>
+                </tr>
+                <tr>
+                    <td>S6</td>
+                    <td>SIM_SEARCH_THRESHOLD </td>
+                </tr>
+                <tr>
+                    <td>S7</td>
+                    <td>FULL_STRUCTURE_SIMILARITY </td>
+                </tr>
+                <tr>
+                    <td>S8</td>
+                    <td>EXTRA_FRAGS_OK </td>
+                </tr>
+                <tr>
+                    <td>S9</td>
+                    <td>EXTRA_FRAGS_OK_IF_RXN </td>
+                </tr>
+                <tr>
+                    <td>S10</td>
+                    <td>FRAGS_CAN_OVERLAP </td>
+                </tr>
+                <tr>
+                    <td>S11</td>
+                    <td>IDENTITY </td>
+                </tr>
+                <tr>
+                    <td>S12</td>
+                    <td>RELATIVE_TET_STEREO </td>
+                </tr>
+                <tr>
+                    <td>S13</td>
+                    <td>ABSOLUTE_HITS_REL </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Default: S1:true,S2:true,S3:true,S4:true,S5:true,S6:90,S7:true,S8:true,S9:true,S10:true,S11:false,S12:false,S13:false
+
+</p>
+        <p>Options: A comma separated list in the above format. </p>
+        <p><span style="color: #ff4500;"> 
+
+It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice WebServer application files to future versions of the application.  New versions of the ChemOffice WebServer use default configurations.</span>
+        </p>
+    </body>
+</html>

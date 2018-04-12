@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="941" MadCap:lastWidth="874" MadCap:conditions="Default.CBV Output Only">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioViz</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>QueryText box</h1>
+        <p>Unlike a standard textbox, a QueryText box lets users enter a list of query values such as “2,3,5-8,15”. Targets that hit any of the listed values are returned. The querytext box also lets users enter their query values from a text file rather than type them in. Values may be listed in the file on the same line (separated by a commas) or with each value on a separate line.
+</p>
+        <p>You can configure a querytext box by setting a default operator that determines how the values are applied to the query, such as “less than” or “does not contain”. See the Operator dropdown list in the Properties window for all available operators.
+</p>
+        <p>To add a querytext box:
+ </p>
+        <ol>
+            <li> Select a query tab and open the form editor. </li>
+            <li> Click-drag a querytextbox from the toolbox onto the form. 
+
+</li>
+        </ol>
+        <p>To bind data to the query text box:
+ </p>
+        <ol>
+            <li> In the form, select the querytext box. 
+ </li>
+            <li> In the Properties window, select (DataBindings)&gt;(Advanced) in the Data section. 
+ </li>
+            <li>Click the <img src="../Resources/Images/ChemBioViz images/9_22_24x23.jpg" /> button.The Formatting and Advanced Binding dialog box opens. 
+ </li>
+            <li> In the Binding drop-down list, select the field to bind to the button. The field may be either on a subform field or the main form. 
+ </li>
+            <li> Click OK. The Formatting and Advanced Binding dialog box closes.  
+
+</li>
+        </ol>
+        <p>To configure the querytext box for mutiple query values:
+ </p>
+        <ol>
+            <li>  In the Properties window, navigate to the Misc. section  
+ </li>
+            <li>In the Misc. section, select <i style="color: #0000ff;">True</i> in the AllowListInput dropdown list. 
+
+</li>
+        </ol>
+        <p>When you set the AllowListInput field to True, ChemBioViz ignores all commas that the user enters in the querytext box. Otherwise, all commas are assumed to be part of the query string.
+</p>
+        <p style="font-weight: bold;">Entering query parameters from a file
+</p>
+        <p>Setting the AllowListInput field to True also lets users enter the name of a file that contains query text values. For users to specify a filename, they must enter "@" followed by the file path. The file may include a single query per line, or more than one per line separated by commas.
+</p>
+        <p>For example, suppose you have a text file C:\queryinput.txt that has three lines. To search for any of the values in the file, enter "@C:\queryinput.txt" into the form box instead of a normal query string.
+</p>
+        <p style="font-weight: bold;">Default field operators
+</p>
+        <p>You can set a default operator to be applied to values the user enters and enable the user to override the default if desired.
+</p>
+        <p>To select a default operator:
+ </p>
+        <ol>
+            <li>Select the operator from the Operator dropdown list. 
+ </li>
+            <li>To allow users to override the default operator, select <i style="color: #0000ff;">True</i> in the UseCustomOperator dropdown list. 
+</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Form Element Types.htm">Form Element Types</a>
+        </p>
+    </body>
+</html>

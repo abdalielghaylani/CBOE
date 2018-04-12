@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet FileSearchable="true" FileTimeEstimate="0" FilePriority="0">
+    <Links>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/DataViewManager/Creating the Master DataView.htm" />
+        <Link Url="Content/DataViewManager/Editing the Master Dataview.htm" />
+        <Link Url="Project/ConditionTagSets/Default.flcts" />
+    </Links>
+    <LongLinks>
+        <Link Url="Content/Resources/Stylesheets/help_ie.css" />
+        <Link Url="Content/DataViewManager/Creating the Master DataView.htm" />
+        <Link Url="Content/DataViewManager/Editing the Master Dataview.htm" />
+        <Link Url="Project/ConditionTagSets/Default.flcts" />
+    </LongLinks>
+    <Anchors />
+    <Keywords />
+    <Concepts />
+    <ConceptControlNames />
+    <IndexControlNames />
+    <Variables />
+    <FileConditions>
+        <Condition Tag="Default.DataView Manager only" />
+    </FileConditions>
+    <FileTags />
+    <AllConditions>
+        <Condition Tag="Default.DataView Manager only" />
+    </AllConditions>
+    <Stylesheets>
+        <Url Source="Content/Resources/Stylesheets/help_ie.css" />
+    </Stylesheets>
+</CatapultFileLinkSet>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="785" MadCap:lastWidth="660">
+    <head>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>BioSARBrowser</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr /><b>Administrator</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Report Generator Configuration Issues</h1>
+        <ul style="list-style-type: square;">
+            <li>Before installing this patch, be sure to quit Reports.exe or shut down the reports service if you are running this as a service. 
+</li>
+            <li>Open /biosar_browser/reports and check that there is no biosar_reports.ldb file. Delete the file if it is present. If it still exists after doing this, please reboot your server and delete the lock file manually. 
+</li>
+        </ul>
+        <p style="font-style: italic;"><b>Note:</b> Failure to follow this procedure will lead to corruption of the new biosar_browser.mdb file installed from this patch. </p>
+        <ul style="list-style-type: square;">
+            <li>If you are using Terminal Services or PC Anywhere for remote administration and you are running reports.exe as a service then be sure to use user that the service is running under for any configuration tasks related to the report generator </li>
+            <li>If you have reports.exe in a startup folder and you are using Terminal Services or PC Anywhere, when you log-in via these modes a second reports.exe will be started. You must end this using task manager. Having two reports.exe will prevent the report generator from working. 
+</li>
+        </ul>
+        <p style="font-weight: bold;">Default Printer Setup
+</p>
+        <p>When using the report generator, you must have a default printer set otherwise reports will not be generated. 
+If you are running reports.exe as a service then you must set the default printer while logged in as the same user that reports.exe is running under. 
+</p>
+        <p style="font-weight: bold;">Launching MS Access
+</p>
+        <p>If you are running reports.exe as a service you should launch MS Access one time before starting the service while logged in as the user the service is running under. This will allow you to answer any start-up dialogs question presented.
+<br />Some installations have difficulty starting MS Access from the Report Writer (when running the report writer as a service). This is not always an issue, but it can be resolved by following the directions found at this link:
+http://support.microsoft.com/?id=288367 </p>
+        <p style="font-weight: bold;">Compacting Biosar_Browser.mdb 
+</p>
+        <p>As reports are generated biosar_browser.mdb will grow in size even though all report objects are deleted after a report is generated. To reduce the size of the file, it is advised to stop and start the reports service or reports.exe so that the biosar_browser.mdb file will automatically compact.</p>
+    </body>
+</html>

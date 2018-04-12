@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="" MadCap:lastBlockDepth="7" MadCap:lastHeight="900" MadCap:lastWidth="411">
+    <head>
+        <script language="JavaScript">/*<![CDATA[*/
+
+<!--Hide JavaScript
+ if (navigator.appName == "Netscape"){
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+ }
+ else{
+ document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+ }
+//-->
+
+/*]]>*/</script><title>Checking Compatibility</title>
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1>       Checking Compatibility</h1>
+        <h2>CSDO.dll Version</h2>
+        <p>To check to see if your CSDO.dll is up to date:</p>
+        <ol>
+            <li>Browse to&#160;<strong> \Program 
+Files\ChemOffice2001\Common\dlls</strong>.
+  </li>
+            <li>Right-click on the file and select <strong>Properties</strong>.
+  </li>
+            <li>Click on the <strong>Version Tab</strong>    .<br />If you 
+ have version 1.1.0.24 you will need to update to 1.1.0.25 or later.</li>
+        </ol>
+        <h2>    
+   
+             
+            
+  CSDO_UTILS_VBS.ASP Changes</h2>
+        <p>This file is located in 
+<strong>\intepub\wwwroot\chemoffice\WebServer_source\cfserverasp\source</strong>    
+   
+             
+            
+   .&#160;</p>
+        <ol>
+            <li>Open the file in a text editor and search for "select 
+ case conn_dbms".&#160; 
+  </li>
+            <li>Make sure that the lines following include a case for SQLSERVER.&#160; The 
+ complete select case should look like:
+  <p /><blockquote><blockquote><blockquote><p>select case conn_dbms<br />&#160;&#160;&#160; case 
+ "ORACLE"<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; dbms = 
+ 2<br />&#160;&#160;&#160; case "SQLSERVER", 
+ "SQL_SERVER"<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; dbms = 
+ 3<br />&#160;&#160;&#160; case 
+ else<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; dbms = 1<br />end 
+ select</p></blockquote></blockquote></blockquote><p>If any of the sqlserver case is missing it should be edited to 
+match the above.</p></li>
+        </ol>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <!--webbot bot="Include" endspan i-checksum="17040" -->
+    </body>
+</html>

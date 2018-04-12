@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="697" MadCap:lastWidth="845">
+    <head>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Fetch Newly Inserted Record</h1>
+        <p>The final step is to retrieve the newly inserted Registry Record out of the database so that it can be returned to the client for display or logging operations.  For systems where Row Level Security has been enabled, the performance of retrieving database records is slightly impacted.  For bulk load operations it is therefore beneficial to temporarily disable the RLS feature or to run the load operation using a user account that is exempted from RLS security.
+</p>
+        <p>Recommendations (only for systems with Row Level Security Enabled)
+</p>
+        <p><b>Before Bulk Load:
+</b>
+        </p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Disable Row Level Security
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p>From a command prompt and change directory to:
+<br />C:\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\Registration\Config\RLSConfigurationTool</p>
+            <p>Execute:
+<br />CambridgeSoft.COE.RLSConfigurationTool.exe -v=OFF -i=&lt;YourOracleServiceName&gt; -u=system -p=&lt;YourSystemPwd&gt;
+
+  	</p>
+        </blockquote>
+        <p><b>After Bulk Load:
+</b>
+        </p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li>Return Row Level Security to its original state
+
+</li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p>From a command prompt and change directory to:
+<br />C:\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\Registration\Config\RLSConfigurationTool<br />Execute:
+<br />CambridgeSoft.COE.RLSConfigurationTool.exe -v=”&lt;YourRLSValue&gt;” -i=&lt;YourOracleServiceName&gt; -u=system -p=&lt;YourSystemPwd&gt;
+<br /></p>
+            <p>Supported values for &lt;YourRLSValue&gt; are:
+<br />“Registry Level Projects” OR “Batch Level Projects”
+</p>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+    </body>
+</html>

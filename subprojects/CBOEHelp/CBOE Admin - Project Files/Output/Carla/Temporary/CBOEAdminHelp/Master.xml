@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc Version="1">
+    <TocEntry Title="Using the WebHelp" Link="/Content/Using the WebHelp.htm" />
+    <TocEntry Title="ChemBioOffice Enterprise" Link="/Content/ChemBioOffice Enterprise.htm">
+        <TocEntry Title="Logging In to CBOE Manager" Link="/Content/Logging In to CBOE Manager.htm" />
+        <TocEntry Title="ChemBioOffice Security" Link="/Content/COEWebserver/ChemBioOffice Security.htm">
+            <TocEntry Title="Managing Users" Link="/Content/COEWebserver/Managing Users.htm">
+                <TocEntry Title="Adding a New User Account" Link="/Content/COEWebserver/Adding a New User Account.htm" />
+                <TocEntry Title="Editing User Accounts" Link="/Content/COEWebserver/Editing User Accounts.htm" />
+                <TocEntry Title="Deleting a User Account" Link="/Content/COEWebserver/Deleting a User Account.htm" />
+            </TocEntry>
+            <TocEntry Title="Managing Roles" Link="/Content/COEWebserver/Managing Roles.htm">
+                <TocEntry Title="Viewing Roles" Link="/Content/COEWebserver/Viewing Roles.htm" />
+                <TocEntry Title="Adding New Roles" Link="/Content/COEWebserver/Adding New Roles.htm" />
+                <TocEntry Title="Editing Roles" Link="/Content/COEWebserver/Editing Roles.htm" />
+                <TocEntry Title="Assigning Users to Roles" Link="/Content/COEWebserver/Assigning Users to Roles.htm" />
+                <TocEntry Title="Deleting a Role" Link="/Content/COEWebserver/Deleting a Role.htm" />
+            </TocEntry>
+            <TocEntry Title="Managing Groups" Link="/Content/Managing Groups.htm">
+                <TocEntry Title="Enabling Group Security" Link="/Content/Enabling Group Security.htm" />
+                <TocEntry Title="Super Users" Link="/Content/Super Users.htm" />
+                <TocEntry Title="Manage Group Section" Link="/Content/Manage Group Section.htm">
+                    <TocEntry Title="Adding a Group" Link="/Content/Adding a Group.htm" />
+                    <TocEntry Title="Moving a Group" Link="/Content/Moving a Group.htm" />
+                    <TocEntry Title="Editing a Group" Link="/Content/Editing a Group.htm" />
+                    <TocEntry Title="Removing a Group" Link="/Content/Removing a Group.htm" />
+                    <TocEntry Title="Adding User to a Group" Link="/Content/Adding User to a Group.htm" />
+                    <TocEntry Title="Moving Users" Link="/Content/Moving Users.htm" />
+                    <TocEntry Title="Removing Users" Link="/Content/Removing Users.htm" />
+                    <TocEntry Title="Viewing Users Details" Link="/Content/Viewing Users Details.htm" />
+                </TocEntry>
+            </TocEntry>
+        </TocEntry>
+        <TocEntry Title="Security Vulnerability in CBOE Manager" Link="/Content/Security Vulnerability in CBOE Manager.htm" />
+        <TocEntry Title="Enabling Application Tracing" Link="/Content/Application Tracing.htm" />
+        <TocEntry Title="Server Information" Link="/Content/COEWebserver/Server Information.htm" />
+        <TocEntry Title="Logging Off" Link="/Content/COEWebserver/Logging Off.htm" />
+    </TocEntry>
+    <TocEntry Title="Config Loader" Link="/Content/ConfigLoader/Config Loader Introduction.htm">
+        <TocEntry Title="Workflow" Link="/Content/ConfigLoader/Workflow.htm">
+            <TocEntry Title="Importing Data" Link="/Content/ConfigLoader/Importing Data.htm" />
+            <TocEntry Title="Exporting Data" Link="/Content/ConfigLoader/Exporting Data.htm" />
+        </TocEntry>
+        <TocEntry Title="Accessing Config Loader" Link="/Content/ConfigLoader/Accessing Config Loader.htm">
+            <TocEntry Title="Importing Data into Config Loader" Link="/Content/ConfigLoader/Importing Data into Config Loader.htm" />
+            <TocEntry Title="Exporting Data from Config Loader" Link="/Content/ConfigLoader/Exporting Data from Config Loader.htm" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="ChemBioOffice WebServer" Link="/Content/COEWebserver/ChemBioOffice WebServer.htm">
+        <TocEntry Title="Customization and Administration" Link="/Content/COEWebserver/Customization and Administration.htm">
+            <TocEntry Title="Using the Administrative Tools" Link="/Content/COEWebserver/Using the Administrative Tools.htm">
+                <TocEntry Title="Adding a DataView" Link="/Content/COEWebserver/Adding a DataView.htm" />
+                <TocEntry Title="Creating a New Application" Link="/Content/COEWebserver/Creating a New Application.htm" />
+            </TocEntry>
+            <TocEntry Title="Upgrading Version 7.2 Wizard Applications to 9.0 " Link="/Content/COEWebserver/Upgrading Version 7.2 Wizard Applications to 9.0.htm" />
+            <TocEntry Title="Customization of WebServer Applications" Link="/Content/COEWebserver/Customization of WebServer Applications.htm">
+                <TocEntry Title="INI Configuration Files" Link="/Content/COEWebserver/INI Configuration Files.htm">
+                    <TocEntry Title="Chemoffice.ini Configuration File" Link="/Content/COEWebserver/Chemoffice.ini Configuration File.htm">
+                        <TocEntry Title="GLOBALS" Link="/Content/COEWebserver/GLOBALS.htm">
+                            <TocEntry Title="ALERT_CDAX_VERSION" Link="/Content/COEWebserver/ALERT_CDAX_VERSION.htm" />
+                            <TocEntry Title="CD_PLUGIN_THRESHOLD" Link="/Content/COEWebserver/CD_PLUGIN_THRESHOLD.htm" />
+                            <TocEntry Title="CD_PLUGIN_DOWNLOAD_PATH" Link="/Content/COEWebserver/CD_PLUGIN_DOWNLOAD_PATH.htm" />
+                            <TocEntry Title="APP_NAME" Link="/Content/COEWebserver/APP_NAME.htm" />
+                            <TocEntry Title="WIZARD_APPNAMES" Link="/Content/COEWebserver/WIZARD_APPNAMES.htm" />
+                            <TocEntry Title="CS_SECURITY" Link="/Content/COEWebserver/CS_SECURITY.htm" />
+                            <TocEntry Title="FORCE_ORACLE_SESSION_CURSOR_SHARING" Link="/Content/COEWebserver/FORCE_ORACLE_SESSION_CURSOR_SHARING.htm" />
+                        </TocEntry>
+                        <TocEntry Title="Application Definitions" Link="/Content/COEWebserver/Application Definitions.htm">
+                            <TocEntry Title="SECTION" Link="/Content/COEWebserver/SECTION.htm" />
+                            <TocEntry Title="DB_NAMES" Link="/Content/COEWebserver/DB_NAMES.htm" />
+                            <TocEntry Title="GLOBAL_SEARCH" Link="/Content/COEWebserver/GLOBAL_SEARCH.htm" />
+                            <TocEntry Title="GLOBAL_SEARCH_DISPLAY_NAME" Link="/Content/COEWebserver/GLOBAL_SEARCH_DISPLAY_NAME.htm" />
+                            <TocEntry Title="GLOBAL_SEARCH_START_PATH" Link="/Content/COEWebserver/GLOBAL_SEARCH_START_PATH.htm" />
+                            <TocEntry Title="SAMPLE_START_PATH" Link="/Content/COEWebserver/SAMPLE_START_PATH.htm" />
+                            <TocEntry Title="SAMPLE_DISPLAY_NAME" Link="/Content/COEWebserver/SAMPLE_DISPLAY_NAME.htm" />
+                        </TocEntry>
+                    </TocEntry>
+                    <TocEntry Title="Application INI settings (cfserver.ini)" Link="/Content/COEWebserver/Application INI settings (cfserver.ini).htm">
+                        <TocEntry Title="GLOBALS" Link="/Content/COEWebserver/GLOBALS 1.htm">
+                            <TocEntry Title="ADJUST_NETSCAPE_WIDTHS" Link="/Content/COEWebserver/ADJUST_NETSCAPE_WIDTHS.htm" />
+                            <TocEntry Title="ALLOW_HITLIST_MANAGEMENT" Link="/Content/COEWebserver/ALLOW_HITLIST_MANAGEMENT.htm" />
+                            <TocEntry Title="ALLOW_HITLIST_MNGMNT_FG_SELECTOR" Link="/Content/COEWebserver/ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm" />
+                            <TocEntry Title="ALLOW_PUBLIC_HITLISTS" Link="/Content/COEWebserver/ALLOW_PUBLIC_HITLISTS.htm" />
+                            <TocEntry Title="ALLOW_PUBLIC_QUERIES" Link="/Content/COEWebserver/ALLOW_PUBLIC_QUERIES.htm" />
+                            <TocEntry Title="ALLOW_QUERY_MANAGEMENT" Link="/Content/COEWebserver/ALLOW_QUERY_MANAGEMENT.htm" />
+                            <TocEntry Title="ALWAYS_DISPLAY_ALERTS" Link="/Content/COEWebserver/ALWAYS_DISPLAY_ALERTS.htm" />
+                            <TocEntry Title="ANIMATED_GIF_PATH" Link="/Content/COEWebserver/ANIMATED_GIF_PATH.htm" />
+                            <TocEntry Title="APP_NAME" Link="/Content/COEWebserver/APP_NAME.htm" />
+                            <TocEntry Title="BODY_BACKGROUND" Link="/Content/COEWebserver/BODY_BACKGROUND.htm" />
+                            <TocEntry Title="BRACKET_IN_STRUC_HANDLING" Link="/Content/COEWebserver/BRACKET_IN_STRUC_HANDLING.htm" />
+                            <TocEntry Title="CDX_CACHING" Link="/Content/COEWebserver/CDX_CACHING.htm" />
+                            <TocEntry Title="DATE_FORMAT" Link="/Content/COEWebserver/DATE_FORMAT.htm" />
+                            <TocEntry Title="DB_NAMES" Link="/Content/COEWebserver/DB_NAMES.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_FORM_IE" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_FORM_IE.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_FORM_NS" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_FORM_NS.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_FORM_NS6" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_FORM_NS6.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_LIST_IE" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_LIST_IE.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_LIST_NS" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_LIST_NS.htm" />
+                            <TocEntry Title="DISPLAY_GIFS_ONLY_LIST_NS6" Link="/Content/COEWebserver/DISPLAY_GIFS_ONLY_LIST_NS6.htm" />
+                            <TocEntry Title="ENABLE_DETAIL_VIEW" Link="/Content/COEWebserver/ENABLE_DETAIL_VIEW.htm" />
+                            <TocEntry Title="EXPIRE_HITLIST_HISTORY_DAYS" Link="/Content/COEWebserver/EXPIRE_HITLIST_HISTORY_DAYS.htm" />
+                            <TocEntry Title="EXPIRE_QUERY_HISTORY_DAYS" Link="/Content/COEWebserver/EXPIRE_QUERY_HISTORY_DAYS.htm" />
+                            <TocEntry Title="EXPIRE_USER_SETTINGS_DAYS" Link="/Content/COEWebserver/EXPIRE_USER_SETTINGS_DAYS.htm" />
+                            <TocEntry Title="FIELD_SPLIT_CHARACTER" Link="/Content/COEWebserver/FIELD_SPLIT_CHARACTER.htm" />
+                            <TocEntry Title="FORMULA_FORMAT" Link="/Content/COEWebserver/FORMULA_FORMAT.htm" />
+                            <TocEntry Title="GLOBAL_SEARCH_BASE_DB" Link="/Content/COEWebserver/GLOBAL_SEARCH_BASE_DB.htm" />
+                            <TocEntry Title="GLOBAL_SEARCH_DBS" Link="/Content/COEWebserver/GLOBAL_SEARCH_DBS.htm" />
+                            <TocEntry Title="HIGHLIGHT_BACKGROUND" Link="/Content/COEWebserver/HIGHLIGHT_BACKGROUND.htm" />
+                            <TocEntry Title="HIGHLIGHT_REQUIRED_FIELDS" Link="/Content/COEWebserver/HIGHLIGHT_REQUIRED_FIELDS.htm" />
+                            <TocEntry Title="MAIN_WINDOW" Link="/Content/COEWebserver/MAIN_WINDOW.htm" />
+                            <TocEntry Title="MARKED_HITS_MAX" Link="/Content/COEWebserver/MARKED_HITS_MAX.htm" />
+                            <TocEntry Title="NAV_BAR_WINDOW" Link="/Content/COEWebserver/NAV_BAR_WINDOW.htm" />
+                            <TocEntry Title="NAV_BUTTONS_GIF_PATH" Link="/Content/COEWebserver/NAV_BUTTONS_GIF_PATH.htm" />
+                            <TocEntry Title="NON_CHEMICAL_SUBMIT" Link="/Content/COEWebserver/NON_CHEMICAL_SUBMIT.htm" />
+                            <TocEntry Title="PWD_CANNOT_MATCH_USERNAME" Link="/Content/COEWebserver/PWD_CANNOT_MATCH_USERNAME.htm" />
+                            <TocEntry Title="PWD_ILLEGAL_CHARS" Link="/Content/COEWebserver/PWD_ILLEGAL_CHARS.htm" />
+                            <TocEntry Title="PWD_ILLEGAL_FIRSTCHAR" Link="/Content/COEWebserver/PWD_ILLEGAL_FIRSTCHAR.htm" />
+                            <TocEntry Title="PWD_ILLEGALWORD_LIST" Link="/Content/COEWebserver/PWD_ILLEGALWORD_LIST.htm" />
+                            <TocEntry Title="PWD_MAX_LENGTH" Link="/Content/COEWebserver/PWD_MAX_LENGTH.htm" />
+                            <TocEntry Title="PWD_MIN_LENGTH" Link="/Content/COEWebserver/PWD_MIN_LENGTH.htm" />
+                            <TocEntry Title="PWD_MUSTHAVE_CHARS" Link="/Content/COEWebserver/PWD_MUSTHAVE_CHARS.htm" />
+                            <TocEntry Title="RESIZE_GIFS" Link="/Content/COEWebserver/RESIZE_GIFS.htm" />
+                            <TocEntry Title="SEARCH_DEFAULT_PREFS" Link="/Content/COEWebserver/SEARCH_DEFAULT_PREFS.htm" />
+                            <TocEntry Title="SHOW_RETRIEVE_ALL_BTN" Link="/Content/COEWebserver/SHOW_RETRIEVE_ALL_BTN.htm" />
+                            <TocEntry Title="TEMP_DIR_NAME" Link="/Content/COEWebserver/ini_settings/TEMP_DIR_NAME.htm" />
+                            <TocEntry Title="TEMP_DIR_PATH" Link="/Content/COEWebserver/ini_settings/TEMP_DIR_PATH.htm" />
+                            <TocEntry Title="USE_SESSION_RECORD_COUNTS" Link="/Content/COEWebserver/USE_SESSION_RECORD_COUNTS.htm" />
+                            <TocEntry Title="USER_INFO_WINDOW" Link="/Content/COEWebserver/USER_INFO_WINDOW.htm" />
+                            <TocEntry Title="USERWINDOWBACKGROUND" Link="/Content/COEWebserver/USERWINDOWBACKGROUND.htm" />
+                        </TocEntry>
+                        <TocEntry Title="DUPLICATE CHECKING" Link="/Content/COEWebserver/DUPLICATE CHECKING.htm">
+                            <TocEntry Title="ABSOLUTE_HITS_REL" Link="/Content/COEWebserver/ABSOLUTE_HITS_REL.htm" />
+                            <TocEntry Title="EXTRA_FRAGS_OK" Link="/Content/COEWebserver/EXTRA_FRAGS_OK.htm" />
+                            <TocEntry Title="EXTRA_FRAGS_OK_IF_RXN" Link="/Content/COEWebserver/EXTRA_FRAGS_OK_IF_RXN.htm" />
+                            <TocEntry Title="FRAGS_CAN_OVERLAP" Link="/Content/COEWebserver/FRAGS_CAN_OVERLAP.htm" />
+                            <TocEntry Title="HIT_ANY_CHARGE_CARBON" Link="/Content/COEWebserver/HIT_ANY_CHARGE_CARBON.htm" />
+                            <TocEntry Title="HIT_ANY_CHARGE_HETERO" Link="/Content/COEWebserver/HIT_ANY_CHARGE_HETERO.htm" />
+                            <TocEntry Title="IDENTITY" Link="/Content/COEWebserver/IDENTITY.htm" />
+                            <TocEntry Title="MATCH_DB_STEREO" Link="/Content/COEWebserver/MATCH_DB_STEREO.htm" />
+                            <TocEntry Title="RELATIVE_TET_STEREO" Link="/Content/COEWebserver/RELATIVE_TET_STEREO.htm" />
+                            <TocEntry Title="RXN_HIT_RXN_CENTER" Link="/Content/COEWebserver/RXN_HIT_RXN_CENTER.htm" />
+                        </TocEntry>
+                    </TocEntry>
+                    <TocEntry Title="DataView INI settings (e.g. sample.ini)" Link="/Content/COEWebserver/DataView INI settings (e.g. sample.ini).htm">
+                        <TocEntry Title="Adding Alternate Input-Result Forms" Link="/Content/COEWebserver/Adding Alternate Input-Result Forms.htm" />
+                        <TocEntry Title="Adding Tables" Link="/Content/COEWebserver/Adding Tables.htm" />
+                        <TocEntry Title="GLOBALS" Link="/Content/COEWebserver/GLOBALS 2.htm">
+                            <TocEntry Title="ABOUT_WINDOW" Link="/Content/COEWebserver/ABOUT_WINDOW.htm" />
+                            <TocEntry Title="DISPLAY_NAME" Link="/Content/COEWebserver/data_ini_settings/DISPLAY_NAME.htm" />
+                            <TocEntry Title="MAXHITS" Link="/Content/COEWebserver/MAXHITS.htm" />
+                            <TocEntry Title="DB_RECORD_COUNT" Link="/Content/COEWebserver/data_ini_settings/DB_RECORD_COUNT.htm" />
+                            <TocEntry Title="DB_TYPE" Link="/Content/COEWebserver/data_ini_settings/DB_TYPE.htm" />
+                            <TocEntry Title="MAIN_PAGE" Link="/Content/COEWebserver/MAIN_PAGE.htm" />
+                            <TocEntry Title="TABLE_ALIASES" Link="/Content/COEWebserver/data_ini_settings/TABLE_ALIASES.htm" />
+                            <TocEntry Title="SUBFORM_VIEW_NAMES" Link="/Content/COEWebserver/data_ini_settings/SUBFORM_VIEW_NAMES.htm" />
+                            <TocEntry Title="ADO_CONNECTION_NAMES" Link="/Content/COEWebserver/ADO_CONNECTION_NAMES.htm" />
+                            <TocEntry Title="TABLE_GROUPS" Link="/Content/COEWebserver/data_ini_settings/TABLE_GROUPS.htm" />
+                            <TocEntry Title="FORM_GROUPS" Link="/Content/COEWebserver/data_ini_settings/FORM_GROUPS.htm" />
+                            <TocEntry Title="FIELD_MAP_GROUPS" Link="/Content/COEWebserver/data_ini_settings/FIELD_MAP_GROUPS.htm" />
+                        </TocEntry>
+                        <TocEntry Title="BASE_CONNECTION" Link="/Content/COEWebserver/BASE_CONNECTION.htm">
+                            <TocEntry Title="CONN_TYPE" Link="/Content/COEWebserver/CONN_TYPE.htm" />
+                            <TocEntry Title="CONNECTION_STRING" Link="/Content/COEWebserver/data_ini_settings/CONNECTION_STRING.htm" />
+                            <TocEntry Title="CONNECTION_TIMEOUT" Link="/Content/COEWebserver/data_ini_settings/CONNECTION_TIMEOUT.htm" />
+                            <TocEntry Title="COMMAND_TIMEOUT" Link="/Content/COEWebserver/data_ini_settings/COMMAND_TIMEOUT.htm" />
+                            <TocEntry Title="CONNECTION_USERNAME" Link="/Content/COEWebserver/CONNECTION_USERNAME.htm" />
+                            <TocEntry Title="CONNECTION_PASSWORD" Link="/Content/COEWebserver/data_ini_settings/CONNECTION_PASSWORD.htm" />
+                        </TocEntry>
+                        <TocEntry Title="BASE_CFW_FORM" Link="/Content/COEWebserver/BASE_CFW_FORM.htm">
+                            <TocEntry Title="STRUC_ENGINE" Link="/Content/COEWebserver/STRUC_ENGINE.htm" />
+                            <TocEntry Title="STRUC_FORM_NAME" Link="/Content/COEWebserver/STRUC_FORM_NAME.htm" />
+                            <TocEntry Title="STRUC_DB_PATH" Link="/Content/COEWebserver/data_ini_settings/STRUC_DB_PATH.htm" />
+                            <TocEntry Title="STRUC_TABLE_NAME" Link="/Content/COEWebserver/STRUC_TABLE_NAME.htm" />
+                        </TocEntry>
+                        <TocEntry Title="BASE_TABLE_GROUP" Link="/Content/COEWebserver/BASE_TABLE_GROUP.htm">
+                            <TocEntry Title="BASE_TABLE" Link="/Content/COEWebserver/BASE_TABLE.htm" />
+                            <TocEntry Title="MOLECULE_TABLE" Link="/Content/COEWebserver/MOLECULE_TABLE.htm" />
+                            <TocEntry Title="TABLE_SQL_ORDER" Link="/Content/COEWebserver/TABLE_SQL_ORDER.htm" />
+                        </TocEntry>
+                        <TocEntry Title="MOLTABLE" Link="/Content/COEWebserver/MOLTABLE.htm" />
+                        <TocEntry Title="SYNONYMS_R" Link="/Content/COEWebserver/SYNONYMS_R.htm" />
+                        <TocEntry Title="BASE_FORM_GROUP" Link="/Content/COEWebserver/BASE_FORM_GROUP.htm">
+                            <TocEntry Title="INPUT_FORM_PATH" Link="/Content/COEWebserver/data_ini_settings/INPUT_FORM_PATH.htm" />
+                            <TocEntry Title="INPUT_FORM_MODE" Link="/Content/COEWebserver/data_ini_settings/INPUT_FORM_MODE.htm" />
+                            <TocEntry Title="RESULT_FORM_PATH" Link="/Content/COEWebserver/data_ini_settings/RESULT_FORM_PATH.htm" />
+                            <TocEntry Title="RESULT_FORM_MODE" Link="/Content/COEWebserver/data_ini_settings/RESULT_FORM_MODE.htm" />
+                            <TocEntry Title="PLUGIN_VALUE" Link="/Content/COEWebserver/PLUGIN_VALUE.htm" />
+                            <TocEntry Title="STRUCTURE_FIELDS" Link="/Content/COEWebserver/data_ini_settings/STRUCTURE_FIELDS.htm" />
+                            <TocEntry Title="FORM_GROUP_FLAG" Link="/Content/COEWebserver/data_ini_settings/FORM_GROUP_FLAG.htm" />
+                            <TocEntry Title="MW_FIELDS" Link="/Content/COEWebserver/data_ini_settings/MW_FIELDS.htm" />
+                            <TocEntry Title="FORMULA_FIELDS" Link="/Content/COEWebserver/data_ini_settings/FORMULA_FIELDS.htm" />
+                            <TocEntry Title="SEARCHABLE_ADO_FIELDS" Link="/Content/COEWebserver/data_ini_settings/SEARCHABLE_ADO_FIELDS.htm" />
+                            <TocEntry Title="REQUIRED_FIELDS" Link="/Content/COEWebserver/data_ini_settings/REQUIRED_FIELDS.htm" />
+                            <TocEntry Title="SDFILE_FIELDS" Link="/Content/COEWebserver/data_ini_settings/SDFILE_FIELDS.htm" />
+                            <TocEntry Title="TABLE_GROUP" Link="/Content/COEWebserver/data_ini_settings/TABLE_GROUP.htm" />
+                            <TocEntry Title="NUM_LIST_VIEW" Link="/Content/COEWebserver/data_ini_settings/NUM_LIST_VIEW.htm" />
+                        </TocEntry>
+                        <TocEntry Title="BASENP_FORM_GROUP" Link="/Content/COEWebserver/BASENP_FORM_GROUP.htm" />
+                        <TocEntry Title="ADD_RECORD_FORM_GROUP" Link="/Content/COEWebserver/ADD_RECORD_FORM_GROUP.htm" />
+                        <TocEntry Title="SHOWBUTTONS (for ChemIndex.ini)" Link="/Content/COEWebserver/SHOWBUTTONS (for ChemIndex.ini).htm">
+                            <TocEntry Title="CHEMACX_BUTTON" Link="/Content/COEWebserver/CHEMACX_BUTTON.htm" />
+                            <TocEntry Title="CHEMACX_LINK" Link="/Content/COEWebserver/CHEMACX_LINK.htm" />
+                            <TocEntry Title="CHEMACX_SERVER" Link="/Content/COEWebserver/CHEMACX_SERVER.htm" />
+                            <TocEntry Title="NCI_BUTTON" Link="/Content/COEWebserver/NCI_BUTTON.htm" />
+                            <TocEntry Title="NCI_LINK" Link="/Content/COEWebserver/NCI_LINK.htm" />
+                            <TocEntry Title="NCI_SERVER" Link="/Content/COEWebserver/NCI_SERVER.htm" />
+                            <TocEntry Title="THEMERCKINDEX_BUTTON" Link="/Content/COEWebserver/THEMERCKINDEX_BUTTON.htm" />
+                            <TocEntry Title="THEMERCKINDEX_LINK" Link="/Content/COEWebserver/THEMERCKINDEX_LINK.htm" />
+                            <TocEntry Title="THEMERCKINDEX_SERVER" Link="/Content/COEWebserver/THEMERCKINDEX_SERVER.htm" />
+                        </TocEntry>
+                    </TocEntry>
+                    <TocEntry Title="menubar.ini Configuration File" Link="/Content/COEWebserver/menubar.ini Configuration File.htm">
+                        <TocEntry Title="MENUBAR_ITEMS" Link="/Content/COEWebserver/MENUBAR_ITEMS.htm" />
+                        <TocEntry Title="MENU_BAR_DISPLAY_SETTINGS" Link="/Content/COEWebserver/MENU_BAR_DISPLAY_SETTINGS.htm">
+                            <TocEntry Title="ABSOLUTE_LEFT" Link="/Content/COEWebserver/ABSOLUTE_LEFT.htm" />
+                            <TocEntry Title="ABSOLUTE_TOP" Link="/Content/COEWebserver/ABSOLUTE_TOP.htm" />
+                            <TocEntry Title="BACKGROUND_COLOR" Link="/Content/COEWebserver/BACKGROUND_COLOR.htm" />
+                            <TocEntry Title="CLEAR_PIXEL_IMAGE" Link="/Content/COEWebserver/CLEAR_PIXEL_IMAGE.htm" />
+                            <TocEntry Title="DISABLED_TEXT_COLOR" Link="/Content/COEWebserver/DISABLED_TEXT_COLOR.htm" />
+                            <TocEntry Title="HOVER_COLOR" Link="/Content/COEWebserver/HOVER_COLOR.htm" />
+                            <TocEntry Title="HOVER_HIGHLIGHT_COLOR" Link="/Content/COEWebserver/HOVER_HIGHLIGHT_COLOR.htm" />
+                            <TocEntry Title="HOVER_SHADOW_COLOR" Link="/Content/COEWebserver/HOVER_SHADOW_COLOR.htm" />
+                            <TocEntry Title="HOVER_TEXT_COLOR" Link="/Content/COEWebserver/HOVER_TEXT_COLOR.htm" />
+                            <TocEntry Title="INNER_HIGHLIGHT_COLOR" Link="/Content/COEWebserver/INNER_HIGHLIGHT_COLOR.htm" />
+                            <TocEntry Title="INNER_SHADOW_COLOR" Link="/Content/COEWebserver/INNER_SHADOW_COLOR.htm" />
+                            <TocEntry Title="ITEM_FONT_COLOR" Link="/Content/COEWebserver/ITEM_FONT_COLOR.htm" />
+                            <TocEntry Title="ITEM_FONT_FAMILY" Link="/Content/COEWebserver/ITEM_FONT_FAMILY.htm" />
+                            <TocEntry Title="ITEM_FONT_PADDING_BOTTOM" Link="/Content/COEWebserver/ITEM_FONT_PADDING_BOTTOM.htm" />
+                            <TocEntry Title="ITEM_FONT_PADDING_LEFT" Link="/Content/COEWebserver/ITEM_FONT_PADDING_LEFT.htm" />
+                            <TocEntry Title="ITEM_FONT_PADDING_RIGHT" Link="/Content/COEWebserver/ITEM_FONT_PADDING_RIGHT.htm" />
+                            <TocEntry Title="ITEM_FONT_PADDING_TOP" Link="/Content/COEWebserver/ITEM_FONT_PADDING_TOP.htm" />
+                            <TocEntry Title="ITEM_FONT_SIZE" Link="/Content/COEWebserver/ITEM_FONT_SIZE.htm" />
+                            <TocEntry Title="ITEM_FONT_STYLE" Link="/Content/COEWebserver/ITEM_FONT_STYLE.htm" />
+                            <TocEntry Title="ITEM_FONT_TEXT_DECORATION" Link="/Content/COEWebserver/ITEM_FONT_TEXT_DECORATION.htm" />
+                            <TocEntry Title="ITEM_FONT_WEIGHT" Link="/Content/COEWebserver/ITEM_FONT_WEIGHT.htm" />
+                            <TocEntry Title="MENU_FONT_COLOR" Link="/Content/COEWebserver/MENU_FONT_COLOR.htm" />
+                            <TocEntry Title="MENU_FONT_FAMILY" Link="/Content/COEWebserver/MENU_FONT_FAMILY.htm" />
+                            <TocEntry Title="MENU_FONT_PADDING_BOTTOM" Link="/Content/COEWebserver/MENU_FONT_PADDING_BOTTOM.htm" />
+                            <TocEntry Title="MENU_FONT_PADDING_LEFT" Link="/Content/COEWebserver/MENU_FONT_PADDING_LEFT.htm" />
+                            <TocEntry Title="MENU_FONT_PADDING_RIGHT" Link="/Content/COEWebserver/MENU_FONT_PADDING_RIGHT.htm" />
+                            <TocEntry Title="MENU_FONT_PADDING_TOP" Link="/Content/COEWebserver/MENU_FONT_PADDING_TOP.htm" />
+                            <TocEntry Title="MENU_FONT_SIZE" Link="/Content/COEWebserver/MENU_FONT_SIZE.htm" />
+                            <TocEntry Title="MENU_FONT_STYLE" Link="/Content/COEWebserver/MENU_FONT_STYLE.htm" />
+                            <TocEntry Title="MENU_FONT_TEXT_DECORATION" Link="/Content/COEWebserver/MENU_FONT_TEXT_DECORATION.htm" />
+                            <TocEntry Title="MENU_FONT_WEIGHT" Link="/Content/COEWebserver/MENU_FONT_WEIGHT.htm" />
+                            <TocEntry Title="OUTER_HIGHLIGHT_COLOR" Link="/Content/COEWebserver/OUTER_HIGHLIGHT_COLOR.htm" />
+                            <TocEntry Title="OUTER_SHADOW_COLOR" Link="/Content/COEWebserver/OUTER_SHADOW_COLOR.htm" />
+                            <TocEntry Title="POPUP_ICON" Link="/Content/COEWebserver/POPUP_ICON.htm" />
+                            <TocEntry Title="SELECTED_COLOR" Link="/Content/COEWebserver/SELECTED_COLOR.htm" />
+                            <TocEntry Title="SELECTED_HIGHLIGHT_COLOR" Link="/Content/COEWebserver/SELECTED_HIGHLIGHT_COLOR.htm" />
+                            <TocEntry Title="SELECTED_POPUP_ICON" Link="/Content/COEWebserver/SELECTED_POPUP_ICON.htm" />
+                            <TocEntry Title="SELECTED_SHADOW_COLOR" Link="/Content/COEWebserver/SELECTED_SHADOW_COLOR.htm" />
+                            <TocEntry Title="SELECTED_TEXT_COLOR" Link="/Content/COEWebserver/SELECTED_TEXT_COLOR.htm" />
+                            <TocEntry Title="SHADOW_COLOR" Link="/Content/COEWebserver/SHADOW_COLOR.htm" />
+                            <TocEntry Title="SHADOW_ENABLED" Link="/Content/COEWebserver/SHADOW_ENABLED.htm" />
+                            <TocEntry Title="SHOW_ON_MOUSEOVER" Link="/Content/COEWebserver/SHOW_ON_MOUSEOVER.htm" />
+                            <TocEntry Title="SHADOW_STRENGTH" Link="/Content/COEWebserver/SHADOW_STRENGTH.htm" />
+                            <TocEntry Title="SHADOW_X_OFFSET" Link="/Content/COEWebserver/SHADOW_X_OFFSET.htm" />
+                            <TocEntry Title="SHADOW_Y_OFFSET" Link="/Content/COEWebserver/SHADOW_Y_OFFSET.htm" />
+                        </TocEntry>
+                        <TocEntry Title="Menu Definitions" Link="/Content/COEWebserver/Menu Definitions.htm">
+                            <TocEntry Title="MENU_TYPE" Link="/Content/COEWebserver/MENU_TYPE.htm" />
+                            <TocEntry Title="MENU_HIDE" Link="/Content/COEWebserver/MENU_HIDE.htm" />
+                            <TocEntry Title="MENU_FORMGROUPS" Link="/Content/COEWebserver/MENU_FORMGROUPS.htm" />
+                            <TocEntry Title="MENU_NAME" Link="/Content/COEWebserver/MENU_NAME.htm" />
+                            <TocEntry Title="NUM_MENU_ITEMS" Link="/Content/COEWebserver/NUM_MENU_ITEMS.htm" />
+                        </TocEntry>
+                        <TocEntry Title="Item Definitions" Link="/Content/COEWebserver/Item Definitions.htm">
+                            <TocEntry Title="NAME_ITEM" Link="/Content/COEWebserver/NAME_ITEM.htm" />
+                            <TocEntry Title="NAME_ADD_INFO_ITEM" Link="/Content/COEWebserver/NAME_ADD_INFO_ITEM.htm" />
+                            <TocEntry Title="URL_ITEM" Link="/Content/COEWebserver/URL_ITEM.htm" />
+                            <TocEntry Title="ONCLICK_ITEM" Link="/Content/COEWebserver/ONCLICK_ITEM.htm" />
+                            <TocEntry Title="DIM_ITEM" Link="/Content/COEWebserver/DIM_ITEM.htm" />
+                            <TocEntry Title="HIDE_ITEM" Link="/Content/COEWebserver/HIDE_ITEM.htm" />
+                            <TocEntry Title="ICON_IMAGE_ITEM" Link="/Content/COEWebserver/ICON_IMAGE_ITEM.htm" />
+                        </TocEntry>
+                    </TocEntry>
+                    <TocEntry Title="Changing The User Interface" Link="/Content/COEWebserver/Changing The User Interface.htm" />
+                    <TocEntry Title="Configuring Structure Settings" Link="/Content/COEWebserver/Configuring Structure Settings.htm" />
+                    <TocEntry Title="Customizing Form Fields" Link="/Content/COEWebserver/Customizing Form Fields.htm" />
+                    <TocEntry Title="Common Functions" Link="/Content/COEWebserver/Common Functions.htm" />
+                </TocEntry>
+            </TocEntry>
+            <TocEntry Title="Converting an Access Based CBOE WebServer" Link="/Content/COEWebserver/Converting an Access Based CBOE WebServer.htm">
+                <TocEntry Title="Converting an Access Based CBOE for use with&#160;SQLServer" Link="/Content/COEWebserver/Converting an Access Based CBOE for use with SQLServer.htm" />
+                <TocEntry Title="Converting an Access Based CBOE for use with&#160;Oracle 8i" Link="/Content/COEWebserver/Converting an Access or SQLServer Based CBOE for use with Oracle 8i.htm" />
+                <TocEntry Title="Converting an Access Based CBOE for use with&#160;Oracle 9i" Link="/Content/COEWebserver/Converting an Access or SQLServer Based CBOE for use with Oracle 9i.htm" />
+            </TocEntry>
+        </TocEntry>
+        <TocEntry Title="HTTP API Help" Link="/Content/COEWebserver/HTTP API Help.htm">
+            <TocEntry Title="Search" Link="/Content/COEWebserver/Search.htm" />
+            <TocEntry Title="Get_structure" Link="/Content/COEWebserver/Get_structure.htm" />
+            <TocEntry Title="Query_string" Link="/Content/COEWebserver/Query_string.htm" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="DataView Manager" Link="/Content/DataViewManager/DataView Manager Introduction.htm">
+        <TocEntry Title="The Master DataView" Link="/Content/DataViewManager/The Master DataView.htm">
+            <TocEntry Title="Creating the Master DataView" Link="/Content/DataViewManager/Creating the Master DataView.htm" />
+            <TocEntry Title="Editing the Master Dataview" Link="/Content/DataViewManager/Editing the Master Dataview.htm" />
+        </TocEntry>
+        <TocEntry Title="Creating DataViews" Link="/Content/DataViewManager/Creating DataViews.htm">
+            <TocEntry Title="Creating a Dataview from the Master" Link="/Content/DataViewManager/Creating a Dataview from the Master.htm" />
+            <TocEntry Title="Using an Existing Dataview" Link="/Content/DataViewManager/Using an Existing Dataview.htm" />
+        </TocEntry>
+        <TocEntry Title="Editing DataViews" Link="/Content/DataViewManager/Editing DataViews.htm">
+            <TocEntry Title="Selecting a Dataview to Edit" Link="/Content/DataViewManager/Selecting a Dataview to Edit.htm" />
+            <TocEntry Title="Managing Tables" Link="/Content/DataViewManager/Managing Tables.htm" />
+            <TocEntry Title="Specifying Security Settings" Link="/Content/DataViewManager/Specifying Security Settings.htm" />
+            <TocEntry Title="Duplicating a Table" Link="/Content/DataViewManager/Duplicating a Table.htm" />
+            <TocEntry Title="Deleting a Dataview" Link="/Content/DataViewManager/Deleting a Dataview.htm" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="Drug Degradation Introduction" Link="/Content/Drug Degradation/Drug Degradation Introduction.htm">
+        <TocEntry Title="Logging In to Drug Degradation" Link="/Content/Drug Degradation/Logging In to Drug Degradation.htm" />
+        <TocEntry Title="Parent Compound Record Data" Link="/Content/Drug Degradation/Parent Compound Record Data.htm">
+            <TocEntry Title="Adding a Parent Compound" Link="/Content/Drug Degradation/Adding a Parent Compound.htm" />
+            <TocEntry Title="Editing a Parent Compound" Link="/Content/Drug Degradation/Editing a Parent Compound.htm" />
+            <TocEntry Title="Linking to Parent Compound Records" Link="/Content/Drug Degradation/Linking to Parent Compound Records.htm" />
+        </TocEntry>
+        <TocEntry Title="Adding an Experiment" Link="/Content/Drug Degradation/Adding an Experiment.htm" />
+        <TocEntry Title="Experimental Details" Link="/Content/Drug Degradation/Experimental Details.htm">
+            <TocEntry Title="Adding a Degradant" Link="/Content/Drug Degradation/Adding a Degradant.htm" />
+            <TocEntry Title="Editing a Degradant" Link="/Content/Drug Degradation/Editing a Degradant.htm" />
+            <TocEntry Title="Adding a Mechanism" Link="/Content/Drug Degradation/Adding a Mechanism.htm" />
+            <TocEntry Title="Viewing a Mechanism" Link="/Content/Drug Degradation/Viewing a Mechanism.htm" />
+        </TocEntry>
+        <TocEntry Title="Managing Conditions and Salts" Link="/Content/Drug Degradation/Managing Conditions and Salts.htm">
+            <TocEntry Title="Managing Conditions Lists" Link="/Content/Drug Degradation/Managing Conditions Lists.htm" />
+            <TocEntry Title="Managing Salts Lists" Link="/Content/Drug Degradation/Managing Salts Lists.htm" />
+        </TocEntry>
+        <TocEntry Title="Managing Functional Groups" Link="/Content/Drug Degradation/Managing Functional Groups.htm" />
+        <TocEntry Title="Searching for Compounds" Link="/Content/Drug Degradation/Searching for Compounds.htm" />
+    </TocEntry>
+    <TocEntry Title="DocManager Enterprise" Link="/Content/DocManagerEnterprise/DocManager Enterprise.htm">
+        <TocEntry Title="Logging In to DocManager" Link="/Content/DocManagerEnterprise/Logging In to DocManager.htm" />
+        <TocEntry Title="DocManager Basics" Link="/Content/DocManagerEnterprise/DocManager Basics.htm" />
+        <TocEntry Title="Submitting Documents" Link="/Content/DocManagerEnterprise/Submitting Documents.htm">
+            <TocEntry Title="Viewing Recent Activities" Link="/Content/DocManagerEnterprise/Viewing Recent Activities.htm" />
+        </TocEntry>
+        <TocEntry Title="Searching for Documents" Link="/Content/DocManagerEnterprise/Searching for Documents.htm">
+            <TocEntry Title="Performing a Search" Link="/Content/DocManagerEnterprise/Performing a Search.htm" />
+            <TocEntry Title="Basic Text Searching" Link="/Content/DocManagerEnterprise/Basic Text Searching.htm" />
+            <TocEntry Title="Advanced Text Searching" Link="/Content/DocManagerEnterprise/Advanced Text Searching.htm" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="Registration" Link="/Content/Registration/Registration.htm">
+        <TocEntry Title="Terminology" Link="/Content/Registration/Terminology.htm" />
+        <TocEntry Title="Data Loader" Link="/Content/DataLoader/Data Loader Introduction.htm">
+            <TocEntry Title="The Command-Line Version of Data Loader" Link="/Content/DataLoader/The Command-Line Version of Data Loader.htm">
+                <TocEntry Title="The Command-Line Actions" Link="/Content/DataLoader/The Command-Line Actions.htm" />
+                <TocEntry Title="Anatomy of the Command-Line" Link="/Content/DataLoader/Anatomy of the Command-Line.htm" />
+                <TocEntry Title="Individual Mapping Templates" Link="/Content/DataLoader/Individual Mapping Templates.htm" />
+                <TocEntry Title="Extended Mapping Features" Link="/Content/DataLoader/Extended Mapping Features.htm" />
+            </TocEntry>
+            <TocEntry Title="Enabling the Pre-Load Record Matching" Link="/Content/DataLoader/Enabling the Pre-Load Record Matching.htm" />
+            <TocEntry Title="Optimizations for Bulk Loading" Link="/Content/DataLoader/Optimizations for Bulk Loading.htm">
+                <TocEntry Title="Read Records from the Source File" Link="/Content/DataLoader/Read Records from the Source File.htm" />
+                <TocEntry Title="Validate Properties Values" Link="/Content/DataLoader/Validate Properties Values.htm" />
+                <TocEntry Title="Send Records to Application Server" Link="/Content/DataLoader/Send Records to Application Server.htm" />
+                <TocEntry Title="Execute Addins" Link="/Content/DataLoader/Execute Addins.htm" />
+                <TocEntry Title="Chemical Structure Duplicate Check" Link="/Content/DataLoader/Chemical Structure Duplicate Check.htm" />
+                <TocEntry Title="Extended Duplicate Checking" Link="/Content/DataLoader/Extended Duplicate Checking.htm" />
+                <TocEntry Title="Parse and Insert Records into Oracle Tables" Link="/Content/DataLoader/Parse and Insert Records into Oracle Tables.htm" />
+                <TocEntry Title="Index Chemical Documents with CsCartridge" Link="/Content/DataLoader/Index Chemical Documents with CsCartridge.htm" />
+                <TocEntry Title="Disable Refresh of  Oracle Materialized Views" Link="/Content/DataLoader/Disable Refresh of  Oracle Materialized Views.htm" />
+                <TocEntry Title="Fetch Newly Inserted Record" Link="/Content/DataLoader/Fetch Newly Inserted Record.htm" />
+                <TocEntry Title="Oracle Optimizer Statistics" Link="/Content/DataLoader/Oracle Optimizer Statistics.htm" />
+            </TocEntry>
+            <TocEntry Title="Missing Indexes" Link="/Content/DataLoader/Missing Indexes.htm" />
+            <TocEntry Title="Application Tracing" Link="/Content/DataLoader/Application Tracing.htm" />
+            <TocEntry Title="Oracle Tracing" Link="/Content/DataLoader/Oracle Tracing.htm" />
+            <TocEntry Title="Sample Optimization SQL Scripts" Link="/Content/DataLoader/Sample Optimization SQL Scripts.htm" />
+            <TocEntry Title="XML Mapping Template for Data Loader" Link="/Content/DataLoader/XML Mapping Template for Data Loader.htm" />
+            <TocEntry Title="Workflow" Link="/Content/DataLoader/Workflow.htm">
+                <TocEntry Title="Adding Data" Link="/Content/DataLoader/Adding Data.htm" />
+                <TocEntry Title="Exporting Data" Link="/Content/DataLoader/Exporting Data.htm" />
+                <TocEntry Title="Importing a Data File to Load" Link="/Content/DataLoader/Importing a Data File to Load.htm" />
+                <TocEntry Title="Mapping Input and Output Fields" Link="/Content/DataLoader/Mapping Input and Output Fields.htm" />
+                <TocEntry Title="Configuring Job Settings" Link="/Content/DataLoader/Configuring Job Settings.htm" />
+            </TocEntry>
+            <TocEntry Title="Accessing Data Loader" Link="/Content/DataLoader/Accessing Data Loader.htm" />
+            <TocEntry Title="Getting Help" Link="/Content/DataLoader/Getting Help.htm" />
+            <TocEntry Title="Working with Registration Enterprise" Link="/Content/DataLoader/Working with Registration Enterprise.htm">
+                <TocEntry Title="Loading Substances" Link="/Content/DataLoader/Loading Substances.htm" />
+                <TocEntry Title="Updating Batch Data" Link="/Content/DataLoader/Updating Batch Data.htm" />
+                <TocEntry Title="Sorting Data" Link="/Content/DataLoader/Sorting Data.htm" />
+            </TocEntry>
+            <TocEntry Title="Exporting Data to a Text File" Link="/Content/DataLoader/Exporting Data to a Text File.htm" />
+            <TocEntry Title="Exporting Data to an XML" Link="/Content/DataLoader/Exporting Data to an XML.htm" />
+            <TocEntry Title="Managing Jobs" Link="/Content/DataLoader/Managing Jobs.htm">
+                <TocEntry Title="Saving a Job" Link="/Content/DataLoader/Saving a Job.htm" />
+                <TocEntry Title="Loading a Saved Job" Link="/Content/DataLoader/Loading a Saved Job.htm" />
+                <TocEntry Title="Viewing Job Summary" Link="/Content/DataLoader/Viewing Job Summary.htm" />
+            </TocEntry>
+            <TocEntry Title="Output Fields" Link="/Content/DataLoader/Output Fields.htm">
+                <TocEntry Title="Registration Information" Link="/Content/DataLoader/Registration Information.htm" />
+                <TocEntry Title="Component Information" Link="/Content/DataLoader/Component Information.htm" />
+                <TocEntry Title="Fragment Information" Link="/Content/DataLoader/Fragment Information.htm" />
+                <TocEntry Title="Batch Information" Link="/Content/DataLoader/Batch Information.htm" />
+            </TocEntry>
+            <TocEntry Title="Functions" Link="/Content/DataLoader/Functions.htm">
+                <TocEntry Title="Boolean Functions" Link="/Content/DataLoader/Boolean Functions.htm" />
+                <TocEntry Title="Char Functions" Link="/Content/DataLoader/Char Functions.htm" />
+                <TocEntry Title="CharArray Functions" Link="/Content/DataLoader/CharArray Functions.htm" />
+                <TocEntry Title="DateTime Functions" Link="/Content/DataLoader/DateTime Functions.htm" />
+                <TocEntry Title="Decimal Functions" Link="/Content/DataLoader/Decimal Functions.htm" />
+                <TocEntry Title="Integer Functions" Link="/Content/DataLoader/Integer Functions.htm" />
+                <TocEntry Title="String Functions" Link="/Content/DataLoader/String Functions.htm" />
+                <TocEntry Title="StringArray Functions" Link="/Content/DataLoader/StringArray Functions.htm" />
+            </TocEntry>
+        </TocEntry>
+        <TocEntry Title="New Data Loader" Link="/Content/DataLoader/New Data Loader.htm">
+            <TocEntry Title="Accessing the New Data Loader" Link="/Content/DataLoader/Accessing the New Data Loader.htm" />
+        </TocEntry>
+        <TocEntry Title="Customize Registration" Link="/Content/Registration/Customize Registration.htm">
+            <TocEntry Title="Import/Export Configuration" Link="/Content/Registration/Import - Export Configuration.htm" />
+            <TocEntry Title="Manage Customizable Tables" Link="/Content/Registration/Manage Customizable Tables.htm">
+                <TocEntry Title="PickList Domain and PickList Values" Link="/Content/Registration/PickList Domain and PickList Values.htm" />
+                <TocEntry Title="Project Table" Link="/Content/Registration/Project Table.htm" />
+                <TocEntry Title="Fragment Type and Fragment Tables" Link="/Content/Registration/Fragment Type and Fragment Tables.htm" />
+                <TocEntry Title="Sequences Table" Link="/Content/Registration/Sequence Table.htm" />
+                <TocEntry Title="Identifiers Type Table" Link="/Content/Registration/Identifiers Type Table.htm" />
+                <TocEntry Title="Sites Table" Link="/Content/Registration/Sites Table.htm">
+                    <TocEntry Title="Filtering Prefixes" Link="/Content/Registration/Filtering Prefixes.htm" />
+                </TocEntry>
+            </TocEntry>
+            <TocEntry Title="Manage System Behaviors" Link="/Content/Registration/Manage System Behaviors.htm">
+                <TocEntry Title="Manage Data Properties" Link="/Content/Registration/Manage Data Properties.htm">
+                    <TocEntry Title="Create Properties" Link="/Content/Registration/Create Properties.htm">
+                        <TocEntry Title="Picklist Domain Type" Link="/Content/Registration/Picklist Domain Type.htm" />
+                        <TocEntry Title="Text Type" Link="/Content/Registration/Text Type.htm" />
+                        <TocEntry Title="Date Type" Link="/Content/Registration/Date Type.htm" />
+                        <TocEntry Title="Boolean Type" Link="/Content/Registration/Boolean Type.htm" />
+                        <TocEntry Title="Number Type" Link="/Content/Registration/Number Type.htm" />
+                        <TocEntry Title="Integer Type" Link="/Content/Registration/Integer Type.htm" />
+                        <TocEntry Title="Float Type" Link="/Content/Registration/Float Type.htm" />
+                    </TocEntry>
+                    <TocEntry Title="Validation Rules" Link="/Content/Registration/Validation Rules.htm" />
+                    <TocEntry Title="Filtering PickLists" Link="/Content/Registration/Filtering Picklists.htm" />
+                </TocEntry>
+                <TocEntry Title="Forms Customization" Link="/Content/Registration/Forms Customization.htm">
+                    <TocEntry Title="Display Types" Link="/Content/Registration/Display Types.htm" />
+                </TocEntry>
+                <TocEntry Title="Add-ins Configuration" Link="/Content/Registration/Addins Configuration.htm">
+                    <TocEntry Title="Normalized Structure Add-in" Link="/Content/Registration/Normalized Structure Addin.htm" />
+                    <TocEntry Title="Structure Aggregation Add-in" Link="/Content/Registration/Structure Aggregation Addin.htm" />
+                    <TocEntry Title="ChemDraw Calculations Add-in" Link="/Content/Registration/ChemDraw Calculations Addin.htm" />
+                    <TocEntry Title="Find Custom Field Duplicates Add-in" Link="/Content/Registration/Find Custom Field Duplicates.htm" />
+                    <TocEntry Title="Salt Stripping Add-in" Link="/Content/Registration/Salt Stripping Add-in.htm" />
+                    <TocEntry Title="ChemDraw Chemical Warning Checker" Link="/Content/Registration/ChemDraw Chemical Warning Checker.htm" />
+                    <TocEntry Title="Python Property Calculation Add-in" Link="/Content/Registration/Python Property Calculation Add-in.htm" />
+                </TocEntry>
+                <TocEntry Title="System Settings" Link="/Content/Registration/System Settings.htm" />
+            </TocEntry>
+        </TocEntry>
+        <TocEntry Title="Row Level Security" Link="/Content/Registration/Row Level Security.htm" />
+        <TocEntry Title="Registration Relationships" Link="/Content/Registration/Registration Relationships.htm" />
+        <TocEntry Title="Registration Privileges" Link="/Content/Registration/Registration Privileges.htm" />
+    </TocEntry>
+    <TocEntry Title="BioSAR Browser Introduction" Link="/Content/BioSARBrowser/BioSAR Browser Introduction.htm" StartChapter="true" PageNumber="1" PageNumberReset="continue" StartSection="false" VolumeNumberReset="same" SectionNumberReset="continue" ChapterNumberReset="continue">
+        <TocEntry Title="Schema Management" Link="/Content/BioSARBrowser/Schema Management.htm">
+            <TocEntry Title="Refreshing Tables" Link="/Content/BioSARBrowser/Refreshing Tables.htm" />
+            <TocEntry Title="Adding and Removing Schemas" Link="/Content/BioSARBrowser/Adding and Removing Schemas.htm" />
+            <TocEntry Title="Editing a Description - Password" Link="/Content/BioSARBrowser/Editing a Description - Password.htm" />
+            <TocEntry Title="Defining Table Details" Link="/Content/BioSARBrowser/Defining Table Details.htm" />
+        </TocEntry>
+        <TocEntry Title="Custom StyleSheets" Link="/Content/BioSARBrowser/Custom StyleSheets.htm">
+            <TocEntry Title="Applying CSS to all Forms" Link="/Content/BioSARBrowser/Applying CSS to all Forms.htm" />
+        </TocEntry>
+        <TocEntry Title="Managing Users and Roles" Link="/Content/BioSARBrowser/Managing Users and Roles.htm">
+            <TocEntry Title="BioSAR Enterprise Roles" Link="/Content/BioSARBrowser/BioSAR Enterprise Roles.htm" />
+            <TocEntry Title="BioSAR Enterprise Privileges" Link="/Content/BioSARBrowser/BioSAR Enterprise Privileges.htm" />
+        </TocEntry>
+        <TocEntry Title="Check Configuration File Settings" Link="/Content/BioSARBrowser/Check Configuration File Settings.htm" />
+        <TocEntry Title="Report Generator Configuration Issues" Link="/Content/BioSARBrowser/Report Generator Configuration Issues.htm">
+            <TocEntry Title="Report Generator Performance" Link="/Content/BioSARBrowser/Report Generator Performance.htm" />
+            <TocEntry Title="General Performance" Link="/Content/BioSARBrowser/General Performance.htm" />
+        </TocEntry>
+        <TocEntry Title="Adding Roles" Link="/Content/BioSARBrowser/Adding Roles.htm" />
+        <TocEntry Title="Changing the Font Size in List View" Link="/Content/BioSARBrowser/Changing the Font Size in List View.htm" />
+        <TocEntry Title="Indexing Linking Fields" Link="/Content/BioSARBrowser/Indexing Linking Fields.htm" />
+        <TocEntry Title="Cfserver.ini Configuration File" Link="/Content/BioSARBrowser/Cfserver.ini Configuration File.htm">
+            <TocEntry Title="Globals" Link="/Content/BioSARBrowser/Globals.htm" />
+            <TocEntry Title="CS_SECURITY" Link="/Content/BioSARBrowser/CS_SECURITY.htm" />
+        </TocEntry>
+        <TocEntry Title="BioSAR_Browser.ini Configuration File" Link="/Content/BioSARBrowser/BioSAR_Browser.ini Configuration File.htm">
+            <TocEntry Title="BioSARBrowser Globals" Link="/Content/BioSARBrowser/BioSARBrowser Globals.htm" />
+        </TocEntry>
+    </TocEntry>
+</CatapultToc>

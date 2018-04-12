@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="110" MadCap:lastWidth="832">
+    <head>
+        <link href="../Stylesheets/Styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <MadCap:bodyProxy />
+        <MadCap:snippetBlock src="../Snippets/FooterNew.flsnp" />
+    </body>
+</html>

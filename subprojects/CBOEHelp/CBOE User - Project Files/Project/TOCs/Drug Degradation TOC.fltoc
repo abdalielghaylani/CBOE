@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.Drug Deg">
+  <TocEntry
+    Title="Drug Degradation Database"
+    Link="/Content/Drug Degradation Database/Drug Degradation Database Introduction.htm"
+    conditions="Default.Drug Deg">
+    <TocEntry
+      Title="Logging In to Drug Degradation Database"
+      Link="/Content/Drug Degradation Database/Logging In to Drug Degradation Database.htm" />
+    <TocEntry
+      Title="Searching for Compounds"
+      Link="/Content/Drug Degradation Database/Searching for Compounds.htm" />
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/Drug Degradation Database/Application Tracing.htm" />
+  </TocEntry>
+</CatapultToc>

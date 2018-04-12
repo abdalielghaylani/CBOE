@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1"
+  conditions="Default.ChemACX">
+  <TocEntry
+    Title="ChemACX"
+    Link="/Content/ChemACX/ChemACX Introduction.htm"
+    conditions="Default.ChemACX">
+    <TocEntry
+      Title="ChemACX Database"
+      Link="/Content/ChemACX/ChemACX Database.htm" />
+    <TocEntry
+      Title="Opening ChemACX"
+      Link="/Content/ChemACX/Opening ChemACX.htm" />
+    <TocEntry
+      Title="Searching the Database"
+      Link="/Content/ChemACX/Searching the Database.htm">
+      <TocEntry
+        Title="Non-Plugin Searches"
+        Link="/Content/ChemACX/Non-Plugin Searches.htm" />
+      <TocEntry
+        Title="Favorite Vendors List"
+        Link="/Content/ChemACX/Favorite Vendors List.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Viewing Search Results"
+      Link="/Content/ChemACX/Viewing Search Results.htm">
+      <TocEntry
+        Title="List View"
+        Link="/Content/ChemACX/List View.htm" />
+      <TocEntry
+        Title="Details View"
+        Link="/Content/ChemACX/Details View.htm" />
+      <TocEntry
+        Title="Browsing Vendor Information"
+        Link="/Content/ChemACX/Browsing Vendor Information.htm" />
+      <TocEntry
+        Title="Accessing MSDS Data"
+        Link="/Content/ChemACX/Accessing MSDX Data.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Using the Shopping Cart"
+      Link="/Content/ChemACX/Using the Shopping Cart.htm">
+      <TocEntry
+        Title="Adding Items"
+        Link="/Content/ChemACX/Adding Items.htm" />
+      <TocEntry
+        Title="Removing Items"
+        Link="/Content/ChemACX/Removing Items.htm" />
+      <TocEntry
+        Title="Ordering Chemicals"
+        Link="/Content/ChemACX/Ordering Chemicals.htm" />
+      <TocEntry
+        Title="Exporting the Chemicals to Excel"
+        Link="/Content/ChemACX/Exporting the Chemicals to Excel.htm" />
+      <TocEntry
+        Title="Exporting to a Word Template"
+        Link="/Content/ChemACX/Exporting to a Word Template.htm" />
+      <TocEntry
+        Title="Printing the Shopping Cart"
+        Link="/Content/ChemACX/Printing the Shopping Cart.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="ChemACX Integration"
+      Link="/Content/ChemACX/ChemACX Integration.htm">
+      <TocEntry
+        Title="Registering ChemACX Chemicals"
+        Link="/Content/ChemACX/Registering ChemACX Chemicals.htm" />
+      <TocEntry
+        Title="Creating Inventory Containers"
+        Link="/Content/ChemACX/Creating Inventory Containers.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Vendor Participation"
+      Link="/Content/ChemACX/Vendor Participation.htm" />
+    <TocEntry
+      Title="ChemACX Form Fields"
+      Link="/Content/ChemACX/ChemACX Form Fields.htm" />
+    <TocEntry
+      Title="Enabling Application Tracing"
+      Link="/Content/ChemACX/Application Tracing.htm" />
+  </TocEntry>
+</CatapultToc>
