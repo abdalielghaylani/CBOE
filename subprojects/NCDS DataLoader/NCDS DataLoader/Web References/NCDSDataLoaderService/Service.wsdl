@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/NCDSDataLoaderService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://localhost/NCDSDataLoaderService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/NCDSDataLoaderService">
+      <s:element name="GetNonStructuralDuplicateCheckSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNonStructuralDuplicateCheckSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNonStructuralDuplicateCheckSettingsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetNonStructuralDuplicateCheckSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNonStructuralDuplicateCheckSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetNonStructuralDuplicateCheckSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNonStructuralDuplicateCheckSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="NCDSDataLoaderServiceSoap">
+    <wsdl:operation name="GetNonStructuralDuplicateCheckSettings">
+      <wsdl:input message="tns:GetNonStructuralDuplicateCheckSettingsSoapIn" />
+      <wsdl:output message="tns:GetNonStructuralDuplicateCheckSettingsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NCDSDataLoaderServiceSoap" type="tns:NCDSDataLoaderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNonStructuralDuplicateCheckSettings">
+      <soap:operation soapAction="http://localhost/NCDSDataLoaderService/GetNonStructuralDuplicateCheckSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NCDSDataLoaderServiceSoap12" type="tns:NCDSDataLoaderServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNonStructuralDuplicateCheckSettings">
+      <soap12:operation soapAction="http://localhost/NCDSDataLoaderService/GetNonStructuralDuplicateCheckSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NCDSDataLoaderService">
+    <wsdl:port name="NCDSDataLoaderServiceSoap" binding="tns:NCDSDataLoaderServiceSoap">
+      <soap:address location="http://localhost:6298/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NCDSDataLoaderServiceSoap12" binding="tns:NCDSDataLoaderServiceSoap12">
+      <soap12:address location="http://localhost:6298/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
