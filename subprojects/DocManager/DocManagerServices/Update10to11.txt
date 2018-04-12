@@ -1,0 +1,89 @@
+connect system/manager2@&&serviceName
+ALTER USER &&schemaName GRANT CONNECT THROUGH COEUSER;
+
+connect docmgr/&&schemaPassword@&&serviceName;
+create table coeobjectconfig(ID number(4), objecttypeid number(10), xml CLOB);
+create table coeobjecttype(ID number(4), name varchar2(255), description varchar2(255));
+
+
+
+
+
+insert into coeobjectconfig(id, objecttypeid, xml)
+values(1,1,'');
+
+--alter table DOCMGR_STRUCTURES
+--Add(CBASE64_CDX  CLOB)
+--LOB (CBASE64_CDX)
+--STORE AS(
+--DISABLE STORAGE IN ROW  NOCACHE PCTVERSION 10
+--TABLESPACE &&lobsTableSpaceName STORAGE (INITIAL 4 NEXT 4));
+
+ create or replace  FUNCTION c2b( c IN CLOB )
+      RETURN BLOB
+    -- typecasts CLOB to BLOB (binary conversion)
+    IS
+      pos       PLS_INTEGER  := 1;
+      buffer    RAW( 32767 );
+      res       BLOB;
+      lob_len   PLS_INTEGER  := DBMS_LOB.getLength( c );
+    BEGIN
+      DBMS_LOB.createTemporary( res, TRUE );
+      DBMS_LOB.OPEN( res, DBMS_LOB.LOB_ReadWrite );
+
+      LOOP
+        buffer := UTL_RAW.cast_to_raw( DBMS_LOB.SUBSTR( c, 16000, pos ) );
+
+        IF UTL_RAW.LENGTH( buffer ) > 0 THEN
+          DBMS_LOB.writeAppend( res, UTL_RAW.LENGTH( buffer ), buffer );
+        END IF;
+
+        pos := pos + 16000;
+        EXIT WHEN pos > lob_len;
+      END LOOP;
+
+      RETURN res; -- res is OPEN here
+    END c2b;
+/
+
+DECLARE
+ L_Xml CLOB:=
+ '<Document>
+ <ID>0</ID>
+ <Content></Content>
+ <Name></Name>
+ <Type></Type>
+ <Size>0</Size>
+ <Location></Location>
+ <Title></Title>
+ <Author></Author>
+ <Submitter></Submitter>
+ <Comments></Comments>
+ <DateSubmitted></DateSubmitted>
+ <ExternalLinks></ExternalLinks>
+ <Structures></Structures>
+ <Properties>
+  <Property name="REG_RLS_PROJECT_ID" type="String"></Property>
+  <Property name="REPORT_NUMBER" type="String"></Property>
+  <Property name="MAIN_AUTHOR" type="String"></Property>
+  <Property name="STATUS" type="String"></Property>
+  <Property name="WRITER" type="String"></Property>
+  <Property name="DOCUMENT_DATE" type="DateTime"></Property>
+  <Property name="DOCUMENT_CLASS" type="String"></Property>
+  <Property name="SEC_DOC_CAT" type="String"></Property>
+  <Property name="ABSTRACT" type="String"></Property>
+ </Properties>
+ <AddIns>
+ <AddIn assembly="CambridgeSoft.COE.DocumentManager.Services.DocManagerAddIns, Version=11.0.1.0, Culture=neutral, PublicKeyToken=0b391c4fd383b398" class="CambridgeSoft.COE.DocumentManager.Services.DocManagerAddIns.GetStructuresFromDocument">
+   <Event eventName="Inserting" eventHandler="OnInsertingHandler"/>
+   <AddInConfiguration>
+       <MolServerTempPath>C:\test\</MolServerTempPath>
+   </AddInConfiguration>
+ </AddIn>
+ </AddIns>
+</Document>
+';
+BEGIN
+    UPDATE DOCMGR.COEOBJECTCONFIG SET XML=L_XML WHERE ID=1;
+    COMMIT;
+END;

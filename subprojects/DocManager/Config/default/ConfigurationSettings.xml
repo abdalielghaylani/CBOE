@@ -1,0 +1,25 @@
+<DocManager>
+  <applicationSettings name="DocMgr Settings">
+    <groups>
+      <add name="Document" title="DocManager settings">
+        <settings>
+          <!-- ENABLE or DISABLE -->
+          <add name="SubmitNewDocFormGroupId" value="8011"
+          description="Submit a new document" />
+          <add name="SearchDocFormGroupId" value="8010"
+          description="Search Document" />
+        </settings>
+      </add>
+      <add name="CBV" title="Search"
+      description="Set Up ChemBioViz settings">
+        <settings>
+          <add name="SearchEngineURL"
+          value="/ChemBioViz/Forms/Search/ContentArea/ChemBioVizSearch.aspx"
+          controlType="TEXT" description="URL to perform search."
+          allowedValues="" picklistDatabaseName="" picklistType=""
+          isAdmin="True" processorClass="" />
+        </settings>
+      </add>
+    </groups>
+  </applicationSettings>
+</DocManager>

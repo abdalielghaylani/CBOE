@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="8010" dataViewId="8010" xmlns="COE.FormGroup">
+  <queryForms defaultForm="0">
+    <queryForm id="0" defaultDisplayMode="Add">
+      <coeForms>
+        <coeForm id="0">
+		  <validationRuleList>
+			<validationRule validationRuleName="notEmptyQuery" errorMessage="You must specify at least one field." display="None" displayPosition="Top_Left">
+				<params/>
+			</validationRule>
+		  </validationRuleList>
+          <title>Doc Manager</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+            <formElement name="StructureAggregation">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[13].Criterium</bindingExpression>
+              <Id>StructureQueryControl</Id>
+              <displayInfo>
+                <style>width:280px; height:365px;</style>
+                <cssClass>COEStructureQuery</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <Links>
+                    <CSSClass>LinkButton</CSSClass>
+                  </Links>
+                  <Labels>
+                    <CSSClass>FELabel</CSSClass>
+                  </Labels>
+                  <ChemDraw>
+                    <CSSClass>FEChemDraw</CSSClass>
+                    <ID>Structure</ID>
+                  </ChemDraw>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="33" id="13" tableid="2">
+                <structureCriteria negate="NO" implementation="CsCartridge" format="base64cdx" absoluteHitsRel="NO" relativeTetStereo="NO" reactionCenter="YES" fullSearch="NO" tautometer="NO" fragmentsOverlap="NO" permitExtraneousFragmentsIfRXN="NO" permitExtraneousFragments="NO" doubleBondStereo="YES" hitAnyChargeHetero="YES" identity="NO" hitAnyChargeCarbon="YES" similar="NO" ignoreImplicitHydrogens="NO" simThreshold="100" tetrahedralStereo="YES" query8000="" cartridgeParams="" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[0].Criterium.Value</bindingExpression>
+              <Id>FullQueryText</Id>
+              <label>Full Query Text</label>
+              <displayInfo>
+                <style>height:50px;</style>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:TextMode>SingleLine</COE:TextMode>
+                  <COE:CSSClass></COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="2" id="0" tableid="1">
+                <fullTextCriteria></fullTextCriteria>
+              </searchCriteriaItem>
+            </formElement>            
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[2].Criterium.Value</bindingExpression>
+              <Id>FileName</Id>
+              <label>File Name/Type</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="4" id="2" tableid="1">
+                <textCriteria operator="CONTAINS" caseSensitive="NO"/>
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[3].Criterium.Value</bindingExpression>
+              <Id>Title</Id>
+              <label>Title</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="7" id="3" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[4].Criterium.Value</bindingExpression>
+              <Id>Author</Id>
+              <label>Author</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="8" id="4" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[6].Criterium.Value</bindingExpression>
+              <Id>MainAuthor</Id>
+              <label>Main Author</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="22" id="6" tableid="1">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[5].Criterium.Value</bindingExpression>
+              <Id>ReportNumber</Id>
+              <label>Report Number</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="13" id="5" tableid="1">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="CONTAINS" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <Id>StatusDropDownList</Id>
+              <label>Status</label>
+              <bindingExpression>SearchCriteria[7].Criterium.Value</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <dropDownItems>
+                    <Item key="" value="- SELECT ONE -" />
+                    <Item key="Approve" value="Approve" />
+                    <Item key="New" value="New" />
+                    <Item key="Pending" value="Pending" />
+                  </dropDownItems>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+              </displayInfo>
+              <searchCriteriaItem fieldid="14" id="7" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[12].Criterium.Value</bindingExpression>
+              <Id>Writer</Id>
+              <label>Writer</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="15" id="12" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement name="DOCUMENT_DATE">
+              <label>Document Date</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[9].Criterium.Value</bindingExpression>
+              <Id>DocumentDate</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:Width>98%</COE:Width>
+                  <COE:MaxDate>1/1/0001 12:00:00 AM</COE:MaxDate>
+                  <COE:Editable>True</COE:Editable>
+                  <COE:AllowNull>True</COE:AllowNull>
+                  <COE:AutoCloseUp>True</COE:AutoCloseUp>
+                  <COE:FirstDayOfWeek>Default</COE:FirstDayOfWeek>
+                  <COE:GridLines>None</COE:GridLines>
+                  <COE:NullDateLabel>Null</COE:NullDateLabel>
+                  <COE:NullValueRepresentation>NotSet</COE:NullValueRepresentation>
+                  <COE:Section508Compliant>False</COE:Section508Compliant>
+                  <COE:FontSize />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="16" id="9" tableid="1">
+                <dateCriteria negate="NO" operator="EQUAL" culture="en-US" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement>
+              <Id>Document_ClassDropDownList</Id>
+              <label>Document Class</label>
+              <bindingExpression>SearchCriteria[10].Criterium.Value</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <dropDownItems>
+                    <Item key="" value="- SELECT ONE -" />
+                    <Item key="Perfumery" value="Perfumery" />
+                    <Item key="Flavor" value="Flavor" />
+                    <Item key="Patent" value="Patent" />
+                    <Item key="Research" value="Research" />
+                  </dropDownItems>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+              </displayInfo>
+              <searchCriteriaItem fieldid="17" id="10" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[8].Criterium.Value</bindingExpression>
+              <Id>Abstract</Id>
+              <label>Abstract</label>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="19" id="8" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+            <formElement>
+              <Id>Security_Document_CategoryDropDownList</Id>
+              <label>Security Document Category</label>
+              <bindingExpression>SearchCriteria[11].Criterium.Value</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <dropDownItemsSelect>SELECT SECURITY_DOCUMENT_CATEGORY as key, SECURITY_DOCUMENT_CATEGORY as value FROM DOCMGR.VW_SECURITY_DOCUMENT_CATEGORY</dropDownItemsSelect>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+              </displayInfo>
+              <searchCriteriaItem fieldid="18" id="11" tableid="1">
+                <textCriteria operator="EQUAL" />
+              </searchCriteriaItem>
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </queryForm>
+  </queryForms>
+  <styleSheet>~/Forms/Search/css/defaultForm.css</styleSheet>
+  <listForms defaultForm="0">
+    <listForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="0" dataMember="">
+          <validationRuleList />
+          <layoutInfo>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Dataset</bindingExpression>
+              <Id>ListView</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGrid</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:GridConfigSettings>
+                  <COE:AllowSorting>true</COE:AllowSorting>
+                  <COE:AllowChildSorting>true</COE:AllowChildSorting>
+                  <COE:IsReadOnly>true</COE:IsReadOnly>
+                  <COE:FixedHeader>true</COE:FixedHeader>
+                  <COE:ShowExpandCollapseImage>false</COE:ShowExpandCollapseImage>
+                  <COE:ShowChildDataOnly>false</COE:ShowChildDataOnly>
+                </COE:GridConfigSettings>
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table name="Table_1">
+                      <COE:headerStyle>color: #000; background-color: #ccc; font-weight: bold; font-family: Verdana; font-size: 10px;border-collapse:collapse;</COE:headerStyle>
+                      <COE:columnStyle>color: #000000;font-size:10px;font-family: Arial;vertical-align:middle;text-align:center;</COE:columnStyle>
+                      <COE:Columns>
+                        <Column name="Document Details" allowSorting="yes">
+                          <formElement name="DOCID">
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELinkButton</CSSClass>
+                                <Text>View</Text>
+                                <HRef>/DocManager/Forms/Public/ContentArea/ViewDocument.aspx?DocId={0}</HRef>
+                                <Target>_parent</Target>
+                                <URLParams>
+                                  <param databindingexpression="DocId" formattedText="DocId={0}" />
+                                </URLParams>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="NAME">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="NAME">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="AUTHOR">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="AUTHOR">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="TYPE">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="TYPE">
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="TITLE">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="TITLE">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="SUBMITTER">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="SUBMITTER">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="SUBMITTER COMMENTS">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="COMMENTS">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="VIEW FILE">
+                          <width>100</width>
+                          <formElement name="DOCID">
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>LinkButton</CSSClass>
+                                <Text>View File</Text>
+                                <HRef>/DocManager/Forms/Public/ContentArea/BinaryWriter.aspx?DocId={0}&amp;disposition=1</HRef>
+                                <ImageURL>/COECommonResources/Icon_Library/Core_Collection/Core_Aqua/PNG/small/attachment.png</ImageURL>
+                                <Target>_parent</Target>
+                                <URLParams>
+                                  <param databindingexpression="DocId" formattedText="DocId={0}" />
+                                </URLParams>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+						<Column name="Delete">
+                        <width>50</width>
+                        <formElement name="DOCID">
+                          <displayInfo>
+                            <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink</type>
+                          </displayInfo>
+                          <configInfo>
+                            <fieldConfig>
+                              <CSSClass>LinkButton</CSSClass>
+                              <Text>Delete</Text>
+                              <HRef>/DocManager/Forms/Public/ContentArea/processLinks.aspx?maction=delete&amp;DocId={0}</HRef>
+                              <Target>_parent</Target>
+                              <URLParams>
+                                <param databindingexpression="DOCID"
+                                formattedText="DocId={0}" />
+                              </URLParams>
+                            </fieldConfig>
+                          </configInfo>
+                        </formElement>
+						</Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <style>border-color:#CFD8E6; border-style:solid; border-width:1px; overflow:visible</style>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+      <resultsCriteria sortByHitList="false"
+      xmlns="COE.ResultsCriteria">
+        <tables>
+          <table id="1">
+            <field visible="true" alias="DOCID" orderById="0" direction="asc" fieldId="1" />
+            <field visible="true" alias="NAME" orderById="0" direction="asc" fieldId="4" />
+            <field visible="true" alias="TYPE" orderById="0" direction="asc" fieldId="6" />
+            <field visible="true" alias="TITLE" orderById="0" direction="asc" fieldId="7" />
+            <field visible="true" alias="AUTHOR" orderById="0" direction="asc" fieldId="8" />
+            <field visible="true" alias="SUBMITTER" orderById="0" direction="asc" fieldId="9" />
+            <field visible="true" alias="COMMENTS" orderById="0" direction="asc" fieldId="10" />
+          </table>
+        </tables>
+      </resultsCriteria>
+    </listForm>
+  </listForms>
+  <detailsForms defaultForm="0">
+    <detailsForm id="0" defaultDisplayMode="View" name="Document Information">
+      <coeForms>
+        <coeForm id="0" dataMember="Dataset.Tables['Table_1'].Rows">
+          <validationRuleList />
+          <title>Document Information</title>
+          <titleCssClass>idnTitleLabel</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <style>overflow:visible;</style>
+            <cssClass>idSearch</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement>
+              <defaultValue>Name:</defaultValue>
+              <Id>NameLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue />
+              <bindingExpression>this['Name']</bindingExpression>
+              <Id>Name</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue>Author:</defaultValue>
+              <Id>AuthorLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue />
+              <bindingExpression>this['Author']</bindingExpression>
+              <Id>Author</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue>Title:</defaultValue>
+              <Id>TitleLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue />
+              <bindingExpression>this['Title']</bindingExpression>
+              <Id>Title</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue>Submitter:</defaultValue>
+              <Id>SubmitterLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue />
+              <bindingExpression>this['Submitter']</bindingExpression>
+              <Id>Submitter</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <formElement>
+              <defaultValue />
+              <Id>DocumentFrame</Id>
+              <bindingExpression>this['DocId']</bindingExpression>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEIFrame</type>
+              </displayInfo>
+              <configInfo>
+                <fieldConfig>
+                  <HRef>/DocManagerWeb/Forms/Public/ContentArea/BinaryWriter.aspx?DocId={0}</HRef>
+                  <Target>_parent</Target>
+                  <URLParams>
+                    <param databindingexpression="DocId" formattedText="DocId={0}" />
+                  </URLParams>
+                  <CSSClass>iframe</CSSClass>
+                  <Height>700</Height>
+                  <Width>700</Width>
+                  <FrameBorder>0</FrameBorder>
+                </fieldConfig>
+              </configInfo>
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+      <resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
+        <tables>
+          <table id="1">
+            <field visible="true" alias="DOCID" orderById="0" direction="asc" fieldId="1" />
+            <field visible="true" alias="NAME" orderById="0" direction="asc" fieldId="4" />
+            <field visible="true" alias="TYPE" orderById="0" direction="asc" fieldId="6" />
+            <field visible="true" alias="TITLE" orderById="0" direction="asc" fieldId="7" />
+            <field visible="true" alias="AUTHOR" orderById="0" direction="asc" fieldId="8" />
+            <field visible="true" alias="SUBMITTER" orderById="0" direction="asc" fieldId="9" />
+            <field visible="true" alias="COMMENTS" orderById="0" direction="asc" fieldId="10" />
+          </table>
+        </tables>
+      </resultsCriteria>
+    </detailsForm>
+    <detailsForm id="1" defaultDisplayMode="View" name="External Links">
+      <coeForms>
+        <coeForm id="0" dataMember="">
+          <validationRuleList />
+          <title>External Links</title>
+          <titleCssClass>idnTitleLabel</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <style>overflow:visible;</style>
+            <cssClass>idSearch</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>FilteredDataSet</bindingExpression>
+              <Id>Table_3Grid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:GridConfigSettings>
+                  <COE:AllowSorting>true</COE:AllowSorting>
+                  <COE:AllowChildSorting>true</COE:AllowChildSorting>
+                  <COE:IsReadOnly>true</COE:IsReadOnly>
+                  <COE:FixedHeader>true</COE:FixedHeader>
+                  <COE:ShowExpandCollapseImage>false</COE:ShowExpandCollapseImage>
+                  <COE:ShowChildDataOnly>false</COE:ShowChildDataOnly>
+                </COE:GridConfigSettings>
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table name="Table_3">
+                      <COE:headerStyle>color: #000; background-color: #ccc; font-weight: bold; font-family: Verdana; font-size: 10px;border-collapse:collapse;</COE:headerStyle>
+                      <COE:columnStyle>color: #000000;font-size:10px;font-family: Arial;vertical-align:middle;text-align:center;</COE:columnStyle>
+                      <COE:Columns>
+                        <Column name="APPNAME">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="APPNAME">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="LINKTYPE">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="LINKTYPE">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="LINKID">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="LINKID">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="SUBMITTER">
+                          <height>140px</height>
+                          <width>140</width>
+                          <formElement name="SUBMITTER">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FELabelListItems</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+      <resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
+        <tables>
+          <table id="1">
+            <field visible="true" alias="DOCID" orderById="0" direction="asc" fieldId="1" />
+            <field visible="true" alias="NAME" orderById="0" direction="asc" fieldId="4" />
+            <field visible="true" alias="TYPE" orderById="0" direction="asc" fieldId="6" />
+            <field visible="true" alias="TITLE" orderById="0" direction="asc" fieldId="7" />
+            <field visible="true" alias="AUTHOR" orderById="0" direction="asc" fieldId="8" />
+            <field visible="true" alias="SUBMITTER" orderById="0" direction="asc" fieldId="9" />
+            <field visible="true" alias="COMMENTS" orderById="0" direction="asc" fieldId="10" />
+          </table>
+          <table id="3">
+            <field visible="true" alias="RID" orderById="0" direction="asc" fieldId="41" />
+            <field visible="true" alias="APPNAME" orderById="0" direction="asc" fieldId="42" />
+            <field visible="true" alias="LINKTYPE" orderById="0" direction="asc" fieldId="43" />
+            <field visible="true" alias="LINKID" orderById="0" direction="asc" fieldId="44" />
+            <field visible="true" alias="DOCID" orderById="0" direction="asc" fieldId="45" />
+            <field visible="true" alias="SUBMITTER" orderById="0" direction="asc" fieldId="46" />
+          </table>
+        </tables>
+      </resultsCriteria>
+    </detailsForm>
+  </detailsForms>
+</formGroup>

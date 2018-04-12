@@ -1,0 +1,180 @@
+<mappings>
+  <destinationRecordType>RegistryRecord</destinationRecordType>
+
+  <!-- Apply registry-level data -->
+
+  <!-- REG_COMENTS -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.PropertyList['REG_COMMENTS'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Registration custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+		  <value>Registry Comments</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- identifier (Alias) -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AddIdentifier</name>
+      <description>new identifier</description>
+      <args>
+        <arg index="0" input="constant" type="string">
+		  <value>Alias</value>
+		</arg>
+        <arg index="1" input="derived" type="string">
+		  <value>ALIAS</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+
+  <!-- Apply component-level data -->
+
+  <!-- identifier (Synonym) -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AddIdentifier</name>
+      <description>new identifier</description>
+      <args>
+        <arg index="0" input="constant" type="string">
+		  <value>Synonym</value>
+		</arg>
+        <arg index="1" input="derived" type="string">
+		  <value>SYNONYM</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- structure value -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound.BaseFragment.Structure.Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>structural representation</description>
+      <args>
+        <arg index="0" input="derived" type="string"><!-- pickListCode="0"> -->
+		  <value>sd_molecule</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- supply a default structure value if none exists -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AssignDefaultStructureById</name>
+      <description>Provide a default structure if none has been mapped</description>
+      <args>
+        <arg index="0" type="int" input="constant">
+		  <value>0</value>
+		</arg>
+        <arg index="1" type="int" input="constant">
+		  <value>-2</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- Apply batch-level data -->
+
+  <!-- CREATION_DATE -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].PropertyList['CREATION_DATE'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Batch custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+		  <value>Synthesis Date</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- NOTEBOOK_TEXT -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].PropertyList['NOTEBOOK_TEXT'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Batch custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+		  <value>Notebook Reference</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- AMOUNT -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].PropertyList['AMOUNT'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Batch custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+		  <value>Amount</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- AMOUNT_UNITS -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].PropertyList['AMOUNT_UNITS'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Batch custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string" pickListCode="2">
+		  <value>Units</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- SCIENTIST_ID -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].PropertyList['SCIENTIST_ID'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Batch custom property</description>
+      <args>
+        <arg index="0" input="derived" type="string" pickListCode="3">
+		  <value>Chemist</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+</mappings>

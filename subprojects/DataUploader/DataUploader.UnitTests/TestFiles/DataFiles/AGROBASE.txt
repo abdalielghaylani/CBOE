@@ -1,0 +1,81 @@
+MOL_ID	Structure	Formula	MolWeight	RefNumber	CommonName	TradeNames	CodeNos	CASRN1	Use_	YrIntro	BSupp	SHANO	IUPAC	CASName	CommonNameApp	PMRef	EINECS	RTECS
+1	CSC1=NC(NCC)=NC(NC(C)C)=N1	C9H17N5S	227.33	1130300	"ametryn, ametryne"	"Evik, Gesapax, Ametrex"	G-34162	834-12-8	Herbicide	Demo	"Ciba (Evik*)
+Ciba, Ltd. (Gesapax*)
+Makhteshim-Agan (Ametrex*)
+OXON Italia S.p.A.
+Sanachem (Pty) Ltd. (Sancopax*)"	080801	"N-ethyl-N'-isopropyl-6-methylthio-1,3,5-triazine-2,4-diyldiamine
+2-ethylamino-4-isopropylamino-6-methylthio-1,3,5-triazine"	"N-ethyl-N'-(1-methylethyl)-6-methylthio-1,3,5-triazine-2,4-diamine (9CI)
+2-(ethylamino)-4-(isopropylamino)-6-(methylthio)-s-triazine (8CI)"	"ametryn (ISO-E, ANSI, BSI, JMAF, WSSA)
+ametryne (ISO-F, old BSI pre 1984))
+(EEC 613-010-0"	"PM10: 22 p32"	212-634-7	XY9100000
+2	OC(C1=CN=CN=C1)(C2=CC=C(OC)C=C2)C3CC3	C15H16N2O2	256.3	1140300	"ancymidol, ancymidole"	"A-Rest, Reducymol, [Quel]"	EL-531	12771-68-5	"Plant Growth Regulator"	Demo	"DowElanco (A-Rest*)"	108601	"alpha-cyclopropyl-4-methoxy-alpha-(pyrimidin-5-yl)benzyl alcohol"	"alpha-cyclopropyl-alpha-(4-methoxyphenyl)-5-pyrimidinemethanol (9CI)
+alpha-cyclopropyl-alpha-(p-methoxyphenyl)-5-pyrimidinemethanol (8CI)"	"ancymidol (ISO-E, ANSI, BSI)
+ancymidole (ISO-F)"	"PM10: 28 p41"	235-814-7	UV9280000
+3	O=C(C1C(OC)=O)C(/C(CCC)=N/OCC=C)=C([O-])CC1(C)C.[Na+]	C17H24NNaO5	345.366	1150400	alloxydim-sodium	Kusagard,Clout,Fervin,Grasip,Grasipan	NP-48Na	66003-55-2	Herbicide	demo	"Nippon Soda Co., Ltd. (ADS*, Kusagard*)"	112601	"methyl (E)-(RS)-3-(1-(allyloxyimino)butyl]-4-hydroxy-6,6-dimethyl-2-oxocyclohex-3-
+enecarboxylate"	"methyl 4-hydroxy-6,6-dimethyl-2-oxo-3-[1-[(2-propenyloxy)imino]butyl]- 3-cyclohexene-
+1-carboxylate (9CI)"	"alloxydim-sodium (ISO (prov), BSI)"	"PM10: 20 p29"	x	
+4	O=C(OC1=CC=CC(C2)=C1OC2(C)C)N(C)SN(C(C)C)CCC(OCC)=O	C20H30N2O5S	410.528	2040200	"benfuracarb, benfuracarbe"	"Oncol, Furacon, aminofuracarb"	"OK-174, OC-11588"	82560-54-1	Insecticide	demo	"Otsuka Chemical Co., Ltd. (Oncol*)"	111811	"ethyl N-[2,3-dihydro-2,2-dimethylbenzofuran-7-yloxycarbonyl(methyl)aminothio]-N-isopropyl-
+ß-alaninate"	"2,3-dihydro-2,2-dimethyl-7-benzofuranyl 2-methyl-4-(1-methylethyl)-7-oxo-8-oxa-3-thia-2,4-
+diazadecanoate (9CI)"	"benfuracarb (ISO (prov), BSI)"	"PM10: 55 p78"	x	
+5	O=C(CC1=CC=CC=C1)N(C(C)C(OC)=O)C2=C(C)C=CC=C2C	C20H23NO3	325.402	2042400	benalaxyl	"Galben, Tairel, Trecatol"	M-9834	71626-11-4	Fungicide	demo	"ISAGRO (Galben*, Tairel*, Trecatol*)"	127001	"methyl N-phenylacetyl-N-2,6-xylyl-DL-alaninate"	"methyl N-(2,6-dimethylphenyl)-N-(phenylacetyl)-DL-alaninate (9CI)"	"benalaxyl (ISO (PROV), BSI)"	"PM10: 51 p71"	275-728-7	
+6	O=C(N(CC)CC)SCC1=CC=C(C=C1)Cl	C12H16ClNOS	257.78	2051500	"*thiobencarb, benthiocarb"	"*Saturn, Abolish, Bolero, Saturno"	B-3015	28249-77-6	Herbicide	Demo	"Kumiai Chemical Industry Co., Ltd. (Bolero*, Saturn*, Saturno*)"	108401	"S-4-chlorobenzyl diethyl(thiocarbamate)"	"S-[(4-chlorophenyl)methyl] diethylcarbamothioate (9CI)
+S-(p-chlorobenzyl) diethylthiocarbamate (8CI)"	"thiobencarb (ISO-E, ANSI, BSI, WSSA)
+thiobencarbe (ISO-F)
+benthiocarb (JMAF)"	"PM10: 677 p979"	248-924-5	EZ7260000
+7	O=S(SCC(N(C)C)CSS(=O)(C1=CC=CC=C1)=O)(C2=CC=CC=C2)=O	C17H21NO4S4	431.613	2052000	bensultap	"Bancol, Ruban, Victenon, (ZZ-Doricida)"	"TI-78, TI-1671"	17606-31-4	Insecticide	Demo	"Takeda Chemical Industries Ltd. (Bancol*)"	x	"S,S'-2-dimethylaminotrimethylene di(benzene thiosulphonate)"	"S,S'-[2-(dimethylamino)-1,3-propanediyl] dibenzenesulfothioate (9CI)"	"bensultap (ISO (prov), BSI)"	"PM10: 61 p88"	x	
+8	O=C(C(C(Cl)=C1C)=CC=C1Cl)C2=C(OCC(C(C=C3)=CC=C3C)=O)N(N=C2C)C	C22H20Cl2N2O3	431.312	2052300	benzofenap	Yukawide	MY-71	82692-44-2	Herbicide	Demo	"Mitsubishi Petrochemical Co., Ltd. (Yukawide*)"	x	2-[4-(2,4-dichloro-m-toluoyl)-1,3-dimethylpyrazol-5-yloxy]-4'-methylacetophenone	"2-[[4-(2,4-dichloro-3-methylbenzoyl)-1,3-dimethyl-1H-pyrazol-5-yl]oxy]-1-(4-methylphenyl)
+ethanone (9CI)"	"benzofenap (ISO (prov), BSI)"	"PM10: 63 p92"	x	
+9	O=C(C1=CC=CC=C1)O/C(C2=C(OC)C=CC(Cl)=C2OC)=N\OCC	C18H18ClNO5	363.792	2060700	"benzoximate, benzomate"	"Aazomate, Artaban, Acarmate, Citrazon"	NA-53M	29104-30-1	Acaricide	Demo	"Nippon Soda Co., Ltd. (Citrazon*, Aazomate* in Europe)"	x	"3-chloro-alpha-ethoxyimino-2,6-dimethoxybenzyl  benzoate
+ethyl O-benzoyl 3-chloro-2,6-dimethoxybenzohydroximate"	"benzoic acid anhydride with 3-chloro-N-ethoxy-2,6-dimethoxybenzenecarboximidic acid (9CI)"	"benzoximate (ISO, BSI)
+benzomate (JMAF)"	"PM10: 64 p93"	249-439-1	
+10	O=CC12OC3CC=CCC3C1CC=CC2	C13H16O2	204.265	2092100		"MGK Repellent 11"	MGK-11	126-15-8	Repellent	Demo	"McLaughlin Gormley King"	x	2,3,4,5-bis(­-2-butenylene)-tetrahydro-2-furaldehyde	"1,5a,6,9,9a,9b-hexahydro-4a(4H)-dibenzofurancarboxaldehyde (9CI)"	"no approvals"	"PM10: S976 p1087"	204-773-7	HP5075000
+11	O=S(OC1=NC(NCC)=NC(C)=C1CCCC)(N(C)C)=O	C13H24N4O3S	316.42	2162000	bupirimate	Nimrod	"PP588, PP-588"	41483-43-6	Fungicide	Demo	"ZENECA Agrochemicals (Nimrod*)"	x	"5-butyl-2-ethylamino-6-methylpyrimidin-4-yl dimethylsulphamate
+5-butyl-2-ethylamino-6-methylpyrimidin-4-yl dimethylsulfama"	"5-butyl-2-(ethylamino)-6-methyl-4-pyrimidinyl dimethylsulfamate (9CI)"	"bupirimate (ISO, ANSI, BSI)"	"PM10: 86 p127"	255-391-2	WO5970000
+12	O=C(O1)C(C2C3=CC=CC=C3CC(C(C=C4)=CC=C4C(C=C5)=CC=C5Br)C2)=C(O)C6=C1C=CC=C6	C31H23BrO3	523.417	2170600	brodifacoum	"Talon, Klerat, Ratak Plus, Matikus, Havoc"	"PP581, WBA-8119"	56073-10-0	Rodenticide	Demo	"ZENECA Agrochemicals (Lim-N8*, Ropax*, WeatherBlok*)
+ZENECA Professional Products (Talon*, WeatherBlok*)
+ZENECA Public Health (Klerat*, Matikus*, Ratak* Plus, Volid*)"	112701	3-[3-(4'-bromodiphenyl-4-yl)-1,2,3,4-tetrahydro-1-naphthyl]-4-hydroxycoumarin	"3-[3-(4'-bromo[1,1'-biphenyl]-4-yl)-1,2,3,4-tetrahydro-1-naphthalenyl-4-hydroxy-
+2H-1-benzopyran-2-one (9CI)"	"brodifacoum (ISO, BSI)"	"PM10: 76 p112"	259-980-5	
+13	O=C(O1)C(C(C2=CC=CC=C2)CC(O)C(C=C3)=CC=C3C(C=C4)=CC=C4Br)=C(O)C5=C1C=CC=C5	C30H23BrO4	527.405	2180100	"bromadiolone, broprodifacoum"	"*Maki, Super Caid, Boot Hill, Hawk"	LM-637	28772-56-7	Rodenticide	demo	"Lipha S.A. (Maki*, Super Caid*)
+LiphaTech, Inc. (Boot Hill*, Maki*)
+Motomco Ltd. (Hawk*)
+Point Enterprise S.A. (Bromapoint*)
+Sanex Inc. (Bromone*)"	112001	3-[3-(4'-bromobiphenyl-4-yl)-3-hydroxy-1-phenylpropyl]-4-hydroxycoumarin	"3-[3-(4'-bromo[1,1'-biphenyl]-4-yl)-3-hydroxy-1-phenylpropyl]-4-hydroxy-2H-1-benzopyran-2-one (9CI)"	"bromadiolone (ISO, BSI)
+broprodifacoum (S. Africa)"	"PM10: 78 p115"	249-205-9	
+14	O=C(C(Cl)Cl)N(COCCCC)C1=C(CC)C=CC=C1CC	C17H25Cl2NO2	346.292	2210800	butachlor	"*Machete, Lambast, Butanox, Butanex"	CP-53619	23184-66-9	Herbicide	Demo	"Comlets Industrial Co., Ltd.      Pilarquim Corp. (Pilarsete*)
+Crystal Chemical Inter-A,merica (Butanox*)      Makhteshim-Agan (Butanex*)
+Hindustan Insecticides Ltd (Hiltaklor*)      Rallis India Ltd. (Teer*)     Shinung Corp.
+Monsanto Co., The Agricultural Group (Machete*)    Shen Hong Chemical Corp.
+Sudarshan Chemical Industries Ltd. (Widkil*)    Sundat (S) Pte. Ltd."	112301	"N-butoxymethyl-2-chloro-2',6'-diethylacetanilide
+N-butoxymethyl-alpha-chloro-2',6'-diethylacetanilide"	"N-(butoxymethyl)-2-chloro-N-(2,6-diethylphenyl)acetamide (9CI)
+N-(butoxymethyl)-2-chloro-2',6'-diethylacetanilide (8CI)"	"butachlor (ISO, ANSI, BSI, JMAF, WSSA)"	"PM10: 88 p130"	245-477-8	AE1200000
+15	[O-][N+](C1=CC(C(C)(C)C)=CC([N+]([O-])=O)=C1NC(C)CC)=O	C14H21N3O4	295.334	2242000	"butralin, butraline"	"*Amex, Tamex, Linamex, Tabamex"	A-820	33629-47-9	"Herbicide & Plant Growth Regulator"	Demo	"CFPI (Amex*, Linamex*, Monamex*, Tabamex*, Tamex*)"	106501	N-sec-butyl-4-tert-butyl-2,6-dinitroaniline	"4-(1,1-dimethylethyl)-N-(1-methylpropyl)-2,6-dinitrobenzenamine (9CI)"	"butralin (ISO-E, ANSI, BSI, WSSA)
+butraline (ISO-F)"	"PM10: 93 p136"	251-607-4	BW9500000
+16	O=C(NC)OC1=CC=CC(C2)=C1OC2(C)C	C12H15NO3	221.252	3020600	carbofuran	"*Curaterr, Furadan, Yaltox, Furacarb"	"*FMC-10242, NIA-10242, Bay 70143"	1563-66-2	"Insecticide & Nematicide"	Demo	"Jin Hung Fine Chemical Co., Ltd.        Kuo Ching Chemical Co., Ltd
+Hubei Sanonda Co., Ltd.                    Makhteshim-Agan (Carbodan*)
+Mitsubishi Chemicals     Pilarquim Corp. (Pillarfuran*)         PT Petrosida Gresik
+Sanachem (Pty) Ltd.            Sundat (S) Pte. Ltd. (Sunfuran*)       Sanex Inc. Furadex*)
+Taiwan Tainan Giant Industrial Co., Ltd."	090601	"2,3-dihydro-2,2-dimethylbenzofuran-7-yl methylcarbamate"	"2,3-dihydro-2,2-dimethyl-7-benzofuranyl methylcarbamate (8&9 CI)"	"carbofuran (ISO, ANSI, BSI, ESA)
+EEC 006-026-00-9"	"PM10: 103 p152"	216-353-0	FB9450000
+17	O=C(OC1=CC=CC(C2)=C1OC2(C)C)N(C)SN(CCCC)CCCC	C20H32N2O3S	380.545	3021900	carbosulfan	"Mashal, Marshall, Posse, Advantage"	FMC-35001	55285-14-8	Insecticide,nematicide,miticide	Demo	"FMC Agricultural Corp. (Advantage*, Marshal*)"	x	"2,3-dihydro-2,2-dimethylbenzofuran-7-yl (dibutylaminothio)methylcarbamate"	"2,3-dihydro-2,2-dimethyl-7-benzofuranyl  [(dibutylamino)thio]methylcarbamate (9CI)"	"carbosulfan (ISO (prov), ANSI, BSI)"	"PM10: 104 p154"	259-565-9	
+18	O=P(SC(C)CC)(OCC)SC(C)CC	C10H23O2PS2	270.392	3061900	cadusafos	"Apache, Taredan, Rugby, sebufos, ebufos"	FMC-67825	95465-99-9	Insecticide,nematicide	Demo	"FMC Corp. (Apache*, Rugby*, Taredan*)"	x	"O-ethyl S,S-di-sec-butyl phosphorodithioate"	"O-ethyl S,S-bis(1-methylpropyl) phosphorodithioate (9CI)"	"cadusafos (ISO (prov), BSI)"	"PM10: 96 p140"	x	
+19	O=S(NC(NC1=NC(OC)=NC(C)=N1)=O)(C2=CC=CC=C2Cl)=O	C12H12ClN5O4S	357.773	3122200	chlorsulfuron	"Glean, Telar"	DPX-4189	64902-72-3	Herbicide	demo	"Du Pont Agricultural Products (Glean*, Telar*)"	118601	1-(2-chlorophenylsulphonyl)-3-(4-methoxy-6-methyl-1,3,5-triazin-2-yl)urea	"2-chloro-N-[[(4-methoxy-6-methyl-1,3,5-triazin-2-yl)amino]carbonyl]benzenesulfonamide (9CI)"	"chlorsulfuron (ISO (prov), ANSI, BSI, WSSA)"	"PM10: 138 p203"	265-268-5	
+20	N#CC(C)(C)NC1=NC(Cl)=NC(NCC)=N1	C9H13ClN6	240.693	3210300	cyanazine	Bladex	"SD-15418, WL-19805"	21725-46-2	Herbicide	Demo	"American Cyanamid Co. (Bladex* - outside U.S.)
+Du Pont Agricultural Products (Bladex*)"	100101	2-(4-chloro-6-ethylamino-1,3,5-triazin-2-ylamino)-2-methylpropionitrile	"2-[[4-chloro-6-(ethylamino)-1,3,5-triazin-2-yl]amino]-2-methylpropanenitrile (9CI) 2-[[4-chloro-6-(ethylamino)-s-triazin-2-yl]amino]-2-methylpropanenitrile (8CI)"	"cyanazine (ISO, BSI, WSSA)"	"PM10: 166 p239"	244-544-9	UG1490000
+21	O=C(SCC)N(CC)C1CCCCC1	C11H21NOS	215.356	3221200	"cycloate, hexylthiocarbam"	"Ro-Neet, Sabet"	R-2063	1134-23-2	Herbicide	demo	"Chemol Trading Ltd. Co. (Sabet*)
+ZENECA Ag Products (Ro-Neet*)"	041301	"S-ethyl cyclohexyl(ethyl)thiocarbamate"	"S-ethyl cyclohexylethylcarbamothioate (9CI)
+S-ethyl cyclohexyl(ethyl)thiocarbamate (8CI)"	"cycloate (ISO, BSI, WSSA)
+hexylthiocarbam (JMAF)"	"PM10: 168 p242"	214-482-7	GU7200000
+22	NC1=NC(NC2CC2)=NC(N)=N1	C6H10N6	166.184	3252600	cyromazine	Trigard	CGA-72662	66215-27-8	"Insecticide, IGR"	Demo	"Ciba (Trigard*)
+Ciba, Ltd. (Trigard*)"	121301	N-cyclopropyl-1,3,5-triazine-2,4,6-triamine	"N-cyclopropyl-1,3,5-triazine-2,4,6-triamine (9CI)"	"cyromazine (ISO (prov), ANSI, BSI, INN, BAN)"	"PM10: 184 p269"	266-257-8	
+23	O=S(NC(NC1=NC(OCC)=NC(NC)=N1)=O)(C2=CC=CC=C2C(OC)=O)=O	C15H18N6O6S	410.405	5132000	ethametsulfuron-methyl	Muster	DPX-A7881	97780-06-8	Herbicide	Demo	"Du Pont Agricultural Products (Muster*)"	x	"methyl 2-[(4-ethoxy-6-methylamino-1,3,5-triazin-2-yl)carbamoylsulphamoyl]benzoate"	"methyl 2-[[[[[4-ethoxy-6-(methylamino)-1,3,5-triazin-2-yl]amino]carbonyl]amino]=
+sulfonyl]benzoate (9CI)"	"ethametsulfuron-methyl (ISO (prov), ANSI, BSI, WSSA)"	"PM10: 272 p402"	x	
+24	O=S(NC(NC1=NC(OC)=NC(C)=N1)=O)(C2=CC=CC=C2C(OC)=O)=O	C14H15N5O6S	381.364	13081100	metsulfuron-methyl	"Ally, Allie, Escort, Brush-Off, Gropper"	DPX-T6376	74223-64-6	Herbicide	Demo	"Du Pont Agricultural Products (Ally*, Escort*)
+Sanex Inc."	122010	"methyl 2-[3-(4-methoxy-6-methyl-1,3,5-triazin-2-yl)ureidosulphonyl]benzoate"	"methyl 2-[[[[(4-methoxy-6-methyl-1,3,5-triazin-2-yl)amino]carbonyl]amino]sulfonyl]benzoate (9CI)"	"metsulfuron-methyl (ISO (prov), ANSI, BSI, WSSA)"	"PM10: 481 p701"	x	
+25	CSC1=NC(NC(C)C)=NC(NC(C)C)=N1	C10H19N5S	241.356	16150500	"prometryn, prometryne"	Caparol,Gesagard,Prometrex,Cotton-Pro	G-34161	7287-19-6	Herbicide	Demo	"Ciba (Caparol*)
+Ciba, Ltd. (Gesagard*)
+Griffin Corp. (Cotton-Pro*)
+Makhteshim-Agan (Prometrex*)
+OXON Italia S.p.A."	080805	"N2,N4-di-isopropyl-6-methylthio-1,3,5-triazine-2,4-diamine
+2,4-bis(isopropylamino)-6-methylthio-1,3,5-triazine"	"N,N'-bis(1-methylethyl)-6-(methylthio)-1,3,5-triazine-2,4-diamine(9CI)
+2,4-bis(isopropylamino)-6-methoxy-1,3,5-triazine (8CI)"	"prometryn (ISO-E, ANSI, BSI, WSSA)
+prometryne (ISO-F, old BSI - until 1984)"	"PM10: 577 p840"	230-711-3	XY4390000

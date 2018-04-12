@@ -1,0 +1,57 @@
+﻿<!-- This is a 'rough draft' so don't code any business objects just yet, please. -->
+<destinations>
+
+  <destination type="class" name="Registration">
+    <class>RegistryRecord</class>
+
+    <invocations>
+
+      <invocation type="new">
+        <factoryNamespace>CambridgeSoft.COE.DataLoader.Core.DataMapping</factoryNamespace>
+        <factoryClass>DestinationRecordFactory</factoryClass>
+        <objectBindingPath>this</objectBindingPath>
+        <memberInformation memberType="method">
+          <type>static</type>
+          <name>CreateDestinationRecord</name>
+          <description>Creates a RegistryRecord instance</description>
+          <args>
+            <arg index="0" type="Enum" input="constant">RegistryRecord</arg>
+          </args>
+        </memberInformation>
+      </invocation>
+
+      <invocation type="submit">
+        <objectBindingPath>this</objectBindingPath>
+        <memberInformation memberType="method">
+          <type>instance</type>
+          <name>Save</name>
+          <description>Submits a RegistryRecord instance to temporary (unregistered) storage</description>
+          <args/>
+        </memberInformation>
+      </invocation>
+
+      <invocation type="register">
+        <objectBindingPath>this</objectBindingPath>
+        <memberInformation memberType="method">
+          <type>instance</type>
+          <name>Register</name>
+          <description>Submits a RegistryRecord instance to temporary (unregistered) storage</description>
+          <args/>
+        </memberInformation>
+      </invocation>
+
+      <invocation type="dispose">
+        <objectBindingPath>this</objectBindingPath>
+        <memberInformation memberType="method">
+          <type>instance</type>
+          <name>Dispose</name>
+          <description>Disposes of a RegistryRecord instance; allows referencing object to go to GC</description>
+          <args/>
+        </memberInformation>
+      </invocation>
+
+    </invocations>
+
+  </destination>
+
+</destinations>

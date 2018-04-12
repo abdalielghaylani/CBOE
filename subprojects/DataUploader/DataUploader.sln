@@ -1,0 +1,181 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81DBAD34-4C95-4A09-898A-2FAA89A116F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUploader", "DataUploader\DataUploader.csproj", "{C84FE218-CACE-4D2F-9943-270EA87EECCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Registration.Services", "..\Registration\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj", "{C7998560-8704-4DE0-B00E-A4657273B022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUploader.UnitTests", "DataUploader.UnitTests\DataUploader.UnitTests.csproj", "{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC} = {C84FE218-CACE-4D2F-9943-270EA87EECCC}
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE} = {29596D96-BA5D-419D-8F54-A6C13AF6D1BE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUploader.Core", "DataUploader.Core\DataUploader.Core.csproj", "{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F} = {67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Registration.RegistrationAddins", "..\Registration\ServiceTier\RegistrationAddins\CambridgeSoft.COE.Registration.RegistrationAddins.csproj", "{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPreviewer", "DataPreviewer\DataPreviewer.csproj", "{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration.Core", "..\Registration\PresentationTier\Registration.Core\Registration.Core.csproj", "{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.DataLoader.Calculation", "..\DataLoader\Calculation\CambridgeSoft.COE.DataLoader.Calculation.csproj", "{DC4203E1-2258-421D-B7C9-3424135A13DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.DataLoader.Common", "..\DataLoader\Common\CambridgeSoft.COE.DataLoader.Common.csproj", "{A9447298-484B-480A-8646-DFA347C95B5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLoaderGUI", "..\DataLoaderGUI\DataLoaderGUI\DataLoaderGUI.csproj", "{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemControls", "..\CBVN\ChemBioViz.Net\ChemControls\ChemControls.csproj", "{6DC80E63-F0D9-4349-AF23-F8002B69B354}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 13
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = ..
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection0 = DataUploader\\
+		SccProjectUniqueName1 = ..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
+		SccLocalPath1 = ..\\Framework\\CambridgeSoft
+		SccProjectFilePathRelativizedFromConnection1 = ServiceTier\\CambridgeSoft.COE.Framework\\
+		SccProjectUniqueName2 = ..\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\CambridgeSoft.COE.Registration.Services.csproj
+		SccLocalPath2 = ..\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services
+		SccProjectUniqueName3 = DataUploader\\DataUploader.csproj
+		SccLocalPath3 = ..
+		SccProjectFilePathRelativizedFromConnection3 = DataUploader\\DataUploader\\
+		SccProjectUniqueName4 = DataUploader.UnitTests\\DataUploader.UnitTests.csproj
+		SccLocalPath4 = ..
+		SccProjectFilePathRelativizedFromConnection4 = DataUploader\\DataUploader.UnitTests\\
+		SccProjectUniqueName5 = DataUploader.Core\\DataUploader.Core.csproj
+		SccLocalPath5 = ..
+		SccProjectFilePathRelativizedFromConnection5 = DataUploader\\DataUploader.Core\\
+		SccProjectUniqueName6 = ..\\Registration\\ServiceTier\\RegistrationAddins\\CambridgeSoft.COE.Registration.RegistrationAddins.csproj
+		SccLocalPath6 = ..
+		SccProjectFilePathRelativizedFromConnection6 = Registration\\ServiceTier\\RegistrationAddins\\
+		SccProjectUniqueName7 = DataPreviewer\\DataPreviewer.csproj
+		SccLocalPath7 = ..
+		SccProjectFilePathRelativizedFromConnection7 = DataUploader\\DataPreviewer\\
+		SccProjectUniqueName8 = ..\\Registration\\PresentationTier\\Registration.Core\\Registration.Core.csproj
+		SccLocalPath8 = ..\\Registration\\PresentationTier\\Registration.Core
+		SccProjectUniqueName9 = ..\\DataLoader\\Calculation\\CambridgeSoft.COE.DataLoader.Calculation.csproj
+		SccLocalPath9 = ..\\DataLoader\\Calculation
+		SccProjectUniqueName10 = ..\\DataLoader\\Common\\CambridgeSoft.COE.DataLoader.Common.csproj
+		SccLocalPath10 = ..\\DataLoader\\Common
+		SccProjectUniqueName11 = ..\\DataLoaderGUI\\DataLoaderGUI\\DataLoaderGUI.csproj
+		SccLocalPath11 = ..\\DataLoaderGUI\\DataLoaderGUI
+		SccProjectUniqueName12 = ..\\CBVN\\ChemBioViz.Net\\ChemControls\\ChemControls.csproj
+		SccLocalPath12 = ..\\CBVN\\ChemBioViz.Net
+		SccProjectFilePathRelativizedFromConnection12 = ChemControls\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Debug|x86.ActiveCfg = Debug|x86
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Debug|x86.Build.0 = Debug|x86
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Release|x86.ActiveCfg = Release|x86
+		{C84FE218-CACE-4D2F-9943-270EA87EECCC}.Release|x86.Build.0 = Release|x86
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x86.Build.0 = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x86.ActiveCfg = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x86.Build.0 = Release|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7998560-8704-4DE0-B00E-A4657273B022}.Release|x86.Build.0 = Release|Any CPU
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Debug|x86.ActiveCfg = Debug|x86
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Debug|x86.Build.0 = Debug|x86
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Release|x86.ActiveCfg = Release|x86
+		{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}.Release|x86.Build.0 = Release|x86
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}.Release|x86.Build.0 = Release|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Debug|x86.Build.0 = Debug|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Release|x86.ActiveCfg = Release|Any CPU
+		{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}.Release|x86.Build.0 = Release|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{29596D96-BA5D-419D-8F54-A6C13AF6D1BE}.Release|x86.Build.0 = Release|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Debug|x86.Build.0 = Debug|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Release|x86.ActiveCfg = Release|Any CPU
+		{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}.Release|x86.Build.0 = Release|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC4203E1-2258-421D-B7C9-3424135A13DB}.Release|x86.Build.0 = Release|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9447298-484B-480A-8646-DFA347C95B5A}.Release|x86.Build.0 = Release|Any CPU
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Debug|x86.ActiveCfg = Debug|x86
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Debug|x86.Build.0 = Debug|x86
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Release|x86.ActiveCfg = Release|x86
+		{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}.Release|x86.Build.0 = Release|x86
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC80E63-F0D9-4349-AF23-F8002B69B354}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

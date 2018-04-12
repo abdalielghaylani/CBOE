@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Preview.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AfterRecordsChunkProcessing" xml:space="preserve">
+    <value>End processing records {0} to {1}</value>
+  </data>
+  <data name="LogSum_TableName" xml:space="preserve">
+    <value> in table/view {0}</value>
+  </data>
+  <data name="CmdVali_DataFileExists" xml:space="preserve">
+    <value>Data file doesn't exist.</value>
+  </data>
+  <data name="LogSum_UnImported" xml:space="preserve">
+    <value>{0} record(s) cannot be imported</value>
+  </data>
+  <data name="RecordMapping" xml:space="preserve">
+    <value>Mapping record {0}</value>
+  </data>
+  <data name="RangeBeginCount" xml:space="preserve">
+    <value>Range begin: {0}</value>
+  </data>
+  <data name="CmdVali_ArgumentsNotFoundMessage" xml:space="preserve">
+    <value>The following argument values don't exist in the source file:</value>
+  </data>
+  <data name="LogSum_Invalid" xml:space="preserve">
+    <value>{0} record(s) are invalid</value>
+  </data>
+  <data name="CmdVali_MappingFileExists" xml:space="preserve">
+    <value>Mapping file doesn't exist.</value>
+  </data>
+  <data name="LogSum_Load_ExpectedResult" xml:space="preserve">
+    <value>successfully registered, in which {0} are temporary, {1} are permanent.</value>
+  </data>
+  <data name="RecordsCount" xml:space="preserve">
+    <value>Data file record(s) count: {0}</value>
+  </data>
+  <data name="LogSum_FindDuplicates_ExpectedResult" xml:space="preserve">
+    <value>unique</value>
+  </data>
+  <data name="ImportedResult" xml:space="preserve">
+    <value>{0} records are successfully registered, in which {1} are temporary, {2} are permanent.</value>
+  </data>
+  <data name="LogSum_ValidateMapping_ExpectedResult" xml:space="preserve">
+    <value>successfully mapped</value>
+  </data>
+  <data name="Log_DuplicatesFound" xml:space="preserve">
+    <value>Duplicates found</value>
+  </data>
+  <data name="LogSum_UnMapped" xml:space="preserve">
+    <value>{0} record(s) cannot be mapped</value>
+  </data>
+  <data name="LogSum_IndexRanges" xml:space="preserve">
+    <value>From {0} to {1}</value>
+  </data>
+  <data name="CmdVali_InvalidTableName" xml:space="preserve">
+    <value>Table name '{0}' in source file doesn't exist</value>
+  </data>
+  <data name="Log_InvalidReason" xml:space="preserve">
+    <value>Record is invalid:  {0}</value>
+  </data>
+  <data name="CmdVali_TableOrWorkSheetExists" xml:space="preserve">
+    <value>For MS Excel or MS Access files, name of table or worksheet must be provided.</value>
+  </data>
+  <data name="CmdVali_InvalidPicklistCodes" xml:space="preserve">
+    <value>The following PicklistCodes in mapping file doesn't exist:</value>
+  </data>
+  <data name="CmdVali_ValidTableNames" xml:space="preserve">
+    <value>Valid table names are:</value>
+  </data>
+  <data name="RecordValidating" xml:space="preserve">
+    <value>Validating record {0}</value>
+  </data>
+  <data name="CmdVali_Valid" xml:space="preserve">
+    <value>All input arguments are valid.</value>
+  </data>
+  <data name="RecordsValidated" xml:space="preserve">
+    <value>Finish validation, {0} records are valid, {1} invalid.</value>
+  </data>
+  <data name="Log_UnImported" xml:space="preserve">
+    <value>not imported</value>
+  </data>
+  <data name="Log_Seperator" xml:space="preserve">
+    <value>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</value>
+  </data>
+  <data name="RecordImporting" xml:space="preserve">
+    <value>Importing record {0}</value>
+  </data>
+  <data name="RecordsDupChecked" xml:space="preserve">
+    <value>Finish duplicate check, {0} records are unique, {1} with duplicates found.</value>
+  </data>
+  <data name="RecordsMapped" xml:space="preserve">
+    <value>Finish mapping, {0} records have been mapped</value>
+  </data>
+  <data name="LogCol_SourceRecordIndex" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="RecordParsing" xml:space="preserve">
+    <value>Parsing record {0}</value>
+  </data>
+  <data name="RecordsImported" xml:space="preserve">
+    <value>Finish import, {0} records have been imported.</value>
+  </data>
+  <data name="Log_AddedToPendingReview" xml:space="preserve">
+    <value>added to pending review</value>
+  </data>
+  <data name="LogSum_Validate_ExpectedResult" xml:space="preserve">
+    <value>valid</value>
+  </data>
+  <data name="CmdVali_RangeValidation" xml:space="preserve">
+    <value>RangeBegin must be less than or equal  RangeEnd.</value>
+  </data>
+  <data name="CmdVali_ValidArgumentValues" xml:space="preserve">
+    <value>Valid argument values are:</value>
+  </data>
+  <data name="LogCol_Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="LogSum_Duplicated" xml:space="preserve">
+    <value>{0} record(s) found with matched registrations.</value>
+  </data>
+  <data name="Log_RegisterdRecord" xml:space="preserve">
+    <value>Add to registration as {0}, batch {1}</value>
+  </data>
+  <data name="LogSum_SuccesfullyProcessed" xml:space="preserve">
+    <value>{0} records are {1}</value>
+  </data>
+  <data name="DL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DL.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Log_NotMappedReason" xml:space="preserve">
+    <value>Record cannot be mapped: {0}</value>
+  </data>
+  <data name="LogCol_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="RecordsExtracted" xml:space="preserve">
+    <value>Finish parsing, {0} records have been extracted.</value>
+  </data>
+  <data name="CmdVali_RangeBeginValidation" xml:space="preserve">
+    <value>Note: range begin shouldn't be larger than data file records count, please enter a valid range begin.</value>
+  </data>
+  <data name="LogSum_UnExtracted" xml:space="preserve">
+    <value>{0} record(s) cannot be extracted</value>
+  </data>
+  <data name="LogSum_TargetAction_Load" xml:space="preserve">
+    <value>load</value>
+  </data>
+  <data name="CmdVali_UserAndPwdExists" xml:space="preserve">
+    <value>Username and password both must be provided.</value>
+  </data>
+  <data name="LogSum_TargetAction_FindDuplicates" xml:space="preserve">
+    <value>search for duplicates of</value>
+  </data>
+  <data name="Message_Title" xml:space="preserve">
+    <value>DataLoader</value>
+  </data>
+  <data name="LogSum_ExpectedRange" xml:space="preserve">
+    <value>You chose to {0} records from {1} to {2} ({3} records in total)</value>
+  </data>
+  <data name="Log_TemporalRecord" xml:space="preserve">
+    <value>Added to pending review as ID {0}</value>
+  </data>
+  <data name="Log_TempPermRecordsCount" xml:space="preserve">
+    <value>, in which {0} are temporary, {1} are permanent.</value>
+  </data>
+  <data name="BeforeRecordsChunkProcessing" xml:space="preserve">
+    <value>Start processing records {0} to {1}</value>
+  </data>
+  <data name="LogSum_TargetAction_ValidateMapping" xml:space="preserve">
+    <value>validate mapping for</value>
+  </data>
+  <data name="Import_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Import_Data.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogSum_NoActionTaken" xml:space="preserve">
+    <value>No action taken</value>
+  </data>
+  <data name="Export_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Export_Data.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogSum_TargetAction_Validate" xml:space="preserve">
+    <value>validate</value>
+  </data>
+  <data name="document_split" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document_split.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoadingRecords" xml:space="preserve">
+    <value>Loading Record {1} of {2} ({0}%)</value>
+  </data>
+  <data name="LoadRate" xml:space="preserve">
+    <value>Load Rate: {0} records/sec</value>
+  </data>
+  <data name="ScaningRecords" xml:space="preserve">
+    <value>Scaning Record {1} of {2} ({0}%)</value>
+  </data>
+  <data name="ScanRate" xml:space="preserve">
+    <value>Scan Rate: {0} records/sec</value>
+  </data>
+</root>

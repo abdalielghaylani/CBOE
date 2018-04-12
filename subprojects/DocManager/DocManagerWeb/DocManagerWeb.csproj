@@ -1,0 +1,565 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E987F7A-E7A4-4121-AB2B-63B5D6FACC8B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.DocManagerWeb</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.DocManagerWeb</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Excel.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Excel.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Shared.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Misc.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Misc.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Shared.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Shared.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebCalcManager.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebChart.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebListbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebNavigator.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebTab.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebToolbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebCombo.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebCombo.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDataInput.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDataInput.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDateChooser.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebHtmlEditor.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebNavBar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebNavBar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSchedule.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSchedule.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebScheduleDataProvider.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSpellChecker.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.Misc.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinGrid.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinTabControl.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=012e785312e03a6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forms\Public\ContentArea\BinaryWriter.aspx" />
+    <Content Include="Forms\Public\ContentArea\Messages.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Resource.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.es-AR.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.es-AR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\COENavigationPanelControlEventArgs.cs" />
+    <Compile Include="Code\ICOENavigationPanelControl.cs" />
+    <Compile Include="Code\Utilities.cs" />
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\DocManager.Master.cs">
+      <DependentUpon>DocManager.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\DocManager.Master.designer.cs">
+      <DependentUpon>DocManager.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\BinaryWriter.aspx.cs">
+      <DependentUpon>BinaryWriter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\BinaryWriter.aspx.designer.cs">
+      <DependentUpon>BinaryWriter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\RecentActivities.aspx.cs">
+      <DependentUpon>RecentActivities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\RecentActivities.aspx.designer.cs">
+      <DependentUpon>RecentActivities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\SearchDocument.aspx.cs">
+      <DependentUpon>SearchDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\SearchDocument.aspx.designer.cs">
+      <DependentUpon>SearchDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\SubmitNewDocument.aspx.cs">
+      <DependentUpon>SubmitNewDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\SubmitNewDocument.aspx.designer.cs">
+      <DependentUpon>SubmitNewDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\ViewDocument.aspx.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\ViewDocument.aspx.designer.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuButton.ascx.cs">
+      <DependentUpon>MenuButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuButton.ascx.designer.cs">
+      <DependentUpon>MenuButton.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.designer.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesArea.ascx.cs">
+      <DependentUpon>MessagesArea.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesArea.ascx.designer.cs">
+      <DependentUpon>MessagesArea.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesBox.ascx.cs">
+      <DependentUpon>MessagesBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesBox.ascx.designer.cs">
+      <DependentUpon>MessagesBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DocManagerAddIns\DocManagerAddIns.csproj">
+      <Project>{A360A900-E8D4-436C-BB02-C3818DF7663C}</Project>
+      <Name>DocManagerAddIns</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DocManagerServices\DocManagerServices.csproj">
+      <Project>{497CA828-FB33-479C-8A66-10461D2804B5}</Project>
+      <Name>DocManagerServices</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.en-US.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\Resource.es-AR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.es-AR.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\Resource.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forms\Master\MasterPage.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\COEFormsBlue.css" />
+    <Content Include="App_Themes\Blue\Images\24Icon.png" />
+    <Content Include="App_Themes\Blue\Images\Add.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Down.PNG" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Left_B.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Right_B.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Right_B_h.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Up.PNG" />
+    <Content Include="App_Themes\Blue\Images\asterisk.gif" />
+    <Content Include="App_Themes\Blue\Images\backgroundtoolbar.gif" />
+    <Content Include="App_Themes\Blue\Images\Brand.gif" />
+    <Content Include="App_Themes\Blue\Images\ButBk.gif" />
+    <Content Include="App_Themes\Blue\Images\ButBk_2.gif" />
+    <Content Include="App_Themes\Blue\Images\ButLeft.gif" />
+    <Content Include="App_Themes\Blue\Images\ButLeft_2.gif" />
+    <Content Include="App_Themes\Blue\Images\ButRight.gif" />
+    <Content Include="App_Themes\Blue\Images\ButRight_2.gif" />
+    <Content Include="App_Themes\Blue\Images\Button.gif" />
+    <Content Include="App_Themes\Blue\Images\button.png" />
+    <Content Include="App_Themes\Blue\Images\Button2.GIF" />
+    <Content Include="App_Themes\Blue\Images\Button2RegAdmin.gif" />
+    <Content Include="App_Themes\Blue\Images\ButtonBackground.png" />
+    <Content Include="App_Themes\Blue\Images\buttonbigimage.gif" />
+    <Content Include="App_Themes\Blue\Images\buttonimage.gif" />
+    <Content Include="App_Themes\Blue\Images\buttonimageh.gif" />
+    <Content Include="App_Themes\Blue\Images\ButtonRegAdmin.gif" />
+    <Content Include="App_Themes\Blue\Images\calendar.gif" />
+    <Content Include="App_Themes\Blue\Images\col.gif" />
+    <Content Include="App_Themes\Blue\Images\collapse.GIF" />
+    <Content Include="App_Themes\Blue\Images\ConfigurationHelp2.jpg" />
+    <Content Include="App_Themes\Blue\Images\contacts.gif" />
+    <Content Include="App_Themes\Blue\Images\Content\LeftCorner.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\LeftTabCorner.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\LeftTabCorner2.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\LeftTabCornerLast.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\RighCorner.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\RightTabCorner.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\RightTabCorner2.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\TabBackgroundBorders.gif" />
+    <Content Include="App_Themes\Blue\Images\Content\TabBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\TabBk2.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\TabBodyBk.gif" />
+    <Content Include="App_Themes\Blue\Images\Content\TabBodyBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\TabFooter2Bk.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\TabFoterBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\UlBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\Content\UltraWebTabBackground.gif" />
+    <Content Include="App_Themes\Blue\Images\CSoft_logo.jpg" />
+    <Content Include="App_Themes\Blue\Images\cs_logo_en.jpg" />
+    <Content Include="App_Themes\Blue\Images\CustomizeRegistration .gif" />
+    <Content Include="App_Themes\Blue\Images\deleted.gif" />
+    <Content Include="App_Themes\Blue\Images\disable.gif" />
+    <Content Include="App_Themes\Blue\Images\downarrows_blue.gif" />
+    <Content Include="App_Themes\Blue\Images\downarrows_white.gif" />
+    <Content Include="App_Themes\Blue\Images\drafts.gif" />
+    <Content Include="App_Themes\Blue\Images\DropdownArrow.gif" />
+    <Content Include="App_Themes\Blue\Images\end_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\exp.gif" />
+    <Content Include="App_Themes\Blue\Images\expand.GIF" />
+    <Content Include="App_Themes\Blue\Images\explorerBarHeader.jpg" />
+    <Content Include="App_Themes\Blue\Images\explorerBarHeaderHover.jpg" />
+    <Content Include="App_Themes\Blue\Images\Export.gif" />
+    <Content Include="App_Themes\Blue\Images\flecha.gif" />
+    <Content Include="App_Themes\Blue\Images\folder.gif" />
+    <Content Include="App_Themes\Blue\Images\folders.gif" />
+    <Content Include="App_Themes\Blue\Images\GrayButtonback.JPG" />
+    <Content Include="App_Themes\Blue\Images\HeadBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\header2.gif" />
+    <Content Include="App_Themes\Blue\Images\HeaderGrid.gif" />
+    <Content Include="App_Themes\Blue\Images\HeaderGrid2.gif" />
+    <Content Include="App_Themes\Blue\Images\horizpoints.gif" />
+    <Content Include="App_Themes\Blue\Images\hover.gif" />
+    <Content Include="App_Themes\Blue\Images\icon1.gif" />
+    <Content Include="App_Themes\Blue\Images\icon1a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon2.gif" />
+    <Content Include="App_Themes\Blue\Images\icon2a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon3.gif" />
+    <Content Include="App_Themes\Blue\Images\icon3a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon4.gif" />
+    <Content Include="App_Themes\Blue\Images\icon4a.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light1.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light2.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_treeOminus.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_treeOplus.gif" />
+    <Content Include="App_Themes\Blue\Images\importing.gif" />
+    <Content Include="App_Themes\Blue\Images\inbox.gif" />
+    <Content Include="App_Themes\Blue\Images\itembackground.PNG" />
+    <Content Include="App_Themes\Blue\Images\junk.gif" />
+    <Content Include="App_Themes\Blue\Images\linkshome.jpg" />
+    <Content Include="App_Themes\Blue\Images\LoginBut.gif" />
+    <Content Include="App_Themes\Blue\Images\LoginBut2.gif" />
+    <Content Include="App_Themes\Blue\Images\LoginBut3.gif" />
+    <Content Include="App_Themes\Blue\Images\minus.gif" />
+    <Content Include="App_Themes\Blue\Images\Next_B.png" />
+    <Content Include="App_Themes\Blue\Images\Next_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\next_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\normal.gif" />
+    <Content Include="App_Themes\Blue\Images\notes.gif" />
+    <Content Include="App_Themes\Blue\Images\outbox.gif" />
+    <Content Include="App_Themes\Blue\Images\panelBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\plain_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\plus.gif" />
+    <Content Include="App_Themes\Blue\Images\Previous_B.png" />
+    <Content Include="App_Themes\Blue\Images\Previous_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\prev_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\prev_up.gif" />
+    <Content Include="App_Themes\Blue\Images\QuestionSign.jpg" />
+    <Content Include="App_Themes\Blue\Images\QuestionSign_3.png" />
+    <Content Include="App_Themes\Blue\Images\Registration.gif" />
+    <Content Include="App_Themes\Blue\Images\Remove.png" />
+    <Content Include="App_Themes\Blue\Images\root.gif" />
+    <Content Include="App_Themes\Blue\Images\search.gif" />
+    <Content Include="App_Themes\Blue\Images\search_no.gif" />
+    <Content Include="App_Themes\Blue\Images\selected.gif" />
+    <Content Include="App_Themes\Blue\Images\sentItems.gif" />
+    <Content Include="App_Themes\Blue\Images\sprite.png" />
+    <Content Include="App_Themes\Blue\Images\start_down.gif" />
+    <Content Include="App_Themes\Blue\Images\start_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\tasks.gif" />
+    <Content Include="App_Themes\Blue\Images\TitleBar_Bkgd.gif" />
+    <Content Include="App_Themes\Blue\Images\uparrows_white.gif" />
+    <Content Include="App_Themes\Blue\Images\watermark.jpg" />
+    <Content Include="App_Themes\Blue\Images\watermarkhome.gif" />
+    <Content Include="App_Themes\Blue\Images\watermarkhome.jpg" />
+    <Content Include="App_Themes\Blue\Style_Blue.css" />
+    <Content Include="App_Themes\Blue\YUI\container.css" />
+    <Content Include="App_Themes\Blue\YUI\sprite.png" />
+    <Content Include="App_Themes\Common\Images\AddButton.jpg" />
+    <Content Include="App_Themes\Common\Images\Arrow_Right_B_h.png" />
+    <Content Include="App_Themes\Common\Images\backgroundtoolbar.gif" />
+    <Content Include="App_Themes\Common\Images\button.png" />
+    <Content Include="App_Themes\Common\Images\buttonimage.gif" />
+    <Content Include="App_Themes\Common\Images\ClientLogo.jpg" />
+    <Content Include="App_Themes\Common\Images\Collapse.PNG" />
+    <Content Include="App_Themes\Common\Images\CSoft_logo.jpg" />
+    <Content Include="App_Themes\Common\Images\CustomizeRegistration .gif" />
+    <Content Include="App_Themes\Common\Images\DrawStructure.png" />
+    <Content Include="App_Themes\Common\Images\Expand.PNG" />
+    <Content Include="App_Themes\Common\Images\expansion.PNG" />
+    <Content Include="App_Themes\Common\Images\Export.gif" />
+    <Content Include="App_Themes\Common\Images\Filter_G.png" />
+    <Content Include="App_Themes\Common\Images\Generators_2.png" />
+    <Content Include="App_Themes\Common\Images\HeaderGrid.gif" />
+    <Content Include="App_Themes\Common\Images\NonChemicalContent.png" />
+    <Content Include="App_Themes\Common\Images\NoStructure.png" />
+    <Content Include="App_Themes\Common\Images\paneBk.jpg" />
+    <Content Include="App_Themes\Common\Images\panelBk.jpg" />
+    <Content Include="App_Themes\Common\Images\ReviewRegister.gif" />
+    <Content Include="App_Themes\Common\Images\SearchHome.gif" />
+    <Content Include="App_Themes\Common\Images\SetUpProperties.gif" />
+    <Content Include="App_Themes\Common\Images\sprite.png" />
+    <Content Include="App_Themes\Common\Images\SubmitRecord.gif" />
+    <Content Include="App_Themes\Common\Images\Table.png" />
+    <Content Include="App_Themes\Common\Images\TableEditor.gif" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCorner2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCornerLast.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RighCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RightTabCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RightTabCorner2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBk2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBodyBk.gif" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBodyBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabFooter2Bk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabFoterBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\UlBk.jpg" />
+    <Content Include="App_Themes\Common\Images\thumbsDown.png" />
+    <Content Include="App_Themes\Common\Images\thumbsUp.png" />
+    <Content Include="App_Themes\Common\Images\UnknownStructure.png" />
+    <Content Include="App_Themes\Common\Images\User.gif" />
+    <Content Include="App_Themes\HomeBlue\ie6.css" />
+    <Content Include="App_Themes\HomeBlue\ie7.css" />
+    <Content Include="App_Themes\HomeBlue\ie8.css" />
+    <Content Include="App_Themes\HomeBlue\style.css" />
+    <Content Include="App_Themes\Red\COEFormsRed.css" />
+    <Content Include="App_Themes\Red\Images\ButBk.gif" />
+    <Content Include="App_Themes\Red\Images\ButLeft.gif" />
+    <Content Include="App_Themes\Red\Images\ButRight.gif" />
+    <Content Include="App_Themes\Red\Images\Button.gif" />
+    <Content Include="App_Themes\Red\Images\button.png" />
+    <Content Include="App_Themes\Red\Images\CSoft_logo.jpg" />
+    <Content Include="App_Themes\Red\Images\HeadBk.jpg" />
+    <Content Include="App_Themes\Red\Images\LoginBut.gif" />
+    <Content Include="App_Themes\Red\Images\QuestionSign.jpg" />
+    <Content Include="App_Themes\Red\Images\Registration.gif" />
+    <Content Include="App_Themes\Red\Style_Red.css" />
+    <Content Include="Forms\Master\DocManager.Master" />
+    <Content Include="Forms\Master\UserControls\Header.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\DocManager.gif" />
+    <Content Include="App_Themes\Blue\Images\WordDocument.png" />
+    <Content Include="App_Themes\Blue\Style_Blue.skin" />
+    <Content Include="App_Themes\Red\Style_Red.skin" />
+    <Content Include="Default.aspx" />
+    <Content Include="Forms\Public\ContentArea\Home.aspx" />
+    <Content Include="Forms\Public\ContentArea\RecentActivities.aspx" />
+    <Content Include="Forms\Public\ContentArea\SearchDocument.aspx" />
+    <Content Include="Forms\Public\ContentArea\SubmitNewDocument.aspx" />
+    <Content Include="Forms\Public\ContentArea\ViewDocument.aspx" />
+    <Content Include="Forms\Public\JScripts\CommonScripts.js" />
+    <Content Include="Forms\Public\JScripts\CommonUtilities.js" />
+    <Content Include="Forms\Public\JScripts\MessagesBox.js" />
+    <Content Include="Forms\Public\UserControls\MenuButton.ascx" />
+    <Content Include="Forms\Public\UserControls\MenuItem.ascx" />
+    <Content Include="Forms\Public\UserControls\MessagesArea.ascx" />
+    <Content Include="Forms\Public\UserControls\MessagesBox.ascx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1556</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/DocManager</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

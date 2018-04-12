@@ -1,0 +1,17 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>static</type>
+      <name>SetStaticProperty</name>
+      <description>Set static property</description>
+      <args>
+        <arg index="0" type="string" input="derived">
+          <value>MOLREGNO</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

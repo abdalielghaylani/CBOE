@@ -1,0 +1,16 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>testObjectBindingPath</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>testName</name>
+      <description>testDescription</description>
+      <args>
+        <!--index attribute must be of type int-->
+        <arg index="A01" input="constant" type="testType">testValue</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

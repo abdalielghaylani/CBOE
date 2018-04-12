@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3BAAD78D-8824-4214-8A07-B7A3DB4DF091}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.DataLoaderGUI</RootNamespace>
+    <AssemblyName>DataLoaderGUI</AssemblyName>
+    <Win32Resource>
+    </Win32Resource>
+    <ApplicationIcon>Resources\DL.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>45B8EFF6987EAF94233F4E800F19EA50BD999946</ManifestCertificateThumbprint>
+    <ManifestKeyFile>DataLoaderGUI_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>http://localhost/CambridgeSoft.NCDS_DataLoader/</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\DataUploader\DataUploader\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\DataUploader\DataUploader\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\DataUploader\DataUploader\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\DataUploader\DataUploader\bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.ChemDrawControlConst11">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AxInterop.ChemDrawControlConst11.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Infragistics2.Shared.v8.2, Version=8.2.20082.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Shared.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinDataSource.v8.2, Version=8.2.20082.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinDataSource.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v8.2, Version=8.2.20082.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinGrid.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v8.2, Version=8.2.20082.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MolServer17">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer17.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\WINDOWS\assembly\GAC_32\System.Data.OracleClient\2.0.0.0__b77a5c561934e089\System.Data.OracleClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\COEDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\COEDateTimePicker.designer.cs">
+      <DependentUpon>COEDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\COEItemPair.cs" />
+    <Compile Include="Common\ExportFile.cs" />
+    <Compile Include="Common\FindDuplicate.cs" />
+    <Compile Include="Common\JobArgumentInfo.cs" />
+    <Compile Include="Common\OutputObjectForm.cs" />
+    <Compile Include="Common\ReadInputFile.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Controls\DisplayInputData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DisplayInputData.Designer.cs">
+      <DependentUpon>DisplayInputData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImportAndDuplicateCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImportAndDuplicateCheck.Designer.cs">
+      <DependentUpon>ImportAndDuplicateCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InputFileChooser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InputFileChooser.Designer.cs">
+      <DependentUpon>InputFileChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InputOutputMapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InputOutputMapper.Designer.cs">
+      <DependentUpon>InputOutputMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InputOutputSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InputOutputSource.designer.cs">
+      <DependentUpon>InputOutputSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UIBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BatchMarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BatchMarkForm.Designer.cs">
+      <DependentUpon>BatchMarkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CalculationBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CalculationBox.Designer.cs">
+      <DependentUpon>CalculationBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FieldChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FieldChooser.designer.cs">
+      <DependentUpon>FieldChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FunctionChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FunctionChooser.Designer.cs">
+      <DependentUpon>FunctionChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PersistSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PersistSettings.designer.cs">
+      <DependentUpon>PersistSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\MappingType.cs" />
+    <Compile Include="Forms\ShowProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShowProgressForm.Designer.cs">
+      <DependentUpon>ShowProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SplitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplitForm.Designer.cs">
+      <DependentUpon>SplitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewForm.Designer.cs">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ImportAndDuplicateCheck.resx">
+      <DependentUpon>ImportAndDuplicateCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InputFileChooser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InputFileChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShowProgressForm.resx">
+      <DependentUpon>ShowProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewForm.resx">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataLoaderGUI_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DisplayInputData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DisplayInputData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BatchMarkForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BatchMarkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PersistSettings.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PersistSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplitForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SplitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\106_G.ico" />
+    <EmbeddedResource Include="Resources\106_R.ico" />
+    <EmbeddedResource Include="Resources\75_B.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Down_B.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Left_B.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Left_R.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Right.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Right_B.ico" />
+    <EmbeddedResource Include="Resources\Arrow_Up_B.ico" />
+    <EmbeddedResource Include="Resources\BlueBar00.gif" />
+    <EmbeddedResource Include="Resources\BlueBar04.gif" />
+    <EmbeddedResource Include="Resources\BlueBar08.gif" />
+    <EmbeddedResource Include="Resources\BlueBar12.gif" />
+    <EmbeddedResource Include="Resources\BlueBar16.gif" />
+    <EmbeddedResource Include="Resources\BlueBar20.gif" />
+    <EmbeddedResource Include="Resources\Copy.ico" />
+    <EmbeddedResource Include="Resources\Cross_R.ico" />
+    <EmbeddedResource Include="Resources\DataLoader_02.png" />
+    <EmbeddedResource Include="Resources\Data_Loader.gif" />
+    <EmbeddedResource Include="Resources\DL.ico" />
+    <EmbeddedResource Include="Resources\Error.ico" />
+    <EmbeddedResource Include="Resources\Export.ico" />
+    <EmbeddedResource Include="Resources\Export_Data.ico" />
+    <EmbeddedResource Include="Resources\First_2_B.ico" />
+    <EmbeddedResource Include="Resources\First_2_B_d.ico" />
+    <EmbeddedResource Include="Resources\GrayBar00.gif" />
+    <EmbeddedResource Include="Resources\GrayBar04.gif" />
+    <EmbeddedResource Include="Resources\GrayBar08.gif" />
+    <EmbeddedResource Include="Resources\GrayBar12.gif" />
+    <EmbeddedResource Include="Resources\GrayBar16.gif" />
+    <EmbeddedResource Include="Resources\GrayBar20.gif" />
+    <EmbeddedResource Include="Resources\ICON_ce_win.ico" />
+    <EmbeddedResource Include="Resources\Import.ico" />
+    <EmbeddedResource Include="Resources\Import_Data.ico" />
+    <EmbeddedResource Include="Resources\Info.ico" />
+    <EmbeddedResource Include="Resources\Last_2_B.ico" />
+    <EmbeddedResource Include="Resources\Last_2_B_d.ico" />
+    <EmbeddedResource Include="Resources\logo_cs_coent.gif" />
+    <EmbeddedResource Include="Resources\logo_cs_coent_mid.gif" />
+    <EmbeddedResource Include="Resources\logo_cs_coent_rht.gif" />
+    <EmbeddedResource Include="Resources\Next_2_B.ico" />
+    <EmbeddedResource Include="Resources\Next_2_B_d.ico" />
+    <EmbeddedResource Include="Resources\Open.ico" />
+    <EmbeddedResource Include="Resources\Preview.ico" />
+    <EmbeddedResource Include="Resources\Previous_2_B.ico" />
+    <EmbeddedResource Include="Resources\Previous_2_B_d.ico" />
+    <EmbeddedResource Include="Resources\Remove.ico" />
+    <EmbeddedResource Include="Resources\Rename.ico" />
+    <EmbeddedResource Include="Resources\repeater_image.gif" />
+    <EmbeddedResource Include="Resources\Search_Document.ico" />
+    <EmbeddedResource Include="Resources\Sort_Ascending.ico" />
+    <EmbeddedResource Include="Resources\Sort_Descending.ico" />
+    <EmbeddedResource Include="Resources\Thesaurus_4.ico" />
+    <EmbeddedResource Include="Resources\Tick.ico" />
+    <EmbeddedResource Include="Resources\Traffic_Green.ico" />
+    <EmbeddedResource Include="Resources\Traffic_Red.ico" />
+    <EmbeddedResource Include="Resources\Warning.ico" />
+    <EmbeddedResource Include="Resources\Zoom_in.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CBVN\ChemBioViz.Net\ChemControls\ChemControls.csproj">
+      <Project>{6DC80E63-F0D9-4349-AF23-F8002B69B354}</Project>
+      <Name>ChemControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLoader\Calculation\CambridgeSoft.COE.DataLoader.Calculation.csproj">
+      <Project>{DC4203E1-2258-421D-B7C9-3424135A13DB}</Project>
+      <Name>CambridgeSoft.COE.DataLoader.Calculation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLoader\Common\CambridgeSoft.COE.DataLoader.Common.csproj">
+      <Project>{A9447298-484B-480A-8646-DFA347C95B5A}</Project>
+      <Name>CambridgeSoft.COE.DataLoader.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataUploader\DataUploader.Core\DataUploader.Core.csproj">
+      <Project>{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}</Project>
+      <Name>DataUploader.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\PresentationTier\Registration.Core\Registration.Core.csproj">
+      <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
+      <Name>Registration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
+      <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>
+      <Name>CambridgeSoft.COE.Registration.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\ServiceTier\RegistrationAddins\CambridgeSoft.COE.Registration.RegistrationAddins.csproj">
+      <Project>{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}</Project>
+      <Name>CambridgeSoft.COE.Registration.RegistrationAddins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_split.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

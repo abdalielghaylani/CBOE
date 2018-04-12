@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form><formprops version="30" size="x:612,y:792" backcolor="12632256" querycolor="12632224" layoutmode="false" openreadonly="false" nomstupgrade="false" wplength="44" wpflags="2" showcmd="3" minpos="x:-1,y:-1" maxpos="x:-6,y:-25" normalpos="l:36,t:16,r:711,b:423"></formprops>
+<security lastconfig="58" configsize="8" config="64,255,255,255,255,164,255,3"></security>
+<boxes><box type="Frame" rect="l:24,t:40,r:264,b:192" dtype="Fixed" text="Structure" boxname="Structure_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Structure" rect="l:32,t:56,r:256,b:184" field="Structure" text="Structure" tablewidth="20" seqno="3" boxname="Structure" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Frame" rect="l:280,t:48,r:344,b:104" dtype="Fixed" text="Mol_ID" boxname="Mol_ID_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:288,t:64,r:336,b:96" field="Mol_ID" text="Mol_ID" tablewidth="7" seqno="4" boxname="Mol_ID" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Frame" rect="l:24,t:200,r:160,b:256" dtype="Fixed" text="Formula" boxname="Formula_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Formula" rect="l:32,t:216,r:152,b:248" field="Formula" text="Formula" tablewidth="8" seqno="5" boxname="Formula" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Frame" rect="l:168,t:200,r:264,b:256" dtype="Fixed" text="MolWeight" boxname="MolWeight_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:176,t:216,r:256,b:248" field="MolWeight" text="MolWeight" tablewidth="10" seqno="6" boxname="MolWeight" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Frame" rect="l:352,t:48,r:576,b:104" dtype="Fixed" text="Molname" boxname="Molname_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:360,t:64,r:568,b:96" field="Molname" text="Molname" tablewidth="11" seqno="7" boxname="Molname" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Subform" rect="l:280,t:120,r:576,b:256" field="Mol_ID" text="Mol_ID" tablewidth="35" boxname="Synonyms" display="135" linktocol="SYN_ID" showlabel="1"><font name="Arial" size="8" weight="700" color="0" italic="false" strikeout="false" underline="false"></font>
+<form><formprops type="sub" version="30" size="x:612,y:792" backcolor="12632256" querycolor="12632224" layoutmode="false" openreadonly="false" nomstupgrade="false" wplength="44" wpflags="2" showcmd="3" minpos="x:-1,y:-1" maxpos="x:-6,y:-25" normalpos="l:36,t:16,r:711,b:423"></formprops>
+<security></security>
+<boxes><box type="Frame" rect="l:16,t:16,r:72,b:72" dtype="Fixed" text="SYN_ID" boxname="SYN_ID_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:24,t:32,r:64,b:64" field="SYN_ID" text="SYN_ID" tablewidth="7" seqno="1" boxname="SYN_ID" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Frame" rect="l:80,t:16,r:320,b:72" dtype="Fixed" text="Synonym" boxname="Synonym_frame" display="131"><font name="MS Sans Serif" size="7" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:88,t:32,r:312,b:64" field="Synonym" text="Synonym" tablewidth="35" seqno="2" boxname="Synonym" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+</boxes>
+<tabs><tab name="Tab 1" viewtype="1"><table defrowheight="20" colorder="1 2"></table>
+</tab>
+</tabs>
+<plots views="0"></plots>
+<filters></filters>
+<scripts></scripts>
+<connections dsn="CS_DEMO" tablename="Synonyms" filename=".\CS_DEMO.mdb" mstname=".\CS_DEMO.mst" orasettings="4" tablesize="794"></connections>
+<queries></queries>
+<printing width="2159" height="2794" perpage="1" type="0" tmargin="254" bmargin="190" rmargin="254" lmargin="254" flags="0" units="0" orientation="1" scalepercent="100" papersize="1" duplex="1"></printing>
+</form>
+</box>
+<box type="Plain Text" rect="l:24,t:8,r:128,b:32" dtype="Fixed" text="CS_Demo" boxname="CS_Demo_label" display="131"><font name="Bookman Old Style" size="10" weight="600" color="128" italic="false" strikeout="false" underline="false"></font>
+</box>
+</boxes>
+<tabs><tab name="Tab 1" viewtype="0"><table defrowheight="93" colorder="6 7 1 2 3 4 5"></table>
+<multi defrowheight="129" colorder=""><form><formprops version="30" size="x:612,y:792" backcolor="12632256" querycolor="12632224" layoutmode="false" openreadonly="false" nomstupgrade="false" wplength="44" wpflags="2" showcmd="3" minpos="x:-1,y:-1" maxpos="x:-6,y:-25" normalpos="l:36,t:16,r:711,b:423"></formprops>
+<security></security>
+<boxes><box type="Plain Text" rect="l:18,t:12,r:198,b:24" dtype="Fixed" text="Structure" boxname="Structure_label" display="131"><font name="Arial" size="5" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Structure" rect="l:18,t:24,r:198,b:120" field="Structure" text="Structure" tablewidth="20" boxname="Structure" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Plain Text" rect="l:210,t:12,r:390,b:24" dtype="Fixed" text="Mol_ID" boxname="Mol_ID_label" display="131"><font name="Arial" size="5" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:210,t:24,r:390,b:48" field="Mol_ID" text="Mol_ID" tablewidth="7" boxname="Mol_ID" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Plain Text" rect="l:210,t:54,r:390,b:66" dtype="Fixed" text="Formula" boxname="Formula_label" display="131"><font name="Arial" size="5" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Formula" rect="l:210,t:66,r:390,b:90" field="Formula" text="Formula" tablewidth="30" boxname="Formula" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Plain Text" rect="l:402,t:12,r:582,b:24" dtype="Fixed" text="MolWeight" boxname="MolWeight_label" display="131"><font name="Arial" size="5" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:402,t:24,r:582,b:48" field="MolWeight" text="MolWeight" tablewidth="15" boxname="MolWeight" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Plain Text" rect="l:402,t:54,r:582,b:66" dtype="Fixed" text="Molname" boxname="Molname_label" display="131"><font name="Arial" size="5" weight="0" color="10485760" italic="false" strikeout="false" underline="false"></font>
+</box>
+<box type="Data Box" rect="l:402,t:66,r:582,b:90" field="Molname" text="Molname" tablewidth="35" boxname="Molname" display="131"><font name="MS Sans Serif" size="7" weight="0" color="0" italic="false" strikeout="false" underline="false"></font>
+</box>
+</boxes>
+<tabs><tab name="Tab 1" viewtype="0"></tab>
+</tabs>
+<plots views="0"></plots>
+<filters></filters>
+<scripts></scripts>
+<connections dsn="CS_DEMO" tablename="MolTable" filename=".\CS_DEMO.mdb" mstname=".\CS_DEMO.mst" orasettings="4" tablesize="285"></connections>
+<queries></queries>
+<printing width="2159" height="2794" perpage="1" type="0" tmargin="254" bmargin="190" rmargin="254" lmargin="254" flags="0" units="0" orientation="1" scalepercent="100" papersize="1" duplex="1"></printing>
+</form>
+</multi>
+</tab>
+</tabs>
+<plots views="0"></plots>
+<filters></filters>
+<scripts></scripts>
+<connections dsn="CS_DEMO" tablename="MolTable" filename=".\CS_DEMO.mdb" mstname=".\CS_DEMO.mst" orasettings="4" tablesize="285"></connections>
+<queries></queries>
+<printing width="2159" height="2794" perpage="1" type="0" tmargin="254" bmargin="190" rmargin="254" lmargin="254" flags="0" units="0" orientation="1" scalepercent="100" papersize="1" duplex="1"></printing>
+</form>

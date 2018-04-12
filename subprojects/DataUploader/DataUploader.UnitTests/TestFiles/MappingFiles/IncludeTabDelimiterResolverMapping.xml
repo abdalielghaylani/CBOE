@@ -1,0 +1,26 @@
+<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>SetComponentProperty</name>
+      <description>Set componentProperty</description>
+      <args>
+        <arg index="0" type="string" input="constant">
+          <value>Units</value>
+        </arg>
+        <arg index="1" type="string" input="derived" pickListCode="2">
+          <value>Units</value>
+		      <resolver>
+		        <file>../../TestFiles/DataFiles/ResolverTestFiles/Resolver_tab.txt</file>
+            <delimiter>tab</delimiter>
+            <externalValueColumn>c1</externalValueColumn>
+            <internalValueColumn>c2</internalValueColumn>
+		      </resolver>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

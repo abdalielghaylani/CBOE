@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" configfile="..\DataUploader\bin\Debug\COEDataLoader.exe.config" binpathtype="Auto">
+    <assembly path="bin\Debug\CambridgeSoft.COE.DataLoader.UnitTests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="bin\Release\CambridgeSoft.COE.DataLoader.UnitTests.dll" />
+  </Config>
+</NUnitProject>

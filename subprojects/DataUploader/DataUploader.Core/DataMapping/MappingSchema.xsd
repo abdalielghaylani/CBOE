@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="mappings" nillable="true" type="Mappings" />
+  <xs:complexType name="Mappings">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="destinationRecordType" type="DestinationRecordTypeEnum" />
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="mapping" type="Mapping" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DestinationRecordTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RegistryRecord" />
+      <xs:enumeration value="MockRegistryRecord" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Mapping">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="enabled" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="objectBindingPath" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="memberInformation" type="MemberInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MemberInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="type" type="MemberInformationTypeEnum" />
+      <xs:element minOccurs="0" maxOccurs="1" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="args" type="ArrayOfArg" />
+    </xs:sequence>
+    <xs:attribute name="memberType" type="MemberTypeEnum" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="MemberInformationTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="static" />
+      <xs:enumeration value="instance" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfArg">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="arg" nillable="true" type="Arg" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Arg">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="resolver" type="Resolver" />
+    </xs:sequence>
+    <xs:attribute name="index" type="xs:int" use="required" />
+    <xs:attribute name="input" type="InputEnum" use="required" />
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="pickListCode" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="Resolver">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="file" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="delimiter" type="DelimiterEnum" />
+      <xs:element minOccurs="1" maxOccurs="1" name="externalValueColumn" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="internalValueColumn" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DelimiterEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="tab" />
+      <xs:enumeration value="pipeline" />
+      <xs:enumeration value="comma" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InputEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="constant" />
+      <xs:enumeration value="derived" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MemberTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="property" />
+      <xs:enumeration value="method" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

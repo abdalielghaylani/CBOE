@@ -1,0 +1,17 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>testObjectBindingPath</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>testName</name>
+      <description>testDescription</description>
+      <args>
+        <arg index="0" input="constant" type="testType" pickListCode="1">
+          <value>testValue</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

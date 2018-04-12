@@ -1,0 +1,51 @@
+<mappings>
+  <destinationRecordType>RegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound.PropertyList['CMP_COMMENTS'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>component comments</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+          <value>E_NSC</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound.BaseFragment.Structure.Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>molfile structure</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+          <value>sd_molecule</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AddFragment</name>
+      <description>Add a fragment using its code and equivalents</description>
+      <args>
+        <arg index="0" type="int" input="constant">
+          <value>0</value>
+        </arg>
+        <arg index="1" type="string" input="derived">
+          <value>SALT_1</value>
+        </arg>
+        <arg index="2" type="float" input="derived">
+          <value>SALT_1_EQ</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

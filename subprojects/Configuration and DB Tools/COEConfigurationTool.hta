@@ -1,0 +1,4614 @@
+<SCRIPT LANGUAGE="vbscript">
+	option explicit
+	Dim COWSIniPath
+	Dim oIniHelper
+	Dim oNetwork
+	Dim COEHTTPHostName
+	Dim appList
+	Dim appArray
+	Dim fso
+	Dim DOC_ROOT
+	Dim COWS_ROOT
+	Dim SERVER_DIR
+	Dim SERVER_DRIVE
+	Dim WshShell
+	Dim homeDir
+	Dim chemOfficePath, chemOfficeIniPath
+	Dim cssecurityScriptPath, coedbScriptPath
+	Dim inventoryScriptPath
+	Dim chemacxScriptPath
+	Dim selectedPort, selectedProtocol, fullURL
+	Dim CoeManagerConfigPath
+	Dim CoeRegistrationConfigPath
+	Dim CoeChemBioVizConfigPath
+	Dim GetCommonProgramsDataFolder
+	Dim GetCSProgramsFolder
+	Dim bioAssayScriptPath
+	Dim regScriptPath
+	Dim ENotebookScriptPath, ENotebookPath, ENotebookQuestionsFileName, SDMScriptPath
+	Dim ACXCOWSWebserviceScriptPath, COWSWebserviceWebConfigPath, COWSWebservicePath
+	Dim InvCOWSWebserviceScriptPath
+	Dim RegCOWSWebserviceScriptPath
+	Dim sTraceLevel
+	Dim msgAction
+	Dim bLogFileOverwrite
+	Dim sLogFileName
+	Dim deploymentPath
+	Dim setupLogsPath
+	Dim OracleServiceName
+	Dim isACXInstalled
+	Dim isInvInstalled
+	Dim isRegInstalled
+	Dim isAcxOra
+	Dim errCount, warnCount
+	Dim AspMaxRequestEntityAllowed
+	Dim LocalMachineName
+	Dim COEFrameworkConfigPath, RegConfigFilesPath
+	Dim COEFrameworkInstallPath, COECommonDllsPath
+	Dim currentOracleServiceName, currentCOEHostName, currentSSODefaultProvider
+	Dim currentLDAPConfigXML, currentLDAPServerName, currentLDAPPort, currentLDAPADDomain, currentLDAPDN, currentLDAPServiceAccountName
+	Dim currentLDAPServiceAccountPWD, currentLDAPUserDN, currentLDAPFilter
+	Dim currentACXDBType, currentDateFormat, bCurrentInvACX, bCurrentInvReg, bCurrentInvDoc, currentDisplayCulture, currentRegRLSValue, bCurrentInvGroupSecurity, bCurrentInvUserPreferences	
+	Dim bCurrentInvSafetyData
+	Dim importFilePath
+	Dim warned
+	Dim objDom
+	Dim oNewLdapConfigNode
+	Dim DataLoaderPath
+	Dim currHttpPort
+	Dim ENotebookClickOncePath, ENotebookMageBatName
+	Dim	DataLoaderClickOncePath, DataLoaderClickOnceGoodsPath
+	Dim isErrorSet
+	Dim RLSConfigToolPath
+	Dim installedApps
+	Dim isCOEInstalled, isELNInstalled, isBAInstalled
+	Dim COEInstallFolderName
+	Dim bIs64bitOS , Sys32Path
+	Dim userPrefrenceStr, newUserPrefrenceStr, userPreferencesFields, arruserPreferencesFields,userPreferencesField
+
+	
+
+	Const VERBOSEMSG = 5
+	Const INFOMSG = 10
+	Const WARNING = 15
+	Const ERRORMSG = 30
+	Const NOMSG = 100
+	Const ForReading = 1
+	Const ForWriting = 2
+	Const adCmdText = &H0001
+
+	Sys32Path = "%WinDir%\System32\"
+    	AspMaxRequestEntityAllowed = "1048576000" 
+	sTraceLevel = INFOMSG
+	msgAction = "LOG"  	'Options: INTERACTIVE|LOG|BOTH|NONE
+	bLogFileOverwrite = True
+	'CSBR# - 131085
+	'Done by - Soorya Anwar
+	'Date - 11-24-2010
+	'Purspose - the variable isCOEInstalled is a flag that is set in the CheckForCOEInstalled function to capture whether COE is installed or not.
+	isCOEInstalled = true
+    
+	Initialize()
+	CheckForCOEInstalled()
+	CheckForELNInstalled()
+	CheckForBAInstalled()
+
+	if isCOEInstalled = true then
+		Init()
+		GetInstalledApps()
+	end if
+	'End of Change	
+	'CSBR# 131085
+	'Done by - Soorya Anwar
+	'Date - 24-11-2010
+	'Purpose - The Initialize method has been defined to initialise paths required for COE or ELN Config.
+	Sub Initialize()
+	   
+		Dim startAllUsersPath
+		on error resume next
+		errCount = 0
+		warnCount = 0
+		Set WshShell = CreateObject("WScript.Shell")
+		Set oNetwork = CreateObject("WScript.Network")
+		Set fso = CreateObject("Scripting.FileSystemObject")
+		
+		
+		startAllUsersPath = GetCommonAppDataFolder()
+		COEInstallFolderName = "ChemOfficeEnterprise"
+        COEFrameworkConfigPath = startAllUsersPath & "\PerkinElmer\" & COEInstallFolderName  & "\COEFrameworkConfig.xml"	
+		COEFrameworkInstallPath = ScriptPath() & "..\" 
+		ENotebookPath = COEFrameworkInstallPath & "..\E-Notebook 12.1\"
+		ENotebookScriptPath =  ENotebookPath & "database\Oracle\"
+		SDMScriptPath = ENotebookPath & "SDM\Database\CreateScripts\Create\"
+		ENotebookQuestionsFileName = "ENQuestions9.sql"
+		ENotebookClickOncePath = ENotebookPath & "ClickOnce\"
+		ENotebookMageBatName = "mage_eln.bat"
+		bioAssayScriptPath = COEFrameworkInstallPath & "BioAssay\Database\OracleScripts\Full_Install\"
+		COWSWebservicePath = COEFrameworkInstallPath & "..\COWSWebService .NET 2.0\"
+		COWSWebserviceWebConfigPath = COWSWebservicePath &"web.Config"
+		ACXCOWSWebserviceScriptPath = COWSWebservicePath & "Database\ACX\"	
+		INVCOWSWebserviceScriptPath = COWSWebservicePath & "Database\INV\"	
+		REGCOWSWebserviceScriptPath = COWSWebservicePath & "Database\REG\"
+		RegConfigFilesPath = COEFrameworkInstallPath & "Registration\Config\default\"	
+		COECommonDllsPath = COEFrameworkInstallPath & "Common\dlls\"
+		setupLogsPath = ScriptPath() & "SetupLogs\"		
+		deploymentPath = ScriptPath() & "Deployment\"
+		sLogFileName = SetupLogsPath & "\log_COEConfigurationTool.txt"
+
+		bIs64bitOS = is64bitOS()
+		if bIs64bitOS then
+			Sys32Path = "%windir%\SysWoW64\"
+		end if
+	End Sub
+	
+
+	
+
+
+	Function GetCommonAppDataFolder()
+   	  dim objShell, strAllDoc
+   	  set objShell=CreateObject("WScript.Shell")
+   	  'SHGetFolders is really a simple query to the "Shell Folders" key...
+    	  strAllDoc=objShell.RegRead("HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Common AppData")
+   	  set objShell = nothing
+   	  GetCommonAppDataFolder=strAllDoc
+	End Function
+
+	Function is64bitOS()
+		 
+		dim objShell, str
+   	  	set objShell=CreateObject("WScript.Shell")
+   	  	
+    	  	str=objShell.RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\PROCESSOR_ARCHITECTURE")
+   	  	
+		set objShell = nothing
+
+		If str= "x86" Then 
+			is64bitOS= False
+		else
+			is64bitOS = True 
+		End If 
+		Set objShell = Nothing 
+	End Function 
+
+	
+	Function ScriptPath()
+		ScriptPath = document.location.pathname
+		ScriptPath = Replace(ScriptPath,"%20"," ")
+		ScriptPath = Left(ScriptPath,InStrRev(ScriptPath,"\"))
+	End Function	
+	
+	Function RunVbs(scriptPath, scriptName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & scriptPath
+		rc = WshShell.Run("cscript " & scriptName, 5, true)
+		RunVbs = false
+	End Function
+
+	Function RunInstaller(installerPath, exeName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & installerPath
+		rc = WshShell.Run(exeName, 5, true)
+		
+		RunInstaller = false
+	End Function
+
+	Function RunExe(pathFromChemoffice, exeName)
+		Dim rc
+		
+		SetVarsFromCOWSIni()
+		
+		rc = WshShell.Run(chemofficePath & pathFromChemoffice & exeName, 5, true)
+		
+		RunExe = false
+	End Function
+	
+	Sub RunCmd(path, fileName)
+	    Dim rc, opath
+		opath = WshShell.CurrentDirectory 
+		WshShell.CurrentDirectory = path
+		rc = WshShell.Run(fileName, 0, true)
+		WshShell.CurrentDirectory  = opath
+	End Sub
+	
+	Sub IISreset()
+		Dim rc
+		rc = WshShell.Run("iisreset.exe", 5, true)
+		
+	End Sub	
+'CSBR# 131085
+'Done by - Soorya Anwar
+'Date - 11-24-2010
+'Purpose - CheckForCOEInstalled method checks for the COEFrameworkConfig.xml and interprets its absence as COE not being installed
+	Sub CheckForCOEInstalled()
+		Set oFSO = CreateObject("Scripting.FileSystemObject")
+	  	If not oFSO.FileExists(COEFrameworkConfigPath) then		
+	    		isCOEInstalled = false
+	  	end if
+	End Sub
+
+	Sub CheckForELNInstalled()
+        Set oFSO = CreateObject("Scripting.FileSystemObject")
+	  	If oFSO.FolderExists(ENotebookPath) then		
+            isELNInstalled = true
+            installedApps = "ENOTEBOOK,"
+        else
+            isELNInstalled = false
+        end if
+	End Sub
+	
+	Sub CheckForBAInstalled()
+        Set oFSO = CreateObject("Scripting.FileSystemObject")
+        If oFSO.FolderExists(bioAssayScriptPath) then		
+            isBAInstalled = true
+            installedApps = installedApps & "BIOASSAY,"	
+        else
+            isBAInstalled = false
+        end if
+	End Sub	
+	
+	Sub Init()
+        On Error Resume Next
+        Set oIniHelper= CreateObject("cowsUtils.cowsini")
+        COWSIniPath = fso.GetSpecialFolder(0) & "\Cows.ini"
+        If   Err   <>   0   Then 
+            ' error that means not install specific feature
+        End   If
+		SetVarsFromCOWSIni()
+	End sub
+
+	Sub SetVarsFromCOWSIni()
+		
+		SERVER_DRIVE = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DRIVE")
+		SERVER_DIR = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DIR")
+		DOC_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "DOC_ROOT")
+		COWS_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "COWS_ROOT")
+		chemOfficePath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" &  COWS_ROOT & "\"
+		chemOfficeIniPath = GetAppIniPath("Core") & "ChemOffice.ini"
+		cssecurityScriptPath = chemofficePath & "cs_security\config\Oracle_Install_Scripts\"
+		coedbScriptPath = COEFrameworkInstallPath & "Framework\DBInstallScripts\CoeDB\Oracle_Install_Scripts\"
+		regScriptPath = COEFrameworkInstallPath & "Registration\DBInstallScripts\Oracle_Install_Scripts\"
+		inventoryScriptPath = chemofficePath & "ChemInv\config\oracle_install_scripts\"
+		chemacxScriptPath = chemofficePath & "ChemACX\config\Oracle_Install_Scripts\"
+		DataLoaderPath = COEFrameworkInstallPath & "DataLoader\"
+		DataLoaderClickOncePath = DataLoaderPath & "DataLoader_ClickOnce\"
+		DataLoaderClickOnceGoodsPath = DataLoaderClickOncePath & GetClickOnceGoodsPathFromMage(DataLoaderClickOncePath & "\mage_dataloader.bat") & "\"
+		'CSBR 131495 - LOC added by Soorya on 6-Oct-2010
+		'Purpose - RLSConfigPath points to the path of the RLSConfigTool
+		RLSConfigToolPath = COEFrameworkInstallPath & "Registration\Config\RLSConfigurationTool\" 'End of change for csbr 131495
+	End Sub
+	
+	Function GetClickOnceGoodsPathFromMage(path)
+		'CSBR-158777: An extra folder "Application Files" got added in by the installer for DataLoader_12_5_0_1213
+		GetClickOnceGoodsPathFromMage = "Application Files\" & REFindInFile(path, vbUseDefault, "DataLoader_[0-9_]+", true)
+	End Function
+	
+	Function GetINIValue(iniPath, sectionName, keyName)
+        On Error Resume Next
+        Dim iniValue
+        iniValue = oIniHelper.VBGetPrivateProfileString(Trim(sectionName), Trim(keyName), Trim(iniPath))
+        TraceLogError VERBOSEMSG, "GetIniValue" , "iniPath=" & iniPath & vbCrLf & Space(12) &  "sectionName=" & sectionName & vbCrLf & Space(12) & "keyName=" & keyName & vbCrLf & Space(12) & "inivalue=" & iniValue
+        if iniValue <> "INIEmpty" then
+            GetINIValue = iniVAlue
+        else
+            GetINIValue = ""
+        end if
+        If   Err   <>   0   Then 
+        End If
+	End Function
+	'//////////////////////////////////////////////////////////////////////
+	'  Setup for Tracing, Logging and Error Reporting
+	'//////////////////////////////////////////////////////////////////////
+	Dim logLine
+	Dim FileSetup
+	Dim oFso
+	Dim sTempFolder
+	Dim oLogFileObject
+
+	'//////////////////////////////////////////////////////////////////////
+	'  TraceandLogError
+	'//////////////////////////////////////////////////////////////////////
+	Sub TraceLogError(nLevel, sCodeLocation, sText)
+
+    	if sTraceLevel <= nLevel Then 
+    		Dim label
+		label = "Info"
+		if nLevel >= 30 then 
+			label = "**ERROR**"
+			errCount = errCount + 1
+		Elseif nLevel >=15 then
+			label = "**WARNING**"
+			warnCount = warnCount + 1
+		end if 
+    		LogLine =  Now & "   Severity: " & nLevel & "  Message Occurred in: " & sCodeLocation & _
+    			vbNewline & "   " & label & ": " & sText & vbNewLine
+    	
+    		If msgAction = "INTERACTIVE" or msgAction = "BOTH" Then
+    			msgbox LogLine
+    		End If
+
+    		If msgAction = "LOG" or msgAction = "BOTH" Then
+    			If FileSetup <> True Then 
+    				SetupFileLogging sLogFileName
+    			End If
+    			oLogFileObject.writeline LogLine
+    		End If
+    	End If
+	End Sub
+
+
+
+	'//////////////////////////////////////////////////////////////////////
+	'  Log File Setup (required for tracelogerror
+	'//////////////////////////////////////////////////////////////////////
+	Sub SetupFileLogging(sFilename)
+	' Could be removed if file logging will never be used
+		Set oFSO = CreateObject("Scripting.FileSystemObject")
+		sTempFolder = oFSO.GetSpecialFolder(2)
+	
+		If sFilename <> "" Then
+			'sTempName = oFSO.GetFileName(sFilename)
+			'sLogFileName = sTempFolder & "\" & sTempName
+		Else
+			'Generate random name
+			sTempName = oFSO.GetFileName(oFSO.GetTempName)
+			sLogFileName = sTempFolder & "\" & lcase(left(sTempName, InstrRev(sTempName,".")-1)) & ".log"
+		End If
+	
+		If oFSO.FileExists(sLogFileName) and not bLogFileOverwrite Then
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 8, False)
+		Else
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 2, True)
+		End If
+		oLogFileObject.writeline Now & "  Logging Started"
+	
+		FileSetup = True
+	
+	End Sub
+
+	Sub CopyFile(fromPath, toPath)
+		Dim file
+		on error resume next
+	
+		fso.CopyFile fromPath, toPath
+	
+		if err.number <> 0 then
+			TraceLogError ERRORMSG, "CopyFile", "Error in CopyFile: " & fromPath & " to " & toPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+		Else
+			TraceLogError INFOMSG,  "CopyFile", "Copied file(s) " & fromPath & " to " & toPath
+		End if
+	End sub
+
+	Function Window_onload()
+		Dim ELNCOEIntegPath
+		window.resizeTo 800,750
+		window.moveTo 100, 0
+		swapLayers("lyr1")
+		if not isELNInstalled then DisableTSControls "ENOTEBOOK"
+		if not isBAInstalled then DisableTSControls "BIOASSAYDB"
+		
+		'Done by - Soorya Anwar
+		'Date - 11-24-2010
+		'Purpose - The if condition has been added here to ensure that the methods that load COE configuration details are called only if COE is installed
+		if isCOEInstalled = true then 
+		    ReadCurrentCOEFrameworkConfigSettings()
+		    ReadCurrentAppIniSettings()
+		    ReadTSDataFileSizes()
+		    ReadTSDataFilePaths()
+		    SetVarsFromCowsIni()
+		    document.all.txtCOWSIniPath.value = COWSIniPath
+		    document.all.txtchemOfficePath.value = chemOfficePath
+		    document.all.txtInstalledApps.value = installedApps & appList 
+		    document.all.txtOraServiceName.value = currentOracleServiceName
+		    COEHTTPHostName = currentCOEHostName
+		    LocalMachineName = oNetwork.ComputerName
+		    document.all.txtHTTPHostName.value = COEHTTPHostName
+		    document.all.txtLDAPConfigXML.value = currentLDAPConfigXML
+		    document.all.chkInvACX.checked = bCurrentInvACX
+		    document.all.chkInvReg.checked = bCurrentInvReg
+		    document.all.chkInvGroupSecurity.checked = bCurrentInvGroupSecurity
+		    'CSBR-158685: Set the default/saved values for safety data
+		    document.all.chkInvSafetyData.checked = bCurrentInvSafetyData
+		    document.all.chkInvUserPreferences.checked = bCurrentInvUserPreferences   
+		    SelectRadioValue document.all.radioACXDBType, currentACXDBType
+		    SelectRadioValue document.all.radioAuthenticationMode, currentSSODefaultProvider
+	    SelectRadioValue document.all.radioDateFormat, currentDateFormat
+		    'CSBR 126522 - Changed by Soorya Anwar on 15-Jul-2010.
+		    LoadLocalization()	'End of Change			
+		    'CSBR 132150 - Code change by Soorya on 18-Oct-2010
+		    'Purpose - ON launching Server Configuration Tool, the previously saved RLS settings are set accordingly
+		    ReadCurrentRegRLSValue 		
+		    SelectRadioValue document.all.radioRLSSettings, currentRegRLSValue 'End of Change for CSBR 132150
+          
+	            CheckRequiredDSNs()
+			
+		else
+			ReadTSDataFileSizes()
+			ReadTSDataFilePaths()  
+			ELNCOEIntegPath = ENotebookPath & "Pro\COEIntegrationConfig\"				
+			currentOracleServiceName = GetCurrentOraServiceFromELNConfig(ELNCOEIntegPath)							
+			currentCOEHostName = GetCurrentCOEURLFromELNConfig(ELNCOEIntegPath)	
+			COEHTTPHostName = GetHostNameFromURL(currentCOEHostName)	' this also sets the port number and sets the protocol checkbox
+			document.all.txtOraServiceName.value = currentOracleServiceName
+			document.all.txtHTTPHostName.value = COEHTTPHostName
+			DisableAllNonELNControls()
+		end if
+		SetDefaultSessionTimeout()
+	End function
+    
+	'CSBR# 131085
+	'Done by - Soorya Anwar
+	'Date - 11-24-2010
+	'Purpose - DisableAllNonELNControls method has been added to disable all non ELN controls.
+	Sub DisableAllNonELNControls() 
+		'Disabling Server Settings tab controls
+		DisableRadioButtons document.all.radioDateFormat
+		document.all.drpLocalization.disabled = true
+		document.all.txtWinUname.disabled = true
+		document.all.txtWinPwd.disabled = true
+		document.all.txtWinPwd2.disabled = true
+		DisableRadioButtons document.all.radioAuthenticationMode
+		
+		'Disabling App Settings tab controls
+		DisableRadioButtons document.all.radioACXDBType
+		document.all.chkInvACX.disabled = true
+		document.all.chkInvReg.disabled = true
+		document.all.chkInvGroupSecurity.disabled = true
+		document.all.chkInvSafetyData.disabled = true
+		document.all.chkInvUserPreferences.disabled = true
+		DisableRadioButtons document.all.radioRLSSettings
+		document.all.txtSysUsername.disabled = true
+		document.all.txtSysPassword.disabled = true
+		
+		' Disabling schema pwds tab controls
+		document.all.txtSecPwd.disabled = true
+		document.all.txtSecPwd2.disabled = true
+		document.all.chkEncryptSec.disabled = true
+		document.all.txtRegPwd.disabled = true
+		document.all.txtRegPwd2.disabled = true
+		document.all.chkEncryptReg.disabled = true
+		document.all.txtInvPwd.disabled = true
+		document.all.txtInvPwd2.disabled = true
+		document.all.chkEncryptInv.disabled = true
+		document.all.txtSysPwd.disabled = true
+		document.all.txtSysPwd2.disabled = true		
+		document.all.chkEncryptSys.disabled = true		
+		document.all.txtACXPwd.disabled = true
+		document.all.txtACXPwd2.disabled = true
+		document.all.chkEncryptACX.disabled = true
+		
+		'Disabling all tablespace params tab controls		
+		document.all.txt_COEDB_TablespaceSize.disabled = true	
+		document.all.txt_COEDB_TablespaceSize.style.color = "#DDDDDD"
+		document.all.txt_COEDB_idxTablespaceSize.disabled = true		
+		document.all.txt_COEDB_lobTablespaceSize.disabled = true		
+		document.all.txt_COEDB_auditTablespaceSize.disabled = true		
+		document.all.txt_COEDB_tempTablespaceSize.disabled = true		
+		document.all.txt_REGDB_TablespaceSize.disabled = true		
+		document.all.txt_REGDB_idxTablespaceSize.disabled = true		
+		document.all.txt_REGDB_lobTablespaceSize.disabled = true		
+		document.all.txt_REGDB_cscartTablespaceSize.disabled = true		
+		document.all.txt_CHEMINVDB2_TablespaceSize.disabled = true		
+		document.all.txt_CHEMINVDB2_idxTablespaceSize.disabled = true		
+		document.all.txt_CHEMINVDB2_lobTablespaceSize.disabled = true		
+		document.all.txt_CHEMINVDB2_cscartTablespaceSize.disabled = true		
+		document.all.txt_CHEMINVDB2_auditTablespaceSize.disabled = true		
+		document.all.txt_CHEMACXDB_TablespaceSize.disabled = true
+		document.all.txt_CHEMACXDB_idxTablespaceSize.disabled = true
+		document.all.txt_CHEMACXDB_lobTablespaceSize.disabled = true		
+		document.all.txt_CHEMACXDB_cscartTablespaceSize.disabled = true				
+	End Sub
+
+	
+
+	Sub SetDefaultSessionTimeout
+		Dim oNode
+		GetCSProgFolder()
+
+       
+			CoeManagerConfigPath = GetCSProgramsFolder & COEInstallFolderName & "\Manager\Web.config"
+       
+
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.load(CoeManagerConfigPath)
+		Set oNode = ObjDom.selectSingleNode("//sessionState")
+		if NOT (oNode is Nothing) then
+		    document.all.txtSessionTimeOut.value = oNode.getAttribute("timeout") 
+			  		    else 
+		    document.all.txtSessionTimeOut.value="20"
+        End if 
+	End Sub
+
+	Sub DisableTSControls(ctype)
+		Dim elm
+		For each elm in document.forms(0).elements
+			if instr(elm.Name, "_" & ctype & "_") > 0 then
+				DisableAndGreyTextBox(elm.Name)
+			end if	
+		Next
+		For each elm in document.all
+			if instr(elm.id, "lbl_" & ctype & "_") > 0 then
+				DisableAndGreyTextBox(elm.id)
+			end if	
+		Next 		
+	End Sub	
+	
+	Sub DisableAndGreyTextBox(elmName)
+		document.all(elmName).disabled = true
+		document.all(elmName).style.backgroundcolor = "#DDDDDD"
+	End Sub
+	
+    Sub RequireValue(elm)
+		on error resume next
+        if  elm.value = "" then elm.focus()
+		if err.number = 2110 then 
+			on error goto 0
+		End if
+	End Sub
+        
+    Sub checkUserNameEntered(elm)
+        if document.all.txtWinUname.value = "" then
+            elm.blur()
+        End if
+    End Sub
+	
+	Function focusOnConfirm(pwdElm)
+		Dim pwdConfirmElm
+		Dim str
+		str = "document.all(""" & pwdElm.name & "2"")"
+		Set pwdConfirmElm = Eval(str)
+		pwdConfirmElm.value = ""
+		if pwdElm.value = "" then
+		    'toggleTestButton pwdElm, True  
+		    EXIT Function
+		End if    
+		setTimeOut "document.all(""" & pwdConfirmElm.name & """).focus",1			
+	End function
+	
+	Sub toggleTestButton(elm, isDisabled)
+	    Dim btnElm
+	    Dim chkElm    
+		Dim str
+		
+	    str = "document.all(""btn" & mid(elm.name, 4,3)& "TestConnection"  & """)"
+		Set btnElm = Eval(str)
+		str = "document.all(""chkEncrypt" & mid(elm.name, 4,3) & """)"
+		Set chkElm = Eval(str)
+		btnElm.disabled = isDisabled
+		on error resume next
+		if isDisabled then chkElm.checked = False
+		if err.number <> 0 then
+		    if err.number = 424 then 
+		        err.Clear
+		    else    
+		        msgbox "Error in toggleTestButton: " & err.number & " : " & err.Description
+		        on error goto 0
+		    end if    
+		End if  
+	End Sub
+	
+	Function focusOnElm(elm)
+		setTimeOut "document.all(""" & elm.name & """).focus",1
+	End function
+	
+	Function confirmPwd(pwdConfirmElm)
+		Dim pwdElm
+		Dim btnElm
+		Dim str
+		Dim elmTag
+	    
+	    elmTag = mid(pwdConfirmElm.name, 4, 3)
+		str = "document.all(""" & left(pwdConfirmElm.name, len(pwdConfirmElm.name)-1) & """)"
+		Set pwdElm = Eval(str)
+		if pwdConfirmElm.value <> "" then
+		    if lcase(pwdConfirmElm.value) <> lcase(pwdElm.value) then
+			    msgbox("Confirmation does not match.  Please retry.")
+			    focusOnElm(pwdElm)
+			    pwdConfirmElm.value=""
+			    pwdElm.value = ""
+			    focusOnElm(pwdElm)
+			    'toggleTestButton pwdElm, True
+		    else
+		        'toggleTestButton pwdElm, False
+		        document.body.style.cursor = "Wait"
+		        'msgbox "About to test acount Credentials..."
+		        if InStr(1,pwdElm.name, "Win") > 0 then
+		            setTimeOut "TestWinConnection()", 100
+		        else
+		            setTimeOut "TestConnection('" & elmTag & "')", 100
+		        End if    	
+		    End if
+		else
+		    pwdElm.value = ""
+		    'toggleTestButton pwdElm, True    
+	    End if	    
+	End function
+    
+	Function EncryptClicked(cryptElm)
+		Dim pwdElm2
+		Dim str
+		Dim elmTag
+		
+		elmTag = right(cryptElm.name,3)
+		str = "document.all(""" & "txt" & elmTag & "Pwd2" & """)"
+		Set pwdElm2 = Eval(str)
+		if len(pwdElm2.value) = 0 then
+			msgbox "Password and confirmation are required to enable encrypting."
+			cryptElm.checked = false
+		end if 
+		
+	End function
+
+    Sub TestWinConnection()
+        Dim uname
+	    Dim pwd
+	    Dim domain
+	    Dim tmpArr
+	     
+	    uname = document.all("txtWinUname").value
+	    pwd = document.all("txtWinPwd").value
+	    if uname = "" then
+	        msgbox "Service Account cannot be blank."
+	    else    
+	        if InStr(1,uname,"\") then
+	            tmpArr = split(uname,"\")
+	            domain = tmpArr(0)
+	            uname = tmpArr(1)    
+	        else
+	            domain = LocalMachineName
+	        End if
+	        
+	        ValidateUser domain, uname, pwd
+	    End if
+	    document.body.style.cursor = "default"
+    End Sub
+     
+    Sub CheckRequiredDSNs()
+        TestODBCConnection("chem_inv")
+    End Sub
+
+    Sub TestODBCConnection(DSNName)
+		Dim con
+		Dim rc
+		set con = createobject("ADODB.Connection")
+		on error resume next
+		con.open "DSN=" & DSNName
+		
+		if err.number <> -2147217843 then ' Invalid username/pwd expected when dsn is presentr
+			if InStr(lcase(err.description), "data source name not found") > 0  then
+				rc = msgbox ("Warning:  " & vbCrLf &  vbCrLf & "This tool was unable to detect the presence of a required ODBC DSN named " & DSNName & VbCrLf & " Would you like to launch the ODBC Control Panel now?", VBYesNo) 
+				if rc = VBYes then
+					WshShell.Run Sys32Path & "odbcad32.exe"
+				end if
+			else
+			  	msgbox "Warning: Unexpected error while testing ODBC connection for DSN named " & DSNName & vbCrLf  & err.description
+		        end if	
+		end if
+		err.clear
+		conn.close  
+    End sub	
+
+    Sub TestOraServiceName(serviceName)
+		Dim con
+		set con = createobject("ADODB.Connection")
+		on error resume next
+		con.open "Provider=OraOLEDB.Oracle.1;Data Source=" & serviceName
+		
+
+		if InStr(err.description, "ORA-01017")  = 0  then
+			if Instr(err.description, "ORA-12154") > 0 then
+				msgbox "Warning:  " & vbCrLf &  vbCrLf & "Cannot connect to Oracle using service name: " & serviceName & VbCrLf & " Error: " & err.description 
+			else
+			  	msgbox "Warning: Unexpected error while connecting to Oracle using service name: " & serviceName & vbCrLf & "Error: " & err.description
+		        end if	
+		end if
+		err.clear  
+		conn.close
+    End sub
+
+	Sub TestConnection(elmTag)
+	    Dim conStr
+	    Dim con
+	    Dim uname
+	    Dim pwd
+	    Dim oraServiceName
+	    Dim str
+	    Dim pwdElm
+	    Dim pwdElm2
+	   
+	    
+	    oraServiceName = document.all("txtOraServiceName").value
+	    
+	    if oraServiceName <> "" then
+	        str = "document.all(""txt" & elmTag & "Pwd"")"
+	        Set pwdElm = Eval(str)
+	        str = "document.all(""txt" & elmTag & "Pwd2"")"
+	        Set pwdElm2 = Eval(str)
+	        pwd = pwdElm.value
+	         
+	        uname = document.all("lbl" & elmTag & "Uname").innerHtml
+	        conStr = "Provider=OraOLEDB.Oracle.1;User Id=" & uname & ";Password=" & pwd & ";Data Source=" & oraServiceName
+	        Set con = CreateObject("ADODB.Connection")
+	        on error resume next
+	        con.open conStr
+	        if err.number <> 0 then
+	            msgbox err.Description
+	            pwdElm.value = ""
+	            pwdElm2.value = ""
+	            pwdElm.focus
+	        else
+	            'msgbox "Successfully connected to " & ucase(oraServiceName) & " as " & uname
+	            conn.close
+	        End if
+	    Else
+	        msgbox "Oracle Service Name is required"
+	    End if
+	    document.body.style.cursor = "default"
+	End Sub	
+	
+	Sub RestartService(serviceName, milisecondsDown, startName, pwd)
+	    Dim objWMIService, objItem, objService
+        Dim colListOfServices, strComputer
+        strComputer = "."
+        
+        'On Error Resume Next
+        serviceName = "'" & serviceName & "' "
+        Set objWMIService = GetObject("winmgmts:" _
+        & "{impersonationLevel=impersonate}!\\" _
+        & strComputer & "\root\cimv2")
+        Set colListOfServices = objWMIService.ExecQuery _
+        ("Select * from Win32_Service Where Name ="_
+        & serviceName)
+        For Each objService in colListOfServices
+            objService.Change Null,Null,Null,Null,Null,Null, startName, pwd,Null,Null,Null 
+            objService.StopService()
+            
+            'uint32 Change(
+            '              [in]  string DisplayName,
+            '              [in]  string PathName,
+            '              [in]  uint32 ServiceType,
+            '              [in]  uint32 ErrorControl,
+            '              [in]  string StartMode,
+            '              [in]  boolean DesktopInteract,
+            '              [in]  string StartName,
+            '              [in]  string StartPassword,
+            '              [in]  string LoadOrderGroup,
+            '              [in]  string LoadOrderGroupDependencies,
+            '              [in]  string ServiceDependencies
+            '            );
+
+            
+            sleep(milisecondsDown)
+            objService.StartService()
+        Next 
+        TraceLogError INFOMSG, "RestarWindowsService", serviceName & " service has been re-started under the credentials of " & startName  
+	End sub
+	
+	Sub Sleep(msecs) 
+        Dim Ret  
+        On Error Resume Next  
+        Ret = WshShell.Run("sleeper.vbs " & msecs, , True)  
+        If (Ret <> 0) Then  
+            MsgBox "Possible problem with Sleep Function. Make sure sleeper.vbs is in the same folder as this hta."  
+        End If  
+    End Sub  
+	
+	Sub DoCancel()
+	    Dim rc
+	    rc = msgbox("Are you sure you want to cancel and close this window?", vbYesNo)
+        if rc = vbYes then
+            window.close()
+        End if    
+	End Sub
+	
+	Function GetSelectedRadioValue(elm)
+	    Dim i
+	    For i = 0 to elm.length-1
+	        if elm(i).checked then GetSelectedRadioValue = elm(i).value
+	    Next
+	End function
+	
+	Function SelectRadioValue(elm, value)
+	    Dim i
+	    For i = 0 to elm.length-1
+	        if elm(i).value = value then elm(i).click()
+	    Next
+	End function
+	
+	'CSBR# 131085
+	'Done by - Soorya Anwar
+	'Date - 11-24-2010
+	'Purpose - Adding a general function to disable radiobuttons
+	Function DisableRadioButtons(elm)
+		Dim i
+		For i = 0 to elm.length - 1
+			elm(i).disabled = true
+		Next
+	End Function
+	
+	'CSBR# 126522
+	'Done by - Soorya Anwar
+	'Date - 5-Jul-2010
+	'Purpose - To add the LoadLocalixation function that loads Localization dropdown at the time of ConfigTool.hta window load	
+	Function LoadLocalization()
+		Dim i
+		For i = 0 to document.all.drpLocalization.length - 1
+			if document.all.drpLocalization(i).value = currentDisplayCulture then
+				document.all.drpLocalization(i).selected = True
+			End if
+		Next	
+	End function
+	
+	Sub SaveConfig()
+	    Dim tmpVal, tmpVal2
+	    Dim secPwd
+	    Dim acxPwd
+	    Dim invPwd
+	    Dim regPwd
+	    Dim COVersion
+	    Dim dateFormat
+	    Dim rc
+	    Dim msg
+	    Dim winUname
+	    Dim winPwd
+	    Dim tmpEncrypt
+		Dim newRLSVal,OracleUser,OraclePass
+	
+		'CSBR# 131085
+		'Done by - Soorya Anwar
+		'Date - 11-24-2010
+		'Purpose - Code block has been rearranged such that functionality required commonly by COE and ELN such as validating oracle service name and host name have been grouped together
+		'        -  Code blocks that validate COE-only configuration have been grouped together and will be invoked if COE is installed
+		isErrorSet = false
+		errCount = 0
+		warnCount = 0
+	    OracleServiceName = document.all.txtOraServiceName.value
+	    If OracleServiceName = "" then
+	        document.body.style.cursor = "default"
+			swapLayers("lyr1")
+	        msgbox "Oracle Service Name is required.  Please retry."
+	        Exit SUB  '==============>  EXIT POINT
+	    Else
+			TestOraServiceName OracleServiceName	
+	    End if
+		COEHTTPHostName = document.all.txtHTTPHostName.value
+		If COEHTTPHostName = "" then
+		    swapLayers("lyr1")
+			msgbox "HTTP Host Name is required.  Please retry."
+			Exit SUB  '==============>  EXIT POINT
+		End if
+	
+
+		if isCOEInstalled then
+			
+			' Register the ScptUtl.OCX because the installer does not seem to register it correctly.
+			RegisterScriptUtils()
+			'CSBR-158164: Register the WebAdmin component
+			RegisterWebAdmin()
+			
+			if NOT ValidateLDAPConfigXML then 
+				swapLayers("lyr1")
+				Exit SUB  '==============>  EXIT POINT
+			End if				
+			'CSBR 131495 - Code change by Soorya Anwar on 6-Oct-2010
+			'Purpose - to get the rlsValue, oracle account name and password entered by user to be used for invoking RLSConfig Tool.
+			newRLSVal = GetSelectedRadioValue(document.all.radioRLSSettings)	
+			OracleUser = document.all.txtSysUsername.value
+			OraclePass = document.all.txtSysPassword.value 'end of change for csbr 131495
+			' CSBR 131495 - Code change by Soorya Anwar on 6-Oct-2010	
+			' Purpose - If the User chooses to make use of RLS, the user name and password are made mandatory. 
+			' If the user doesnt choose to make use of the RLS Setting the condition wud be that previous and current state of RLS would be off.
+			if not( (UCase(currentRegRLSValue) = UCase(newRLSVal)) and (UCase(newRLSVal) = "OFF")) then	
+				if OracleUser = "" and OraclePass = "" then
+					document.body.style.cursor = "default"
+					swapLayers("lyr2")
+					setTimeOut "document.all.txtSysUsername.focus", 1
+					msgbox "Please enter System Username and Password."
+					Exit SUB  '==============>  EXIT POINT			
+				elseif OracleUser = "" then
+					document.body.style.cursor = "default"
+					swapLayers("lyr2")
+					setTimeOut "document.all.txtSysUsername.focus", 1
+					msgbox "Please enter System Username."
+					Exit SUB  '==============>  EXIT POINT			
+				elseif OraclePass = "" then
+					document.body.style.cursor = "default"
+					swapLayers("lyr2")
+					setTimeOut "document.all.txtSysPassword.focus", 1
+					msgbox "Please enter System Password."
+					Exit SUB  '==============>  EXIT POINT		
+				end if			
+			end if
+		end if 'End of Change for CSBR 131085	
+		
+	    document.body.style.cursor = "wait"
+	    
+		rc = msgbox("Are you sure you want to reconfigure the system based on the selected settings?", vbYesNo)
+        if rc = vbNo then
+            document.body.style.cursor = "default"
+            EXIT Sub  '===============>  EXIT POINT
+        End if
+		
+		selectedPort = ""
+		if document.all.txtHttpPort.value <> "" AND Cstr(document.all.txtHttpPort.value) <> "80" AND cstr(document.all.txtHttpPort.value) <> "443" then selectedPort = ":" & document.all.txtHttpPort.value
+		
+		selectedProtocol = "http"
+		
+		if document.all.isSecureHttp.checked then 
+			selectedProtocol = selectedProtocol & "s"
+			if isCOEInstalled then 			
+				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "true" 
+			end if
+		Else
+			if isCOEInstalled then 
+				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "false"
+			end if
+		End if
+		
+		selectedProtocol = selectedProtocol & "://"
+		
+		fullURL = selectedProtocol & COEHTTPHostName & selectedPort 
+		'CSBR 131085 - added if condition below to set currHttpPort - common functioMsgnality
+		if document.all.txtHttpPort.value <> "" AND Cstr(document.all.txtHttpPort.value) <> "80" AND cstr(document.all.txtHttpPort.value) <> "443" then currHttpPort = ":" & document.all.txtHttpPort.value
+	    TraceLogError INFOMSG, "SaveConfig", "COE 11 started saving the configuration"
+	    TraceLogError INFOMSG, "SaveConfig", "Installed Applications: " & appList
+	    
+	    
+	    TraceLogError INFOMSG, "SaveConfig", "Oracle Service Name entered: " & OracleServiceName
+		'CSBR# 131085
+		'Done by - Soorya Anwar
+		'Date - 11-24-2010
+		'Purpose - Code blocks that save COE-only configuration have been grouped together and will be invoked if COE is installed	    
+		if isCOEInstalled then 
+			SetCOEFrameworkConfigSSOUrl()
+		
+				SetClassicSSOCOMUrl()
+		
+		
+	    
+			'==== ACX Database Type
+			if isACXInstalled then
+				isACXOra = (GetSelectedRadioValue(document.all.radioACXDBType) = "ORACLE")
+				if isACXOra then
+					if inStr(1, ucase(appList), "CHEMINV") > 0 then SwapOraIniFiles("ChemInv")
+					SwapOraIniFiles("ChemACX")
+				else
+					if inStr(1, ucase(appList), "CHEMINV") > 0 then SwapAccessIniFiles("ChemInv")
+					SwapAccessIniFiles("ChemACX")
+				End if
+			End if
+			'==== Inventory Integration
+			if isInvInstalled then
+				SetAppIniValue "ChemInv", "invconfig.ini","APPLICATION", "INV_SERVER_NAME", COEHTTPHostName & currHttpPort      
+				tmpVal = "NULL"
+				tmpVal2 = "False"
+				if document.all.chkInvACX.checked then
+					tmpVal = COEHTTPHostName & currHttpPort
+					tmpVal2 = "True"
+				End if
+				SetAppIniValue "ChemACX", "acxconfig.ini", "SHOPPINGCART", "EXPORT_TO_CHEMINV", "True"     		
+				SetAppIniValue "ChemInv", "invconfig.ini","CHEMACX","ACX_SERVER_NAME", tmpVal	
+				tmpVal = "NULL"
+				if document.all.chkInvReg.checked then tmpVal = COEHTTPHostName & currHttpPort
+				SetAppIniValue "ChemInv", "invconfig.ini","CHEMREG", "REG_SERVER_NAME", tmpVal
+				'CSBR-159263: In case of inv-reg integration, take care to set USE_REGISTRATION_MAP to true
+				tmpVal = "False"
+				if document.all.chkInvReg.checked then tmpVal = "True"
+				SetAppIniValue "ChemInv", "invconfig.ini","CHEMREG", "USE_REGISTRATION_MAP", tmpVal	
+				' Setting Group Security keys
+				tmpVal = "False"
+				if document.all.chkInvGroupSecurity.checked then tmpVal = "True"
+				SetAppIniValue "ChemInv", "invconfig.ini", "SECURITY", "ENABLE_OWNERSHIP", tmpVal
+				SetGroupSecurityForCOEDB(tmpVal)			
+				'Setting the User Prefrences keys
+				tmpVal = "False"
+				if document.all.chkInvUserPreferences.checked then tmpVal = "True"
+				SetAppIniValue "ChemInv", "invconfig.ini", "CONTAINERS", "SHOW_USER_PREFERENCES_LINK", tmpVal
+				' Settings for Group Security key for User Prefrences
+				tmpVal = "False"
+				if document.all.chkInvGroupSecurity.checked then tmpVal = "True"
+				userPreferencesFields = GetINIValue(GetAppIniPath("ChemInv") & "invconfig.ini", "CONTAINERS", "USERPREFERENCES_FIELDS")
+				arruserPreferencesFields = split(userPreferencesFields,";")
+				for each userPreferencesField in arruserPreferencesFields
+					userPrefrenceStr = GetINIValue(GetAppIniPath("ChemInv") & "invconfig.ini", "CONTAINERS", userPreferencesField)
+					if instr(userPrefrenceStr, "principal_id_fk") > 0 then
+						exit for
+					else
+						userPrefrenceStr = ""
+					end if
+				next      
+				if userPrefrenceStr <> "" then
+					if tmpVal = "False" then
+						newUserPrefrenceStr = replace(userPrefrenceStr, "1:1:", "0:0:")	        
+					else
+						newUserPrefrenceStr = replace(userPrefrenceStr, "0:0:", "1:1:")	        
+					end if
+					if userPrefrenceStr <> newUserPrefrenceStr then
+						SetAppIniValue "ChemInv", "invconfig.ini", "CONTAINERS", "UP_FIELD61", " " & newUserPrefrenceStr
+					end if
+				end if
+
+				' CSBR-158685: Setting Safety Data key
+				tmpVal = "False"
+				if document.all.chkInvSafetyData.checked then tmpVal = "True"
+				SetAppIniValue "ChemInv", "invconfig.ini", "SUBSTANCES", "DISPLAY_SAFETY_DATA", tmpVal
+			End if
+			'==== DateFormat
+			SetDateFormat(getSelectedRadioValue(document.all.radioDateFormat))
+			
+			'CSBR# 126552 by Soorya on 15-Jul-2010. 
+			'==== Localization		
+			SetCOEConfigCultureInfo(document.all.drpLocalization.options(document.all.drpLocalization.selectedIndex).Value) 'End of Change        
+			
+			'==== Check new tag for Manage Data Sources
+	
+
+			'==== COELDAP settings
+			if GetSelectedRadioValue(document.all.radioAuthenticationMode) = "COELDAP" then 
+				SetCOE11ConfigLDAPParams()
+			else
+				SetCOE11ConfigServiceName()
+				
+				SetCOE11ConfigSSOProvider("CSSecurity")
+			end if
+
+
+			'==== SET ORACLE SERVICE NAME:  Sets the serviceName in ini and udl files  ====
+			SetOraServiceNames()
+			
+		
+			
+
+			'==== SET INI ABSOLUTE PATHS:  Sets any absolute patch in ini file to match the drive letter from cows.ini
+			SetAllIniAbsolutePaths()
+
+			'==== SET ABSOLUTE PATH for report writer
+			SetAbsolutePath SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" & COWS_ROOT & "\webserver_source\cfserverasp\RPT\REPORTS.DAT" 
+
+			SetAspMaxRequestEntityAllowed()
+			'These method calls are required to update session timeout value
+			SetAspSessiontimeout()
+			SetAuthTicketTimeout()
+	'TEMPORARY REMOVE UNTIL WE FIX missing tags in web.config        
+			SetAspNetSessiontimeout()
+			'----
+			secPwd = document.all.txtSecPwd.value
+			if secPwd <> "" then 
+				SetAppIniValue "CS_SECURITY","cfserver.ini", "GLOBALS", "SEC_PWD", secPwd
+				SetAppIniValue "CS_SECURITY","cfserver.ini", "GLOBALS", "ENCRYPT_PWD", Ucase(document.all.chkEncryptSec.checked)
+			End if
+			
+			If isRegInstalled then
+				regPwd = document.all.txtRegPwd.value
+				if regPwd <> "" then
+					SetAppIniValue "CHEM_REG","cfserver.ini", "REGISTRATION", "REG_PWD", regPwd
+					if secPwd <> "" then SetAppIniValue "CHEM_REG","cfserver.ini", "REGISTRATION", "SEC_PWD", secPwd
+					SetAppIniValue "CHEM_REG","cfserver.ini", "GLOBALS", "ENCRYPT_PWD", Ucase(document.all.chkEncryptReg.checked)
+				End if
+	    
+			End if
+			If isACXInstalled then
+				acxPwd = document.all.txtAcxPwd.value
+				if acxPwd <> "" then
+					if isACXOra then
+						SetAppIniValue "CHEMACX","cfserver.ini", "CHEMACX", "CHEMACX_PWD", acxPwd
+					Else
+						msgbox "Warining: You have provided a new password for the CHEMACXDB schema, but have chosen to use the MS Access version of the ChemACX. The new password for CHEMACXDB will be ingnored."
+					End if
+					if isACXOra then SetAppIniValue "CHEMACX","cfserver.ini", "GLOBALS", "ENCRYPT_PWD", Ucase(document.all.chkEncryptAcx.checked)
+				End if
+			End if
+			if isInvInstalled then
+				invPwd = document.all.txtInvPwd.value
+				if invPwd <> "" then
+					SetAppIniValue "CHEMINV","cfserver.ini", "CHEMINV", "CHEMINV_PWD", invPwd
+					SetAppIniValue "CHEMINV","cfserver.ini", "CHEMINV", "INVREG_PWD", invPwd
+					if secPwd <> "" then SetAppIniValue "CHEMINV","cfserver.ini", "CHEMINV", "SEC_PWD", secPwd
+					if isACXOra AND acxPwd <> "" then SetAppIniValue "CHEMINV","cfserver.ini", "CHEMINV", "INVACX_PWD", acxPwd
+					SetAppIniValue "CHEMINV","cfserver.ini", "GLOBALS", "ENCRYPT_PWD", Ucase(document.all.chkEncryptInv.checked)	
+				End if
+			End if
+        End if
+        
+        winUname = document.all.txtWinUname.value
+        winPwd = document.all.txtWinPwd.value
+        
+        if InStr(1,winUname,"\") = 0 then
+            winUname = ".\" &  winUname   
+        End if
+        
+        if winUname <> "" and winPwd <> "" then
+            ResetServiceAccountPasswords winUname, winPwd
+            SetCOMApplicationCredentials "CSDO12", winUname, winPwd
+            SetCOMApplicationCredentials "ReportQ", winUname, winPwd
+            SetCOMApplicationCredentials "Base64Decoder", winUname, winPwd
+            SetCOMApplicationCredentials "COESSO", winUname, winPwd
+            SetCOMApplicationCredentials "ChemImp", winUname, winPwd
+            SetCOMApplicationCredentials "CSSecurityLDAP", winUname, winPwd
+            SetCOMApplicationCredentials "BLOB", winUname, winPwd
+            RestartService "RPTService", 5000, winUname, winPwd 
+        End if
+
+       
+    
+		document.body.style.cursor = "wait"
+	
+		SaveSQLParamsToServer()
+		UpdateRegConfigFiles()					
+		RemoveAssmeblyBindingFromClientConfig DataLoaderClickOnceGoodsPath & "DataLoader.exe.config.deploy"
+		RemoveTrustInfoFromDataLoaderManifest DataLoaderClickOnceGoodsPath & "DataLoader.exe.manifest"
+		SetDataLoaderClickOnceConfigFileFor3TierMode()
+			
+		'CSBR# 131495 - Code Chnage by soorya on 06-Oct-2010
+		'Purpose the RLSConfiguration tool is invoked only if user wants to make use of RLS functionality.
+		if not( (UCase(currentRegRLSValue) = UCase(newRLSVal)) and (UCase(newRLSVal) = "OFF")) then
+			RunRLSConfigTool newRLSVal, OracleServiceName, OracleUser, OraclePass
+		end if		
+		'End of Change		
+		UpdateClickOnceUrls()
+		'End of CSBR 131085
+		'CSBR# 124407
+		'Date of Change - 10-Aug-2010
+		'Changed by - Soorya Anwar
+		'Purpose - to call ELN_related functions only if the upgrade eln config checkbox is checked
+		if isELNInstalled then
+			UpdateELNDefaultSystemPassword()
+			UpdateELNIntegrationConfigFiles() 
+			UpdateELNOracleConfigFile() 
+			if isCOEInstalled then
+				SetCOWSWebserviceWebConfigEntries()	
+			end if
+		end if	
+		'End of Change for 124407
+		
+		
+		document.body.style.cursor = "default"
+		
+		'==== Run Mage utility
+        
+		RunAllMageFiles()				
+        
+		
+	'CSBR# 131495 - Code Chnage by soorya on 06-Oct-2010
+	'Purpose the RLSConfiguration tool is invoked only if user wants to make use of RLS functionality.
+		if not( (UCase(currentRegRLSValue) = UCase(newRLSVal)) and (UCase(newRLSVal) = "OFF")) then
+			RunRLSConfigTool newRLSVal, OracleServiceName, OracleUser, OraclePass
+		end if		
+	'End of Change		
+        '****************************END SCRIPTS TASKS ********************************
+
+        
+        TraceLogError INFOMSG, "SaveConfig", "Finished Saving Configuration"
+        
+        msg =   "Configuration changes have been saved." & vbCrLf &_
+                "Log file has been saved to: " & sLogFileName & vbCrLf &_
+                errCount & " Errors were logged." & vbCrLf  &_
+				warnCount & " Warnings where logged." & vbCrLf  &_
+                "Would you like to view the log file now?"
+
+        ' Close log
+	oLogFileObject.close
+	FileSetup = false
+
+	rc = msgbox("IIS needs to be restarted before the configuration changes take effect.  Do you want to restart it now?", vbYesNo)
+        if rc = vbYes then
+            IISReset()
+        End if 
+	
+        rc = msgbox(msg, vbYesNo)
+        document.body.style.cursor = "default"
+        if rc = vbYes then
+            RunInstaller "", "Notepad """ & sLogFileName & """"            
+        End if 
+    
+	End Sub 
+
+    
+
+  	
+	'CSBR# 131495 -Code change by soorya on 06-Oct-2010 
+	'Purpose: RunRLSConfigTool has been added to invoke rlsconfigurationtool and pass-on some required parameters to it.
+	
+	Sub RunRLSConfigTool(strRLSValue, strServiceName, strUser, strPassword)
+        On Error Resume Next		
+        Dim strLogFileName
+        strLogFileName = "log_runRLSConfigurationTool.txt"			
+        RunCmd RLSConfigToolPath, "%comspec% /c CambridgeSoft.COE.RLSConfigurationTool.exe -v=""" & strRLSValue & """ -i=""" & strServiceName & """ -u=""" & strUser & """ -p=""" & strPassword & """ > " & strLogFileName 
+        CopyFile RLSConfigToolPath &  strLogFileName, setupLogsPath & strLogFileName			
+        currentRegRLSValue = strRLSValue
+        msgbox "RLS Settings for Registration have been updated. Results have been logged to: " & setupLogsPath & strLogFileName
+        If Err <> 0 Then
+        End If
+	End Sub
+	' End Of Change for CSBR 131495
+
+	Sub RunMage(appName, path, fileName)
+       
+            Dim log
+		    log = "log_" & replace(filename, "bat", "txt")
+		    document.body.style.cursor = "wait"
+		    RunCmd path, fileName & " > " & log
+		    CopyFile path & log, setupLogsPath & log
+		    document.body.style.cursor = "default"
+		    msgbox "ClickOnce mage results for " & appName & " logged to: " & setupLogsPath & log
+        
+	End Sub
+	
+	Sub RunAllMageFiles()
+	'CSBR# 131085
+	'Done by - Soorya Anwar
+	'Date - 11-24-2010
+	'Purpose - The click once mage files will be run for Dataloader and Chembioviz only if COE is installed
+		if isCOEInstalled then 'csbr 131085
+			RunMage "DataLoader", DataLoaderClickOncePath, "mage_dataloader.bat"
+		end if ' End of CSBR 131085
+		'CSBR# 124407
+		'Date of Change - 10-Aug-2010
+		'Changed by - Soorya Anwar
+		'Purpose - to enable support for custom install through error handling
+		if isELNInstalled then
+			on error resume next
+			RunMage "Enotebook Client", ENotebookClickOncePath, ENotebookMageBatName 			
+			if err.number <> 0 then				
+				TraceLogError ERRORMSG, "RunAllMageFiles", "Error while updating " & ENotebookClickOncePath & ENotebookMageBatName  & ". Error Info: "  & err.Source & " " & err.number & " " & err.Description
+				err.clear
+			end if
+		end if
+		'End of change for 124407
+		
+	End Sub
+	
+	Sub UpdateELNDefaultSystemPassword()
+		Dim path
+		path = ENotebookScriptPath & "manual.sql"
+		REReplaceInFile path, "'manager2'", "'manager'", vbUseDefault
+		REReplaceInFile path, "(manager2)", "\(manager\)", vbUseDefault
+	End sub
+	
+	Sub ResetServiceAccountPasswords(uname, pwd)
+	    SetVirtualAnonymousCredentials "CfServerAdmin", uname, pwd
+	    SetVirtualAnonymousCredentials "CfServerAdsi", uname, pwd
+		SetVirtualAnonymousCredentials "ChemACX", uname, pwd
+		SetVirtualAnonymousCredentials "ChemInv", uname, pwd
+		SetVirtualAnonymousCredentials "ClickOnce", uname, pwd
+		SetVirtualAnonymousCredentials "CS_Security", uname, pwd
+		SetVirtualAnonymousCredentials "ENService", uname, pwd
+		
+	End sub
+	
+	Sub SetVirtualAnonymousCredentials(DirName, uname, pwd)
+	    Dim IISObject
+        Dim vDir
+        Dim vRoot
+        Dim strMachineName
+        Dim strObjectPath
+        Dim strPath
+        Dim success
+    	    
+        strMachineName = "localhost"
+        strObjectPath = "W3SVC/1"
+    	    
+        strPath = "IIS://" & strMachineName & "/" & strObjectPath
+    	    
+        Set IISObject = GetObject(strPath)
+        Set vRoot = IISObject.GetObject("IIsWebVirtualDir", "Root")
+        On Error Resume Next
+        Set vDir = vRoot.GetObject("IIsWebVirtualDir", DirName)
+        if err.number <> 0 then
+            msgbox "Error:  Could not find the virtual named " & DirName & " Errormsg: " & err.Description
+            on error goto 0
+        End if
+        vDir.AnonymousUserName = uname
+        vDir.AnonymousUserPass = pwd    
+        vDir.SetInfo
+    	    
+        Set vDir = Nothing
+        Set vRoot = Nothing
+        Set IISObject = Nothing
+	End Sub
+	
+	Sub SetDateFormat(dateFormat)
+	    SetClassicDateFormat(dateFormat)
+	End Sub
+	
+	Sub SetClassicDateFormat(dateFormat)
+	    Dim i
+	    Dim apps
+	    apps = "CHEMINV|CHEMACX"
+	    For i = 0 to ubound(appArray)
+		    if InStr(1,apps, ucase(appArray(i))) > 0 then
+		        SetAppIniValue appArray(i), "cfserver.ini","GLOBALS", "DATE_FORMAT", dateFormat
+		    end if 
+	    Next
+	End Sub
+	
+	'CSBR# 126552 by Soorya Anwar on 15-Jul-2010
+	'Purpose - code changed to persist the displayculture as selected by user and removing culture dependence on date format selected.	
+	Sub SetCOEConfigCultureInfo(cultureInfo)
+		Dim oNode
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)
+		Set oNode = ObjDom.selectSingleNode("//applicationDefaults")
+		oNode.setAttribute "displayCulture", cultureInfo
+		ObjDom.save(COEFrameworkConfigPath)
+	End Sub
+	
+	'This method will get the program files folder 
+	Function GetCommonProgDataFolder()
+		Dim wshShell
+		Set wshShell = CreateObject("WScript.Shell")
+		GetCommonProgramsDataFolder = WshShell.ExpandEnvironmentStrings("%PROGRAMFILES%") 
+		'Fix for CSBR:152743
+		if InStr(1,ucase(GetCommonProgramsDataFolder), ucase(SERVER_DRIVE)) = 0 then ' Use this code only if the drive returned in Shell cmd is not the right one
+			if InStr(1,GetCommonProgramsDataFolder, ":") > 0 then ' Check for the existence of the drive
+				GetCommonProgramsDataFolder = SERVER_DRIVE & mid(GetCommonProgramsDataFolder, InStr(1,GetCommonProgramsDataFolder, ":")+1) ' Use the server drive
+			end if
+		end if
+		'End of fix
+		set wshShell = nothing
+	End Function
+	
+	' This function will get the program files folder from the registry
+	' We should retrieve the CBOE .NET install folder from the registry because even if the user has changed
+	' the default drive for installation from C: to D:, this is not going to change the global "%PROGRAMFILES%" variable!
+	Sub GetCSProgFolder() 	     	  
+		Dim wshShell
+		Set wshShell = CreateObject("WScript.Shell")
+        
+            'msgbox WshShell.RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\PerkinElmer\FrameworkWebApp\INSTALLDIR") 
+		    GetCSProgramsFolder = WshShell.RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\PerkinElmer\FrameworkWebApp\INSTALLDIR")
+  
+		set wshShell = nothing
+	End Sub
+	
+	
+	'uday potella 26-07-2011, worked on the Session Timeout issue
+	' this function is used for setting up the .net web.config files for updating the session timeout value
+	'The web.config files are related to Manager, registration and Chembioviz application  
+	Sub SetAspNetSessiontimeout()
+	    Dim oNode
+	    err.Clear 
+	    GetCSProgFolder() 
+	    'UPdating the coeManager application web.config file
+       
+			CoeManagerConfigPath = GetCSProgramsFolder & COEInstallFolderName & "\Manager\Web.config"
+        
+         
+	    Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(CoeManagerConfigPath)
+		Set oNode = ObjDom.selectSingleNode("//sessionState")
+		if NOT (oNode is Nothing) then
+		    oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		    ObjDom.save(CoeManagerConfigPath)
+		    else 
+		     MsgBox "Error:  Could not find the Web.Config file at " & CoeManagerConfigPath & " or SessionState attribute is not defined in it."
+        End if 
+		
+		Set oNode = ObjDom.selectSingleNode("//authentication/forms")
+		if NOT (oNode is Nothing) then
+		    oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		    ObjDom.save(CoeManagerConfigPath)
+		    else 
+		     MsgBox "Error:  Could not find the Web.Config file at " & CoeManagerConfigPath & " or forms authentication attribute is not defined in it."
+        End if 
+
+      			
+	 	     'Updating the Registration application web.config file
+	        CoeRegistrationConfigPath = GetCSProgramsFolder & COEInstallFolderName & "\Registration\WebApp\Web.config"  
+	        Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		    objDOM.async = false
+		    objDOM.load(CoeRegistrationConfigPath)
+		    Set oNode = ObjDom.selectSingleNode("//sessionState")
+		    if NOT (oNode is Nothing) then
+		       oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		       ObjDom.save(CoeRegistrationConfigPath)
+		        else 
+		          MsgBox "Error:  Could not find the Web.Config file at " & CoeRegistrationConfigPath & " or SessionState attribute is not defined"
+		    End if
+			
+		    Set oNode = ObjDom.selectSingleNode("//authentication/forms")
+		    if NOT (oNode is Nothing) then
+		        oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		        ObjDom.save(CoeRegistrationConfigPath)
+		        else 
+		         MsgBox "Error:  Could not find the Web.Config file at " & CoeRegistrationConfigPath & " or forms authentication attribute is not defined in it."
+            End if 	
+
+		    'Updating the Chembioviz application web.config file
+	        CoeChemBioVizConfigPath= GetCSProgramsFolder & COEInstallFolderName & "\ChemBioViz\Web.config" 
+	        Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		    objDOM.async = false
+		    objDOM.load(CoeChemBioVizConfigPath)
+		    Set oNode = ObjDom.selectSingleNode("//sessionState")
+		    if NOT (oNode is Nothing) then
+		       oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		       ObjDom.save(CoeChemBioVizConfigPath)
+		        else 
+		         MsgBox "Error:  Could not find the Web.Config file " & CoeChemBioVizConfigPath & "or or SessionState attribute is not defined"
+		    End if
+				
+		    Set oNode = ObjDom.selectSingleNode("//authentication/forms")
+		    if NOT (oNode is Nothing) then
+		        oNode.setAttribute "timeout", document.all.txtSessionTimeOut.value
+		        ObjDom.save(CoeChemBioVizConfigPath)
+		        else 
+		         MsgBox "Error:  Could not find the Web.Config file at " & CoeChemBioVizConfigPath & "or forms authentication attribute is not defined in it."
+            End if 
+        
+	End Sub
+	'Added by uday Potella on 22-07-2011.
+	'This method will uopdate the coeframeworkconfig file session timeout value provided by GUI
+	Sub SetAuthTicketTimeout()
+		Dim oNode
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)
+		Set oNode = ObjDom.selectSingleNode("//ProviderConfiguration/Settings/add[@Name='TICKET_TIMEOUT']")
+		if NOT (oNode is Nothing) then
+		    oNode.setAttribute "Value", document.all.txtSessionTimeOut.value
+		    ObjDom.save(COEFrameworkConfigPath)
+		End if
+		
+	End Sub
+	
+	Sub SetCOWSWebserviceWebConfigEntries()
+	   Dim oNode
+		Dim objNode
+		
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COWSWebserviceWebConfigPath)
+		Set oNode = ObjDom.selectSingleNode("//appSettings/add[@key='OracleServiceName']")
+		oNode.setAttribute "value", OracleServiceName
+		Set oNode = ObjDom.selectSingleNode("//add[@key='SingleSignOnServerName']")
+		oNode.setAttribute "value", COEHTTPHostName & selectedPort
+		
+		ObjDom.save(COWSWebserviceWebConfigPath)
+	End Sub
+    Sub SetOraServiceNames()
+	    Dim i
+	    For i = 0 to ubound(appArray)
+		    SetOraServiceName(appArray(i))
+	    Next
+    End Sub
+
+    Sub GetInstalledApps()
+        appList = GetINIValue(GetAppIniPath("Core") & "ChemOffice.ini", "GLOBALS", "APPNAME")
+	    appList = appList & ",CS_SECURITY"
+	    if appList <> "" then
+		    appArray = split(appList, ",")
+		    isACXInstalled = (InStr(1,Ucase(appList), "CHEMACX") > 0)
+		    isInvInstalled = (InStr(1,Ucase(appList), "CHEMINV") > 0)
+		    isRegInstalled = (InStr(1,Ucase(appList), "CHEM_REG") > 0)
+	    else
+		    TraceLogError ERRORMSG, "GetInstalledApps", "Application list is empty!"
+	    end if	
+    End sub
+
+	
+	
+    Sub SetIniValue(iniPath, sectionName, keyName, value)
+       
+	        Dim rc
+	        on error resume next
+	        rc = oIniHelper.VBWritePrivateProfileString(Cstr(value), Cstr(sectionName), Cstr(keyName), Cstr(iniPath))
+	        TraceLogError INFOMSG, "SetIniValue", "iniPath=" & iniPath & vbCrLf & Space(12) &"sectionName=" & sectionName & vbCrLf & Space(12) &"keyName=" & keyName & vbCrLf & Space(12) &"value=" & Value
+	        if err.number <> 0 then
+		        TraceLogError ERRORMSG , "SetIniValue", "Error Description=" & err.description
+		        err.clear
+	        
+        End if
+    End Sub
+
+    Sub SetAppIniValue(appName, iniFileName, sectionName, keyName, value)
+	    Dim iniPath
+	    iniPath = GetAppIniPath(appName) & iniFileName
+	    SetIniValue iniPath, sectionName, keyName, value	
+    End Sub
+
+    Sub AppendToAppIniValue(appName, iniFileName, sectionName, keyName, value)
+	    Dim iniPath
+	    iniPath = GetAppIniPath(appName) & iniFileName
+	    AppendToIniValue iniPath, sectionName, keyName, value	
+    End Sub
+
+
+    Sub AppendToIniValue(iniPath, sectionName, keyName, valueToAppend)
+	    Dim iniValue
+	    Dim newValue
+	    iniValue = GetINIValue(iniPath, sectionName, keyName)
+	    newValue = AppendToList(iniValue, valueToAppend)
+	    TraceLogError VERBOSEMSG, "AppendToIniValue" , "iniValue=" & iniValue & vbCrLf & Space(12) & "valueToAppend=" & valueToAppend & vbCrLf & Space(12) & "newValue=" & newValue
+	    SetIniValue iniPath, sectionName, keyName, newValue 
+    End sub
+
+    Function AppendToList(list, valueToAppend)
+	    if instr(list, valueToAppend) = 0 then list = list & "," & valueToAppend 
+	    AppendToList = list
+    End function
+
+    Sub SetOraServiceName(appName)
+	    Dim sectionName
+
+	    ' Set the SectionKey
+	    Select Case Ucase(appName)
+		    Case "CHEMINV"
+			    sectionName = "CHEMINV"
+			Case "CHEM_REG"
+			    sectionName = "REGISTRATION"
+			Case "SAMPLE_ORA"
+			    sectionName = "GLOBALS"        
+		    Case "CHEMACX"
+			    sectionName = ""
+		    Case "CS_SECURITY"
+			    sectionName = ""
+		    Case else	
+			    TraceLogError INFOMSG, "SetOraServiceName", appName & " is not a supported application for this task"			
+	    End Select
+
+	    ' Set the ORA_SERVICENAME Key
+	    if sectionName <> "" then
+		    SetAppIniValue appName, "cfserver.ini", sectionName, "ORA_SERVICENAME", OracleServiceName
+	    End if
+
+	    ' Set udls
+	    SetUDLs(appName)
+    End Sub
+
+    Sub SetUDLs(appName)
+	    Dim configPath
+	    Dim udlPath
+	    configPath = GetAppIniPath(appName)
+	    ' Set the SectionKey
+	    Select Case Ucase(Appname)
+		    Case "CHEMINV"
+			    udlPath = configPath & "cheminv.udl"
+			    SetUDLServiceName udlPath 
+			    if isACXOra then
+			    	udlPath = configPath & "chemacx.udl"
+			    	SetUDLServiceName udlPath
+			    End if
+			    udlPath = configPath & "chemreg.udl"
+			    SetUDLServiceName udlPath
+			Case "CHEM_REG"
+			    udlPath = configPath & "reg.udl"
+			    SetUDLServiceName udlPath 
+			Case "SAMPLE_ORA"
+			    udlPath = configPath & "sample.udl"
+			    SetUDLServiceName udlPath        
+		    Case "CS_SECURITY"
+			    udlPath = configPath & "cs_security.udl"
+			    SetUDLServiceName udlPath
+		    Case "CHEMACX"
+		        if isACXOra then
+			        udlPath = configPath & "chemacx.udl"
+			        SetUDLServiceName udlPath
+				End if
+		    Case else	
+			    TraceLogError INFOMSG, "SetUDLs", appName & " is not a supported application for this task"		
+	    End Select
+    End Sub
+
+    Function GetAppIniPath(appName)
+	    Dim maybeSlash
+	    Dim cowsroot
+	    cowsroot = COWS_ROOT
+	    maybeSlash = "\"	
+	    if ucase(appName) = "CORE" then
+		    appname = ""
+		    maybeSlash = ""
+	    end if
+	    if ucase(appName) = "CSWDA" then
+		    cowsroot = ""
+		    maybeSlash = ""	
+	    end if 
+	    GetAppIniPath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" & cowsroot & maybeSlash & AppName & "\config\" 
+    End function
+
+
+    Sub SetUDLServiceName(pathSpec)
+	    REReplaceInFile pathSpec, "Data Source=" & OracleServiceName, "Data Source=[^;]+", -1	' UDL files are unicode so we must use -1 
+	    TraceLogError INFOMSG, "SetUDLServiceName", "FileName=" & pathSpec & vbcrlf & space(12) & "OracleServicename=" & OracleServiceName	
+    End Sub
+
+	Function GetCOESiteNumberFromIIS
+		On Error Resume Next
+		Dim WSH, SiteNumber, X
+		Set WSH = CreateObject("WScript.Shell")  
+		Set WshShell = CreateObject("WScript.Shell")
+		X = WshShell.RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\PROCESSOR_ARCHITECTURE")
+		If X = "x86" Then
+			SiteNumber =  WSH.RegRead("HKLM\SOFTWARE\PerkinElmer\FrameworkWebApp\SITENUMBER")  
+		else
+			SiteNumber =  WSH.RegRead("HKLM\SOFTWARE\Wow6432Node\PerkinElmer\FrameworkWebApp\SITENUMBER")  
+		end if
+		GetCOESiteNumberFromIIS = SiteNumber
+	End Function
+
+    Sub SetAspMaxRequestEntityAllowed()
+	    Dim vdirObj
+		Dim vSiteNumber
+		vSiteNumber = GetCOESiteNumberFromIIS
+    	
+	    set vdirObj=GetObject("IIS://localhost/W3svc")
+	    vdirObj.Put "AspMaxRequestEntityAllowed", AspMaxRequestEntityAllowed
+	    vdirObj.SetInfo
+	    set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber)
+	    vdirObj.Put "AspMaxRequestEntityAllowed", AspMaxRequestEntityAllowed
+	    vdirObj.SetInfo
+	    TraceLogError INFOMSG, "SetAspMaxRequestEntityAllowed", "AspMaxRequestEntityAllowed Value set to " & AspMaxRequestEntityAllowed	
+
+    End sub
+    Sub SetAspSessiontimeout()
+    'Setting the ASP session timeout for default web site 
+	    Dim vdirObj
+	    Dim vdirname
+		Dim vSiteNumber
+		vSiteNumber = GetCOESiteNumberFromIIS
+	    set vdirObj=GetObject("IIS://localhost/W3svc")
+	    vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+	    vdirObj.SetInfo
+	    
+       
+			'Setting the ASP session timeout ChemACX Virtual Directory 
+			vdirname="ChemACX"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname) 
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout ChemInv Virtual Directory  
+			vdirname="ChemInv"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname)
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if 
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+	    
+			'Setting the ASP session timeout CFServerAdmin Virtual Directory 
+			vdirname="CFServerAdmin"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname) 
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if 
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout CFServerASP Virtual Directory 
+			vdirname="CFServerASP"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname) 
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if 
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout CFWTemp Virtual Directory 
+			vdirname="CFWTemp"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname) 
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if 
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout CS_Security Virtual Directory 
+			vdirname="CS_Security"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname) 
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout Sample Virtual Directory 
+			vdirname="Sample"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname)
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+			
+			'Setting the ASP session timeout Sample_Ora Virtual Directory 
+			vdirname="Sample_Ora"
+			On Error Resume Next
+			set vdirObj=GetObject("IIS://localhost/W3svc/" & vSiteNumber & "/ROOT"& "/" & vdirname)
+			if err.number <> 0 then
+				msgbox "Error:  Could not find the virtual named " & vdirname & " Errormsg: " & err.Description
+				on error goto 0
+			End if 
+			vdirObj.AspSessionTimeout=document.all.txtSessionTimeOut.value
+			vdirObj.SetInfo
+	
+    End sub
+
+    Sub SetAllIniAbsolutePaths()
+	    Dim i
+	    For i = 0 to ubound(appArray)
+		    SetIniAbsolutePaths(appArray(i))			
+	    Next
+    End Sub
+
+
+    Sub SetIniAbsolutePaths(appName)
+	    Dim iniPath
+	    iniPath = GetAppIniPath(appName)
+	    ' Set the SectionKey
+	    Select Case Ucase(appname)
+		    Case "CHEMINV"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+			    SetAbsolutePath(iniPath & "cheminv.ini")
+			    SetAbsolutePath(iniPath & "invconfig.ini")
+			    SetAbsolutePath(iniPath & "invacx.ini")
+				SetAbsolutePath(iniPath & "invreg.ini")
+			    SetAbsolutePath(iniPath & "OraIni\cfserver.ini")
+			    SetAbsolutePath(iniPath & "OraIni\invacx.ini")
+				SetAbsolutePath(iniPath & "AccessIni\chemacx.udl")
+			    SetAbsolutePath(iniPath & "AccessIni\cfserver.ini")
+			    SetAbsolutePath(iniPath & "AccessIni\invacx.ini")
+			Case "CHEM_REG"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+			    SetAbsolutePath(iniPath & "reg.ini")
+			Case "SAMPLE_ORA"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+			    SetAbsolutePath(iniPath & "sample.ini")         
+		    Case "CHEMACX"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+			    SetAbsolutePath(iniPath & "chemacx.ini")
+			    SetAbsolutePath(iniPath & "acxconfig.ini")
+				SetAbsolutePath(iniPath & "AccessIni\cfserver.ini")
+			    SetAbsolutePath(iniPath & "AccessIni\chemacx.ini")
+				SetAbsolutePath(iniPath & "OraIni\cfserver.ini")
+			    SetAbsolutePath(iniPath & "OraIni\chemacx.ini")
+				SetAbsolutePath(iniPath & "chemacx2_Access.ini")
+				SetAbsolutePath(iniPath & "chemacx2_Oracle.ini")
+		    Case "CS_SECURITY"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+		    Case "SAMPLE"
+			    SetAbsolutePath(iniPath & "cfserver.ini")
+			    SetAbsolutePath(iniPath & "sample.ini")
+			    SetAbsolutePath(iniPath & "sample.udl")
+		    Case else	
+			    TraceLogError INFOMSG, "SetIniAbsolutePaths", appName & " is not a supported application for this task"	
+	    End Select
+    End Sub
+
+    Sub SetAbsolutePath(pathSpec)
+	    Dim fformat
+	    fformat = vbUseDefault
+	    if instr(pathSpec, ".udl") > 0 then fformat = -1
+	    REReplaceInFile pathSpec, SERVER_DRIVE & "\", "[A-Za-z]:\\", fformat
+	    TraceLogError INFOMSG, "SetAbsolutePath", "FileName=" & pathSpec & vbcrlf & space(12) & "Drive letter=" & SERVER_DRIVE & "\"	
+    End Sub
+
+
+    Sub SetOraclaTableSpaceFilePaths()
+	    Dim i
+	    For i = 0 to ubound(appArray)
+		    SetOraTSPath(appArray(i))
+	    Next	
+    End sub
+
+
+    Sub SetOraTSPath(appName)
+	    Dim paramPath
+	    Dim paramFileName
+	    paramPath = GetAppIniPath(appName) & "oracle_install_scripts\"
+	    paramFileName = "parameters.sql"
+
+	    Select Case Ucase(appname)
+		    Case "CHEMINV"
+			    paramPath = paramPath & "Create_blank_ChemInv_DB\sql\" & paramFileName
+			    SetDefaultTableSpace(paramPath)
+			    SetDBFileSizes paramPath, INV_sizeForTbl, INV_sizeForIdx, INV_sizeForLob, INV_sizeForAudit, INV_sizeForCart, "", ""  
+		    Case "CHEMACX"
+			    paramPath = paramPath & "sql\" & paramFileName
+			    SetDefaultTableSpace(paramPath)
+		    Case "SAMPLE" 'Used for CS_SECURITY
+			    paramPath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" & COWS_ROOT & "\cs_security\config\oracle_install_scripts\"
+			    paramPath = paramPath & "create_blank_cs_security_DB\sql\" & paramFileName
+			    SetDefaultTableSpace(paramPath)
+			    SetDBFileSizes paramPath, CSSEC_sizeForTbl, CSSEC_sizeForIdx, "", CSSEC_sizeForAudit, "", "", ""  
+		    Case "CHEM_REG"
+			    paramPath = reg11DBScriptsPath & paramFileName
+			    SetDefaultTableSpace(paramPath)
+			    SetDBFileSizes paramPath, REG_sizeForTbl, REG_sizeForIdx, REG_sizeForLob, "", REG_sizeForCart, "", ""  
+		    Case "CSWDA"
+			    paramPath = bioAssayDBScriptsPath & "Full_Install\SQL\" & paramFileName
+			    SetDefaultTableSpace(paramPath)
+			    SetDBFileSizes paramPath, BIOASSAY_sizeForTbl, BIOASSAY_sizeForIdx, BIOASSAY_sizeForLob, BIOASSAY_sizeForAudit, "", "", ""  
+		    Case else	
+			    TraceLogError INFOMSG, "SetOraTSPath", appName & " is not a supported application for this task"	
+	    End Select
+    End sub
+
+    Sub SetDefaultTableSpace(paramPath)
+    	
+	    REReplaceInFile paramPath, "TSPath= '" & DefaultTableSpacePath, "TSPath= '[\.A-Za-z0-9_\\://]*", vbUseDefault
+	    TraceLogError INFOMSG, "SetDefaultTableSpace", "Param FileName=" & paramPath & vbcrlf & space(12) & "TargetPath=" & DefaultTableSpacePath	
+	    SetAutoExtents(paramPath)
+    end sub
+
+    Sub SetAutoExtents(paramPath)
+	    Dim tableSpacesPath
+	    REReplaceInFile paramPath, "spaceExtent = 'AUTO'", "spaceExtent[ \.A-Za-z0-9_\\://=']*", vbUseDefault
+	    tableSpacesPath = replace(paramPath, "parameters.sql", "tablespaces.sql")
+	    REReplaceInFile tableSpacesPath, "pExtentSize = 'AUTO'", "pExtentSize = ''", vbUseDefault
+	    TraceLogError INFOMSG, "SetAutoExtents", "Param FileName=" & paramPath & vbcrlf & space(12) & "Tablespaces file =" & tableSpacesPath
+	    if instr(lcase(paramPath), "cs_security") > 0 then
+	       REReplaceInFile paramPath, "tempTablespaceExtent = '4M'", "tempTablespaceExtent = 'AUTO'", vbUseDefault
+	    end if
+	    if instr(lcase(tableSpacesPath), "cheminv") > 0 then
+	       tableSpacesPath = replace(tableSpacesPath, "tablespaces.sql", "\Create\Create_tablespaces.sql")
+	       REReplaceInFile tableSpacesPath, "pExtentSize = 'AUTO'", "pExtentSize = ''", vbUseDefault	
+	    end if
+    end sub
+
+    Sub SetDBFileSizes(paramPath, sizeForTbl, sizeForIdx, sizeForLob, sizeForAudit, sizeForCart, sizeForDoc, sizeForCtx)
+	    REReplaceInFile paramPath, "DEFINE tablespaceSize = " & sizeForTbl, "DEFINE tablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE idxTablespaceSize = " & sizeForIdx, "DEFINE idxTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE lobTablespaceSize = " & sizeForLob, "DEFINE lobTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE auditTablespaceSize = " & sizeForAudit, "DEFINE auditTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE cscartTablespaceSize = " & sizeForCart, "DEFINE cscartTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE ctxTablespaceSize = " & sizeForCtx, "DEFINE ctxTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+	    REReplaceInFile paramPath, "DEFINE docTablespaceSize = " & sizeForDoc, "DEFINE docTablespaceSize[ \.=A-Za-z0-9_\\://]*", vbUseDefault
+    end sub
+
+	Sub REReplaceInFileRecursive(startFolderPath, fileExtension, theReplacement, theREPattern, fFormat)
+		Dim oStartFolder
+		Dim objFolder
+		Dim colFiles
+		Dim Subfolder
+		Dim objFile, objTopLevelFiles
+
+		on error resume next 'error handling added here for CSBR 124407 custom install support by Soorya on 11-Aug-2010
+		if fso.FolderExists(startFolderPath) then
+			' Do the files immediately below the strtFolder
+			on error resume next
+			Set objTopLevelFiles = fso.GetFolder(startFolderPath).Files
+			
+			if objTopLevelFiles.Count > 0 then
+				For Each objFile in objTopLevelFiles
+					if fileExtension = "*" then
+						REReplaceInFile objFile.Path, theReplacement, theREPattern, fFormat
+					Elseif  lcase(right(objFile.Name, len(fileExtension))) = lcase(fileExtension) then			
+						REReplaceInFile objFile.Path, theReplacement, theREPattern, fFormat
+					End if
+				Next
+			End if
+			
+			' Work on files in the subfloders
+			Set oStartFolder = fso.GetFolder(startFolderPath)
+			For Each Subfolder in oStartFolder.SubFolders
+				Set objFolder = fso.GetFolder(Subfolder.Path)
+				Set colFiles = objFolder.Files
+				For Each objFile in colFiles
+					if fileExtension = "*" then
+						REReplaceInFile objFile.Path, theReplacement, theREPattern, fFormat
+					Elseif  lcase(right(objFile.Name, len(fileExtension))) = lcase(fileExtension) then 
+						REReplaceInFile objFile.Path, theReplacement, theREPattern, fFormat
+					End if
+				Next
+				' Recurse to any subfolders		
+				REReplaceInFileRecursive Subfolder.Path, fileExtension, theReplacement, theREPattern, fFormat
+			Next
+		Else
+			 TraceLogError INFOMSG, "REReplaceInFileRecursive", "Action Skipped because " & startFolderPath & " folder was not found."
+		End if
+		if err and err.number <> 500 and err.number <> 0 then
+			 TraceLogError ERRORMSG , "REReplaceInFileRecursive", "Error while updating file " & startFolderPath & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				 
+		end if
+	End Sub
+	
+    Sub REReplaceInFile(PathSpec, theReplacement, theREPattern, fFormat)
+       
+            Dim theString
+			Dim ColFiles
+			Dim iFile
+			Dim FolderPath
+			Dim inExt
+			Dim fnExt
+			Dim inLength
+			Dim inlastSlash
+			Dim indot
+			Dim fnLength
+			Dim fndot
+			Dim Rts
+			Dim Wts
+			Dim inFileName	
+			
+			inLength = Len(PathSpec)
+			inlastSlash = InStr(1, StrReverse(PathSpec), "\")
+			indot = inLength - 3
+			FolderPath = Left(PathSpec, inLength - inlastSlash + 1)
+			'on error resume next	
+			inExt = Mid(PathSpec, indot, inLength - indot + 1)
+			
+			If inlastSlash > 0 Then
+				inFileName = Mid(PathSpec, (inLength - inlastSlash) + 2, indot - (inLength - inlastSlash) + 2)
+			Else
+				inFileName = PathSpec
+			End If
+			
+			If InStr(1, inFileName, "*") > 0 Then
+				Set ColFiles = GetFilesCollection(FolderPath)
+				For Each File In ColFiles
+					fnLenght = Len(File.Name)
+					fndot = InStr(1, File.Name, ".")
+					fnExt = Mid(File.Name, fndot, fnLenght - fndot + 1)
+					If fnExt = inExt Then
+						on error resume next
+						If ReadOnlyBit(FolderPath & File.Name) = 1 Then
+						    ToggleReadOnlyBit(FolderPath & File.Name)
+				        End If
+				
+				        Set Rts = File.OpenAsTextStream(ForReading, fFormat)
+					    if err.number <> 0 then
+						    TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+						    err.clear					
+						    Exit sub
+					    End if				
+                        theString = Rts.ReadAll()
+                        Rts.Close
+                        Set Wts = File.OpenAsTextStream(ForWriting, fFormat)
+						Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+						Wts.Close     
+					End If
+				Next
+			Else
+			    on error resume next
+			    If ReadOnlyBit(PathSpec) = 1 Then
+					    ToggleReadOnlyBit(PathSpec)
+			    End If
+				Set Rts = fso.OpenTextFile(PathSpec, ForReading, False, fFormat)
+				
+			    if err.number <> 0 then
+				    TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+				    err.clear
+				    Exit sub
+		        End if
+				theString = Rts.ReadAll()
+				Rts.Close
+				Set Wts = fso.OpenTextFile(PathSpec, ForWriting, True, fFormat)
+				Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+				Wts.Close
+				Set Rts = Nothing
+				Set Wts = Nothing
+			End If
+			WriteMsgToTextArea "+ Replacements made in file/s " & inFileName
+       
+    End Sub
+	
+	Function ReadTextFile(PathSpec, fFormat)
+       		
+	    	Dim Rts, str	
+		    on error resume next
+		    Set Rts = fso.OpenTextFile(PathSpec, ForReading, False, fFormat)
+		    if err.number <> 0 then
+			    TraceLogError WARNING, "ReadTextFile", "Could not find file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+			    err.clear
+			    Exit Function
+		    End if
+		    str = Rts.ReadAll()
+		    Rts.Close
+		    ReadTextFile = str
+	  			
+	End Function
+	
+    Function REReplace(pString, pReplacement, pREPattern, bIsGlobal)
+        
+        Dim oRE
+        
+        Set oRE = New RegExp
+        oRE.Global = bIsGlobal
+        oRE.Pattern = pREPattern
+		oRE.IgnoreCase = true
+        REReplace = oRE.Replace(pString, pReplacement)
+    End Function
+
+	Function REFind(pString, pREPattern, bIgnoreCase)
+		Dim oRE
+		Dim matches, match
+		
+		Set oRE = New RegExp
+		oRE.Pattern = pREPattern
+		oRE.IgnoreCase = bIgnoreCase
+		Set matches = oRE.Execute(pString)
+		If matches.Count > 0 Then
+			Set match = matches(0)
+			REFind = match.Value
+		Else
+			REFind = ""
+		End if	
+	End Function
+
+	Function REFindFirstSubMatch(pString, pREPattern, bIgnoreCase)
+		Dim oRE
+		Dim matches, match
+		
+		Set oRE = New RegExp
+		oRE.Pattern = pREPattern
+		oRE.IgnoreCase = bIgnoreCase
+		Set matches = oRE.Execute(pString)
+		If matches.Count > 0 Then
+			Set match = matches(0)
+			if match.submatches.count > 0 then
+				REFindFirstSubMatch = match.submatches(0)
+			End if	
+		Else
+			REFindFirstSubMatch = ""
+		End if	
+	End Function
+	
+	Function REFindFirstSubmatchInFile(PathSpec, fFormat, pREPattern, bIgnoreCase)
+		Dim str
+		str = ReadTextFile(PathSpec, fFormat)
+		REFindFirstSubmatchInFile = REFindFirstSubMatch(str, pREPattern, bIgnoreCase)
+	End Function
+	
+	Function REFindInFile(PathSpec, fFormat, pREPattern, bIgnoreCase)
+		Dim str
+		str = ReadTextFile(PathSpec, fFormat)
+		REFindInFile = REFind(str, pREPattern, bIgnoreCase)
+	End Function
+	
+    Function ChangeFileAttributes(strPath, lngSetAttr, lngRemoveAttr, blnRecursive)
+       
+       ' This function takes a directory path, a value specifying file
+       ' attributes to be set, a value specifying file attributes to be
+       ' removed, and a flag that indicates whether it should be called
+       ' recursively. It returns True unless an error occurs.
+       
+       Dim fso     
+       Dim fdrFolder      
+       Dim fdrSubFolder   
+       Dim filFile
+       
+       
+       Set fso= CreateObject("Scripting.Filesystemobject")
+       
+       On Error Resume Next
+       ' Get folder.
+       Set fdrFolder = fso.GetFolder(strPath)
+       If Err <> 0 Then
+          ' Incorrect path.
+	      TraceLogError ERRORMSG, "ChangeFileAttributes", "Error in ChangeFileAttributes: " & strPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description	
+          err.clear
+          ChangeFileAttributes = False
+          Exit function	
+       End If
+       
+       
+       ' If caller passed in attribute to set, set for all.
+       If lngSetAttr Then
+          For Each filFile In fdrFolder.Files
+                filFile.Attributes = filFile.Attributes Or lngSetAttr
+          Next
+       End If
+       
+       ' If caller passed in attribute to remove, remove for all.
+       If lngRemoveAttr Then
+          For Each filFile In fdrFolder.Files
+                filFile.Attributes = filFile.Attributes - lngRemoveAttr
+          Next
+       End If
+       
+       ' If caller has set blnRecursive argument to True, then call
+       ' function recursively.
+       If blnRecursive Then
+          ' Loop through subfolders.
+          For Each fdrSubFolder In fdrFolder.SubFolders
+             ' Call function with subfolder path.
+             ChangeFileAttributes fdrSubFolder.Path, lngSetAttr, lngRemoveAttr, True
+          Next
+       End If
+       ChangeFileAttributes = True
+    End Function
+
+    Function GetFilesCollection(strFolderPath)
+        Dim oFolder
+        
+        Set oFolder = fso.GetFolder(strFolderPath)
+        Set GetFilesCollection = oFolder.Files
+        Set oFolder = Nothing
+    End Function
+
+
+    Sub CopyFolder(fromPath,toPath)
+	    on error resume next  
+	    fso.CopyFolder FromPath, toPath, true
+    	
+	    if err.number <> 0 then
+		    TraceLogError ERRORMSG, "CopyFolder", "Error in CopyFolder: " & fromPath & " to " & toPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+	    Else
+		    TraceLogError INFOMSG,  "CopiedFolder", "Copied folder from " & fromPath & " to " & toPath
+	    End if
+    End Sub
+
+
+    Sub CopyFile(fromPath, toPath)
+	    Dim file
+	    on error resume next
+    	
+	    fso.CopyFile fromPath, toPath
+    	
+	    if err.number <> 0 then
+		    TraceLogError ERRORMSG, "CopyFile", "Error in CopyFile: " & fromPath & " to " & toPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+	    Else
+		    TraceLogError INFOMSG,  "CopyFile", "Copied file(s) " & fromPath & " to " & toPath
+	    End if
+    End sub
+
+
+     
+    Sub SwapOraIniFiles(appName)
+	    Dim iniPath
+	    Dim oraIniPath
+	    Dim srcFile
+	    Dim targetFile
+
+	    iniPath = GetAppIniPath(appName)
+	    oraIniPath = iniPath & "OraIni"
+    	
+	    For Each srcFile in GetFileList(oraIniPath)
+   		    If ReadOnlyBit(srcFile) = 1 Then
+      			    ToggleReadOnlyBit(srcFile)
+   		    End If
+		    targetFile = iniPath & srcFile.Name
+		    If ReadOnlyBit(targetFile) = 1 Then
+      			    ToggleReadOnlyBit(targetFile)
+   		    End If
+		    CopyFile srcFile, targetFile
+	    Next
+    End sub 
+
+    Sub SwapAccessIniFiles(appName)
+	    Dim iniPath
+	    Dim AccessIniPath
+	    Dim srcFile
+	    Dim targetFile
+
+	    iniPath = GetAppIniPath(appName)
+	    AccessIniPath = iniPath & "AccessIni"
+    	
+	    For Each srcFile in GetFileList(AccessIniPath)
+   		    If ReadOnlyBit(srcFile) = 1 Then
+      			    ToggleReadOnlyBit(srcFile)
+   		    End If
+		    targetFile = iniPath & srcFile.Name
+		    If ReadOnlyBit(targetFile) = 1 Then
+      			    ToggleReadOnlyBit(targetFile)
+   		    End If
+		    CopyFile srcFile, targetFile
+	    Next
+    End sub
+
+    Function GetFileList(folderspec)
+       Dim f
+       Set f = fso.GetFolder(folderspec)
+       set GetFileList = f.files
+    End Function
+
+    Function ReadOnlyBit(filespec)
+        
+           Dim f
+           on error resume next	
+           Set f = fso.GetFile(filespec)
+       
+           if err.number <> 0 then
+	        TraceLogError ERRORMSG, "ReadOnlyBit", "Error in ReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+           End if
+           If f.attributes and 1 Then
+              ReadOnlyBit = 1
+           Else
+              ReadOnlyBit = 0
+           End If
+       
+    End Function
+
+    Function ToggleReadOnlyBit(filespec)
+        
+           Dim f
+           on error resume next
+           Set f = fso.GetFile(filespec)
+           if err.number <> 0 then
+	        TraceLogError ERRORMSG, "ToggleReadOnlyBit", "Error in ToggleReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+           End if
+           If f.attributes and 1 Then
+              f.attributes = f.attributes - 1
+              ToggleReadOnlyBit = "Readonly bit is cleared."
+           Else
+              f.attributes = f.attributes + 1
+              ToggleReadOnlyBit = "Readonly bit is set."
+           
+        End if
+    End Function
+
+    Sub SetSSOForBioAssay()
+	    Dim BioAssayWSconfigPath
+
+	    BioAssayWSconfigPath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" & "BioAssayDALWebService\Web.Config"
+	    REReplaceInFile BioAssayWSconfigPath, "<add key=""singleSignOnURL"" value=""" & singleSignOnURL, "<add key=""singleSignOnURL"" value=""", vbUseDefault
+	    TraceLogError INFOMSG, "SetSSOForBioAssay", "FileName=" & BioAssayWSconfigPath & vbcrlf & space(12) & "SingleSignOn URL=" & singleSignOnURL	
+    End sub
+
+
+    Sub SetCOE11ConfigServiceName()
+	    REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServiceName, "ORACLE"" dataSource=""[ \.=A-Za-z0-9_\\:]*", vbUseDefault
+	    TraceLogError INFOMSG, "SetCOE11ConfigServiceName", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "OracleServicename=" & OracleServiceName	
+    End sub
+
+    Sub SetCOE11ConfigSSOProvider(providerName)
+	    REReplaceInFile COEFrameworkConfigPath, "DEFAULT_PROVIDER"" Value=""" &  providerName & """/", "DEFAULT_PROVIDER[ \.=A-Za-z0-9_\\://""]*", vbUseDefault
+	    TraceLogError INFOMSG, "SetCOE11ConfigSSOProvider", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "SSOProvider=" & providerName	
+    End sub
+
+    Sub SetCOE11ConfigLDAPParams()
+		SetLDAPConfigXML()
+	    SetCOE11ConfigServiceName()
+	    SetCOEConfigParam "DEFAULT_PROVIDER", "COELDAP"			  		
+    End sub
+
+    Sub SetCOEConfigParam(paramName, paramValue)
+	REReplaceInFile COEFrameworkConfigPath, paramName &  """ Value=""" &  paramValue & """/", paramName & "[ \.=%A-Za-z0-9,_\\://""]*", vbUseDefault
+	TraceLogError INFOMSG, "SetCOE11ConfigLDAPParams", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & paramName & "=" & paramValue	
+    End sub		
+
+    Sub CreateWebServiceVirtual(thePath, AppName)
+	    Dim theOrigBool
+	    Dim theFinalBool
+
+	    theOrigBool = AlterRootWritePermissions(True)
+	    CreateAppDir thePath, "True", AppName, "False"
+	    CreateAppIso AppName
+	    theFinalBool = AlterRootWritePermissions(theOrigBool)
+	    UpdateScriptMaps(AppName)
+	    TraceLogError INFOMSG, "CreateWebServiceVirtual", "Virtual Directory Created: " & vbcrlf & space(12) & "Path=" & thePath	
+    End Sub
+
+    Function AlterRootWritePermissions(theBool)
+        Dim IISObject
+        Dim vDir
+        Dim vRoot
+        Dim strMachineName
+        Dim strObjectPath
+        Dim strPath
+        Dim success
+        Dim theOriginalBool
+    	    
+        strMachineName = "localhost"
+        strObjectPath = "W3SVC/1"
+    	    
+        strPath = "IIS://" & strMachineName & "/" & strObjectPath
+        Set IISObject = GetObject(strPath)
+        'Get root of Default Web Site
+        Set vRoot = IISObject.GetObject("IIsWebVirtualDir", "Root")
+        theOriginalBool = vRoot.AccessWrite
+        vRoot.AccessWrite = theBool
+        vRoot.SetInfo
+        Set vRoot = Nothing
+        Set IISObject = Nothing
+        AlterRootWritePermissions = theOriginalBool
+    End Function
+
+
+    Sub CreateTargetFolder(path)
+	    on error resume next
+	    fso.CreateFolder(path)
+	    if err.number <> 0 then
+		    err.clear
+	    end if
+    End Sub
+
+    Sub CreateAppDir(thePath, theRoot, DirName, DirAuth)
+        Dim IISObject
+        Dim vDir
+        Dim vRoot
+        Dim strMachineName
+        Dim strObjectPath
+        Dim strPath
+        Dim success
+    	    
+        strMachineName = "localhost"
+        strObjectPath = "W3SVC/1"
+    	    
+        strPath = "IIS://" & strMachineName & "/" & strObjectPath
+    	    
+        Set IISObject = GetObject(strPath)
+        Set vRoot = IISObject.GetObject("IIsWebVirtualDir", "Root")
+        On Error Resume Next
+        Set vDir = vRoot.GetObject("IIsWebVirtualDir", DirName)
+        If Not Err.Number = 0 Then
+            Set vDir = vRoot.Create("IIsWebVirtualDir", DirName)
+        End If
+        vDir.AppFriendlyName = DirName
+        vDir.AspScriptFileCacheSize = 200
+        vDir.AspScriptTimeout = 1200
+        vDir.AccessRead = True
+        vDir.AccessWrite = True
+        vDir.AccessScript = True
+        vDir.Path = thePath
+        vDir.EnableDefaultDoc = True
+        vDir.DefaultDoc = "Default.asp"
+       
+        vDir.AspExceptionCatchEnable = False
+        vDir.AppAllowClientDebug = False
+        vDir.AppAllowDebugging = False
+        If DirAuth = True Then
+            vDir.AuthNTLM = True
+            vDir.AuthAnonymous = True
+            vDir.AuthBasic = False
+        Else
+            vDir.AuthNTLM = True
+        End If
+        vDir.AppCreate (True)
+    	    
+        vDir.SetInfo
+    	    
+        Set vDir = Nothing
+        Set vRoot = Nothing
+        Set IISObject = Nothing
+    End Sub
+
+    Sub CreateAppIso(DirName)
+        Dim strMachineName
+        Dim strObjectPath
+        Dim strPath
+    	    
+        strMachineName = "localhost"
+        strObjectPath = "W3SVC/1"
+    	    
+        strPath = "IIS://" & strMachineName & "/" & strObjectPath
+        Dim vDirObj
+        'create the base iis object and connect ot the IIS metabase
+        Set vDirObj = GetObject(strPath & "/ROOT/" & DirName)
+        vDirObj.AppCreate (False)
+        vDirObj.SetInfo
+    	    
+        Set vDirObj = Nothing
+    End Sub
+
+    Sub UpdateScriptMaps(folderName)
+
+       Dim winPath, netPath, toolPath
+       Dim wsShell
+       
+
+       Set wsShell = CreateObject("WScript.Shell")
+       
+
+       winPath = wsShell.ExpandEnvironmentStrings( "%windir%" )
+       netPath = fso.BuildPath( winPath, "Microsoft.NET\Framework\v2.0.50727")
+       toolPath = fso.BuildPath( netPath, "aspnet_regiis.exe" )
+
+       wsShell.Run toolPath & " -sn W3SVC/1/Root/""" & folderName & """", 0, true
+    End Sub 
+
+	Sub CreateCOMApplication(AppName, AppID, AppDesc, Identity, Password)
+	    Dim cat 'As COMAdminCatalog
+	    Set cat = CreateObject("COMAdmin.COMAdminCatalog.1")
+	    Dim apps 'As COMAdminCatalogCollection
+	    Set apps = cat.GetCollection("Applications")
+	    Dim app 'As COMAdminCatalogObject
+	    DeleteCOMApplication AppName
+	    Set app = apps.Add
+	    app.Value("ID") = AppID
+	    app.Value("Name") = AppName
+	    app.Value("Description") = AppDesc
+	    'Activate as Server App
+	    app.Value("Activation") = 1  ' COMAdminActivationLocal = 1
+	    app.Value("Identity") = Identity
+	    app.Value("Password") = Password
+	    app.Value("RunForever") = True
+	    apps.SaveChanges
+	    WriteMsgToTextArea "+ " & AppName & " COM+ application created and set to run under " & Identity & " acount."
+    End sub
+    
+    Sub SetCOMApplicationCredentials(AppName, Identity, Password)
+	    Dim cat 'As COMAdminCatalog
+	    Dim app 'As COMAdminCatalogObject
+	    Dim apps 'As COMAdminCatalogCollection
+	    Dim i
+	    
+	    Set cat = CreateObject("COMAdmin.COMAdminCatalog.1")
+	    Set apps = cat.GetCollection("Applications")
+	    apps.Populate
+        
+        ' Enumerate through applications looking for AppName.
+        i = 0
+        For Each app In apps
+          If app.Name = AppName Then
+            app.Value("Identity") = replace(Identity, ".\","")
+	        app.Value("Password") = Password
+            apps.SaveChanges
+            TraceLogError INFOMSG, "SetCOMApplicationCredentials", "COM+ application " & AppName & " updated to run under " & Identity & " acount."
+            Exit Sub
+           End If
+           i = i + 1
+        Next	   
+	    TraceLogError ERRORMSG, "SetCOMApplicationCredentials", "COM+ application " & AppName & " not found while trying to update credentials "
+    End sub
+	
+	
+	 Sub StopCOMApplication(AppName)
+	    Dim cat 'As COMAdminCatalog
+	    Dim app 'As COMAdminCatalogObject
+	    Dim apps 'As COMAdminCatalogCollection
+	    Dim i
+	    
+	    Set cat = CreateObject("COMAdmin.COMAdminCatalog.1")
+	    cat.Connect(LocalMachineName)
+		cat.ShutdownApplication(AppName)   
+	    TraceLogError INFOMSG, "StopCOMApplication", "COM+ application " & AppName & " has been stopped. "
+    End sub
+    
+    Sub AddComponentToCOMApplication(AppName, DllPath, DllName)
+	    Dim cat 'As COMAdminCatalog
+	    Set cat = CreateObject("COMAdmin.COMAdminCatalog.1")
+	    cat.InstallComponent AppName, DllPath & "\" & DllName, "", ""
+	    WriteMsgToTextArea "+ Added " & DllName & " to " & AppName & " COM+ application"
+    End Sub
+
+    Sub DeleteCOMApplication(AppName)
+      Dim i	
+      Dim cat 'As COMAdminCatalog
+      Set cat = CreateObject("COMAdmin.COMAdminCatalog.1")
+      Dim apps 'As COMAdminCatalogCollection
+      Set apps = cat.GetCollection("Applications")
+      apps.Populate
+      ' Enumerate through applications looking for AppName.
+      Dim app 'As COMAdminCatalogObject
+      i = 0
+      For Each app In apps
+        If app.Name = AppName Then
+          apps.Remove i 
+          apps.SaveChanges
+          Exit Sub
+        End If
+        i = i + 1
+      Next
+    End Sub
+
+    Sub AddUserToGroup(strDomain,strUsername,strGroupname)
+          Dim User
+          Dim Group
+
+          Set User = GetObject("WinNT://" & strDomain & "/" & strUsername & ",user")
+          Set Group = GetObject("WinNT://" & strDomain & "/" & strGroupname & ",group")
+          Group.Add(User.ADsPath)
+        Group.Setinfo
+	    'msgbox "User " & strUserName & " added to " & strGroupName & " Group."
+        Set User = nothing
+        Set Group = nothing
+    End Sub
+
+    Function CheckUserExists (strDomain, strUser)
+        Dim User
+        on error resume next
+        Set User = GetObject("WinNT://" & strDomain & "/" & strUser & ",user")
+	    if Err.Number = &H800708AD then
+		    'User not found
+		    CheckUserExists = false
+        Else			
+		    CheckUserExists =  true	
+        End if  
+    End function
+
+
+
+    Function CheckUserPassword (strDomain, strUser, strPassword)
+        Dim User
+        on error resume next
+        Set User = GetObject("WinNT://" & strDomain & "/" & strUser & ",user")
+	    User.ChangePassword strPassword, strPassword
+    	
+	    if err.number = &H80070056 then 
+		    CheckUserPassword =false
+	    Else
+		    CheckUserPassword  = true
+	    End if  
+    End function
+
+    Function AuthenticateUser(strDomain, strUser, strPassword)
+	    if NOT CheckUserExists(strDomain, strUser) then
+		    AuthenticateUser = false
+		    exit function
+	    Else
+		    if NOT CheckUserPassword(strDomain, strUser, strPassword) then
+			    AuthenticateUser = false
+			    exit function
+		    Else
+			    AuthenticateUser = true
+		    End if
+	    End if 
+    End function
+
+    Sub ValidateUser(strDomain,ServiceAccountUserName,ServiceAccountPassword)
+	    if CheckUserExists(strDomain, ServiceAccountUserName) then
+		    if CheckUserPassword(strDomain, ServiceAccountUserName, ServiceAccountPassword) then
+			    msgbox "Service Account is valid."
+		    else
+			    msgbox "Invalid service account password"
+			    document.all.txtWinPwd.value = ""
+			    document.all.txtWinPwd2.value = "" 
+		    End if
+	    Else
+		    msgbox "'" & ServiceAccountUserName & "' is not a valid Windows user account"
+		    document.all.txtWinPwd.value = ""
+			document.all.txtWinPwd2.value = ""
+			document.all.txtWinUname.value = ""
+	    End if
+    End Sub
+	
+	'CSBR# 132150 - Code Change by Soorya on 20-Oct-2010
+	'Purpose: To get RLS Value from DB which will be used to select the appropriate RLS radio button while loading Server COnfiguration TOol.	
+	
+	Sub ReadCurrentRegRLSValue()
+		Dim conObj, conStr,uname,pwd,oraServiceName, servername
+		Dim cmdObj, rsObj
+		Dim strRLSVal , strCmdText	, strPass	
+		'TODO:  Using the credentials for COEDB from the inventory ini file will fail if they have been encrypted in that file.
+		strPass = GetINIValue(inventoryScriptPath & "..\cfserver.ini", "ChemInv", "SEC_PWD")		
+		oraServiceName = document.all("txtOraServiceName").value
+		conStr = "Provider=OraOLEDB.Oracle.1;User Id=COEDB;Password=" & strPass & ";Data Source=" & oraServiceName
+		
+		Set conObj = CreateObject("ADODB.Connection")
+		Set cmdObj = CreateObject("ADODB.Command")		
+		Set rsObj = CreateObject("ADODB.RecordSet")
+
+		strCmdText = "SELECT EXTRACT (CONFIGURATIONXML,'Registration/applicationSettings/groups/add[@name=''REGADMIN'']"
+		strCmdText = strCmdText & "/settings/add[@name=''ActiveRLS'']/@value').getStringVal() as RLSValue FROM COEDB.COECONFIGURATION"
+		strCmdText = strCmdText & " WHERE DESCRIPTION = 'Registration' AND "
+		strCmdText = strCmdText & "existsNode(COECONFIGURATION.CONFIGURATIONXML, 'Registration/applicationSettings/groups/add[@name=''REGADMIN'']/settings/add[@name=''ActiveRLS'']/@value') = 1 "	
+				
+		cmdObj.CommandText = strCmdText	
+		cmdObj.CommandType = adCmdText		
+		on error resume next
+		conObj.open conStr							
+		Set cmdObj.ActiveConnection = conObj
+		Set rsObj = cmdObj.Execute			
+		if not rsObj.EOF then			
+			strRLSVal = cstr(rsObj("RLSValue"))				
+		else			
+			strRLSVal = "off"
+		end if
+		conObj.Close			
+		if err.number <> 0 then
+			currentRegRLSValue = "Off"
+			' 3704 error is expected if the connection cannot be stablished because COEDB has not yet been
+			' created.  In this case we don't need to report it.
+			if err.Number <> 3704 then
+				msgbox "Error while executing ReadCurrentRegRLSValue: " & err.Description
+				TraceLogError ERRORMSG , "ReadCurrentRegRLSValue", "Error Description=" & err.description
+			end if
+			err.clear
+		else
+			currentRegRLSValue = strRLSVal
+		end if		
+	End Sub
+	' End of change for csbr 132150
+	Sub ReadCurrentCOEFrameworkConfigSettings()
+		Dim objNode, currentSSOUrl
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)	
+		'CSBR 126552 - Changed by Soorya Anwar on 15-Jul-2010.Purpose to get the current DisplayCulture used to configure the COE App.
+		currentDisplayCulture = objDOM.SelectSingleNode("/configuration/coeConfiguration/applicationDefaults/@displayCulture").text  'end of change
+		currentOracleServiceName = objDOM.selectSingleNode("/configuration/coeConfiguration/dbmsTypes/add[@name='ORACLE']").selectSingleNode("@dataSource").text
+		currentSSOUrl = objDOM.selectSingleNode("/configuration/coeConfiguration/@singleSignOnURL").text
+        currentSSODefaultProvider = objDOM.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='DEFAULT_PROVIDER']").selectSingleNode("@Value").text
+	
+       		currentCOEHostName = GetHostNameFromURL(currentSSOUrl)
+		currentLDAPConfigXML = GetLDAPConfigXML(objDOM)
+	
+	End Sub
+	
+	Sub ReadCurrentAppIniSettings()
+		currentACXDBType = GetCurrentACXDBType()
+		currentDateFormat = GetCurrentDateFormat()
+		bCurrentInvACX = GetBooleanINIValue("ChemInv", "invconfig.ini","CHEMACX","ACX_SERVER_NAME")
+		bCurrentInvReg = GetBooleanINIValue("ChemInv", "invconfig.ini","CHEMREG", "REG_SERVER_NAME")
+		bCurrentInvGroupSecurity = GetBooleanINIValue("ChemInv", "invconfig.ini", "SECURITY", "ENABLE_OWNERSHIP")
+		'CSBR-158685: Read the value from ini
+		bCurrentInvSafetyData = GetBooleanINIValue("ChemInv", "invconfig.ini", "SUBSTANCES", "DISPLAY_SAFETY_DATA")
+		bCurrentInvUserPreferences = GetBooleanINIValue("ChemInv", "invconfig.ini", "CONTAINERS", "SHOW_USER_PREFERENCES_LINK")
+	End Sub
+	
+	Function GetCurrentACXDBType()
+		Dim iniPath, dbms, strucEngine
+		iniPath = GetAppIniPath("ChemAcx") & "chemacx.ini"
+	
+		strucEngine = Ucase(GetINIValue(iniPath, "INDEX_CFW_FORM", "STRUC_ENGINE"))
+		dbms = "ACCESS"
+		if strucEngine = "CARTRIDGE" then dbms = "ORACLE"
+		GetCurrentACXDBType = dbms
+	End Function
+	
+	Function GetCurrentDateFormat()
+		Dim iniPath, dateFormat
+		Dim i, apps
+		dateFormat = 8
+	    apps = "CHEMINV|CHEMACX"
+	    For i = 0 to ubound(appArray)
+		    if InStr(1,apps, ucase(appArray(i))) > 0 then
+		        iniPath = GetAppIniPath(appArray(i)) & "cfserver.ini"
+				dateFormat = GetINIValue(iniPath, "GLOBALS", "DATE_FORMAT")
+				Exit For
+			end if 
+	    Next
+		GetCurrentDateFormat = dateFormat
+	End Function
+	
+	Function GetBooleanINIValue(appName, fileName, sectionName, keyName)
+		Dim iniPath, iniValue, bIniValue
+		iniPath = GetAppIniPath(appName) & fileName
+		iniValue = Ucase(GetINIValue(iniPath, sectionName, keyName))
+		
+		if iniValue = "0" OR iniValue = "NULL" OR iniValue = "FALSE" then
+			bIniValue = false
+		Else
+			bIniValue = true
+		End if
+		
+		GetBooleanINIValue = bIniValue
+	End Function
+	
+	Function GetLDAPConfigXML(dom)
+		GETLDAPConfigXML = replace(dom.selectSingleNode("//COELDAPConfiguration").xml, vbTab, space(1))
+	End Function
+	
+	Sub SetLDAPConfigXML()
+		Dim oLdapConfigNode
+		Dim objNode
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)
+		if ValidateLDAPConfigXML() then
+			Set oLdapConfigNode = ObjDom.selectSingleNode("//COELDAPConfiguration")
+			oLdapConfigNode.replaceChild oNewLdapConfigNode, oLdapConfigNode.selectSingleNode("//COELDAP")
+			ObjDom.save(COEFrameworkConfigPath)
+		End if	
+	End Sub
+	
+	Sub SetCOEFrameworkConfigSSOUrl()
+		Dim SSOUrlNode
+		Dim objNode
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)	
+		Set SSOUrlNode = ObjDom.selectSingleNode("//coeConfiguration")
+		SSOUrlNode.setAttribute "singleSignOnURL", BuildSSOURL()
+		ObjDom.save(COEFrameworkConfigPath)
+	End Sub
+
+	
+
+
+	
+	Sub SetClassicSSOCOMUrl()
+		Dim SSOComConfigPath, SSOUrlNode
+		Dim objNode, currentSSOUrl
+		on error goto 0
+		' Need to stop the com app so that we can edit the config file.
+		StopCOMApplication("COESSO")
+		SSOComConfigPath = COECommonDllsPath & "SingleSignOnCom.dll.config"
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(SSOComConfigPath)	     		
+		Set SSOUrlNode = ObjDom.selectSingleNode("//value")
+		SSOUrlNode.text = BuildSSOURL()
+		ObjDom.save(SSOComConfigPath)
+	End Sub
+	
+	
+	Function BuildSSOURL()
+		Dim protocol
+		protocol = "http"
+		if document.all.isSecureHttp.checked then protocol = protocol & "s"
+		BuildSSOURL = protocol & "://" & COEHttpHostName & currHttpPort & "/coesinglesignon/singlesignon.asmx"
+	End function
+	
+	Function ValidateLDAPConfigXML()
+		Dim newDom
+		Dim newNode
+		Dim myErr
+		
+		Set newDom = CreateObject("Msxml2.DOMDocument")
+		newDom.loadXml(document.all.txtLDAPConfigXML.value)
+		if newDom.parseError.errorCode <> 0 then 
+			Set myErr = newDom.parseError
+		    msgbox("Invalid XML in COELDAP Configuration: " & vbCrLf & myErr.reason)
+			ValidateLDAPConfigXML = false
+		Else	
+			Set newNode = newDom.selectSingleNode("//COELDAP")
+			Set oNewLdapConfigNode = newNode
+			ValidateLDAPConfigXML = true	
+		End if
+	End Function
+	
+	
+	Function GetLDAPConfigSettingValue(dom, SettingName)
+		GetLDAPConfigSettingValue =  dom.selectSingleNode("//LDAPConfiguration/Settings/add[@Name='" & SettingName & "']").selectSingleNode("@Value").text
+	End Function
+	
+	Function GetHostNameFromURL(url)
+		Dim doubledashPos, singledashPos
+		Dim tmp
+		Dim sArr
+		
+		if instr(url, "https:") AND NOT document.all.isSecureHttp.checked then
+			document.all.isSecureHttp.click()
+		else
+			if document.all.isSecureHttp.checked then document.all.isSecureHttp.click()
+		end if
+
+		tmp = ParseHostNamefromURL(url)
+		if inStr(tmp, ":") > 0 then
+			sArr = split(tmp,":")
+			GetHostNameFromURL = sArr(0)
+			document.all.txtHttpPort.value = sArr(1) 
+		Else
+			GetHostNameFromURL = tmp
+		End if			 
+	End Function
+	
+	Function ParseHostNamefromURL(url)
+		Dim doubledashPos
+		Dim singledashPos
+		Dim tmp
+		
+		doubledashPos = instr(url,"//")
+		singledashPos = instr(doubledashPos + 2, url, "/")
+		on error resume next
+		tmp = mid(url, doubledashPos + 2, singledashPos - doubledashPos - 2)
+		if err then
+			msgbox "Error while parsing the host name from URL: " & url & vbCrLf & "Error: " & err.description 			
+			on error goto 0
+		End if
+
+		ParseHostNamefromURL = tmp
+	End Function
+	
+	Function ParseProtocolHostNamePortFromURL(url)
+		Dim doubledashPos
+		Dim singledashPos
+		Dim tmp
+		
+		doubledashPos = instr(url,"//")
+		singledashPos = instr(doubledashPos + 2, url, "/")
+		on error resume next
+		tmp = left(url, singledashPos)
+		if err then
+			msgbox "Error while parsing the host name from URL: " & url & vbCrLf & "Error: " & err.description 
+			on error goto 0
+		End if
+
+		ParseProtocolHostNamePortFromURL = tmp
+	End Function
+	
+	Sub ReadTSDataFileSizes()
+		Dim elm
+		For each elm in document.forms(0).elements
+			if left(elm.Name, 4) = "txt_" AND NOT elm.disabled then
+				ReadTSDataFileSizeValue(elm.Name)
+			End if
+		Next
+	End Sub
+	
+	Sub LoadSQLParamsFromImportFile()
+		Dim elm
+		For each elm in document.forms(0).elements
+			if left(elm.name, 12) = "txtD_default" then
+				LoadTSDataFilePathFromImportFile(elm.name)
+			End if
+			if left(elm.Name, 4) = "txt_" then
+				LoadTSDataFileSizeFromImportFile(elm.Name)
+			End if
+		Next
+	End Sub
+	
+	Sub SaveSQLParamsToServer()
+		Dim elm
+		warned = ""
+		For each elm in document.all
+			if left(elm.id, 4) = "lbl_" AND NOT elm.disabled then
+				SaveTSDataFilePathToServer(elm.id)
+			End if
+		Next
+		For each elm in document.forms(0).elements
+			if left(elm.Name, 4) = "txt_" AND NOT elm.disabled then
+				SaveTSDataFileSizeToServer(elm.Name)
+			End if
+		Next
+	End Sub
+	
+	
+	Function BrowseForFile()
+		Dim objDialog
+		Dim path
+		on error resume next
+		set objDialog = createobject("SAFRCFileDlg.FileOpen")
+		if err then
+			on error goto 0
+			msgbox "Feature not supported on Windows 2008"
+		else
+			objDialog.OpenFileOpenDlg
+			importFilePath = objDialog.FileName
+			'importFilePath = ChooseFile()
+			'msgbox importFilePath
+			LoadSQLParamsFromImportFile()
+		end if
+	End Function
+	
+	
+Function ChooseFile()
+' Select File dialog based on a script by Mayayana
+' Known issues:
+' * Tree view always opens Desktop folder
+' * In Win7/IE8 only the file NAME is returned correctly, the path returned will always be C:\fakepath\
+' * If a shortcut to a file is selected, the name of that FILE will be returned, not the shortcut's
+    On Error Resume Next
+    Dim objIE, strSelected
+    ChooseFile = ""
+    Set objIE = CreateObject( "InternetExplorer.Application" )
+    
+	objIE.visible = False
+    objIE.Navigate( "about:blank" )
+    Do Until objIE.ReadyState = 4
+    Loop
+    objIE.Document.Write "<HTML><BODY><INPUT ID=""FileSelect"" NAME=""FileSelect"" TYPE=""file""><BODY></HTML>"
+    With objIE.Document.all.FileSelect
+        .focus
+        .click
+        strSelected = .value
+    End With
+    objIE.Quit
+    Set objIE = Nothing
+    ChooseFile = strSelected
+End Function
+	
+	
+	Sub SaveTSDataFilePathToServer(elmid)
+		Dim paramName,paramNameInFile
+		Dim schemaName
+		Dim paramsSQLPath
+		Dim val
+		Dim txtElm
+		Dim tempArr
+		Dim lastChar
+		Dim oFSO
+		
+		tempArr = split(elmid, "_")
+		schemaName = tempArr(1)
+		paramName = tempArr(2)
+		paramNameInFile = paramName
+		if schemaName = "SDM" then
+			if instr(paramName, "Table") > 0 then
+				paramNameInFile = "SDMdefaultTblTSPath"
+			else
+				paramNameInFile = "SDMdefaultIdxTSPath"
+			end if	
+		End if
+		
+		Set oFSO = CreateObject("Scripting.FileSystemObject")
+		
+		paramsSQLPath = GetParamsSQLPath(schemaName)
+		
+		if oFSO.FileExists(paramsSQLPath) then
+			txtElm = "txtD_" & paramName
+			val = document.all(txtElm).value
+			if instr(schemaName,"ENOTEBOOK") > 0 then val = replace(val, "\", "\\") 
+			
+			if validatePathSyntax(elmid, false) then
+				document.all(txtElm).style.color = "black"
+				REReplaceInFile paramsSQLPath, vbCrLf & "DEFINE " & paramNameInFile & " = '" & val & "'", "[\cM]\s*DEFINE\s*" & paramNameInFile & "\s*=\s*([^\cM]+)", vbUSeDefault
+				TraceLogError INFOMSG, "SaveTSDataFilePathToServer", "Param FileName=" & paramsSQLPath & vbcrlf & space(12) & "Parameter " & paramNameInFile & " set to: " & val
+				document.all(elmid).value = val
+			Else
+				document.all(txtElm).style.color = "red"
+				TraceLogError ERRORMSG, "SaveTSDataFilePathToServer", "Param FileName=" & paramsSQLPath & vbcrlf & space(12) & "Parameter " & paramNameInFile & " was not set to: " & val & " because it failed validation."
+			End if
+		Else
+			TraceLogError WARNING, "SaveTSDataFilePathToServer", "Action skipped because " & paramsSQLPath & " file to update does not exist."
+		End if
+	End Sub
+	
+	Sub SaveTSDataFileSizeToServer(elmName)
+		Dim tempArr
+		Dim schemaName
+		Dim paramName 
+		Dim val
+		Dim paramsSQLPath
+		Dim isValidVal
+		
+		tempArr = split(elmName, "_")
+		schemaName = tempArr(1)
+		paramName = replace(tempArr(2), "$", "_")
+		paramsSQLPath = GetParamsSQLPath(schemaName)
+		val = document.all(elmName).value
+		if oFSO.FileExists(paramsSQLPath) then
+			if validateOrasize(document.all(elmName)) then
+				REReplaceInFile paramsSQLPath, "DEFINE " & paramName & " = " & val, "DEFINE\s*" & paramName & "\s*=\s*([0-9]+[^\cM]+)", vbUSeDefault
+				TraceLogError INFOMSG, "SaveTSDataFileSizeToServer", "Param FileName=" & paramsSQLPath & vbcrlf & space(12) & "Parameter " & paramName & " set to: " & val
+				document.all(elmName).style.color = "black"
+			Else
+				TraceLogError ERRORMSG, "SaveTSDataFileSizeToServer", "Param FileName=" & paramsSQLPath & vbcrlf & space(12) & "Parameter " & paramName & " was not set to: " & val & " because it failed validation."
+			End if
+		Else
+			TraceLogError WARNING, "SaveTSDataFileSizeToServer", "Action skipped because " & paramsSQLPath & " file to update does not exist."
+		End if	
+	End Sub
+	
+	Sub LoadTSDataFilePathFromImportFile(elmid)
+		Dim paramName
+		Dim val
+		Dim txtElm
+		
+		paramName = mid(elmid,6) 
+		
+		val = GetINIValue(importFilePath, "DEFAULT_TSPATHS", paramName) 	
+		txtElm = "txtD_"  & paramName
+		document.all(txtElm).value = val
+		document.all(txtElm).style.color = "blue"
+	End Sub
+	
+	Sub LoadTSDataFileSizeFromImportFile(elmid)
+		Dim tempArr
+		Dim schemaName
+		Dim paramName
+		Dim val
+		Dim txtElm
+		Dim thumbElmName
+		
+		tempArr = split(elmid, "_")
+		schemaName = tempArr(1)
+		paramName = replace(tempArr(2), "$", "")
+		val = GetINIValue(importFilePath, schemaName, paramName)
+		document.all(elmid).value = val
+		document.all(elmid).style.color = "blue"
+	End Sub
+	
+	Sub ReadTSDataFilePaths()
+		Dim elm
+		For each elm in document.all
+			if left(elm.id, 4) = "lbl_" AND NOT elm.disabled then
+				ReadTSDataFilePath(elm.id)
+			End if
+		Next
+	End Sub
+	
+	Sub ReadTSDataFilePath(elmid)
+		Dim tempArr
+		Dim schemaName
+		Dim paramName, paramNameInFile
+		Dim val
+		Dim paramsSQLPath
+		Dim txtElm
+		Dim thumbElmName
+		
+		tempArr = split(elmid, "_")
+		schemaName = tempArr(1)
+		paramName = tempArr(2)
+		paramNameInFile = paramName
+		if schemaName = "SDM" then
+			if instr(paramName, "Table") > 0 then
+				paramNameInFile = "SDMdefaultTblTSPath"
+			else
+				paramNameInFile = "SDMdefaultIdxTSPath"
+			end if	
+		End if
+		
+		
+		paramsSQLPath = GetParamsSQLPath(schemaName)
+		
+		val = REFindFirstSubmatchInFile(paramsSQLPath, vbUSeDefault, "[\cM]\s*DEFINE\s*" & paramNameInFile & "\s*=\s*([^\cM]+)", true)
+		val = replace(val, "\\", "\")
+		val = replace (val, "'", "")
+		document.all(elmid).innerHTML = val
+		txtElm = "txtD_" & paramName
+		thumbElmName = "img_" & paramName 
+		on error resume next
+		if document.all(txtElm).value = "" then 
+			document.all(txtElm).value = val
+			document.all(thumbElmName).src = "thumbsup.png"
+			document.all(thumbElmName).title = "All schemas use the same path.  Click for details."
+		Elseif val <> "" AND val <> document.all(txtElm).value then
+			document.all(thumbElmName).src = "thumbsdown.png"
+			document.all(thumbElmName).title = "Warning! Some schemas use a different path.  Click for details."
+		End if	
+		if err then
+			msgbox elmid
+		end if
+	End Sub
+	
+	
+	
+	Sub ReadTSDataFileSizeValue(elmName)
+		Dim tempArr
+		Dim schemaName
+		Dim paramName
+		Dim val
+		Dim paramsSQLPath
+		
+		tempArr = split(elmName, "_")
+		schemaName = tempArr(1)
+		on error resume next
+		paramName = replace(tempArr(2), "$", "_")
+		if err.number <> 0  then msgbox elmName 
+		paramsSQLPath = GetParamsSQLPath(schemaName)
+		val = REFindFirstSubmatchInFile(paramsSQLPath, vbUSeDefault, "DEFINE\s*" & paramName & "\s*=\s*([0-9]+[MmKkGg])", true)
+		document.all(elmName).value = val
+	End Sub
+	
+	Function GetParamsSQLPath(schemaName)
+		Dim workingDir
+		Dim sqlPath
+		Dim paramsFileName	
+		
+		sqlPath = "sql\"
+		paramsFileName = "parameters.sql"
+		Select Case Ucase(schemaName)
+			Case "CS_SECURITY"
+				workingDir = cssecurityScriptPath 
+			Case "COEDB"
+				workingDir = coedbScriptPath 	
+			Case "REGDB"
+			 	workingDir = regScriptPath 
+			Case "BIOASSAYDB"
+			 	workingDir = bioAssayScriptPath 
+			Case "CHEMINVDB2"
+			 	workingDir = inventoryScriptPath
+				sqlPath = "Create_blank_ChemInv_DB\sql\"	
+			Case "CHEMACXDB"
+			 	workingDir = chemacxScriptPath			
+			Case "ENOTEBOOK"
+			 	workingDir = ENotebookScriptPath
+				sqlPath = ""
+				paramsFileName = ENotebookQuestionsFileName	
+			Case "SDM"
+			 	workingDir = SDMScriptPath
+				sqlPath = ""
+				paramsFileName = "DMStartCreate.sql"		
+		End Select	
+		
+		GetParamsSQLPath = workingDir & sqlPath & paramsFileName
+	End Function
+	
+	Sub UpdateELNIntegrationConfigFiles()
+		Dim path
+		Dim protocol
+		Dim COEIntegrationFolderName, currentOraToken, COEUrl
+		
+		COEIntegrationFolderName = "COEIntegrationConfig\"
+		
+		path = ENotebookPath & "Pro\" & COEIntegrationFolderName
+		currentOraToken = GetCurrentOraServiceFromELNConfig(path)
+
+	if currentOraToken = "" then
+		msgbox "Warning:  Could not determine the current Oracle Service Name in the E-Notebook configuration files." & VbCrLf &  "Token replacement in the E-Notebook configuration files will be skipped."
+	Else	
+		COEUrl = GetCurrentCOEURLFromELNConfig(path)
+
+		ReplaceTokensinELNConfig path, currentOraToken, COEUrl
+				
+		path = ENotebookPath & "Std\" & COEIntegrationFolderName
+		ReplaceTokensinELNConfig path, currentOraToken, COEUrl
+		
+		path = ENotebookPath & "Std\EnhancedSaltHandling\" 
+		ReplaceTokensinELNConfig path, currentOraToken, COEUrl
+		
+		path = ENotebookPath & "Std\E-Signature\" 
+		ReplaceTokensinELNConfig path, currentOraToken, COEUrl
+		
+		path = ENotebookPath & "Std\RenderingServerClient\" 
+		ReplaceTokensinELNConfig path, currentOraToken, COEUrl
+	End if			
+	End Sub
+	
+	Sub ReplaceTokensinELNConfig(path, currentOraToken, COEUrl)
+		Dim currentHNToken, protocol
+	
+		protocol = "http"
+		if document.all.isSecureHttp.checked then protocol = protocol & "s"
+		//COEUrl = GetCurrentCOEURLFromELNConfig(path)
+			
+		if isErrorSet = false then ' ParseHostNameFromURL is invoked only if there is no ELN-related error. Check added as part for error-handling for 124407 by Soorya
+            currentHNToken = ParseHostNameFromURL(COEUrl)		
+		end if
+
+		REReplaceInFileRecursive path, ".xml", OracleServiceName, currentOraToken, vbUseDefault
+		REReplaceInFileRecursive path, ".xml", protocol & "://" & COEHTTPHostName & currHttpPort & "/", COEUrl, vbUSeDefault
+		REReplaceInFileRecursive path, ".xml", "=""" & COEHTTPHostName & currHttpPort, "=""" & currentHNToken, vbUseDefault	
+		
+	End Sub
+	
+	Sub UpdateRegConfigFiles()
+		Dim path
+		
+		path = RegConfigFilesPath & "COEObjectConfig.xml"
+		REReplaceInFile path, SERVER_DRIVE & "\", "[A-Za-z]:\\", vbUseDefault
+	End Sub
+	
+	Function  GetCurrentCOEURLFromELNConfig(COEIngrationConfigPath)
+		Dim objDOM, oNode
+		Dim path
+		Dim url, hn
+		
+		on error resume next ' 'error handling added here for CSBR 124407 on 11-Aug-2010 by Soorya Anwar
+		path = COEIngrationConfigPath & "SSOAuthenticatorConfig\Commands\SSOURL.xml"
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(path)
+		Set oNode = ObjDom.selectSingleNode("//input")
+		url = oNode.getAttribute("default")
+		
+		GetCurrentCOEURLFromELNConfig = ParseProtocolHostNamePortFromURL(url)
+		Set objDom = nothing
+		if err.number <> 0 then
+			TraceLogError ERRORMSG , "GetCurrentCOEURLFromELNConfig", "Error while updating " & path & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				
+			err.clear					
+			isErrorSet = true
+		end if
+	End function
+	
+	Function  GetCurrentOraServiceFromELNConfig(COEIngrationConfigPath)
+		Dim objDOM, oNode
+		Dim path
+		Dim tmp, startPos, endPos
+		
+		on error resume next ''error handling added here for CSBR 124407 on 11-Aug-2010 by Soorya Anwar
+		path = COEIngrationConfigPath & "InventoryConfig\Section Types\Create Container Form.xml"
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(path)
+		Set oNode = ObjDom.selectSingleNode("//dbEnumerator")
+		tmp = oNode.getAttribute("lookupConnectionString")
+		startPos = Instr(1, tmp, ";Data Source=")
+		if startPos < 0 then 
+			GetCurrentOraServiceFromELNConfig = ""
+			Exit Function  '====> EXIT POINT
+		Else
+			startPos = startPos + 13
+		End if
+		endPos = len(tmp)+1		
+		tmp = right(tmp, endPos - startPos)
+		GetCurrentOraServiceFromELNConfig = tmp
+		Set objDom = nothing
+		if err.number <> 0 then
+			TraceLogError ERRORMSG , "GetCurrentOraServiceFromELNConfig", "Error while updating " & path & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				
+			err.clear		
+			isErrorSet	= true		
+		end if		
+	End function
+	
+	Sub UpdateELNOracleConfigFile()
+		Dim objDOM, oNode, oNodeList, oNewNode
+		Dim path
+		Dim tmp
+		
+		on error resume next 'error handling added here for CSBR 124407 on 11-Aug-2010 by Soorya Anwar
+		path = ENotebookPath & "OracleConfig.xml"
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(path)
+		Set oNode = ObjDom.selectSingleNode("//connectionString")
+		oNode.Text = "Persist Security Info=False;Data Source=" & OracleServiceName
+		objDom.save(path)
+		Set oNodeList = ObjDom.selectNodes("//authenticator")
+		if oNodeList.length = 1 then
+			AddSSOAuthenticatorToOracleConfig(path)	
+		End if
+		Set objDom = Nothing
+		if err.number <> 0 then				
+			TraceLogError ERRORMSG , "UpdateELNOracleConfigFile", "Error while updating file " & path & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				
+				err.clear
+		end if		
+	End Sub
+	
+	Sub AddSSOAuthenticatorToOracleConfig(path)
+		Dim OraAuthenticator
+		Dim SSOAuthenticator
+		
+		OraAuthenticator = "<authenticator>ENOracle\CambridgeSoft.ENOracle.OracleAuthenticator</authenticator>"
+		SSOAuthenticator = "<authenticator>ENSSOAuthenticator\CambridgeSoft.ENMarket.SSOAuthenticator.Authenticator</authenticator>"
+		REReplaceInFile path , SSOAuthenticator & vbCrLf & VbTab & OraAuthenticator, replace(OraAuthenticator,"\", "\\"), vbUseDefault
+		  
+	End Sub
+	
+	Sub UpdateClickOnceUrls()
+		
+		'ELN ClickOnce 
+		'CSBR# 124407
+		'Date of Change - 10-Aug-2010
+		'Changed by - Soorya Anwar
+		'Purpose - ELN related code change is invoked only if update ELN config checkbox is selected. 
+		if isELNInstalled then
+			ReplaceURL ENotebookClickOncePath & "ENContainer.application", fullURL, "/clickonce/ENContainer.application" 
+			ReplaceURL ENotebookClickOncePath & ENotebookMageBatName, fullURL, "/clickonce/ENContainer.application" 
+			REReplaceInFile ENotebookClickOncePath & ENotebookMageBatName , "", "pause", vbUseDefault
+			REReplaceInFileRecursive ENotebookClickOncePath, ".xml", fullURL & "/ENService/ENService.asmx", "http[\.A-Za-z0-9\-\\://]*/ENService/ENService.asmx", vbUseDefault 
+		end if
+		'End of change for 124407
+		'CSBR# 131085		
+		'Done by - Soorya Anwar
+		'Date - 11/24/2010
+		'Purpose - Adding check so that ClickOnce config for Dataloader and ChemBioViz is updated only if COE is installed
+		if isCOEInstalled then
+			' DataLoader ClickOnce
+			ReplaceURL DataLoaderClickOncePath & "DataLoader.application", fullURL, "/DataLoader/DataLoader.application"
+			ReplaceURL DataLoaderClickOncePath & "mage_DataLoader.bat", fullURL, "/DataLoader/DataLoader.application"
+			REReplaceInFileRecursive DataLoaderClickOncePath, ".config.deploy", fullURL & "/COEWebServiceHost/WebServicePortal.asmx", "http[\.A-Za-z0-9\-\\://]*/COEWebServiceHost/WebServicePortal.asmx", vbUseDefault		
+		end if		
+	End Sub
+
+	Sub UpdateENConst11Interops()
+		Dim path
+		Dim objDOM
+		Dim oNode
+		
+		on error resume next 'error handling added here for CSBR 124407 on 11-Aug-2010 by Soorya Anwar
+		path = ENotebookClickOncePath & "ENContainer_11_0_3_1\ENContainer.exe.manifest"
+		UpdateAssembyVersionInManifest Path, "AxInterop.ChemDrawControlConst11", "12.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.ChemDrawControlConst11", "12.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.CSCombiConst11", "12.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.MolServerConst11", "12.0.0.0"
+		if err.number <> 0 then				
+			TraceLogError ERRORMSG , "UpdateENConst11Interops", "Error while updating " & path & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				
+				err.clear
+			end if					
+	End Sub
+	
+	Sub UpdateAssembyVersionInManifest(manfiestPath, assemblyName, newVersion)
+		Dim path
+		Dim objDOM
+		Dim oNode
+		
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(manfiestPath)
+		Set oNode = ObjDom.SelectSingleNode("//assemblyIdentity[@name='" & assemblyName & "']")
+		oNode.setAttribute "version", newVersion
+		ObjDom.save(manfiestPath)
+	End Sub
+	
+	Sub RemoveAssmeblyBindingFromClientConfig(clientConfigPath)
+		Dim path
+		Dim objDOM
+		Dim oNode
+		
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(clientConfigPath)
+		Set oNode = ObjDom.SelectSingleNode("//assemblyBinding")
+	
+		if NOT (oNode is Nothing) then
+			oNode.parentNode.RemoveChild(oNode) 
+			ObjDom.save(clientConfigPath)
+		End if	
+	End Sub
+	
+	Sub RemoveTrustInfoFromDataLoaderManifest(manifestPath)
+		Dim path
+		Dim objDOM
+		Dim oNode
+		
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(manifestPath)
+		Set oNode = ObjDom.SelectSingleNode("//trustInfo")
+	
+		if NOT (oNode is Nothing) then
+			oNode.parentNode.RemoveChild(oNode) 
+			ObjDom.save(manifestPath)
+		End if	
+	End Sub
+	Sub ReplaceURL(filePath, newFullUrlHost, urlRestOfPath)
+		REReplaceInFile filePath, newFullUrlHost & urlRestOfPath, "http[\.A-Za-z0-9\-\\://]*" & urlRestOfPath, vbUseDefault
+	End Sub
+	
+	Sub SetDataLoaderClickOnceConfigFileFor3TierMode()
+		Dim AppConfigFileName
+		AppConfigFileName = "DataLoader.exe.config.deploy"
+		REReplaceInFile DataLoaderClickOnceGoodsPath & AppConfigFileName , "", "<!--BeginDataPortalSettings", vbUseDefault
+		REReplaceInFile DataLoaderClickOnceGoodsPath & AppConfigFileName , "", "EndDataPortalSettings-->", vbUseDefault
+	End Sub
+	
+	Dim cur_lyr
+	cur_lyr = ""
+	Sub swapLayers(id) 
+	  if len(cur_lyr)>0 then hideLayer(cur_lyr)
+	  showLayer(id)
+	  cur_lyr = id
+	End Sub
+
+	Sub showLayer(id)
+	  document.all(id).style.display = "block"
+	End Sub
+
+	Sub hideLayer(id)
+	  document.all(id).style.display = "none"
+	End Sub
+	
+	Function validateOraSize(elm)
+        if len(REFind(elm.value, "[0-9]+[mMkKgG]", true)) = 0 then
+			    swapLayers("lyr4")
+			    msgbox elm.Name & " must be a number immediately followed by a K, M, or G"
+			    elm.style.color = "red"
+			    validateOraSize = false
+		Else
+			    validateOraSize = true
+			    elm.style.color = "black"
+		End if
+	End Function
+	
+	Function validatePathSyntax(elmid, bclearWarning)
+		Dim lastChar
+		Dim paramName
+		Dim elm
+		Dim tempArr
+		
+		
+		if bClearWarning then warned = ""
+		
+		if left(elmid, 4) <> "lbl_" then
+			set elm = document.forms(0).elements(elmid)
+			paramName = mid(elm.name, 13)
+		Else
+			tempArr = split(elmid, "_")
+			paramName = tempArr(2)
+			set elm = document.all("txtD_" & paramName)
+		End if
+		lastChar = right(elm.value,1)
+		elm.style.color = "black"
+		if  lastChar <> "\"  then
+			if len(elm.value) >0 AND lastChar <> "/" then
+					if instr(warned, paramName) = 0 then
+					    swapLayers("lyr4")
+						msgbox "Warning! " & paramName & " does not end in slash." 
+						elm.style.color = "red"
+						warned = warned & paramName
+					End if	
+					validatePathSyntax = false			
+			else
+				validatePathSyntax = true
+			End if
+		Else
+			validatePathSyntax = true
+		End if
+	End function	
+	
+	Function ShowTsPathDetails(imgName)
+		Dim divName
+        
+
+		divName = replace(imgName,"img", "divFP")
+
+		
+
+		window.showModalDialog "dialog.htm",document.all(divName).innerHtml, "dialogHeight:350px,dialogWidth:200px" 
+	End function
+	
+	Sub RegisterScriptUtils()
+		 RegisterServer(COECommonDllsPath & "ScptUtl.OCX")
+	End Sub
+
+	'CSBR-158164: Register the WebAdmin component
+	Sub RegisterWebAdmin()
+		 RegisterServer(chemofficePath & "WebServer_Source\cfserveradmin\AdminSource\" & "mswcrun.dll")
+		 RegisterServer(chemofficePath & "WebServer_Source\cfserveradmin\AdminSource\" & "webadmin.dll")
+	End Sub
+	
+	Sub RegisterServer(strPath)
+		Dim fs, wsh
+		Const SystemFolder = 1
+		Const WshNormalFocus = 1
+		Set wsh = CreateObject("Wscript.Shell")
+		Set fs = CreateObject("Scripting.FileSystemObject")
+		Select Case Lcase(Right(strPath, 4))
+			Case ".exe"
+				wsh.Run strPath & " /RegServer", WshNormalFocus, True
+			Case ".wsc"
+				wsh.Run "regsvr32.exe /i:""" & strPath & """ """ & fs.GetSpecialFolder(SystemFolder) & "\scrobj.dll""", WshNormalFocus, True
+			Case Else
+				wsh.Run "regsvr32.exe /s """ & strPath & """", WshNormalFocus, True
+		End Select
+	End Sub
+	
+	Sub UnRegisterServer(strPath)
+		Dim fs, wsh
+		Const SystemFolder = 1
+		Const WshNormalFocus = 1
+		Set wsh = CreateObject("Wscript.Shell")
+		Set fs = CreateObject("Scripting.FileSystemObject")
+		Select Case Lcase(Right(strPath, 4))
+			Case ".exe"
+				wsh.Run strPath & " /UnRegServer", WshNormalFocus, True
+			Case ".wsc"
+				wsh.Run "regsvr32.exe /u /n /i:""" & strPath & """ """ & fs.GetSpecialFolder(SystemFolder) & "\scrobj.dll""", WshNormalFocus, True
+			Case Else
+			wsh.Run "regsvr32.exe /s /u """ & strPath & """", WshNormalFocus, True
+		End Select
+	End Sub
+	
+	Function IsRegistered(strObjectName)
+		Dim obj
+		On Error Resume Next
+		Set obj = Nothing
+		Set obj = CreateObject(strObjectName)
+		If obj Is Nothing Then
+			IsRegistered = False
+		Else
+			IsRegistered = True
+			Set obj = Nothing
+		End If
+	End Function
+	
+	Sub SetGroupSecurityForCOEDB(strFlag)
+		Dim SSOCOENode
+		Dim SSOSecurityNode
+		Dim objNode
+		Dim privilege
+		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
+		objDOM.async = false
+		objDOM.load(COEFrameworkConfigPath)	
+		If strFlag = "True" Then
+		    privilege = "CSS_MANAGE_GROUPS"
+		Else
+		    privilege = "HIDEME"
+		End if
+		' Updating privilege for home page    
+		Set SSOCOENode = ObjDom.selectSingleNode("//coeHomeSettings/groups/add[@name='COE']/links/add[@name='ManageGroups']")
+		SSOCOENode.setAttribute "privilege", privilege
+		' Updating privilege for Security manager page    
+		Set SSOSecurityNode = ObjDom.selectSingleNode("//coeConfiguration/applications/add[@name='MANAGER']/applicationHome/groups/add[@name='SecurityManagerPanelContents']/links/add[@name='ManageGroups']")
+		SSOSecurityNode.setAttribute "privilege", privilege
+		ObjDom.save(COEFrameworkConfigPath)
+	End Sub
+
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+	<title>CambridgeSoft --ChemOffice Enterprise Configuration Tool</title>
+	<HTA:APPLICATION ID="OSCF" 
+		APPLICATIONNAME="ChemOffice Enterprise Configuration Tool" 
+		BORDER="thick"
+		CAPTION="yes"
+		ICON="/graphics/creature.ico"
+		SHOWINTASKBAR="yes"
+		SINGLEINSTANCE="yes"
+		SYSMENU="yes"
+		WINDOWSTATE="normal">
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: 0px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+SPAN
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    
+}
+TD{
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+}
+TH{
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+}
+input.btn{
+	background-color: transparent;
+	border:1px solid #909090;
+	font-size:11px;
+	color:#000000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	background-color:#ffffff
+}
+
+ 
+
+a.menuLink:link,a.menuLink:visited,a.menuLink:active {
+	color: blue;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+}
+
+a.menuLink:hover {
+	color: #FF9900;
+	display: block;
+}
+
+a:link,a:visited,a:active {
+	color: blue;
+	text-decoration: none;
+	display: inline;
+}
+
+a:hover {
+	color: #FF9900;
+	display: inline;
+}
+
+#lyr1, #lyr2, #lyr3, #lyr4, #lyr5 {
+	position:relative;
+	text-align: left;
+	left:0px;
+	right:10px;
+	top:0px;
+	z-index:100;
+	display: none;
+	padding: 10px;
+	vertical-align: top;
+}
+
+
+#menu {
+	border-bottom : 1px solid #ccc;
+	margin : 0;
+	padding-bottom : 19px;
+	padding-left : 5px;
+}
+
+#menu ul, #menu li	{
+	display : inline;
+	list-style-type : none;
+	margin : 0;
+	padding : 0;
+}
+
+#menu a:link, #menu a:visited	{
+	background : #E8EBF0;
+	border : 1px solid #ccc;
+	color : #666;
+	float : left;
+	font-size : small;
+	font-weight : normal;
+	line-height : 14px;
+	margin-right : 8px;
+	padding : 2px 10px 2px 10px;
+	text-decoration : none;
+}
+
+#menu a:link.active, #menu a:visited.active	{
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}
+
+#menu a:hover	{
+	color : #f00;
+	border-bottom : 1px dotted #ccc;
+}
+
+div.section-1 #menu li#nav-1 a,
+div.section-2 #menu li#nav-2 a,
+div.section-3 #menu li#nav-3 a,
+div.section-4 #menu li#nav-4 a {
+	background : #fff;
+	border-bottom : 1px solid #fff;
+	color : #000;
+}
+
+ #menu ul a:hover {
+	color : #f00 !important;
+}
+
+#contents {
+	background : #fffff0;
+	border-bottom : 1px solid #ccc;
+	border-left : 1px solid #ccc;
+	border-right : 1px solid #ccc;
+	clear : both;
+	margin : 0px;
+	padding : 15px;
+	height: 150px;
+	width: 100%
+}
+-->
+</style>
+
+
+
+	
+</HEAD>
+
+<body>
+<form name="form1">
+<!--<h1>ChemOffice Enterprise 11 Configuration Tool</h1>
+<p>This tool is meant to assist in the configuration of ChemOffice Enterprise 11 applications.  It automates the setting of some of the more common configuration options.  For more advanced configuration options, please refer to the ChemOffice Enterprise Installation Guide, and to the application specific User Guides.</P>
+-->
+
+<div id="section-4">
+<ul id="menu">
+	<li><a href="#" class="nav-1"
+onclick='swapLayers("lyr1")'; return false">Server Settings</a></li>
+	<li><a href="#" class="nav-2"
+onclick='swapLayers("lyr2")'>App Settings</a></li>
+	<li><a href="#" class="nav-3"
+onclick='swapLayers("lyr3")'>Schema Pwds</a></li>
+	<li><a href="#" class="nav-4"
+onclick='swapLayers("lyr4")'>Tablespace Params</a></li>
+
+</ul>
+
+<table id="contents">
+<tr>
+<td align="left" valign="top">
+
+	<div id="lyr1">
+		
+		<h2>Server Settings:</h2>
+		<BR>
+
+		<table>
+			
+			<tr>
+				<td>Server ini path:</td>
+				<td><input type="text" disabled value="" size="30" name="txtCOWSIniPath"></td>
+			</tr>
+			<tr>
+				<td>Webroot path:</td>
+				<td><input type="text" disabled value="" size="50" name="txtchemOfficePath"></td>
+			</tr>
+		
+			<tr>
+				<td>Installed Applications:</td>
+				<td><textarea rows="2" wrap="hard" disabled cols="60" name="txtInstalledApps"></textarea></td>
+				
+			</tr>
+			
+			<tr>
+				<td><div title="Enter TNS name of the target Oracle server." style="color :Red">Oracle Service Name:</div></td>
+				<td><input type="text" value="" size="30" name="txtOraServiceName" onblur="RequireValue(me)"></td>
+			</tr>
+			<tr>
+				<td><div title="Enter host name that client browsers will use to reach the server.  Note that the server must also be able to resolve this host name." style="color :Red">HTTP Host Name:</div></td>
+				<td><input type="text" value="" size="30" name="txtHTTPHostName" onblur="RequireValue(me)"> (fully qualified domain name)</td>
+			</tr>
+			<tr>
+				<td><div title="Enter the port number to be used in HTTP requests">HTTP Port Number:</div></td>
+				<td>
+					<input type="text" value="80" size="10" name="txtHTTPPort">
+					&nbsp;
+					<input type="checkbox" name="isSecureHttp" onclick="if me.checked then txtHTTPPort.value=443 else txtHTTPPort.value=80 end if"> Use Secure HTTP SSL connection
+				</td>
+			</tr>	
+			<tr>
+				<td><div title="Enter the session timeout value to be set in IIS">Session Timeout(min):</div></td>
+				<td>
+					<input type="text" value="" size="10" name="txtSessionTimeOut">
+				</td>
+			</tr>
+		
+			<tr>
+				<td><div title="Select the desired date format.">Date Format:</div></td>
+				<td>
+					<input checked type="radio" value="8" name="radioDateFormat">MM/DD/YYYY
+					<input type="radio" value="9" name="radioDateFormat">DD/MM/YYYY
+					<input type="radio" value="10" name="radioDateFormat">YYYY/MM/DD (For classic ASP only)
+				</td>
+			</tr>
+			
+			<!--CSBR 126552 by Soorya Anwar on 15-Jul-2010.-->
+			<!--Purpose: to add a Localization dropdown in the UI so user can select this directly-->
+			
+			<tr>
+				<td><div title="Select the desired localization values.">Localization:</div></td>
+				<td>
+				<select name="drpLocalization">
+				<option value ="ca-ES">Catalan - Catalan </option>
+				<option value ="da-DK">Danish - Denmark  </option>
+				<option value ="nl-BE">Dutch - Belgium   </option>
+				<option value ="nl-NL">Dutch - The Netherlands</option>
+				<option value ="en-AU">English - Australia	</option>
+				<option value ="en-CA">English - Canada	</option>
+				<option value ="en-GB">English - United Kingdom	</option>
+				<option value ="en-US">English - United States </option>
+				<option value ="fi-FI">Finnish - Finland </option>				
+				<option value ="fr-BE">French - Belgium </option>
+				<option value ="fr-CA">French - Canada</option>
+				<option value ="fr-FR">French - France </option>
+				<option value ="fr-CH">French - Switzerland </option>
+				<option value ="de-DE">German - Germany </option>
+				<option value ="de-CH">German - Switzerland</option>
+				<option value ="it-IT">Italian - Italy</option>
+				<option value ="it-CH">Italian - Switzerland </option>
+				<option value ="ja-JP">Japanese - Japan </option>				
+				<option value ="pt-PT">Portuguese - Portugal</option>
+				<option value ="es-ES">Spanish - Spain</option>
+				<option value ="sv-SE">Swedish - Sweden </option>
+				</select>
+				</td>
+			</tr>
+			
+			<!--End of Change-->
+			
+		
+			<tr>
+				<td colspan="4">
+					<table>
+						 <tr>
+							<th></th>
+							<th>User Name</th>
+							<th>Password</th>
+							<th>Confirmation</th>
+							<th></th>    
+						</tr>
+						 <tr>
+							<td><div title="Enter the credentials for the service account.  This account is used to run ChemOffice Enterprise processes on this application server.">Windows Service Account:</div></td>
+							<td><input type="text" value="" size="20" name="txtWinUname"></td>
+							<td><input type="password" value="" size="20" name="txtWinPwd" onblur="focusOnConfirm(me)" onfocus="checkUserNameEntered(me)"></td>
+							<td><input type="password" value="" size="20" name="txtWinPwd2" onblur="confirmPwd(me)"></td>
+							<td><!--<input type="button" name="btnWinTestConnection" value="Test" class="btn" onclick="TestWinConnection()" disabled />--></td>    
+						</tr>
+						<tr>
+							<td colspan="5" align="center">
+								(leave blank to keep existing account)
+							</td>
+						</tr>   
+					</table>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="200"><div title="Select the authentication mode for cs_security logins.">Authentication Mode:</div></td>
+				<td>
+					<input checked type="radio" value="ORACLE" name="radioAuthenticationMode" onclick="document.all.divLDAPParameters.style.visibility ='hidden'">ORACLE
+					<input type="radio" value="COELDAP" name="radioAuthenticationMode" onclick="document.all.divLDAPParameters.style.visibility ='visible'" >COELDAP 
+				</td>
+			</tr>            
+				<tr>
+					<td colspan="2">
+					<div id="divLDAPParameters" style="visibility: hidden">
+				<table>
+					<tr>
+						<td>
+					    <textarea wrap="off" cols="80" rows="7" name="txtLDAPConfigXML"></textarea>
+						</td>
+					</tr>
+				</table>
+					</div>
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+	<div id="lyr2">
+		<br />
+		<h2>Application Settings:</h2>
+		<table>
+			<tr>
+				<td>ChemACX Database:</td>
+				<td><input checked type="radio" value="ACCESS" name="radioACXDBType">MS Access <input type="radio" value="ORACLE" name="radioACXDBType">Oracle</td>
+			</tr>
+			<tr>
+				<td>Inventory Integration:</td>
+				<td>
+					<input type="checkbox" name="chkInvACX" /> ChemACX
+					<input type="checkbox" name="chkInvReg" /> Registration
+					<input type="checkbox" name="chkInvGroupSecurity" value=""/> Group Security
+			<!--CSBR-158685: Option for safety data-->			
+					<input type="checkbox" name="chkInvSafetyData" value=""/> Safety Data
+					<input type="checkbox" name="chkInvUserPreferences" value=""/> User Preferences
+				</td>		
+			</tr>
+			<!--Added for csbr 131495 by soorya on 06-Oct-2010-->
+			<tr>
+				<td>Registration system :</td>
+				<td>
+					<input checked type="radio" value="Off" name="radioRLSSettings">RLS OFF <input type="radio" value="Registry Level Projects" name="radioRLSSettings">RLS at Registry Level<input type="radio" value="Batch Level Projects" name="radioRLSSettings"> RLS at Batch Level</td>
+				</td>		
+			</tr>
+			<tr>
+				<td>System Username :</td>
+				<td><input type="text" value="" size="30" name="txtSysUsername"></td>
+			</tr>
+			<tr>
+				<td>System Password :</td>
+				<td><input type="password" value="" size="30" name="txtSysPassword"></td>		
+			</tr>			
+		</table>
+	</div>
+
+	<div id="lyr3">
+		<br />
+		<h2>Schema Passwords:</h2> 
+		<br />
+		<table>
+		
+			<tr>
+				<td colspan="4" align="center">(leave blank to keep existing password)</td>
+			</tr>
+			<tr>
+				<th>Schema</th>
+				<th>Password</th>
+				<th>Confirmation</th>
+				<th>Encrypt?</th>
+				<th><!--Test--></th>   
+			</tr>
+		
+			<tr>			
+				<td><div id="lblSecUname">CS_SECURITY</div></td>
+				<td><input type="password" value="" size="20" name="txtSecPwd" onblur="focusOnConfirm(me)"></td>
+				<td><input type="password" value="" size="20" name="txtSecPwd2" onblur="confirmPwd(me)"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="EncryptClicked(me)" name="chkEncryptSec"></td>
+				<td><!--<input type="button" name="btnSecTestConnection" value="Test" class="btn" onclick="TestConnection(me)" disabled />--></td>    
+			</tr>
+	
+			<tr>			
+				<td><div id="lblRegUname">REGDB</div></td>
+				<td><input type="password" value="" size="20" name="txtRegPwd" onblur="focusOnConfirm(me)"></td>
+				<td><input type="password" value="" size="20" name="txtRegPwd2" onblur="confirmPwd(me)"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="EncryptClicked(me)" name="chkEncryptReg"></td>
+				<td><!--<input type="button" name="btnRegTestConnection" value="Test" class="btn" onclick="TestConnection(me)" disabled />--></td>
+			</tr>
+			<tr>			
+				<td><div id="lblInvUname">CHEMINVDB2</div></td>
+				<td><input type="password" value="" size="20" name="txtInvPwd" onblur="focusOnConfirm(me)"></td>
+				<td><input type="password" value="" size="20" name="txtInvPwd2" onblur="confirmPwd(me)"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="EncryptClicked(me)" name="chkEncryptInv"></td>
+				<td><!--<input type="button" name="btnInvTestConnection" value="Test" class="btn" onclick="TestConnection(me)" disabled />--></td>    
+			</tr>
+			<tr>			
+				<td><div id="lblSysUname">SYSTEM</div></td>
+				<td><input type="password" value="" size="20" name="txtSysPwd" onblur="focusOnConfirm(me)"></td>
+				<td><input type="password" value="" size="20" name="txtSysPwd2" onblur="confirmPwd(me)"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="EncryptClicked(me)" name="chkEncryptSys"></td>
+				<td><!--<input type="button" name="btnSysTestConnection" value="Test" class="btn" onclick="TestConnection(me)" disabled />--></td>    
+			</tr>
+			<tr>			
+				<td><div id="lblACXUname">CHEMACX</div></td>
+				<td><input type="password" value="" size="20" name="txtACXPwd" onblur="focusOnConfirm(me)"></td>
+				<td><input type="password" value="" size="20" name="txtACXPwd2" onblur="confirmPwd(me)"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="EncryptClicked(me)" name="chkEncryptACX"></td>
+				<td><!--<input type="button" name="btnACXTestConnection" value="Test" class="btn" onclick="TestConnection(me)" disabled />--></td>    
+			</tr>
+	
+		</table>
+	</div>
+
+	<div id="lyr4">
+		<!--<br />
+		<h2>Tablespace Parameters:</h2> 
+		<br />-->
+		<table>
+		
+			<!--<tr>
+				<td colspan="4" align="center">(Default paths to be applied to all schemas)</td>
+			<tr>-->
+			<tr>
+				<th align="left">Tablespace Type&nbsp;&nbsp;</th>
+				<td align="left"><b>Datafile Path</b> (use trailing slash)</td>
+				<th><span title="Checks whether all scripts that make use of this path are currently set to the same value.  Click the icons below to see the current path for each script."><b>Check</b></span></th>
+				   
+			</tr>
+			
+			<tr>			
+				<td>Table Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" class="SQLParam" type="text" value="" size="70" name="txtD_defaultTableTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultTableTSPath" src=""></td>
+			</tr>
+			<tr>			
+				<td>Index Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" type="text" value="" size="70" name="txtD_defaultIndexTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultIndexTSPath" src=""></td>
+			</tr>
+			<tr>			
+				<td>LOB Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" type="text" value="" size="70" name="txtD_defaultLobTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultLobTSPath" src=""></td>
+			</tr>
+			<tr>			
+				<td>Audit Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" type="text" value="" size="70" name="txtD_defaultAuditTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultAuditTSPath" src=""></td>
+			</tr>
+			<tr>			
+				<td>Temporary Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" type="text" value="" size="70" name="txtD_defaultTempTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultTempTSPath" src=""></td>
+			</tr>
+			
+			<tr>			
+				<td>CSCartIdx Data</td>
+				<td><input onblur="validatePathSyntax me.name, true" type="text" value="" size="70" name="txtD_defaultCscartTSPath"></td>
+				<td align="center"><img onclick="ShowTsPathDetails(me.id)" id="img_defaultCscartTSPath" src=""></td>
+			</tr>
+			
+		</table>
+		
+		<BR/>
+		
+		<table>
+			
+			<tr>
+				<th>
+					Schema
+				</th>
+				<th>
+					Data
+				</th>
+				<th>
+					Index
+				</th>
+				<th>
+					LOB
+				</th>
+				<th>
+					CartIdx
+				</th>
+				<th>
+					Audit
+				</th>
+				<th>
+					Temp
+				</th>
+				<th>
+					CtxIdx
+				</th>
+				<th>
+					Doc
+				</th>
+				<th>
+					Section
+				</th>
+			</tr>
+		
+			<tr>
+				<td>
+					COEDB
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_COEDB_TablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" size="6" name="txt_COEDB_idxTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" size="6" name="txt_COEDB_lobTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_COEDB_auditTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_COEDB_tempTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					REGDB
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_REGDB_TablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_REGDB_idxTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_REGDB_lobTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_REGDB_cscartTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					CHEMINVDB2
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMINVDB2_TablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMINVDB2_idxTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMINVDB2_lobTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMINVDB2_cscartTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMINVDB2_auditTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					CHEMACXDB
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMACXDB_TablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMACXDB_idxTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMACXDB_lobTablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_CHEMACXDB_cscartTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Schema
+				</th>
+				<th>
+					Table
+				</th>
+				<th>
+					Index
+				</th>
+				<th>
+					LOB
+				</th>
+				<th>
+					Temp
+				</th>
+				<th>
+					Config
+				</th>
+				<th>
+					ConfigIdx
+				</th>
+				<th>
+					HiBlock
+				</th>
+				<th>
+					HiBIdx
+				</th>
+				<th>
+					HiBLob
+				</th>
+			</tr>
+			<tr>
+				<td>
+					ENOTEBOOK
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_NB$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_IDX$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_LOB$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_TMP$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_CFG$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_CFGIDX$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_highestblocksizeTS$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_highestblocksizeIX$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_highestblocksizeLOB$SIZE">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					EN_AUDIT
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_AUDIT$NB$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_AUDIT$IDX$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_AUDIT$LOB$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_AUDIT$CFG$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_ENOTEBOOK_AUDIT$CFGIDX$TABLESPACE$SIZE">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					SDM
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_SDM_TablespaceSize">
+				</td>
+				<td>
+					<input type="text" value="" onblur="validateOraSize(me)" size="6" name="txt_SDM_idxTablespaceSize">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+				<td>
+					<input disabled style="background-color: #DDDDDD" type="text" value="" size="6" name="">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10" align="right">
+					<span title="Load the SQL parameters from ini text file."><input type="button" class="btn" value="Load" onclick="BrowseForFile()"/></span>
+				</td>
+			</tr>
+			
+		</table>
+			
+	</div>
+	
+
+</td>
+</tr>	
+</table>
+</div>
+
+<table width="100%">
+	<tr>		
+		<td colspan="5" align="right"><p><br /><input type="button" class="btn" value="Cancel" onclick="DoCancel()" />&nbsp;<input type="button" class="btn" value="Save Configuration" onclick="SaveConfig()" /></p></td>
+	</tr>		
+</table>
+
+<div style="visibility:hidden" id="divFP_defaultTableTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to table data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				REGDB
+			</td>	
+			<td>
+				<span id="lbl_REGDB_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMINVDB2
+			</td>	
+			<td>
+				<span id="lbl_CHEMINVDB2_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMACXDB
+			</td>	
+			<td>
+				<span id="lbl_CHEMACXDB_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ENOTEBOOK
+			</td>	
+			<td>
+				<span id="lbl_ENOTEBOOK_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SDM
+			</td>	
+			<td>
+				<span id="lbl_SDM_defaultTableTSPath" value=""></span>
+			</td>
+		</tr>
+
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultIndexTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to index data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				REGDB
+			</td>	
+			<td>
+				<span id="lbl_REGDB_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMINVDB2
+			</td>	
+			<td>
+				<span id="lbl_CHEMINVDB2_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMACXDB
+			</td>	
+			<td>
+				<span id="lbl_CHEMACXDB_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ENOTEBOOK
+			</td>	
+			<td>
+				<span id="lbl_ENOTEBOOK_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SDM
+			</td>	
+			<td>
+				<span id="lbl_SDM_defaultIndexTSPath" value=""></span>
+			</td>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultLobTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to LOB data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultLobTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				REGDB
+			</td>	
+			<td>
+				<span id="lbl_REGDB_defaultLobTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMINVDB2
+			</td>	
+			<td>
+				<span id="lbl_CHEMINVDB2_defaultLobTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMACXDB
+			</td>	
+			<td>
+				<span id="lbl_CHEMACXDB_defaultLobTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ENOTEBOOK
+			</td>	
+			<td>
+				<span id="lbl_ENOTEBOOK_defaultLobTSPath" value=""></span>
+			</td>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultCscartTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to cartridge data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultCscartTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				REGDB
+			</td>	
+			<td>
+				<span id="lbl_REGDB_defaultCscartTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMINVDB2
+			</td>	
+			<td>
+				<span id="lbl_CHEMINVDB2_defaultCscartTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMACXDB
+			</td>	
+			<td>
+				<span id="lbl_CHEMACXDB_defaultCscartTSPath" value=""></span>
+			</td>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultAuditTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to audit data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultAuditTSPath" value=""></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CHEMINVDB2
+			</td>	
+			<td>
+				<span id="lbl_CHEMINVDB2_defaultAuditTSPath" value=""></span>
+			</td>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultTempTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to temp data tablespace
+			</th>
+		</tr>
+		<tr>
+			<td>
+				COEDB
+			</td>	
+			<td>
+				<span id="lbl_COEDB_defaultTempTSPath" value=""></span>
+			</td>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultCtxTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to Oracle Text (ctx) data tablespace
+			</th>
+		</tr>
+	</table>
+	<br>	
+</div>
+<div style="visibility:hidden" id="divFP_defaultDocTSPath">
+	<table>
+		<tr>
+			<th width="120">
+				Schema
+			</th>
+			<th>
+				Path to Doc data tablespace
+			</th>
+		</tr>
+	</table>
+	<br>	
+</div>
+<p>&nbsp;</p>
+</form>
+</body>
+	
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="DOCMGR" dataviewid="8010">
+	<tables>
+		<table id="1" database="DOCMGR" alias="DOCUMENTS" name="DOCMGR_DOCUMENTS" primaryKey="1">
+			<fields id="1" alias="DOCID" name="DOCID" dataType="INTEGER"/>
+			<fields id="2" alias="DOC" name="DOC" dataType="TEXT" indexType="FULL_TEXT"/>
+			<fields id="3" alias="LOCATION" name="DOCLOCATION" dataType="TEXT"/>
+			<fields id="4" alias="NAME" name="DOCNAME" dataType="TEXT"/>
+			<fields id="5" alias="SIZE" name="DOCSIZE" dataType="INTEGER"/>
+			<fields id="6" alias="TYPE" name="DOCTYPE" dataType="TEXT"/>
+			<fields id="7" alias="TITLE" name="TITLE" dataType="TEXT"/>
+			<fields id="8" alias="AUTHOR" name="AUTHOR" dataType="TEXT"/>
+			<fields id="9" alias="SUBMITTER" name="SUBMITTER" dataType="TEXT"/>
+			<fields id="10" alias="COMMENTS" name="SUBMITTER_COMMENTS" dataType="TEXT"/>
+			<fields id="11" alias="DATE_SUBMITTED" name="DATE_SUBMITTED" dataType="DATE"/>
+			<fields id="12" alias="REG_RLS_PROJECT_ID" name="RLS PROJECT ID" dataType="TEXT"/>
+			<fields id="13" alias="REPORT_NUMBER" name="REPORT_NUMBER" dataType="TEXT"/>
+			<fields id="14" alias="STATUS" name="STATUS" dataType="TEXT"/>
+			<fields id="15" alias="WRITER" name="WRITER" dataType="TEXT"/>
+			<fields id="16" alias="DOCUMENT_DATE" name="DOCUMENT_DATE" dataType="DATE"/>
+			<fields id="17" alias="DOCUMENT_CLASS" name="DOCUMENT_CLASS" dataType="TEXT"/>
+			<fields id="18" alias="SEC_DOC_CAT" name="SEC_DOC_CAT" dataType="TEXT"/>
+			<fields id="19" alias="ABSTRACT" name="ABSTRACT" dataType="TEXT"/>
+			<fields id="20" alias="DOCID_LINKID" name="DOCID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" lookupFieldId="45" lookupDisplayFieldId="44"/>
+			<fields id="21" alias="RID" name="DOCID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" lookupFieldId="45" lookupDisplayFieldId="41"/>			
+			<fields id="22" alias="MAIN_AUTHOR" name="MAIN_AUTHOR" dataType="TEXT" />			
+		</table>
+		<table id="2" database="DOCMGR" alias="STRUCTURES" name="DOCMGR_STRUCTURES" primaryKey="30">
+			<fields id="30" alias="U_ID" name="U_ID" dataType="INTEGER"/>
+			<fields id="31" alias="MOL_ID" name="MOL_ID" dataType="INTEGER"/>
+			<fields id="32" alias="DOCID" name="DOCID" dataType="INTEGER"/>
+			<fields id="33" alias="BASE64_CDX" name="BASE64_CDX" indexType="CS_CARTRIDGE" dataType="TEXT"/>
+			</table>
+		<table id="3" database="DOCMGR" alias="LINKS" name="DOCMGR_EXTERNAL_LINKS" primaryKey="41">
+			<fields id="41" alias="RID" name="RID" dataType="INTEGER"/>
+			<fields id="42" alias="APPNAME" name="APPNAME" dataType="TEXT"/>
+			<fields id="43" alias="LINKTYPE" name="LINKTYPE" dataType="TEXT"/>
+			<fields id="44" alias="LINKID" name="LINKID" dataType="TEXT"/>
+			<fields id="45" alias="DOCID" name="DOCID" dataType="INTEGER"/>
+			<fields id="46" alias="SUBMITTER" name="SUBMITTER" dataType="TEXT"/>
+			<fields id="47" alias="DATE_SUBMITTED" name="DATE_SUBMITTED" dataType="TEXT"/>
+		</table>
+	</tables>
+	<relationships>
+		<relationship parent="1" parentkey="1" child="2" childkey="32" />
+		<relationship parent="1" parentkey="1" child="3" childkey="45" />
+	</relationships>
+</COEDataView>

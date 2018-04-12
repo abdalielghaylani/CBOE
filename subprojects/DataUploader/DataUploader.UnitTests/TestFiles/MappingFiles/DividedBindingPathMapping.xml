@@ -1,0 +1,35 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.BatchList[0].DateCreated</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>Created Date</description>
+      <args>
+        <arg index="0" type="string" input="derived">
+          <value>DATE</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>SetComponentProperty</name>
+      <description>Set component property</description>
+      <args>
+        <arg index="0" type="string" input="constant">
+          <value>MOLREGNO</value>
+        </arg>
+        <arg index="1" type="string" input="derived">
+          <value>MOLREGNO</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

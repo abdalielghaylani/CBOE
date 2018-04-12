@@ -1,0 +1,43 @@
+        private void ExportRecordsBySourceIndices(int[] indices)
+        {
+            Array.Sort(indices);
+            System.IO.FileStream fs =
+                System.IO.File.Open(this.SelectedFile, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            DateTime begin = DateTime.Now;
+            List<object> records = new List<object>();
+            SDStreamReader sdfp = new SDStreamReader(fs);
+
+            SDFileRecord extractedRecord;
+            int recordsToParse = indices.Length;
+
+            foreach (int i in indices)
+            {
+                sdfp.FastForward(i);
+
+                extractedRecord = sdfp.ReadRecord();
+                if (extractedRecord != null)
+                {
+                    records.Add(extractedRecord);
+                    int pctg = (int)(((double)records.Count / (recordsToParse)) * 100);
+                }
+                else
+                    break;
+            }
+
+            //close the stream
+            sdfp.Close();
+
+            StringBuilder sdOutputBuilder = new StringBuilder();
+            foreach (SDFileRecord rec in records)
+            {
+                sdOutputBuilder.AppendLine(rec.ComposeRecord());
+            }
+            string sdOutput = sdOutputBuilder.ToString();
+            this.rtbParsedStructure.Text = sdOutput;
+
+            TimeSpan ts = DateTime.Now - begin;
+            double elapsed = ts.TotalMilliseconds;
+
+            this.statusLabel.Text =
+                string.Format("Parsed and 'exported' {0} records in {1} seconds", records.Count.ToString(), (elapsed / 1000).ToString());
+        }

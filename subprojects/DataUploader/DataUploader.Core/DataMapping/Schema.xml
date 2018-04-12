@@ -1,0 +1,15 @@
+﻿<mappings>
+  <destinationRecordType></destinationRecordType>
+  <mapping>
+    <enabled></enabled>
+    <objectBindingPath></objectBindingPath>
+    <memberInformation memberType="method">
+      <type></type>
+      <name></name>
+      <description></description>
+      <args>
+        <arg index="0" input="" type="" pickListId=""></arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

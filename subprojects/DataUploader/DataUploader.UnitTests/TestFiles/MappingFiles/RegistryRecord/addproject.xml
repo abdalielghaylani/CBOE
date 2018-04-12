@@ -1,0 +1,20 @@
+  <!-- Applies any registry-level Identifier -->
+  <!-- NOTE: Assumes a registry-level identifier with the name 'Alias' has already been configured in Registration -->
+ <mappings>
+ <destinationRecordType>RegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AddProject</name>
+      <description>new identifier</description>
+      <args>
+        <!-- the identifier's configured name -->
+        <arg index="0" input="derived" type="string">
+          <value>PROJECT</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+ </mappings>

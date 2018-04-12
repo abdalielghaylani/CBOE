@@ -1,0 +1,23 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>false</enabled>
+    <objectBindingPath>testObjectBindingPath</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>testName</name>
+      <description>testDescription</description>
+      <args>
+        <arg index="0" input="constant" type="testType" pickListCode="0">
+          <value>testValue</value>
+          <resolver>
+            <file>fullFilePath</file>
+            <delimiter>tab</delimiter>
+            <externalValueColumn>c1</externalValueColumn>
+            <internalValueColumn>c2</internalValueColumn>
+          </resolver>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

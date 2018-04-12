@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="8011" dataViewId="0" enableValidationSummary="true" xmlns="COE.FormGroup">
+  <queryForms defaultForm="0" />
+  <detailsForms defaultForm="0">
+    <detailsForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="0" dataSourceId="documentCslaDataSource">
+          <validationRuleList />
+          <title>Document Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode>
+            <formElement name="NewDocument">
+              <label>Document</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Location</bindingExpression>
+              <Id>NewDocument</Id>
+              <displayInfo>
+                <cssClass>Std100x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEFileUpload</type>
+                <visible>true</visible>
+              </displayInfo>
+			  <validationRuleList/>                
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            <formElement name="Title">
+              <label>Title</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Title</bindingExpression>
+              <Id>Title</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+			  <validationRuleList>
+                <validationRule validationRuleName="requiredField" errorMessage="Title is required" displayPosition="Top_Left">
+                  <params />
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            <formElement name="Author">
+              <label>Author(s)</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Author</bindingExpression>
+              <Id>AuthorProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            
+            <formElement name="MainAuthor">
+              <label>Main Author</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='MAIN_AUTHOR'| Value]</bindingExpression>
+              <Id>MainAuthorProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="ReportNumber">
+              <label>Report Number</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='REPORT_NUMBER'| Value]</bindingExpression>
+              <Id>ReportNumberProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Writer">
+              <label>Writer</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='WRITER'| Value]</bindingExpression>
+              <Id>WriterProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            		
+			<formElement name="Comments">
+              <label>Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Comments</bindingExpression>
+              <Id>CommentsProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="Abstract">
+              <label>Abstract</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='ABSTRACT'| Value]</bindingExpression>
+              <Id>AbstractProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Status">
+              <label>Status</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='STATUS'| Value]</bindingExpression>
+              <Id>StatusDropDownList</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <dropDownItemsSelect>SELECT Status as key,Status as value FROM DOCMGR.VW_STATUS</dropDownItemsSelect>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="CREATION_DATE">
+              <label>Document Date</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='DOCUMENT_DATE'| Value]</bindingExpression>
+              <Id>CREATION_DATEProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:Width>98%</COE:Width>
+                  <COE:MaxDate>1/1/0001 12:00:00 AM</COE:MaxDate>
+                  <COE:Editable>True</COE:Editable>
+                  <COE:AllowNull>True</COE:AllowNull>
+                  <COE:AutoCloseUp>True</COE:AutoCloseUp>
+                  <COE:FirstDayOfWeek>Default</COE:FirstDayOfWeek>
+                  <COE:GridLines>None</COE:GridLines>
+                  <COE:NullDateLabel>Null</COE:NullDateLabel>
+                  <COE:NullValueRepresentation>NotSet</COE:NullValueRepresentation>
+                  <COE:Section508Compliant>False</COE:Section508Compliant>
+                  <COE:FontSize />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="DocumentClass">
+              <label>Document Class</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='DOCUMENT_CLASS'| Value]</bindingExpression>
+              <Id>DocumentClassProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <dropDownItemsSelect>SELECT DOCUMENT_CLASS as key,DOCUMENT_CLASS as value FROM DOCMGR.VW_DOCUMENT_CLASS</dropDownItemsSelect>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>DocumentClass_IDProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="SecurityDocCategory">
+              <label>Security Document Category</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='SEC_DOC_CAT'| Value]</bindingExpression>
+              <Id>SecDocCategoryProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <dropDownItemsSelect>SELECT SECURITY_DOCUMENT_CATEGORY as key,SECURITY_DOCUMENT_CATEGORY as value FROM DOCMGR.VW_SECURITY_DOCUMENT_CATEGORY</dropDownItemsSelect>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>SecurityDocCategory_IDProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+          </addMode>
+          <editMode>
+			<formElement name="Title">
+              <label>Title</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Title</bindingExpression>
+              <Id>Title</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="requiredField" errorMessage="Title is required" displayPosition="Top_Left">
+                  <params />
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            <formElement name="Author">
+              <label>Author(s)</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Author</bindingExpression>
+              <Id>AuthorProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>              
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+            <formElement name="MainAuthor">
+              <label>Main Author</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='MAIN_AUTHOR'| Value]</bindingExpression>
+              <Id>MainAuthorProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>              
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+            <formElement name="ReportNumber">
+              <label>Report Number</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='REPORT_NUMBER'| Value]</bindingExpression>
+              <Id>ReportNumberProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>              
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+            <formElement name="Writer">
+              <label>Writer</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='WRITER'| Value]</bindingExpression>
+              <Id>WriterProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>              
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabelForDoc</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            		
+			<formElement name="Comments">
+              <label>Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Comments</bindingExpression>
+              <Id>CommentsProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="Abstract">
+              <label>Abstract</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='ABSTRACT'| Value]</bindingExpression>
+              <Id>AbstractProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Status">
+              <label>Status</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='STATUS'| Value]</bindingExpression>
+              <Id>StatusDropDownList</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <dropDownItemsSelect>SELECT Status as key,Status as value FROM DOCMGR.VW_STATUS</dropDownItemsSelect>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="CREATION_DATE">
+              <label>Document Date</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='DOCUMENT_DATE'| Value]</bindingExpression>
+              <Id>CREATION_DATEProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:Width>98%</COE:Width>
+                  <COE:MaxDate>1/1/0001 12:00:00 AM</COE:MaxDate>
+                  <COE:Editable>True</COE:Editable>
+                  <COE:AllowNull>True</COE:AllowNull>
+                  <COE:AutoCloseUp>True</COE:AutoCloseUp>
+                  <COE:FirstDayOfWeek>Default</COE:FirstDayOfWeek>
+                  <COE:GridLines>None</COE:GridLines>
+                  <COE:NullDateLabel>Null</COE:NullDateLabel>
+                  <COE:NullValueRepresentation>NotSet</COE:NullValueRepresentation>
+                  <COE:Section508Compliant>False</COE:Section508Compliant>
+                  <COE:FontSize />
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="DocumentClass">
+              <label>Document Class</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='DOCUMENT_CLASS'| Value]</bindingExpression>
+              <Id>DocumentClassProperty</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <dropDownItemsSelect>SELECT DOCUMENT_CLASS as key,DOCUMENT_CLASS as value FROM DOCMGR.VW_DOCUMENT_CLASS</dropDownItemsSelect>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>DocumentClass_IDProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+
+            <formElement name="SecurityDocCategory">
+              <label>Security Document Category</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='SEC_DOC_CAT'| Value]</bindingExpression>
+              <Id>SecDocCategoryProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <dropDownItemsSelect>SELECT SECURITY_DOCUMENT_CATEGORY as key,SECURITY_DOCUMENT_CATEGORY as value FROM DOCMGR.VW_SECURITY_DOCUMENT_CATEGORY</dropDownItemsSelect>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>SecurityDocCategory_IDProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+          </editMode>
+          <viewMode>
+		  
+			<formElement name="DocImage">
+              <label />
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue>WordDocument.png</defaultValue>
+              <bindingExpression />
+              <Id>DocImage</Id>
+              <displayInfo>
+				<cssClass>DocImage</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEImageButton</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>DocImage</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Title">
+              <label />
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Title</bindingExpression>
+              <Id>TitleLinkButton</Id>
+              <displayInfo>
+				<cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELinkButton</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents>
+			  <event eventName="Click" handlerName="TitleLinkButton_Click"/>
+			  </serverEvents>
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+						
+			<formElement name="Name">
+              <label>File name:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Name</bindingExpression>
+              <Id>DocumentName</Id>
+              <displayInfo>
+				<cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+				  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+								
+			<formElement name="Author">
+              <label>Author: </label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExprekssion />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Author</bindingExpression>
+              <Id />
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+								
+			<formElement name="Main_Author">
+              <label>Submitted by:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='MAIN_AUTHOR'| Value]</bindingExpression>
+              <Id />
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Document_Date">
+              <label>Date:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='DOCUMENT_DATE'| Value]</bindingExpression>
+              <Id />
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Report_Number">
+              <label>Report Number:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='REPORT_NUMBER'| Value]</bindingExpression>
+              <Id />
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Writer">
+              <label>Writer:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='WRITER'| Value]</bindingExpression>
+              <Id>WriterProperty</Id>
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Status">
+              <label>Status:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='STATUS'| Value]</bindingExpression>
+              <Id>StatusProperty</Id>
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="DOCUMENT_CLASS">
+              <label>Document Class:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='WRITER'| Value]</bindingExpression>
+              <Id>DOCUMENT_CLASSProperty</Id>
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="SEC_DOC_CAT">
+              <label>Security Document Category:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='SEC_DOC_CAT'| Value]</bindingExpression>
+              <Id>SEC_DOC_CATProperty</Id>
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="COMMENTS">
+              <label>Document Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Comments</bindingExpression>
+              <Id>COMMENTSProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextAreaViewMode</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			
+			<formElement name="Abstract">
+              <label>Document Abstract</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='ABSTRACT'| Value]</bindingExpression>
+              <Id>AbstractProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextAreaViewMode</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+			<formElement name="Links">
+                <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink</type>
+                </displayInfo>
+				<bindingExpression>ID</bindingExpression>
+                <configInfo>
+                    <fieldConfig>
+                      <CSSClass>LinkButton</CSSClass>
+                      <Text>Click here to check External Links</Text>
+                      <HRef>/DocManager/Forms/Public/ContentArea/ExternalLinks.aspx</HRef>                                
+                      <Target>_blank</Target>                                
+                    </fieldConfig>
+                </configInfo>
+            </formElement>			
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </detailsForm>
+  </detailsForms>
+  <script src="~/forms/public/jscripts/coeform.js" />
+  <listForms defaultForm="0" />
+  <validationSummaryCssClass>id1COEErrorDiv</validationSummaryCssClass>
+</formGroup>

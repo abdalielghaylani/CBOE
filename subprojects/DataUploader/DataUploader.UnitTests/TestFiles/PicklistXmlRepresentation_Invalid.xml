@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Picklist id="2" name="Units" count="6">
+  <PicklistItem ID="4">g</PicklistItem>
+  <PicklistItem ID="6">l</PicklistItem>
+  <PicklistItem ID="3">mg</PicklistItem>
+  <PicklistItem ID="5">ml</PicklistItem>
+</Picklist>

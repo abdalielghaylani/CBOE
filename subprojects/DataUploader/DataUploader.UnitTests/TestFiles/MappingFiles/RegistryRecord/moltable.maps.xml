@@ -1,0 +1,36 @@
+<mappings>
+  <destinationRecordType>RegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound.PropertyList['CMP_COMMENTS'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>component comments</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+          <value>Comments</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+  
+  <!-- supply a default structure value if none exists -->
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AssignDefaultStructureById</name>
+      <description>Provide a default structure if none has been mapped</description>
+      <args>
+        <arg index="0" type="int" input="constant">
+		  <value>0</value>
+		</arg>
+        <arg index="1" type="int" input="constant">
+		  <value>-2</value>
+		</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

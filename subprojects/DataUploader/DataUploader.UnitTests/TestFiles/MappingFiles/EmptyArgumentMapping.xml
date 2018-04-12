@@ -1,0 +1,13 @@
+﻿<mappings>
+  <destinationRecordType>MockRegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>CreateIdentifier</name>
+      <description>Create a CAS number</description>
+      <args/>
+    </memberInformation>
+  </mapping>
+</mappings>

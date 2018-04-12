@@ -1,0 +1,17 @@
+<mappings>
+  <destinationRecordType>RegistryRecord</destinationRecordType>
+  <mapping>
+    <enabled>true</enabled>
+    <objectBindingPath>this.ComponentList[0].Compound.PropertyList['CMP_COMMENTS'].Value</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name></name>
+      <description>component comments</description>
+      <args>
+        <arg index="0" input="derived" type="string">
+          <value>Comments</value>
+        </arg>
+      </args>
+    </memberInformation>
+  </mapping>
+</mappings>

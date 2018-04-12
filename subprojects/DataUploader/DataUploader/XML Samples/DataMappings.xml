@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mappings>
+
+  <!-- for properties, the complete binding path is a concatenation of the objectBindingPath
+  and the memerInformation's name element
+  -->
+  <mapping>
+    <objectBindingPath>this.ComponentList[0].Compound</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name>PersonRegistered</name>
+      <description>Choose the registrar</description>
+      <args>
+        <!-- John Smith is scientist ID = 12 -->
+        <arg index="0" type="int" input="constant" pickListId="6">12</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- user types in some custom data when creating the mapping -->
+  <mapping>
+    <objectBindingPath>this.ComponentList[0].Compound</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name>Memo</name>
+      <description>Provide the memo</description>
+      <args>
+        <arg index="0" type="int" input="constant">Kept frozen at -80 deg C</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- user uses an input field to create the mapping -->
+  <mapping>
+    <objectBindingPath>this.ComponentList[0].Compound</objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name>Memo</name>
+      <description>Provide the memo</description>
+      <args>
+        <arg index="0" type="int" input="derived">Storage_Notes</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- for methods, the objectBindingPath gets us the nested object whose method we will invoke,
+  and the method name is the memerInformation's name element -->
+  <mapping>
+    <objectBindingPath>this</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>CreateIdentifier</name>
+      <description>Create a CAS number</description>
+      <args>
+        <!-- name="identifierType" -->
+        <arg index="0" type="int" input="constant">2</arg>
+        <!-- name="identifierValue" -->
+        <arg index="1" type="string" input="derived">Old_CAS_Number</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <mapping>
+    <objectBindingPath>
+      this.ComponentList[0].Compound.BaseFragment.Structure
+    </objectBindingPath>
+    <memberInformation memberType="property">
+      <type>instance</type>
+      <name>Value</name>
+      <description>Map molecule information</description>
+      <args>
+        <arg index="0" type="string" input="derived">Smiles_Value</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+
+  <!-- This is futuristic mapping! Leave it alone for now, LOL!
+  <mapping>
+    <objectBindingPath>this.BatchList[0]</objectBindingPath>
+    <memberInformation memberType="method">
+      <type>instance</type>
+      <name>AddFragment</name>
+      <description>Create a new fragment</description>
+      <args>
+        <arg index="0" type="int" input="derived" name="identifierType">Salt_Code</arg>
+        <arg index="1" type="string" input="derived" name="identifierValue">Salt_Equivalents</arg>
+      </args>
+    </memberInformation>
+  </mapping>
+  -->
+
+</mappings>

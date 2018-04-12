@@ -1,0 +1,227 @@
+<%@ Register TagPrefix="igtbar" Namespace="Infragistics.WebUI.UltraWebToolbar" Assembly="Infragistics2.WebUI.UltraWebToolbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register TagPrefix="iglbar" Namespace="Infragistics.WebUI.UltraWebListbar" Assembly="Infragistics2.WebUI.UltraWebListbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebGrid.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebGrid" TagPrefix="igtbl" %>
+<%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea" TagPrefix="uc2" %>
+<%@ Register Assembly="Infragistics2.WebUI.Misc.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebTab.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebTab" TagPrefix="igtab" %>
+<%@ register Namespace="CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager" assembly="CambridgeSoft.COE.Framework" TagPrefix="COECntrl" %>
+
+<asp:Button runat="server" CssClass="ToolbarButton"/>
+<asp:Button runat="server" SkinID="LogOffButton"  CssClass="logingbut"/>
+<asp:Button SkinId="ButtonBig" runat="server" CssClass="ButtonBig"/>
+<asp:Button SkinId="ButtonBigRegAdmin" runat="server" CssClass="ButtonBigRegAdmin"/>
+<asp:Button SkinId="ButtonXL" runat="server" CssClass="ButtonXL"/>
+<asp:Button SkinId="HyperLinkLike" runat="server" CssClass="HyperLinkLike"/>
+<asp:Button SkinId="compound" runat="server" CssClass="compound" />
+<asp:Button SkinId="mixture" runat="server" CssClass="mixture" />
+<asp:Button SkinId="review" runat="server" CssClass="review" />
+<asp:Button SkinId="search" runat="server" CssClass="search" />
+
+<asp:CheckBox runat="server" CssClass="CheckBox"/>
+<asp:Panel runat="server" SkinID="PanelLeft" CssClass="PanelLeft"/>
+<asp:TextBox runat="server" CssClass="WebTextEdit"/>
+<asp:DropDownList runat="server" CssClass=""/>
+<asp:LinkButton runat="server" CssClass="LinkButton" />
+
+<asp:LinkButton runat="server" SkinID="BackDupResolution" Height="35px" CssClass="BackDupResolution" />
+<asp:LinkButton runat="server" SkinID="NextDupResolution" Height="35px" CssClass="NextDupResolution" />
+
+<asp:Label runat="server" CssClass="Label"/>
+<asp:Label SkinId="LabelButtonXL" runat="server" CssClass="ButtonXL"/>
+<asp:Label runat="server" SkinId="PageTitleLabel" CssClass="ContentPageTitle"/>
+<asp:Label runat="server" SkinId="PageTitleLabelSmall" CssClass="ContentPageTitleSmall"/>
+<asp:Label runat="server" SkinId="LinkLabel" CssClass="LinkLabel"/>
+<asp:Label runat="server" SkinId="MessageLabel" CssClass="MessageLabel"/>
+<asp:Label runat="server" SkinId="ConfirmationMessageLabel" CssClass="ConfirmationMessages"/>
+<asp:Label runat="server" SkinId="ConfirmationMessagesRow" CssClass="ConfirmationMessagesRow"/>
+<asp:Label runat="server" SkinId="ErrorMessageLabel" CssClass="ErrorMessages"/>
+<asp:Label runat="server" SkinId="ErrorMessagesRow" CssClass="ErrorMessagesRow"/>
+<asp:Label runat="server" SkinId="CurrentUser" CssClass="CurrentUserText"/>
+<asp:Label runat="server" SkinId="MessagesAreaTextLabel" CssClass="MessagesAreaTextLabel"/>
+<asp:Label runat="server" SkinId="EmHid" CssClass="EmHid"/>
+<asp:Label runat="server" SkinId="DocManager" CssClass="DocManager"/>
+
+<asp:Image runat="server" SkinID="CustomBrand" CssClass="CustomBrand" />
+<asp:Image runat="server" SkinID="I24" CssClass="I24" />
+
+ <asp:HyperLink runat="server" SkinID="HItem" CssClass="HItem" />
+ 
+ <asp:LinkButton  runat="server" SkinId="MenuItem" CssClass="MenuItem"/>
+
+
+<uc2:MessagesArea runat="server" CssClass="MessagesArea"/>
+
+<igtbar:UltraWebToolbar BorderWidth="0" ItemPadding="0" ItemSpacing="0" runat="server" Height="20px">
+    <DefaultStyle CssClass="Menu"></DefaultStyle>
+    <HoverStyle CssClass="MenuHover"></HoverStyle>
+    <SelectedStyle CssClass="MenuSelected"></SelectedStyle>
+</igtbar:UltraWebToolbar>
+
+<ignav:UltraWebTree runat="server" Cursor="Hand">
+                <SelectedNodeStyle ForeColor="red" BackColor="#CCCCCC"></SelectedNodeStyle>
+                <NodePaddings Bottom="2px" Left="2px" Top="2px" Right="2px"></NodePaddings>
+                <Padding Top="6px"></Padding>
+                <Levels>
+                    <ignav:Level Index="0" LevelCheckBoxes="False"></ignav:Level>
+                    <ignav:Level Index="1"></ignav:Level>
+                </Levels>   
+</ignav:UltraWebTree>
+            
+<iglbar:UltraWebListbar runat="server" Width="249px">
+     <DefaultItemStyle CssClass="igwlbItemNormal"></DefaultItemStyle>
+     <DefaultItemHoverStyle CssClass="igwlbItemHover"></DefaultItemHoverStyle>
+     <DefaultItemSelectedStyle CssClass="igwlbItemSelected"></DefaultItemSelectedStyle>
+     <DefaultGroupStyle Height="100%" CssClass="igwlbGroupExplorerBarNormal"></DefaultGroupStyle>
+     <DefaultGroupHeaderAppearance>
+         <CollapsedAppearance Style-CssClass="igwlbExplorerBarHeaderCollapsed"></CollapsedAppearance>
+         <HoverAppearance Style-CssClass="igwlbExplorerBarHeaderHover"></HoverAppearance>
+         <ExpandedAppearance Style-CssClass="igwlbExplorerBarHeaderExpanded"></ExpandedAppearance>
+     </DefaultGroupHeaderAppearance>
+</iglbar:UltraWebListbar>
+
+<igtbl:UltraWebGrid runat="server">
+    <DisplayLayout AllowColSizingDefault="Fixed" AllowColumnMovingDefault="OnServer" AllowSortingDefault="Yes"
+     BorderCollapseDefault="Separate" HeaderClickActionDefault="SortSingle" Name="SubmittedCompoundsUltraWebGrid"
+     RowHeightDefault="20px" RowSelectorsDefault="No" SelectTypeRowDefault="Extended"
+     TableLayout="Fixed" Version="4.00" ViewType="OutlookGroupBy" CellClickActionDefault="RowSelect"
+     SelectTypeColDefault="Single" AutoGenerateColumns="False">
+     
+          <GroupByBox>
+                <BandLabelStyle></BandLabelStyle>
+                <Style CssClass="BandLabel"></Style>
+          </GroupByBox>
+          
+          <GroupByRowStyleDefault></GroupByRowStyleDefault>
+          <ActivationObject BorderColor="204, 237, 252">
+                <BorderDetails WidthLeft="0px" WidthRight="0px" />
+          </ActivationObject>
+          <FooterStyleDefault>
+                <BorderDetails/>
+          </FooterStyleDefault>
+          <RowStyleDefault BackColor="white" Height="20px" BorderStyle="Solid" BorderWidth="1px" BorderColor="#B3B3CC">
+                <BorderDetails/>
+                <Padding Left="6px" />
+          </RowStyleDefault>
+          <FilterOptionsDefault>
+                <FilterDropDownStyle CustomRules="overflow:auto;">
+                <Padding Left="2px" />
+                </FilterDropDownStyle>
+                <FilterHighlightRowStyle></FilterHighlightRowStyle>
+          </FilterOptionsDefault>
+          <RowSelectorStyleDefault></RowSelectorStyleDefault>
+          <SelectedRowStyleDefault>
+                <Padding Left="50px" />
+          </SelectedRowStyleDefault>
+          <HeaderStyleDefault CssClass="HeaderStyle">
+                <BorderDetails />
+                <Padding Left="5px" />
+          </HeaderStyleDefault>
+          <Images>
+                  <CurrentRowImage Url="Themes/Aero/ig_CurrentRow.gif" />
+                  <FixedHeaderOffImage Url="Themes/Aero/ig_tblFixedOff.gif" />
+                  <ExpandImage Url="Themes/Aero/ig_treeArrowPlus.png" />
+                  <FixedHeaderOnImage Url="Themes/Aero/ig_tblFixedOn.gif" />
+                  <CollapseImage Url="Themes/Aero/ig_treeArrowMinus.png" />
+          </Images>
+          <SelectedHeaderStyleDefault CssClass="SelectedHeaderStyle"></SelectedHeaderStyleDefault>
+          <EditCellStyleDefault>
+                  <BorderDetails ColorBottom="224, 224, 224" />
+                  <Margin Bottom="0px" Left="4px" Right="0px" Top="0px" />
+                  <Padding Bottom="0px" Left="2px" Right="0px" Top="0px" />
+          </EditCellStyleDefault>
+          
+          <FrameStyle CssClass="FrameStyle"></FrameStyle>
+          <FixedCellStyleDefault></FixedCellStyleDefault>
+          <Pager AllowPaging="True" PagerAppearance="Both" PageSize="10" AllowCustomPaging="True" StyleMode="PrevNext">
+                  <Style CssClass="FixedCellStyle">
+                        <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                  </Style>
+          </Pager>
+          <AddNewBox Hidden="False">
+                  <Style BackColor="Window" BorderColor="InactiveCaption" BorderStyle="Solid" BorderWidth="1px">
+                        <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                  </Style>
+          </AddNewBox>
+       </DisplayLayout>
+</igtbl:UltraWebGrid>
+
+<igtbl:UltraWebGrid SkinID="AppSettingsUltraWebGridSkin" runat="server" Height="100%" Width="950px">
+    <DisplayLayout AllowColSizingDefault="Fixed" AllowSortingDefault="OnClient" BorderCollapseDefault="Separate"
+        HeaderClickActionDefault="SortMulti" RowSelectorsDefault="No" SelectTypeRowDefault="Extended" 
+        StationaryMarginsOutlookGroupBy="True" TableLayout="Fixed" Version="4.00" RowHeightDefault="25px"
+        ColWidthDefault="150px" ScrollBarView="Horizontal" ScrollBar="Never">
+        <FrameStyle BackColor="Window" BorderColor="#000099" BorderStyle="Solid" BorderWidth="2px"
+            Font-Names="Verdana" Font-Size="Small" Height="100%" ForeColor="Black"
+            Wrap="True">
+        </FrameStyle>
+        <Pager MinimumPagesForDisplay="2">
+            <Style BackColor="LightGray" BorderStyle="Solid" BorderWidth="1px">
+                <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px">
+                </BorderDetails>
+            </Style>
+        </Pager>
+        <EditCellStyleDefault BorderStyle="None" BorderWidth="0px" ForeColor="Black" Font-Size="12px">
+        </EditCellStyleDefault>
+        <FooterStyleDefault BackColor="LightGray" BorderStyle="Solid" BorderWidth="1px">
+            <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px" />
+        </FooterStyleDefault>
+        <HeaderStyleDefault BackColor="#000099" BorderStyle="Solid" HorizontalAlign="Left"
+            BorderColor="White" ForeColor="White">
+            <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px" />
+        </HeaderStyleDefault>
+        <RowStyleDefault BackColor="Window" BorderColor="Silver" BorderStyle="Solid" BorderWidth="1px"
+            Font-Size="10px" TextOverflow="Ellipsis">
+            <Padding Left="3px" />
+            <BorderDetails ColorLeft="Window" ColorTop="Window" />
+        </RowStyleDefault>
+        <GroupByRowStyleDefault BackColor="Control" BorderColor="Window">
+        </GroupByRowStyleDefault>
+        <GroupByBox>
+            <Style BackColor="ActiveBorder" BorderColor="Window"></Style>
+        </GroupByBox>
+        <AddNewBox Hidden="True">
+            <Style BackColor="Window" BorderColor="InactiveCaption" BorderStyle="Solid" BorderWidth="1px" Height="20px" Cursor="Hand">
+                <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px"></BorderDetails>
+            </Style>
+        </AddNewBox>
+        <FilterOptionsDefault>
+            <FilterDropDownStyle BackColor="White" BorderColor="Silver" BorderStyle="Solid" BorderWidth="1px"
+                CustomRules="overflow:auto;" Font-Names="Verdana,Arial,Helvetica,sans-serif"
+                Font-Size="11px" Height="300px" Width="200px">
+                <Padding Left="2px" />
+            </FilterDropDownStyle>
+            <FilterHighlightRowStyle BackColor="#151C55" ForeColor="White">
+            </FilterHighlightRowStyle>
+        </FilterOptionsDefault>
+        <SelectedRowStyleDefault BackColor="LightBlue" ForeColor="Black">
+        </SelectedRowStyleDefault>
+    </DisplayLayout>
+</igtbl:UltraWebGrid>
+
+<%-- Goto webMenu --%>
+<ignav:UltraWebMenu runat="server" SkinID="GoToUltraWebMenu" CssClass="GoTo>
+                        <HeaderStyle CssClass="Header_GoTo" BackColor="Red" BorderColor="Black" ></HeaderStyle>
+                        <ItemStyle CssClass="Item"></ItemStyle>
+                        <HoverItemStyle CssClass="ItemHover">
+                        </HoverItemStyle>
+</ignav:UltraWebMenu>
+
+<igmisc:WebPanel runat="server" SkinID="WebPanelLeft" BackColor="#CCCCCC" Height="500px" CssClass="LeftWebPanelContainer" > 
+    <Header Visible="true" >
+        <CollapsedAppearance Style-CssClass="LeftPanelCollapsed" Style-Height="10px" />
+        <ExpandedAppearance Style-CssClass="LeftPanelExpanded" Style-Height="10px" />    
+    </Header>   
+</igmisc:WebPanel>
+
+<igtab:UltraWebTab SkinID="AppSettingsUltraWebTabSkin" runat="server" Width="618px" SpaceOnRight="30" DisplayMode="Scrollable">
+    <SelectedTabStyle Font-Bold="true" ForeColor="white" BorderStyle="None" Height="22px" Width="150px" BackgroundImage="Images/ig_tab_light1.gif" ></SelectedTabStyle>   
+    <DefaultTabStyle Font-Bold="true" BorderStyle="None" Height="22px" Width="150px" BackgroundImage="Images/ig_tab_light2.gif" ></DefaultTabStyle>
+</igtab:UltraWebTab>
+
+<COECntrl:COEConfigSettingManager SkinID="AppSettingsUltraWebTabSkin" runat="server" Width="950px" SpaceOnRight="30" DisplayMode="Scrollable">
+    <SelectedTabStyle Font-Bold="true" Font-Size="10" BorderStyle="None" Height="28px" Width="150px" BackgroundImage="Images/content/UltraWebTabBackground.gif" ></SelectedTabStyle>   
+    <DefaultTabStyle Font-Bold="false" Font-Size="10" BorderStyle="None" Height="28px" Width="150px" BackgroundImage="Images/content/UltraWebTabBackground.gif" ></DefaultTabStyle>  
+    <RoundedImage NormalImage="Images/content/TabBackgroundBorders.gif" SelectedImage="Images/content/TabBackgroundBorders.gif" FillStyle="LeftRightOnly" LeftSideWidth="10" RightSideWidth="10"></RoundedImage>
+</COECntrl:COEConfigSettingManager>

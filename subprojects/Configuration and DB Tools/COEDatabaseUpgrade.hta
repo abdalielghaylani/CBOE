@@ -1,0 +1,599 @@
+<SCRIPT LANGUAGE="vbscript">
+	option explicit
+	Dim COWSIniPath
+	Dim oIniHelper
+	Dim fso
+	Dim DOC_ROOT
+	Dim COWS_ROOT
+	Dim SERVER_DIR
+	Dim SERVER_DRIVE
+	Dim WshShell	
+	Dim homeDir
+	Dim chemOfficePath
+	Dim COEFrameworkInstallPath
+	Dim coedbScriptPath
+	Dim datalytixScriptPath
+	Dim inventoryScriptPath
+	Dim regScriptPath
+	Dim sTraceLevel
+	Dim msgAction
+	Dim bLogFileOverwrite
+	Dim sLogFileName
+	Dim deploymentPath
+	Dim setupLogsPath
+	Const VERBOSEMSG = 5
+	Const INFOMSG = 10
+	Const ERRORMSG = 30
+	Const NOMSG = 100
+	Const ForReading = 1 
+	Const ForWriting = 2
+
+	Dim CBOEMode
+	CBOEMode = "Original"
+	Dim CBOEItems
+	CBOEItems = Array(_
+		"toolDescriptionForDatalytix",_
+		"toolDescriptionForDatalytix_CBOE",_
+		"CBOEItemsHeader",_
+		"CBOEItemsWarning",_
+		"CBOEDBItems",_
+		"upgradeCOEDBItem",_
+		"upgradeRegDBItem",_
+		"upgradeInvDBItem",_
+		"createDatalytixItem",_
+		"enablePKICartridge",_
+		"initializeDataSource"_
+	)
+
+	Dim DatalytixItems
+	DatalytixItems = Array(_
+		"toolDescriptionForDatalytix",_
+		"CBOEItemsHeader", _
+		"CBOEItemsWarning", _
+		"CBOEDBItems", _
+		"upgradeCOEDBItem",_
+		"createDatalytixItem",_
+		"enablePKICartridge",_
+		"enableOtherCartridges",_
+		"initializeDataSource")
+	
+	
+	sTraceLevel = INFOMSG
+	msgAction = "LOG"  	'Options: INTERACTIVE|LOG|BOTH|NONE
+	bLogFileOverwrite = True
+
+	Init()
+	
+	CheckCBOEMode()
+
+	Function OnLoaded()
+		ShowItems()
+	End Function
+	
+	Function ShowItems()
+		Dim itemsToShow
+		itemsToShow = CBOEItems
+		If CBOEMode = "Datalytix" Then
+			itemsToShow = DatalytixItems
+		End If
+		Dim item, itemElement
+		For Each item In itemsToShow
+			Set itemElement = document.getElementById(item)
+			If Not itemElement Is Nothing then
+				itemElement.style.display="block"
+			End If
+		Next
+	End Function
+
+	Function ScriptPath()
+		ScriptPath = document.location.pathname
+		ScriptPath = Replace(ScriptPath,"%20"," ")
+		ScriptPath = Left(ScriptPath,InStrRev(ScriptPath,"\"))
+	End Function	
+
+	Function RunCmd(appName, cmdPath, sqlfilePath, logfilePath)
+		Dim AnalyzeCmdCall
+		Dim sqlLogFileName
+		Dim workingDir
+		Dim fullCmdCall
+		Dim rc
+		Dim summaryLogName
+		
+		SetVarsFromCOWSIni()
+		Select Case Ucase(appName)
+			Case "COEDB"
+				workingDir = coedbScriptPath & cmdPath	
+			Case "DATALYTIX"
+				workingDir = datalytixScriptPath & cmdPath
+			Case "REGISTRATION"
+			 	workingDir = regScriptPath & cmdPath
+			Case "CHEMINV"
+			 	workingDir = inventoryScriptPath & cmdPath
+		End Select	
+		
+		fullCmdCall = "sqlplus /NOLOG @" & """" & sqlfilePath & """"
+		
+		on error resume next
+		WshShell.CurrentDirectory = workingDir
+		if err.number <> 0 then
+			
+			if err.number = -2147024893 OR err.number = -2147024894 then
+				msgbox "Expected script path could not be found." & vbCrLf & "Path:" & workingDir & vbCrLf & "Command: " & fullCmdCall
+			else	
+				msgbox "Error while setting the working path: " & err.numer & " : " & err.description
+			end if
+			on error goto 0				
+		else
+			rc = WshShell.Run(fullCmdCall, 5, true)
+			
+			sqlLogFileName = replace(lcase(logfilePath), "patches\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "sql\", "")			
+			sqlLogFileName = replace(lcase(sqlLogFileName), "logs\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "scripts\patches\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "scripts\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "..\..\", "")
+		
+			if rc = -1073741510 then
+				msgbox "Action cancelled or failed.  Script was not executed."
+			else
+				if sqlLogFileName <> "" then
+					CopyFile logFilePath , setupLogsPath & sqlLogFileName
+					WshShell.CurrentDirectory = setupLogsPath
+
+					 
+					AnalyzeCmdCall = "..\Deployment\AnalizeDBLog.cmd " & appName & "_" & replace(sqlLogFileName," ","") & " " & Ucase(sqlLogFileName)
+					
+					summaryLogName = "SummaryLog_" & appName & "_" & replace(sqlLogFileName," ","")
+					rc = WshShell.Run(AnalyzeCmdCall, 5, true)
+					
+					REReplaceInFile summaryLogName, "", "\x0a\x2e\x20", vbUseDefault
+					REReplaceInFile summaryLogName, vbCrLf, "\x0d\x0a\x0a", vbUseDefault
+		
+					rc = WshShell.Run("notepad.exe " & summaryLogName, 5, true)
+				end if
+			end if
+			RunCmd = false
+		end if
+	End Function
+
+	Function RunVbs(scriptPath, scriptName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & scriptPath
+		rc = WshShell.Run("cscript " & scriptName, 5, true)
+		RunVbs = false
+	End Function
+
+	Function RunInstaller(installerPath, exeName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & installerPath
+		rc = WshShell.Run(exeName, 5, true)
+		
+		RunInstaller = false
+	End Function
+
+	Function RunExe(pathFromChemoffice, exeName)
+		Dim rc
+		
+		SetVarsFromCOWSIni()
+		
+		rc = WshShell.Run(chemofficePath & pathFromChemoffice & exeName, 5, true)
+		
+		RunExe = false
+	End Function
+
+	Sub Init()
+		Set WshShell = CreateObject("WScript.Shell")
+		deploymentPath = ScriptPath() & "Deployment\"
+		setupLogsPath = ScriptPath() & "SetupLogs\"
+		sLogFileName = SetupLogsPath & "\log_SetupGuide.txt" 
+		Set fso = CreateObject("Scripting.FileSystemObject")
+		COWSIniPath = fso.GetSpecialFolder(0) & "\Cows.ini"
+	End sub
+
+	Function GetFrameworkInstallPathForDatalytix()
+		GetFrameworkInstallPathForDatalytix = Mid(ScriptPath(), 1, InStrRev(ScriptPath(), "\")-1)
+		GetFrameworkInstallPathForDatalytix = Mid(GetFrameworkInstallPathForDatalytix, 1, InStrRev(GetFrameworkInstallPathForDatalytix, "\"))
+	End Function
+
+	Sub SetVarsFromCOWSIni()
+		SERVER_DRIVE = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DRIVE")
+		SERVER_DIR = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DIR")
+		DOC_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "DOC_ROOT")
+		COWS_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "COWS_ROOT")
+		chemOfficePath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" &  COWS_ROOT & "\"
+
+        If CBOEMode = "Datalytix" Then
+			COEFrameworkInstallPath = GetFrameworkInstallPathForDatalytix()
+        Else
+            COEFrameworkInstallPath = GetINIValue(chemOfficePath & "config\chemoffice.ini", "GLOBALS", "COEFRAMEWORK_INSTALLPATH")
+		End If
+
+		coedbScriptPath = COEFrameworkInstallPath & "Framework\DBInstallScripts\CoeDB\Oracle_Install_Scripts\"
+		datalytixScriptPath = COEFrameworkInstallPath & "Framework\DBInstallScripts\Datalytix\"
+		regScriptPath = COEFrameworkInstallPath & "Registration\DBInstallScripts\Oracle_Install_Scripts\"
+		inventoryScriptPath = chemofficePath & "ChemInv\config\oracle_install_scripts\"
+	End Sub
+	
+	Const HKLM = &H80000002 'HKEY_LOCAL_MACHINE
+	Function KeyExists(Key, KeyPath)
+		Dim oReg: Set oReg = GetObject("winmgmts:!root/default:StdRegProv")
+		If oReg.EnumKey(Key, KeyPath, "", "") = 0 Then
+			KeyExists = True
+		Else
+			KeyExists = False
+		End If
+	End Function
+	
+	Function CheckCBOEMode()
+		dim winPath, systemFolder, datalytixFlagPath
+		winPath = WshShell.ExpandEnvironmentStrings( "%windir%" )
+		datalytixFlagPath = fso.BuildPath( winPath, "Datalytix.ini")
+		
+		If fso.FileExists(datalytixFlagPath) Then
+			CBOEMode = "Datalytix"
+		End If
+	End Function
+	
+	Function GetINIValue(iniPath, sectionName, keyName)
+		On   Error   Resume   Next 
+		    Set oIniHelper= CreateObject("cowsUtils.cowsini")
+				
+		    Dim iniValue
+		    iniValue = oIniHelper.VBGetPrivateProfileString(Trim(sectionName), Trim(keyName), Trim(iniPath))
+		    TraceLogError VERBOSEMSG, "GetIniValue" , "iniPath=" & iniPath & vbCrLf & Space(12) &  "sectionName=" & sectionName & vbCrLf & Space(12) & "keyName=" & keyName & vbCrLf & Space(12) & "inivalue=" & iniValue
+		    if iniValue <> "INIEmpty" then
+			    GetINIValue = iniVAlue
+		    else
+			    GetINIValue = ""
+		    end if
+        If   Err   <>   0   Then
+            GetINIValue = ""
+        End if
+	End Function
+
+
+Sub REReplaceInFile(PathSpec, theReplacement, theREPattern, fFormat)
+    Dim theString
+    Dim ColFiles
+    Dim iFile
+    Dim FolderPath
+    Dim inExt
+    Dim fnExt
+    Dim inLength
+    Dim inlastSlash
+    Dim indot
+    Dim fnLength
+    Dim fndot
+    Dim Rts
+    Dim Wts
+    Dim inFileName	
+	
+    inLength = Len(PathSpec)
+    inlastSlash = InStr(1, StrReverse(PathSpec), "\")
+    indot = InStr(1, PathSpec, ".")
+    FolderPath = Left(PathSpec, inLength - inlastSlash + 1)
+    'on error resume next	
+    inExt = Mid(PathSpec, indot, inLength - indot + 1)
+    
+    If inlastSlash > 0 Then
+        inFileName = Mid(PathSpec, (inLength - inlastSlash) + 2, indot - (inLength - inlastSlash) + 2)
+    Else
+        inFileName = PathSpec
+    End If
+    
+    If InStr(1, inFileName, "*") > 0 Then
+        Set ColFiles = GetFilesCollection(FolderPath)
+        For Each File In ColFiles
+            fnLenght = Len(File.Name)
+            fndot = InStr(1, File.Name, ".")
+            fnExt = Mid(File.Name, fndot, fnLenght - fndot + 1)
+            If fnExt = inExt Then
+                'on error resume next
+                If ReadOnlyBit(FolderPath & File.Name) = 1 Then
+      			ToggleReadOnlyBit(FolderPath & File.Name)
+   		End If
+		
+		Set Rts = File.OpenAsTextStream(ForReading, fFormat)
+			if err.number <> 0 then
+				TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+				err.clear
+				Exit sub
+			End if
+                theString = Rts.ReadAll()
+                Rts.Close
+                Set Wts = File.OpenAsTextStream(ForWriting, fFormat)
+                Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+                Wts.Close
+            End If
+        Next
+    Else
+	'on error resume next
+	If ReadOnlyBit(PathSpec) = 1 Then
+      		ToggleReadOnlyBit(PathSpec)
+   	End If
+        Set Rts = fso.OpenTextFile(PathSpec, ForReading, False, fFormat)
+        
+	if err.number <> 0 then
+		TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+		err.clear
+		Exit sub
+        End if
+        theString = Rts.ReadAll()
+        Rts.Close
+       
+        Set Wts = fso.OpenTextFile(PathSpec , ForWriting, True, fFormat)
+        Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+        Wts.Close
+        Set Rts = Nothing
+        Set Wts = Nothing
+    End If
+    
+End Sub
+
+Function REReplace(pString, pReplacement, pREPattern, bIsGlobal)
+    Dim oRE
+    
+    Set oRE = New RegExp
+    oRE.Global = bIsGlobal
+    oRE.Pattern = pREPattern
+    REReplace = oRE.Replace(pString, pReplacement)
+End Function
+
+Function ReadOnlyBit(filespec)
+   Dim f
+   on error resume next	
+   Set f = fso.GetFile(filespec)
+   
+   if err.number <> 0 then
+	TraceLogError ERRORMSG, "ReadOnlyBit", "Error in ReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+   End if
+   If f.attributes and 1 Then
+      ReadOnlyBit = 1
+   Else
+      ReadOnlyBit = 0
+   End If
+End Function
+
+Function ToggleReadOnlyBit(filespec)
+   Dim f
+   on error resume next
+   Set f = fso.GetFile(filespec)
+   if err.number <> 0 then
+	TraceLogError ERRORMSG, "ToggleReadOnlyBit", "Error in ToggleReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+   End if
+   If f.attributes and 1 Then
+      f.attributes = f.attributes - 1
+      ToggleReadOnlyBit = "Readonly bit is cleared."
+   Else
+      f.attributes = f.attributes + 1
+      ToggleReadOnlyBit = "Readonly bit is set."
+   End If
+End Function
+
+
+
+	'//////////////////////////////////////////////////////////////////////
+	'  Setup for Tracing, Logging and Error Reporting
+	'//////////////////////////////////////////////////////////////////////
+	Dim logLine
+	Dim FileSetup
+	Dim oFso
+	Dim sTempFolder
+	Dim oLogFileObject
+
+	'//////////////////////////////////////////////////////////////////////
+	'  TraceandLogError
+	'//////////////////////////////////////////////////////////////////////
+	Sub TraceLogError(nLevel, sCodeLocation, sText)
+
+    	if sTraceLevel <= nLevel Then 
+    		Dim label
+		label = "Info"
+		if nLevel >= 30 then 
+			label = "**ERROR**"
+			errCount = errCount + 1
+		end if 
+    		LogLine =  Now & "   Severity: " & nLevel & "  Message Occurred in: " & sCodeLocation & _
+    			vbNewline & "   " & label & ": " & sText & vbNewLine
+    	
+    		If msgAction = "INTERACTIVE" or msgAction = "BOTH" Then
+    			msgbox LogLine
+    		End If
+
+    		If msgAction = "LOG" or msgAction = "BOTH" Then
+    			If FileSetup <> True Then 
+    				SetupFileLogging sLogFileName
+    			End If
+    			oLogFileObject.writeline LogLine
+    		End If
+    	End If
+	End Sub
+
+
+
+	'//////////////////////////////////////////////////////////////////////
+	'  Log File Setup (required for tracelogerror
+	'//////////////////////////////////////////////////////////////////////
+	Sub SetupFileLogging(sFilename)
+	' Could be removed if file logging will never be used
+		Set oFSO = CreateObject("Scripting.FileSystemObject")
+		sTempFolder = oFSO.GetSpecialFolder(2)
+	
+		If sFilename <> "" Then
+			'sTempName = oFSO.GetFileName(sFilename)
+			'sLogFileName = sTempFolder & "\" & sTempName
+		Else
+			'Generate random name
+			sTempName = oFSO.GetFileName(oFSO.GetTempName)
+			sLogFileName = sTempFolder & "\" & lcase(left(sTempName, InstrRev(sTempName,".")-1)) & ".log"
+		End If
+	
+		If oFSO.FileExists(sLogFileName) and not bLogFileOverwrite Then
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 8, False)
+		Else
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 2, True)
+		End If
+		oLogFileObject.writeline Now & "  Logging Started"
+	
+		FileSetup = True
+	
+	End Sub
+
+	Sub CopyFile(fromPath, toPath)
+		Dim file
+		on error resume next
+	
+		fso.CopyFile fromPath, toPath
+	
+		if err.number <> 0 then
+			TraceLogError ERRORMSG, "CopyFile", "Error in CopyFile: " & fromPath & " to " & toPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+		Else
+			TraceLogError INFOMSG,  "CopyFile", "Copied file(s) " & fromPath & " to " & toPath
+		End if
+	End sub
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML onload="OnLoaded">
+<HEAD>
+	<title>CambridgeSoft --ChemBioOffice Enterprise Database Upgrade Guide</title>
+	<HTA:APPLICATION ID="OSCF" 
+		APPLICATIONNAME="ChemBioOffice Enterprise Database Upgrade Guide" 
+		BORDER="thick"
+		CAPTION="yes"
+		ICON="/graphics/creature.ico"
+		SHOWINTASKBAR="yes"
+		SINGLEINSTANCE="yes"
+		SYSMENU="yes"
+		WINDOWSTATE="normal">
+
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+SPAN
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: blue;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: underline
+}
+
+UL, LI, H2, H4, #toolDescriptionForDatalytix
+{
+	DISPLAY: none;
+}
+
+-->
+
+
+    </style>
+</HEAD>
+
+<body onload="OnLoaded">
+<h1>ChemBioOffice Enterprise Database Upgrade Guide</h1>
+
+
+<p>This page provides convenient links to database upgrade scripts for all ChemBioOffice Enterprise applications.&nbsp;&nbsp;For detailed information refer to the <i>ChemBioOffice Enterprise Installation Guide</i>.&nbsp;Please carefully review that document before proceeding.  You must ensure that all prerequisites have been met, and that all information prompted by the scripts is readily available.</p>
+<!--<p id="toolDescriptionForDatalytix">Datalytix Services use ChemBioOffice Enterprise Framework to access and manage Oracle Data.</p>
+<p id="toolDescriptionForDatalytix_CBOE"><font color="red">Note: Datalytix scripts should be executed irrespective of whether Spotfire Server is configured or not.</font></p>-->
+
+<h2 id="CBOEItemsHeader">Upgrade ChemBioOffice Enterprise database schemas:</h2>
+
+
+<p><font color="red">Note: Only for Oracle 12c database, follow the steps mentioned under 'Upgrading CBOE Database Schemas' section in the CBOE 17.1 Installation Guide before running below scripts.</font></p>
+<ul id="CBOEDBItems">
+  <li id="upgradeCOEDBItem">
+	<p>Upgrade CS_SECURITY and COE Framework Schemas (COEDB) <span style="cursor:hand" onClick="RunCmd 'COEDB','', 'sql\Patches\HEADERFILE_PATCH_CoeDB_ora.sql', 'sql\Patches\log_Patches_CoeDB_ora.txt'">click here</span>
+	</p>
+  	
+  </li>
+  <li id="upgradeRegDBItem">
+	<p>Upgrade Registration System Schema <span style="cursor:hand" onClick="RunCmd 'REGISTRATION','', 'sql\Patches\HEADERFILE_PATCH_chemreg_ora.sql', 'sql\Patches\log_Patches_chemreg_ora.txt'">click here</span></p>
+	</li>
+  <li id="upgradeInvDBItem">
+	<p>Upgrade Inventory Manager Schema <span style="cursor:hand" onClick="RunCmd 'CHEMINV','Create_blank_ChemInv_DB\sql\', 'Patches\HEADERFILE_PATCH_CHEMINVDB2.sql', 'Patches\log_Patches_CHEMINVDB2.txt'">click here</span>
+<BR/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:
+	<BR/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upgrade views for integration with Registration <span style="cursor:hand" onClick="RunCmd 'CHEMINV','Create_blank_ChemInv_DB\sql\', 'Update_Scripts\RegistrationIntegration\RegistrationEnterprise.sql', 'Logs\LOG_RegistrationIntegration.txt'">click here</span></p>	
+  </p></li>  
+
+ <!-- <li id="createDatalytixItem">
+	<p>Enable Datalytix Client Security <span style="cursor:hand" onClick="RunCmd 'Datalytix','', 'sql\HEADERFILE_CREATE_Datalytix.sql', 'log_create_datalytix.txt'">click here</span>
+	</p>
+  </li>
+  <li id="enablePKICartridge">
+	<p>Enable PerkinElmer CSCartridge <span style="cursor:hand" onClick="RunCmd 'Datalytix','', 'sql\enableCSCartridge.sql', 'log_enableCSCartridge.txt'">click here</span>
+	</p>
+  </li>
+  <li id="enableOtherCartridges">
+	<p>Enable Other Cartridges:
+	<BR>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable Accelrys Data Direct <span style="cursor:hand" onClick="RunCmd 'Datalytix','', 'sql\enableDirectCartridge.sql', 'log_enableDirectCartridge.txt'">click here</span>
+	<BR>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable ChemAxon JChem Cartridge <span style="cursor:hand" onClick="EnableCartridge 'JCHEM'">click here</span>
+	</p>
+  </li>
+  <li id="initializeDataSource">
+	<p>Enable Datalytix on Additional Oracle Server <span style="cursor:hand" onClick="RunCmd 'Datalytix','', 'sql\Instance_HEADERFILE_CREATE_GLOBAL_SCHEMA_ora.sql', 'log_create_globalschema_ora.txt'">click here</span>
+	</p>
+  </li>-->
+</ul>
+<p>&nbsp;</p>
+
+</body>
+	
+</html>

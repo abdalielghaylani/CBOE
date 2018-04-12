@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F6195677-CBC6-47F1-BCBF-7E88AC6B69F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.UnitTests.DataLoader.Core</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.DataLoader.UnitTests</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/CambridgeSoft.COE.DataLoader.UnitTests/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CambridgeSoft.COE.DataLoader.UnitTests.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\CambridgeSoft.COE.DataLoader.UnitTests.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=012e785312e03a6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BugFix\CSBR-134490.cs" />
+    <Compile Include="COEFramework\Picklist_UnitTest.cs" />
+    <Compile Include="Common\SourceFileInfo_UnitTest.cs" />
+    <Compile Include="COEFramework\COEDataBinderTest.cs" />
+    <Compile Include="COEFramework\Constants.cs" />
+    <Compile Include="COEFramework\TokenizerTest.cs" />
+    <Compile Include="DataMapping\NormalizeJobParameters_UnitTest.cs" />
+    <Compile Include="DataMapping\RegistryRecordMapping_UnitTest.cs" />
+    <Compile Include="FileParser\CFX\ChemFinderFileParserTests.cs" />
+    <Compile Include="FileParser\Access\AccessFileParser_UnitTest.cs" />
+    <Compile Include="DataMapping\DataMapping_UnitTest.cs" />
+    <Compile Include="FileParser\CSV\CSVTranslatorTest.cs" />
+    <Compile Include="FileParser\FieldAndTypeScanService_UnitTest.cs" />
+    <Compile Include="FileParser\FileReaderFactory_UnitTests.cs" />
+    <Compile Include="FileParser\SD\SDFileParser_UnitTest.cs" />
+    <Compile Include="RETIRED\JobExecutor_UnitTest.cs" />
+    <Compile Include="IntegrationTest\Access_IntegrationTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FileParser\CSV\CSVFileParser_UnitTest.cs" />
+    <Compile Include="Utility\JobServiceCaller.cs" />
+    <Compile Include="Utility\MappingUtils.cs" />
+    <Compile Include="Utility\UnitUtils.cs" />
+    <Compile Include="FileParser\Excel\XLFileParser_UnitTest.cs" />
+    <Compile Include="Common\RecordIndex_UnitTests.cs" />
+    <Compile Include="FileParser\TablesDiscoveryJob_UnitTest.cs" />
+    <Compile Include="Workflow\JobUtility_UnitTest.cs" />
+    <Compile Include="IntegrationTest\SD_IntegrationTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\PresentationTier\Registration.Core\Registration.Core.csproj">
+      <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
+      <Name>Registration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
+      <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>
+      <Name>CambridgeSoft.COE.Registration.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataUploader.Core\DataUploader.Core.csproj">
+      <Project>{A2C8E16C-E9F4-421B-906F-F36F9AFA6F3C}</Project>
+      <Name>DataUploader.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataUploader\DataUploader.csproj">
+      <Project>{C84FE218-CACE-4D2F-9943-270EA87EECCC}</Project>
+      <Name>DataUploader</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestFiles\DataFiles\MolTable_NoHeader.xlsx" />
+    <None Include="TestFiles\DataFiles\SD\SAMPLE.sdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataUploader.UnitTests.nunit" />
+    <None Include="TestFiles\DataFiles\CS_DEMO.cfx" />
+    <None Include="TestFiles\DataFiles\CS_DEMO.mst" />
+    <None Include="TestFiles\DataFiles\CS_DEMO.msx" />
+    <None Include="TestFiles\DataFiles\Excel\MolTable.xlsx" />
+    <None Include="TestFiles\DataFiles\Excel\MolTable_Large.xlsx" />
+    <None Include="TestFiles\DataFiles\Excel\MolTable_NoHeader.xlsx" />
+    <None Include="TestFiles\DataFiles\Folder with spaces\File with spaces.sdf" />
+    <None Include="TestFiles\DataFiles\fragments_example.sdf" />
+    <None Include="TestFiles\DataFiles\Sample_With_Picklist.sdf" />
+    <None Include="TestFiles\DataFiles\ResolverTestFiles\Sample_With_NeedResolvePicklist.sdf" />
+    <None Include="TestFiles\DataFiles\SD\addproject.sdf" />
+    <None Include="TestFiles\DataFiles\SD\SBI_TRUE.SDF" />
+    <None Include="TestFiles\DataFiles\WorksheetsName.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\DataFiles\CSV\AGROBASE.txt" />
+    <Content Include="TestFiles\DataFiles\CS_DEMO.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\DataFiles\ResolverTestFiles\Resolver_comma.txt" />
+    <Content Include="TestFiles\DataFiles\ResolverTestFiles\Resolver_pipeline.txt" />
+    <Content Include="TestFiles\DataFiles\ResolverTestFiles\Resolver_tab.txt" />
+    <None Include="TestFiles\DataFiles\SD\SAMPLE2.sdf" />
+    <Content Include="TestFiles\MappingFiles\DividedBindingPathMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\FullElementsMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\IncludeCommaDelimiterResolverMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\IncludeDisabledMappingMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\IncludePipelineDelimiterResolverMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\IncludeTabDelimiterResolverMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\RegistryRecord\addproject.xml" />
+    <Content Include="TestFiles\MappingFiles\RegistryRecord\AGROBASE.maps.xml" />
+    <Content Include="TestFiles\MappingFiles\RegistryRecord\fragments_example.maps.xml" />
+    <Content Include="TestFiles\MappingFiles\RegistryRecord\moltable.maps.xml" />
+    <Content Include="TestFiles\MappingFiles\RegistryRecord\SBI_TRUE.maps.xml" />
+    <Content Include="TestFiles\MappingFiles\ValidationWithSchema\Invalid_BooleanValue.xml" />
+    <Content Include="TestFiles\MappingFiles\ValidationWithSchema\Invalid_EnumerationValue.xml" />
+    <Content Include="TestFiles\MappingFiles\MockMethodMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\MockStaticMethodMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\PicklistMethodMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\MockPropertyMapping.xml" />
+    <Content Include="TestFiles\MappingFiles\ValidationWithSchema\Invalid_IntegerValue.xml" />
+    <Content Include="TestFiles\MappingFiles\ValidationWithSchema\Invalid_MissRequiredAttribute.xml" />
+    <Content Include="TestFiles\MappingFiles\ValidationWithSchema\Valid.xml" />
+    <Content Include="TestFiles\MappingFiles\ValueToChangeMapping.xml" />
+    <Content Include="TestFiles\PicklistXmlRepresentation.xml" />
+    <Content Include="TestFiles\PicklistXmlRepresentation_Invalid.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MockObjects\" />
+    <Folder Include="TestFiles\MappingFiles\MockRegistryRecord\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
