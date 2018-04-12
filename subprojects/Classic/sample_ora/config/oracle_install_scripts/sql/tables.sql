@@ -1,0 +1,84 @@
+
+prompt starting tables.sql
+
+CREATE TABLE MOLTABLE(
+	ID NUMBER(11) NOT NULL, 
+	MOL_ID NUMBER(11), 
+	MOLNAME VARCHAR2(500), 
+	BASE64_CDX CLOB,
+	CONSTRAINT "SAMPLE_MT_PK" 
+		PRIMARY KEY("ID") USING INDEX TABLESPACE &&indexTableSpaceName  
+	) TABLESPACE &&tableSpaceName  
+	LOB (BASE64_CDX) STORE AS(
+		DISABLE STORAGE IN ROW  NOCACHE PCTVERSION 10
+		TABLESPACE &&lobsTableSpaceName
+		STORAGE (INITIAL &&lobB64cdx NEXT &&lobB64cdx)
+	)		
+; 
+
+create index mx on moltable(base64_cdx) indextype is cscartridge.moleculeindextype;
+
+CREATE TABLE SYNONYMS_R(
+	ID NUMBER(11) NOT NULL, 
+	SYN_ID NUMBER(11), 
+	SYNONYM_R VARCHAR2(500), 
+	CONSTRAINT "SAMPLE_SYN_PK" 
+		PRIMARY KEY("ID") USING INDEX TABLESPACE &&indexTableSpaceName  
+	) TABLESPACE &&tableSpaceName
+;
+
+CREATE TABLE GRAPHICS(
+	ID NUMBER(11) NOT NULL, 
+	MOL_ID NUMBER(11), 
+	DESCRIPTION VARCHAR2(100), 
+	GRAPHIC BLOB,
+	CONSTRAINT "SAMPLE_GRAPH_PK" 
+		PRIMARY KEY("ID") USING INDEX TABLESPACE &&indexTableSpaceName 
+	) TABLESPACE &&tableSpaceName
+	LOB (GRAPHIC) STORE AS(
+		DISABLE STORAGE IN ROW  NOCACHE PCTVERSION 10
+		TABLESPACE &&lobsTableSpaceName
+		STORAGE (INITIAL &&lobGraphic NEXT &&lobGraphic)
+	)	
+;
+
+
+
+CREATE SEQUENCE synonym_seq INCREMENT BY 1  START WITH 800; 
+CREATE SEQUENCE graphics_seq INCREMENT BY 1  START WITH 800; 
+CREATE SEQUENCE Moltable_Seq INCREMENT BY 1 START WITH 300;
+
+-- Create table level triggers for table BATCH_PROJECTS .
+create or replace trigger moltable_trig 
+BEFORE INSERT ON MOLTABLE 
+FOR EACH ROW
+
+BEGIN
+	if :new.ID is null then
+		SELECT Moltable_Seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+	end if;
+END;
+/
+
+create or replace trigger graphics_trig 
+BEFORE INSERT ON GRAPHICS 
+FOR EACH ROW
+
+BEGIN
+	if :new.ID is null then
+		SELECT graphics_Seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+	end if;
+END;
+/
+
+create or replace trigger SYNONYMS_trig 
+BEFORE INSERT ON SYNONYMS_R 
+FOR EACH ROW
+
+BEGIN
+	if :new.ID is null then
+		SELECT SYNONYM_seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+	end if;
+END;
+/
+

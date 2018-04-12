@@ -1,0 +1,13 @@
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (1, 'VOLUME');
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (2, 'MASS');
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (3, 'CONCENTRATION');
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (4, 'ISSUE');
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (5, 'CURRENCY');
+insert into INV_UNIT_TYPES (UNIT_TYPE_ID, UNIT_TYPE_NAME)
+values (6, 'DENSITY');
+commit;

@@ -1,0 +1,122 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Installation</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><h1>Enabl<span lang="en-us">ing</span> PDF and Barcode Support</h1>
+<h3 class="Head3"><a name="pgfId-1068629"></a>PDF Support</h3>
+<p class="body">The RPT Report Writer installed with Inventory Enterprise can 
+generate reports in four different formats, which are: MS Access Report Viewer (SNP), 
+Rich Text Format (RTF), Excel Workbook (XLS), and Portable Document Format 
+(PDF).</p>
+<p class="body">Support for the PDF format is optional and requires a PDF 
+printer driver to be installed on the server. To enable the PDF support: </p>
+<ol>
+	<li>Browse to <strong>&lt;webroot&gt;\ChemOffice\ ChemInv\Installation\win2pdf</strong>. 
+	</li>
+	<li>Install the <strong>win2pdf</strong> driver by 
+	double-clicking <strong>w2pdf151.exe</strong>. </li>
+	<li>Select <strong>Start<span style="font-family: Wingdings">à</span>Settings<span style="font-family: Wingdings">à</span>Control<i>
+	</i>Panel<span style="font-family: Wingdings">à</span>Printers<span style="font-weight: normal">.</span></strong></li>
+	<li>Check that the win2pdf printer is the default Windows 
+	printer. If not, perform the following steps to set the win2pdf printer as 
+	the default Windows printer: 
+     <pstyle="text-indent: -.25in; margin-left: .75in">
+	<ol type="i">
+		<li><span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;</span>Right-click the win2pdf printer.</li>
+		<li>Select <b>Set As Default Printer</b>. </li>
+		<li>Purchase a license and registration code from: 
+		<a href="http://www.daneprairie.com/">http://www.daneprairie.com/</a>
+		</li>
+		<li>Right-click the win2pdf printer and select <b>Properties</b>. </li>
+		<li>Enter the regcode you purchased.</li>
+	</ol>
+	</li>
+	<li>Browse to <strong>&lt;webroot&gt;/ChemOffice/WebServer_source/cfserverasp/RPT<span style="font-weight: normal">.</span></strong>
+	</li>
+	<li>Stop the Reports Service (RPTService). </li>
+	<li>Open the <strong>ChemInv_reports.mdb</strong> file, 
+	which is available in the <strong>ChemOffice_data/Cheminv
+	<span style="font-weight: normal">folder</span></strong>. </li>
+	<li>Open the <strong>ReportFormats</strong> table and 
+	check the <strong>Available</strong> checkbox for the <strong>PDF</strong> 
+	format. </li>
+	<li>Close Microsoft Access. </li>
+	<li>Restart the Reports Service. </li>
+</ol>
+<h3 class="Head3"><a name="pgfId-1068631"></a>Barcode Support</h3>
+<p class="MsoNormal">To enable the barcode support:</p>
+<ol>
+	<li>Browse to <strong>&lt;webroot&gt;\ChemOffice\</strong><em><b>
+	<span style="font-style: normal">ChemInv\Installation\Tbarcode</span></b></em>.
+	</li>
+	<li>Run the <strong>Tbarcode.ocx</strong> installer. </li>
+	<li>Perform an IISRESET after finishing the Inventory Enterprise 
+	installation.</li>
+</ol>
+
+<p><a href="test.htm">Step 7: Test<span lang="en-us">ing</span> the Installation</a> </p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan --> 
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+&nbsp;
+<h1>SplitPlate</h1><p>          
+                         
+   Removes a specified amount of substance from the source 
+plate and creates new plates with          
+                that substance, according          
+              to          
+           the 
+parameters specified.</p><h3>Syntax</h3> <pre>/cheminv/api/SplitPlate.asp?PlateID=adVarChar&amp;WellAmt=Int&amp;PlateTypeID=Int&amp;SolventAmt=Int&amp;Solvent=adVarChar&amp;NumPlates= Int</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">PlateID</h5>
+<p class="param"><font size="2">    The ID for the 
+plate being split.</font> </p>
+<h5 class="param">WellAmt</h5>
+<p class="param"><font size="2">        The amount to 
+be removed from the source plate into the new plate.</font> </p>
+<h5 class="param">PlateTypeID</h5>
+<p class="param"><font size="2"> The ID for the Plate Type of 
+the new plate.</font></p>
+<h5 class="param">SolventAmt</h5>
+<p class="param"><font size="2">      The amount 
+of solvent added to the plate.</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<h5 class="param">Solvent</h5>
+<p class="param"><font size="2">     The name of 
+the solvent added to the plate.</font>&nbsp;&nbsp; </p>
+<h5 class="param">NumPlates</h5>
+<p class="param"><font size="2">The number 
+of plates that are created. <strong><em>Note:</em></strong>  The amount in QtyAmt is removed 
+for each of the new plates.</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<h3>Outputs</h3>
+<h5 class="param">PlateID</h5>
+<p class="param">The new plate IDs.</p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+  A user splits a plate (ID=P777) into 3 new Assay Plates 
+(ID=2), each conatiner 10 microliters from the source plate.&nbsp; 100 
+microliters of       
+            
+             
+  water is added to the new        
+                      
+plates.&nbsp;&nbsp;</p><pre>/cheminv/api/SplitPlate.asp?PlateID=P777&amp;WellAmt=10&amp;PlateTypeID=2&amp;SolventAmt=100&amp;Solvent=H2O&amp;NumPlates=3&nbsp;</pre>  
+<pre></pre>
+
+<h3>Required User Privileges and Roles</h3>
+<h5 class="param">Privileges</h5>
+<p>&lt;PrivilegeName&gt;</p>
+<h5 class="param">Roles</h5>
+<p>&lt;RoleName&gt;</p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+
+</body>
+</html>

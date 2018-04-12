@@ -1,0 +1,57 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 8C7F-4A8D
+
+ Directory of C:\Inetpub\wwwroot2\ChemInv\graphics\sq_btn
+
+08/15/2005  01:06 PM    <DIR>          .
+08/15/2005  01:06 PM    <DIR>          ..
+08/13/2005  12:25 PM               330 add_mode.gif
+08/13/2005  12:25 PM               321 add_new_role_btn.gif
+08/13/2005  12:25 PM               347 add_record_btn.gif
+08/13/2005  12:25 PM               278 add_role_sq_btn.gif
+08/13/2005  12:25 PM               319 add_user_btn.gif
+08/13/2005  12:25 PM               278 apply_btn.gif
+08/13/2005  12:25 PM               278 apply_dialog_btn.gif
+08/13/2005  12:25 PM               263 btn_back_61.gif
+08/13/2005  12:25 PM               265 btn_next_61.gif
+08/13/2005  12:25 PM               280 cancel.gif
+08/13/2005  12:25 PM               280 cancel_dialog_btn.gif
+08/13/2005  12:25 PM               280 cancel_edit_btn.gif
+08/13/2005  12:25 PM               309 clearall.gif
+08/13/2005  12:25 PM               273 close.gif
+08/13/2005  12:25 PM               273 close_dialog_btn.gif
+08/13/2005  12:25 PM               377 delete_record_btn.gif
+08/13/2005  12:25 PM               351 delete_role_btn.gif
+08/13/2005  12:25 PM               343 delete_user_btn.gif
+08/13/2005  12:25 PM               265 done.gif
+08/13/2005  12:25 PM               253 edit_btn.gif
+08/13/2005  12:25 PM               331 edit_mode.gif
+08/13/2005  12:25 PM               337 edit_query_btn.gif
+08/13/2005  12:25 PM               250 exit_btn.gif
+08/13/2005  12:25 PM               335 export_hits_btn.gif
+08/13/2005  12:25 PM               369 get_more_btn.gif
+08/13/2005  12:25 PM               367 list_view_btn.gif
+08/13/2005  12:25 PM               278 login_btn.gif
+08/13/2005  12:25 PM               270 manage_roles_btn.gif
+08/13/2005  12:25 PM               408 mark_all_records_btn.gif
+08/13/2005  12:25 PM               343 new_search_btn.gif
+08/13/2005  12:25 PM               269 next_dialog_btn.gif
+08/13/2005  12:25 PM               240 ok_dialog_btn.gif
+08/15/2005  01:06 PM                 0 outputlist.txt
+08/13/2005  12:25 PM               284 refine_btn.gif
+08/13/2005  12:25 PM               314 remove_btn.gif
+08/13/2005  12:25 PM               308 remove_role_btn.gif
+08/13/2005  12:25 PM               292 restore_btn.gif
+08/13/2005  12:25 PM               354 restore_last_btn.gif
+08/13/2005  12:25 PM               349 retrieve_all_btn.gif
+08/13/2005  12:25 PM               286 search_btn.gif
+08/13/2005  12:25 PM               367 search_mode.gif
+08/13/2005  12:25 PM               321 select_all_btn.gif
+08/13/2005  12:25 PM               351 undo_refine_btn.gif
+08/13/2005  12:25 PM               386 update_record_btn.gif
+08/13/2005  12:25 PM               356 update_role_btn.gif
+08/13/2005  12:25 PM               359 update_user_btn.gif
+08/13/2005  12:25 PM               362 use_defaults_dialog_btn.gif
+08/13/2005  12:25 PM               278 usr_mgr_btn.gif
+              48 File(s)         14,727 bytes
+               2 Dir(s)  29,751,275,520 bytes free

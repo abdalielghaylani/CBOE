@@ -1,0 +1,181 @@
+.dummy{ } 
+
+img{
+	border: 0;
+}
+
+
+body, td, th { /* redundant rules for bad browsers  */
+	color:#666666; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 12px; 
+	line-height: 21px;
+} 
+
+
+.bodytext, P { 
+
+	color: #666666;
+	font-family: Arial, Verdana, Helvetica, Sans-Serif;
+  	font-size: 12px;
+	line-height: 21px;
+}
+
+.highlightcopy { 
+
+	color: #285596;
+	font-family: Arial, Verdana, Helvetica, Sans-Serif;
+  	font-size: 12px;
+	line-height: 21px;
+}
+
+.highlightlink {
+	color: #6E92B2;
+	text-decoration:underline
+}
+
+.highlightlink:hover {
+	color: #285596;
+	text-decoration:none
+}
+
+
+a {
+	color: #285596;
+	
+}
+a:hover{
+	color: #666666;
+
+}
+
+.bodybold {
+	font-weight:bold;
+} 
+
+.copysmall {
+	color:#285596; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 11px; 
+	line-height: 11px;
+} 
+
+.copysmall a {
+	color: #2D274B;
+}
+
+.copysmall a:hover {
+	color: #000000;
+}
+
+
+
+.mainheading {
+	/*color: #B06813; */
+	color: #2662AB;
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 18px; 
+	font-weight: bold; 
+	line-height: 21px; 
+	text-decoration:none
+} 
+
+.heading {
+	/*color: #112B50; */
+	color: #285596;
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 13px; 
+	font-weight: bold; 
+	line-height: 21px; 
+}
+
+.headinglink{
+	/*color: #112B50; */
+	color: #285596;
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 13px; 
+	font-weight: bold; 
+	line-height: 21px; 
+}
+
+.headinglink:hover{
+	color: #000000; 
+}
+
+.subheading {
+	color: #0B2E80; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 11px; 
+	line-height: 21px; 
+	font-weight: 600;
+	text-decoration:none
+}
+
+.subheadingbold {
+	color: #0B2E80; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 12px; 
+	line-height: 21px;
+	font-weight: 600; 
+	text-decoration:none
+}
+
+.menu_active {
+	color: #CC6601; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	font-size: 10px; 
+	line-height: 17px; 
+	font-weight: 600; 
+	background-color: #F8E8D9;
+	
+}
+.menu a{
+	color: #000000; 
+	font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif; 
+	text-decoration:none;
+	font-size: 10px; 
+	line-height: 17px;
+}
+
+.menu:hover{
+	color: #666666; 
+}
+
+
+
+/************************************************
+ * Forms
+ ************************************************/
+FORM {
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+}
+
+INPUT, TEXTAREA, SELECT, OPTION {
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, Sans-Serif;
+	font-size: 11px;
+} 
+
+TEXTAREA.bordered, INPUT.bordered {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDDCD0;
+}
+
+.formLabelRequired {
+	color: #CC0000;
+}
+
+.required {
+	color: #EA9B00;
+}
+
+.field_label{ 
+	color: #454563;
+	font-family: Arial, Verdana, Helvetica, Sans-Serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+

@@ -1,0 +1,57 @@
+body {
+ background: #e1e1e1;
+}
+
+ 
+.header_blue {
+	font-size:12px; 
+	font-weight: bold; 
+	color:#000099;
+}
+
+.required {
+	font-size:12px; 
+	font-family: arial; 
+	color:red; 
+	font-weight: bold;
+}
+
+table{
+	font-size:11px; 
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+
+input{
+	background-color: transparent;
+	border:1px solid #909090;
+	font-size:11px;
+	color:#000000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	background-color:#ffffff
+}
+
+input.nobrd{
+	border:0px none;
+	background-color : transparent
+}
+
+textarea{
+	border:1px solid #909090; 
+	font-size:11px; 
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	color:#666666; 
+	background-color:#ffffff
+}
+
+select{
+	border:1px solid #909090; 
+	font-size:11px; 
+}
+
+a.bold:link{font-weight: bold}
+a.bold:visited{font-weight: bold}
+a.bold:hover{font-weight: bold}
+
+
+

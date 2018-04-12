@@ -1,0 +1,5 @@
+USERID=system
+FILE=CS_SecurityDb.dmp
+FULL=Y
+IGNORE=Y
+LOG=Import_CS_SecurityDB.log

@@ -1,0 +1,6 @@
+USERID=chemacxdb/oracle@ibmserv9
+BUFFER=102400
+OWNER=CHEMACXDB
+COMPRESS=Y
+FILE=ChemACXDB.dmp
+LOG=ChemACXDB.log

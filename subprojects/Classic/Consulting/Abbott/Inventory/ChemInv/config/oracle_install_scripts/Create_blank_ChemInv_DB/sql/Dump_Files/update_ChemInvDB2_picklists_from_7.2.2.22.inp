@@ -1,0 +1,13 @@
+USERID=ChemInvDB2/Oracle
+FILE=Fill_ChemInvDb_PickLists.dmp
+SHOW=N
+IGNORE=Y
+GRANTS=N
+INDEXES=N
+TABLES=	INV_UNIT_CONVERSION,
+		INV_XMLDOC_TYPES,
+		INV_XMLDOCS,
+		INV_XSLTS 
+ROWS=Y
+LOG = update_ChemInvDB2_picklists_from_7.2.2.22.log
+

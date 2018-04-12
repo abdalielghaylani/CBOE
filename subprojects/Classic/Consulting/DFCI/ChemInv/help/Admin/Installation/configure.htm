@@ -1,0 +1,248 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Installation</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><h1><span lang="en-us">Making </span>Required Configuration<span lang="en-us">s</span></h1>
+<ol>
+	<li>Define the Data Source in the cs_security UDL by performing the 
+	following steps:<ol type="i">
+		<li><span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;</span>Browse 
+		to <b>&lt;webroot&gt;/ChemOffice/ cs_security/config/</b>. </li>
+		<li><span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;</span>Double-click
+		<b>cs_security.udl</b> to open it. </li>
+		<li>Change the <b>Data Source</b> to the name of your Oracle service. 
+		For information about your Oracle Service Name, please see your Oracle 
+		DBA or consultant. </li>
+		<li>Enter <b>oracle</b> as the password and click <b>Test Connection</b>.
+		</li>
+		<li>Click <b>OK</b>. </li>
+		<li>Click <b>OK</b>.</li>
+	</ol>
+	</li>
+	<li>Define the Inventory Enterprise CS Security Data Source in the Inventory 
+	Enterprise cs_security UDL by performing the following steps:<ol type="i">
+		<li>Browse to <b>&lt;webroot&gt;/ChemOffice<i>/</i> cheminv/config/</b>. </li>
+		<li>Double-click <b>cs_security.udl</b> to open it. </li>
+		<li>Change the <b>Data Source</b> to the name of your Oracle service. 
+		For information about your Oracle Service Name, please see your Oracle 
+		DBA or consultant. </li>
+		<li>Enter <b>oracle</b> as the password and click <b>Test Connection</b>.
+		</li>
+		<li>Click <b>OK</b>. </li>
+		<li>Click <b>OK</b>.&nbsp; </li>
+	</ol>
+	</li>
+	<li>Define the Inventory Enterprise Data Source in the Inventory Enterprise 
+	UDL by performing the following steps:<ol type="i">
+		<li>Browse to <b>&lt;webroot&gt;/ChemOffice/ cheminv/config/</b>. </li>
+		<li>Double-click <b>cheminv.udl</b> to open it. </li>
+		<li>Change the <b>Data Source</b> to the name of your Oracle service. 
+		For information about your Oracle Service Name, please see your Oracle 
+		DBA or consultant. </li>
+		<li>Enter <b>oracle</b> as the password and click <b>Test Connection</b>.
+		</li>
+		<li>Click <b>OK</b>. </li>
+		<li>Click <b>OK</b>.</li>
+	</ol>
+	</li>
+	<li>Use <b>ODBC Control Panel</b> to create a system DSN for the Report 
+	Writer by performing the following steps:
+	<ol type="i">
+		<li>Select <b>Start<span style="font-family: Wingdings">à</span>Programs<span style="font-family: Wingdings">à</span>Administrative 
+		Tools<span style="font-family: Wingdings">à</span>Data Sources</b> to 
+		open the ODBC Control Panel. </li>
+		<li>Select<b> System DSN</b> tab. </li>
+		<li>Click <b>Add</b>. </li>
+		<li>Highlight <b>Oracle ODBC Driver</b>. </li>
+		<li>Click <b>Finish</b>. </li>
+		<li>Provide the following information: </li>
+	</ol>
+	</li>
+</ol>
+<blockquote>
+	<blockquote>
+		<ul>
+			<li>
+			<span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7.0pt; font-family: Times New Roman">&nbsp;</span><b>Data 
+			Source Name</b>: Chem_Inv </li>
+			<li><b>Description</b>: Chem_Inv </li>
+			<li><b>Service Name</b>: &lt;Oracle Service Name&gt; for your target 
+			database. For information about your Oracle Service Name, please see 
+			your Oracle DBA or consultant. </li>
+			<li><b>User ID</b>: cheminvdb2</li>
+		</ul>
+	</blockquote>
+</blockquote>
+<ol start="5">
+	<li>Update the configuration files by performing the following steps:<ol type="i">
+	<li>Browse to and open &lt;<strong>webroot&gt;/ChemOffice/cheminv/config/chemInv.ini<span style="font-weight: normal">. 
+	In the chemInv.ini file, ensure the following</span></strong>:</li>
+	</ol>
+		</li>
+	</ol>
+		<blockquote>
+			<blockquote>
+				<ul>
+					<li><strong>STRUC_DB_PATH</strong> entry agrees with the database path chosen in 
+the installer. By default, the database path is
+					C:\ChemOffice_data\Cheminv. 
+					</li>
+					<li><strong>CONNECTION_STRING</strong> entry agrees with the application path 
+chosen in the installer. By default, the database path is C:\Inetpub\wwwroot\ChemOffice\Cheminv\Config\Cheminv.udl. 
+					</li>
+				</ul>
+			</blockquote>
+			<ol start="2" type="i">
+				<li><span lang="en-us"></span>Browse to and open &lt;<strong>webroot&gt;/ChemOffice/cheminv/config/cfserver.ini<span style="font-weight: normal">. 
+In the cfserver.ini file, perform the following tasks:</span></strong></li>
+	</ol>
+	<blockquote>
+		<ul>
+			<li>Set the <strong>ORA_SERVICENAME</strong> entry to the Oracle 
+service name of your target server. For information about your Oracle Service 
+Name, please see your Oracle DBA or consultant.</li>
+			<li>Set the <b>DBA_USERNAME</b> to a valid DBA username. This provides 
+limited DBA permissions to the user that can be<span lang="en-us"> </span>used for creating new users or 
+roles. &nbsp;</li>
+			<li>Set the <b>DBA_PWD</b> entry to the password associated with the 
+username entered in DBA_USERNAME.</li>
+	</ul>
+</blockquote>
+</blockquote>
+</p>
+<blockquote>
+	<ol type="i" start="3">
+		<li>Browse to and open &lt;<strong>webroot&gt;/ChemOffice/cheminv/config/invconfig.ini<span style="font-weight: normal">. 
+In the invconfig.ini file, ensure the following:</span></strong> </li>
+	</ol>
+	<blockquote>
+		<ul>
+			<li>
+			<p class="MsoNormal"><strong>INV_SERVER_NAME</strong> points to the server hosting the 
+Inventory Enterprise database. This is the server that is referred by the fully 
+qualified domain name of the server, and not the Oracle Service name. </p></li>
+			<li>
+			<p class="MsoNormal"><strong>RPT_PATH</strong> entry agrees with the ChemOffice 
+Enterprise installation path. </p></li>
+			<li>
+			<p class="MsoNormal"><strong>REPORT_DB_PATH</strong> entry agrees with the database 
+path chosen in the installer. By default, the database path is C:\ChemOffice_data\ChemInv\Cheminv_reports.mdb.</p>
+			</li>
+		</ul>
+	</blockquote>
+</blockquote>
+<ol start="6">
+	<li>Setup barcode support by performing the following 
+	steps:<ol type="i">
+		<li>
+		<p class="MsoNormal">Browse to <strong>&lt;webroot&gt;\ChemOffice\</strong><em><b>
+		<span style="font-style: normal">ChemInv\Installation\Tbarcode</span></b></em>.
+		</p></li>
+		<li>
+		<p class="MsoNormal">Run the <strong>Tbarcode.ocx</strong> installer.&nbsp; 
+		</p></li>
+	</ol>
+	</li>
+	<li>Configure the Report Writer.</li>
+</ol>
+	<p><b>Note: </b>You do not need to perform this step if the 
+Report Writer is already configured while setting up some other application. </p>
+	<blockquote>
+		<ol type="i">
+			<li>Login as the user under whom the report service is running. This is the 
+same user, whose user name was entered during the ChemOffice Enterprise 
+installation. </li>
+			<li>Set a default printer or install Win2PDF. Win2PDF is a PDF printer driver 
+whose installer is found in chemoffice/cheminv/installation/win2pdf/w2pdf151.exe. 
+You need to have license for installing Win2PDF. </li>
+			<li>Launch MS Access to clear any initial dialogs for the user.</li>
+		</ol>
+</blockquote>
+</p>
+<ol start="8">
+	<li>Disable the integration of Inventory Enterprise if you 
+	do not want to integrate it with other ChemOffice Enterprise applications, 
+	by performing the following steps: 
+<ol type="i">
+	<li>Browse to and open <b>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini
+	</b>
+	</li>
+	<li>Set the <b>REG_SERVER_NAME</b> to <b>NULL</b> </li>
+	<li>Set the <b>ACX_SERVER_NAME</b> to <b>NULL</b> </li>
+	<li>Set the <b>DOCMANAGER_SERVER_NAME</b> to 
+<b>NULL</b></li>
+</ol> </li>
+</ol>
+<p><b>Note:</b> If you want to integrate Inventory Enterprise 
+with one or more than one ChemOffice Enterprise applications, leave these steps 
+and move on to Step 5, <a href="integrate.htm">Integrat<span lang="en-us">ing</span>
+<span lang="en-us">W</span>ith Other Applications.</a></p>
+<ol start="9">
+	<li>Perform an IISRESET.</li>
+</ol>
+<p><a href="integrate.htm">Step 5:&nbsp;Integrat<span lang="en-us">ing</span>&nbsp;<span lang="en-us">W</span>ith 
+Other Applications</a>&nbsp; </p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+
+</html>

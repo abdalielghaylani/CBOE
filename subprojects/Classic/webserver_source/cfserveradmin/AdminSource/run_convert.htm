@@ -1,0 +1,41 @@
+<html>
+
+<head><script Language="JavaScript"
+SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+
+<title>Web Wizard Step 2</title>
+</head>
+
+<body>
+
+<form Name="SubmitAction"
+ACTION="WebEditor.ASP?WCI=select_cfw_form&amp;WCE=SubmitAction&amp;WCU" METHOD="post"
+border="1">
+<WC@ERROR>
+</WC@ERROR>
+  <table width="583" height="150" cellspacing="2" cellpadding="2" bgcolor="#c0c0c0">
+    <tr>
+      <td><table>
+        <tr>
+          <td valign="center"><table border="0">
+            <tr>
+              <td width="50%"><input type="submit" value="Next&gt;&gt;" name="Next"></td>
+              <td width="50%"></td>
+            </tr>
+            <tr>
+              <td width="50%">Type the path to the ChemFinder form that you want to convert.</td>
+              <td width="50%"><input type="text" name="CFW_FORM_PATH" size="20"><input type="button"
+              value="Browse..." name="Browse1"
+              OnClick="JSBrowser = new BrowserObj(document.SubmitAction.CFW_FORM_PATH,true,TFILE,SMALL);"></td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

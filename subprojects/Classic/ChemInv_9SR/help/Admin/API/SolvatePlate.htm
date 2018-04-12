@@ -1,0 +1,132 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>SolvatePlate</h1><p>          
+                         
+            
+               
+                            
+                        
+            
+ Adds the specified amount of solvent to a plate, or          
+                         
+            
+               
+                            
+                        
+            
+ plates.</p><h3>Syntax</h3> <pre>/cheminv/api/SolvatePlate.asp?PlateIDList=adVarChar&amp;SolventIDList=adVarChar&amp;SolventVolumeList=adVarChar&amp;SolventVolumeUnitIDList=adVarChar&amp;ConcentrationList=adVarChar&amp;ConcentrationUnitIDList= adVarChar</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">Plate_IDList</h5>
+<p class="param"><font size="2">  List of plateIDs (IDs are separated 
+by a comma).</font>&nbsp; </p>
+<h5 class="param">SolventIDList</h5>
+<p class="param"><font size="2">           
+         List of IDs 
+associated with           
+         solvents.</font>&nbsp;<font size="2"> There is one solvent for 
+each plate.&nbsp; Separate solvent IDs by a comma in the order they appear in 
+Plate_IDList.</font> </p>
+<h5 class="param">SolventVolumeList</h5>
+<p class="param"><font size="2">        
+  The amount 
+of solvent added.&nbsp; There is one volume for each plate.&nbsp; Separate 
+solvent volumes&nbsp;by a comma in the order they appear in 
+Plate_IDList.&nbsp;        
+  </font></p>
+<h5 class="param">SolventVolumeUnitIDList</h5>
+<p class="param"><font size="2">        
+     The units 
+for the amount of solvent        
+     added.</font>&nbsp;<font size="2"> There is one volume 
+Unit for each plate.&nbsp; Separate volume units&nbsp;by a comma in the order 
+they appear in Plate_IDList.</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<h5 class="param">ConcentrationList</h5>
+<p class="param"><font size="2">        
+     The 
+concentration of solvent added.&nbsp; There is one concentration&nbsp;for each 
+plate.&nbsp; Separate concentrations&nbsp;by a comma in the order they appear in        
+     Plate_IDList.</font>&nbsp; </p>
+<h5 class="param">ConcentrationUnitIDList</h5>
+<p class="param"><font size="2">        
+     The units 
+for the concentration of solvent added.<font size="3">&nbsp;</font><font size="2"> 
+There is one concentration Unit for each plate.&nbsp; Separate concentration 
+units&nbsp;by a comma in the order they appear in 
+Plate_IDList.</font>        
+     </font><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font> </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>       
+            
+             
+       A user wants to add a solvent with ID 120 to the plate 
+with ID P1234.&nbsp; 10mL of solvent is added.&nbsp; mL has a ID       
+            
+             
+       of        
+                      
+4.&nbsp;</p><pre>/cheminv/api/SolvatePlate.asp?PlateIDList=P1234&amp;SolventIDList=120&amp;SolventVolumeList=10&amp;SolventVolumeUnitIDList=4</pre>  
+<pre></pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

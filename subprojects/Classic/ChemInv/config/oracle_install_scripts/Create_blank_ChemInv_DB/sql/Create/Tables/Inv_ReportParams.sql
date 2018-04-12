@@ -1,0 +1,7 @@
+CREATE TABLE INV_REPORTPARAMS (REPORT_ID number NOT NULL,
+	PARAMNAME varchar2(255) NOT NULL,
+  PARAMDISPLAYNAME varchar2(255) NOT NULL,
+  ISREQUIRED number,
+	PARAMTYPE varchar2(10) NOT NULL);
+
+--' need to redesign this table

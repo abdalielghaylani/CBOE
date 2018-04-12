@@ -1,0 +1,101 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- APP_NAME</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+
+<h1>   ALT_IDS</h1>
+<p>Example: ALT_IDS= inv_compounds.ALT_ID_1:Substance ID 
+1;1-U,inv_compounds.ALT_ID_2:Substance ID               
+              
+           2;0</p>
+<p>     
+  Description: A comma delimted list of the alternate 
+compound IDs.&nbsp;&nbsp;Alt IDs&nbsp;are in the following 
+format:<br><strong>&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</strong><br>where 
+Field_Name is the name of the&nbsp;alt ID&nbsp;field (as shown in the INI file), 
+Field Label is&nbsp;how the&nbsp;alt id should&nbsp;show up&nbsp;in the 
+interface, and the last parameter indicates if the field is required (1) or not 
+(0).&nbsp;Add a -U to the end of an alt     
+  ID's definition to make the ID a unique identifier. 
+   
+                           
+              
+           </p>
+<p>     
+         Default:&nbsp;inv_compounds.ALT_ID_1:Substance ID 
+1;1-U,inv_compounds.ALT_ID_2:Substance ID 2;0,inv_compounds.ALT_ID_3:Substance 
+ID 3;0,inv_compounds.ALT_ID_4:Substance ID 4;0,inv_compounds.ALT_ID_5:Substance     
+         ID 5;0 
+   
+                           
+              
+           </p>
+<p>              
+              
+           Options:              
+              
+           A&nbsp;comma delimited list in the above format.              
+              
+           </p>           
+              
+     
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+</body>
+
+</html>

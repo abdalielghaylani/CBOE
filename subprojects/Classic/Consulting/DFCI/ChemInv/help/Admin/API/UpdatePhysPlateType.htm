@@ -1,0 +1,270 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;
+<h1>UpdatePhysPlateType</h1><p>          
+                         
+            
+    Updates a          
+                physical plate type.</p><h3>Syntax</h3> <pre>/cheminv/api/<span lang="en-us">Upd</span>atePhysPlateType.asp?<span lang="en-us">PhysPlateID=adNumeric&amp;</span>GridFormatID<span lang="en-us">=</span><span lang="en-us">adNumeric&amp;</span>PhysPlateName=adVarChar&amp;RowCount=adNumeric&amp;ColCount=adNumeric&amp;WellCapacity=Int&amp;CapacityUnitID=adNumeric<span lang="en-us">&amp;ZeroPaddingCount=</span>adNumeric[&amp;RowPrefix=adVarChar&amp;ColPrefix=adVarChar&amp;RowUseLetters=adNumeric&amp;ColUseLetters=adNumeric&amp;NameSeparator=adVarChar&amp;NumberStartCorner=<span lang="en-us">ad</span>Numeric&amp;NumberDirection=adNumeric&amp;IsPreBarcoded=adVarChar&amp;SupplierID=adN<span lang="en-us">u</span>meric]</pre>
+
+<h3> Inputs&nbsp;</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117"><span lang="en-us">PhysPlateID</span></td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the physical 
+		plate type to be updated.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="92">PHYS_PLATE_ID</td>
+	</tr>
+	<tr>
+		<td width="117">GridFormatID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the grid format 
+		associated with the physical plate type.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="92">GRID_FORMAT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">PhysPlateName</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the name of the 
+		physical plate type.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">PHYS_PLATE_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">RowCount</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the number of rows that the 
+		plate created using the new plate type will contain.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">ColCount</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the number of columns that 
+		the plate created using the new plate type will contain.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">RowPrefix</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies prefix for the plate rows.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">ColPrefix</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies prefix for the plate 
+		columns.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">RowUseLetters</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether 
+		the rows are to be identified with numbers or letters. The rows are 
+		identified with letters if pRowUseLetters is 
+		set to 1. </td>
+		<td width="92"><span lang="en-us">1|0</span></td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">ColUseLetters</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether 
+		the columns are to be identified with numbers or letters. The columns 
+		are identified with letters if pColUseLetters 
+		is set to 1. </td>
+		<td width="92"><span lang="en-us">1|0</span></td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">NameSeparator</td>
+		<td width="97">adVarChar</td>
+		<td width="298"><span lang="en-us">Specifies the character that 
+		separates the row and column IDs. For example, '-' is the name separator 
+		for the following column and row IDs: A-1 and B-1.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NAME_SEPARATOR</td>
+	</tr>
+	<tr>
+		<td width="117">NumberStartCorner</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the value with which the 
+		plate numbering is to be started.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NUMBER_START_CORNER</td>
+	</tr>
+	<tr>
+		<td width="117">NumberDirection</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether to fill the rows first or to fill the 
+		columns first.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NUMBER_DIRECTION</td>
+	</tr>
+	<tr>
+		<td width="117">IsPreBarcoded</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies whether 
+		the barcodes should be already defined for the plates created using the 
+		new physical plate type. The barcodes are already defined for the plates 
+		if pIsPreBarcoded is set to Y.</td>
+		<td width="92"><span lang="en-us">Y|N</span></td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">IS_PRE_BARCODED</td>
+	</tr>
+	<tr>
+		<td width="117">SupplierID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies ID of the suppliers of the 
+		plates created using the new physical plate type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">SUPPLIER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">CapacityUnitID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID associated with the 
+		unit in which the well contents are to be measured.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">CAPACITY_UNIT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">WellCapacity</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the capacity of the wells 
+		of the plates created using the new physical plate type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">WELL_CAPACITY</td>
+	</tr>
+	<tr>
+		<td width="117">ZeroPaddingCount</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the number of digits with 
+		which the column and row numbers are to be padded. Usually, this 
+		parameter is set to 2. </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ZERO_PADDING_COUNT</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">T</span>he ID of the updated physical plate type, which is 
+stored in the pPhysPlateID parameter. <span lang="en-us">T</span>he data type of 
+the pPhysPlateID parameter is adNumeric.</p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code updates a physical plate type with ID 
+1020:</span></p><pre>/cheminv/api/<span lang="en-us">Update</span>PhysPlateType.asp?<span lang="en-us">PhysPlateID=1020&amp;</span>GridFormatID<span lang="en-us">=1021&amp;</span>PhysPlateName=<span lang="en-us">TestPlate</span>&amp;RowCount=<span lang="en-us">8</span>&amp;ColCount=<span lang="en-us">12</span>&amp;WellCapacity=<span lang="en-us">12</span>&amp;CapacityUnitID=<span lang="en-us">4&amp;ZeroPaddingCount=2</span>[&amp;RowPrefix=<span lang="en-us">B]</span></pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

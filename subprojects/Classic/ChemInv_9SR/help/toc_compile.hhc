@@ -1,0 +1,930 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice Enterprise Help">
+		<param name="Local" value="webserver_source\cfserverasp\Help\global\default.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Global Login">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\global.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Logging In">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\logging_in.html">
+				</OBJECT>
+
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Managing Users and Roles">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\users.html">
+				</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Users">
+						<param name="Local" value="webserver_source\cfserverasp\Help\global\users_users.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Roles">
+						<param name="Local" value="webserver_source\cfserverasp\Help\global\users_roles.html">
+						</OBJECT>
+				</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Performing Searches">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\searching.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Accessing a ChemOffice Enterprise Application">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\searching_access.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The Query Input Form User Interface">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\searching_query.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Performing a Simple Search">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\searching_searching.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search Results">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Viewing Results">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_viewing.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Results in List View">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_viewing_list.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Details in Form View">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_viewing_form.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Additional Hits">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_viewing_hits.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Marking Records">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_viewing_marking.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manipulating Queries">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_manip.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Restoring Queries">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_manip_restore.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Saving Queries">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_manip_save.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Managing Queries">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_manip_manage.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manipulating Hit Lists">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_hitlist.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Restoring Hit Lists">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_hitlist_restore.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Saving Hit Lists">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_hitlist_save.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Managing Hit Lists">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_hitlist_manage.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Refining Search Results">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_refining.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Refining Over Current Records Found">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_refining_current.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Undoing a Refined Search">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_refining_undoing.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Exporting Results">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_exporting.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Histories">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_results_history.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Types of Searches">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Text Searching">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_text.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Structure Searching">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_structure.html">
+				</OBJECT>
+			<UL>
+				
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Substructure Searching">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_structure_sub.html">
+					</OBJECT>
+				
+				
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Full Structure Searching ">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_structure_fullstruct.html">
+					</OBJECT>
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Exact Structure Searching">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_structure_exact.html">
+					</OBJECT>
+				
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Similarity (Tanimoto) Searching ">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_structure_similar.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Formula Searching">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_formula.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Numerical Searching">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_numerical.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Combination Searching">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\search_types_combination.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setting User Preferences">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\preferences.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Retrieving Server Information">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\server.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Logging Off">
+			<param name="Local" value="webserver_source\cfserverasp\Help\global\logging_off.html">
+			</OBJECT>
+	</UL>
+	
+
+
+
+		<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemDraw Quick Reference Guide">
+		<param name="Local" value="webserver_source\cfserverasp\Help\quick_reference\chemdraw_toolbar\default.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ChemDraw Structure Box and Toolbar">
+			<param name="Local" value="webserver_source\cfserverasp\Help\quick_reference\chemdraw_toolbar\toolbar.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Menu Functions">
+			<param name="Local" value="webserver_source\cfserverasp\Help\quick_reference\chemdraw_toolbar\menu.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Shortcuts and HotKeys">
+			<param name="Local" value="webserver_source\cfserverasp\Help\quick_reference\chemdraw_toolbar\hot_keys.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Inventory Enterprise User's Guide">
+		<param name="Local" value="cheminv\help\userguide\default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Searching Inventory Enterprise">
+			<param name="Local" value="cheminv\help\userguide\searching.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Simple Search">
+				<param name="Local" value="cheminv\help\userguide\simple_search.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Advanced Search">
+				<param name="Local" value="cheminv\help\userguide\advanced_search.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Substructure Search">
+				<param name="Local" value="cheminv\help\userguide\substructure_search.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Global Search">
+				<param name="Local" value="cheminv\help\userguide\global_search.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Plate Search">
+				<param name="Local" value="cheminv\help\userguide\plate_search.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Substance Management">
+			<param name="Local" value="cheminv\help\userguide\substance_management.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Creating a New Substance">
+				<param name="Local" value="cheminv\help\userguide\substance_new.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Searching for a Substance">
+				<param name="Local" value="cheminv\help\userguide\substance_searching.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Editing a Substance's Details">
+					<param name="Local" value="cheminv\help\userguide\substance_searching_edit.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Delete a Substance">
+					<param name="Local" value="cheminv\help\userguide\substance_searching_delete.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="View History">
+				<param name="Local" value="cheminv\help\userguide\substance_view_history.htm">
+				</OBJECT>
+				
+				
+
+			<LI>	<OBJECT type="text/sitemap">
+				<param name="Name" value="Manage Synonyms">
+				<param name="Local" value="cheminv\help\userguide\synonym_management.htm">
+				</OBJECT>
+
+			<LI> 	<OBJECT type="text/sitemap">
+				<param name="Name" value="Manage Links">
+				<param name="Local" value="cheminv\help\userguide\substance_link_manage.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Container Management">
+			<param name="Local" value="cheminv\help\userguide\container_management.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Location Management">
+				<param name="Local" value="cheminv\help\userguide\location_management.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="New Search">
+					<param name="Local" value="cheminv\help\userguide\searching.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Search Results">
+					<param name="Local" value="cheminv\help\userguide\searching.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Multi Scan">
+					<param name="Local" value="cheminv\help\userguide\multi_scan.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="New Location">
+					<param name="Local" value="cheminv\help\userguide\location_new.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Edit Location">
+					<param name="Local" value="cheminv\help\userguide\location_edit.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Move Location">
+					<param name="Local" value="cheminv\help\userguide\location_move.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Delete Location">
+					<param name="Local" value="cheminv\help\userguide\location_delete.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="New Container">
+					<param name="Local" value="cheminv\help\userguide\container_new.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Order Container">
+					<param name="Local" value="cheminv\help\userguide\order.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tasks">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Default Location">
+					<param name="Local" value="cheminv\help\userguide\location_default.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Creating a New Container">
+				<param name="Local" value="cheminv\help\userguide\container_new.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Required Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_required.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Substance Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_substance.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Supplier Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_supplier.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Contents Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_contents.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Optional Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_optional.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Owner Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_owner.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Comments Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_comments.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Other Tab">
+					<param name="Local" value="cheminv\help\userguide\container_new_other.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Searching for a Container">
+				<param name="Local" value="cheminv\help\userguide\container_searching.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Viewing the Contents of a Container">
+				<param name="Local" value="cheminv\help\userguide\container_viewing.htm">
+				</OBJECT>
+
+
+
+
+
+
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Available Functions of Container List Frame">
+					<param name="Local" value="cheminv\help\userguide\container_viewing.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Multi select">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_mselect.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Large Icons">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_licons.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Small Icons">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_sicons.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Details">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_details.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Column Chooser">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_col.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Update Contents">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_update.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Rectify Contents">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_rectify.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Print Report">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_print.htm">
+						</OBJECT>
+					
+				</UL>
+			
+
+
+		
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Available Functions of Container Details Frame">
+					<param name="Local" value="cheminv\help\userguide\container_viewing.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Change Qty">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_qty.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Change Status">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_status.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Check Out">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_cout.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Check In">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_cin.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Copy Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_copy.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Certify Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_certify.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Reorder Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_reorder.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Edit Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_edit.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Move Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_move.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Delete Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_delete.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Retire Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_retire.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Split Containers">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_split.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Merge Containers">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_merge.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Request Container">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_requests.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Create Samples">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_samples.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="History">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_history.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Print Label\Report">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_print.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Manage Links">
+						<param name="Local" value="cheminv\help\userguide\link_management.htm">
+						</OBJECT>
+				</UL>
+				
+					<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Container Viewing Form Tabs">
+					<param name="Local" value="cheminv\help\userguide\container_viewing.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Summary Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_summary.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Substance Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_substance.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Supplier Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_supplier.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Quantities Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_quantities.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Comments Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_comments.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Reservation Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_reservations.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Other Tab">
+						<param name="Local" value="cheminv\help\userguide\container_new_other.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="EHS Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_ehs.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Requests Tab">
+						<param name="Local" value="cheminv\help\userguide\container_viewing_request.htm">
+						</OBJECT>
+				</UL>
+			
+		</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Plate Inventory">
+			<param name="Local" value="cheminv\help\userguide\plate_inventory.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Creating a New Plate">
+				<param name="Local" value="userguide/plate_inventory_new.htm">
+				</OBJECT>
+			<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Creating Plates Using Excel Spreadsheet">
+						<param name="Local" value="userguide/admin_tasks_excel.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Creating Plates Using Text File">
+						<param name="Local" value="userguide/admin_tasks_textfile.htm">
+						</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating a Target Plate">
+							<param name="Local" value="userguide/target_plate_using_textfile.htm">
+						</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating a Source Plate">
+							<param name="Local" value="userguide/source_plate_using_textfile.htm">
+						</OBJECT>
+
+					</UL>
+
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Searching for Plates">
+				<param name="Local" value="cheminv\help\userguide\plate_inventory_search.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Viewing the Contents of a Plate">
+				<param name="Local" value="cheminv\help\userguide\plate_inventory_view.htm">
+				</OBJECT>
+
+
+
+
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Available Functions of Plate List Frame">
+					<param name="Local" value="cheminv\help\userguide\container_viewing.htm">
+					</OBJECT>
+
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Multi select">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_mselect.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Large Icons">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_licons.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Small Icons">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_sicons.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Details">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_details.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Column Chooser">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_col.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Update Contents">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_update.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Rectify Contents">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_rectify.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Print Report">
+						<param name="Local" value="cheminv\help\userguide\plate_viewing_print.htm">
+						</OBJECT>
+					
+				</UL>
+
+			
+
+
+
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Available Functions of Plate Details Frame">
+					<param name="Local" value="cheminv\help\userguide\plate_inventory_view.htm">
+					</OBJECT>
+
+				
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Creating Daughter Plates">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_daughter.htm">
+						</OBJECT>
+						<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating Daughter Plates - by Source Plate">
+							<param name="Local" value="cheminv\help\userguide\plate_inventory_daughter_source.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating Daughter Plates - by Target Plate">
+							<param name="Local" value="cheminv\help\userguide\plate_inventory_daughter_target.htm">
+							</OBJECT>
+						</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Create a Plate Map">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_platemap.htm">
+						</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Create Plate Map">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_platemap.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Create Plate Map Location">
+							<param name="Local"value="cheminv\help\userguide\plate_inventory_platemap_location.htm">
+							</OBJECT>
+					</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Reformat Plates">
+						<param name="Local" value="userguide/plate_mselect_reformat.htm">
+						</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating Stamped Reformat Map">
+						<param name="Local" value="userguide/plate_mselect_reformat_stamped.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Creating Dithered Reformat Map">
+							<param name="Local"value="userguide/plate_mselect_reformat_dithered.htm">
+							</OBJECT>
+					</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Edit Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_edit.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Copy Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_copy.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Move Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_move.htm">
+						</OBJECT>
+
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Dilute Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_dilute.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Retire Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_retire.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Delete Plate">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_delete.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plate Viewing Form Tabs">
+					<param name="Local" value="cheminv\help\userguide\plate_inventory_view.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Summary Tab">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_view_summary.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Plate Viewer Tab">
+						<param name="Local" value="cheminv\help\userguide\plate_inventory_view_viewer.htm">
+						</OBJECT>
+				</UL>
+			</UL>
+		</UL>
+			<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Reports Management">
+			<param name="Local" value="cheminv\help\userguide\reports_management.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Creating a General Report ">
+				<param name="Local" value="cheminv\help\userguide\create_general_report.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Editing a General Report">
+				<param name="Local" value="cheminv\help\userguide\edit_general_report.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Deleting a General Report">
+				<param name="Local" value="cheminv\help\userguide\delete_general_report.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Creating a Custom Report">
+				<param name="Local" value="cheminv\help\userguide\create_custom_report.htm">
+				</OBJECT>
+		</UL>
+
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Administration">
+			<param name="Local" value="cheminv\help\userguide\admin.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manage Users and Roles">
+				<param name="Local" value="webserver_source\cfserverasp\Help\global\users.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inventory Loader - Batch Loading Compounds">
+				<param name="Local" value="cheminv\help\userguide\admin_invloader.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inventory Tasks">
+				<param name="Local" value="cheminv\help\userguide\admin_tasks.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Search">
+					<param name="Local" value="cheminv\help\userguide\searching.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="New Location">
+					<param name="Local" value="cheminv\help\userguide\location_new.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Edit Location">
+					<param name="Local" value="cheminv\help\userguide\location_edit.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Move Location">
+					<param name="Local" value="cheminv\help\userguide\location_move.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Delete Location">
+					<param name="Local" value="cheminv\help\userguide\location_delete.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plate Settings">
+					<param name="Local" value="cheminv\help\userguide\admin_plate_settings.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Change Password">
+					<param name="Local" value="cheminv\help\userguide\admin_change_password.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Users">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\users_users.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Roles">
+					<param name="Local" value="webserver_source\cfserverasp\Help\global\users_roles.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Container Requests">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_requests.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Sample Requests">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="New Sample Requests">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests_new.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Approved Sample Requests">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests_approved.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Declined Sample Requests">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests_declined.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Filled Sample Requests">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests_filled.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Closed Sample Requests">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_sample_requests_closed.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Orders">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_order.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Create an Order">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_order_create.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Receive an Order">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_order_receive.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Approvals">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_approve.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Manage Tables">
+					<param name="Local" value="cheminv\help\userguide\admin_manage_tables.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Analyze Audit Trail">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_audit.htm">
+					</OBJECT>
+				<ul>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Standard Audit Report">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_audit_standard.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Aggregate Audit Report">
+						<param name="Local" value="cheminv\help\userguide\admin_tasks_audit_aggregate.htm">
+						</OBJECT>
+				</ul>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Create Plates from Excel">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_excel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Create Plates from Text File">
+					<param name="Local" value="cheminv\help\userguide\admin_tasks_textfile.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Custom Reports">
+					<param name="Local" value="cheminv\help\userguide\admin_custom_reports.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Inventory Enterprise Form Fields">
+			<param name="Local" value="cheminv\help\userguide\fields/fields.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Roles">
+			<param name="Local" value="cheminv\help\userguide\roles.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Privileges">
+			<param name="Local" value="cheminv\help\userguide\privileges.htm">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

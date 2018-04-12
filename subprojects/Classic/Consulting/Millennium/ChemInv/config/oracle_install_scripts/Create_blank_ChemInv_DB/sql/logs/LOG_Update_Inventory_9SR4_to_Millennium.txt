@@ -1,0 +1,298 @@
+Enter the target Oracle service name:ORCL
+Enter the name of an Oracle account with system privileges (system):
+Enter the above oracle account password (manager2):
+Connected.
+
+View created.
+
+
+Trigger created.
+
+'#########################################################'
+'Altering the cs_security schema...'
+'#########################################################'
+Connected.
+
+Grant succeeded.
+
+Connected.
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Connected.
+
+0 rows updated.
+
+
+Commit complete.
+
+
+1 row updated.
+
+
+Commit complete.
+
+SP2-0310: unable to open file "..\..\Alter\Cs_Security\GrantPrivsToRole.sql"
+
+Commit complete.
+
+
+PL/SQL procedure successfully completed.
+
+Connected.
+
+1 row created.
+
+
+Commit complete.
+
+INSERT INTO INV_PICKLISTS (PICKLIST_ID, PICKLIST_DOMAIN, PICKLIST_CODE, PICKLIST_DISPLAY) VALUES (3, 2, '--', '(none)')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.PICKLIST_PK) violated 
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+'#########################################################'
+'Logged session to: Logs\LOG_Update_Inventory_9SR4_to_Millennium.txt
+'#########################################################'
+

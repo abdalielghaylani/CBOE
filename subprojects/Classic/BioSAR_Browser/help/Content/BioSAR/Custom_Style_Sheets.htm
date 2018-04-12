@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="186" MadCap:lastWidth="1211" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="BioSAR Browser User Guide|Custom Style Sheets" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Applying CSS to all Forms</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <img src="../Resources/Images/BioSAR.png" />
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1155135">BioSAR Browser User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="#BioSAR_Browser_User_s_Guide_834457683_1161841">Custom Style Sheets</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Applying CSS to all Forms</span>
+        </div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_834457683_1161841"></a><a name="kanchor1290"></a><a name="kanchor1291"></a><a name="kanchor1292"></a><a name="kanchor1293"></a><a name="kanchor1294"></a><a name="kanchor1295"></a><a name="kanchor1296"></a><a name="kanchor1297"></a><a name="kanchor1298"></a><a name="kanchor1299"></a><a name="kanchor1300"></a><a name="kanchor1301"></a><a name="kanchor1302"></a><a name="kanchor1303"></a><a name="kanchor1304"></a><a name="kanchor1305"></a>Custom Style Sheets</h2>
+        <div class="Body">BioSAR Enterprise allows administrators to create and modify Custom Style Sheets (CSS) and apply customized styles through standard CSS mechanisms. The customized styles can be applied in several ways as follows:</div>
+        <div class="Bullet1_1st">Custom styles for all forms</div>
+        <div class="Bullet1_inner">Custom styles specific to forms</div>
+        <div class="Bullet1_last">Data specific styles for List view and Details view </div>
+        <div class="Body">Before applying customized styles, you need to configure BioSAR Enterprise so that it supports CSS. </div>
+        <div class="Body">To enable support for CSS:</div>
+        <div class="numlist1_1st" MadCap:autonum="1. "><span class="autonumber"><span>1. </span></span>Open the cfserver.ini file located at: &lt;webroot&gt;biosar_browser\config.</div>
+        <div class="numlist1_inner" MadCap:autonum="2. "><span class="autonumber"><span>2. </span></span>Set USECUSTOMCSS=1 in the GLOBALS section.</div>
+        <div class="numlist1_last" MadCap:autonum="3. "><span class="autonumber"><span>3. </span></span>Perform iisreset.</div>
+        <h3 class="Heading3"><a name="BioSAR_Browser_User_s_Guide_834457683_1161763"></a><a name="kanchor1306"></a><a name="kanchor1307"></a><a name="kanchor1308"></a><a name="kanchor1309"></a><a name="kanchor1310"></a><a name="kanchor1311"></a><a name="kanchor1312"></a><a name="kanchor1313"></a><a name="kanchor1314"></a><a name="kanchor1315"></a><a name="kanchor1316"></a><a name="kanchor1317"></a><a name="kanchor1318"></a><a name="kanchor1319"></a><a name="kanchor1320"></a><a name="kanchor1321"></a>Applying CSS to all Forms</h3>
+        <div class="Body">To apply custom styles to all the forms:</div>
+        <div class="numlist1_1st" MadCap:autonum="1. "><span class="autonumber"><span>1. </span></span>Open the ‘styles’ folder located at: &lt;webroot&gt;biosar_browser\config\. In the ‘styles’ folder, by default, there will be four stylesheet files: customquery.css, customlist.css, customlistCD.css, and customdetail.css.</div>
+        <blockquote class="NoteInd">customlistCD.css is the stylesheet that is used when you toggle the result list layout. CD stands for Columns Down</blockquote>
+        <div class="numlist1_inner" MadCap:autonum="2. "><span class="autonumber"><span>2. </span></span>Edit any of the four stylesheet files as desired. Changing styles in these files will change the format for all forms, which do not have their own custom stylesheets.</div>
+        <blockquote class="NoteInd">It is recommended that you do not change styles related to position or layers. Such styles include float, position, and z-index.</blockquote>
+        <div class="numlist1_last" MadCap:autonum="3. "><span class="autonumber"><span>3. </span></span>Perform iisreset.</div>
+        <h5 class="Heading5"><a name="kanchor1322"></a><a name="kanchor1323"></a><a name="kanchor1324"></a><a name="kanchor1325"></a><a name="kanchor1326"></a><a name="kanchor1327"></a><a name="kanchor1328"></a><a name="kanchor1329"></a><a name="kanchor1330"></a><a name="kanchor1331"></a><a name="kanchor1332"></a><a name="kanchor1333"></a><a name="kanchor1334"></a><a name="kanchor1335"></a><a name="kanchor1336"></a><a name="kanchor1337"></a>Applying Formgroup Specific Styles</h5>
+        <div class="Body">To apply custom styles to specific formgroups:</div>
+        <div class="numlist1_1st" MadCap:autonum="1. "><span class="autonumber"><span>1. </span></span>Make a copy of customquery.css, customdetail.css, customlist.css, and customlistCD.css file in the ‘styles’ folder.</div>
+        <div class="numlist1_inner" MadCap:autonum="2. "><span class="autonumber"><span>2. </span></span>Rename the duplicate copies to meet the following pattern: formgroup id + detail/list + .css. For example, 1021query.css, 1021detail.css,1021list.css, and 1021listCD.css. To determine the formgroup id:</div>
+        <div class="numlist2_1st" MadCap:autonum="a. "><span class="autonumber"><span>a. </span></span>Open the form.</div>
+        <div class="numlist2_inner" MadCap:autonum="b. "><span class="autonumber"><span>b. </span></span>Right-click the bottom frame and select <span class="Action_Object">Properties</span> to display the <span class="Action_Object">Properties</span> dialog box </div>
+        <div class="numlist2_last" MadCap:autonum="c. "><span class="autonumber"><span>c. </span></span>Look for the <span class="Action_Object">formgroup</span> parameter in the <span class="Action_Object">Address (URL)</span> field. You might need to select and scroll because the URL text is not displayed entirely in the <span class="Action_Object">Properties</span> dialog box.</div>
+        <div class="numlist1_inner" MadCap:autonum="3. "><span class="autonumber"><span>3. </span></span>Edit any of the four duplicate stylesheet files as desired.</div>
+        <div class="numlist1_inner" MadCap:autonum="4. "><span class="autonumber"><span>4. </span></span>Perform iisreset.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span class="Note"><b>Note: </b></span></span>Once you apply a formgroup specific set of styles, the customquery.css, customdetail.css, customlist.css, and customlistCD.css files are completely ignored for that formgroup. Therefore, if you want a style change in the default custom styles and in a specific formgroup then you will need to apply your changes to both the original and duplicate stylesheet files.</blockquote>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span class="Note"><b>Note: </b></span></span>If you want to determine the style you wish to edit, find the style name in the html source file and edit it. To open the html source file, right-click the appropriate frame and select View Source.</blockquote>
+        <h5 class="Heading5"><a name="kanchor1338"></a><a name="kanchor1339"></a><a name="kanchor1340"></a><a name="kanchor1341"></a><a name="kanchor1342"></a><a name="kanchor1343"></a><a name="kanchor1344"></a><a name="kanchor1345"></a><a name="kanchor1346"></a><a name="kanchor1347"></a><a name="kanchor1348"></a><a name="kanchor1349"></a><a name="kanchor1350"></a><a name="kanchor1351"></a><a name="kanchor1352"></a><a name="kanchor1353"></a>Applying Label/Data Specific Styles</h5>
+        <div class="Body">Certain styles can be applied based on text labels. For example, if you have a field called Reg Number and you want the field to be highlighted, you can apply a style specific to that field/column. The following figure shows the highlighted field, Reg Number:</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="CSS_regnumber.gif" style="width: 240px;height: 210.9994px;margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.015926px;margin-bottom: 1.022396px;" />
+        </p>
+        <div class="Body">To apply a custom style for a heading or label, create a style called columnNameClass + field name; replace any spaces in the field name with an underscore (_).</div>
+        <div class="Body">To change the style for the data, add a style called valueClass + field name. For example, to highlight the actual Reg Number data, create a class called valueClassReg_number as shown in the following code.</div>
+        <div class="Body">TD.parent_cell_value</div>
+        <div class="Body">{</div>
+        <div class="Body">    FONT-SIZE: 9pt;</div>
+        <div class="Body">    FLOAT: none;</div>
+        <div class="Body">    VERTICAL-ALIGN: top;</div>
+        <div class="Body">    FONT-FAMILY: 'Lucida Console';</div>
+        <div class="Body">    POSITION: relative</div>
+        <div class="Body">}</div>
+        <div class="Body">&#160;</div>
+        <div class="Body">TD.valueClassReg_number</div>
+        <div class="Body">{</div>
+        <div class="Body">    FONT-SIZE: 9pt;</div>
+        <div class="Body">    FLOAT: none;</div>
+        <div class="Body">    COLOR:Red;</div>
+        <div class="Body">    VERTICAL-ALIGN: top;</div>
+        <div class="Body">    FONT-FAMILY: 'Lucida Console';</div>
+        <div class="Body">    POSITION: relative</div>
+        <div class="Body">}</div>
+        <div class="Body">Styles are inherited from parent classes. For example, in list view, the column headings are inherited from TD.child_cell_value or from a custom class related to the name. In the detail view, it might inherit from child_cell_value or parent_cell_value.</div>
+        <div class="Body">In the TD.valueClassReg_number class, you can observe that apart from color, all the other style elements have been inherited from the TD.parent_cell_value class.</div>
+        <div class="Body">Examples of custom styles are included in the customdetail.css and customlist.css files. If at any point you are unsure the style that you need to customize, look in the html source file. For custom column label and value areas, their class attributes will have two classes defined. For example, CLASS="parent_cell_value valueClassReg_number".</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span class="Note"><b>Note: </b></span></span>Typically, the style names in the list.css and the listCD.css are the same. Therefore, if you apply a style to one and want it in the other format as well, you can copy the custom style and put it in the other one.</blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

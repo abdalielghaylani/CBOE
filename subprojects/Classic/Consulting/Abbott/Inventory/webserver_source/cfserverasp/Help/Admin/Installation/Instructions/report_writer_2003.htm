@@ -1,0 +1,106 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Installation Win2000</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice WebServer</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<a href="win2003.htm"><img height="16" alt="Previous" src="../../../images/back.gif" width="16" border="0"></a>
+<a href="installation.htm"><img height="16" alt="Up One Level" src="../../../images/uplevel.gif" width="16" border="0"></a>
+<a href="testing.htm"><img height="16" alt="Next" src="../../../images/next.gif" width="16" border="0"></a>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>     ChemOffice WebServer</strong>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>Configure&nbsp;the Report Writer</h1>
+<p class="Head3"><a name="pgfId-1061509"></a><a name="39665"></a><a name="pgfId-1061761"></a>Reports.exe is the application used by the ChemOffice 
+WebServer products to write reports (i.e. for Inventory Manager and BioSAR 
+Browser). If you do not plan to install and use this feature, you can skip this 
+step.</p>
+<p class="Head3">The application must be running on the server 
+in order for a report to be made, so in order to guarantee this, it is best to set 
+up reports.exe to run as a service. Doing this will not require any additional steps to 
+start running reports.exe other then starting the server. For this reason, by default 
+the installer sets up the Report Writer service for you.&nbsp; </p>
+<p class="Head3">Take the following additional steps to finish configuration:</p>
+<ol>
+  <li>Login as the user that the report service is running under (this is the 
+  user name entered during the ChemOffice WebServer installation). 
+  <li>Set a default printer or Install Win2PDF (a PDF 
+  printer driver whose installer is found in the iInstallation folder of both 
+  Invnetory Manager and BioSAR Browser.&nbsp; A license is required.). 
+  <br><strong>Note:</strong> Installing Win2PDF will give your users the ability 
+  to create reports in PDF format.
+  <li>Launch MS Access to clear any initial dialogs for the user.&nbsp;&nbsp;If 
+  this step is not taken, the reportwriter will hang until the initial dialogs 
+  are cleared from Microsoft Access.&nbsp; It is sufficient to clear the dialogs 
+  once.
+  <li class="Numbered"><em><strong>For&nbsp;Windows 2003 
+  installations</strong></em>: Make 
+  sure to uncheck &quot;Enforce access checks for this application&quot; for 
+  the&nbsp;<em><strong>ReportQ</strong></em> <strong>application</strong>. 
+  <ol><li><strong>Go to START&gt;Programs&gt;Administrative 
+    Tools&gt;Component Services.</strong>
+    <li>Expand <strong>Component Services&gt;Computers&gt;My Computer&gt;COM+ 
+    Applications</strong>.
+    <li>Left-Click on the <strong><em>ReportQ</em></strong> 
+    application.
+    <li>Right-click on <strong><em>ReportQ</em></strong> and 
+  select&nbsp;<strong>Properties</strong>.&nbsp; 
+    <li> Click on the <strong>Security 
+  Tab</strong>.&nbsp; 
+    <li><em>Un</em>check <strong>Enforce access checks for this 
+    application</strong> 
+    <br>By default this is not checked 
+    in Windows 2000 installations but must be manually unchecked in Windows 2003 
+    installtions.&nbsp; 
+    <li>Close the Component Services window. </li>          
+      
+        </ol> </li></ol>
+<p><a href="testing.htm">Step 5: Test the 
+Installation</a></p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

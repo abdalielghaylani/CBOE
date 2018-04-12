@@ -1,0 +1,87 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>CheckSufficientSourcePlateQty</h1><p>Checks to see if the parent plate contains enough 
+substance to be alloted as requested.&nbsp;This functions assumes that&nbsp;the 
+amount necessary =          
+            
+     NumPlates*WellAmt.&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CheckSufficientSourcePlateQty.asp?PlateID=adVarChar&amp;WellAmt=Int&amp;NumPLates= Int</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">PlateID</h5>
+<p class="param">    The PlateID 
+for the source (or parent) plate.&nbsp;          </p>
+
+<h5 class="param">WellAmt</h5>
+<p class="param"> The amount of substance to 
+be placed in each new plate.          </p>
+<h5 class="param"> NumPlates</h5>
+<p class="param">          
+            
+            
+          The number of 
+plates that&nbsp;will be created with the parent plate's substance.&nbsp;</p>
+
+<h3>Outputs</h3>
+<p class="param">0 indicates a sufficient quantity is available,&nbsp; 1 indicates 
+insufficient quantity</p>
+
+<h3>Example</h3>
+<p>A plate (ID =  P12345) will be sampled, taking 1 microliter for each of 4 
+plates</p><pre>/cheminv/api/CheckSufficientSourcePlateQty.asp?PlateID=P12345&amp;WellAmt=1&amp;NumPLates= 4</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

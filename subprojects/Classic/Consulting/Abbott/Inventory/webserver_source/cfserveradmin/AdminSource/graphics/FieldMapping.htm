@@ -1,0 +1,221 @@
+<html>
+
+<head><script language="javascript">
+
+var theActionVal
+function getList(theName){
+theRealField = eval('document.SubmitAction.' + theName)
+theHiddenList = eval('document.SubmitAction.' + theName + 'list')
+
+theListVal = theHiddenList.value
+theArray = theListVal.split(',')
+var w = window.open("", "Help", "width=200,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+w.focus()
+w.document.write('<input type = "button" name="get" value="OK" onClick="opener.theRealField.value= document.getit.theList.options[document.getit.theList.selectedIndex].text"')
+w.document.write ('<br><br>')
+	w.document.write('Select a new value from the list:<br><form name="getit"><Select name="theList">')
+for(i=0;i<theArray.length;i++){
+w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')}
+w.document.write('</select></form>')
+}
+
+	
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+	theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+function setAction(theAction){
+		var theValue = eval('document.SubmitAction.FormGroups.options[document.SubmitAction.FormGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.FormGroupName.value = theValue 
+		document.SubmitAction.submit()
+
+}
+
+
+</script>
+
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500" height="49"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Database:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="0" bgcolor="#c0c0c0">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_form_group_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="FormGroupName" value><table border="0">
+<TBODY>
+            <tr>
+              <td><table border="0">
+<TBODY>
+                <tr>
+                  <td valign="center"><table border="0">
+                    <tr>
+                      <td width="274" height="27" valign="top"><input type="submit" value="    OK    " name="OK"
+                      onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                      onClick="setAction('Cancel')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="center"><table border="1">
+<TBODY>
+                    <tr>
+                      <td><strong>Form Group Flag</strong><WC@FORM_GROUP_FLAG></WC@FORM_GROUP_FLAG><input name="Help1" type="button" value="Help"
+                      onClick="getHelp('form_groups')"></td>
+                    </tr>
+                    <tr>
+                      <td><table border="1">
+<TBODY>
+                        <tr>
+                        <td><table border="1" width="556">
+<TBODY>
+                        <tr>
+                        <td width="330" height="26">Global Search</td>
+                        <td width="214" height="26"></td>
+                        <td width="243" height="26"></td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="26" background><blockquote>
+                        <p>Base Database</p>
+                        </blockquote>
+                        </td>
+                        <td width="214" height="26"><WC@GLOBAL_SEARCH_BASE_DB></WC@GLOBAL_SEARCH_BASE_DB></td>
+                        <td width="243" height="26"></td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="25"><blockquote>
+                        <p>Field_Map_Group</p>
+                        </blockquote>
+                        </td>
+                        <td width="214" height="25"><WC@FIELD_MAP_GROUP></WC@FIELD_MAP_GROUP></td>
+                        <td width="243" height="25"></td>
+                        </tr>
+                        <tr>
+                        <td width="214" height="19">Registration</td>
+                        <td width="243" height="19"></td>
+                        </tr>
+                        <tr>
+                        <td width="330"><blockquote>
+                        <p>Temporary Base Table Name</p>
+                        </blockquote>
+                        </td>
+                        <td width="214"><WC@REG_TEMP_BASETABLE></WC@REG_TEMP_BASETABLE></td>
+                        <td width="243">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        <td width="330"><blockquote>
+                        <p>Temporary Molecule Table Name</p>
+                        </blockquote>
+                        </td>
+                        <td width="214"><WC@REG_TEMP_MOLTABLE></WC@REG_TEMP_MOLTABLE></td>
+                        <td width="243">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="19"><blockquote>
+                        <p>Commit Table Name</p>
+                        </blockquote>
+                        </td>
+                        <td width="214" height="19"><WC@REG_COMMIT_BASETABLE></WC@REG_COMMIT_BASETABLE></td>
+                        <td width="243" height="19"></td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="19"><blockquote>
+                        <p>Commit Molecule Table Name</p>
+                        </blockquote>
+                        </td>
+                        <td width="214" height="19"><WC@REG_COMMIT_MOLTABLE></WC@REG_COMMIT_MOLTABLE></td>
+                        <td width="243" height="19"></td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="19"><blockquote>
+                        <p>Full Commit SQL Table Order</p>
+                        </blockquote>
+                        </td>
+                        <td width="214"><WC@TABLE_ORDER_FULL_COMMIT></WC@TABLE_ORDER_FULL_COMMIT></td>
+                        <td width="243">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        <td width="330"><blockquote>
+                        <p>Partial Commit SQL Table Order</p>
+                        </blockquote>
+                        </td>
+                        <td width="214"><WC@TABLE_ORDER_PARTIAL_COMMIT></WC@TABLE_ORDER_PARTIAL_COMMIT><br>
+                        </td>
+                        <td width="243">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="16"><blockquote>
+                        <p>Field Mapping Group</p>
+                        </blockquote>
+                        </td>
+                        <td width="214" height="16"><WC@FIELD_MAP_GROUP></WC@FIELD_MAP_GROUP></td>
+                        <td width="243" height="16"></td>
+                        </tr>
+                        <tr>
+                        <td width="330" height="16"><input type="submit" value="Advanced Settings" name="formgroupflag"
+                        onClick="setAction('advanced')"></td>
+                        <td width="214" height="16"></td>
+                        <td width="243" height="16"></td>
+                        </tr>
+                        </table>
+                        </td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+</TBODY>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="center"></td>
+                </tr>
+</TBODY>
+              </table>
+              </td>
+            </tr>
+</TBODY>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+
+<p>&nbsp; </p>
+</body>
+</html>

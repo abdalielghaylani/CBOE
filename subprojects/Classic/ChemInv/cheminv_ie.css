@@ -1,0 +1,610 @@
+a:link
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: none
+}
+a:visited
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: none
+}
+a:hover
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: underline
+}
+body
+{
+    font-size: 12px;
+    margin-left: 0px;
+    margin:0;
+    padding:0;
+    color: black;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background-color: #ffffff
+}
+div.navigation
+{
+    margin-left: -34px
+}
+div.navigation p
+{
+    margin-top: 6px
+}
+pre
+{
+    margin-top: 0px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-left: 6px;
+    color: maroon;
+    font-family: "courier new", courier, monospace;
+    background-color: #fffff0
+}
+span.codemark
+{
+    font-weight: bold;
+    color: black;
+    background-color: #e1e1e1;
+}
+code
+{
+    display: inline;
+    font-size: 12px;
+    color: black;
+    font-family: "courier new", courier, monospace;
+    background-color: #fffff0
+}
+h1
+{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: -34px;
+    color: black;
+    background-color: #fffff0
+}
+h2
+{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-left: -24px;
+    color: black;
+    background-color: #fffff0
+}
+h3
+{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left: -12px;
+    color: black;
+    background-color: #fffff0
+}
+h4
+{
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background-color: #fffff0
+}
+h5
+{
+    font-weight: normal;
+    font-size: 12px;
+    color: black;
+    background-color: #fffff0
+}
+h5.param
+{
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-left: 6px;
+    color: black;
+    background-color: #fffff0
+}
+p.param
+{
+    margin-top: 3px;
+    margin-left: 6px
+}
+table
+{
+    font-size: 12px;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+
+table.proc
+{
+    margin-top: 12px;
+    font-size: 12px;
+    margin-bottom: -12px;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+th
+{
+    font-weight: bold;
+    background-color: #e1e1e1;
+}
+ul p
+{
+    margin-top: 6px;
+    margin-bottom: 6px
+}
+ul p li
+{
+    margin-top: 6px
+}
+ul li li
+{
+    margin-top: 12px
+}
+ol ul
+{
+    margin-left: 36px
+}
+ol ul li
+{
+    margin-left: 0px;
+    list-style-type: square
+}
+ul ul
+{
+    margin-left: 36px
+}
+ul ul li
+{
+    margin-left: 0px;
+    list-style-type: square
+}
+ol p
+{
+    margin-top: 6px;
+    margin-bottom: 6px
+}
+ol p li
+{
+    margin-top: 6px
+}
+ol li li
+{
+    margin-top: 12px
+}
+td ul
+{
+    margin-top: 6px
+}
+td.proc
+{
+    font-weight: bold;
+    font-size: 12px;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+td.copy
+{
+    font-size: 10px;
+    color: gray;
+    background-color: #fffff0
+}
+ol pre
+{
+    margin-top: 3px;
+    margin-bottom: 0px;
+    color: maroon;
+    background-color: #fffff0
+}
+pre br
+{
+    display: none
+}
+div.proc
+{
+    margin-left: -18px
+}
+ol li
+{
+    margin-top: 10px
+}
+li.first
+{
+    margin-top: -22px
+}
+span.required
+{
+    font-size: 12px;
+    color: red;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+span.guifeedback
+{
+    font-weight: bolder;
+    font-size: 12px;
+    color: maroon;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+
+span.instructions
+{
+    font-weight: bold;
+    font-size: 10px;
+    color: maroon;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+
+/*
+input
+{
+    cursor: auto;
+    color: black;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background-color: #fff;
+    border:1 #666666 solid;
+    font-size:12px;
+}
+input.noborder
+{
+    cursor: auto;
+    color: black;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background-color: #fff;
+    border:0 #666666 solid;
+    font-size:12px;
+}
+*/
+textarea{
+    border:1 #666666 solid; 
+    font-size:12px; 
+    font-family : verdana, geneva, arial, helvetica, sans-serif; 
+    color:#000; 
+    background-color:#fff;
+}
+
+
+select{
+    border:1 #666666 solid; 
+    font-size:12px; 
+    color:#000000; 
+    background-color:#fff;
+}
+
+a
+{
+    text-decoration: none
+}
+
+.menulink
+{
+    font-size: 8pt;
+    color: #000000;
+    font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.TabView 
+{
+	color:#000000; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+a.TabView:LINK 
+{
+	Text-Decoration: none; 
+	color:#000000; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+a.TabView:VISITED 
+{
+	Text-Decoration: none; 
+	color:#000000; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+a.TabView:HOVER 
+{
+	Text-Decoration: underline; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+a.menulink:link
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: none
+}
+a.menulink:visited
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: none
+}
+a.menulink:hover
+{
+    font-size: 8pt;
+    color: #4682b4;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-decoration: underline
+}
+.ListView 
+{
+	color:#000000; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;    
+}
+A.ListView:LINK	
+{
+	Text-Decoration: none; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+A.ListView:VISITED 
+{
+	Text-Decoration: none; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+A.ListView:HOVER 
+{
+	Text-Decoration: underline; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+.TreeView 
+{
+	color:#000000; 
+	font-size:8pt; 
+	font-family: arial
+}
+A.TreeView:LINK 
+{
+	Text-Decoration: none; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: arial
+}
+A.TreeView:VISITED 
+{
+	Text-Decoration: none; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: arial
+}
+A.TreeView:HOVER 
+{
+	Text-Decoration: underline; 
+	color:#4682b4; 
+	font-size:8pt; 
+	font-family: arial
+}
+span.grayedtext
+{
+    font-weight: 100;
+    font-size: 12px;
+    color: gray;
+    font-family: verdana, arial, helvetica, sans-serif
+}
+.grayedtext
+{
+	text-align: right;
+	background-color: #e1e1e1;
+   font-family: verdana, arial, helvetica, sans-serif;
+	white-space: nowrap;
+}
+.grayedTextCenter 
+{
+	text-align: center;
+	background-color: #e1e1e1;
+	font-family: verdana, arial, helvetica, sans-serif;
+	white-space: nowrap;
+}
+.grayedtextleft
+{
+	text-align: left;
+	background-color: #e1e1e1;
+	font-family: verdana, arial, helvetica, sans-serif;
+	white-space: nowrap;
+}
+.centeredbolditalic
+{
+	text-align: center;
+	font-weight: bold;	
+	font-style: italic;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+.rightalign
+{
+	text-align: right;
+   font-family: verdana, arial, helvetica, sans-serif;
+}
+.leftalign
+{
+	text-align: left;
+   font-family: verdana, arial, helvetica, sans-serif;
+}
+.centeralign
+{
+	text-align: center;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+div.tasktitle { 
+	padding: 10px 0px 0px 0px;
+	font:verdana; 
+	font-weight:bold; 
+	font-size:11px; 
+	border-width: 0px 0px 1px 0px; 
+	border-style:dashed; 
+	border-color:#e1e1e1;
+	margin-bottom:5px; 
+	color:#000000;
+}
+
+#nav, #nav ul { /* all lists */
+		font-size:8pt;
+		font-family: verdana;
+		margin: 0;
+		list-style: none;
+		line-height: 1;
+		height:20px;
+}
+
+.firstList 
+{margin:0px;}
+
+.floatLeft 
+{
+	float:left;
+}
+
+#nav a {
+		display: block;
+		width:100px;
+		color:#006699;
+}
+
+#nav li { /* all list items */
+		float: left;
+		width: 80px; /* width needed or else Opera goes nuts */
+		border-width:1px 1px 0px 1px;
+		border-top-color:#999;
+		border-bottom-color:#999;
+		border-right-color:#999;
+		line-height:20px;
+		padding: 0px 0px 0px 10px;
+		color:#006699;
+		white-space:nowrap;
+}
+
+#nav li:hover, #nav li.sfhover{background-color:#ffffff;border-color:#fff;}
+
+#nav li ul { /* second-level lists */
+		position: absolute;
+		width:100px;
+		height:20px;
+		left:-900px;
+		margin:0px 0px 0px 0px;
+		border: 1px solid #999;
+}
+
+#nav li li{
+		line-height:20px;
+		border:0px;
+		border-style:solid;
+		border-right-color:#333;
+		margin:0px 0px 0px 0px;
+}
+
+.boxHeader
+{
+    vertical-align:middle;
+    background-color:#e1e1e1;
+    width:100%;
+}
+
+.grayBackground
+{
+    background-color:#e1e1e1;
+}
+
+#nav li ul a{width:100px; padding: 0px 0px 0px 0px;}
+
+#nav li:hover ul, #nav li.sfhover ul { /* lists nested under hovered list items */
+		left: auto;
+		margin-top:16px;
+		margin-left:-39px;
+		background-color:#e1e1e1;
+}
+
+.dropDownMenuControl {
+		background-color:#e1e1e1; 
+		border:1px solid #999;
+}
+
+#contextMenu {
+	font-size:8pt;
+	font-family: verdana;
+	position: absolute;
+	visibility: hidden;
+	width: 350px;
+	background-color: #e1e1e1;
+	border: 1px outset #999;
+	padding: 5px 5px 5px 5px;
+	line-height: 15pt
+}
+
+.A:contextMenu {
+	color: #4682b4;
+	text-decoration: none;
+	cursor: default;
+	width: 100%
+  }
+
+.A:menuOn {
+   color: white;
+   text-decoration: none;
+   background-color: darkblue;
+   cursor: default;
+   width: 100%
+}
+
+.errorGrid {
+	width:100%;
+	background: #CC0000;
+}
+.errorGrid a {
+	color: #fff;
+	font-weight: bold;
+}
+
+.filledGrid {
+	width:100%;
+	background:#eaeaff;
+}
+.emptyGrid {
+	width:100%;
+	background:#ffffff;
+}
+.selectedGrid {
+	width:100%;
+	background:#FFFF66;
+}
+
+.listCaption
+{
+    font-size:8pt;
+    font-family: verdana, arial, helvetica, sans-serif;       
+}
+
+input.readOnly
+{
+    background-color:#e1e1e1;
+}
+
+.fieldLabel{
+    vertical-align:middle;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.ActiveRow {
+	background: #ffff99;
+}
+

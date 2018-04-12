@@ -1,0 +1,392 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+
+
+#define EXAMPLE1 "cfserver"    
+#define EXAMPLE2 "cheminv"
+#define EXAMPLE3 "invreg"   
+#define EXAMPLE4 "invconfig"
+#define RegisteryKey "SOFTWARE\\CambridgeSoft\\Chemoffice\\10.0\\ChemInv10.0"
+#define RegisteryKeyValue "VIRTUAL_DIRECTORY"  
+#define RegistryKeySN "SITENUMBER" 
+
+// Full names of Config files.
+
+#define EXAMPLE1_INI INSTALLDIR^"Config\\" + EXAMPLE1 + ".ini" 
+#define EXAMPLE2_INI INSTALLDIR^"Config\\" + EXAMPLE2 + ".ini"
+#define EXAMPLE3_INI INSTALLDIR^"Config\\" + EXAMPLE3 + ".ini"   
+#define EXAMPLE4_INI INSTALLDIR^"Config\\" + EXAMPLE4 + ".ini"
+
+    // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND);   
+    export prototype RenameFolder(HWND);
+    export prototype RemoveVirtualDir(HWND);
+    export prototype CheckVirtDirExists(string);     
+    export prototype CheckWebSite(HWND);   
+    export prototype ReadRegValues(HWND); 
+    export prototype EditUDL(HWND);  
+    export prototype SetDIR(HWND);
+    export prototype RenameFolderBack(HWND);
+
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.  
+//    STRING szService="Alerter";
+begin             
+     if (ConfigFileLoad (EXAMPLE1_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE1_INI + ".", SEVERE);
+
+       // abort;
+
+ endif;        
+    
+    ConfigFileSave (EXAMPLE1 + ".*");
+    
+    if (ConfigFileLoad (EXAMPLE2_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE2_INI + ".", SEVERE);
+
+      //  abort;
+
+    endif;        
+    
+    ConfigFileSave (EXAMPLE2 + ".*");
+
+    if (ConfigFileLoad (EXAMPLE3_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE3_INI + ".", SEVERE);
+
+      //  abort;
+
+    endif;        
+    
+    ConfigFileSave (EXAMPLE3 + ".*");
+          
+    if (ConfigFileLoad (EXAMPLE4_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE4_INI + ".", SEVERE);
+
+      //  abort;
+
+    endif;        
+    
+    ConfigFileSave (EXAMPLE4 + ".*");
+
+end;
+
+function RenameFolder(hMSI)
+  BOOL bResult;
+         STRING szFolderSearchCustom, szFolderSearch, szOldName, szNewNameCustom, szNewName, szOldNameCustom;                                  
+         number nBuff;
+
+    begin 
+	//MsiGetProperty(ISMSI_HANDLE, INSTALLDIR, szFolderSearch, nBuff);
+	//MsiGetProperty(ISMSI_HANDLE, "CUSTOMFOLDERSEARCH", szFolderSearchCustom, nBuff);
+	//MessageBox(szOldName, INFORMATION);
+    szOldName = INSTALLDIR; // This folder must already exist.
+    szNewName = INSTALLDIR + "_10"; // This folder must not already exist. 
+    //MessageBox(szNewName, INFORMATION);
+    //szOldNameCustom = INSTALLDIR^"Custom"; // This folder must already exist.
+    //szNewNameCustom = INSTALLDIR^"Custom_9SR2";
+    //if(szFolderSearch = "false") > 0 then
+    	//MessageBox("FolderNotFound",INFORMATION);  
+    	if(ExistsDir(szNewName)=NOTEXISTS) then
+    	CreateDir(INSTALLDIR + "_10");         
+    	XCopyFile(INSTALLDIR^"*.*", INSTALLDIR + "_10"^"*.*", INCLUDE_SUBDIR);
+    	endif;
+    	
+    	
+    //	bResult = MoveFile (szOldName, szNewName); 
+    //endif;	
+    //if(szFolderSearchCustom = "false") > 0 then
+    	//MoveFile(szOldNameCustom, szNewNameCustom);
+    //endif;	
+    //if (bResult) then
+    //    MessageBox ("MoveFile successfully renamed the folder.", INFORMATION);
+         //else
+        //      MessageBox ("MoveFile failed to rename the folder.", SEVERE);
+   // endif;
+    end;                             
+prototype BOOL Kernel32.MoveFile (BYVAL STRING, BYVAL STRING);  //Windows API prototype    
+function RenameFolderBack(hMSI)
+BOOL bResult;
+         STRING szFolderSearchCustom, szFolderSearch, szOldName, szNewNameCustom, szNewName, szOldNameCustom;                                  
+         number nBuff;
+
+    begin 
+	//MsiGetProperty(ISMSI_HANDLE, INSTALLDIR, szFolderSearch, nBuff);
+	//MsiGetProperty(ISMSI_HANDLE, "CUSTOMFOLDERSEARCH", szFolderSearchCustom, nBuff);
+	//MessageBox(szOldName, INFORMATION);
+    szOldName = INSTALLDIR; // This folder must already exist.
+    szNewName = INSTALLDIR + "_10"; // This folder must not already exist. 
+    //MessageBox(szNewName, INFORMATION);
+    //szOldNameCustom = INSTALLDIR^"Custom"; // This folder must already exist.
+    //szNewNameCustom = INSTALLDIR^"Custom_9SR2";
+    //if(szFolderSearch = "false") > 0 then
+    	//MessageBox("FolderNotFound",INFORMATION);
+    	DeleteDir(szOldName, ALLCONTENTS)  ;  
+    	
+    	CreateDir(szOldName);         
+    	XCopyFile(szNewName^"*.*", szOldName^"*.*", INCLUDE_SUBDIR);     
+    	DeleteDir(szNewName, ALLCONTENTS)  ;
+    	
+    	
+    	
+    //endif;	
+    //if(szFolderSearchCustom = "false") > 0 then
+    	//MoveFile(szOldNameCustom, szNewNameCustom);
+    //endif;	
+    //if (bResult) then
+    //    MessageBox ("MoveFile successfully renamed the folder.", INFORMATION);
+         //else
+        //      MessageBox ("MoveFile failed to rename the folder.", SEVERE);
+   // endif;
+    end;
+
+function RemoveVirtualDir(hMSI)
+STRING sVDName, sSiteNumber;
+NUMBER nvSize, nvType, nResult, nBuff;
+OBJECT objIIS_Root;
+begin    
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName, nBuff);
+MsiGetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber, nBuff);
+//MessageBox(sVDName + sSiteNumber + "RemoveVD", INFORMATION);
+set objIIS_Root = CoGetObject("IIS://localhost/W3SVC/"+sSiteNumber+"/Root", "");
+nResult=CheckVirtDirExists(sVDName);
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", sVDName);                
+endif;
+end;  
+
+function number CheckVirtDirExists(VDName)
+number nTy,bSi,ret;
+string mRet,VDir;
+begin
+VDir = "/" + VDName; //VDName = the value u retrieve through ur dialog
+nTy=REGDB_STRING ;
+bSi=MAX_PATH;
+RegDBSetDefaultRoot ( HKEY_LOCAL_MACHINE );
+if(RegDBGetKeyValueEx("\\SYSTEM\\CurrentControlSet\\Services\\w3svc\\parameters\\Virtual Roots\\", VDir, nTy, mRet,bSi )<0) then
+ret = 0; // The VDirectory does not exists
+else
+ret = 1; // The Directory allready exists
+endif;
+return ret;
+end;  
+
+function CheckWebSite(hMSI)   
+    // To Do:  Declare local variables. 
+  string szSrcDir, szWSName, szVirtualName, szOSName;                                    
+    number nBuff, nWSName;
+begin       
+	MsiGetProperty(ISMSI_HANDLE, "WEBSITE", szWSName, nBuff);
+	MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName, nBuff);
+	MsiGetProperty(ISMSI_HANDLE, "APPPOOL", szOSName, nBuff);
+	/*MsiGetProperty(ISMSI_HANDLE,"SETUPEXEDIR", szSrcDir, nBuff);      
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "WebSite", szWSName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "VirtualDirectory", szVirtualName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "PortNo", szPortNo);
+    MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName);
+    MsiSetProperty(ISMSI_HANDLE, "WEBSITENAME", szWSName);
+    MsiSetProperty(ISMSI_HANDLE, "PORTNO", szPortNo);
+   */
+   // MessageBox(szWSName, INFORMATION);
+   if ((szWSName = "0") > 0) then
+   SprintfBox(WARNING, "WebSite Name" , "WebSite Name cannot be left blank", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "1");
+   //MessageBox("1", INFORMATION);      
+   
+   else
+   //MsiSetProperty(ISMSI_HANDLE, "WEBSITE", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "0") ;
+   //MessageBox("0", INFORMATION);
+   endif; 
+    
+   
+end;  
+
+function ReadRegValues(hMSI) 
+STRING sVDName, sSiteNumber;
+number nvType, nvSize;
+begin
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE);
+nvType = REGDB_STRING; 
+nvSize=256;
+RegDBGetKeyValueEx(RegisteryKey, RegisteryKeyValue, nvType, sVDName, nvSize);
+RegDBGetKeyValueEx(RegisteryKey, RegistryKeySN, nvType, sSiteNumber, nvSize); 
+//MessageBox(sVDName + sSiteNumber + "ReadRegVal" , INFORMATION);
+
+if ((sVDName = "") > 0) then
+   MessageBox("This Installer Requires ChemInventory v10.0 PreInstalled. Please Install ChemInventory 10.0 first and then re-run this installation!!!", SEVERE);
+   abort;	
+endif;                
+MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName);
+MsiSetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber);
+
+end;    
+
+function number EditUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin  
+ nBuff=256;
+      // open the file in Unicode mode.   
+     MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);        
+   //  MessageBox(szOraServiceName, INFORMATION);
+    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    // Open the file.
+    if (OpenFile(nvFileHandle, INSTALLDIR^"config", "ChemInv.udl") < 0) then
+        MessageBox ("Unable to edit ChemInv.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"config\\ChemInv.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"config\\ChemInv.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);      
+   
+    if (OpenFile(nvFileHandle, INSTALLDIR^"config", "ChemReg.udl") < 0) then
+        MessageBox ("Unable to edit ChemReg.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"config\\ChemReg.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"Config\\ChemReg.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);    
+   
+   if (OpenFile(nvFileHandle, INSTALLDIR^"config", "cs_security.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"config\\cs_security.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"config\\cs_security.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);
+  
+ end; 
+ 
+ function SetDIR(hMSI)
+     STRING svDir;
+ begin
+     GetProfString(WindowsFolder^"Cows.ini", "GLOBALS", "COWS_DIR", svDir); 
+     MsiSetProperty(ISMSI_HANDLE, "COWSDIR", svDir);
+     //MessageBox(svDir, INFORMATION);
+    // if((svDir = "") = 0 ) then 
+    // MessageBox(svDir, INFORMATION);
+     //INSTALLDIR = svDir^"ChemInv"; 
+     MsiSetProperty(ISMSI_HANDLE,"COWSDIRECTORY",svDir); 
+    // MessageBox(svDir, INFORMATION);
+    // endif;
+   //  MessageBox(INSTALLDIR, INFORMATION);
+ end;
+ 
+ export prototype AddAppName(HWND);
+ 	export prototype RemoveAppName(HWND);
+
+function AddAppName(hMSI)
+    STRING szCowsDir,szKey;                                                
+    NUMBER nBuff;
+ begin           
+ 	 nBuff=256;
+     MsiGetProperty(ISMSI_HANDLE, "COWSDIRECTORY", szCowsDir, nBuff);
+     GetProfString(szCowsDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName",szKey);
+     ReplaceProfString(szCowsDir^"Config\\ChemOffice.ini","GLOBALS","AppName",szKey,szKey + ",cheminv");
+ end;         
+ 
+ function RemoveAppName(hMSI)
+     STRING svDir, szKey, svValue;
+ begin
+     GetProfString(WindowsFolder^"Cows.ini", "GLOBALS", "COWS_DIR", svDir);
+     GetProfString(svDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName",szKey);
+     svValue = szKey;
+     StrReplace(szKey,",cheminv", "", 0);
+     ReplaceProfString(svDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName", svValue, szKey);
+ end;

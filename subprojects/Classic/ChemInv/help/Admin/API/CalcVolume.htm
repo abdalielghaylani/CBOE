@@ -1,0 +1,187 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">CalcVolume</span></h1><p>Calculates the volume of the 
+solvent added to a mixture from the concentration of the mixture<span lang="en-us">,</span> 
+and <span lang="en-us">the </span>molar amount and current volume of the solvent in the mixture.</p><h3>Syntax</h3>
+<pre>/cheminv/api/CalcVolumne.asp?MolarAmount=adNumeric&amp;Concentration=adNumeric&amp;ConcentrationUnitID=adNumeric&amp;VolumeUnitID=adNumeric[&amp;CurrSolventVolume=adNumeric&amp;CurrSolventVolumeUnitID=adNumeric]</pre>
+<h3><span lang="en-us">In</span>puts<span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></h3>
+<table border="1" width="118%" height="189">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">
+		MolarAmount</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the molar amount of the solvent. </td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">MOLAR_AMOUNT</td>
+	</tr>
+	<tr>
+		<td width="117">
+		Concentration</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the concentration of the <span lang="en-us">mixture</span>.</td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">CONCENTRATION</td>
+	</tr>
+	<tr>
+		<td width="117">
+		ConcentrationUnitID</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the ID of the unit of the concentration.</td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">CONC_UNIT_FK</td>
+	</tr>
+	<tr>
+		<td width="117">
+		VolumeUnitID</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the ID of the unit in which the volume of the added solvent is 
+		to be measured. </td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">SOLVENT_VOLUME_UNIT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">
+		CurrSolventVolume</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the current volume of solvent.</td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">SOLVENT_VOLUME</td>
+	</tr>
+	<tr>
+		<td width="117">
+		CurrSolventVolumeUnitID</td>
+		<td width="97">
+		adNumeric</td>
+		<td width="298">
+		Specifies the ID of the unit in which the current volume of the solvent 
+		is measured.</td>
+		<td width="92">
+		&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>
+		<span lang="en-us">INV_PLATES</span></td>
+		<td width="92">SOLVENT_VOLUME_UNIT_ID_FK</td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<p>The volume of the added solvent, which is stored in the AddedVolume 
+parameter. The data type of the AddedVolume parameter<span lang="en-us"> </span>
+is adNumeric.</p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code calculates volume of the solvent added 
+to the mixture with concentration 10 and molar amount 2:</span></p>
+<pre>/cheminv/api/CalcVolumne.asp?MolarAmount=<span lang="en-us">2</span>&amp;Concentration=<span lang="en-us">10</span>&amp;ConcentrationUnitID=<span lang="en-us">1</span>&amp;VolumeUnitID=<span lang="en-us">1</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

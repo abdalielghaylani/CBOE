@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Treevie.asp test harness</TITLE>
+
+<SCRIPT LANGUAGE=javascript src="tree_functions.js"></SCRIPT>
+
+
+</HEAD>
+<BODY>
+
+Tree Type = 1:<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp&ItemQSID=myid&ItemQSName=myName">TreeMode=open_item</a>
+<BR>
+<a href="inlinetreeview.asp?gotoNode=8&dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp&NodeQSID=myid&NodeQSName=myName">TreeMode=open_node</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp&ItemTarget=new&ExpandedRoot=0">TreeMode=open_item&ItemTarget=new</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp&NodeTarget=new">TreeMode=open_node&NodeTarget=new</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp&NodeTarget=new&ShowItems=1">TreeMode=open_node&NodeTarget=new&ShowItems=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=select_node&JsCallback=EchoNode','MySelectNodeDiag',3)">TreeMode=select_node&JsCallBack=EchoNode</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=select_node&JsCallback=EchoNode&ShowItems=1','MySelectNodeDiag',3)">TreeMode=select_node&JsCallBack=EchoNode&ShowItems=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=select_item&JsCallback=EchoItem','MySelectItemDiag',3)">TreeMode=select_item&JsCallBack=EchoItem</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=manage_tree">TreeMode=manage_tree</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=add_item&ItemID=1040&ItemTypeID=1','MyAddDialog',3)">TreeMode=add_item&ItemID=1040&ItemTypeID=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=move_item&ItemID=21&ItemTypeID=1','MyAddDialog',3)">TreeMode=move_item&ItemID=21&ItemTypeID=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&ClearNodes=1&TreeMode=add_item&ItemID=1040&ItemTypeID=1&JsCallback=EchoItemAdded','MyAddDialog',3)">TreeMode=add_item&ItemID=1040&ItemTypeID=1&JsCallback=EchoItemAdded</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=1&TreeMode=remove_item&JsCallBack=EchoItemRemoved&ItemID=19&NodeID=2&ItemTypeID=1','MyAddDialog',3)">TreeMode=remove_item</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=multi_select&ItemCheckbox=mycheck">TreeMode=multi_select</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=1&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp&QsRelay=formgroup,banana&formgroup=foobar&banana=fruit">QS Relay</a>
+<BR>
+
+<BR>
+
+
+Tree Type = 2:<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp">TreeMode=open_item</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp&ItemFilterSelect=select table_id from BIOSARDB.db_table where is_exposed = 'Y' and table_id in (select child_table_id from BIOSARDB.db_relationship where BIOSARDB.db_relationship.table_id = 1029)">TreeMode=open_item with ItemFilterSelect</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=multi_select&CheckboxSelect=select table_id from BIOSARDB.db_formgroup_tables where formgroup_id = 1060">TreeMode=multi_select with CheckSelect</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=multi_select&ItemFilterSelect=select table_id from BIOSARDB.db_table where is_exposed = 'Y' and table_id in (select child_table_id from BIOSARDB.db_relationship where BIOSARDB.db_relationship.table_id = 1029)&CheckboxSelect=select table_id from BIOSARDB.db_formgroup_tables where formgroup_id = 10608">TreeMode=multi_select with ItemFilterSelect and CheckBoxSelect</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp">TreeMode=open_node</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp&ItemTarget=new">TreeMode=open_item&ItemTarget=new</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp&NodeTarget=new">TreeMode=open_node&NodeTarget=new</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=open_node&NodeURL=foo.asp&NodeTarget=new&ShowItems=1">TreeMode=open_node&NodeTarget=new&ShowItems=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=select_node&JsCallback=EchoNode','MySelectNodeDiag',3)">TreeMode=select_node&JsCallBack=EchoNode</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=select_node&JsCallback=EchoNode&ShowItems=1','MySelectNodeDiag',3)">TreeMode=select_node&JsCallBack=EchoNode&ShowItems=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=2&ItemTypeID=2&ClearNodes=1&TreeMode=select_item&JsCallback=EchoItem','MySelectItemDiag',3)">TreeMode=select_item&JsCallBack=EchoItem</a>
+<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1&ItemTypeID=2&ClearNodes=2&TreeMode=manage_tree">TreeMode=manage_tree</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=add_item&ItemID=1040&ItemTypeID=2','MyAddDialog',3)">TreeMode=add_item&ItemID=1040&ItemTypeID=1</a>
+<BR>
+<a href="#" onclick="OpenDialog('treeview.asp?dbname=biosar_browser&TreeTypeID=2&ClearNodes=1&TreeMode=add_item&ItemID=1040&ItemTypeID=2&JsCallback=EchoItemAdded','MyAddDialog',3)">TreeMode=add_item&ItemID=1040&ItemTypeID=1&JsCallback=EchoItemAdded</a>
+<BR>
+<BR>
+Both Tree 1 and Tree 2:<BR>
+<a href="treeview.asp?dbname=biosar_browser&TreeTypeID=1,2&ItemTypeID=1&ClearNodes=1&TreeMode=open_item&ItemURL=foo.asp">TreeMode=open_item</a>
+<BR>
+
+</BODY>
+</HTML>

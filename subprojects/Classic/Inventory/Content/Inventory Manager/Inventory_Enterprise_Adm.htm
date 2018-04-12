@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>LPR Printing Service</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">LPR Printing Service</span>
+        </div>
+        <h1 class="Heading1"><a name="Inventory_Manager_User_Guide_1879958712_1081228"></a><a name="kanchor295"></a><a name="kanchor296"></a><a name="kanchor297"></a>Inventory Enterprise Administrator Guide</h1>
+        <h2 class="Heading2"><a name="Inventory_Manager_User_Guide_1879958712_1081265"></a><a name="Inventory_Manager_User_Guide_1879958712_54952"></a>LPR Printing Service</h2>
+        <p class="Body">The Inventory Enterprise 11.0 schema has been modified to maintain a list of network printers and LPR print definitions that you can customize to suit your needs. The LPR service accepts a text file and sends it to the actual print device.</p>
+        <p class="Body">In case of Zebra printers, this text file includes Zebra printing language codes that specify various parameters of the text, such as font, position, and size.</p>
+        <p class="Body">To add flexibility in how the text file is generated, a new table named “inv_lpr_definition” is created to maintain a list of print definition files. Each definition entry has a header, label, and footer file.</p>
+        <p class="Body">The printing API will read each of these three files, set the fields that are specific to any location/container/plate, and then concatenate the three files together into a single print file that is sent to the printer.</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

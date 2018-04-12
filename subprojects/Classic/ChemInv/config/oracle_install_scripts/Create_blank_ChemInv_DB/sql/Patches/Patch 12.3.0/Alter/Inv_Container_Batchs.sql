@@ -1,0 +1,6 @@
+Alter table INV_CONTAINER_BATCHES
+add(
+"BATCH_TYPE"  NUMBER);
+
+
+

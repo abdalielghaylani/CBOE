@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="BioSAR Enterprise 10 User Guide|Cfserver.ini Configuration File" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>GLOBALS</title>
+        <link href="../Resources/Stylesheets/BioSAR Browser User's Guide.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapBody.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapHighlighter.js">/*<![CDATA[*/ /*]]>*/</script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/BioSAR.png" />
+        </p>
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR_Enterprise_10_Use.htm#BioSAR_Browser_User_s_Guide_2882306399_1155135">BioSAR Enterprise 10 User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Cfserver_ini_Configurati.htm#BioSAR_Browser_User_s_Guide_2882306399_1155481">Cfserver.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">GLOBALS</span>
+        </div>
+        <h3 class="Heading3"><a name="BioSAR_Browser_User_s_Guide_2882306399_1155488"></a><a name="kanchor1479"></a><a name="kanchor1480"></a><a name="kanchor1481"></a><a name="kanchor1482"></a><a name="kanchor1483"></a><a name="kanchor1484"></a><a name="kanchor1485"></a><a name="kanchor1486"></a><a name="kanchor1487"></a><a name="kanchor1488"></a><a name="kanchor1489"></a>GLOBALS</h3>
+        <h4 class="Heading4"><a name="kanchor1490"></a><a name="kanchor1491"></a><a name="kanchor1492"></a><a name="kanchor1493"></a><a name="kanchor1494"></a><a name="kanchor1495"></a><a name="kanchor1496"></a><a name="kanchor1497"></a><a name="kanchor1498"></a><a name="kanchor1499"></a><a name="kanchor1500"></a>ADJUST_NETSCAPE_WIDTHS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ADJUST_NETSCAPE_WIDTHS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Corrects for the differences in widths in Netscape compared to IE. 1 will scale Netscape pages, 0 will not make any changes.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1501"></a><a name="kanchor1502"></a><a name="kanchor1503"></a><a name="kanchor1504"></a><a name="kanchor1505"></a><a name="kanchor1506"></a><a name="kanchor1507"></a><a name="kanchor1508"></a><a name="kanchor1509"></a><a name="kanchor1510"></a><a name="kanchor1511"></a>ADMIN_REQUIRED</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ADMIN_REQUIRED = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Set to True(1) flags the system indicating that username and passwords are required. Editing this value will cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1512"></a><a name="kanchor1513"></a><a name="kanchor1514"></a><a name="kanchor1515"></a><a name="kanchor1516"></a><a name="kanchor1517"></a><a name="kanchor1518"></a><a name="kanchor1519"></a><a name="kanchor1520"></a><a name="kanchor1521"></a><a name="kanchor1522"></a>ADOCONN_PWDKeyword</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ADOCONN_PWDKeyword = password</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Enables the BioSAR Enterprise application to build the ADO connection string for connecting to the database. The value of ADOCONN_PWDKeyword depends on the ADO provider being used for connecting to the database. For example, currently all ChemOffice WebServer applications use OLEDB Providers. Therefore, the value of ADOCONN_PWDKeyword is always 'password'. However, if you use a DSN or ODBC Driver for database connection, the value of ADOCONN_PWDKeyword will be 'pwd'.</p>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>It is recommended that the value of ADOCONN_PWDKeyword should not be changed without explicit request from the support staff of the ChemOffice product.</div>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: password</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited.</p>
+        <h4 class="Heading4"><a name="kanchor1523"></a><a name="kanchor1524"></a><a name="kanchor1525"></a><a name="kanchor1526"></a><a name="kanchor1527"></a><a name="kanchor1528"></a><a name="kanchor1529"></a><a name="kanchor1530"></a><a name="kanchor1531"></a><a name="kanchor1532"></a><a name="kanchor1533"></a>ADOCONN_UserIDKeyword</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ADOCONN_UserIDKeyword = user id</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Enables the BioSAR Enterprise application to build the ADO connection string for connecting to the database. The value of ADOCONN_UserIDKeyword depends on the ADO provider being used for connecting to the database. For example, currently all ChemOffice WebServer applications use OLEDB Providers. Therefore, the value of ADOCONN_UserIDKeyword is always 'user id'. However, if you use a DSN or ODBC Driver for database connection, the value of ADOCONN_UserIDKeyword will be 'uid'.</p>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>It is recommended that the value of ADOCONN_UserIDKeyword should not be changed without explicit request from the support staff of the ChemOffice product.</div>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: user id</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor1534"></a><a name="kanchor1535"></a><a name="kanchor1536"></a><a name="kanchor1537"></a><a name="kanchor1538"></a><a name="kanchor1539"></a><a name="kanchor1540"></a><a name="kanchor1541"></a><a name="kanchor1542"></a><a name="kanchor1543"></a><a name="kanchor1544"></a>ALLOW_COOKIE_LOGIN</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_COOKIE_LOGIN = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Internal setting for disabling/enabling the global login feature.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited.</p>
+        <h4 class="Heading4"><a name="kanchor1545"></a><a name="kanchor1546"></a><a name="kanchor1547"></a><a name="kanchor1548"></a><a name="kanchor1549"></a><a name="kanchor1550"></a><a name="kanchor1551"></a><a name="kanchor1552"></a><a name="kanchor1553"></a><a name="kanchor1554"></a><a name="kanchor1555"></a>ALLOW_FLAT_SDFILE_EXPORT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_FLAT_SDFILE_EXPORT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if SDFiles can be exported in flat format. Hits can be exported as SDFiles in either flat or nested. 1 indicates flat SDFile export is allowed. If set to 0, the user will not be given the option, and all SDFiles will be exported in the nested format.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1556"></a><a name="kanchor1557"></a><a name="kanchor1558"></a><a name="kanchor1559"></a><a name="kanchor1560"></a><a name="kanchor1561"></a><a name="kanchor1562"></a><a name="kanchor1563"></a><a name="kanchor1564"></a><a name="kanchor1565"></a><a name="kanchor1566"></a>ALLOW_HITLIST_MANAGEMENT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_HITLIST_MANAGEMENT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if hitlist management can be accessed from the application. Hitlist management allows users to add, subtract, create the intersection, and union of hitlists. 1 indicates hitlist management is allowed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1567"></a><a name="kanchor1568"></a><a name="kanchor1569"></a><a name="kanchor1570"></a><a name="kanchor1571"></a><a name="kanchor1572"></a><a name="kanchor1573"></a><a name="kanchor1574"></a><a name="kanchor1575"></a><a name="kanchor1576"></a><a name="kanchor1577"></a>ALLOW_HITLIST_MNGMNT_FG_SELECTOR</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_HITLIST_MNGMNT_FG_SELECTOR = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Using hitlist management you can recover and operate on lists that were saved under a given form group. That is, hitlists are formgroup specific so the hitlist dialogs show lists from the currently open formgroup. BioSAR Enterprise is an exception because it deals with multiple form groups simultaneously. If ALLOW_HITLIST_MNGMNT_FG_SELECTOR is set to 1, an additional drop down list in the hitlist management dialog appears to allow you to select which hitlist you want to save (the hitlist from which formgroup).</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1578"></a><a name="kanchor1579"></a><a name="kanchor1580"></a><a name="kanchor1581"></a><a name="kanchor1582"></a><a name="kanchor1583"></a><a name="kanchor1584"></a><a name="kanchor1585"></a><a name="kanchor1586"></a><a name="kanchor1587"></a><a name="kanchor1588"></a>ALLOW_PUBLIC_HITLISTS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_PUBLIC_HITLISTS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if saved hitlists can be made public. Making a hitlist public allows all other users of the application to access that hitlist. 1 indicates hitlists can be made public.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1589"></a><a name="kanchor1590"></a><a name="kanchor1591"></a><a name="kanchor1592"></a><a name="kanchor1593"></a><a name="kanchor1594"></a><a name="kanchor1595"></a><a name="kanchor1596"></a><a name="kanchor1597"></a><a name="kanchor1598"></a><a name="kanchor1599"></a>ALLOW_PUBLIC_QUERIES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_PUBLIC_QUERIES = 1</p>
+        <p class="Body"> &#160;</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if saved queries can be made public. Making a query public allows all other users of the application to access that query. 1 indicates queries can be made public.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1600"></a><a name="kanchor1601"></a><a name="kanchor1602"></a><a name="kanchor1603"></a><a name="kanchor1604"></a><a name="kanchor1605"></a><a name="kanchor1606"></a><a name="kanchor1607"></a><a name="kanchor1608"></a><a name="kanchor1609"></a><a name="kanchor1610"></a>ALLOW_QUERY_MANAGEMENT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_QUERY_MANAGEMENT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if query management can be accessed from the application. Query management allows users save and recover queries. 1 indicates query management is allowed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1611"></a><a name="kanchor1612"></a><a name="kanchor1613"></a><a name="kanchor1614"></a><a name="kanchor1615"></a><a name="kanchor1616"></a><a name="kanchor1617"></a><a name="kanchor1618"></a><a name="kanchor1619"></a><a name="kanchor1620"></a><a name="kanchor1621"></a>ALLOW_QUERY_MNGMNT_FG_SELECTOR</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_QUERY_MNGMNT_FG_SELECTOR = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Using query management you can recover queries that were saved under a given form group. That is, queries are formgroup specific so the query dialogs show queries from the currently open formgroup. BioSAR Enterprise is an exception because it deals with multiple form groups simultaneously. If ALLOW_QUERY_MNGMNT_FG_SELECTOR is set to 1, an additional drop down list in the query management dialog appears to allow you to select which query you want to save (the query from which formgroup).</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1622"></a><a name="kanchor1623"></a><a name="kanchor1624"></a><a name="kanchor1625"></a><a name="kanchor1626"></a><a name="kanchor1627"></a><a name="kanchor1628"></a><a name="kanchor1629"></a><a name="kanchor1630"></a><a name="kanchor1631"></a><a name="kanchor1632"></a>ALLOW_SORT_ALL_FIELDS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALLOW_SORT_ALL_FIELDS = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: When set to the <span class="_Override" style="font-style: italic;">default</span> (0), only fields from the base table are shown in the sort by drop down list found on query forms. If set to 1 then the base table and the child table fields are shown. In this later case, choosing from a child record will result in a sort, but also a duplication of each child record in the resulting list.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1633"></a><a name="kanchor1634"></a><a name="kanchor1635"></a><a name="kanchor1636"></a><a name="kanchor1637"></a><a name="kanchor1638"></a><a name="kanchor1639"></a><a name="kanchor1640"></a><a name="kanchor1641"></a><a name="kanchor1642"></a><a name="kanchor1643"></a>ALWAYS_DISPLAY_ALERTS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ALWAYS_DISPLAY_ALERTS = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates if a user should receive alerts (e.g. compound was registered). 1 turns on all alerts. 0 removes alerts which are not required.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1644"></a><a name="kanchor1645"></a><a name="kanchor1646"></a><a name="kanchor1647"></a><a name="kanchor1648"></a><a name="kanchor1649"></a><a name="kanchor1650"></a><a name="kanchor1651"></a><a name="kanchor1652"></a><a name="kanchor1653"></a><a name="kanchor1654"></a>APP_NAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: APP_NAME = biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: name of the application displayed in some parts of the user interface.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="310px" style="width: 276px;caption-side: top;">
+            <caption valign="top" style="padding-bottom: 4pt;">
+                <p class="GraphicAnchor"> &#160;</p>
+            </caption>
+            <col width="170px" relativeWidth="0%" />
+            <col width="106px" relativeWidth="0%" />
+            <thead>
+                <tr style="height: 41px;background-color: #b2b2bf;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Application Name</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">APP_NAME value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Sample </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">sample </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Registration Enterprise </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">chem_reg </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Inventory Enterprise</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">cheminv </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Mixture Registration   </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">&#160;</td>
+                </tr>
+                <tr style="height: 35px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">BioSAR Enterprise </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">biosar_browser </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">ChemACX </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText"><span class="_Override" style="font-size: 11pt;line-height: 13pt;">chemacx</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3217002186">
+                        <p class="Body">Documentation Manager </p>
+                    </td>
+                    <td class="CellClass_1619918432">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="Heading4"><a name="kanchor1655"></a><a name="kanchor1656"></a><a name="kanchor1657"></a><a name="kanchor1658"></a><a name="kanchor1659"></a><a name="kanchor1660"></a><a name="kanchor1661"></a><a name="kanchor1662"></a><a name="kanchor1663"></a><a name="kanchor1664"></a><a name="kanchor1665"></a>APP_TYPE</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: APP_TYPE = databrowser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Tells the system that this is a data browsing application.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: databrowser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: databrowser</p>
+        <h4 class="Heading4"><a name="kanchor1666"></a><a name="kanchor1667"></a><a name="kanchor1668"></a><a name="kanchor1669"></a><a name="kanchor1670"></a><a name="kanchor1671"></a><a name="kanchor1672"></a><a name="kanchor1673"></a><a name="kanchor1674"></a><a name="kanchor1675"></a><a name="kanchor1676"></a>biosar_browser_PWD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: biosar_browser_PWD = ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The cs_security schema owner's password.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Valid password for the username in biosar_browser_PWD.</p>
+        <h4 class="Heading4"><a name="kanchor1677"></a><a name="kanchor1678"></a><a name="kanchor1679"></a><a name="kanchor1680"></a><a name="kanchor1681"></a><a name="kanchor1682"></a><a name="kanchor1683"></a><a name="kanchor1684"></a><a name="kanchor1685"></a><a name="kanchor1686"></a><a name="kanchor1687"></a>biosar_browser_USERNAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: biosar_browser_USERNAME = cs_security</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The cs_security schema owner.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: cs_Security</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Valid username for the cs_security schema</p>
+        <h4 class="Heading4"><a name="kanchor1688"></a><a name="kanchor1689"></a><a name="kanchor1690"></a><a name="kanchor1691"></a><a name="kanchor1692"></a><a name="kanchor1693"></a><a name="kanchor1694"></a><a name="kanchor1695"></a><a name="kanchor1696"></a><a name="kanchor1697"></a><a name="kanchor1698"></a>BIOVIZ_INTEGRATION</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: BIOVIZ_INTEGRATION = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Allows users to include integration with BioViz as an option in their form if set to 1.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1699"></a><a name="kanchor1700"></a><a name="kanchor1701"></a><a name="kanchor1702"></a><a name="kanchor1703"></a><a name="kanchor1704"></a><a name="kanchor1705"></a><a name="kanchor1706"></a><a name="kanchor1707"></a><a name="kanchor1708"></a><a name="kanchor1709"></a>BODY_BACKGROUND</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: BODY_BACKGROUND = "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates the background that should be used for the body section of the page.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A color (recorded in HEX format) or a relative path to a GIF</p>
+        <h4 class="Heading4"><a name="kanchor1710"></a><a name="kanchor1711"></a><a name="kanchor1712"></a><a name="kanchor1713"></a><a name="kanchor1714"></a><a name="kanchor1715"></a><a name="kanchor1716"></a><a name="kanchor1717"></a><a name="kanchor1718"></a><a name="kanchor1719"></a><a name="kanchor1720"></a>CDX_CACHING</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CDX_CACHING = true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: If set to True, the application will cache cdx files. Registration Enterprise overrides this value internally, so changing the setting will not make a difference in Registration Enterprise.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: true | false</p>
+        <h4 class="Heading4"><a name="kanchor1721"></a><a name="kanchor1722"></a><a name="kanchor1723"></a><a name="kanchor1724"></a><a name="kanchor1725"></a><a name="kanchor1726"></a><a name="kanchor1727"></a><a name="kanchor1728"></a><a name="kanchor1729"></a><a name="kanchor1730"></a><a name="kanchor1731"></a>DATE_FORMAT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DATE_FORMAT = 8</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates which international date format to use. The choices are:</p>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">8 - US - mm/dd/yyyy </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">9 - Europe - dd/mm/yyyy </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">10 - Japanese - yyyy/mm/dd</td>
+            </tr>
+        </table>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 8</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 8 | 9 | 10</p>
+        <h4 class="Heading4"><a name="kanchor1732"></a><a name="kanchor1733"></a><a name="kanchor1734"></a><a name="kanchor1735"></a><a name="kanchor1736"></a><a name="kanchor1737"></a><a name="kanchor1738"></a><a name="kanchor1739"></a><a name="kanchor1740"></a><a name="kanchor1741"></a><a name="kanchor1742"></a>DB_NAMES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DB_NAMES = biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The name of the directory containing the forms necessary for proper operation of the application. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Usually the name of the application. If you would like to enter a list of directories, separate the list with a comma.</p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="310px" style="width: 276px;caption-side: none;">
+            <col width="170px" relativeWidth="0%" />
+            <col width="106px" relativeWidth="0%" />
+            <thead>
+                <tr style="height: 41px;background-color: #b2b2bf;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Application Name</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">DB_NAMES value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Sample </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">sample </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Registration Enterprise </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">chem_reg </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Inventory Enterprise</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">cheminv </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Mixture Registration   </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">&#160;</td>
+                </tr>
+                <tr style="height: 35px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">BioSAR Enterprise </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">biosar_browser </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">ChemACX </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText"><span class="_Override" style="font-size: 11pt;line-height: 13pt;">chemacx</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3217002186">
+                        <p class="Body">Documentation Manager </p>
+                    </td>
+                    <td class="CellClass_1619918432">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="Heading4"><a name="kanchor1743"></a><a name="kanchor1744"></a><a name="kanchor1745"></a><a name="kanchor1746"></a><a name="kanchor1747"></a><a name="kanchor1748"></a><a name="kanchor1749"></a><a name="kanchor1750"></a><a name="kanchor1751"></a><a name="kanchor1752"></a><a name="kanchor1753"></a>DB_PWD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DBA_PWD = MANAGER</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The password that can be used for accessing limited dba functions for users with permissions allowing adding users/roles.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: MANAGER</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A DBA password with correct permissions</p>
+        <h4 class="Heading4"><a name="kanchor1754"></a><a name="kanchor1755"></a><a name="kanchor1756"></a><a name="kanchor1757"></a><a name="kanchor1758"></a><a name="kanchor1759"></a><a name="kanchor1760"></a><a name="kanchor1761"></a><a name="kanchor1762"></a><a name="kanchor1763"></a><a name="kanchor1764"></a>DBA_USERNAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DBA_USERNAME = SYSTEM</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The username that can be used for accessing limited dba functions for users with permissions allowing adding users/roles.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: SYSTEM</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A DBA username with correct permissions</p>
+        <h4 class="Heading4"><a name="kanchor1765"></a><a name="kanchor1766"></a><a name="kanchor1767"></a><a name="kanchor1768"></a><a name="kanchor1769"></a><a name="kanchor1770"></a><a name="kanchor1771"></a><a name="kanchor1772"></a><a name="kanchor1773"></a><a name="kanchor1774"></a><a name="kanchor1775"></a>DEFAULT_COLUMN_LAYOUT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DEFAULT_COLUMN_LAYOUT = fields_across</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates that by default, the list view layout will be in the fields across layout (i.e. each field is to the right of the one before it. The other option is to "stack" the fields where each field is below the one before it (fields_down).</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: fields_across</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: fields_across | fields_down</p>
+        <h4 class="Heading4"><a name="kanchor1776"></a><a name="kanchor1777"></a><a name="kanchor1778"></a><a name="kanchor1779"></a><a name="kanchor1780"></a><a name="kanchor1781"></a><a name="kanchor1782"></a><a name="kanchor1783"></a><a name="kanchor1784"></a><a name="kanchor1785"></a><a name="kanchor1786"></a>DELETE_METADATA_WHEN_UNEXPOSING_TABLE_OR_VIEW</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DELETE_METADATA_WHEN_UNEXPOSING_TABLE_OR_VIEW = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines tables/views presence within the BioSAR forms. 0 indicates “Visible” feature for the table and 1 indicates “Exposed” feature for the table.</p>
+        <p class="Body">If set to 0, Visible option appears on the Schema Management &gt; Edit Exposed Tables, for Table Name. Non-visibility for any table hides table to the user but internally works as a normal table. </p>
+        <p class="Body">If set to 1, Exposed option appears on the Schema Management &gt; Edit Exposed Tables, for Table Name. Un-exposing tables/views will remove them from the BioSAR schema. As a consequence, the tables/views will be removed from any form referencing them as a child table. Further, all forms that use unexposed tables as a base table will be deleted. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1787"></a><a name="kanchor1788"></a><a name="kanchor1789"></a><a name="kanchor1790"></a><a name="kanchor1791"></a><a name="kanchor1792"></a><a name="kanchor1793"></a><a name="kanchor1794"></a><a name="kanchor1795"></a><a name="kanchor1796"></a><a name="kanchor1797"></a>DIRECT_KEYWORD_SUPPORT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DIRECT_KEYWORD_SUPPORT = true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Takes care of problems in the back end associated with different versions of Oracle. Should be set to false or NONE when the Oracle instance is found on a UNIX machine, or with Oracle version 7. Otherwise, set to true.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: true | false | NONE</p>
+        <h4 class="Heading4"><a name="kanchor1798"></a><a name="kanchor1799"></a><a name="kanchor1800"></a><a name="kanchor1801"></a><a name="kanchor1802"></a><a name="kanchor1803"></a><a name="kanchor1804"></a><a name="kanchor1805"></a><a name="kanchor1806"></a><a name="kanchor1807"></a><a name="kanchor1808"></a>ENABLE_QUERY_MANAGER</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENABLE_QUERY_MANAGER = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if the query manager can be accessed from the application. Query management allows users save and recover queries. 1 indicates query the manager is enabled.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1809"></a><a name="kanchor1810"></a><a name="kanchor1811"></a><a name="kanchor1812"></a><a name="kanchor1813"></a><a name="kanchor1814"></a><a name="kanchor1815"></a><a name="kanchor1816"></a><a name="kanchor1817"></a><a name="kanchor1818"></a><a name="kanchor1819"></a>ENABLE_REPORT_GENERATION</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENABLE_REPORT_GENERATION = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if users can generate reports from their hitlists. 1 indicates reports can be generated and the Reports link is available.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1820"></a><a name="kanchor1821"></a><a name="kanchor1822"></a><a name="kanchor1823"></a><a name="kanchor1824"></a><a name="kanchor1825"></a><a name="kanchor1826"></a><a name="kanchor1827"></a><a name="kanchor1828"></a><a name="kanchor1829"></a><a name="kanchor1830"></a>ENABLE_SDFILE_SEARCH</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENABLE_SDFILE_SEARCH = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines if user can search records from the SD files. If set to 1, “Structures From SD File” option displays on the search window to support facility for SD file search.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1831"></a><a name="kanchor1832"></a><a name="kanchor1833"></a><a name="kanchor1834"></a><a name="kanchor1835"></a><a name="kanchor1836"></a><a name="kanchor1837"></a><a name="kanchor1838"></a><a name="kanchor1839"></a><a name="kanchor1840"></a><a name="kanchor1841"></a>ENCRYPT_PWD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENCRYPT_PWD = FALSE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: When this setting is turned on for the first time, the user names and passwords (listed under the ENCRYPT_PWD_KEYS setting) in this file should be entered in plain text ahead of time. When the application is accessed for the first time the passwords will be encrypted and inserted into this INI file as encrypted text. If a password is changed, change all passwords in this INI file back to plain text and restart the application. The passwords will again be encrypted and stored.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: FALSE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: TRUE | FALSE</p>
+        <h4 class="Heading4"><a name="kanchor1842"></a><a name="kanchor1843"></a><a name="kanchor1844"></a><a name="kanchor1845"></a><a name="kanchor1846"></a><a name="kanchor1847"></a><a name="kanchor1848"></a><a name="kanchor1849"></a><a name="kanchor1850"></a><a name="kanchor1851"></a><a name="kanchor1852"></a>ENCRYPT_PWD_KEYS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENCRYPT_PWD_KEYS = BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: A comma delimited list of password settings to be encrypted.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The names of password settings in the cfserver.ini file to be encrypted</p>
+        <h4 class="Heading4"><a name="kanchor1853"></a><a name="kanchor1854"></a><a name="kanchor1855"></a><a name="kanchor1856"></a><a name="kanchor1857"></a><a name="kanchor1858"></a><a name="kanchor1859"></a><a name="kanchor1860"></a><a name="kanchor1861"></a><a name="kanchor1862"></a><a name="kanchor1863"></a>ENCRYPT_PWD_SECTION</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ENCRYPT_PWD_SECTION = GLOBALS</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: This setting identifies the heading name that the password settings are found under in the cfserver.ini file.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: GLOBALS</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The name of a heading in the cfserver.ini file</p>
+        <h4 class="Heading4"><a name="kanchor1864"></a><a name="kanchor1865"></a><a name="kanchor1866"></a><a name="kanchor1867"></a><a name="kanchor1868"></a><a name="kanchor1869"></a><a name="kanchor1870"></a><a name="kanchor1871"></a><a name="kanchor1872"></a><a name="kanchor1873"></a><a name="kanchor1874"></a>EXCEL_INTEGRATION</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: EXCEL_INTEGRATION = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Allows users to include integration with MS Excel as an option in their form if set to 1.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1875"></a><a name="kanchor1876"></a><a name="kanchor1877"></a><a name="kanchor1878"></a><a name="kanchor1879"></a><a name="kanchor1880"></a><a name="kanchor1881"></a><a name="kanchor1882"></a><a name="kanchor1883"></a><a name="kanchor1884"></a><a name="kanchor1885"></a>EXPIRE_HITLIST_HISTORY_DAYS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: EXPIRE_HITLIST_HISTORY_DAYS = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The value of this setting is in days. After the number of days specified, hitlist history entries are removed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: An integer indicating a number of days</p>
+        <h4 class="Heading4"><a name="kanchor1886"></a><a name="kanchor1887"></a><a name="kanchor1888"></a><a name="kanchor1889"></a><a name="kanchor1890"></a><a name="kanchor1891"></a><a name="kanchor1892"></a><a name="kanchor1893"></a><a name="kanchor1894"></a><a name="kanchor1895"></a><a name="kanchor1896"></a>EXPIRE_MARKED_HITS_DAYS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: EXPIRE_MARKED_HITS_DAYS = 365</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The value of this setting is in days. After the number of days specified, the marked hits list is cleared.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 365</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: An integer indicating a number of days</p>
+        <h4 class="Heading4"><a name="kanchor1897"></a><a name="kanchor1898"></a><a name="kanchor1899"></a><a name="kanchor1900"></a><a name="kanchor1901"></a><a name="kanchor1902"></a><a name="kanchor1903"></a><a name="kanchor1904"></a><a name="kanchor1905"></a><a name="kanchor1906"></a><a name="kanchor1907"></a>EXPIRE_QUERY_HISTORY_DAYS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: EXPIRE_QUERY_HISTORY_DAYS = 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The value of this setting is in days. After the number of days specified, queries in the history are removed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: An integer indicating a number of days</p>
+        <h4 class="Heading4"><a name="kanchor1908"></a><a name="kanchor1909"></a><a name="kanchor1910"></a><a name="kanchor1911"></a><a name="kanchor1912"></a><a name="kanchor1913"></a><a name="kanchor1914"></a><a name="kanchor1915"></a><a name="kanchor1916"></a><a name="kanchor1917"></a><a name="kanchor1918"></a>FORM_MANAGEMENT_SCHEMA</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: FORM_MANAGEMENT_SCHEMA = BIOSARDB</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The value of this setting is the name of the BioSAR Enterprise schema. This field should not need to be edited.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: BIOSARDB</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The name of the BioSAR Browser Oracle schema</p>
+        <h4 class="Heading4"><a name="kanchor1919"></a><a name="kanchor1920"></a><a name="kanchor1921"></a><a name="kanchor1922"></a><a name="kanchor1923"></a><a name="kanchor1924"></a><a name="kanchor1925"></a><a name="kanchor1926"></a><a name="kanchor1927"></a><a name="kanchor1928"></a><a name="kanchor1929"></a>FORMAT_FORMULA</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: FORMAT_FORMULA = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates if super- and sub- scripts should be used when displaying a molecular formula. 0 removes formatting.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1930"></a><a name="kanchor1931"></a><a name="kanchor1932"></a><a name="kanchor1933"></a><a name="kanchor1934"></a><a name="kanchor1935"></a><a name="kanchor1936"></a><a name="kanchor1937"></a><a name="kanchor1938"></a><a name="kanchor1939"></a><a name="kanchor1940"></a>FORMGROUP_UNIQUE_IDENTIFIER</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: FORMGROUP_UNIQUE_IDENTIFIER = FORMGROUP_ID</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates what field is used as the unique identifier for each formgroup. This is necessary to identify the selected formgroup at given times in the application so this field should have a distinct value for each formgroup.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: FORMGROUP_ID</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any valid field in formgroup definitions</p>
+        <h4 class="Heading4"><a name="kanchor1941"></a><a name="kanchor1942"></a><a name="kanchor1943"></a><a name="kanchor1944"></a><a name="kanchor1945"></a><a name="kanchor1946"></a><a name="kanchor1947"></a><a name="kanchor1948"></a><a name="kanchor1949"></a><a name="kanchor1950"></a><a name="kanchor1951"></a>GET_MW_FORMULA_METHOD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: GET_MW_FORMULA_METHOD = PLSQL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates how the molecular weight and molecular formula are searched. The options are as follows:</p>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">PLSQL: Retrieves molecular weight and formula using the fastindexaccess procedure.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">STANDARD: Uses the Oracle Cartridge functions.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">JOIN: Uses a direct join to the cartridge tables. This option requires a dba grant select on these tables either to public or to individual roles. The tables are in the following format:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 19.2px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2_1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2_1st" MadCap:autonum="• " valign="top">Molweight: &lt;SchemaName&gt;_&lt;index_name&gt;_W</td>
+            </tr>
+        </table>
+        <p class="Body" style="margin-left: 0.40923in;">For <span class="_Override" style="font-style: italic;">example</span> - Regdb_mx_W in the Molecular Weight table for the regdb schema where the index table in mx.</p>
+        <table class="AutoNumber_div_Bullet2_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 19.2px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2_1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2_1st" MadCap:autonum="• " valign="top">Molecular Formula: &lt;SchemaName&gt;_&lt;index_name&gt;_A </td>
+            </tr>
+        </table>
+        <p class="Body" style="margin-left: 0.37947in;">For <span class="_Override" style="font-style: italic;">example</span> - Regdb_mx_A in the Molecular Formula table for the regdb schema where the index table in mx.</p>
+        <p class="Body">The PLSQL option requires no additional changes to the database and will improve searching speed (over the STANDARD option with CS Oracle Cartridge version 2.1) by an average of five times.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: PLSQL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: PLSQL | STANDARD | JOIN</p>
+        <h4 class="Heading4"><a name="kanchor1952"></a><a name="kanchor1953"></a><a name="kanchor1954"></a><a name="kanchor1955"></a><a name="kanchor1956"></a><a name="kanchor1957"></a><a name="kanchor1958"></a><a name="kanchor1959"></a><a name="kanchor1960"></a><a name="kanchor1961"></a><a name="kanchor1962"></a>GLOBAL_SEARCH_DBS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: GLOBAL_SEARCH_DBS = biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: An internal setting required for global searching.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The name of an application, or list of applications separated by a comma.<span class="_Override" style="font-size: 12pt;line-height: 14pt;"></span></p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="310px" style="width: 276px;caption-side: none;">
+            <col width="170px" relativeWidth="0%" />
+            <col width="106px" relativeWidth="0%" />
+            <thead>
+                <tr style="height: 41px;background-color: #b2b2bf;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Application Name</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">DB_NAMES value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Sample </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">sample </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Registration Enterprise </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">chem_reg </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Inventory Enterprise</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">cheminv </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Mixture Registration   </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">&#160;</td>
+                </tr>
+                <tr style="height: 35px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">BioSAR Enterprise </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">biosar_browser </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">ChemACX </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText"><span class="_Override" style="font-size: 11pt;line-height: 13pt;">chemacx</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3217002186">
+                        <p class="Body">Documentation Manager </p>
+                    </td>
+                    <td class="CellClass_1619918432">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="Heading4"><a name="kanchor1963"></a><a name="kanchor1964"></a><a name="kanchor1965"></a><a name="kanchor1966"></a><a name="kanchor1967"></a><a name="kanchor1968"></a><a name="kanchor1969"></a><a name="kanchor1970"></a><a name="kanchor1971"></a><a name="kanchor1972"></a><a name="kanchor1973"></a>GLOBAL_SEARCH_BASE_DB</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: GLOBAL_SEARCH_BASE_DB = biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: An internal setting required for global searching.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: biosar_browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The name of an application.</p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="310px" style="width: 276px;caption-side: none;">
+            <col width="170px" relativeWidth="0%" />
+            <col width="106px" relativeWidth="0%" />
+            <thead>
+                <tr style="height: 41px;background-color: #b2b2bf;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Application Name</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">DB_NAMES value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Sample </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">sample </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Registration Enterprise </p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">chem_reg </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Inventory Enterprise</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">cheminv </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">Mixture Registration   </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">&#160;</td>
+                </tr>
+                <tr style="height: 35px;background-color: #f2f2f9;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">BioSAR Enterprise </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText">biosar_browser </p>
+                    </td>
+                </tr>
+                <tr style="height: 35px;">
+                    <td class="CellClass_3869453302">
+                        <p class="Body">ChemACX </p>
+                        <p class="Body"> &#160;</p>
+                    </td>
+                    <td class="CellClass_929432127">
+                        <p class="TableText"><span class="_Override" style="font-size: 11pt;line-height: 13pt;">chemacx</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;background-color: #f2f2f9;">
+                    <td class="CellClass_3217002186">
+                        <p class="Body">Documentation Manager </p>
+                    </td>
+                    <td class="CellClass_1619918432">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="Heading4"><a name="kanchor1974"></a><a name="kanchor1975"></a><a name="kanchor1976"></a><a name="kanchor1977"></a><a name="kanchor1978"></a><a name="kanchor1979"></a><a name="kanchor1980"></a><a name="kanchor1981"></a><a name="kanchor1982"></a><a name="kanchor1983"></a><a name="kanchor1984"></a>HIGHLIGHT_BACKGROUND</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: HIGHLIGHT_BACKGROUND="border= ""1"" bordercolor= ""#cc0033"""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Color used to make the highlighted border for required fields. Only matters if HIGHLIGHT_REQUIRED_FIELDS = 1.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "border=""1"" bordercolor = ""#cc0033"""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Border size and color (in hex format)</p>
+        <h4 class="Heading4"><a name="kanchor1985"></a><a name="kanchor1986"></a><a name="kanchor1987"></a><a name="kanchor1988"></a><a name="kanchor1989"></a><a name="kanchor1990"></a><a name="kanchor1991"></a><a name="kanchor1992"></a><a name="kanchor1993"></a><a name="kanchor1994"></a><a name="kanchor1995"></a>HIGHLIGHT_REQUIRED_FIELDS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: HIGHLIGHT_REQUIRED_FIELDS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: 1 indicates required fields (listed in another location in the cfserver.ini) should appear with a border around them in edit mode. 0 indicates no border.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor1996"></a><a name="kanchor1997"></a><a name="kanchor1998"></a><a name="kanchor1999"></a><a name="kanchor2000"></a><a name="kanchor2001"></a><a name="kanchor2002"></a><a name="kanchor2003"></a><a name="kanchor2004"></a><a name="kanchor2005"></a>INLINE_STRUC_HIT_TO_PAGE_RATIO</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: </p>
+        <p class="Body">INLINE_STRUC_HIT_TO_PAGE_RATIO = 20</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates when the base64 structures should be displayed in-line on a search results list view page. The ratio calculated is (# of hits displayed per page / total # of hits). If the ratio is greater than the percent indicated in this setting, the records are displayed by making a call to the database for each base64 display. Otherwise, the records are displayed in-line. </p>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>This setting is only available to browsers using Active X version 8.x</div>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 20</p>
+        <p class="Body"> &#160;</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: a positive integer between 1 and 100</p>
+        <h4 class="Heading4"><a name="kanchor2006"></a><a name="kanchor2007"></a><a name="kanchor2008"></a><a name="kanchor2009"></a><a name="kanchor2010"></a><a name="kanchor2011"></a><a name="kanchor2012"></a><a name="kanchor2013"></a><a name="kanchor2014"></a><a name="kanchor2015"></a><a name="kanchor2016"></a>MAIN_WINDOW</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: MAIN_WINDOW = top.frames["main"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The frame name for the central frame used internally by javascript. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: top.frames["main"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor2017"></a><a name="kanchor2018"></a><a name="kanchor2019"></a><a name="kanchor2020"></a><a name="kanchor2021"></a><a name="kanchor2022"></a><a name="kanchor2023"></a><a name="kanchor2024"></a><a name="kanchor2025"></a><a name="kanchor2026"></a><a name="kanchor2027"></a>MW_ROUND_DIGIT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: MW_ROUND_DIGIT = 5 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: This is to set the rounding of the Molecular Weight. If set to 2 (or other numbers), the MW will be rounded to two digits like 123.45.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 5</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any Integer</p>
+        <h4 class="Heading4"><a name="kanchor2028"></a><a name="kanchor2029"></a><a name="kanchor2030"></a><a name="kanchor2031"></a><a name="kanchor2032"></a><a name="kanchor2033"></a><a name="kanchor2034"></a><a name="kanchor2035"></a><a name="kanchor2036"></a><a name="kanchor2037"></a><a name="kanchor2038"></a>NAV_BAR_WINDOW</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: NAV_BAR_WINDOW = top.frames["navbar"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The frame name for the top most frame used internally by javascript. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: top.frames["navbar"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor2039"></a><a name="kanchor2040"></a><a name="kanchor2041"></a><a name="kanchor2042"></a><a name="kanchor2043"></a><a name="kanchor2044"></a><a name="kanchor2045"></a><a name="kanchor2046"></a><a name="kanchor2047"></a><a name="kanchor2048"></a><a name="kanchor2049"></a>NAV_BUTTONS_GIF_PATH</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: NAV_BUTTONS_GIF_PATH = /biosar_browser/graphics/</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: <span class="_Override" style="font-style: italic;">Default</span> graphics path</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: /biosar_browser/graphics/</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Absolute or relative path to a directory containing images.</p>
+        <h4 class="Heading4"><a name="kanchor2050"></a><a name="kanchor2051"></a><a name="kanchor2052"></a><a name="kanchor2053"></a><a name="kanchor2054"></a><a name="kanchor2055"></a><a name="kanchor2056"></a><a name="kanchor2057"></a><a name="kanchor2058"></a><a name="kanchor2059"></a><a name="kanchor2060"></a>OPTIMIZE_RESULT_DISPLAY_AREA</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: OPTIMIZE_RESULT_DISPLAY_AREA = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: This controls the appearance of the result display. Setting this to 1 will change the display so the logo and form name area are removed and some additional space optimizations are performed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2061"></a><a name="kanchor2062"></a><a name="kanchor2063"></a><a name="kanchor2064"></a><a name="kanchor2065"></a><a name="kanchor2066"></a><a name="kanchor2067"></a><a name="kanchor2068"></a><a name="kanchor2069"></a><a name="kanchor2070"></a><a name="kanchor2071"></a>ORA_SERVICENAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ORA_SERVICENAME = SERVER1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The oracle net 8 service name where the regdb schema resides.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: YOUR ORACLE SERVICE NAME</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The name of the Oracle service</p>
+        <h4 class="Heading4"><a name="kanchor2072"></a><a name="kanchor2073"></a><a name="kanchor2074"></a><a name="kanchor2075"></a><a name="kanchor2076"></a><a name="kanchor2077"></a><a name="kanchor2078"></a><a name="kanchor2079"></a><a name="kanchor2080"></a><a name="kanchor2081"></a><a name="kanchor2082"></a>ORA_SQLLDRPATH</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ORA_SQLLDRPATH = sqlldr.exe</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The path to the oracle sqlldr executable. This may need to be set to a full path name.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: sqlldr.exe</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Relative or absolute path to the sqlldr executable</p>
+        <h4 class="Heading4"><a name="kanchor2083"></a><a name="kanchor2084"></a><a name="kanchor2085"></a><a name="kanchor2086"></a><a name="kanchor2087"></a><a name="kanchor2088"></a><a name="kanchor2089"></a><a name="kanchor2090"></a><a name="kanchor2091"></a><a name="kanchor2092"></a><a name="kanchor2093"></a>PreventReportAboveMax</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: PreventReportAboveMax = True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: When set to False, it is assumed that the display message (PreventReportAboveMaxMessage) is a warning thereby allowing the report to be run. If set to true it does not allow a full hitlist to be generated in a report - only the hitlist up to the ReportMaxHits will appear in the report.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: True | False</p>
+        <h4 class="Heading4"><a name="kanchor2094"></a><a name="kanchor2095"></a><a name="kanchor2096"></a><a name="kanchor2097"></a><a name="kanchor2098"></a><a name="kanchor2099"></a><a name="kanchor2100"></a><a name="kanchor2101"></a><a name="kanchor2102"></a><a name="kanchor2103"></a><a name="kanchor2104"></a>PreventReportAboveMaxMessage</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: PreventReportAboveMaxMessage = "Your hitlist exceeds the report maximum of #REPORT_MAX_HITS#. Only the first #REPORT_MAX_HITS# will be in the generated report."</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Message text displayed when PreventReportAboveMax = True.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: ="Your hitlist exceeds the report maximum of #REPORT_MAX_HITS#. Only the first #REPORT_MAX_HITS# will be in the generated report."</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any text that you would like used as the message</p>
+        <h4 class="Heading4"><a name="kanchor2105"></a><a name="kanchor2106"></a><a name="kanchor2107"></a><a name="kanchor2108"></a><a name="kanchor2109"></a><a name="kanchor2110"></a><a name="kanchor2111"></a><a name="kanchor2112"></a><a name="kanchor2113"></a><a name="kanchor2114"></a><a name="kanchor2115"></a>PRIV_TABLE_NAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: PRIV_TABLE_NAME = Biosar_Browser_Privileges</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The table name in the cs_security schema that stores the flags for the privileges that toggle buttons in the user interface.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: Biosar_Browser_Privileges</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Table name</p>
+        <h4 class="Heading4"><a name="kanchor2116"></a><a name="kanchor2117"></a><a name="kanchor2118"></a><a name="kanchor2119"></a><a name="kanchor2120"></a><a name="kanchor2121"></a><a name="kanchor2122"></a><a name="kanchor2123"></a><a name="kanchor2124"></a><a name="kanchor2125"></a><a name="kanchor2126"></a>ReportAboveMaxWarningMessage</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ReportAboveMaxWarningMessage = "This report will require a long time to generated. It is suggested that you run this at a time when the server activity is low."</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Message text displayed when PreventReportAboveMax = False and the number of hits to be reported is high.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "This report will require a long time to generated. It is suggested that you run this at a time when the server activity is low."</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any text that you would like used as the message</p>
+        <h4 class="Heading4"><a name="kanchor2127"></a><a name="kanchor2128"></a><a name="kanchor2129"></a><a name="kanchor2130"></a><a name="kanchor2131"></a><a name="kanchor2132"></a><a name="kanchor2133"></a><a name="kanchor2134"></a><a name="kanchor2135"></a><a name="kanchor2136"></a><a name="kanchor2137"></a>ReportMaxHits</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ReportMaxHits = 500</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Displays a message when a hitlist count is greater then the number specified.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 500</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any Integer</p>
+        <h4 class="Heading4"><a name="kanchor2138"></a><a name="kanchor2139"></a><a name="kanchor2140"></a><a name="kanchor2141"></a><a name="kanchor2142"></a><a name="kanchor2143"></a><a name="kanchor2144"></a><a name="kanchor2145"></a><a name="kanchor2146"></a><a name="kanchor2147"></a><a name="kanchor2148"></a>REPORTS_MDB_PATH</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: REPORTS_MDB_PATH = "c:\chemoffice_data\biosar_browser\"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: This setting allows the <span class="_Override" style="font-style: italic;">default</span> location of the reports mdb files, it also supports facility for optional configuration option to allow overriding of the path to the reports mdb files.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "c:\chemoffice_data\biosar_browser\"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any location or path of mdb folder</p>
+        <h4 class="Heading4"><a name="kanchor2149"></a><a name="kanchor2150"></a><a name="kanchor2151"></a><a name="kanchor2152"></a><a name="kanchor2153"></a><a name="kanchor2154"></a><a name="kanchor2155"></a><a name="kanchor2156"></a><a name="kanchor2157"></a><a name="kanchor2158"></a><a name="kanchor2159"></a>SEC_PWD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SEC_PWD = ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The CS_Security schema password.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A password for the CS_Security schema.</p>
+        <h4 class="Heading4"><a name="kanchor2160"></a><a name="kanchor2161"></a><a name="kanchor2162"></a><a name="kanchor2163"></a><a name="kanchor2164"></a><a name="kanchor2165"></a><a name="kanchor2166"></a><a name="kanchor2167"></a><a name="kanchor2168"></a><a name="kanchor2169"></a><a name="kanchor2170"></a>SEC_USERNAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SEC_USERNAME = CS_SECURITY</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The CS_Security schema owner.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: CS_SECURITY</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A username for the CS_Security schema</p>
+        <h4 class="Heading4"><a name="kanchor2171"></a><a name="kanchor2172"></a><a name="kanchor2173"></a><a name="kanchor2174"></a><a name="kanchor2175"></a><a name="kanchor2176"></a><a name="kanchor2177"></a><a name="kanchor2178"></a><a name="kanchor2179"></a><a name="kanchor2180"></a><a name="kanchor2181"></a>SHOW_ONLY_CHILD_DATA_AS_DEFAULT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SHOW_ONLY_CHILD_DATA_AS_DEFAULT = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines the default state of the Show Child Data radiobutton on all search forms. If set to 1, the Show Only Child Date Matching Entered Criteria option is selected by default.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2182"></a><a name="kanchor2183"></a><a name="kanchor2184"></a><a name="kanchor2185"></a><a name="kanchor2186"></a><a name="kanchor2187"></a><a name="kanchor2188"></a><a name="kanchor2189"></a><a name="kanchor2190"></a><a name="kanchor2191"></a><a name="kanchor2192"></a>SHOW_SUBTABLE_BORDERS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SHOW_SUBTABLE_BORDERS = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: When set to the <span class="_Override" style="font-style: italic;">default</span>(0), fields in sub tables of list and detail view have no table border. If set to true, uses a border="1".</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2193"></a><a name="kanchor2194"></a><a name="kanchor2195"></a><a name="kanchor2196"></a><a name="kanchor2197"></a><a name="kanchor2198"></a><a name="kanchor2199"></a><a name="kanchor2200"></a><a name="kanchor2201"></a><a name="kanchor2202"></a><a name="kanchor2203"></a>SHOW_SUBTABLE_HEADERS_ONCE</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SHOW_SUBTABLE_HEADERS_ONCE = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: If set to 1, headers for sub tables in list view are only shown once, at the top of the page.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2204"></a>STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: While integrating a form with BioViz, if a user chooses to export data to BioViz, the BioSAR Enterprise application exports a .bsbxml file. If STORE_ENCRYPTED_PWD_IN_BIOVIZ_XML is set to 1, there is an encrypted password in the .bsbxml file for the user. If set to 0, the password field is left blank and the user needs to enter password while opening the .bsbxml file in ChemFinder.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2205"></a><a name="kanchor2206"></a><a name="kanchor2207"></a><a name="kanchor2208"></a><a name="kanchor2209"></a><a name="kanchor2210"></a><a name="kanchor2211"></a><a name="kanchor2212"></a><a name="kanchor2213"></a><a name="kanchor2214"></a><a name="kanchor2215"></a>TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR = 7</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The field, TABLE_CELL_FONT_HORIZONTAL_POINTS_PER_CHAR determines the number of horizontal points required to display each character in a table cell. This field is also called conversion factor and is dependent on the font type and size. The default font and size for a table cell is Lucida Console, 9pt. For the Lucida Console font the conversion factor has been determined to be 7.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 7</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: The value of this field can be changed based upon your requirements.</p>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>This parameter will need to be changed only if the font type or size for the classes, TD.parent_table_cell_value and TD.child_table_cell_value is changed via the cascading style sheet, biosar_ie.css file located at biosar_browser/source/.</div>
+        <h4 class="Heading4"><a name="kanchor2216"></a><a name="kanchor2217"></a><a name="kanchor2218"></a><a name="kanchor2219"></a><a name="kanchor2220"></a><a name="kanchor2221"></a><a name="kanchor2222"></a><a name="kanchor2223"></a><a name="kanchor2224"></a><a name="kanchor2225"></a><a name="kanchor2226"></a>TEMP_DIR_NAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TEMP_DIR_NAME = CFWTEMP</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The name of the virtual directory which stores temporary files. Editing this value may cause unpredictable behavior</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: CFWTEMP</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: This can be changed to whatever you would like the name of the temp directory to be. The path to the directory is found in TEMP_DIR_PATH.</p>
+        <h4 class="Heading4"><a name="kanchor2227"></a><a name="kanchor2228"></a><a name="kanchor2229"></a><a name="kanchor2230"></a><a name="kanchor2231"></a><a name="kanchor2232"></a><a name="kanchor2233"></a><a name="kanchor2234"></a><a name="kanchor2235"></a><a name="kanchor2236"></a><a name="kanchor2237"></a>TEMP_DIR_PATH</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TEMP_DIR_PATH = C:\Inetpub\wwwroot\ChemOffice\cfwtemp</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The path to the directory where temporary files are stored. If the installation is not made to the C drive, this must be edited.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: C:\Inetpub\wwwroot\ChemOffice\cfwtemp</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: This can be changed to wherever you would like the temp directory to exist. The name of the directory is found in TEMP_DIR_NAME.</p>
+        <p class="Body"> &#160;</p>
+        <h4 class="Heading4"><a name="kanchor2238"></a><a name="kanchor2239"></a><a name="kanchor2240"></a><a name="kanchor2241"></a><a name="kanchor2242"></a><a name="kanchor2243"></a><a name="kanchor2244"></a><a name="kanchor2245"></a><a name="kanchor2246"></a><a name="kanchor2247"></a><a name="kanchor2248"></a>TOO_MANY_HITS_MAXIMUM_RETRIEVABLE</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TOO_MANY_HITS_MAXIMUM_RETRIEVABLE = 2000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates the maximum number of records to be displayed in list view. If this number is exceeded, the user is given a warning saying the maximum number of hits has been exceeded. If this happens, all hits can be exported and the full list is used in hit list handling functions.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 2000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A positive number.</p>
+        <h4 class="Heading4"><a name="kanchor2249"></a><a name="kanchor2250"></a><a name="kanchor2251"></a><a name="kanchor2252"></a><a name="kanchor2253"></a><a name="kanchor2254"></a><a name="kanchor2255"></a><a name="kanchor2256"></a><a name="kanchor2257"></a><a name="kanchor2258"></a><a name="kanchor2259"></a>UNCORRELATED_SDF_FLATENING</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: UNCORRELATED_SDF_FLATENING = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: If set to 1, it determines the relationship of the uncorrelated flattening of child record in sdf export. This will result in a lower number of records in the resulting flattened sdf because each record will contain data from only one child table. If set to 0 then you will get all child tables to appear in each record and resulting in a full cartesian product.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 1 | 0</p>
+        <h4 class="Heading4"><a name="kanchor2260"></a><a name="kanchor2261"></a><a name="kanchor2262"></a><a name="kanchor2263"></a><a name="kanchor2264"></a><a name="kanchor2265"></a><a name="kanchor2266"></a><a name="kanchor2267"></a><a name="kanchor2268"></a><a name="kanchor2269"></a><a name="kanchor2270"></a>USE_ANIMATED_GIF</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: USE_ANIMATED_GIF = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Indicates a GIF should be used for the progress icon.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2271"></a><a name="kanchor2272"></a><a name="kanchor2273"></a><a name="kanchor2274"></a><a name="kanchor2275"></a><a name="kanchor2276"></a><a name="kanchor2277"></a><a name="kanchor2278"></a><a name="kanchor2279"></a><a name="kanchor2280"></a><a name="kanchor2281"></a>USER_INFO_WINDOW</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: USER_INFO_WINDOW = top.frames["userinfo"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The frame name for the left most frame used internally by javascript. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: top.frames["userinfo"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor2282"></a><a name="kanchor2283"></a><a name="kanchor2284"></a><a name="kanchor2285"></a><a name="kanchor2286"></a><a name="kanchor2287"></a><a name="kanchor2288"></a><a name="kanchor2289"></a><a name="kanchor2290"></a><a name="kanchor2291"></a><a name="kanchor2292"></a>USERWINDOWBACKGROUND</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: USERWINDOWBACKGROUND = "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Determines the background gif to be used in the left most frame of the window.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A hexadecimal number representing a color or path to a GIF</p>
+        <h4 class="Heading4"><a name="kanchor2293"></a><a name="kanchor2294"></a><a name="kanchor2295"></a><a name="kanchor2296"></a><a name="kanchor2297"></a><a name="kanchor2298"></a><a name="kanchor2299"></a><a name="kanchor2300"></a><a name="kanchor2301"></a><a name="kanchor2302"></a><a name="kanchor2303"></a>USE_LEADING_HINT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: USE_LEADING_HINT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Supports to account the display behavior which usually causes by slow searches and missing indexes.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: N/A</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor2304"></a><a name="kanchor2305"></a><a name="kanchor2306"></a><a name="kanchor2307"></a><a name="kanchor2308"></a><a name="kanchor2309"></a><a name="kanchor2310"></a><a name="kanchor2311"></a><a name="kanchor2312"></a><a name="kanchor2313"></a><a name="kanchor2314"></a>TRUNCATE_CELL_DATA</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TRUNCATE_CELL_DATA = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Internal setting for truncating cell data to a specific number of digits.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: 0 | 1</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

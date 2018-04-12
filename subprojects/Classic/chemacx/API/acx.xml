@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE ACXdata SYSTEM "http://198.112.110.206/ChemACX/acx.dtd">
+<ACXdata>
+<substance acxNum="X1026401-8" csNum="2" casNum="2392-39-4">
+	<structure type="cdx" src="SubstanceStructure_2.cdx" formula="C22H29FKNaO5" molWeight="454.546"></structure>
+	<substanceName type="primary">Dexamethasone sodium phosphate</substanceName>
+	<product ACXprodID="393162" supplierID="_230" catNum="157565">
+		<prodName>DEXAMETHASONE 21-PHOSPHATE Disodium</prodName>
+		<prodProperty property="Class">BIOCHEMICALS, BIOCHEMICALS</prodProperty>
+		<prodProperty property="Storage Temperature">0 TO 5 C</prodProperty>
+		<package ACXpackID="648506">
+			<packSize>100 mg</packSize>
+			<packPrice currency="USD">20.75</packPrice>
+			<currencySymbol>$</currencySymbol>
+		</package>
+		<package ACXpackID="648507">
+			<packSize>500 mg</packSize>
+			<packPrice currency="USD">66.0</packPrice>
+			<currencySymbol>$</currencySymbol>
+		</package>
+	</product>
+	<product ACXprodID="379358" supplierID="_225" catNum="157565">
+		<prodName>Dexamethasone Sodium Phosphate</prodName>
+		<prodDescription>Powder, U.S.P.</prodDescription>
+		<prodProperty property="Hazard Notes">H = 2, F = 1, R = 0</prodProperty>
+		<package ACXpackID="617142">
+			<packSize>1 g</packSize>
+			<packPrice currency="USD">22.5</packPrice>
+			<currencySymbol>$</currencySymbol>
+		</package>
+		<package ACXpackID="617143">
+			<packSize>5 g</packSize>
+			<packPrice currency="USD">89.2</packPrice>
+			<currencySymbol>$</currencySymbol>
+		</package>
+	</product>
+</substance>
+<supplier supplierID="_225" supplierCode="SPKTM" supplierType="3">
+	<supplierName>Spectrum Quality Products, Inc.</supplierName>
+	<supplierShortName>Spectrum</supplierShortName>
+	<supplierAddress>
+		<address1>Spectrum Quality Products</address1>
+		<address2>14422 South San Pedro Street</address2>
+		<city>Gardena</city>
+		<state>CA</state>
+		<zipcode>90248-9985</zipcode>
+		<country>USA</country>	
+	</supplierAddress>
+	<supplierEmail>chemical@quick.net</supplierEmail>
+	<supplierURL>www.spectrumchemical.com</supplierURL>
+	<supplierPhone location="USA" type="TEL">
+		<countryCode>1</countryCode>
+		<areaCode>310</areaCode>
+		<phoneNum>516-8000</phoneNum>
+	</supplierPhone>
+	<supplierPhone location="USA" type="FAX">
+		<countryCode>1</countryCode>
+		<areaCode>310</areaCode>
+		<phoneNum>516-7512</phoneNum>
+	</supplierPhone>
+</supplier>
+<supplier supplierID="_230" supplierCode="ICN" supplierType="3">
+	<supplierName>ICN Biomedical Research Products</supplierName>
+	<supplierShortName>ICN</supplierShortName>
+	<supplierAddress>
+		<address1>3000 Hyland Ave.</address1>
+		<city>Costa Mesa</city>
+		<state>CA</state>
+		<zipcode>92646</zipcode>
+		<country>USA</country>	
+	</supplierAddress>
+	<supplierURL>www.icnbiomed.com</supplierURL>
+	<supplierPhone location="USA" type="TEL">
+		<countryCode>1</countryCode>
+		<areaCode>714</areaCode>
+		<phoneNum>545-0100</phoneNum>
+	</supplierPhone>
+	<supplierPhone location="USA" type="FAX">
+		<countryCode>1</countryCode>
+		<areaCode>714</areaCode>
+		<phoneNum>557-4872</phoneNum>
+	</supplierPhone>
+</supplier>
+</ACXdata>

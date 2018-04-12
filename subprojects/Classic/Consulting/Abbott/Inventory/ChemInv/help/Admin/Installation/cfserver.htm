@@ -1,0 +1,156 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="25038" -->
+
+<h1> CFServer.ini Configuration File</h1>
+<p>The CFServer.ini file, found in the following location: 
+<br><strong>&lt;webroot&gt;/ChemOffice/cheminv/config</strong> <br>defines 
+parameters that allow Inventory Enterprise to find necessary information and how to 
+react in certain situations.&nbsp; When editing fields in this file, it is 
+important to be sure what is going to change because many of these settings are 
+necessary for the application to function properly. 
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice Enterprise application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice Enterprise use default 
+configurations.</strong></em></p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="400" border="0" style="WIDTH: 400px">
+  
+  <tr>
+    <td style="WIDTH: 200px" width="200"><strong>[GLOBALS]</strong></td>
+    <td style="WIDTH: 200px" width="200"><strong>[ChemInv]</strong></td></tr>
+  <tr>
+    <td><a href="ini_settings/ADMIN_REQUIRED.htm">ADMIN_REQUIRED</a></td>
+    <td><a href="ini_settings/CHEMINV_USERNAME.htm">CHEMINV_USERNAME</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_HITLIST_MANAGEMENT.htm">ALLOW_HITLIST_MANAGEMENT</a></td>
+    <td><a href="ini_settings/CHEMINV_PWD.htm">CHEMINV_PWD</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm">ALLOW_HITLIST_MNGMNT_FG_SELECTOR</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><a href="ini_settings/DBA_PWD.htm">DBA_PWD</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_PUBLIC_HITLISTS.htm">ALLOW_PUBLIC_HITLISTS</a></td>
+    <td><a href="ini_settings/DBA_USERNAME.htm">DBA_USERNAME</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_PUBLIC_QUERIES.htm">ALLOW_PUBLIC_QUERIES</a></td>
+    <td><a href="ini_settings/INVACX_PWD.htm">INVACX_PWD</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_QUERY_MANAGEMENT.htm">ALLOW_QUERY_MANAGEMENT</a></td>
+    <td><a href="ini_settingsINVACX_USERNAME.htm">INVACX_USERNAME</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/app_name.htm">APP_NAME</a><a href="ini_settings/BODY_BACKGROUND.htm"></a></td>
+    <td><a href="ini_settings/INVREG_PWD.htm">INVREG_PWD</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/APP_TYPE.htm">APP_TYPE</a><a href="ini_settings/BRACKET_IN_STRUC_HANDLING.htm"></a></td>
+    <td><a href="ini_Settings/INVREG_USERNAME.htm">INVREG_USERNAME</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/cdx_caching.htm">CDX_CACHING</a>&nbsp;&nbsp;<a href="ini_settings/DIRECT_KEYWORD_SUPPORT.htm"></a></td>
+    <td><a href="ini_settings/ORA_SERVICENAME.htm">ORA_SERVICENAME</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/DATE_FORMAT.htm">DATE_FORMAT</a></td>
+    <td><a href="ini_settings/ORA_SQLLDRPATH.htm">ORA_SQLLDRPATH</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/db_names.htm">DB_NAMES</a><a href="ini_settings/HIGHLIGHT_BACKGROUND.htm"></a></td>
+    <td><a href="ini_settings/ORASCHEMANAME.htm">ORASCHEMANAME</a><a href="ini_settings/ORA_SQLLDRPATH.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/DIRECT_KEYWORD_SUPPORT.htm">DIRECT_KEYWORD_SUPPORT</a><a href="ini_settings/HIGHLIGHT_REQUIRED_FIELDS.htm"></a></td>
+    <td><a href="ini_settings/PRIV_TABLE_NAME.htm">PRIV_TABLE_NAME</a><a href="ini_settings/PRIV_TABLE_NAME.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/EXPIRE_HITLIST_HISTORY_DAYS.htm">EXPIRE_HITLIST_HISTORY_DAYS</a></td>
+    <td><a href="ini_settings/SEC_PWD.htm">SEC_PWD</a><a href="ini_settings/SEC_PWD.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/EXPIRE_QUERY_HISTORY_DAYS.htm">EXPIRE_QUERY_HISTORY_DAYS</a><a href="ini_settings/userwindowbackground.htm"></a></td>
+    <td><a href="ini_settings/SEC_USERNAME.htm">SEC_USERNAME</a><a href="ini_settings/SEC_USERNAME.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/global_search_dbs.htm">GLOBAL_SEARCH_DBS</a><a href="ini_settings/EXPIRE_QUERY_HISTORY_DAYS.htm"></a></td>
+    <td><a href="ini_Settings/TABLES_WITH_BASE64_CDX.htm">TABLES_WITH_BASE64_CDX</a><a href="ini_Settings/TABLES_WITH_BASE64_CDX.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/global_search_base_db.htm">GLOBAL_SEARCH_BASE_DB</a><a href="ini_settings/userwindowbackground.htm"></a></td>
+    <td><a href="ORASCHEMANAME.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/main_window.htm">MAIN_WINDOW</a><a href="ini_settings/user_info_window.htm"></a></td>
+    <td><a href="ORASCHEMANAME.htm"></a><strong></strong></td></tr>
+  <tr>
+    <td><a href="ini_settings/nav_bar_window.htm">NAV_BAR_WINDOW</a><a href="ini_settings/userwindowbackground.htm"></a></td>
+    <td><strong>[CS_SECURITY]</strong><a href="ini_Settings/ALLOW_COOKIE_LOGIN.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/nav_buttons_gif_path.htm">NAV_BUTTONS_GIF_PATH</a><a href="ini_settings/nav_bar_window.htm"></a></td>
+    <td><a href="ini_Settings/ALLOW_COOKIE_LOGIN.htm">ALLOW_COOKIE_LOGIN</a><a href="ini_settings/COOKIE_EXPIRES_MINUTES.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/PARTITION_THRESH.htm">PARTITION_THRESH</a><a href="ini_settings/nav_buttons_gif_path.htm"></a></td>
+    <td><a href="ini_settings/COOKIE_EXPIRES_MINUTES.htm">COOKIE_EXPIRES_MINUTES</a><a href="ini_settings/CS_SECUIRTY_UDL_PATH.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/SELECTED_GLOBAL_SEARCH_DBS.htm">SELECTED_GLOBAL_SEARCH_DBS</a>&nbsp;<a href="ORASCHEMANAME.htm"></a></td>
+    <td><a href="ini_settings/CS_SECUIRTY_UDL_PATH.htm">CS_SECUIRTY_UDL_PATH</a><a href="ini_settings/MINIMUM_REQUIRED_PRIVILEGE.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/temp_dir_name.htm">TEMP_DIR_NAME</a>&nbsp;<a href="ini_settings/PARTITION_THRESH.htm"></a></td>
+    <td><a href="ini_settings/MINIMUM_REQUIRED_PRIVILEGE.htm">MINIMUM_REQUIRED_PRIVILEGE</a><a href="ini_Settings/PRIVILEGE_TABLE_LIST.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/temp_dir_path.htm">TEMP_DIR_PATH</a></td>
+    <td><a href="ini_Settings/PRIVILEGE_TABLE_LIST.htm">PRIVILEGE_TABLE_LIST</a><a href="ini_Settings/STARTUP_LOCATION.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/user_info_window.htm">USER_INFO_WINDOW</a><a href="ini_settings/temp_dir_name.htm"></a></td>
+    <td><a href="ini_Settings/STARTUP_LOCATION.htm">STARTUP_LOCATION</a><a href="ini_Settings/USE_CS_SECURITY_APP.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/userwindowbackground.htm">USERWINDOWBACKGROUND</a><a href="ini_settings/temp_dir_path.htm"></a></td>
+    <td><a href="ini_Settings/USE_CS_SECURITY_APP.htm">USE_CS_SECURITY_APP</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/user_info_window.htm"></a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/POST_MARKED_HITS_PAGE.htm"></a></td>
+    <td><a href="ini_Settings/USE_CS_SECURITY_APP.htm"></a></td></tr></table><a name="display_types"></a></p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+</body>
+
+</html>

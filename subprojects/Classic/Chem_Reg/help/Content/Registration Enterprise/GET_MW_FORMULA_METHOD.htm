@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|CFServer.ini Configuration File|Registration" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>GET_MW_FORMULA_METHOD</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="CFServer_ini_Configurati.htm#Registration_Admin_4136631045_998459">CFServer.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">GET_MW_FORMULA_METHOD</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_1001826"></a>GET_MW_FORMULA_METHOD</h5>
+        <div class="Body">Example: GET_MW_FORMULA_METHOD = PLSQL</div>
+        <div class="Body">Description: Indicates how the molecular weight and molecular formula are searched. The options are as follows:</div>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		PLSQL - retrieves mw and formula using the fastindexaccess procedure </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		STANDARD - uses the Oracle Cartridge functions </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		JOIN - uses a direct join to the cartridge tables. This option requires a dba grant select on these tables either to public or to individual roles. The tables are in the following format:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 19.2px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2_1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2_1st" MadCap:autonum="• " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="_Override" style="font-style: italic;">		Molweight</span>: &lt;SchemaName&gt;_&lt;index_name&gt;_W	For example - Regdb_mx_W in the Molecular Weight table for the regdb schema where the index table in mx.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 19.2px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2_1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2_1st" MadCap:autonum="• " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="_Override" style="font-style: italic;">		Molecular Formula</span>: &lt;SchemaName&gt;_&lt;index_name&gt;_A	For example - Regdb_mx_A in the Molecular Formula table for the regdb schema where the index table in mx.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		CDCONTROL - the mw is calculated by the ChemDraw ActiveX control at the point the structure is submitted. </td>
+            </tr>
+        </table>
+        <div class="Body">The CDONTROL is not superior to PLSQL as either options have minimum impact on the speed and the performance.</div>
+        <div class="Body">The PLSQL option requires no additional changes to the database and will improve searching speed (over the STANDARD option with CS Oracle Cartridge version 2.1) by an average of 5 times.</div>
+        <div class="Body">Default: PLSQL</div>
+        <div class="Body">Options: PLSQL | STANDARD | JOIN</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations. </blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

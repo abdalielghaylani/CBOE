@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="C:\Documents and Settings\JHarvey\Desktop Documentation\Documentation\CBOE Enterprise 11.0\BioSAR\BioSAR.book" DescendantCount="47">
+    <!-- saved from url=(0014)about:internet -->
+    <TocEntry Title="BioSAR Browser User Guide" Link="/Content/BioSAR/BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1155135" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="46">
+        <TocEntry Title="About this Guide" Link="/Content/BioSAR/BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1159618" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="Terminology" Link="/Content/BioSAR/BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1134446" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="4">
+            <TocEntry Title="Schema" Link="/Content/BioSAR/BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1138970" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+            <TocEntry Title="Table" Link="/Content/BioSAR/Table.htm#BioSAR_Browser_User_s_Guide_834457683_1138963" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="View" Link="/Content/BioSAR/Table.htm#BioSAR_Browser_User_s_Guide_834457683_1138967" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Form" Link="/Content/BioSAR/Form.htm#BioSAR_Browser_User_s_Guide_834457683_1127342" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Accessing BioSAR Enterprise" Link="/Content/BioSAR/Form.htm#BioSAR_Browser_User_s_Guide_834457683_1127315" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Form Management" Link="/Content/BioSAR/Form.htm#BioSAR_Browser_User_s_Guide_834457683_1128676" ComputedFirstTopic="false" DescendantCount="6">
+            <TocEntry Title="Creating a New Form" Link="/Content/BioSAR/Creating_a_New_Form.htm#BioSAR_Browser_User_s_Guide_834457683_1128800" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing a Form" Link="/Content/BioSAR/Editing_a_Form.htm#BioSAR_Browser_User_s_Guide_834457683_1130776" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Renaming a Form" Link="/Content/BioSAR/Editing_a_Form.htm#BioSAR_Browser_User_s_Guide_834457683_1130850" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Duplicating a Form" Link="/Content/BioSAR/Duplicating_a_Form.htm#BioSAR_Browser_User_s_Guide_834457683_1130906" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting a Form" Link="/Content/BioSAR/Duplicating_a_Form.htm#BioSAR_Browser_User_s_Guide_834457683_1147239" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Using Forms to Search Data" Link="/Content/BioSAR/Using_Forms_to_Search_Da.htm#BioSAR_Browser_User_s_Guide_834457683_1130998" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Searching" Link="/Content/BioSAR/Using_Forms_to_Search_Da.htm#BioSAR_Browser_User_s_Guide_834457683_1131080" ComputedFirstTopic="false" DescendantCount="4">
+            <TocEntry Title="Using Saved Queries" Link="/Content/BioSAR/Using_Forms_to_Search_Da.htm#BioSAR_Browser_User_s_Guide_834457683_1131106" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Using the History" Link="/Content/BioSAR/Using_the_History.htm#BioSAR_Browser_User_s_Guide_834457683_1131230" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Viewing Search Results" Link="/Content/BioSAR/Using_the_History.htm#BioSAR_Browser_User_s_Guide_834457683_1146743" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Generating Reports" Link="/Content/BioSAR/Generating_Reports.htm#BioSAR_Browser_User_s_Guide_834457683_1141507" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Integrating with BioAssay" Link="/Content/BioSAR/Integrating_with_BioAssa.htm#BioSAR_Browser_User_s_Guide_834457683_1132733" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Exposing a BioAssay table" Link="/Content/BioSAR/Integrating_with_BioAssa.htm#BioSAR_Browser_User_s_Guide_834457683_1151483" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Accessing the Exposed Table" Link="/Content/BioSAR/Accessing_the_Exposed_Ta.htm#BioSAR_Browser_User_s_Guide_834457683_1151497" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Organizing Projects" Link="/Content/BioSAR/Organizing_Projects.htm#BioSAR_Browser_User_s_Guide_834457683_1133243" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Managing Users and Roles" Link="/Content/BioSAR/Managing_Users_and_Roles.htm#BioSAR_Browser_User_s_Guide_834457683_1133365" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="BioSAR Enterprise Roles" Link="/Content/BioSAR/Managing_Users_and_Roles.htm#BioSAR_Browser_User_s_Guide_834457683_1133375" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="BioSAR Enterprise Privileges" Link="/Content/BioSAR/BioSAR_Enterprise_Privil.htm#BioSAR_Browser_User_s_Guide_834457683_1151527" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Schema Management" Link="/Content/BioSAR/Schema_Management.htm#BioSAR_Browser_User_s_Guide_834457683_1164237" ComputedFirstTopic="false" DescendantCount="4">
+            <TocEntry Title="Refreshing Tables" Link="/Content/BioSAR/Refreshing_Tables.htm#BioSAR_Browser_User_s_Guide_834457683_1156548" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Adding and Removing Schemas" Link="/Content/BioSAR/Refreshing_Tables.htm#BioSAR_Browser_User_s_Guide_834457683_1156559" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing a Description/Password" Link="/Content/BioSAR/Editing_a_Description_Pa.htm#BioSAR_Browser_User_s_Guide_834457683_1156574" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Defining Table Details" Link="/Content/BioSAR/Editing_a_Description_Pa.htm#BioSAR_Browser_User_s_Guide_834457683_1156591" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Custom Style Sheets" Link="/Content/BioSAR/Custom_Style_Sheets.htm#BioSAR_Browser_User_s_Guide_834457683_1161841" ComputedFirstTopic="false" DescendantCount="1">
+            <TocEntry Title="Applying CSS to all Forms" Link="/Content/BioSAR/Custom_Style_Sheets.htm#BioSAR_Browser_User_s_Guide_834457683_1161763" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Check Configuration File Settings" Link="/Content/BioSAR/Check_Configuration_File.htm#BioSAR_Browser_User_s_Guide_834457683_1161725" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Tips for the Report Writer" Link="/Content/BioSAR/Check_Configuration_File.htm#BioSAR_Browser_User_s_Guide_834457683_1155439" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Report Generator Configuration Issues" Link="/Content/BioSAR/Check_Configuration_File.htm#BioSAR_Browser_User_s_Guide_834457683_1159013" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Report Generator Performance" Link="/Content/BioSAR/Report_Generator_Perform.htm#BioSAR_Browser_User_s_Guide_834457683_1155455" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="General Performance" Link="/Content/BioSAR/Report_Generator_Perform.htm#BioSAR_Browser_User_s_Guide_834457683_1155457" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Adding Roles" Link="/Content/BioSAR/Report_Generator_Perform.htm#BioSAR_Browser_User_s_Guide_834457683_1155459" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Changing the Font Size in List View" Link="/Content/BioSAR/Changing_the_Font_Size_i.htm#BioSAR_Browser_User_s_Guide_834457683_1155470" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Indexing Linking Fields" Link="/Content/BioSAR/Changing_the_Font_Size_i.htm#BioSAR_Browser_User_s_Guide_834457683_1155477" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Cfserver.ini Configuration File" Link="/Content/BioSAR/Changing_the_Font_Size_i.htm#BioSAR_Browser_User_s_Guide_834457683_1155481" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="GLOBALS" Link="/Content/BioSAR/GLOBALS.htm#BioSAR_Browser_User_s_Guide_834457683_1155488" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="CS_SECURITY" Link="/Content/BioSAR/CS_SECURITY.htm#BioSAR_Browser_User_s_Guide_834457683_1156076" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="BioSAR_Browser.ini Configuration File" Link="/Content/BioSAR/BioSAR_Browser_ini_Confi.htm#BioSAR_Browser_User_s_Guide_834457683_1156112" ComputedFirstTopic="false" DescendantCount="1">
+            <TocEntry Title="GLOBALS" Link="/Content/BioSAR/BioSAR_Browser_ini_Confi.htm#BioSAR_Browser_User_s_Guide_834457683_1156119" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+    </TocEntry>
+</CatapultToc>

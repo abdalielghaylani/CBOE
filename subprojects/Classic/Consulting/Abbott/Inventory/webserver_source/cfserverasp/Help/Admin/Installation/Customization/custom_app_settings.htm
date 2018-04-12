@@ -1,0 +1,252 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>Application INI settings (cfserver.ini)</h1>
+<p>The cfserver.ini file is the application ini file.&nbsp; It specifies the DataViews within the application
+as well as some application variables.&nbsp; The file defines parameters that allow the ChemOffice WebServer
+application to find necessary information and how to react in certain situations.&nbsp;</p>
+<p>There is a cfserver.ini&nbsp;for each application 
+located in: <strong>&lt;webroot&gt;/ChemOffice/&lt;app_name&gt;/config</strong> 
+<br>            
+              
+where &lt;webroot&gt; is your server's webroot and &lt;app_name&gt; in the application name.</p>
+
+<p>When an application is started from a closed state, which occurs when a request for any
+page within the application directory occurs, the global.asa application level functions
+and subroutines are run. These functions and subroutines read the ini files and store
+information in application objects regarding&nbsp;general information about&nbsp;how the application should function. These
+variables are created only when the application is started, and will remain constant throughout
+the life of the application unless, when a new user enters a page, a change is detected in&nbsp;one
+of the config files, at which time the application will reload the new variables.</p>
+<p>When editing fields in this file, it is important to be 
+sure what is going to change because many of these settings are necessary for 
+the application to function properly. 
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<p>The following is a list of entries that are usually found in the cfserver.ini 
+files for ChemOffice WebServer applications.&nbsp; Click on an item in the list 
+for more information. </p>
+<p>If these entries are missing from the cfserver.ini file that you are trying to customize, the default value is used.&nbsp; 
+Adding the entry to the cfserver.ini file allows the administrator to explicitly 
+specify the value.&nbsp; </p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="400" border="0" style="WIDTH: 400px">
+  
+  <tr>
+    <td style="WIDTH: 200px" width="200"><strong>[GLOBALS]</strong></td>
+    <td style="WIDTH: 200px" width="200"><strong style="WIDTH: 200px">[DUPLICATE CHECKING]</strong></td></tr>
+  <tr>
+    <td><a href="ini_settings/ADJUST_NETSCAPE_WIDTHS.htm">ADJUST_NETSCAPE_WIDTHS</a></td>
+    <td><a href="ini_seetings/ABSOLUTE_HITS_REL.htm">ABSOLUTE_HITS_REL</a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_ADD_MODE.htm">ALLOW_ADD_MODE</a></td>
+    <td><a href="ini_settings/EXTRA_FRAGS_OK.htm">EXTRA_FRAGS_OK</a><a href="ini_seetings/ABSOLUTE_HITS_REL.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALLOW_FLAT_SDFILE_EXPORT.htm">ALLOW_FLAT_SDFILE_EXPORT</a></td>
+    <td><a href="ini_settings/EXTRA_FRAGS_OK_IF_RXN.htm">EXTRA_FRAGS_OK_IF_RXN</a></td></tr>
+  <tr>
+    <td><a href="ALLOW_HITLIST_MANAGEMENT.htm">ALLOW_HITLIST_MANAGEMENT</a></td>
+    <td><a href="ini_settings/FRAGS_CAN_OVERLAP.htm">FRAGS_CAN_OVERLAP</a><a href="ini_settings/EXTRA_FRAGS_OK.htm"></a></td></tr>
+  <tr>
+    <td><a href="ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm">ALLOW_HITLIST_MNGMNT_FG_SELECTOR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><a href="ini_settings/HIT_ANY_CHARGE_CARBON.htm">HIT_ANY_CHARGE_CARBON</a><a href="ini_settings/EXTRA_FRAGS_OK_IF_RXN.htm"></a></td></tr>
+  <tr>
+    <td><a href="ALLOW_PUBLIC_HITLISTS.htm">ALLOW_PUBLIC_HITLISTS</a></td>
+    <td><a href="ini_settings/HIT_ANY_CHARGE_HETERO.htm">HIT_ANY_CHARGE_HETERO</a><a href="ini_settings/FRAGS_CAN_OVERLAP.htm"></a></td></tr>
+  <tr>
+    <td><a href="ALLOW_PUBLIC_QUERIES.htm">ALLOW_PUBLIC_QUERIES</a></td>
+    <td><a href="ini_settings/IDENTITY.htm">IDENTITY</a><a href="ini_settings/HIT_ANY_CHARGE_CARBON.htm"></a></td></tr>
+  <tr>
+    <td><a href="ALLOW_QUERY_MANAGEMENT.htm">ALLOW_QUERY_MANAGEMENT</a></td>
+    <td><a href="ini_settings/MATCH_DB_STEREO.htm">MATCH_DB_STEREO</a><a href="ini_settings/HIT_ANY_CHARGE_HETERO.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/ALWAYS_DISPLAY_ALERTS.htm">ALWAYS_DISPLAY_ALERTS</a><a href="ini_settings/nav_bar_window.htm"></a></td>
+    <td><a href="ini_settings/RELATIVE_TET_STEREO.htm">RELATIVE_TET_STEREO</a><a href="ini_settings/IDENTITY.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings\ANIMATED_GIF_PATH.htm">ANIMATED_GIF_PATH</a><a href="ini_settings/user_info_window.htm"></a></td>
+    <td><a href="ini_settings/RXN_HIT_RXN_CENTER.htm">RXN_HIT_RXN_CENTER</a><a href="ini_settings/MATCH_DB_STEREO.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/app_name.htm">APP_NAME</a><a href="ini_settings/temp_dir_name.htm"></a></td>
+    <td><a href="ini_settings/RELATIVE_TET_STEREO.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/BODY_BACKGROUND.htm">BODY_BACKGROUND</a><a href="ini_settings/temp_dir_path.htm"></a></td>
+    <td><a href="ini_settings/RELATIVE_TET_STEREO.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/BRACKET_IN_STRUC_HANDLING.htm">BRACKET_IN_STRUC_HANDLING</a><a href="ini_settings/db_names.htm"></a></td>
+    <td><a href="ini_settings/RXN_HIT_RXN_CENTER.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/cdx_caching.htm">CDX_CACHING</a><a href="ini_settings/cdx_caching.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/DATE_FORMAT.htm">DATE_FORMAT</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/db_names.htm">DB_NAMES</a><a href="ini_settings/global_search_dbs.htm"></a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="DISPLAY_GIFS_ONLY_FORM_IE.htm">DISPLAY_GIFS_ONLY_FORM_IE</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="DISPLAY_GIFS_ONLY_FORM_NS.htm">DISPLAY_GIFS_ONLY_FORM_NS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="DISPLAY_GIFS_ONLY_FORM_NS6.htm">DISPLAY_GIFS_ONLY_FORM_NS6</a></td>
+    <td><a href="ini_settings/CHEMACX_BUTTON.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/DISPLAY_GIFS_ONLY_LIST_IE.htm">DISPLAY_GIFS_ONLY_LIST_IE</a><a href="ini_settings/userwindowbackground.htm"></a></td>
+    <td><a href="ini_settings/CHEMACX_LINK.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/DISPLAY_GIFS_ONLY_LIST_NS6.htm">DISPLAY_GIFS_ONLY_LIST_NS6</a><a href="ini_settings/ADJUST_NETSCAPE_WIDTHS.htm"></a></td>
+    <td><a href="ini_settings/CHEMACX_SERVER.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/DISPLAY_GIFS_ONLY_LIST_NS.htm">DISPLAY_GIFS_ONLY_LIST_NS</a><a href="ini_settings/ALWAYS_DISPLAY_ALERTS.htm"></a></td>
+    <td><a href="ini_settings/THEMERCKINDEX_BUTTON.htm"></a></td></tr>
+  <tr>
+    <td><a href="ENABLE_DETAIL_VIEW.htm">ENABLE_DETAIL_VIEW</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="EXPIRE_HITLIST_HISTORY_DAYS.htm">EXPIRE_HITLIST_HISTORY_DAYS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="EXPIRE_QUERY_HISTORY_DAYS.htm">EXPIRE_QUERY_HISTORY_DAYS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="EXPIRE_USER_SETTINGS_DAYS.htm">EXPIRE_USER_SETTINGS_DAYS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/FIELD_SPLIT_CHARACTER.htm">FIELD_SPLIT_CHARACTER</a><a href="ini_settings\ANIMATED_GIF_PATH.htm"></a></td>
+    <td><a href="ini_settings/THEMERCKINDEX_LINK.htm"></a></td></tr>
+  <tr>
+    <td><a href="FORMULA_FORMAT.htm">FORMULA_FORMAT</a></td>
+    <td><a href="ini_settings/THEMERCKINDEX_SERVER.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/global_search_dbs.htm">GLOBAL_SEARCH_DBS</a><a href="ini_settings/MARKED_HITS_MAX.htm"></a></td>
+    <td><a href="ini_settings/NCI_BUTTON.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/global_search_base_db.htm">GLOBAL_SEARCH_BASE_DB</a></td>
+    <td><a href="ini_settings/NCI_LINK.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/HIGHLIGHT_BACKGROUND.htm">HIGHLIGHT_BACKGROUND</a><a href="ini_settings/BRACKET_IN_STRUC_HANDLING.htm"></a></td>
+    <td><a href="ini_settings/NCI_SERVER.htm"></a></td></tr>
+  <tr>
+    <td><a href="ini_settings/HIGHLIGHT_REQUIRED_FIELDS.htm">HIGHLIGHT_REQUIRED_FIELDS</a><a href="ini_settings/DIRECT_KEYWORD_SUPPORT.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/main_window.htm">MAIN_WINDOW</a><a href="ini_settings/NON_CHEMICAL_SUBMIT.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/MARKED_HITS_MAX.htm">MARKED_HITS_MAX</a><a href="ini_settings/DISPLAY_GIFS_ONLY_LIST_NS6.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/nav_bar_window.htm">NAV_BAR_WINDOW</a><a href="ini_settings/DISPLAY_GIFS_ONLY_LIST_NS.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/nav_buttons_gif_path.htm">NAV_BUTTONS_GIF_PATH</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/NON_CHEMICAL_SUBMIT.htm">NON_CHEMICAL_SUBMIT</a><a href="ini_settings/FORMAT_FORMULA.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="PWD_CANNOT_MATCH_USERNAME.htm">PWD_CANNOT_MATCH_USERNAME</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_ILLEGAL_CHARS.htm">PWD_ILLEGAL_CHARS</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_ILLEGAL_FIRSTCHAR.htm">PWD_ILLEGAL_FIRSTCHAR</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_ILLEGALWORD_LIST.htm">PWD_ILLEGALWORD_LIST</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_MAX_LENGTH.htm">PWD_MAX_LENGTH</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_MIN_LENGTH.htm">PWD_MIN_LENGTH</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="PWD_MUSTHAVE_CHARS.htm">PWD_MUSTHAVE_CHARS</a>*</td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/RESIZE_GIFS.htm">RESIZE_GIFS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="SEARCH_DEFAULT_PREFS.htm">SEARCH_DEFAULT_PREFS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="SHOW_RETRIEVE_ALL_BTN.htm">SHOW_RETRIEVE_ALL_BTN</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/temp_dir_name.htm">TEMP_DIR_NAME</a><a href="ini_settings/HIGHLIGHT_REQUIRED_FIELDS.htm"></a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="ini_settings/temp_dir_path.htm">TEMP_DIR_PATH</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/USE_SESSION_RECORD_COUNTS.htm">USE_SESSION_RECORD_COUNTS</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="ini_settings/user_info_window.htm">USER_INFO_WINDOW</a><a href="ini_settings/POST_MARKED_HITS_IMAGE.htm"></a></td>
+    <td>
+      <p>&nbsp;</p></td></tr>
+  <tr>
+    <td><a href="ini_settings/userwindowbackground.htm">USERWINDOWBACKGROUND</a><a href="ini_settings/POST_MARKED_HITS_PAGE.htm"></a></td>
+    <td>&nbsp;</td></tr></table></p>
+<p>* CS Security cfserver.ini ONLY</p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

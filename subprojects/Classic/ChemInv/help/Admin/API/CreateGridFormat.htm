@@ -1,0 +1,219 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">CreateGridFormat</span></h1><p>Creates a grid format and 
+returns the ID of the newly created grid format.</p><h3>Syntax</h3>
+<pre>/cheminv/api/CreateGridFormat.asp?row_count=adNumeric&amp;col_count=adNumeric[&amp;grid_format_type=adNumeric&amp;row_prefix=adVarChar&amp;col_prefix=adVarChar&amp;row_use_letters=adNumeric&amp;col_use_letters=adNumeric&amp;name_separator=adVarChar&amp;number_start_corner=adNumeric<span lang="en-us" style="font-size: 11.0pt; font-family: Garamond">]</span></pre>
+<h3><span lang="en-us">In</span>puts</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">grid_format_type</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the type of the grid format.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">GRID_FORMAT_TYPE_FK</td>
+	</tr>
+	<tr>
+		<td width="117">row_count</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the number of rows in the grid.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">ROW_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">col_count</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the number of columns in the grid.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">COL_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">row_prefix</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the prefix to be used for grid rows.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">ROW_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">col_prefix</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the prefix to be used for grid columns.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">COL_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">row_use_letters</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether to label rows with letters or with 
+		numbers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">ROW_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">col_use_letters</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether to label columns with letters or with 
+		numbers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">COL_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">name_separator</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies name separator to be used in the grid format.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">NAME_SEPARATOR</td>
+	</tr>
+	<tr>
+		<td width="117">number_start_corner</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies start corner for the grid format.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">NUMBER_START_CORNER</td>
+	</tr>
+	<tr>
+		<td width="117">number_direction</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies whether to fill the rows first or to fill the 
+		columns first.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">NUMBER_DIRECTION</td>
+	</tr>
+	<tr>
+		<td width="117">Name</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the name of the grid format.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">NAME</td>
+	</tr>
+	<tr>
+		<td width="117">Description</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the description of the grid.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">DESCRIPTION</td>
+	</tr>
+	<tr>
+		<td width="117">zero_padding_count</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies zero padding count for the grid format.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		Y</td>
+		<td>INV_GRID_FORMAT</td>
+		<td width="92">ZERO_PADDING_COUNT</td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<p>The ID of the new grid format, which is stored in the new_grid_format_id parameter. 
+The data type of the new_grid_format_id parameter is adNumeric.</p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code creates a grid format with row count 8 
+and column count 12:</span></p>
+<pre>/cheminv/api/CreateGridFormat.asp?row_count=<span lang="en-us">8</span>&amp;col_count=<span lang="en-us">12</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

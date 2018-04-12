@@ -1,0 +1,455 @@
+/*<meta />*/
+
+/*
+// {{MadCap}} //////////////////////////////////////////////////////////////////
+// Copyright: MadCap Software, Inc - www.madcapsoftware.com ////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// <version>6.1.0.0</version>
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+.MCDropDown
+{
+	
+}
+
+.MCDropDownHead
+{
+	
+}
+
+.MCDropDownHotSpot
+{
+	
+}
+
+.MCDropDownBody
+{
+	
+}
+
+.MCDropDownIcon
+{
+	border: none;
+}
+
+.MCExpanding
+{
+	
+}
+
+.MCExpandingHead
+{
+	
+}
+
+.MCExpandingBody
+{
+	
+}
+
+.MCExpandingIcon
+{
+	border: none;
+}
+
+.MCKLink
+{
+	
+}
+
+.MCKLinkSpot
+{
+	
+}
+
+.MCKLinkBody
+{
+	background-color: #bbccdd;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	cursor: pointer;
+	cursor: hand;
+	filter: alpha( opacity = 100 );
+	-moz-opacity: 1.0;
+	z-index: 2;
+}
+
+.MCKLinkBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 100 );
+	-moz-opacity: 1.0;
+	z-index: 1;
+}
+
+.MCKLinkBodyCell_Highlighted
+{
+	padding: 5px;
+	background-color: Blue;
+	color: White;
+}
+
+.MCKLinkBodyCell
+{
+	padding: 5px;
+	background-color: Transparent;
+	color: Black;
+}
+
+.MCKeywordLinkIcon
+{
+	border: none;
+}
+
+.MCConceptLinkIcon
+{
+	border: none;
+}
+
+.MCRelatedTopicsIcon
+{
+	border: none;
+}
+
+.MCPopup
+{
+	
+}
+
+.MCPopupSpot
+{
+	
+}
+
+.MCPopupBody
+{
+	background-color: #ffffff;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+.MCPopupBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+.MCTextPopup
+{
+	
+}
+
+.MCTextPopupSpot
+{
+	
+}
+
+.MCTextPopupBody
+{
+	background-color: #bbccdd;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 5px;
+	position: absolute;
+	overflow: auto;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+.MCTextPopupBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+.MCPopupThumbnail
+{
+	border: none;
+}
+
+.MCPopupThumbnail_Popup
+{
+	border: solid 1px Gray;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 102;
+}
+
+.MCToggler
+{
+	
+}
+
+.MCTogglerIcon
+{
+	border: none;
+}
+
+div.MCDialogWrapper
+{
+	width: 400px;
+	position: fixed;
+	z-index: 110;
+}
+
+div.MCDialog
+{
+	width: 400px;
+	position: absolute;
+	padding: 10px;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+div.MCDialogShadow
+{
+	width: 400px;
+	position: absolute;
+	padding: 10px;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+div.MCDialog table.MCDialogOuterTable
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+div.MCDialog table.MCDialogOuterTable td.Label
+{
+	vertical-align: top;
+}
+
+endnotesBlock
+{
+	display: block;
+}
+
+endnoteBlock
+{
+	display: block;
+}
+
+footnotesBlock
+{
+	display: block;
+}
+
+footnoteBlock
+{
+	display: block;
+}
+
+div.MCBreadcrumbsBox
+{
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom-color: black;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	font-size: 9pt;
+	color: #646464;
+	font-weight: bold;
+}
+
+a.MCTextPopupSpot
+{
+	vertical-align: super;
+	font-size: 0.9em;
+	color: blue;
+}
+
+a.MCTextPopupSpot:link
+{
+	vertical-align: super;
+	font-size: 0.9em;
+	color: blue;
+}
+
+a.MCTextPopupSpot:visited
+{
+	vertical-align: super;
+	font-size: 0.9em;
+	color: blue;
+}
+
+a.MCTextPopupSpot:hover
+{
+	
+}
+
+a.MCTextPopupSpot:focus
+{
+	
+}
+
+span.MCTextPopupBody
+{
+	position: absolute;
+	overflow: auto;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+	padding: 5px;
+	margin: 0px;
+	border: solid 1px #000000;
+	background-color: #dcdcdc;
+	color: #000000;
+}
+
+table.AutoNumber_div_numlist1-1st
+{
+	text-align: left;
+	letter-spacing: 0em;
+	margin-left: 0em;
+	margin-right: 0em;
+	margin-bottom: 5pt;
+	margin-top: 5pt;
+	text-indent: 0px;
+	text-decoration: none;
+	text-decoration-blink: false;
+}
+
+td.AutoNumber_div_numlist1-1st
+{
+	text-align: left;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-decoration: none;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	line-height: 13.00pt;
+}
+
+table.AutoNumber_div_numlist1-inner
+{
+	text-align: left;
+	letter-spacing: 0em;
+	margin-bottom: 5pt;
+	margin-top: 5pt;
+	margin-left: 0in;
+	margin-right: 0in;
+	text-indent: 0px;
+	text-decoration: none;
+	text-decoration-blink: false;
+}
+
+table.AutoNumber_div_numlist1-last
+{
+	text-align: left;
+	letter-spacing: 0em;
+	margin-top: 4pt;
+	margin-bottom: 8pt;
+	margin-left: 0in;
+	margin-right: 0in;
+	text-indent: 0px;
+	text-decoration: none;
+	text-decoration-blink: false;
+}
+
+div.MCMiniTocBox
+{
+	padding-left: 20px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top-color: black;
+	border-top-style: none;
+	border-top-width: 1px;
+	border-top: none;
+	font-size: 9pt;
+	font-style: normal;
+	text-decoration: none;
+	line-height: 13pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	color: #0000ff;
+}
+
+p.MiniTOC1
+{
+	margin: 1.12em 0;
+	display: block;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-size: 10pt;
+	text-decoration: none;
+	line-height: 15pt;
+	text-indent: 0px;
+	color: #000000;
+	letter-spacing: 0em;
+	font-weight: bold;
+	margin-bottom: 2pt;
+	margin-top: 2pt;
+	margin-right: 0in;
+	margin-left: 0pt;
+	text-align: left;
+}
+
+a.MiniTOC1:link
+{
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-left-color: transparent;
+	border-left-style: none;
+	border-left-width: 0;
+	border-right-color: transparent;
+	border-right-style: none;
+	border-right-width: 0;
+	border-top-color: transparent;
+	border-top-style: none;
+	border-top-width: 0;
+	border-bottom-color: transparent;
+	border-bottom-style: none;
+	border-bottom-width: 0;
+	background-color: transparent;
+	background-image: none;
+	font-style: inherit;
+	font-variant: inherit;
+	text-transform: inherit;
+	word-spacing: inherit;
+	text-align: inherit;
+	mc-leader-format: '.';
+	color: #000000;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-weight: bold;
+	letter-spacing: 0em;
+	text-decoration: none;
+}
+

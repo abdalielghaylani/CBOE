@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTargetIndex Count="51">
+    <!-- saved from url=(0014)about:internet -->
+    <IndexEntry>
+        <Entries>
+            <IndexEntry Term="About ChemACX">
+                <Entries />
+                <Links>
+                    <IndexLink Title="About ChemACX" Link="/Content/MyImport/About_ChemACX.htm#kanchor3" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="About this guide">
+                <Entries />
+                <Links>
+                    <IndexLink Title="About this guide" Link="/Content/MyImport/ChemACX1.htm#kanchor2" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Accessing MSDX data">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor23" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Accessing MSDX Data">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor22" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Adding Items">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor28" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Adding Items to the Shopping Cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor27" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Batch attributes">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor52" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Batch Attributes">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor51" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Browsing vendor information">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor21" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Browsing Vendor Information">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor20" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX">
+                <Entries />
+                <Links>
+                    <IndexLink Title="About this guide" Link="/Content/MyImport/ChemACX1.htm#kanchor1" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX database">
+                <Entries />
+                <Links>
+                    <IndexLink Title="ChemACX database" Link="/Content/MyImport/ChemACX_database.htm#kanchor4" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX form fields">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor48" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX Form Fields">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor47" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX integration">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor40" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="ChemACX Integration">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor39" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Compound attributes">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor50" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Compound Attributes">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#kanchor49" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Creating inventory containers">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor44" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Creating Inventory Containers">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor43" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Details view">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor19" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Details View">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor18" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Exporting the chemicals to Excel">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor34" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Exporting the Chemicals to Excel">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor33" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Exporting to a Word template">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor36" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Exporting to MS-Word Template">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor35" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Favorite vendors list">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor13" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Favorite Vendors List">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor12" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="How Is It Useful?">
+                <Entries />
+                <Links>
+                    <IndexLink Title="ChemACX database" Link="/Content/MyImport/ChemACX_database.htm#kanchor5" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="List view">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor17" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="List View">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor16" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Non-plugin searches">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor11" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Opening ChemACX">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Opening ChemACX" Link="/Content/MyImport/Opening_ChemACX.htm#kanchor6" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Ordering chemicals">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor32" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Ordering the Chemicals">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor31" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Performing Non-Plugin Search">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor10" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Printing the shopping cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor38" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Printing the Shopping Cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor37" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering ChemACX chemicals">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor42" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering ChemACX Chemicals">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#kanchor41" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Removing Items">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor30" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Removing Items from the Shopping Cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor29" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Searching the ChemACX Database">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor7" UsedConditions="" />
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor8" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Searching the database">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#kanchor9" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="To">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor26" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Using the shopping cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor25" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Using the Shopping Cart">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#kanchor24" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Vendor participation">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Vendor participation" Link="/Content/MyImport/Vendor_participation.htm#kanchor46" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Vendor Participation">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Vendor participation" Link="/Content/MyImport/Vendor_participation.htm#kanchor45" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Viewing search results">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor15" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Viewing Search Results">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#kanchor14" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+        </Entries>
+        <Links />
+    </IndexEntry>
+</CatapultTargetIndex>

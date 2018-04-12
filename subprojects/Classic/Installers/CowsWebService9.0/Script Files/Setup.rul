@@ -1,0 +1,175 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+#define TITLE_TEXT "WebService Folder."    
+#define EXAMPLE_TEXT_FILE "cowswebservice.udl"
+#define WSDL_File "cowswebservice.wsdl"    
+#define RegisteryKey "SOFTWARE\\CambridgeSoft\\COWSWebServices9.0"
+#define RegisteryKeyValue "VIRTUAL_DIRECTORY"
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+
+    // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND); 
+    export prototype MyFunc(HWND);   
+    export prototype EditUDL(HWND); 
+    export prototype ReadINI(HWND); 
+    export prototype RemoveVirtualDir(HWND);  
+    export prototype CheckVirtDirExists(string);
+    
+
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+ string OraService, Wsdl;
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.                                 
+    string szMachineName,szDSName,szSrcDir, szOraService, szWsdl;
+    number nBuff, nStart;
+    
+begin             
+  MsiGetProperty(ISMSI_HANDLE, "MACHINENAME" , szMachineName, nBuff);
+  MsiGetProperty(ISMSI_HANDLE, "WebSite", szSrcDir, nBuff);
+  MsiGetProperty(ISMSI_HANDLE, "VirtualName", szSrcDir, nBuff); 
+  MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , szOraService, nBuff);
+  OraService = szOraService;  
+ // MsiGetProperty(ISMSI_HANDLE, "WSDLPath", szWsdl, nBuff);  
+ //StrReplace(szWsdl, "<machineName>", szMachineName, nStart);      
+ //MsiSetProperty(ISMSI_HANDLE, "WSDLPath", szWsdl);             
+ // Wsdl=szWsdl;
+  
+ // MessageBox(szWsdl, INFORMATION);
+  
+  //MsiSetProperty(ISMSI_HANDLE, "MachineName"
+        
+   //MessageBox(szMachineName, INFORMATION);
+    // To Do:  Write script that will be executed when MyFunction is called.
+ 
+end;
+function MyFunc(hMSI)
+    STRING  szTitle, szMsg, svDir, sMsg;
+    BOOL    bCreate, bFolderExists;
+    NUMBER  nResult, nBuffer;
+begin             
+     // Set a default folder for the SelectDir dialog.
+     svDir = INSTALLDIR;
+    // Set the message to display in the SelectDir dialog.
+    szMsg   = "Please Browse to the WebService Folder\n on your computer.";
+    // Get an existing folder name from the user. The fourth
+    // parameter indicates that a non-existing folder should
+    // not be created.
+    nResult = (SelectDir (TITLE_TEXT, szMsg, svDir, TRUE) < 0) ;
+    INSTALLDIR = svDir ;
+  end;    
+  
+ function EditUDL(hMSI)
+ 	STRING szOraServiceName, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff;  
+ begin
+      // open the file in Unicode mode.           
+    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    // Open the file.
+    if (OpenFile(nvFileHandle, INSTALLDIR, EXAMPLE_TEXT_FILE) < 0) then
+        MessageBox ("OpenFile failed.", SEVERE);
+        abort;
+    endif;     
+   FileGrep(INSTALLDIR^EXAMPLE_TEXT_FILE, "deneau",svReturnLine,nvLineNumber, RESTART);
+  //  MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"deneau", OraService, nStart) < 0) then
+   	MessageBox(svReturnLine, INFORMATION);
+   	else
+   	WriteLine(nvFileHandle, svReturnLine);
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);      
+   //Delete the already existing Line.
+   FileDeleteLine(INSTALLDIR^EXAMPLE_TEXT_FILE, nvLineNumber, nvLineNumber); 
+ end; 
+
+ function ReadINI(hMSI)
+  string szSrcDir, szWSName, szVirtualName, szPortNo;                                    
+    number nBuff;
+begin       
+	MsiGetProperty(ISMSI_HANDLE,"SETUPEXEDIR", szSrcDir, nBuff);      
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "WebSite", szWSName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "VirtualDirectory", szVirtualName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "PortNo", szPortNo);
+    MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName);
+    MsiSetProperty(ISMSI_HANDLE, "WEBSITENAME", szWSName);
+    MsiSetProperty(ISMSI_HANDLE, "PORTNO", szPortNo);
+   // MessageBox(szWSName + "//" + szVirtualName, INFORMATION);
+end;   
+function RemoveVirtualDir(hMSI)
+
+STRING sVDName;
+NUMBER nvSize, nvType, nResult, nBuff;
+OBJECT objIIS_Root;
+begin
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE);
+nvType = REGDB_STRING;
+RegDBGetKeyValueEx(RegisteryKey, RegisteryKeyValue, nvType, sVDName, nvSize);
+set objIIS_Root = CoGetObject("IIS://localhost/W3SVC/1/Root", "");
+nResult=CheckVirtDirExists(sVDName);
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", sVDName);                
+endif;
+end;
+function number CheckVirtDirExists(VDName)
+number nTy,bSi,ret;
+string mRet,VDir;
+begin
+VDir = "/" + VDName; //VDName = the value u retrieve through ur dialog
+nTy=REGDB_STRING ;
+bSi=MAX_PATH;
+RegDBSetDefaultRoot ( HKEY_LOCAL_MACHINE );
+if(RegDBGetKeyValueEx("\\SYSTEM\\CurrentControlSet\\Services\\w3svc\\parameters\\Virtual Roots\\", VDir, nTy, mRet,bSi )<0) then
+ret = 0; // The VDirectory does not exists
+else
+ret = 1; // The Directory allready exists
+endif;
+return ret;
+end;

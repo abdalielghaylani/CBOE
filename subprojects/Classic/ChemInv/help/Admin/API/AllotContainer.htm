@@ -1,0 +1,224 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>AllotContainer</h1><p>Samples or splits an existing container into new 
+containers. It also allows you to calculate the amount of substance that is to 
+be left in the container after it is sampled<span lang="en-us">,</span> and 
+specified amount of its contents are transferred to the new containers. The 
+value of the Action parameter specifies whether to sample or split the 
+container.</p><h3>Syntax</h3><pre>/cheminv/api/AllotContainer.asp?ContainerID=adNumeric&amp;NumContainers=adInteger&amp;LocationID=adNumeric&amp;ContainerTypeID=adNumeric&amp;Action=adVarChar&amp;ContainerSize=adNumeric[&amp;QtyRemaining=adNumeric&amp;Split#=adNumeric&amp;SampleQtyUnit=adNumeric&amp;BarcodeDescID=adVarChar&amp;DateCertified=adDBTimeStamp&amp;ContainerStatusID=adNumeric]</pre>
+<h3><span lang="en-us">In</span>puts</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the </span>ID of 
+		the&nbsp;container <span lang="en-us">to be </span>splitted or 
+		sampled.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">CONTAINER_ID</td>
+	</tr>
+	<tr>
+		<td width="117">NumContainers</td>
+		<td width="97"><span lang="en-us">ad</span>Int<span lang="en-us">eger</span></td>
+		<td width="298">Specifies the number of the new 
+		containers to be created after sampling or splitting the container.
+		</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the location where the newly created 
+		containers are to be stored.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">LOCATION_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerTypeID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the type of the new containers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">CONTAINER_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">Action</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the action to be taken on 
+		the container. The Action parameter can take 
+		two values, split and sample.&nbsp;If you set the 
+		Action parameter to split, all the contents of the original 
+		container are transferred to the new containers and 
+		the original container is discarded. However, 
+		if you set the Action parameter to sample, some of the contents 
+		remain there in the container and it is not discarded. </td>
+		<td width="92">split | sample</td>
+		<td width="70" align="center">Y</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerSize</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the size of the 
+		containers to be created after sampling or splitting 
+		the container. </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">QTY_MAX</td>
+	</tr>
+	<tr>
+		<td width="117">QtyRemaining</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the quantity
+		of the substance to be left in the original container.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70">if&nbsp;Action = sample</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">QTY_REMAINING</td>
+	</tr>
+	<tr>
+		<td width="117">Split#</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the quantity
+		of the substance to be allotted to the new 
+		containers.&nbsp;A separate Split parameter is 
+		associated with each new container. For example, if
+		a container is to be splitted into three containers, 
+		the call to AllotContainer should contain three Split parameters, 
+		Split1, Split2, and Split3 </td>
+		<td width="92">&nbsp;</td>
+		<td width="70">if&nbsp;Action = split</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">QTY_INITIAL </td>
+	</tr>
+	<tr>
+		<td width="117">SampleQtyUnit</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the unit in which the quantity of the contents 
+		of the new containers is to be measured.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">UNIT_OF_MEAS_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">BarcodeDescID</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specified the barcode description associated with the 
+		new containers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_BARCODE_DESC</td>
+		<td width="92">BARCODE_DESC_ID</td>
+	</tr>
+	<tr>
+		<td width="117">DateCertified</td>
+		<td width="97">adDBTimeStamp</td>
+		<td width="298">Specifies the certification date of the new containers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">DATE_CERTIFIED</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerStatusID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the status for the new containers.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">CONTAINER_STATUS_ID_FK</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p>A </span>Pipe (|)<span lang="en-us"> 
+delimited list of the IDs of the new containers, which are stored in the 
+ContainerID parameter</span>.<span lang="en-us"> </span>For example: 100|101<span lang="en-us">.</span></p></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code splits a container with  
+ID 1</span>11<span lang="en-us">&nbsp; </span>into<span lang="en-us"> </span>4 container<span lang="en-us">s of size
+</span>100<span lang="en-us"> and quantity 50:</span></p>
+
+<pre>/cheminv/api/AllotContainer.asp?ContainerID=111&amp;NumContainers=<span lang="en-us">4</span>&amp;LocationID=<span lang="en-us">1014</span>&amp;ContainerTypeID=<span lang="en-us">2</span>&amp;Action=split&amp;ContainerSize=100<span lang="en-us">[</span>&amp;split1=50&amp;split2=50&amp;split3=50<span lang="en-us">&amp;</span>split4=50<span lang="en-us">]</span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<ldapconfig>
+	<checkUserExists>
+		<server ldapVersion="3" name="localhost" port="389"/>
+		<process>
+			<bind pwdRequired="False" error="failedToBind"></bind>
+			<query timeOut="0" scope="subtree" error="userNotFound">
+				<dn>ou=people,dc=enterprise,dc=camsoft,dc=com</dn>
+				<filter>(&amp;(uid=%username%)(organizationalStatus=Active))</filter>
+				<attr>dn</attr>
+			</query>
+			<unbind/>
+		</process>
+		<errors displayDetails="false">
+			<failedToBind>Failed to bind to LDAP.</failedToBind>
+			<userNotFound>The username %username% was not found in LDAP.</userNotFound>
+		</errors>
+	</checkUserExists>
+	<ldapauthenticate>
+		<schemaOwner>CS_SECURITY</schemaOwner>
+		<exemptuser>cssadmin</exemptuser>
+		<exemptuser>invadmin</exemptuser>
+		<server ldapVersion="3" name="localhost" port="389"/>
+		<process>
+			<bind pwdRequired="False" error="failedToBind"></bind>
+			<query timeOut="2" scope="subtree" error="userNotFound">
+				<dn>ou=people, dc=enterprise,dc=camsoft,dc=com</dn>
+				<filter>(&amp;(uid=%username%)(organizationalStatus=Active))</filter>
+				<attr>dn</attr>
+			</query>
+			<unbind/>
+			<bind pwdRequired="True" error="authenticationFailed">
+				<dn>%dn%</dn>
+			</bind>
+			<unbind/>
+		</process>
+		<errors displayDetails="False">
+			<failedToBind>Failed to bind to LDAP.</failedToBind>
+			<userNotFound>The username %username% was not found in LDAP.</userNotFound>
+			<authenticationFailed>Authentication Failed.</authenticationFailed>
+		</errors>
+	</ldapauthenticate>
+	<getUserInfo>
+		<server ldapVersion="3" name="localhost" port="389"/>
+		<process>
+			<bind pwdRequired="False" error="failedToBind"></bind>
+			<query timeOut="2" scope="subtree" error="userNotFound">
+				<dn>ou=people, dc=enterprise,dc=camsoft,dc=com</dn>
+				<filter>(&amp;(uid=%username%)(organizationalStatus=Active))</filter>
+				<attr>dn</attr>
+				<attr displayName="User code" mapTo="Usercode">UserCode</attr>
+				<attr displayName="First Name" mapTo="FirstName">cn</attr>
+				<attr displayName="Middle Name" mapTo="MiddleName">MiddleName</attr>
+				<attr displayName="Last Name" mapTo="LastName">sn</attr>
+				<attr displayName="Email" mapTo="Email">Email</attr>
+				<attr displayName="Telephone" mapTo="Telephone">Telephone</attr>
+				<attr displayName="Address" mapTo="Address">Address</attr>	
+			</query>
+			<unbind/>
+		</process>
+		<errors displayDetails="False">
+			<failedToBind>Failed to bind to LDAP.</failedToBind>
+			<userNotFound>The username %username% was not found in LDAP.</userNotFound>
+			<authenticationFailed>Authentication Failed.</authenticationFailed>
+		</errors>
+	</getUserInfo>
+</ldapconfig>

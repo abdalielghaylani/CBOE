@@ -1,0 +1,81 @@
+December 13, 2007
+
+Overview
+========
+
+This patch is intended to allow Millennium Pharma to use extensible customizable
+fields prior to the general release of Inventory Manager 10.0.
+
+Note that this initial patch is Millenium specific and will be revised for
+general release at a later time.
+
+
+Prerequisites
+=============
+
+- Inventory Manager 9.0SR3
+
+
+Installation Instructions
+=========================
+
+- Backup the ChemInv, cs_security, and webserver_source folders on the application server
+
+- XCOPY the ChemInv, cs_security, and webserver_source folders of this patch to the corresponding folder on the server
+
+- To create required new tables run the Update_Inventory_9SR3_to_9SR4.cmd script
+  located in the following folder:
+  ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\sql\Update_Scripts
+
+  Note that the scripts include seeding the tables with Millenium Pharma attributes.
+  (Visible in Manage Tables as Attributes, Attribute Tabs, and Storage Category.)
+
+- Edit invconfig.ini located in the ChemInv\config folder.
+
+  To establish the substance Storage Category in the [SUBSTANCES] section replace
+    ALT_IDS=
+  with
+    ALT_IDS=inv_compounds.ALT_ID_1:Storage Category;1-C,inv_compounds.ALT_ID_2:Serial Number;1
+
+  To establish the ability to customize the extensible fields in the [MANAGE_TABLES]
+  section replace
+    Editable_Tables = ... ... ...
+  with
+    Editable_Tables = cheminvdb2.view_inv_custom_fields:Attributes,cheminvdb2.inv_custom_field_groups:Attribute Tabs,inv_barcode_desc:Barcode Description,inv_container_status:Container Status,inv_container_types:Container Types,inv_country:Country,cheminvdb2.inv_picklist_types:Custom Types,inv_grid_format:Grid Format,inv_enumeration(eset_id_fk;3):Grid Format Types,inv_location_types:Location Types,inv_owners:Owners,inv_enumeration(eset_id_fk;6):Plate Corners,inv_enumeration(eset_id_fk;7):Plate Directions,inv_enumeration(eset_id_fk;4):Plate Inventory Settings,inv_enumeration(eset_id_fk;5):Plate Libraries,inv_enumeration(eset_id_fk;2):Plate Status,inv_plate_types:Plate Types,inv_project_job_info:Project Job Info,inv_reporttypes:Report Types,inv_reservation_types:Reservation Types,inv_solvents:Solvents,inv_states:States,cheminvdb2.inv_picklists(picklist_domain;2):Storage Category,inv_suppliers:Suppliers,inv_units:Units,inv_unit_types:Unit Types,inv_enumeration(eset_id_fk;1):Well Formats
+  (A copy/paste from these instructions is highly recommended. Note that this is one very long line.)
+
+  To bypass ordering screens in the [CONTAINER_ORDERING] section set the following values:
+    
+    BYPASS_ORDERING_SCREENS=1
+    ALLOW_USER_TO_SET_DELIVERY_LOCATION=0
+	DEFAULT_CONTAINER_ORDER_STATUS=1
+	DEFAULT_CONTAINER_ORDER_UNIT_OF_MEAS=5
+
+  To establish the correct location for using New Container from the home page add DEFAULT_LOCATION_OVERRIDE to [CONTAINERS]
+  For example:
+    DEFAULT_LOCATION_OVERRIDE="INVContainerOrderDeliveryLoc"
+  or
+    DEFAULT_LOCATION_OVERRIDE="INVDefLoc"
+  "INVContainerOrderDeliveryLoc" for "Container order delivery location" or "INVDefLoc" for "Home location"
+  Note that if the default location is not set then Root will be used.
+
+  To set a default expiration date for new containers to blank, modify the following entry in the [CONTAINERS] section:
+
+		EXPIRATION_DATE_INCREMENT="0"
+
+  To support the new location barcode report, add the following entry to the [REPORTS] section:
+  
+		DEFAULT_LOCATION_LABEL_REPORT = "rptLocationBarCodeLabels1"
+
+
+- Edit cheminv.ini located in the ChemInv\config folder.
+
+  To fix the max hits setting when performing a search, modify the following entry in the [GLOBALS] section:
+
+		MAXHITS=1000000
+
+- To populate the new tables with Millennium specific data run the Update_Inventory_9SR4_to_Millennium.cmd script
+
+  This step also creates cheminvdb2.view_inv_custom_fields
+
+- Perform an IISReset on the application.

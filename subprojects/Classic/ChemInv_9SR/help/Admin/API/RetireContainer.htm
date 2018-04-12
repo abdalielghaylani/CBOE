@@ -1,0 +1,87 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<br>
+
+<br>
+<a name="1970480"></a>
+<h1>RetireContainer</h1>
+<p>   Moves a container to a specified location, 
+changes&nbsp;its status&nbsp;to the specified value and sets its amount 
+remaining to zero.&nbsp;&nbsp;&nbsp;Typically used to move containers to the 
+default retired location, set them to the default retired status and  zero their amount remaining.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/RetireContainer.asp?ContainerID=adNumeric&amp;LocationID=adDouble&amp;ContainerStatusID=adNumeric&amp;QtyRemaining=adDouble</pre>
+<h3 class="param">Inputs</h3>
+<h5 class="param">ConatinerID</h5>
+<p class="param">ContainerID of container to be moved.</p>
+<h5 class="param">LocationID</h5>
+<p class="param">The Location_ID value of the destination location where the 
+container should be moved to.</p>
+<h5 class="param">ContainerStatusID</h5>
+<p class="param"><font size="2">Status&nbsp;of container as a Status_ID 
+value.</font></p>
+<h5 class="param">[QtyRemaining]</h5>
+<p class="param">The amount of&nbsp;substance remaining in the 
+container to be retired. If absent, the remaining amount will be set to 
+zero.</p>
+<h3 class="param">Outputs</h3>
+<h5 class="param">None</h5>
+<h3 class="param">Example</h3>
+<p class="param">A user wants to retire a container 
+(ID=12345)&nbsp; to the trash bin (ID=10) and give it a retired status 
+(ID=7).&nbsp; The containe ris currently empty.</p><pre>/cheminv/api/RetireContainer.asp?ContainerID=12345&amp;LocationID=10&amp;ContainerStatusID=7</pre>
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+</html>

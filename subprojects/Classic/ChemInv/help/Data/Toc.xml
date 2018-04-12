@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="D:\Informatics\Documentation\Current User Guide files\Inventory Enterprise\Inventory_latest_Mar10\Inventory Manager.book" DescendantCount="41">
+    <TocEntry Title="Inventory Enterprise User Guide" Link="/Content/Inventory Manager/Inventory_Enterprise_Use.htm#Inventory_Manager_User_Guide_586713979_1096394" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="40">
+        <TocEntry Title="About this guide" Link="/Content/Inventory Manager/Inventory_Enterprise_Use.htm#Inventory_Manager_User_Guide_586713979_1096397" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="Terminology" Link="/Content/Inventory Manager/Terminology.htm#Inventory_Manager_User_Guide_586713979_1120476" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Location" Link="/Content/Inventory Manager/Terminology.htm#Inventory_Manager_User_Guide_586713979_999189" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Container" Link="/Content/Inventory Manager/Container.htm#Inventory_Manager_User_Guide_586713979_1015672" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Substance" Link="/Content/Inventory Manager/Substance.htm#Inventory_Manager_User_Guide_586713979_999200" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Searching Inventory Enterprise" Link="/Content/Inventory Manager/Searching_Inventory_Ente.htm#Inventory_Manager_User_Guide_586713979_999204" ComputedFirstTopic="false" DescendantCount="6">
+            <TocEntry Title="Simple search" Link="/Content/Inventory Manager/Simple_search.htm#Inventory_Manager_User_Guide_586713979_999208" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Advanced search" Link="/Content/Inventory Manager/Advanced_search.htm#Inventory_Manager_User_Guide_586713979_999234" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Substructure search" Link="/Content/Inventory Manager/Substructure_search.htm#Inventory_Manager_User_Guide_586713979_999251" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Batch search" Link="/Content/Inventory Manager/Batch_search.htm#Inventory_Manager_User_Guide_586713979_999280" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Global search" Link="/Content/Inventory Manager/Global_search.htm#Inventory_Manager_User_Guide_586713979_999299" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Plate search" Link="/Content/Inventory Manager/Plate_search.htm#Inventory_Manager_User_Guide_586713979_999328" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Substance management" Link="/Content/Inventory Manager/Substance_management.htm#Inventory_Manager_User_Guide_586713979_999347" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Creating a new substance" Link="/Content/Inventory Manager/Creating_a_new_substance.htm#Inventory_Manager_User_Guide_586713979_1081693" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Searching for a substance" Link="/Content/Inventory Manager/Searching_for_a_substanc.htm#Inventory_Manager_User_Guide_586713979_999371" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Container management" Link="/Content/Inventory Manager/Container_management.htm#Inventory_Manager_User_Guide_586713979_999483" ComputedFirstTopic="false" DescendantCount="7">
+            <TocEntry Title="Location management" Link="/Content/Inventory Manager/Location_management.htm#Inventory_Manager_User_Guide_586713979_999499" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Creating a new container" Link="/Content/Inventory Manager/Creating_a_new_container.htm#Inventory_Manager_User_Guide_586713979_999691" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Grid management" Link="/Content/Inventory Manager/Grid_management.htm#Inventory_Manager_User_Guide_586713979_999786" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Searching for a container" Link="/Content/Inventory Manager/Searching_for_a_containe.htm#Inventory_Manager_User_Guide_586713979_1013736" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Viewing contents of a container" Link="/Content/Inventory Manager/Viewing_contents_of_a_co.htm#Inventory_Manager_User_Guide_586713979_999851" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Managing batching fields" Link="/Content/Inventory Manager/Managing_batching_fields.htm#Inventory_Manager_User_Guide_586713979_1000497" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Ordering and receiving containers" Link="/Content/Inventory Manager/Ordering_and_receiving_c.htm#Inventory_Manager_User_Guide_586713979_1000550" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Plate Inventory" Link="/Content/Inventory Manager/Plate_Inventory.htm#Inventory_Manager_User_Guide_586713979_1000596" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Creating a new plate" Link="/Content/Inventory Manager/Creating_a_new_plate.htm#Inventory_Manager_User_Guide_586713979_1000603" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Searching for a plate" Link="/Content/Inventory Manager/Searching_for_a_plate.htm#Inventory_Manager_User_Guide_586713979_1000707" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Viewing contents of a plate" Link="/Content/Inventory Manager/Viewing_contents_of_a_pl.htm#Inventory_Manager_User_Guide_586713979_1000718" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Reports management" Link="/Content/Inventory Manager/Reports_management.htm#Inventory_Manager_User_Guide_586713979_1001209" ComputedFirstTopic="false" DescendantCount="5">
+            <TocEntry Title="Creating report layout" Link="/Content/Inventory Manager/Creating_report_layout.htm#Inventory_Manager_User_Guide_586713979_1001216" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing report layout" Link="/Content/Inventory Manager/Editing_report_layout.htm#Inventory_Manager_User_Guide_586713979_1008727" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting report layout" Link="/Content/Inventory Manager/Deleting_report_layout.htm#Inventory_Manager_User_Guide_586713979_1001263" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Generating a standard report" Link="/Content/Inventory Manager/Generating_a_standard_re.htm#Inventory_Manager_User_Guide_586713979_1001282" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Generating a custom report" Link="/Content/Inventory Manager/Generating_a_custom_repo.htm#Inventory_Manager_User_Guide_586713979_1001316" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Administration" Link="/Content/Inventory Manager/Administration.htm#Inventory_Manager_User_Guide_586713979_1001367" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Managing users and roles" Link="/Content/Inventory Manager/Managing_users_and_roles.htm#Inventory_Manager_User_Guide_586713979_1111564" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Loading compounds" Link="/Content/Inventory Manager/Loading_compounds.htm#Inventory_Manager_User_Guide_586713979_1001371" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Inventory tasks" Link="/Content/Inventory Manager/Inventory_tasks.htm#Inventory_Manager_User_Guide_586713979_1001475" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Inventory Enterprise 11.0 form fields" Link="/Content/Inventory Manager/Inventory_Enterprise_11_.htm#Inventory_Manager_User_Guide_586713979_1002368" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Roles" Link="/Content/Inventory Manager/Roles.htm#Inventory_Manager_User_Guide_586713979_1002466" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Privileges" Link="/Content/Inventory Manager/Privileges.htm#Inventory_Manager_User_Guide_586713979_1002513" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+</CatapultToc>

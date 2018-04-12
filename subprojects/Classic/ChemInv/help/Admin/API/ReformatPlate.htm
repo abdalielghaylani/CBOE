@@ -1,0 +1,207 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>ReformatPlate</h1><p>          
+                Reformats plates to create a single plate from the compounds of 
+				the multiple plates.</p><h3>Syntax</h3><pre>/cheminv/api/ReformatPlate.asp?SourcePLateIDList=adVarChar&amp;ReformatMapID=adNumeric&amp;BarcodeList<span lang="en-us">=</span><span lang="en-us">adVarChar&amp;</span>LocationID<span lang="en-us">=adNumeric&amp;</span>PlateTypeID<span lang="en-us">=adNumeric&amp;</span>Amt<span lang="en-us">=Int&amp;AmtUnitID=adNumeric&amp;</span>SolventID<span lang="en-us">=adNumeric&amp;</span>SolventVolume<span lang="en-us">=Int&amp;</span>SolventVolumeUnitID<span lang="en-us">=adNumeric[&amp;</span>NumTargetPlates<span lang="en-us">=adNumeric]</span></pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">SourcePlateIDList</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298">Specifies a comma delimited list of the IDs of the 
+		plates to be reformatted.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92"><span lang="en-us">PLATE_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">ReformatMapID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298">Specifies the ID of the reformat map to be used for 
+		reformatting of the plates.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">BarcodeList</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies a list of the barcodes </span>
+		of<span lang="en-us"> the target plates.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">PLATE_BARCODE</td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the location 
+		where the target plates are to be stored.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">LOCATION_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">PlateTypeID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID associated with the 
+		type of the target plates.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">PLATE_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">Amt</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the amount to be taken from 
+		the source plates.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117"><span lang="en-us">AmtUnitID</span></td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the unit in which the amount taken from the source plates is to be measured.
+		</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">SolventID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the solvents 
+		with which the source plates are to be solvated.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">SOLVENT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">SolventVolume</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the volume of the 
+		solvents.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">SOLVENT_VOLUME</td>
+	</tr>
+	<tr>
+		<td width="117">SolventVolumeUnitID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the 
+		unit in which the solvent volume is to be measured.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_PLATES</td>
+		<td width="92">SOLVENT_VOLUME_UNIT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">NumTargetPlates</td>
+		<td width="97">adInteger</td>
+		<td width="298"><span lang="en-us">Specifies the number of the target 
+		plates to be created. </span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">A Pipe </span>(|) delimited list of 
+<span lang="en-us">the IDs of the newly</span>&nbsp;<span lang="en-us">created
+</span>plate<span lang="en-us">s. </span>For example: 
+100|101<span lang="en-us">. This list of plate IDs is stored in the PlateIDs 
+parameter, the data type of which is adVarChar. </span></p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+               
+                      
+<span lang="en-us">The following code reformats plate with ID P1001 to create 2 
+target plates:</span>&nbsp;</p><pre>/cheminv/api/ReformatPlate.asp?SourcePlateIDList=P10<span lang="en-us">0</span>1&amp;ReformatMapID=3&amp;<span lang="en-us">BarcodeList=R1002&amp;</span>PlateTypeID<span lang="en-us">=2&amp;</span>Amt=10&amp;AmtUnitI<span lang="en-us">D</span>=2&amp;SolventID=4&amp;SolventVolum<span lang="en-us">e</span>=1&amp;SolventVolumeUnitID=2&amp;LocationID=101<span lang="en-us">[</span>&amp;NumTargetPlates=2<span lang="en-us">]</span></pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Create a new Windows User</TITLE>
+<SCRIPT LANGUAGE="vbscript" src="cows_installer_utils.vbs"></SCRIPT>
+<SCRIPT LANGUAGE=vbscript>
+	Dim oCallingWindow
+	Dim userName
+	Dim password
+	Dim password2
+	Dim LocalMachineName
+	
+	Set oCallingWindow = dialogArguments
+		
+	Sub CreateNewUSer()
+		Dim LocalMachineName
+		
+		BuildObjs() 
+		LocalMachineName = oNet.ComputerName
+		userName = document.form1.userName.value
+		password = document.form1.password.value
+		password2 = document.form1.password2.value
+		if password2 <> password then
+			msgbox "pasword verification failed"
+		Else
+		CreateUser userName, LocalMachineName, "", password, "" 
+		AddUserToGroup LocalMachineName, userName, "Administrators"
+		SetUserFlags userName, LocalMachineName, 0, false , true, "False" , "False"
+		oCallingWindow.document.form1.ServiceAccountUserName.value = userName
+		oCallingWindow.document.form1.ServiceAccountPassword.value = password
+		CleanUp()
+		window.close
+		End if
+	End sub
+</SCRIPT>
+
+</HEAD>
+<BODY id="doc1">
+<BR><BR><BR><BR>
+<center>
+<form name="form1">
+	<Table bordercolor="#666666" cellpadding="3" cellspacing="0" border="1">
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td align=right>
+							User Name:
+						</td>
+						<td align=left>	
+							<input Size="20" type="text" name="userName" value="">
+						</td>
+					</tr>
+					<tr>
+						<td align=right>
+							Password:
+						</td>
+						<td align=left>	
+							<input Size="20" type="password" name="password">
+						</td>
+					</tr>
+					<tr>
+						<td align=right>
+							Verify Password:
+						</td>
+						<td align=left>	
+							<input Size="20" type="password" name="password2">
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2 align=right>
+							<input type=button onclick="CreateNewUSer()" value="Create User">
+						</td>
+					</tr>
+				</table>
+		</td>
+		</tr>		
+	</table>	
+</center>
+</BODY>
+</HTML>
+<SCRIPT LANGUAGE=vbscript>
+document.form1.userName.value = oCallingWindow.document.form1.ServiceAccountUserName.value
+document.form1.password.value = oCallingWindow.document.form1.ServiceAccountPassword.value
+document.form1.password2.value = oCallingWindow.document.form1.ServiceAccountPassword.value
+</SCRIPT>
+
+

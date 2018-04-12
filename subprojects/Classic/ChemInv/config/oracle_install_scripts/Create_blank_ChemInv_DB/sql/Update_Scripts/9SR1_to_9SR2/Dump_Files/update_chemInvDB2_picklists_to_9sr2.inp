@@ -1,0 +1,9 @@
+FILE=Dump_Files\update_cheminvDB2_picklists_to_9sr2.dmp
+SHOW=N
+IGNORE=Y
+GRANTS=N
+INDEXES=N
+TABLES=	INV_XSLTS 
+ROWS=Y
+LOG=..\..\Logs\LOG_update_CheminvDB2_picklists_to_9sr2.txt
+

@@ -1,0 +1,245 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">GetLocationAddress</span></h1><p>Retrieves the address 
+attributes for a given location.</p><h3>Syntax</h3>
+<pre>/cheminv/api/<span lang="en-us">G</span>etLocationAddress.asp?LocationID=adNumeric</pre>
+<h3><span lang="en-us">In</span>puts<span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></h3>
+<table border="1" width="118%" height="88">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center" height="42"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center" height="42"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298" height="42"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92" height="42"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70" height="42"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" height="42"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center" height="42"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		LocationID</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the location, whose address attributes are to be 
+		retrieved.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92" height="38"><span lang="en-us">LOCATION_ID</span></td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<table border="1" width="65%" height="88">
+	<tr>
+		<td bgcolor="#C0C0C0" width="136" align="center" height="42"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="84" align="center" height="42"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="266" height="42"><b><span lang="en-us">
+		Description</span></b></td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ADDRESS_ID</td>
+		<td width="84" height="38">
+		adNumeric</td>
+		<td width="266" height="38">
+		Specifies the ID of the address of the location.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		CONTACT_NAME</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the contact name.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ADDRESS1</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the first line of the address.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ADDRESS2</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the second line of the address.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ADDRESS3</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the third line of the address.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ADDRESS4</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the fourth line of the address.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		CITY</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the name of the city.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		STATE_ID_FK</td>
+		<td width="84" height="38">
+		adNumeric</td>
+		<td width="266" height="38">
+		Specifies the ID of the state.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		COUNTRY_ID_FK</td>
+		<td width="84" height="38">
+		adNumeric</td>
+		<td width="266" height="38">
+		Specifies the ID for the country.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		ZIP</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the zip code.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		FAX</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the fax number.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		PHONE</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the phone number.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		EMAIL</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the email address.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		State_Name</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the name of the state.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		State_Abbreviation</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the abbreviation for the state.</td>
+	</tr>
+	<tr>
+		<td width="136" height="38">
+		Country_Name</td>
+		<td width="84" height="38">
+		adVarChar</td>
+		<td width="266" height="38">
+		Specifies the name of the country.</td>
+	</tr>
+	</table>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code retrieves attributes of the location with ID 
+1013:</span></p>
+<pre>/cheminv/api/<span lang="en-us">G</span>etLocationAddress.asp?LocationID=<span lang="en-us">1013</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

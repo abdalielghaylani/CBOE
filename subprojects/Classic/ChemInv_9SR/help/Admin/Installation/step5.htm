@@ -1,0 +1,86 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Chemical Inventory User's Guide -- Installation</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><EM>ChemInventory</EM>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="step4.htm"><IMG height=16 alt=Previous src="../../../../webserver_source/cfserverasp/help/images/back.gif" width=16 border=0></A>
+<A href="installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../../webserver_source/cfserverasp/help/images/uplevel.gif" width=16 border=0 ></A>
+<A href="step1.htm"><IMG height=16 alt=Next src="../../../../webserver_source/cfserverasp/help/images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+<b> ChemInventory User's Guide</b>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>    Setup&nbsp;PDF Support</h1>
+<P><STRONG> </STRONG> </P>
+<P><STRONG>Setting up&nbsp;Barcode Support</STRONG> </P>
+<P>
+<OL>
+  <LI>Browse to <SPAN 
+  style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><STRONG>ChemInv\Installation\Tbarcode</STRONG>.</SPAN> 
+
+  <LI><SPAN 
+  style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Run 
+  the Tbarcode ocx installer. </SPAN></LI></OL>
+<P><STRONG>Setting up PDF Support</STRONG> </P>
+<P>The RPT report writer installed with the Chemical 
+Inventory is capable of&nbsp;producing reports in four different formats: SNP 
+(MS Access Report Viewer) , RTF (Rich Text Format), XLS (Excel Workbook), PDF 
+(Adobe Protable Document).&nbsp;&nbsp;Support for the&nbsp;PDF&nbsp;format is 
+optional and requires a PDF printer dirver to be installed on the server.&nbsp; 
+Following are the optional instructions required to enable PDF support: </P>
+
+<p>
+<OL>
+<li>
+Browse 
+  to&nbsp;<STRONG>ChemInv\Installation\win2pdf</STRONG>.
+   
+  <LI>          
+     Install the win2pdf driver.
+  <LI>Go to the <STRONG>Control Panel&gt;Printers 
+  </STRONG>      and check that the win2pdf printer is 
+  the default Windows Printer. 
+  <LI>Purchase a license and registration code from: 
+  &nbsp;http://www.daneprairie.com/
+  <LI>Right click on the win2pdf printer and select properties. Enter the 
+  regcode.
+  <LI>If the report writer is running double click on its icon in the taskbar 
+  tray and click stop.
+  <LI>Open the ChemInv_reports.mdb file
+  <LI>Open the ReportFormats table and&nbsp;check the&nbsp;Available checkbox 
+  for the&nbsp;PDF format.
+  <LI>Close Access
+  <LI>Restart&nbsp;the report writer&nbsp;</LI></OL>
+
+<p><SPAN 
+  style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"> 
+      </SPAN>    </p><SPAN 
+style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"></SPAN>
+</body>
+
+</html>

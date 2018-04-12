@@ -1,0 +1,61 @@
+February 2, 2007
+
+Overview
+========
+
+This patch is intended to support the integration of Sigma Aldrich MSDS databases with ChemACX 9.0SR1
+and Inventory Manager 9.0 SR2 ChemOffice Enterprise applications.
+
+Prerequisites
+=============
+
+- ChemACX 9.0SR1
+- Inventory Manager 9.0SR2
+
+This patch should *not* be applied to *any* other version of the above applications.
+
+Installation Instructions
+=========================
+
+
+- Back up the ChemACX and ChemInv folders on the application server
+
+- Copy the file(s) provided in the ChemInv and ChemACX folders of this patch to their corresponding
+location on the server
+
+- Edit the follwing entries in the [MSDX] section of the .../chemacx/config/acxconfig.ini so they look
+as like: 
+
+SHOW_MSDX_LOOKUP_LINK= 1
+MSDX_URL = "/chemacx/SAMSDS/SAMSDSGet.asp"
+MSDX_LINK_TEXT = "MSDS"
+MSDX_LINK_TITLE = "View materials safety data from Sigma Aldrich"
+
+- Enable the MSDS link in the .../cheminv/config/invconfig.ini by setting:
+
+[CHEMACX]
+ACX_SERVER_NAME=<Your HTTP SERVER NAME>
+SHOW_ACX_LOOKUP_LINK=1
+SHOW_MSDX_LOOKUP_LINK=1
+MSDX_LOOK_AHEAD=0
+
+- Unzip the Sigma Aldrich MSDS databases to a location within the ChemOffice_Data folder in the
+ChemOffice Enterprise application server.
+
+	- The MSDS data is contained in three data files:
+
+		msd_09_2007a_en_us.mdb
+		msd_AZ_2007a_en_us.mdb
+		msd_ndx_2007a_en_us.mdb
+
+- Edit the following .udl files in the .../chemacx/config/ folder to point to their respective files 
+extracted in the above step:
+
+  	SAMSDS09.udl
+	SAMSDSAZ.udl
+	SAMSDS.udl	
+
+- IISreset for the ini changes to take effect
+
+
+

@@ -1,0 +1,196 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Privileges</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan -->  
+<h1>Privileges</h1>
+<p>The privileges associated with the available 
+Inventory Enterprise roles are listed below:</p>
+<p>
+<table border="1" cellPadding="1" cellSpacing="1" width="100%" style="WIDTH: 100%">
+  <tbody bgColor="white" style="COLOR: black">
+  <tr bgColor="midnightblue" style="COLOR: khaki">
+    <td width="30%"><strong> Privilege</strong></td>
+    <td width="33%"><strong>Oracle&nbsp;Privilege Name</strong></td>
+    <td width="36%"><strong>Roles 
+      including privilege</strong></td></tr>
+  <tr>
+    <td><a href="container_viewing_qty.htm">change the 
+      quantity in a container</a></td>
+    <td>INV_CHANGEQTY_CONTAINER</td>
+    <td>CHEMIST, FINANCE,&nbsp;ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_cout.htm">check out/in a 
+      container</a> </td>
+    <td>INV_CHECKOUT_CONTAINER</td>
+    <td>CHEMIST, ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_cout.htm">check out/in a 
+      container</a> </td>
+    <td>INV_CHECKIN_CONTAINER</td>
+    <td>CHEMIST, ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_reservations.htm">reserve a 
+      container </a></td>
+    <td>INV_RESERVE_CONTAINER</td>
+    <td>CHEMIST, ADMIN </td></tr>
+  <tr>
+    <td><a href="container_viewing_retire.htm">retire a 
+      container</a></td>
+    <td>INV_RETIRE_CONTAINER</td>
+    <td>CHEMIST, FINANCE, ADMIN</td></tr>
+  <tr>
+    <td><a href="container_viewing_print.htm">print a 
+      container's label</a></td>
+    <td>INV_PRINT_LABEL_CONTAINER</td>
+    <td>CHEMIST, FINANCE, RECEIVING, REGISTRAR, ADMIN</td></tr>
+  <tr>
+    <td><a href="container_viewing_print.htm">print a 
+      report</a></td>
+    <td>INV_PRINT_REPORT</td>
+    <td>CHEMIST, FINANCE, RECEIVING, REGISTRAR, ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/location_new.htm">create a 
+      new location</a>   </td>
+    <td>INV_CREATE_LOCATION </td>
+    <td> FINANCE, ADMIN </td></tr>
+  <tr>
+    <td><a href="../userguide/location_edit.htm">edit a 
+      location </a>   </td>
+    <td>INV_EDIT_LOCATION</td>
+    <td> FINANCE, ADMIN </td></tr>
+  <tr>
+    <td><a href="../userguide/location_move.htm">move a 
+      location </a>   </td>
+    <td>INV_MOVE_LOCATION</td>
+    <td> FINANCE, ADMIN </td></tr>
+  <tr>
+    <td><a href="../userguide/location_delete.htm">delete 
+      a location </a>   </td>
+    <td>INV_DELETE_LOCATION</td>
+    <td style="COLOR: black"> FINANCE, ADMIN    </td></tr>
+  <tr>
+    <td><a href="../userguide/container_new.htm">create a 
+      new container </a>    </td>
+    <td>INV_CREATE_CONTAINER</td>
+    <td style="COLOR: black"> CHEMIST, FINANCE, RECEIVING, ADMIN   </td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_edit.htm">edit a 
+      container</a>  </td>
+    <td>INV_EDIT_CONTAINER </td>
+    <td style="COLOR: black">CHEMIST, FINANCE, RECEIVING, 
+ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_move.htm">move a 
+      container</a>  </td>
+    <td>INV_MOVE_CONTAINER </td>
+    <td style="COLOR: black">CHEMIST, FINANCE, RECEIVING, 
+ADMIN</td></tr>
+  <tr>
+    <td><a href="../userguide/container_viewing_delete.htm">delete a container</a>  </td>
+    <td>INV_DELETE_CONTAINER </td>
+    <td style="COLOR: black">FINANCE, RECEIVING, 
+ADMIN</td></tr>
+  <tr>
+    <td><a href="link_management.htm">add/edit/delete 
+      links</a></td>
+    <td>INV_MANAGE_LINKS</td>
+    <td style="COLOR: black">REGISTRAR, ADMIN</td></tr>
+  <tr>
+    <td><a href="substance_management.htm">add/edit/delete substances</a></td>
+    <td>INV_MANAGE_SUBSTANCES</td>
+    <td style="COLOR: black">REGISTRAR, ADMIN</td></tr>
+  <tr>
+    <td><a href="admin_tasks_audit.htm">view audit 
+      trails</a></td>
+    <td>INV_VIEW_AUDIT_TRAIL</td>
+    <td style="COLOR: black">FINANCE, REGISTRAR, ADMIN</td></tr>
+  <tr>
+    <td><a href="container_viewing_update.htm">update a 
+      location</a></td>
+    <td>INV_UPDATE_LOCATION_CONTENTS</td>
+    <td style="COLOR: black">BROWSER</td></tr>
+  <tr>
+    <td><a href="container_viewing_rectify.htm">rectify a 
+      location</a></td>
+    <td>INV_RECTIFY_LOCATION_CONTENTS</td>
+    <td style="COLOR: black">ADMIN</td></tr>
+  <tr>
+    <td><a href="order.htm">order a container</a>  </td>
+    <td>INV_ORDER_CONTAINER</td>
+    <td style="COLOR: black">ADMIN</td></tr>
+  <tr>
+    <td><a href="container_viewing_reorder.htm">reorder a 
+      container</a>  </td>
+    <td>INV_REORDER_CONTAINER</td>
+    <td style="COLOR: black">ADMIN</td></tr>
+  <tr>
+    <td><a href="container_viewing_ehs.htm">edit EH&amp;S 
+      data</a></td>
+    <td>INV_EDIT_EHS_DATA</td>
+    <td style="COLOR: black">ADMIN</td></tr></tbody></table> </p>
+<p>The help for each API function indicates what privileges are necessary to 
+perform the operation.</p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="34507" endspan -->              
+</body>
+</html>

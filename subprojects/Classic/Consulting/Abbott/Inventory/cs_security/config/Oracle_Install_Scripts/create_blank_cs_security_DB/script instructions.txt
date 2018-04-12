@@ -1,0 +1,14 @@
+Instructions to Create or Upgrade the CS_Security Oracle Schema 
+
+
+Note: The sql scripts provided have been designed to be executed with the command line version of SQL*Plus.  This scripts contain substitution variables which will not be proccessed correctly when run from SQL*Plus Worksheet.  To execute the scripts with SQL*Plus just double click the provided command files.
+
+If the CS_Secutiry tables have not yet been created on your Oracle server then execute the create_cs_security.cmd file.
+Note: This step will irreversably delete any preexisting users and roles from the cs_security tables. 
+
+If you have a previous version of the cs_security schema installed by a ChemOffice WebServer 7.1 application then execute the upgrade_cs_security_71_to_80.cmd file.
+If you have a previous version of the cs_security schema installed by a ChemOffice WebServer 7.2 application then execute the upgrade_cs_security_72_to_80.cmd file.
+
+
+You must run EITHER the Create or Upgrade scripts.  DO NOT RUN BOTH!
+ 

@@ -1,0 +1,26 @@
+Enter the target Oracle service name:bimdb
+Enter the Oracle major version number (9):
+Enter the name of an Oracle account with system privileges (system):
+Enter the above oracle account password (manager2):abcdba
+Connected.
+'dropping public synonyms...'
+
+PL/SQL procedure successfully completed.
+
+'dropping user...'
+
+PL/SQL procedure successfully completed.
+
+'dropping tablespaces...'
+
+PL/SQL procedure successfully completed.
+
+'dropping test users...'
+
+PL/SQL procedure successfully completed.
+
+'dropping test roles...'
+
+PL/SQL procedure successfully completed.
+
+'Finished dropping CHEMINVDB2'

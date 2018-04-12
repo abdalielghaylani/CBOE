@@ -1,0 +1,185 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+
+<h1>ChemInv.ini Configuration File</h1>
+<p>The ChemInv.ini file, found in the following location: 
+<strong>&lt;webroot&gt;/ChemOffice/cheminv/config</strong> <br>defines many 
+parameters that allow Inventory Enterprise to function properly, including the 
+definitions of formgroups (which define all forms) in the application.&nbsp; 
+Most of this file should not be edited since editing this file in the wrong 
+place could cause major problems when running the Reg System 
+application.</p> 
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice Enterprise application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice Enterprise use default 
+configurations.</strong></em></p>
+<p>
+<table border="0">
+  
+  <tr>
+    <td><strong>[GLOBALS]</strong></td>
+    <td><strong><em>Table Group Definitions</em></strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/ABOUT_WINDOW.htm">ABOUT_WINDOW</a></td>
+    <td><strong>[</strong><strong>BASE_TABLE_GROUP</strong><strong>]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/ADO_CONNECTION_NAMES.htm">ADO_CONNECTION_NAMES</a><a href="cheminvini_fields/DISPLAY_NAME.htm"></a></td>
+    <td><strong>[CONTAINERS_TABLE_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CFW_INSTANCE.htm">CFW_INSTANCE</a></td>
+    <td><strong>[SUBSTANCES_TABLE_GROUP]<em></em></strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CHEM_CONNECTION_NAMES.htm">CHEM_CONNECTION_NAMES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="cheminvini_fields/DB_RECORD_COUNT.htm"></a></td>
+    <td><strong>[PLATES_TABLE_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/DB_RECORD_COUNT.htm">DB_RECORD_COUNT</a><a href="cheminvini_fields/DB_TYPE.htm"></a></td>
+    <td><strong><em>  </em></strong></td>
+    <td><a href="http://misty/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/cheminvini_fields/PLUGIN_VALUE.htm"></a></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/DB_TYPE.htm">DB_TYPE</a><a href="cheminvini_fields/TABLE_ALIASES.htm"></a></td>
+    <td><strong><em>ChemFinder Connection 
+      Definitions</em></strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/DISPLAY_NAME.htm">DISPLAY_NAME</a><a href="cheminvini_fields/SUBFORM_VIEW_NAMES.htm"></a></td>
+    <td><strong>[cheminv_CFW_FORM]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/FIELD_MAP_GROUPS.htm">FIELD_MAP_GROUPS</a><a href="cheminvini_fields/ADO_CONNECTION_NAMES.htm"></a></td>
+    <td><strong><em>  
+      </em></strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/FORM_GROUPS.htm">FORM_GROUPS</a><a href="ini_settings/temp_dir_path.htm"></a></td>
+    <td><strong><em>Form Group 
+    Definitions</em></strong></td>
+    <td><a href="cheminvini_fields/FORMULA_FIELDS.htm"></a></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/MAXHITS.htm">MAXHITS</a>&nbsp;</td>
+    <td><strong>[BASE_FORM_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/SUBFORM_VIEW_NAMES.htm">SUBFORM_VIEW_NAMES</a></td>
+    <td><strong>[CONTAINERS_FORM_GROUP]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/TABLE_ALIASES.htm">TABLE_ALIASES</a></td>
+    <td><strong>[CONTAINERS_NP_FORM_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/SUBFORM_VIEW_NAMES.htm"></a><a href="cheminvini_fields/TABLE_GROUPS.htm">TABLE_GROUPS</a><strong></strong></td>
+    <td><strong>[SUBSTANCES_FORM_GROUP]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONN_TYPE.htm"></a></td>
+    <td><strong>[ADD_RECORD_FORM_GROUP]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><strong><em>ADO Connection Definitions</em></strong><a href="cheminvini_fields/CONNECTION_STRING.htm"></a></td>
+    <td><strong>[GS_FORM_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><strong>[</strong><strong> 
+      BASE_CONNECTION</strong><strong> ]</strong><a href="cheminvini_fields/CONNECTION_TIMEOUT.htm"></a></td>
+    <td><strong>[GS_FIELD_MAP_GROUP]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONN_TYPE.htm">CONN_TYPE</a><a href="cheminvini_fields/COMMAND_TIMEOUT.htm"></a></td>
+    <td><strong>[GLOBAL_SUBSTANCESELECT_FORM_GROUP]</strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONNECTION_PASSWORD.htm">CONNECTION_PASSWORD</a><a href="cheminvini_fields/CONNECTION_USERNAME.htm"></a></td>
+    <td><strong>[PLATES_FORM_GROUP]</strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONNECTION_STRING.htm">CONNECTION_STRING</a><a href="cheminvini_fields/CONNECTION_PASSWORD.htm"></a></td>
+    <td></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONNECTION_TIMEOUT.htm">CONNECTION_TIMEOUT</a><a href="cheminvini_fields/COMMAND_TIMEOUT.htm"></a></td>
+    <td><strong><em>Map Group 
+Definitions</em></strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/CONNECTION_USERNAME.htm">CONNECTION_USERNAME</a></td>
+    <td vAlign="top"><strong>[GLOBAL_SUBSTANCESELECT_FIELD_MAP_GROUP]</strong></td>
+    <td vAlign="top"></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/COMMAND_TIMEOUT.htm">COMMAND_TIMEOUT</a></td>
+    <td><strong></strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/DBMS.htm">DBMS</a></td>
+    <td><strong></strong></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/PWD_KEYWORD.htm">PWD_KEYWORD</a></td>
+    <td><strong></strong></td>
+    <td><strong></strong></td></tr>
+  <tr>
+    <td><a href="cheminvini_fields/USERID_KEYWORD.htm">USERID_KEYWORD</a></td>
+    <td><strong></strong></td>
+    <td></td></tr></table><a name="display_types"></a></p>
+    <!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>CreatePhysPlateType</h1><p>          
+        Creates a new physical 
+plate type according to the inputs.&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CreatePhysPlateType.asp?PhysPlateName=adVarChar&amp;RowCount=adNumeric&amp;ColCount=adNumeric&amp;WellCapacity=Int&amp;CapacityUnitID=adNumeric[&amp;RowPrefix=adVarChar&amp;ColPrefix=adVarChar&amp;RowUseLetters=adNumeric&amp;ColUseLetters=adNumeric&amp;NameSeparator=adVarChar&amp;NumberStartCorner=AdNumeric&amp;NumberDirection=adNumeric&amp;IsPreBarcoded=adVarChar&amp;SupplierID= adNUmeric]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">PhysPlateName</h5>
+<p>    The name of the new physical 
+plate type.&nbsp; </p>
+
+<h5 class="param">RowCount</h5>
+<p>The number of rows in the plate using this physical 
+plate type.&nbsp; </p>
+
+<h5 class="param">ColCount</h5>
+<p>The number of columns in the plate using this physical 
+plate type. </p>
+
+<h5 class="param">WellCapacity</h5>
+<p> The capacity of each well in the plate using this physical 
+plate type. </p>
+
+<h5 class="param">CapacityUnitID</h5>
+<p> The ID corresponding to the appropriate units used for 
+the Well Capacity          
+ measurement. </p>
+<h5 class="param">[RowPrefix]</h5>
+<p>If the rows are labelled by a prefix, the prefix for 
+the row.&nbsp; </p>
+<h5 class="param">[ColPrefix]</h5>
+<p>If the columns are labelled by a prefix, the prefix for 
+the column. </p>
+<h5 class="param">[RowUseLetters]</h5>
+<p>A value of 1 if the rows are identified by consecutive letters (instead 
+of numbers).&nbsp; </p>
+<h5 class="param">[ColUseLetters]</h5>
+<p>A value of 1 if the columns are identified by consecutive letters (instead 
+of numbers).&nbsp;&nbsp; </p>
+<h5 class="param">[NameSeparator]</h5>
+<p>          
+ .&nbsp; </p>
+<h5 class="param">[NumberStartCorner]</h5>
+<p>          
+  </p>
+<h5 class="param">[NumberDirection]</h5>
+<p>          
+ .&nbsp; </p>
+<h5 class="param">[IsPreBarcoded]</h5>
+<p> If Y, the plates of this physical plate type&nbsp;are 
+already barcoded.&nbsp; </p>
+<h5 class="param">[SupplierID]</h5>
+<p> The supplier ID for the plates of this physical 
+plate type.&nbsp; </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>A&nbsp;new physical plate type (Name is NewPlateType) is 
+created with 8 rows and 12 columns.&nbsp; The wells have a capacity of1 mL (unit 
+ID=        
+             9).&nbsp; The supplier for this physical plate type&nbsp;has ID 
+1123.&nbsp;</p><pre>/cheminv/api/CreatePhysPlateType.asp?PhysPlateName=NewPlateType&amp;RowCount=8&amp;ColCount=12&amp;WellCapacity=1&amp;CapacityUnitID=9[&amp;SupplierID= 1123]</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

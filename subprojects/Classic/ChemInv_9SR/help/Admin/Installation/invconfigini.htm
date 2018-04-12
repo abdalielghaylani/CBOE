@@ -1,0 +1,207 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+
+<h1>Invconfig.ini Configuration File</h1>
+<p>The Invconfig.ini file, found in the following location: 
+<strong>&lt;webroot&gt;/ChemOffice/cheminv/config</strong> <br> defines many parameters that allow 
+Inventory Enterprise to function properly, including the format of custom 
+fields. Most of this file should not be edited since editing this file in the 
+wrong place could cause major problems when running the Inventory 
+Manager application.</p> 
+            
+            
+               
+       
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice Enterprise application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice Enterprise use default 
+configurations.</strong></em></p>
+<p>
+<table border="0" id="TABLE1">
+  
+  <tr>
+    <td><strong>[APPLICATION]</strong></td>
+    <td><strong>[SEARCHLOG]</strong></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/ALLOW_REQUESTS.htm">ALLOW_REQUESTS</a></td>
+    <td><a href="invconfigini_settings/LOG_SEARCHES.htm">LOG_SEARCHES</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_CONTAINER_STATUS.htm">DEFAULT_CONTAINER_STATUS</a></td>
+    <td><a href="invconfigini_settings/SEARCH_LOG_DB_CONNSTR.htm">SEARCH_LOG_DB_CONNSTR</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_RETIRED_LOCATION.htm">DEFAULT_RETIRED_LOCATION</a></td>
+    <td><a href="invconfigini_settings/SEARCH_LOG_DB_CONNSTR.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_RETIRED_STATUS.htm">DEFAULT_RETIRED_STATUS</a></td>
+    <td><strong>[CHEMREG]</strong></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DISABLE_CHECKBOXES_DURING_RECTIFICATION.htm">DISABLE_CHECKBOXES_DURING_RECTIFICATION</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="cheminvini_fields/DB_RECORD_COUNT.htm"></a></td>
+    <td><a href="invconfigini_settings/REG_CONTAINERS_ONLY.htm">REG_CONTAINERS_ONLY</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/EDITABLE_TABLES.htm">EDITABLE_TABLES</a></td>
+    <td><a href="invconfigini_settings/REG_SERVER_NAME.htm">REG_SERVER_NAME</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/ENABLE_PLATE_MANAGEMENT.htm">ENABLE_PLATE_MANAGEMENT</a></td>
+    <td><a href="invconfigini_settings/USE_NOTEBOOK_TABLE.htm">USE_NOTEBOOK_TABLE</a><a href="invconfigini_settings/ACX_SERVER_NAME.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/EXPIRATION_DATE_INCREMENT.htm">EXPIRATION_DATE_INCREMENT</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/INV_SERVER_NAME.htm">INV_SERVER_NAME</a><a href="invconfigini_settings/NP_SEARCH.htm"></a></td>
+    <td><a href="invconfigini_settings/MSDX_LOOK_AHEAD.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/NP_SEARCH.htm">NP_SEARCH</a><a href="invconfigini_settings/SPECIAL_LOCATIONS.htm"></a></td>
+    <td><strong>[CHEMACX]</strong><a href="invconfigini_settings/SHOW_ACX_LOOKUP_LINK.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/PLATE_DEFAULT_CONC_UNIT.htm">PLATE_DEFAULT_CONC_UNIT</a></td>
+    <td><a href="invconfigini_settings/ACX_SERVER_NAME.htm">ACX_SERVER_NAME</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/PLATE_DEFAULT_MASS_UNIT.htm">PLATE_DEFAULT_MASS_UNIT</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_FIELD.htm">IMPORT_CONTAINER_PICKLIST_1_FIELD</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/PLATE_DEFAULT_RETIRED_LOCATION.htm">PLATE_DEFAULT_RETIRED_LOCATION</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_SQL.htm">IMPORT_CONTAINER_PICKLIST_1_SQL</a><a href="invconfigini_settings/SHOW_MSDX_LOOKUP_LINK.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/PLATE_DEFAULT_RETIRED_STATUS.htm">PLATE_DEFAULT_RETIRED_STATUS</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_TITLE.htm">IMPORT_CONTAINER_PICKLIST_1_TITLE</a><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_FIELD.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/PLATE_DEFAULT_VOL_UNIT.htm">PLATE_DEFAULT_VOL_UNIT</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_FIELD.htm">IMPORT_CONTAINER_PICKLIST_2_FIELD</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/REQUIRE_BARCODE.htm">REQUIRE_BARCODE</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_SQL.htm">IMPORT_CONTAINER_PICKLIST_2_SQL</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_BATCH.htm">SHOW_BATCH</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_TITLE.htm">IMPORT_CONTAINER_PICKLIST_2_TITLE</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_CERTIFY.htm">SHOW_CERTIFY</a></td>
+    <td><a href="invconfigini_settings/MSDX_LOOK_AHEAD.htm">MSDX_LOOK_AHEAD</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_CHECKIN_DETAILS.htm">SHOW_CHECKIN_DETAILS</a></td>
+    <td><a href="invconfigini_settings/SHOW_ACX_LOOKUP_LINK.htm">SHOW_ACX_LOOKUP_LINK</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_REQUEST_SAMPLE.htm">SHOW_REQUEST_SAMPLE</a></td>
+    <td><a href="invconfigini_settings/SHOW_MSDX_LOOKUP_LINK.htm">SHOW_MSDX_LOOKUP_LINK</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_SAMPLE.htm">SHOW_SAMPLE</a></td>
+    <td><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_SQL.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SHOW_SPLIT.htm">SHOW_SPLIT</a></td>
+    <td><strong>[DOCMANAGER]</strong><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_TITLE.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/SPECIAL_LOCATIONS.htm">SPECIAL_LOCATIONS</a><a href="invconfigini_settings/USE_CUSTOM_SEARCH_FORM_TABS.htm"></a></td>
+    <td><a href="invconfigini_settings/DOCMANAGER_SERVER_NAME.htm">DOCMANAGER_SERVER_NAME</a><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_FIELD.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/STATUS_APPROVED.htm">STATUS_APPROVED</a></td>
+    <td><a href="invconfigini_settings/SHOW_DOCMANAGER_LINK.htm">SHOW_DOCMANAGER_LINK</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/STATUS_CERTIFIED.htm">STATUS_CERTIFIED</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="invconfigini_Settings/USE_CUSTOM_BANNER_FRAME_LINKS.htm">USE_CUSTOM_BANNER_FRAME_LINKS</a><a href="cheminvini_fields/SUBFORM_VIEW_NAMES.htm"></a></td>
+    <td><strong>[CUSTOM_FIELDS]</strong><a href="invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_SQL.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/USE_CUSTOM_BROWSEBANNER_FRAME_LINKS.htm">USE_CUSTOM_BROWSEBANNER_FRAME_LINKS</a><a href="cheminvini_fields/CONN_TYPE.htm"></a></td>
+    <td><a href="invconfigini_settings/ALT_IDS.htm">ALT_IDS</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/USE_CUSTOM_LIST_FRAME_LINKS.htm">USE_CUSTOM_LIST_FRAME_LINKS</a><a href="invconfigini_Settings/DEFAULT_CONTAINER_SEARCH_REPORT.htm"></a></td>
+    <td><a href="invconfigini_settings/CUSTOM_FIELDS.htm">CUSTOM_FIELDS</a><a href="invconfigini_settings/TAB_TEXT.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/USE_CUSTOM_TAB_FRAME_LINKS.htm">USE_CUSTOM_TAB_FRAME_LINKS</a><a href="invconfigini_settings/DEFAULT_CONTAINER_LABEL_REPORT.htm"></a></td>
+    <td><a href="invconfigini_settings/HIDE_TAB.htm"></a><a href="invconfigini_settings/CUSTOM_CHECKIN_FIELDS.htm">CUSTOM_CHECKIN_FIELDS</a><strong></strong></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/USE_CUSTOM_SEARCH_FORM_TABS.htm">USE_CUSTOM_SEARCH_FORM_TABS</a><a href="invconfigini_settings/DEFAULT_CONTAINER_LOCATION_REPORT.htm"></a></td>
+    <td><a href="invconfigini_settings/CUSTOM_PLATE_FIELDS.htm">CUSTOM_PLATE_FIELDS</a><a href="invconfigini_settings/TAB_POPUP_HELP.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_REPORT_FORMAT.htm"></a></td>
+    <td><a href="invconfigini_settings/CUSTOM_WELL_FIELDS.htm">CUSTOM_WELL_FIELDS</a><a href="invconfigini_settings/TAB_TEXT.htm"></a></td></tr>
+  <tr>
+    <td><strong>[REPORTS]</strong><a href="invconfigini_settings/REPORT_DB_PATH.htm"></a></td>
+    <td><a href="invconfigini_settings/HIDE_TAB.htm">HIDE_TAB</a><strong> 
+    </strong></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_CONTAINER_LABEL_REPORT.htm">DEFAULT_CONTAINER_LABEL_REPORT</a></td>
+    <td><a href="invconfigini_settings/TAB_POPUP_HELP.htm">TAB_POPUP_HELP</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_CONTAINER_LOCATION_REPORT.htm">DEFAULT_CONTAINER_LOCATION_REPORT</a></td>
+    <td vAlign="top"><a href="invconfigini_settings/TAB_TEXT.htm">TAB_TEXT</a></td></tr>
+  <tr>
+    <td><a href="invconfigini_Settings/DEFAULT_CONTAINER_SEARCH_REPORT.htm">DEFAULT_CONTAINER_SEARCH_REPORT</a><a href="invconfigini_settings/DEFAULT_CONTAINER_LOCATION_REPORT.htm"></a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_PLATE_LABEL_REPORT.htm">DEFAULT_PLATE_LABEL_REPORT</a><a href="invconfigini_settings/DEFAULT_PLATE_LOCATION_REPORT.htm"></a></td>
+    <td><a href="invconfigini_settings/HIDE_TAB.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_PLATE_LOCATION_REPORT.htm">DEFAULT_PLATE_LOCATION_REPORT</a><a href="invconfigini_settings/DEFAULT_PLATE_REPORT_FORMAT.htm"></a></td>
+    <td><a href="invconfigini_settings/TAB_POPUP_HELP.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_Settings/DEFAULT_PLATE_SEARCH_REPORT.htm">DEFAULT_PLATE_SEARCH_REPORT</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/DEFAULT_REPORT_FORMAT.htm">DEFAULT_REPORT_FORMAT</a><a href="invconfigini_settings/REPORT_DB_PATH.htm"></a></td>
+    <td><a href="invconfigini_settings/TAB_TEXT.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/REPORT_DB_PATH.htm">REPORT_DB_PATH</a><a href="invconfigini_settings/RPT_PATH.htm"></a></td>
+    <td><a href="invconfigini_settings/HIDE_TAB.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/RPT_PATH.htm">RPT_PATH</a><a href="invconfigini_settings/REPORTS_HTTP_PATH.htm"></a></td>
+    <td><a href="invconfigini_settings/TAB_POPUP_HELP.htm"></a></td></tr>
+  <tr>
+    <td><a href="invconfigini_settings/REPORTS_HTTP_PATH.htm">REPORTS_HTTP_PATH</a><a href="invconfigini_settings/REPORTS_HTTP_PATH.htm"></a></td>
+    <td><a href="invconfigini_settings/TAB_TEXT.htm"></a></td></tr></table><a name="display_types"></a></p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Checking Compatability</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>       Checking Compatability</h1>
+<h2>CSDO.dll Version</h2>
+<p>To check to see if your CSDO.dll is up to date:</p>
+<ol>
+  <li>Browse to&nbsp;<strong> \Program 
+Files\ChemOffice2001\Common\dlls</strong>.
+  <li>Right-click on the file and select <strong>Properties</strong>.
+  <li>Click on the <strong>Version Tab</strong>    .<br>If you 
+  have version 1.1.0.24 you will need to update to 1.1.0.25 or later.</li>         
+    </ol>
+<h2>    
+   
+             
+            
+  CSDO_UTILS_VBS.ASP Changes</h2>
+<p>This file is located in 
+<strong>\intepub\wwwroot\chemoffice\WebServer_source\cfserverasp\source</strong>    
+   
+             
+            
+   .&nbsp;</p>
+<ol><li>Open the file in a text editor and search for &quot;select 
+  case conn_dbms&quot;.&nbsp; 
+  <li>Make sure that the lines following include a case for SQLSERVER.&nbsp; The 
+  complete select case should look like:
+  <p></p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>select case conn_dbms<br>&nbsp;&nbsp;&nbsp; case 
+      &quot;ORACLE&quot;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms =   
+      2<br>&nbsp;&nbsp;&nbsp; case &quot;SQLSERVER&quot;, 
+      &quot;SQL_SERVER&quot;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms =   
+      3<br>&nbsp;&nbsp;&nbsp; case 
+      else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms =     1<br>end 
+      select</p></blockquote></blockquote></blockquote>
+<p>If any of the sqlserver case is missing it should be edited to 
+match the above.</p></li></ol>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

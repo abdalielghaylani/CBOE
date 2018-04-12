@@ -1,0 +1,274 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Chemical Inventory User's Guide -- Installation</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><EM>ChemInventory</EM>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="step3.htm"><IMG style="LEFT: 1px; TOP: 0px" height=16 alt=Previous src="../../../../webserver_source/cfserverasp/help/images/back.gif" width=16 border=0 ></A>
+<A href="installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../../webserver_source/cfserverasp/help/images/uplevel.gif" width=16 border=0 ></A>
+<A href="step5.htm"><IMG height=16 alt=Next src="../../../../webserver_source/cfserverasp/help/images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+<b> ChemInventory User's Guide</b>
+</td>
+</tr>
+</table>
+</div>
+
+<h1> Setting up&nbsp;the Report Writer</h1>
+<P><STRONG>Note:</STRONG> If you have already configured Reports.exe to run with 
+any ChemOffice Webserver application, you do not have to repeat these steps, or 
+the steps to setup PDF support.&nbsp; Just make sure reports.exe is running.</P>
+<P>There are two options in setting up the report writer:</P>
+<UL>
+  <LI><A href="#service">Run it as a service</A> 
+  <LI><A href="#local">Run it locally on start up</A> </LI></UL>
+<P>It is only necessary to complete one set of instructions.</P><A 
+name=service></A>
+<H2>Running Reports.exe as a Service</H2>
+<P>Reports.exe is the application used by the ChemOffice WebServer products to 
+write reports. The application must be running on the server in order for a 
+report to be made, so in order to guarantee this, it is best to set up 
+reports.exe to run as a service. Doing this will not require any additional 
+steps to start running reports.exe other then starting the server. 
+<P>Four files are necessary to set up the Report Writer as a service. These 
+files are included in a self-extrating zip 
+file:<BR><STRONG>&lt;webroot&gt;/Chemoffice/webserver_source/cfserverasp/RPT/reports_zip.exe</STRONG> 
+</P>
+<P>After&nbsp;locating the file:</P>
+<OL>
+  <LI>Double-click on <STRONG>reports_zip.exe</STRONG>.<BR>This&nbsp;creates a 
+  new directory (<STRONG>C:\Reports_As_Service</STRONG>) containing the files 
+  necessary to set up the service. 
+  <LI>Follow the instructions found 
+  in:<BR><STRONG>C:\Rpt_As_Service\run_as_service_instructions.txt</STRONG><BR>to finish setting up reports.exeto run as a service. 
+  <LI>Create a COM+ application for the ReportQ.dll. 
+  <UL>
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Go to <B>Start &gt; Programs &gt; 
+    Adminstrative Tools &gt; Component Services</B>.<?XML:NAMESPACE PREFIX = O 
+    /><O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand <B>Component 
+    Services&gt;Computers&gt;My Computer</B> node.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand <B>COM+ Applications</B> 
+    node.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click on <B>COM+ Applications</B> folder 
+    and right click.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>New &gt; Application</B> from 
+    the menu.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click <B>Next</B><O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Create an Empty Application 
+    </B>button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Enter the name:<SPAN 
+    style="mso-spacerun: yes">&nbsp;&nbsp;<STRONG>RPT</STRONG></SPAN> in the 
+    text field.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>Server application 
+    </B>option<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Next</B> 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>this user</B> radio 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Under <B>User:</B> enter “Administrator” 
+    <O:P></O:P></SPAN>
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Under Password: enter the password for 
+    the local Administrator account<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Confirm the password.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click<B> </B>the<B> Finish</B> 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">The&nbsp;<STRONG>RPT</STRONG>&nbsp;application 
+    should appear in the <B>COM+ Applications </B>folder 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand the <B>RPT</B> Package and left 
+    click on the <B>Components</B> folder.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Right click on the selected 
+    <B>Components</B> folder and choose <B>New &gt; Component</B>.</SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click <B>Next</B></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Install new 
+    components</B>&nbsp;button.</SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><O:P>Browse 
+    to Program Files\ChemOffice2002\Common\dlls\REPORTQ.dll</O:P> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">Click 
+    open 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">
+    <P class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-layout-grid-align: none">The ReportQ 
+    component should appear in the <B>Components</B> folder.</P></LI></UL></LI>         
+  <LI>Make sure reports.exe is set to maximized on startup 
+  <ol><LI>Double-click on reports.exe<BR>If the reports box 
+    opens, the application is set correctly.
+    <LI>If the reports box does not open, only the icon appears in the task bar, 
+    double-click on the icon.<BR>This opens the reports box.
+    <LI>Click <STRONG>Stop</STRONG>.
+    <LI>Click <STRONG>Settings</STRONG>.
+    <LI>Select <STRONG>Full Screen</STRONG> from the <STRONG>Display on 
+    Startup</STRONG> listbox.
+    <LI>Click <STRONG>OK</STRONG>.</LI></ol>        </LI></OL><A name=local></A>
+<H2>Running Reports.exe Locally</H2>
+<OL>
+  <LI>Browse 
+  to&nbsp;<STRONG>&lt;webroot&gt;/chemoffice/webserver_source/cfserverasp/RPT 
+  </STRONG>
+  <LI>Add a shortcut of the reports.exe to the Startup menu (in Documents and 
+  Settings) under ‘all users’ 
+  <UL>
+    <LI>Note: The reports.exe program will automatically be excuted as soon as a 
+    user physically logs into the server console. The report writer will not 
+    work unless a user is constantly logged into the server.&nbsp; To avoid the 
+    requirement of logging into the server please contact <A 
+    href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A>&nbsp;to&nbsp;obtain 
+    instructions on&nbsp;how to install the reports.exe as a service.</LI></UL>
+  <LI>Create a COM+ application for the ReportQ.dll. 
+  <UL>
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Go to <B>Start &gt; Programs &gt; 
+    Adminstrative Tools &gt; Component Services</B>.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand <B>Component 
+    Services&gt;Computers&gt;My Computer</B> node.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand <B>COM+ Applications</B> 
+    node.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click on <B>COM+ Applications</B> folder 
+    and right click.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>New &gt; Application</B> from 
+    the menu.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click <B>Next</B><O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Create an Empty Application 
+    </B>button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Enter the name:<SPAN 
+    style="mso-spacerun: yes">&nbsp;&nbsp;<STRONG>RPT</STRONG></SPAN> in the 
+    text field.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>Server application 
+    </B>option<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Next</B> 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Select <B>this user</B> radio 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Under <B>User:</B> enter “Administrator” 
+    <O:P></O:P></SPAN>
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Under Password: enter the password for 
+    the local Administrator account<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Confirm the password.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click<B> </B>the<B> Finish</B> 
+    button.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">The&nbsp;<STRONG>RPT</STRONG>&nbsp;application 
+    should appear in the <B>COM+ Applications </B>folder 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Expand the <B>RPT</B> Package and left 
+    click on the <B>Components</B> folder.<O:P></O:P></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Right click on the selected 
+    <B>Components</B> folder and choose <B>New &gt; Component</B>.</SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click <B>Next</B></SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><SPAN 
+    style="mso-bidi-font-size: 10.0pt">Click the <B>Install new 
+    components</B>&nbsp;button.</SPAN> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none"><O:P>Browse to Program 
+    Files\ChemOffice2002\Common\dlls\REPORTQ.dll</O:P> 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">Click 
+    open 
+    <LI class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-list: l2 level1 lfo4; tab-stops: list .5in; mso-layout-grid-align: none">
+    <P class=MsoNormal 
+    style="MARGIN: 0in 0in 0pt; mso-layout-grid-align: none">The ReportQ 
+    component should appear in the <B>Components</B> folder.</P></LI></UL></LI></OL>
+<P><A href="step5.htm">  Step 5: Set up&nbsp;PDF 
+Support</A></P>
+</body>
+
+</html>

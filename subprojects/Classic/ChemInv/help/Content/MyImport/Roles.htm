@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="110" MadCap:lastWidth="624" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise User Guide" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Roles</title>
+        <link href="../Resources/TableStyles/_2col_table.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox_breadcrumbsProxy"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory Manager User Guide.htm#Inventory_Manager_User_Guide_1619290017_1096394">Inventory Enterprise User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Roles</span>
+        </div>
+        <h2 class="Heading2"><a name="Inventory_Manager_User_Guide_1619290017_1002466"></a><a name="Inventory_Manager_User_Guide_1619290017_15293"></a><a name="kanchor291"></a><a name="kanchor292"></a>Roles</h2>
+        <div class="Body">Different users need to perform different tasks using Inventory Enterprise 11.0. Therefore, while setting up new user accounts, system administrator assigns different roles to different users. Each Inventory role is assigned specific privileges, which specify the task that can be performed using the role. For example, BROWSER only has the privilege to read the contents of a container, however, INV_CHEMIST is allowed to move and edit the contents of a container, as well. </div>
+        <div class="Body">The table below lists the roles available in Inventory Enterprise 11.0 and the Oracle role name and privileges associated with each role:</div>
+        <table class="TableStyle__2col_table" style="width: 576px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="192px" />
+            <col width="192px" />
+            <col width="192px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="Table_head" style="margin-top: 10pt;margin-bottom: 16pt;font-family: 'Times New Roman';font-weight: bold;font-style: normal;line-height: 12pt;">Role Name</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">Oracle Role Name</td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">Privileges</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="Table_text" style="margin-top: 0pt;margin-bottom: 11pt;font-family: Garamond;font-style: normal;font-size: 11pt;">BROWSER</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">INV_BROWSER</td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">Read Only</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">CHEMIST</td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">INV_CHEMIST</td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">Edit/Move Containers</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">RECEIVING</td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">INV_RECEIVING</td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">Create/Edit/Move Containers</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">FINANCE</td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">INV_FINANCE</td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">Create/Edit/Move Containers + Create/Move/Delete Locations</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">REGISTRAR</td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">INV_REGISTRAR</td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">Create/Edit/Delete inventory substances </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">ADMIN </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">INV_ADMIN</td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">Full Access</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>The help for each API function indicates the role necessary to perform the function.</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

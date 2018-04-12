@@ -1,0 +1,87 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+&nbsp;
+<h1>GetKeyContainerAttributes</h1><p>          
+               Lists Key container attributes for the given          
+              containerID          
+           or 
+Container Barcode.</p><h3>Syntax</h3><pre> /cheminv/api/GetKeyContainerAttributes.asp?ContainerID= adVarChar&amp;ContainerBarcode= adVarChar</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">ContainerID</h5>
+<p>     The&nbsp;Container ID&nbsp;for the container you are 
+requesting information for.&nbsp; If this is not provided,&nbsp;ContainerBarcode 
+is required.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<h5 class="param">ContainerBarcode</h5>
+<p>     The&nbsp;Container&nbsp;Barcode&nbsp;for the container 
+you are requesting information for.&nbsp; If this is not provided,&nbsp;ContainerID 
+is required.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<h3>Outputs</h3>
+<h5 class="param">ContainerID<br>Barcode<br>CurrentUser<br>UOM<br>QtyRemaining<br>Path</h5>
+
+<h3>Example</h3>
+<p>&nbsp;A user requests to view information       
+  for the container&nbsp;with the following ID:        
+                      
+C111</p><pre> /cheminv/api/GetKeyContainerAttributes.asp?ContainerID= C111</pre><p>OR, a user requests to view information for the 
+container&nbsp;with the following Barcode: C8BGT17</p><pre> /cheminv/api/GetKeyContainerAttributes.asp?ContainerBarcode= C8BGT17</pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+
+</body>
+</html>

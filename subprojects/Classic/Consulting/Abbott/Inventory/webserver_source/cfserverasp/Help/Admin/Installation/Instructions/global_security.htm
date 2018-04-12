@@ -1,0 +1,116 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise Admin Guide -- Installation Win2000</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<a href="testing.htm"><img height="16" alt="Previous" src="../../../images/back.gif" width="16" border="0"></a>
+<a href="installation.htm"><img height="16" alt="Up One Level" src="../../../images/uplevel.gif" width="16" border="0"></a>
+<a href="minimum_requirements.htm"><img height="16" alt="Next" src="../../../images/next.gif" width="16" border="0"></a>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>     ChemOffice Enterprise</strong>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>Set up Global Security</h1>
+<p class="Body"><a name="pgfId-1065840"></a>Global security is used to limit users to particular 
+parts of the applications. If you do not plan to use global 
+security, you can skip this step. </p>
+<p class="Body"><a name="pgfId-1065906"></a>Global security requires Oracle 8i 
+or 9i and the appropriate&nbsp;client to be installed.</p>
+<p class="Body"><a name="pgfId-1065844"></a>To set up global security:</p>
+<ol>
+  <li class="Numbered-step1"><a name="pgfId-1065845"></a>Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em> 
+  cs_security/config/Oracle_Install_Scripts/create_blank_cs_security_DB</strong> 
+
+  <li class="Numbered"><a name="pgfId-1065860"></a>Execute the following file by 
+  double-clicking on it: <br>Create_cs_security.cmd <br>This 
+  will create the cs_security database.    
+    
+  <ol><li class="Numbered-substep"><a name="pgfId-1067814"></a>Press Enter. 
+  <li class="Numbered-substep"><a name="pgfId-1067821"></a>Enter your Oracle Service 
+  Name and press Enter. For information about your Oracle Service Name, please 
+  see your Oracle DBA or consultant. 
+  <li class="Numbered-substep"><a name="pgfId-1067831"></a>Answer the rest of the 
+  questions, press enter to accept the defaults (shown in parentheses next to 
+  the questions). 
+  <li class="Numbered-substep"><a name="pgfId-1067832"></a>When the script is finished running, a log file 
+    opens in Notepad. Check the log file for connection errors. If there are no 
+    connection errors, close the log file (this closes the command prompt). 
+    <br>CambridgeSoft recommends saving this log file for future reference in 
+    any accessible location.</li></ol>
+  <li class="NoteInd">
+  <div>Browse to <strong>  <em class="Strong">&lt;webroot&gt;/Chemoffice/</em> cs_security/config/ 
+  </strong> 
+   </div>
+  <li class="Numbered"><a name="pgfId-1065894"></a>Double-click <strong>cs_security.udl</strong>  (to 
+  open it). 
+  <li class="Numbered"><a name="pgfId-1065895"></a>Change the <strong>Data Source</strong>    to the 
+  name of your Oracle service. For information about your Oracle Service Name, 
+  please see your Oracle DBA or consultant. 
+  <li class="Numbered"><a name="pgfId-1065896"></a>Enter <strong>oracle</strong> as the password and 
+  click <strong>Test Connection</strong>      
+    . 
+  <li class="Numbered"><a name="pgfId-1067833"></a>Click <strong>OK</strong> . 
+  <li class="Numbered"><a name="pgfId-1067834"></a>Click <strong>OK</strong> . 
+  <li class="Numbered">Browse to and open&nbsp;<web root><strong><em>&lt;webroot&gt;/Chemoffice/</em>config/chemoffice.ini</strong> 
+
+  <li class="Numbered">Ensure USE_CS_SECURITY_APP=1 in [GLOBALS] section. 
+  <li class="Numbered"><a name="pgfId-1067841"></a>This is the last step for installing ChemOffice 
+  WebServer. 
+  <li class="Numbered">Restart your machine. </li></ol>
+<h3 class="Head2"><a name="pgfId-1068223"></a>Test the installation of Global 
+Security</h3>
+<ol>
+  <li class="Numbered"><a name="pgfId-1068227"></a>Click on the <strong>Global Login</strong>     link on 
+  the ChemOffice Enterprise homepage. 
+  <li class="Numbered"><a name="pgfId-1068609"></a>Login using the following 
+  username and password: 
+  <ul><li class="Bulleted-indent"><a name="pgfId-1068610"></a><strong>username</strong>: cssadmin 
+  <li class="Bulleted-indent"><a name="pgfId-1068617"></a><strong>password</strong>: cssadmin <br>The global security page opens. 
+</li></ul></li></ol><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

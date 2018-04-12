@@ -1,0 +1,117 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Changing The User Interface</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>Changing The User Interface</h1>
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<h2>Changing Buttons/Graphics</h2>
+
+  <p>&nbsp;&nbsp;&nbsp; To change the buttons/graphics for 
+  a single web application: 
+  <ol>
+    <li>Open the cfserver.ini file for the application and 
+    change the path specified for the graphics to a location within your web 
+    application.&nbsp; For example <strong>/sample/graphics/navbuttons</strong>. 
+  NAV_BUTTONS_GIF_PATH=/cfserverasp/source/graphics/navbuttons/
+  
+    <li>Save the cfserver.ini file. 
+    <li>Copy the folder 
+    <strong>/cfserverasp/source/graphics/navbuttons</strong>  too 
+    the directory entered in step 1. 
+    <li>Change the files that you want, but keep the names the same. You now have your own
+      custom set of graphics that will affect the web application whose cfserver.ini file you
+      edited.</li></ol>
+  <h2>Removing Frames</h2>
+  <p>If you remove frames you will lose some of the advanced functionality of 
+  the ChemOffice WebServer, but it will still function.&nbsp; For instance, you 
+  will not be able to use mark hits and save query functionality and the browse 
+  buttons for a recordset will need to appear at the bottom of the main page so 
+  they will be updated properly. </p>
+  <ol>          
+              
+                  
+                   
+             
+    <li>Remove frames in the default.asp file for the web 
+    application. 
+    <li>Use the function calls in the navbar.asp file 
+    to&nbsp;retrieve the buttons you want to put in the main page. If you only 
+    want a single button rather then a group use the syntax 
+    <strong>GetButton('search')</strong>         
+                      
+              to 
+    display the search button, etc. 
+    <li>Change the settings in the cfserver.ini file.&nbsp; 
+    Be aware that by changing to no frames you will lose the user_info 
+    functionality which includes mark hits and save/restore query.<font SIZE="2"></font><dl>
+        <font SIZE="2">
+        <dd>MAIN_WINDOW=no_frames 
+        <dd>NAV_BAR_WINDOW=no_frames</font><font SIZE="2">
+        <dd>USER_INFO_WINDOW=no_frames 
+        </font></dd>
+      </dl>       
+                 
+           </li></ol>
+  <h2> Changing the Frameset Definition</h2>
+  <p>Within the default.asp file you can change the frame definition for a web 
+  application. The only thing to be cautious about is maintaining the names 
+  &quot;navbar&quot;, &quot;user_info&quot; and main.&nbsp; These are what the web server is looking 
+  for to perform many of it's basic and advanced functions in a frame 
+  environment. </p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

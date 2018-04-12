@@ -1,0 +1,49 @@
+<html><head></head><body>
+<p>
+    <span style="font-size: 16pt">PyEngine WebService Sample Calls</span>
+    </p>
+    <p>
+        <strong>URL</strong>:
+    <a href='http://ty/pyengine/service.asmx'>http://ty/pyengine/service.asmx</a>
+    </p>
+    <hr>
+<p>
+    <strong>1. Simple call: script code -> one return</strong></p>
+<pre>
+        public static void TestWebService()
+        {
+            string code = "from ChemScript import *\n<strong>m</strong>=Mol.open('CCCC')\nr=m.formula()\nw=m.weight()";
+
+            PyEngine.Service pe = new PyEngine.Service();
+
+            object ret;
+            string error;
+            bool f = pe.Execute(code, "<strong>m</strong>", out ret, out error);
+            if (f)
+            {
+            }
+        }
+</pre>
+    <p>
+        <strong>
+        2. Batch call: multiple inputs -> many return items</strong></p>
+<pre>
+        public static void TestWebService2()
+        {
+            string code = "from ChemScript import *\n<strong>m</strong>=Mol.open(<strong>smiles</strong>)\n<strong>r</strong>=m.formula()\n<strong>w</strong>=m.weight()";
+
+            PyEngine.Service pe = new PyEngine.Service();
+
+            string[] inputvars = new string[] { "<strong>smiles</strong>" };
+            string[] inputs = new string[] { "CCCCC", "CC=O" };
+            string[] outputvars = new string[]{"<strong>r</strong>", "<strong>w</strong>", "<strong>m</strong>"};
+
+            object[] outputs;
+            string[] errors;
+            int n = pe.BatchExecute(code, inputvars, inputs, outputvars, out outputs, out errors);
+            if (n > 0)
+            {
+            }
+        }
+</pre>
+</body></html>

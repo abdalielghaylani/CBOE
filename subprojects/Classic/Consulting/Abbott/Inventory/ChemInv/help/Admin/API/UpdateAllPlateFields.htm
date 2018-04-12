@@ -1,0 +1,161 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+&nbsp;
+<h1>UpdateAllPlateFields</h1><p>          
+                         
+            
+               
+                Updates the plate          
+              fields          
+           passed 
+as parameters.</p><h3>Syntax</h3> <pre>/cheminv/api/UpdateAllPlateFields.asp?PlateID=adVarChar&amp;LocationID=adNumeric&amp;PlateName=adVarChar&amp;PlateTypeID=adNumeric&amp;PLateFormatID=adNumeric&amp;GroupID=adNumeric&amp;QtyUnit=adVarChar&amp;QtyRemaining=adNumeric[&amp;QtyInitial=adNumeric&amp;ContainerStatusID=adNumeric&amp;SupplierShipmentCode=adVarChar&amp;SupplierShipmentNumber=adVarChar&amp;SupplierShipmentDate=Date&amp;LibraryID=adNumeric&amp;Solvent=adVarChar&amp;FTCycles=adNumeric&amp;WeightUnit=adVarChar&amp;Weight=adNumeric&amp;ConcUnit=adVarChar&amp;Concentration=adNumeric&amp;Field_1=adVarChar&amp;Field_2=adVarChar&amp;Field_3=adVarChar&amp;Field_4=adVarChar&amp;Field_5=adVarChar&amp;Date_1= Date&amp;Date_2= Date]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param"><font>        
+  PlateID&nbsp;</font></h5>
+
+<p class="param">The ID for the plate being updated.</p>
+<h5 class="param">LocationID </h5>
+<p class="param">The ID for the location of the plate. </p>
+<h5 class="param">PlateName </h5>
+<p class="param">The name of the plate. </p>
+<h5 class="param">PlateTypeID </h5>
+<p class="param">The ID of the plate type. </p>
+<h5 class="param">PlateFormatID </h5>
+<p class="param">The ID for the plate format applied to this 
+plate. </p>
+<h5 class="param">GroupID </h5>
+<p class="param">The ID for the group this plate is a part 
+of. </p>
+<h5 class="param">QtyUnit </h5>
+<p class="param">The units of measure that the quantities in 
+the plate are assumed to be. </p>
+<h5 class="param">QtyRemaining </h5>
+<p class="param">The remaining quantity in the plates in the 
+units of QtyUnit. </p>
+<h5 class="param">[QtyInitial] </h5>
+<p class="param">The initial quantity in the plate. </p>
+<h5 class="param">[ContainerStatusID] </h5>
+<p class="param">The ID for the status of the plate. </p>
+<h5 class="param">[SupplierShipmentCode] </h5>
+<p class="param">A code, somtimes provided by the supplier, 
+to identify the shipment. </p>
+<h5 class="param">[SupplierShipmentNumber] </h5>A number, 
+somtimes provided by the supplier, to identify the shipment.
+<h5 class="param">[SupplierShipmentDate] </h5>
+<p class="param">The shipping date,&nbsp;provided by the 
+supplier <font size="2">as date-time literal (ie. 01-27-2001).</font> </p>
+<h5 class="param">[LibraryID] </h5>
+<p class="param">The ID&nbsp;associated with the library the 
+plate is a part of. </p>
+<h5 class="param">[Solvent] </h5>
+<p class="param">THe solvent used in the plate. </p>
+<h5 class="param">[FTCycles] </h5>
+<p class="param">The number of freeze thaw cycles allowed for 
+this plate. </p>
+<h5 class="param">[WeightUnit] </h5>
+<p class="param">The units of weight used to measure the 
+weight of the plate. </p>
+<h5 class="param">[Weight] </h5>
+<p class="param">The weight of the plate in the units 
+specified under WeightUnit. </p>
+<h5 class="param">[ConcUnit] </h5>
+<p class="param">The units of concentration used to measure 
+the concentration of the contents of the plate. </p>
+<h5 class="param">[Concentration] </h5>
+<p class="param">The concentration of thecontents of 
+the&nbsp;plate in the units specified under ConcUnit. </p>
+<h5 class="param">[Field_1] </h5>
+<p class="param">The value of the configurable field, 
+Field_1. </p>
+<h5 class="param">[Field_2] </h5>
+<p class="param">The value of the configurable field, 
+Field_2. </p>
+<h5 class="param">[Field_3] </h5>
+<p class="param">The value of the configurable field, 
+Field_3. </p>
+<h5 class="param">[Field_4] </h5>
+<p class="param">The value of the configurable field, 
+Field_4. </p>
+<h5 class="param">[Field_5] </h5>
+<p class="param">The value of the configurable field, 
+Field_5. </p>
+<h5 class="param">[Date_1] </h5>
+<p class="param">The date in the configurable date field, 
+Date_1 <font size="2">as date-time literal (ie. 01-27-2001)</font>. </p>
+<h5 class="param">[Date_2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h5>
+<p class="param">The date in the configurable date field, 
+Date_2 <font size="2">as date-time literal (ie. 01-27-2001)</font>. </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>       
+            
+             
+       A user wants to update some fields for the plate with ID 
+P1234.&nbsp; It now resides in Location with ID 111, it is an assay plate (ID=4) 
+with the plate format associated with ID 10.&nbsp; It is in Group 1 with a 
+quantity remaining of 10 mL.&nbsp; Its new status is In Use 
+(ID=5).&nbsp;&nbsp;</p>
+<pre>/cheminv/api/UpdateAllPlateFields.asp?PlateID=P1234&amp;LocationID=111&amp;PlateName=Plate1&amp;PlateTypeID=4&amp;PLateFormatID=10&amp;GroupID=1&amp;QtyUnit=mL&amp;QtyRemaining=1&amp;ContainerStatusID=5&nbsp;</pre>  
+<pre></pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+
+</body>
+</html>

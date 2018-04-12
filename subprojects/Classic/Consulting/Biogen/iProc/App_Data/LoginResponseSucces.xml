@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<response>
+   <header version="1.0">
+      <return returnCode="S"/>
+   </header>
+   <body>
+      <loginURL> 
+<![CDATA[{0}]]>
+      </loginURL>
+   </body>
+</response>

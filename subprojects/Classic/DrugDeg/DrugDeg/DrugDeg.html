@@ -1,0 +1,439 @@
+<html>
+
+<head>
+	<title>DrugDeg application specification</title>
+</head>
+
+<body>
+
+<h2>The DrugDeg displays</h2>
+
+<strong>The main page</strong>
+<ul>
+	<li><a  href = "#main-disp">Main menu page</a></li>
+</ul>
+
+<strong>Parent compound displays</strong>
+<ul>
+	<li><a  href = "#parent-search">Parent search</a></li>
+	<li><a  href = "#parent-list">Parent list</a></li>
+	<li><a  href = "#parent-details">Parent details</a></li>
+	<li><a  href = "#modify-parent">Modify parent</a></li>
+	<li><a  href = "#add-parent">Add parent</a></li>
+</ul>
+
+<strong>Degradation experiment displays</strong>
+<ul>
+	<li><a  href = "#experiment-details">Experiment details</a></li>
+	<li><a  href = "#modify-experiment">Modify experiment</a></li>
+	<li><a  href = "#add-experiment">Add experiment</a></li>
+</ul>
+
+<strong>Degradant compound displays</strong>
+<ul>
+	<li><a  href = "#degradant-details">Degradant details</a></li>
+	<li><a  href = "#modify-degradant">Modify degradant</a></li>
+	<li><a  href = "#add-degradant">Add degradant</a></li>
+</ul>
+
+<strong>Degradation mechanism displays</strong>
+<ul>
+	<li><a  href = "#mechanism-details">Mechanism details</a></li>
+	<li><a  href = "#modify-mechanism">Modify mechanism</a></li>
+	<li><a  href = "#add-mechanism">Add mechanism</a></li>
+</ul>
+
+<strong>Other displays</strong>
+<ul>
+	<li><a  href = "#add-condition">Add condition</a></li>
+	<li><a  href = "#manage-salt-list">Manage salt list</a></li>
+	<li><a  href = "#prefs-disp">Preferences</a></li>
+</ul>
+
+
+
+
+
+
+<!-- Main display -->
+<hr>
+<p>
+<a  name = "main-disp"></a>
+<h3>Main menu display</h3>
+<p>
+Accessed via ChemOffice page after entering username and password.
+<p>
+This display has a number of buttons for functions that aren't part of the basic ChemOffice
+Web Server framework.  You will not be shown the buttons for operations that you are not
+authorized to perform.
+<ul>
+	<li>
+		<em>Search</em> - <a  href = "#parent-search">search the parent compounds</a> using
+			a number of criteria
+	</li>
+	<li>
+		<em>Add parent</em> - <a  href = "#add-parent">add a parent compound</a> to the database
+	</li>
+	<li>
+		<em>Add condition</em> - <a  href = "#add-condition">add a degradation
+			condition (or impurity type)</a> to the list of recognized conditions
+	</li>
+	<li>
+		<em>Manage salt list</em> - <a  href = "#manage-salt-list">add a salt</a> to the
+			list of salts from which you may select for a parent compound or change the name
+			of a salt already on that list
+	</li>
+</ul>
+
+<!-- Parent search -->
+<hr>
+<p>
+<a  name = "parent-search"></a>
+<h3>Search parents display</h3>
+<p>
+The "Search parents" display allows the user to find parent compounds based on a number of
+criteria.  To look at all the parents in the database simply click on the "Retrieve all"
+button towards the top of the display.  To perform a more-focused search of the database
+the user can use one or more of the criteria shown in the display.  Those criteria are
+as follows:
+
+<p>
+<strong>Parent compound criteria</strong>
+<ul>
+	<li>Structure / substructure</li>
+	<li>Molecular weight</li>
+	<li>Formula</li>
+	<li>Generic name</li>
+	<li>Salt</li>
+</ul>
+
+<strong>Experiment criteria</strong>
+<ul>
+	<li>Conditions</li>
+</ul>
+
+<strong>Degradant criteria</strong>
+<ul>
+	<li>Structure / substructure (finds all parents that have degradants with the input structure)</li>
+</ul>
+
+<p>
+These criteria may be combined for a search, so the user could search for all the parent
+compounds that have a pyrrole substructure, a Pfizer index of "UK", and that had a
+thermal degradation performed on them.
+<p>
+If the application finds parent compounds that match the input criteria those compounds
+will be shown in the <a  href = "#parent-list">Parent list display</a>.
+
+<!-- Parent list -->
+<hr>
+<p>
+<a  name = "parent-list"></a>
+<h3>Parent list display</h3>
+<p>
+This display shows the parent compounds that were found in the latest search.  The appearance
+of this display depends on some of the settings of the <a  href = "#prefs-disp">Preferences
+display</a>.  For each parent compound the user is generally shown:
+<ul>
+	<li>index of parent and total number of hits ("12 of 52")</li>
+	<li>button to mark or unmark the parent</li>
+	<li>button for viewing the parent in more detail (the <a  href = "#parent-details">
+		Parent details display</a>)</li>
+	<li>Pfizer ID (prefix & number)</li>
+	<li>structure</li>
+	<li>formula</li>
+	<li>molecular weight</li>
+	<li>generic name</li>
+	<li>salts</li>
+</ul>
+<p>
+If the "printer-friendly form" item is checked in the <a  href = "#prefs-disp">Preferences
+display</a> the first three items above (rank & number, "Mark" button, and "Details" button)
+will not be shown.  This frees up space for getting the rest of the data onto the print-out,
+and the buttons are of no use in the print-out anyway.
+<p>
+Users can indicate in the <a  href = "#prefs-disp">Preferences display</a> whether they wish
+to show the parent compound structures.  It is easier to compare the other data of parent
+compounds without the structures being shown, because the added space allows us to dedicate
+a column to each data type and because the data are closer together, one row to the next.
+<p>
+Finally, users can change the maximum number of parent compounds to show at once with the
+"Number of parents" item of the <a  href = "#prefs-disp">Preferences display</a>.  When there
+are a lot of parent compounds in the list and the user has set a high number for the 
+"Number of parents" item there can be more than the usual delay in drawing up the screen.
+The best thing to do may therefore be to use a lower number when just browsing through parents
+and to use a higher number when you want to print out a list of parents.
+
+<!-- Parent details -->
+<hr>
+<p>
+<a  name = "parent-details"></a>
+<h3>Parent details display</h3>
+<p>
+The "Parent details" display allows the user to show all the data of a given parent compound
+in a more spread-out fashion than that used in the <a  href = "#parent-list">Parent list
+display</a>.  In addition, all the degradation experiments for that parent compound are
+listed by their degradation conditions.  Clicking on a degradation condition brings up
+the <a  href = "#experiment-details">Experiment details display</a> for the experiment.
+<p>
+The user can add a new degradation experiment for the displayed parent by clicking the
+"Add experiment" button, which appears near the bottom of the display.  This will bring
+up the <a  href = "#add-experiment">Add experiment display</a>.
+
+<!-- Modify parent -->
+<hr>
+<p>
+<a  name = "modify-parent"></a>
+<h3>Modify parent compound display</h3>
+<p>
+This display has a ChemDraw plug-in drawing window for the compound's structure, fields
+for the Pfizer prefix, Pfizer number, and generic name, and a set of
+checkboxes for the salts of the parent compound.  The user can enter new values for some,
+none, or all of those items.  To commit those changes to the database, click the
+"Update record" button.  There will be a slight delay while the database is being
+updated and then the <a  href = "#parent-details">Parent details display</a> will
+come up, showing the modified parent compound.
+<p>
+One thing to note: changing the parent compound does <em>not</em> change anything else.
+While you could change one parent into another, totally different, parent, all the
+experiments, degradants, and mechanisms associated with the original parent will then
+be associated with the new parent and yet be unchanged.  The most obvious implication
+might be in the mechanisms, which will still show the original parent degrading into
+some degradant compound.
+
+<!-- Add parent -->
+<hr>
+<p>
+<a  name = "add-parent"></a>
+<h3>Add parent display</h3>
+<p>
+This display has a ChemDraw plug-in drawing window for entering the compound's structure, fields
+for entering Pfizer prefix, Pfizer number, and generic name, and a set of
+checkboxes for selecting the salts of the parent compound.
+<p>
+When the user has entered the data to their satisfaction, they can click the "Add record" towards
+the top of the display to submit the new compound to the database.  Before it can be added,
+though, the application determines whether there is already a parent compound in the database
+with the same Pfizer number.  If a parent compound is found with the same Pfizer number and a
+different Pfizer prefix, the new parent will be added to the database <em>only</em> if the
+"Add parents with non-unique Pfizer numbers" item in the <a  href = "#prefs-disp">Preferences
+display</a> is checked.  If there is a parent compound in the database with the same Pfizer
+number <em>and</em> Pfizer prefix the new compound will not be added to the database.  In
+any event the user will be told what happened and why.
+<p>
+If the new parent compound is successfully added to the database the <a  href = "#parent-details">
+Parent details display</a> will come up, showing the newly-added parent compound and allowing
+the user to add degradation experiments.
+
+
+<!-- Experiment details -->
+<hr>
+<p>
+<a  name = "experiment-details"></a>
+<h3>Experiment details display</h3>
+<p>
+This display shows all the information on a given experiment.  On the left of the display
+are the degradation condition, experimental conditions, notes, and references.  On the right
+are parent information (structure and Pfizer ID) and a list of the degradation conditions for
+all the experiments on that parent.  The condition for the currently displayed experiment
+appears in parentheses, while all the other conditions in the list are links that bring
+up the Experiment details display for the corresponding experiment.
+<p>
+Below the experiment and parent information are the degradant compounds that were produced
+in the experiment.  For each degradant there is a structure drawing, Pfizer ID, and two buttons.
+The button on the left, "Degradant", takes the user to the <a  href = "#degradant-details">
+degradant details display</a> for the corresponding experiment.  The button on the right is either
+"Add mechanism" or "Mechanism", depending on whether there is already a mechanism for the
+production of that degradant.
+
+<!-- Modify experiment -->
+<hr>
+<p>
+<a  name = "modify-experiment"></a>
+<h3>Modify experiment display</h3>
+<p>
+The display for modifying experiments shows a drop-down box for selecting a new degradation
+condition and text fields for adding or changing experimental conditions, notes, and references.
+If and when you decide to commit your changes to the database, click the "Update record" button.
+There will be a slight delay while the database is updated and then you will be shown the
+<a  href = "#experiment-details">Experiment details display</a> for the newly-modified experiment.
+
+<!-- Add experiment -->
+<hr>
+<p>
+<a  name = "add-experiment"></a>
+<h3>Add experiment display</h3>
+<p>
+This is where users of sufficient privilege level can add degradation experiments.  To enter
+the data for an experiment performed on a particular parent compound you must go to the
+<a  href = "#parent-details">Parent details display</a> for that parent and click the
+"Add Experiment" button at the bottom of the display.  In the Add experiment display you
+will be asked for:
+<ul>
+	<li>Degradation conditions: this includes "PRI", or Process-related Impurity.</li>
+	<li>Experimental conditions</li>
+	<li>Notes</li>
+	<li>References</li>
+</ul>
+When you are finished adding the information you click on the "Add Record" button to add the
+experiment to the database.  Clicking "Clear Form" will clear all the data fields, and "Cancel"
+will return you to the parent details display from which you came.
+
+
+<!-- Degradant details -->
+<hr>
+<p>
+<a  name = "degradant-details"></a>
+<h3>Degradant details display</h3>
+You get to this display by clicking the "Degradant" button underneath one of the degradants on
+an <a  href = "#experiment-details">Experiment details display</a>.  In the degradant details
+display is shown the structure, the Pfizer ID, and the name (if any) for the degradant.  From
+this display you can go to the <a href = "#modify-degradant">Modify degradant display</a>,
+where you can change or delete the degradant.  To return to the experiment click the "Return to
+Experiment" button.
+
+<!-- Modify degradant -->
+<hr>
+<p>
+<a  name = "modify-degradant"></a>
+<h3>Modify degradant display</h3>
+In this display, which is reached from the <a href = "#degradant-details">Degradant details display</a>, you can
+change the degradant structure, Pfizer ID, and/or name.  When you wish to commit the changes to
+the database click the "Update Record" button.  To return to the degradant display without
+committing the changes to the database click the "Cancel" button.  You can delete the degradant
+and its mechanism, if it has one, by clicking the "Delete Record" button.  Clicking the
+"Main Menu" button will take you back to the <a href = "#main-disp">main menu page</a>.
+
+<!-- Add degradant -->
+<hr>
+<p>
+<a  name = "add-degradant"></a>
+<h3>Add degradant display</h3>
+You can add a degradant when in an <a href = "#experiment-details">experiment details display</a>
+by clicking the "Add Degradant" button at the bottom of the page.  You will then be taken to the
+Add degradant display, where you will be able to enter the degradant's structure, Pfizer ID, and
+name.  When you wish to add the new degradant to the database click the "Add Record" button.
+To clear the data fields click the "Clear Form" button.  If you wish to return to the experiment
+details display <em>without</em> adding the degradant information to the database click the
+"Cancel" button.  Finally, you can click the "Main Menu" button to return to the
+<a href = "#main-disp">main menu page</a> without adding the degradant
+
+<!-- Mechanism details -->
+<hr>
+<p>
+<a  name = "mechanism-details"></a>
+<h3>Mechanism details display</h3>
+You get here from an <a href = "#experiment-details">experiment details display</a> by clicking
+the "Mechanism" button underneath a degradant compound.  The mechanism shown is for generating
+the degradant above the button via the experiment shown in the experiment details display.
+From the mechanism details display you can get to the <a  href = "#modify-mechanism">
+Modify mechanism display</a> by clicking the "Edit Record" button.  You can go back to the
+experiment by clicking the "Return to Experiment" button, or you can go to the
+<a href = "#main-disp">main menu page</a> by clicking the "Main Menu" button.
+
+<!-- Modify mechanism -->
+<hr>
+<p>
+<a  name = "modify-mechanism"></a>
+<h3>Modify mechanism display</h3>
+In this display, which you can get to via the <a  href = "#mechanism-details">mechanism details
+display</a>, you can alter the mechanism.  When you wish to commit your changes to the database
+you click the "Update Record" button.  If you do not wish to change the mechanism, you can click
+either the "Cancel" button to return to the mechanism details display or the "Main Menu" button
+to get to the <a href = "#main-disp">main menu page</a>.
+
+<!-- Add mechanism -->
+<hr>
+<p>
+<a  name = "add-mechanism"></a>
+<h3>Add mechanism display</h3>
+From the <a  href = "#experiment-details">experiment details display</a> you can add a mechanism
+for producing a particular degradant by clicking the "Add Mechanism" button beneath that
+degradant compound.  (If there is no "Add Mechanism" button then clicking the "Mechanism" button
+will allow you to <a  href = "#modify-mechanism">modify the existing mechanism</a>.)  In the
+Add Mechanism display you can draw the mechanism and then click the "Add Record" button to 
+commit that mechanism to the database.  If you wish to erase the whole mechanism drawing area
+and start over, click the "Clear From" button.  If you don't want to add a mechanism after all,
+click the "Cancel" button to return to the experiment details display or click the "Main Menu"
+button to go to the <a href = "#main-disp">main menu page</a>.
+
+
+<!-- Add degradation condition -->
+<hr>
+<p>
+<a  name = "add-condition"></a>
+<h3>Add a condition</h3>
+In this display you are able to add to the list of degradation conditions.  You will need to
+look over the conditions already in the database to avoid having the same condition in the
+list twice.  The conditions already in the database are listed below the field for entering
+the new condition.  When you are ready to commit the new condition to the database, click the
+"Add Record" button.  Click the "Clear Form" button if you wish to clear the condition field,
+and click the "Main Menu" button to return to the <a href = "#main-disp">main menu page</a>.
+<p>
+At this time you must take care when entering the condition name because
+there is not yet provision for changing the name once committed.  By the final version you
+will be able to change a name after it has been committed.
+
+<!-- Add a parent salt -->
+<hr>
+<p>
+<a  name = "manage-salt-list"></a>
+<h3>Manage the salt list</h3>
+In this display you are able to add a salt to the list or change the name of a salt already
+in the list.  There are two data items you are asked to enter.  The first, salt code, refers
+to the two-character codes in the Pfizer salt code list.  This code <em>must</em> be two
+characters long.  The second item is the name of the salt.
+<p>
+To enter a new salt, check the lists of salts at the bottom of the display for the presense
+of the salt you wish to enter.  For your convenience there are two lists of salts: one ordered
+by salt code and the other ordered alphabetically by salt name.  If the new salt is not on the
+lists then enter its code and name in the appropriate fields, then click the "Add Record" button.
+You can clear both data fields by clicking the "Clear Form" button and you can return to the
+<a href = "#main-disp">main menu page</a> by clicking the "Main Menu" button.
+<p>
+To change the name of a salt already in the database, enter its code and new name into the
+appropriate fields, then click the "Add Record" button.
+<p>
+Once a salt code has been committed to the database it can not be removed.  This is because
+there may be parent compounds which have that code in their list of salts, and removing the
+code from the master salt list would leave that code without a name when showing parent compounds.
+
+
+<!-- Preferences -->
+<hr>
+<p>
+<a  name = "prefs-disp"></a>
+<h3>Preferences</h3>
+The DrugDeg application preferences are available by clicking the word "Preferences" in the
+blue bar underneath the ChemOffice WebServer banner at the top of the page.  The preferences
+at this time only pertain to the various parent compound displays.
+<p>
+The preferences are in three groups: the display preferences, the search preferences, and the
+"Add parent" preferences.  The search preferences are explained in the ChemOffice WebServer
+User Guide and will therefore not be explained here.  The other preferences are:
+<br><strong>Show parent structures in list view</strong> - This affects the display of parent
+compounds in the <a  href = "#parent-list">Parent list display</a>, which is the display in which
+you are shown the results of a parent compound search.  You may wish not to display the structures
+if you wish to more easily compare the other information about a parent: each parent's row
+in the table will be shorter and therefore the data for different parent compounds will be
+closer together.
+<br><strong>Number of parents displayed in list view</strong> - This item also affects the display
+of parent compounds in the Parent list display.  When looking at parent compounds on the screen
+you may wish to keep this number relatively low &#151; less than around 15, say &#151; to avoid
+the delay caused by drawing great numbers of compounds.  When you want a print-out of the full
+set of parent compounds you will want this number to be at least as great as the number of
+parents in the set.
+<br><strong>Printer-friendly form of parent list view</strong> - When set, this item does two
+things to the Parent list display to make it better suited to printing out.  The first thing
+is limiting the width of the table to keep the table from running off the right side of the
+paper.  The second thing is removing the left column of the table.  The buttons in that column
+are irrelevant in a print-out.  The other item in that column ("Record 4 of 110") simply tells
+the order in which the parent compounds were entered into the database and doing without it
+leaves more room for the other data.
+<br><strong>Add parents with non-unique Pfizer numbers</strong> - When checked, this item
+allows you to add compounds which have the same Pfizer numbers <em>but different Pfizer
+prefixes</em>.  Otherwise you will not be able to commit to the database a parent compound
+whose Pfizer number is the same as that of one already in the database.
+
+</body>
+</html>

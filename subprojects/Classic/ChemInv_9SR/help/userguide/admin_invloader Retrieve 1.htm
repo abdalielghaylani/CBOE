@@ -1,0 +1,237 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Tasks</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="32296" -->
+<h1>Inventory Loader</h1>
+<p>Inventory Loader is an application to load information from ChemFinder 
+databases into the Inventory Enterprise and Registration System databases. </p>
+<p>ChemFinder databases may be created from many sources, most commonly SDFiles. 
+SDFiles are the common currency of chemical information exchange today. </p>
+<p>Inventory Loader may be run from any machine with access to the ChemOffice 
+Enterprise application server. </p>
+<p>To start loading compounds into Inventory Loader:</p>
+<ol>
+  <li>Start the Inventory Loader application. An 
+  introduction screen appears. <br><strong>NOTE</strong>: You must start the Inventory Enterprise application 
+  before using InvLoader. 
+  <li>Click <strong>Next</strong>. 
+  <li>Enter the name of the ChemOffice Enterprise application server, your 
+  username, and your password. <br><strong>NOTE:</strong> The username 
+  you use here must have sufficient privileges to add compounds to and create 
+  plates in the Inventory Enterprise system. If you want to register those 
+  compounds, you must have sufficient privileges on the Registration System. 
+  <li>Click <strong>Next</strong>. <br><strong>NOTE:</strong> If an error message appears saying no 
+  plate locations or plate formats are defined, you will have to configure at 
+  least one location in Inventory Enterprise to hold plates, and/or create at least 
+  one valid plate format. Consult the documentation for Inventory Enterprise. 
+  <li>Browse to the ChemFinder database you want to load. 
+  <li>Select whether you wish to <a href="#plates">load 
+  compounds into plates</a>, or <a href="#componly">just load compounds</a>. </li></ol>
+<a name="plates"></a><h2>Loading Compounds into Plates </h2>
+<ol>
+  <li>Click <strong>Next</strong>. <br><strong>NOTE</strong>: If an error message appears saying 
+  &#147;Cannot open database&#148;, you may need to upgrade the database to the current 
+  ChemFinder version. To do this, simply open the database within ChemFinder and 
+  follow the prompts. <br>A table appears. <br>The table&#146;s left column 
+  <span lang="en-us">displays</span> 
+  the <span lang="en-us">fields</span> in Inventory Enterprise. <br>The table&#146;s second column lets you choose to 
+  either enter a default value, or to pick a field from your Chem<span lang="en-us">F</span>inder database 
+  to insert into that field. If you choose Use Default, you can enter that 
+  default value in the 3rd column. The default is to leave the field blank. 
+  <li>Enter information for one or more fields. The 
+  following is an explanation of the fields: <br>
+  <table cellSpacing="1" cellPadding="1" width="75%" border="1">
+    
+    <tr style="COLOR: khaki" bgColor="darkblue">
+      <td width="30%"><strong>Field Name</strong></td>
+      <td><strong>Field Description</strong></td></tr>
+    <tr>
+      <td>Well Coordinate</td>
+      <td>the address of the well on the plate, e.g. &#147;A02&#148; or &#147;H12&#148;</td></tr>
+    <tr>
+      <td>Row </td>
+      <td>the row of the well on the plate, either in letter or number 
+      format.</td></tr>
+    <tr>
+      <td>Column </td>
+      <td>the column of the well on the plate, in number format. </td></tr>
+    <tr>
+      <td>Reg Number </td>
+      <td>the CambridgeSoft registration number of the compound. You will 
+        generally leave this blank unless you are importing data from the 
+        Registration System into Inventory Enterprise.</td></tr>
+    <tr>
+      <td>Batch Number </td>
+      <td>the CambridgeSoft registration batch number of the compound. You 
+        will generally leave this blank unless you are importing data from the 
+        Registration System into Inventory Enterprise.</td></tr>
+    <tr>
+      <td>Barcode </td>
+      <td>the barcode of the plate. This is the barcode that will be used in 
+        Inventory Enterprise. If you leave this blank, Inventory Enterprise will 
+        assign new barcodes to the plates according to a scheme which you set up 
+        in a later screen. </td></tr>
+    <tr>
+      <td>Compound Name </td>
+      <td>an identifier for the compound. </td></tr>
+    <tr>
+      <td>CAS Number </td>
+      <td>the CAS number for the compound. Many screening libraries do not 
+        include CAS numbers. </td></tr>
+    <tr>
+      <td>ChemACX ID</td>
+      <td>the CambridgeSoft ChemACX id for the compound. Many screening 
+        libraries do not include ChemACX numbers. </td></tr>
+    <tr>
+      <td>Supplier </td>
+      <td>the supplier of the plate. </td></tr>
+    <tr>
+      <td>Supplier Barcode </td>
+      <td>the barcode assigned by the supplier to the plate. If you will be 
+        re-barcoding the plates upon import, you may assign the original 
+        supplier barcode to this field for tracking purposes. </td></tr>
+    <tr>
+      <td>Supplier Compound ID</td>
+      <td>supplier&#146;s identifier for the compound </td></tr></table><br>The remainder of the 
+  fields should be self-explanatory. <br><strong>NOTE</strong>: You do not have 
+  to fill in all fields. <br><br>Some notes on filling in this 
+  grid: 
+  <ol><li>Either Well Coordinate or Row AND Column may be 
+    mapped to ChemFinder fields. It is not necessary to map both, and you don&#146;t 
+    have to do either, but if you map Row, you must map Column. If you map Well 
+    Coordinate, you shouldn&#146;t map Row or Column. 
+    <li>If your plates have identifiers, you should map that identifier to 
+    either Barcode, Supplier Barcode, or (if the plate identifier is numeric) to 
+    Supplier Plate Number. If you don&#146;t, you will receive a warning, and the 
+    compounds will probably not be plated according to your expectations. 
+    <li>If you map only Supplier Barcode, Supplier Plate Number, or Barcode, and 
+    you do NOT map Well Coordinate or Row AND Column, the compounds will 
+    probably not be plated correctly. 
+    <li>If you do not map ANY of: Supplier Barcode, 
+    Supplier Plate Number, or Barcode, Well Coordinate or Row AND Column, then 
+    the compounds will be put into plates in the order that they are encountered 
+    in the file. This is probably a rare scenario.<br>         
+                
+                  
+            &nbsp;</li>             
+                 
+                  
+        </ol>
+    <li>Click <strong>Next</strong>. 
+  <li>Choose the location where you want to create the plates. 
+  <li>Choose the plate format you wish to use. The plate format describes the 
+  size of the plate (96, 384 well), as well as the layout of the plates &#150; where 
+  compounds are located, which wells are empty. 
+  <li>Choose the plate type you wish to create. The Plate Types list is an 
+  arbitrary list of types. The number of compounds being imported and the number 
+  of plates to be created appear at the bottom of this screen. This is a good 
+  place to check if the results are what you expected. 
+  <li>Click <strong>Next</strong>. 
+  <li>Choose the library to assign the plates to. <br>This is an arbitrary list 
+  of classifications. 
+  <li>Enter how you want Inventory Enterprise to barcode your plates. 
+  <br><strong>NOTE</strong>: If you have mapped a ChemFinder field to Barcode in 
+  a previous screen, the Barcode section of this screen will be grayed out, 
+  indicating that the barcodes from your file will be used. 
+  <li>Assign a starting group number for your plates if desired. This is rarely 
+  used. 
+  <li>Click <strong>Next</strong>. 
+  <li>If you want to register these compounds into the Registration System, 
+  check the box. <br>Inventory Loader will validate your login against the 
+  registration system. <br>If it succeeds, a grid containing the options for 
+  registering the compounds appears. You can choose what project, prefix and 
+  sequence to register the compounds with, as well as other options. For more 
+  documentation on what these choices mean, consult the Registration System 
+  documentation. 
+  <ol><li>If you want to assign fields to be filled in for 
+    the compound when it is registered, click Registration Options&#133; 
+    <li>A dialog appears, with a table similar to the one you used to assign 
+    inventory fields. Here you can choose default values or SDFile fields to 
+    assign to registration system fields. <br><strong>NOTE</strong>: Please note 
+    that the fields here are named as they are in the database, not as they are 
+    in the Registration System interface. The mapping between display name and 
+    database name may be found in 
+    C:\inetpub\wwwroot\chemoffice\chem_reg\config\cfserver.ini</li>   
+                    
+               
+          
+     </ol>
+    <li>Click <strong>Next</strong>. 
+  <li>If you would like to save a log of the plates that were created in XML 
+  format, check the box and specify a path. <br>This is usually not necessary 
+  unless you are experiencing problems. 
+  <li>Click <strong>Next</strong>. 
+  <li>Click <strong>Finish</strong>  and the plates are imported. Each plate may take a while, as 
+  compounds are duplicate-checked and indexed for searching. </li></ol>
+<a name="componly"></a><h2>Import Compounds Only </h2>
+<ol>
+  <li>A screen of inventory fields that can be mapped to 
+  ChemFinder fields appears. See step 2. on page 2 for more information. 
+  <li>Click <strong>Next</strong>. 
+  <li>Click <strong>Finish</strong>.</li></ol>
+<p>       
+         
+    
+  <p>     
+          </p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="34507" -->
+<p></p>       
+</body>
+</html>

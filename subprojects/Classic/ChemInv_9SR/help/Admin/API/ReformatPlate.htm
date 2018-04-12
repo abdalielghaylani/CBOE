@@ -1,0 +1,124 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>ReformatPlate</h1><p>          
+                Creates new plate(s) from the          
+                contents of a          
+              plate          
+           which 
+already exists.</p><h3>Syntax</h3><pre>/cheminv/api/ReformatPlate.asp?SourcePLateIDList=adVarChar&amp;ReformatMapID=adNumeric&amp;PlateTypeIDList=adVarChar&amp;AmtList=adVarChar&amp;AmtUnitIDList=adVarChar&amp;AmtType=adVarChar&amp;SolventIDList=adVarChar&amp;SolventVolumeList=adVarChar&amp;SolventVolumeUnitIDList=adVarChar&amp;LocationIDList=adVarChar&amp;NumTargetPlates= adNumeric</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">SourcePlateIDList</h5>
+<p>       A list of plate IDs for the source plates to be 
+reformatted.&nbsp; When there is more than one plate, the       IDs are listed separated 
+by commas.&nbsp; </p>
+
+<h5 class="param">ReformatMapID</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">The 
+ID of the reformat map stored in the inv_xmldocs 
+table</span>           
+ .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<h5 class="param">AmtType=SourceVolumeTaken|SourceAmountTaken|TargetConcentration</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">This 
+determines how the amtlist and amtunitlist are interpreted.</span>&nbsp;</p>
+<h5 class="param">AmtList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of amounts</span></span></span>&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">AmtUnitIDList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of amount unit 
+ids</span>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">SolventIDList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of solvent ids from the inv_solvents 
+table</span>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<h5 class="param">SolventVolumeList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of target solvent volumes</span>.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">SolventVolumeUnitIDList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of target solvent volume 
+units</span>.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">LocationIDList</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+<span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">delimited 
+list of target plate location ids</span></span>.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">NumTargetPlates</h5>
+<p>The number of plates (in the reformatted format) created from the original 
+plate.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">[PlateTypeIDList]</h5>
+<p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Comma 
+delimited list of target plate types </span>.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+<h3>Outputs</h3>
+<p class="param">Pipe (|) delimited list of new&nbsp;plate IDs.&nbsp;For example: 
+100|101</p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+               
+                      
+A user wants to make 2 new plates by reformatting plate 
+ID P101 to use the platemap with ID 3, taking 10 ml (ID=2) from the source and 
+combining it with 1ml of Water (ID=4) and put the plates in the location with ID101.&nbsp;</p><pre>/cheminv/api/ReformatPlate.asp?SourcePlateIDList=P101&amp;ReformatMapID=3&amp;AmtList=10&amp;AmtUnitIDList=2&amp;AmtType=SourceVolumeTaken&amp;SolventIDList=4&amp;SolventVolumeList=1&amp;SolventVolumeUnitIDList=2&amp;LocationIDList=101&amp;NumTargetPlates= 2</pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

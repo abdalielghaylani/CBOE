@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="C:\Documents and Settings\JHarvey\Desktop Documentation\Documentation\CBOE Enterprise 11.0\DrugDegradation\DrugDeg.book" DescendantCount="18">
+    <!-- saved from url=(0014)about:internet -->
+    <TocEntry Title="Drug Degradation" Link="/Content/DrugDeg/drugdeg.htm#drugdeg_2709577088_1085550" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="12">
+        <TocEntry Title="About this Guide" Link="/Content/DrugDeg/drugdeg.htm#drugdeg_2709577088_1085557" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="Overview" Link="/Content/DrugDeg/Overview.htm#drugdeg_2709577088_1085555" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Logging in" Link="/Content/DrugDeg/Logging_in.htm#drugdeg_2709577088_1062355" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Searching for Compounds" Link="/Content/DrugDeg/Searching_for_Compounds.htm#drugdeg_2709577088_1077647" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Parent Compound Record Data" Link="/Content/DrugDeg/Parent_Compound_Record_D.htm#drugdeg_2709577088_1085498" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Adding a Parent Compound" Link="/Content/DrugDeg/Adding_a_Parent_Compound.htm#drugdeg_2709577088_1085363" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing a Parent Compound" Link="/Content/DrugDeg/Editing_a_Parent_Compoun1.htm#drugdeg_2709577088_1076419" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Linking to Parent Compound Records" Link="/Content/DrugDeg/Linking_to_Parent_Compou.htm#drugdeg_2709577088_1075670" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Adding an Experiment" Link="/Content/DrugDeg/Adding_an_Experiment.htm#drugdeg_2709577088_1076483" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Experimental Details" Link="/Content/DrugDeg/Experimental_Details.htm#drugdeg_2709577088_1075740" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Viewing Experimental Details" Link="/Content/DrugDeg/Experimental_Details.htm#drugdeg_2709577088_1076625" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing experimental records" Link="/Content/DrugDeg/Editing_experimental_rec.htm#drugdeg_2709577088_1076849" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="Managing Lists" Link="/Content/DrugDeg/drugdeg AdminGuide.htm#drugdeg_AdminGuide_3526245724_1085321" ComputedFirstTopic="false" DescendantCount="4">
+        <TocEntry Title="Managing Conditions and Salts Lists" Link="/Content/DrugDeg/drugdeg AdminGuide.htm#drugdeg_AdminGuide_3526245724_1085309" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Managing Conditions Lists" Link="/Content/DrugDeg/Managing_Conditions_List.htm#drugdeg_AdminGuide_3526245724_1063104" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Managing Salts Lists" Link="/Content/DrugDeg/Managing_Salts_Lists.htm#drugdeg_AdminGuide_3526245724_1077396" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Managing Functional Groups" Link="/Content/DrugDeg/Managing_Functional_Grou.htm#drugdeg_AdminGuide_3526245724_1076188" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+</CatapultToc>

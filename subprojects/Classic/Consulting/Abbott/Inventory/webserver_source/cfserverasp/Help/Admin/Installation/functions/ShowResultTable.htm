@@ -1,0 +1,85 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowStrucResultTable</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="#"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="#"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="#"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>     ChemOffice 
+WebServer</STRONG>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  ShowResultTable</h1>
+
+<TABLE style="WIDTH: 95%" cellSpacing=4 cellPadding=1 border=0>
+  <TBODY vAlign=top>
+  
+  <TR>
+    <TD width="500">
+      <H4>Subroutine</H4></TD>
+    <TD><PRE>ShowResultTable 
+      dbkey,formgroup,rsname, orientation, cell_width, table_widdth, 
+      "0"</PRE></TD></TR>
+  <TR>
+    <TD>
+      <H4>Description</H4></TD>
+    <TD>
+      <P>     Shows results from a recordset in 
+      table format</P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Parameters</H4></TD>
+    <TD>
+      <p>dbkey =<EM></FONT> 
+      &lt;dataview name&gt;</EM>  &nbsp;
+      <p>formgroup =</FONT><EM> &lt;formgroup name&gt;</EM>
+      <H5></H5> 
+      <p>rsname&nbsp;=</FONT><EM> 
+      &lt;name of recordset object crested at 
+      start of tile&gt;</EM>      
+      &nbsp;
+      <p>orientation = <EM>table_down|table_across</EM></p>      
+      
+      <p>cell_width = <EM>&lt;width of individual cell in 
+      pixels&gt;</EM></p>      
+      
+      <p>table_width = <EM>&lt;width of entire 
+      table&nbsp;in pixels 
+      or percentage&gt;&nbsp;&nbsp;<BR></EM></p></TD></TR>
+  <TR>
+    <TD>
+      <H4>Example</H4></TD>
+    <TD><PRE><PRE> 
+         ShowResultTable 
+      dbkey,formgroup,SynonymsRS,"Table_down","100","100%","0"</PRE></PRE></TD></TR></TBODY></TABLE>
+
+</body>
+
+</html>

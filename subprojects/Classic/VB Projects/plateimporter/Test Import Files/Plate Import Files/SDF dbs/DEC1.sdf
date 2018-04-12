@@ -1,0 +1,2194 @@
+
+  ChemDraw288-1250-40-4288002D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+   -0.7136    0.4136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7136   -0.4122    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0007   -0.8251    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7136   -0.4122    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7136    0.4136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0007    0.8251    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+M  END
+
+>  <cpd_internal_id> (1)
+233
+ 
+>  <MolWeight> (1)
+84.1595
+>  <Formula> (1)
+C6H12
+
+>  <Reg. Date> (1)
+11/28/2003
+
+>  <REG_ID> (1)
+233
+
+>  <Registration Number> (1)
+AB-000016
+
+>  <Sequence Number> (1)
+16
+
+>  <Compound Registrar> (1)
+T5_85
+
+>  <MW2> (1)
+84.1595
+
+>  <FORMULA2> (1)
+C6H12
+
+>  <ROOT_REG_DATE> (1)
+11/28/2003 1:14:56 PM
+
+>  <MF Text> (1)
+
+>  <MW Text> (1)
+
+>  <Structure/Stereochemistry Comment> (1)
+no_comment
+
+>  <ROOT_NUMBER> (1)
+AB-000016
+
+>  <Prefix> (1)
+AB
+
+>  <Last Mod Person> (1)
+
+>  <Last Mod Date> (1)
+
+>  <Project> (1)
+unspecified
+
+>  <BATCH_NUMBER> (1)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (1)
+unspecified
+
+>  <Reference and Vendor data> (1)
+
+>  <Storage Requirements and Warnings> (1)
+
+>  <Chemist> (1)
+unspecified
+
+>  <BP> (1)
+
+>  <MP> (1)
+
+>  <Flash Point> (1)
+
+>  <Optical Rotation> (1)
+
+>  <Refractive Index> (1)
+
+>  <Salt> (1)
+no_salt
+
+>  <Creation Date> (1)
+
+>  <Submitted Amount> (1)
+
+>  <Notebook> (1)
+
+>  <BATCH_REG_PERSON_ID> (1)
+T5_85
+
+>  <Entry Person> (1)
+T5_85
+
+>  <Last Mod Person> (1)
+
+>  <BATCH_REG_DATE> (1)
+11/28/2003
+
+>  <Last Mod Date> (1)
+
+>  <Preparation> (1)
+
+>  <Batch Comment> (1)
+
+>  <Page> (1)
+
+>  <Physical Form> (1)
+
+>  <1HNMR> (1)
+
+>  <Color> (1)
+
+>  <13CNMR> (1)
+
+>  <IR> (1)
+
+>  <FIA/MS> (1)
+
+>  <GC> (1)
+
+>  <BATCH_FORMULA> (1)
+
+>  <SOLVATE_ID> (1)
+no_solvate
+
+>  <Equivalents> (1)
+
+>  <Equivalents> (1)
+
+>  <Formula Weight> (1)
+84.1595
+
+>  <Salt Name> (1)
+
+>  <MW> (1)
+
+>  <Solvate Name> (1)
+
+>  <MW> (1)
+
+>  <Percent Active> (1)
+100
+
+>  <Units> (1)
+
+>  <Purity> (1)
+
+>  <HPLC> (1)
+
+>  <Appearance> (1)
+
+>  <LC/UV/MS> (1)
+
+>  <CHN> (1)
+
+>  <UV> (1)
+
+>  <LogD> (1)
+
+>  <Solubility> (1)
+
+>  <IDENTIFIER_TYPE> (1)
+0
+
+>  <IDENTIFIER> (1)
+Cyclohexane
+
+>  <cpd_internal_id> (1)
+233
+
+$$$$
+Untitled Document
+  ChemDraw2851404848285002D
+
+ 10 12  0  0  0  0  0  0  0  0999 V2000
+   -0.5865   -0.1684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9990   -0.8835    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2070   -0.6566    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5892   -0.8835    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9990   -0.1684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.2070   -0.3953    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.5865    0.6566    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2084    0.1684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9990    0.6566    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.2041    0.8835    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  1  7  1  0      
+  3  8  1  0      
+  5  9  1  0      
+  8 10  1  0      
+  9 10  1  0      
+  7 10  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+M  END
+
+>  <cpd_internal_id> (2)
+252
+ 
+>  <MolWeight> (2)
+136.234
+>  <Formula> (2)
+C10H16
+
+>  <Reg. Date> (2)
+11/28/2003
+
+>  <REG_ID> (2)
+252
+
+>  <Registration Number> (2)
+AB-000035
+
+>  <Sequence Number> (2)
+35
+
+>  <Compound Registrar> (2)
+T5_85
+
+>  <MW2> (2)
+136.234
+
+>  <FORMULA2> (2)
+C10H16
+
+>  <ROOT_REG_DATE> (2)
+11/28/2003 1:15:07 PM
+
+>  <MF Text> (2)
+
+>  <MW Text> (2)
+
+>  <Structure/Stereochemistry Comment> (2)
+no_comment
+
+>  <ROOT_NUMBER> (2)
+AB-000035
+
+>  <Prefix> (2)
+AB
+
+>  <Last Mod Person> (2)
+manganelli
+
+>  <Last Mod Date> (2)
+11/28/2003
+
+>  <Project> (2)
+unspecified
+
+>  <BATCH_NUMBER> (2)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (2)
+unspecified
+
+>  <Reference and Vendor data> (2)
+
+>  <Storage Requirements and Warnings> (2)
+
+>  <Chemist> (2)
+unspecified
+
+>  <BP> (2)
+
+>  <MP> (2)
+
+>  <Flash Point> (2)
+
+>  <Optical Rotation> (2)
+
+>  <Refractive Index> (2)
+
+>  <Salt> (2)
+no_salt
+
+>  <Creation Date> (2)
+
+>  <Submitted Amount> (2)
+5
+
+>  <Notebook> (2)
+EAM1
+
+>  <BATCH_REG_PERSON_ID> (2)
+T5_85
+
+>  <Entry Person> (2)
+T5_85
+
+>  <Last Mod Person> (2)
+manganelli
+
+>  <BATCH_REG_DATE> (2)
+11/28/2003
+
+>  <Last Mod Date> (2)
+11/28/2003
+
+>  <Preparation> (2)
+
+>  <Batch Comment> (2)
+
+>  <Page> (2)
+1
+
+>  <Physical Form> (2)
+
+>  <1HNMR> (2)
+
+>  <Color> (2)
+
+>  <13CNMR> (2)
+
+>  <IR> (2)
+
+>  <FIA/MS> (2)
+
+>  <GC> (2)
+
+>  <BATCH_FORMULA> (2)
+
+>  <SOLVATE_ID> (2)
+no_solvate
+
+>  <Equivalents> (2)
+
+>  <Equivalents> (2)
+
+>  <Formula Weight> (2)
+136.234
+
+>  <Salt Name> (2)
+
+>  <MW> (2)
+
+>  <Solvate Name> (2)
+
+>  <MW> (2)
+
+>  <Percent Active> (2)
+100
+
+>  <Units> (2)
+g
+
+>  <Purity> (2)
+
+>  <HPLC> (2)
+
+>  <Appearance> (2)
+
+>  <LC/UV/MS> (2)
+
+>  <CHN> (2)
+
+>  <UV> (2)
+
+>  <LogD> (2)
+
+>  <Solubility> (2)
+
+>  <IDENTIFIER_TYPE> (2)
+0
+
+>  <IDENTIFIER> (2)
+Adamantane
+
+>  <cpd_internal_id> (2)
+252
+
+$$$$
+Untitled Document
+  ChemDraw296-1032-8-2-8296002D
+
+  7  8  0  0  0  0  0  0  0  0999 V2000
+   -1.0038   -0.8209    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2077   -0.6063    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5898   -0.8209    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0038   -0.1073    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.5899   -0.1073    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.2062    0.1073    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2063    0.8209    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  1  5  1  0      
+  5  6  1  0      
+  4  6  1  0      
+  6  7  1  0      
+  2  7  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+M  END
+
+>  <cpd_internal_id> (3)
+256
+ 
+>  <MolWeight> (3)
+96.1702
+>  <Formula> (3)
+C7H12
+
+>  <Reg. Date> (3)
+11/28/2003
+
+>  <REG_ID> (3)
+256
+
+>  <Registration Number> (3)
+AB-000039
+
+>  <Sequence Number> (3)
+39
+
+>  <Compound Registrar> (3)
+T5_85
+
+>  <MW2> (3)
+96.1702
+
+>  <FORMULA2> (3)
+C7H12
+
+>  <ROOT_REG_DATE> (3)
+11/28/2003 1:15:09 PM
+
+>  <MF Text> (3)
+
+>  <MW Text> (3)
+
+>  <Structure/Stereochemistry Comment> (3)
+no_comment
+
+>  <ROOT_NUMBER> (3)
+AB-000039
+
+>  <Prefix> (3)
+AB
+
+>  <Last Mod Person> (3)
+manganelli
+
+>  <Last Mod Date> (3)
+11/28/2003
+
+>  <Project> (3)
+unspecified
+
+>  <BATCH_NUMBER> (3)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (3)
+unspecified
+
+>  <Reference and Vendor data> (3)
+
+>  <Storage Requirements and Warnings> (3)
+
+>  <Chemist> (3)
+unspecified
+
+>  <BP> (3)
+40
+
+>  <MP> (3)
+
+>  <Flash Point> (3)
+
+>  <Optical Rotation> (3)
+
+>  <Refractive Index> (3)
+
+>  <Salt> (3)
+no_salt
+
+>  <Creation Date> (3)
+11/4/2003
+
+>  <Submitted Amount> (3)
+12
+
+>  <Notebook> (3)
+EAM2
+
+>  <BATCH_REG_PERSON_ID> (3)
+T5_85
+
+>  <Entry Person> (3)
+T5_85
+
+>  <Last Mod Person> (3)
+manganelli
+
+>  <BATCH_REG_DATE> (3)
+11/28/2003
+
+>  <Last Mod Date> (3)
+11/28/2003
+
+>  <Preparation> (3)
+
+>  <Batch Comment> (3)
+
+>  <Page> (3)
+2
+
+>  <Physical Form> (3)
+
+>  <1HNMR> (3)
+
+>  <Color> (3)
+
+>  <13CNMR> (3)
+
+>  <IR> (3)
+
+>  <FIA/MS> (3)
+
+>  <GC> (3)
+
+>  <BATCH_FORMULA> (3)
+
+>  <SOLVATE_ID> (3)
+no_solvate
+
+>  <Equivalents> (3)
+
+>  <Equivalents> (3)
+
+>  <Formula Weight> (3)
+96.1702
+
+>  <Salt Name> (3)
+
+>  <MW> (3)
+
+>  <Solvate Name> (3)
+
+>  <MW> (3)
+
+>  <Percent Active> (3)
+100
+
+>  <Units> (3)
+g
+
+>  <Purity> (3)
+
+>  <HPLC> (3)
+
+>  <Appearance> (3)
+
+>  <LC/UV/MS> (3)
+
+>  <CHN> (3)
+
+>  <UV> (3)
+
+>  <LogD> (3)
+
+>  <Solubility> (3)
+
+>  <IDENTIFIER_TYPE> (3)
+0
+
+>  <IDENTIFIER> (3)
+Norbornane
+
+>  <cpd_internal_id> (3)
+256
+
+$$$$
+Untitled Document
+  ChemDraw290677676290002D
+
+ 11 12  0  0  0  0  0  0  0  0999 V2000
+   -0.9075    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9075   -0.8243    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.1939   -1.2368    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5184   -0.8243    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5184    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.1939    0.4119    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.1939    1.2368    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2320    0.4132    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4070   -0.3856    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2320   -0.3802    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.4180   -0.3926    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  6  7  1  0      
+  5  8  2  0      
+  6  9  1  0      
+  3  9  1  0      
+  9 10  1  0      
+  9 11  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+V   11 10
+M  END
+
+>  <cpd_internal_id> (4)
+264
+ 
+>  <MolWeight> (4)
+152.233
+>  <Formula> (4)
+C10H16O
+
+>  <Reg. Date> (4)
+11/28/2003
+
+>  <REG_ID> (4)
+264
+
+>  <Registration Number> (4)
+AB-000047
+
+>  <Sequence Number> (4)
+47
+
+>  <Compound Registrar> (4)
+T5_85
+
+>  <MW2> (4)
+152.233
+
+>  <FORMULA2> (4)
+C10H16O
+
+>  <ROOT_REG_DATE> (4)
+11/28/2003 1:15:14 PM
+
+>  <MF Text> (4)
+
+>  <MW Text> (4)
+
+>  <Structure/Stereochemistry Comment> (4)
+no_comment
+
+>  <ROOT_NUMBER> (4)
+AB-000047
+
+>  <Prefix> (4)
+AB
+
+>  <Last Mod Person> (4)
+manganelli
+
+>  <Last Mod Date> (4)
+11/28/2003
+
+>  <Project> (4)
+unspecified
+
+>  <BATCH_NUMBER> (4)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (4)
+unspecified
+
+>  <Reference and Vendor data> (4)
+ALDRICH CATALOG
+
+>  <Storage Requirements and Warnings> (4)
+
+>  <Chemist> (4)
+unspecified
+
+>  <BP> (4)
+
+>  <MP> (4)
+
+>  <Flash Point> (4)
+
+>  <Optical Rotation> (4)
+
+>  <Refractive Index> (4)
+
+>  <Salt> (4)
+no_salt
+
+>  <Creation Date> (4)
+
+>  <Submitted Amount> (4)
+33
+
+>  <Notebook> (4)
+EAM3
+
+>  <BATCH_REG_PERSON_ID> (4)
+T5_85
+
+>  <Entry Person> (4)
+T5_85
+
+>  <Last Mod Person> (4)
+manganelli
+
+>  <BATCH_REG_DATE> (4)
+11/28/2003
+
+>  <Last Mod Date> (4)
+11/28/2003
+
+>  <Preparation> (4)
+
+>  <Batch Comment> (4)
+
+>  <Page> (4)
+3
+
+>  <Physical Form> (4)
+
+>  <1HNMR> (4)
+
+>  <Color> (4)
+
+>  <13CNMR> (4)
+
+>  <IR> (4)
+
+>  <FIA/MS> (4)
+
+>  <GC> (4)
+
+>  <BATCH_FORMULA> (4)
+
+>  <SOLVATE_ID> (4)
+no_solvate
+
+>  <Equivalents> (4)
+
+>  <Equivalents> (4)
+
+>  <Formula Weight> (4)
+152.233
+
+>  <Salt Name> (4)
+
+>  <MW> (4)
+
+>  <Solvate Name> (4)
+
+>  <MW> (4)
+
+>  <Percent Active> (4)
+100
+
+>  <Units> (4)
+g
+
+>  <Purity> (4)
+
+>  <HPLC> (4)
+
+>  <Appearance> (4)
+
+>  <LC/UV/MS> (4)
+
+>  <CHN> (4)
+
+>  <UV> (4)
+
+>  <LogD> (4)
+
+>  <Solubility> (4)
+
+>  <IDENTIFIER_TYPE> (4)
+0
+
+>  <IDENTIFIER> (4)
+Camphor
+
+>  <cpd_internal_id> (4)
+264
+
+$$$$
+
+  ChemDraw296-2785-6-5-6296002D
+
+  8  8  0  0  0  0  0  0  0  0999 V2000
+   -1.0691    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0691   -0.8243    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3554   -1.2368    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3568   -0.8243    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3568    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3554    0.4118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3554    1.2368    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0691   -1.2368    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  6  7  1  0      
+  4  8  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+M  END
+
+>  <cpd_internal_id> (5)
+268
+ 
+>  <MolWeight> (5)
+116.158
+>  <Formula> (5)
+C6H12O2
+
+>  <Reg. Date> (5)
+11/28/2003
+
+>  <REG_ID> (5)
+268
+
+>  <Registration Number> (5)
+AB-000051
+
+>  <Sequence Number> (5)
+51
+
+>  <Compound Registrar> (5)
+T5_85
+
+>  <MW2> (5)
+116.158
+
+>  <FORMULA2> (5)
+C6H12O2
+
+>  <ROOT_REG_DATE> (5)
+11/28/2003 1:15:17 PM
+
+>  <MF Text> (5)
+
+>  <MW Text> (5)
+
+>  <Structure/Stereochemistry Comment> (5)
+no_comment
+
+>  <ROOT_NUMBER> (5)
+AB-000051
+
+>  <Prefix> (5)
+AB
+
+>  <Last Mod Person> (5)
+
+>  <Last Mod Date> (5)
+
+>  <Project> (5)
+unspecified
+
+>  <BATCH_NUMBER> (5)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (5)
+unspecified
+
+>  <Reference and Vendor data> (5)
+
+>  <Storage Requirements and Warnings> (5)
+
+>  <Chemist> (5)
+unspecified
+
+>  <BP> (5)
+
+>  <MP> (5)
+
+>  <Flash Point> (5)
+
+>  <Optical Rotation> (5)
+
+>  <Refractive Index> (5)
+
+>  <Salt> (5)
+no_salt
+
+>  <Creation Date> (5)
+
+>  <Submitted Amount> (5)
+
+>  <Notebook> (5)
+
+>  <BATCH_REG_PERSON_ID> (5)
+T5_85
+
+>  <Entry Person> (5)
+T5_85
+
+>  <Last Mod Person> (5)
+
+>  <BATCH_REG_DATE> (5)
+11/28/2003
+
+>  <Last Mod Date> (5)
+
+>  <Preparation> (5)
+
+>  <Batch Comment> (5)
+
+>  <Page> (5)
+
+>  <Physical Form> (5)
+
+>  <1HNMR> (5)
+
+>  <Color> (5)
+
+>  <13CNMR> (5)
+
+>  <IR> (5)
+
+>  <FIA/MS> (5)
+
+>  <GC> (5)
+
+>  <BATCH_FORMULA> (5)
+
+>  <SOLVATE_ID> (5)
+no_solvate
+
+>  <Equivalents> (5)
+
+>  <Equivalents> (5)
+
+>  <Formula Weight> (5)
+116.158
+
+>  <Salt Name> (5)
+
+>  <MW> (5)
+
+>  <Solvate Name> (5)
+
+>  <MW> (5)
+
+>  <Percent Active> (5)
+100
+
+>  <Units> (5)
+
+>  <Purity> (5)
+
+>  <HPLC> (5)
+
+>  <Appearance> (5)
+
+>  <LC/UV/MS> (5)
+
+>  <CHN> (5)
+
+>  <UV> (5)
+
+>  <LogD> (5)
+
+>  <Solubility> (5)
+
+>  <IDENTIFIER_TYPE> (5)
+0
+
+>  <IDENTIFIER> (5)
+1,3-cyclohexanediol
+
+>  <cpd_internal_id> (5)
+268
+
+$$$$
+
+  ChemDraw2871220808287002D
+
+ 10 11  0  0  0  0  0  0  0  0999 V2000
+   -1.4283    0.4139    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4283   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7135   -0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000    0.4139    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7135    0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7148   -0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4283   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4283    0.4139    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7148    0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  4  7  1  0      
+  7  8  1  0      
+  8  9  1  0      
+  9 10  1  0      
+  5 10  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+M  END
+
+>  <cpd_internal_id> (6)
+272
+ 
+>  <MolWeight> (6)
+138.25
+>  <Formula> (6)
+C10H18
+
+>  <Reg. Date> (6)
+11/28/2003
+
+>  <REG_ID> (6)
+272
+
+>  <Registration Number> (6)
+AB-000055
+
+>  <Sequence Number> (6)
+55
+
+>  <Compound Registrar> (6)
+T5_85
+
+>  <MW2> (6)
+138.25
+
+>  <FORMULA2> (6)
+C10H18
+
+>  <ROOT_REG_DATE> (6)
+11/28/2003 1:15:19 PM
+
+>  <MF Text> (6)
+
+>  <MW Text> (6)
+
+>  <Structure/Stereochemistry Comment> (6)
+no_comment
+
+>  <ROOT_NUMBER> (6)
+AB-000055
+
+>  <Prefix> (6)
+AB
+
+>  <Last Mod Person> (6)
+
+>  <Last Mod Date> (6)
+
+>  <Project> (6)
+unspecified
+
+>  <BATCH_NUMBER> (6)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (6)
+unspecified
+
+>  <Reference and Vendor data> (6)
+
+>  <Storage Requirements and Warnings> (6)
+
+>  <Chemist> (6)
+unspecified
+
+>  <BP> (6)
+
+>  <MP> (6)
+
+>  <Flash Point> (6)
+
+>  <Optical Rotation> (6)
+
+>  <Refractive Index> (6)
+
+>  <Salt> (6)
+no_salt
+
+>  <Creation Date> (6)
+
+>  <Submitted Amount> (6)
+
+>  <Notebook> (6)
+
+>  <BATCH_REG_PERSON_ID> (6)
+T5_85
+
+>  <Entry Person> (6)
+T5_85
+
+>  <Last Mod Person> (6)
+
+>  <BATCH_REG_DATE> (6)
+11/28/2003
+
+>  <Last Mod Date> (6)
+
+>  <Preparation> (6)
+
+>  <Batch Comment> (6)
+
+>  <Page> (6)
+
+>  <Physical Form> (6)
+
+>  <1HNMR> (6)
+
+>  <Color> (6)
+
+>  <13CNMR> (6)
+
+>  <IR> (6)
+
+>  <FIA/MS> (6)
+
+>  <GC> (6)
+
+>  <BATCH_FORMULA> (6)
+
+>  <SOLVATE_ID> (6)
+no_solvate
+
+>  <Equivalents> (6)
+
+>  <Equivalents> (6)
+
+>  <Formula Weight> (6)
+138.25
+
+>  <Salt Name> (6)
+
+>  <MW> (6)
+
+>  <Solvate Name> (6)
+
+>  <MW> (6)
+
+>  <Percent Active> (6)
+100
+
+>  <Units> (6)
+
+>  <Purity> (6)
+
+>  <HPLC> (6)
+
+>  <Appearance> (6)
+
+>  <LC/UV/MS> (6)
+
+>  <CHN> (6)
+
+>  <UV> (6)
+
+>  <LogD> (6)
+
+>  <Solubility> (6)
+
+>  <IDENTIFIER_TYPE> (6)
+0
+
+>  <IDENTIFIER> (6)
+Naphthane
+
+>  <cpd_internal_id> (6)
+272
+
+$$$$
+
+  ChemDraw286-13480-80286002D
+
+  7  7  0  0  0  0  0  0  0  0999 V2000
+   -0.7136    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7136   -0.8251    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0007   -1.2379    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7136   -0.8251    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7136    0.0007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0007    0.4122    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0007    1.2379    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  6  7  2  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+M  END
+
+>  <cpd_internal_id> (7)
+276
+ 
+>  <MolWeight> (7)
+98.143
+>  <Formula> (7)
+C6H10O
+
+>  <Reg. Date> (7)
+11/28/2003
+
+>  <REG_ID> (7)
+276
+
+>  <Registration Number> (7)
+AB-000059
+
+>  <Sequence Number> (7)
+59
+
+>  <Compound Registrar> (7)
+T5_85
+
+>  <MW2> (7)
+98.143
+
+>  <FORMULA2> (7)
+C6H10O
+
+>  <ROOT_REG_DATE> (7)
+11/28/2003 1:15:21 PM
+
+>  <MF Text> (7)
+
+>  <MW Text> (7)
+
+>  <Structure/Stereochemistry Comment> (7)
+no_comment
+
+>  <ROOT_NUMBER> (7)
+AB-000059
+
+>  <Prefix> (7)
+AB
+
+>  <Last Mod Person> (7)
+
+>  <Last Mod Date> (7)
+
+>  <Project> (7)
+unspecified
+
+>  <BATCH_NUMBER> (7)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (7)
+unspecified
+
+>  <Reference and Vendor data> (7)
+
+>  <Storage Requirements and Warnings> (7)
+
+>  <Chemist> (7)
+unspecified
+
+>  <BP> (7)
+
+>  <MP> (7)
+
+>  <Flash Point> (7)
+
+>  <Optical Rotation> (7)
+
+>  <Refractive Index> (7)
+
+>  <Salt> (7)
+no_salt
+
+>  <Creation Date> (7)
+
+>  <Submitted Amount> (7)
+
+>  <Notebook> (7)
+
+>  <BATCH_REG_PERSON_ID> (7)
+T5_85
+
+>  <Entry Person> (7)
+T5_85
+
+>  <Last Mod Person> (7)
+
+>  <BATCH_REG_DATE> (7)
+11/28/2003
+
+>  <Last Mod Date> (7)
+
+>  <Preparation> (7)
+
+>  <Batch Comment> (7)
+
+>  <Page> (7)
+
+>  <Physical Form> (7)
+
+>  <1HNMR> (7)
+
+>  <Color> (7)
+
+>  <13CNMR> (7)
+
+>  <IR> (7)
+
+>  <FIA/MS> (7)
+
+>  <GC> (7)
+
+>  <BATCH_FORMULA> (7)
+
+>  <SOLVATE_ID> (7)
+no_solvate
+
+>  <Equivalents> (7)
+
+>  <Equivalents> (7)
+
+>  <Formula Weight> (7)
+98.143
+
+>  <Salt Name> (7)
+
+>  <MW> (7)
+
+>  <Solvate Name> (7)
+
+>  <MW> (7)
+
+>  <Percent Active> (7)
+100
+
+>  <Units> (7)
+
+>  <Purity> (7)
+
+>  <HPLC> (7)
+
+>  <Appearance> (7)
+
+>  <LC/UV/MS> (7)
+
+>  <CHN> (7)
+
+>  <UV> (7)
+
+>  <LogD> (7)
+
+>  <Solubility> (7)
+
+>  <IDENTIFIER_TYPE> (7)
+0
+
+>  <IDENTIFIER> (7)
+Cyclohexanone
+
+>  <cpd_internal_id> (7)
+276
+
+$$$$
+
+  ChemDraw287-2189-6-9-6287002D
+
+ 29 31  0  0  0  0  0  0  0  0999 V2000
+   -2.1471    1.2402    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1471    0.4152    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4307    0.0027    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7184    0.4152    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7184    1.2402    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4307    1.6515    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7074    0.4152    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7074    1.2402    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0048    1.6515    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7184    2.0653    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0048    2.4778    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7198    2.8890    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7103    2.8890    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4252    2.4778    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1403    2.8890    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8554    2.4778    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1403    3.7141    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5703    2.8890    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8554    1.6515    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4307   -0.8223    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1430   -1.2362    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1416   -2.0612    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -2.4737    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -3.3002    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1416   -3.7141    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4280   -3.3002    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4280   -2.4737    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7143   -2.0612    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5703   -3.7127    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  7  8  1  0      
+  8  9  1  0      
+  5  9  1  0      
+  4  7  1  0      
+  5 10  1  0      
+  9 11  1  0      
+ 11 12  1  0      
+ 11 13  1  0      
+ 13 14  2  0      
+ 14 15  1  0      
+ 15 16  1  0      
+ 15 17  1  0      
+ 16 18  1  0      
+ 16 19  1  0      
+  3 20  2  0      
+ 20 21  1  0      
+ 21 22  2  0      
+ 22 23  1  0      
+ 23 24  1  0      
+ 24 25  1  0      
+ 25 26  1  0      
+ 26 27  1  0      
+ 22 27  1  0      
+ 27 28  2  0      
+ 24 29  1  6      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+V   11 10
+V   12 11
+V   13 12
+V   14 13
+V   15 14
+V   16 15
+V   17 16
+V   18 17
+V   19 18
+V   20 19
+V   21 20
+V   22 21
+V   23 22
+V   24 23
+V   25 24
+V   26 25
+V   27 26
+V   28 27
+V   29 28
+M  END
+
+>  <cpd_internal_id> (8)
+301
+ 
+>  <MolWeight> (8)
+396.648
+>  <Formula> (8)
+C28H44O
+
+>  <Reg. Date> (8)
+11/28/2003
+
+>  <REG_ID> (8)
+301
+
+>  <Registration Number> (8)
+AB-000084
+
+>  <Sequence Number> (8)
+84
+
+>  <Compound Registrar> (8)
+T5_85
+
+>  <MW2> (8)
+396.648
+
+>  <FORMULA2> (8)
+C28H44O
+
+>  <ROOT_REG_DATE> (8)
+11/28/2003 1:15:37 PM
+
+>  <MF Text> (8)
+
+>  <MW Text> (8)
+
+>  <Structure/Stereochemistry Comment> (8)
+no_comment
+
+>  <ROOT_NUMBER> (8)
+AB-000084
+
+>  <Prefix> (8)
+AB
+
+>  <Last Mod Person> (8)
+
+>  <Last Mod Date> (8)
+
+>  <Project> (8)
+unspecified
+
+>  <BATCH_NUMBER> (8)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (8)
+unspecified
+
+>  <Reference and Vendor data> (8)
+
+>  <Storage Requirements and Warnings> (8)
+
+>  <Chemist> (8)
+unspecified
+
+>  <BP> (8)
+
+>  <MP> (8)
+
+>  <Flash Point> (8)
+
+>  <Optical Rotation> (8)
+
+>  <Refractive Index> (8)
+
+>  <Salt> (8)
+no_salt
+
+>  <Creation Date> (8)
+
+>  <Submitted Amount> (8)
+
+>  <Notebook> (8)
+
+>  <BATCH_REG_PERSON_ID> (8)
+T5_85
+
+>  <Entry Person> (8)
+T5_85
+
+>  <Last Mod Person> (8)
+
+>  <BATCH_REG_DATE> (8)
+11/28/2003
+
+>  <Last Mod Date> (8)
+
+>  <Preparation> (8)
+
+>  <Batch Comment> (8)
+
+>  <Page> (8)
+
+>  <Physical Form> (8)
+
+>  <1HNMR> (8)
+
+>  <Color> (8)
+
+>  <13CNMR> (8)
+
+>  <IR> (8)
+
+>  <FIA/MS> (8)
+
+>  <GC> (8)
+
+>  <BATCH_FORMULA> (8)
+
+>  <SOLVATE_ID> (8)
+no_solvate
+
+>  <Equivalents> (8)
+
+>  <Equivalents> (8)
+
+>  <Formula Weight> (8)
+396.648
+
+>  <Salt Name> (8)
+
+>  <MW> (8)
+
+>  <Solvate Name> (8)
+
+>  <MW> (8)
+
+>  <Percent Active> (8)
+100
+
+>  <Units> (8)
+
+>  <Purity> (8)
+
+>  <HPLC> (8)
+
+>  <Appearance> (8)
+
+>  <LC/UV/MS> (8)
+
+>  <CHN> (8)
+
+>  <UV> (8)
+
+>  <LogD> (8)
+
+>  <Solubility> (8)
+
+>  <IDENTIFIER_TYPE> (8)
+0
+
+>  <IDENTIFIER> (8)
+9,10--Secoergosta-5,7,10(19),22-tetraen-3ß-ol
+
+>  <cpd_internal_id> (8)
+301
+
+$$$$
+
+  ChemDraw2873233636287002D
+
+ 28 31  0  0  0  0  0  0  0  0999 V2000
+   -3.2660   -0.8193    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.2660   -1.6462    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.5508   -2.0596    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8370   -1.6462    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8370   -0.8193    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.5508   -0.4072    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.1218   -2.0596    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4078   -1.6462    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4078   -0.8193    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.1218   -0.4072    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3046   -0.4072    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3046    0.4155    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4078    0.8261    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.1218    0.4155    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7282   -0.4072    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7282    0.4155    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0171    0.8248    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4378    0.8248    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4378    1.6447    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7282    2.0527    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0171    1.6447    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.9813   -2.0596    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8370    0.0076    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3046    1.2423    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3018    2.0596    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2646    0.8248    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9813    0.4114    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8490    1.4091    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  1  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  4  7  2  0      
+  7  8  1  0      
+  8  9  1  0      
+  9 10  1  0      
+  5 10  1  0      
+  9 11  1  0      
+ 11 12  1  0      
+ 12 13  1  0      
+ 13 14  1  0      
+ 10 14  1  0      
+ 15 16  1  0      
+ 16 17  1  0      
+ 12 17  1  0      
+ 18 19  1  0      
+ 19 20  1  0      
+ 20 21  1  0      
+ 17 21  1  0      
+ 11 15  1  0      
+  2 22  1  0      
+  5 23  1  0      
+ 12 24  1  0      
+ 21 25  1  0      
+ 18 26  1  0      
+ 26 27  1  0      
+ 26 28  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+V   11 10
+V   12 11
+V   13 12
+V   14 13
+V   15 14
+V   16 15
+V   17 16
+V   18 17
+V   19 18
+V   20 19
+V   21 20
+V   22 21
+V   23 22
+V   24 23
+V   25 24
+V   26 25
+V   27 26
+V   28 27
+M  END
+
+>  <cpd_internal_id> (9)
+304
+ 
+>  <MolWeight> (9)
+386.654
+>  <Formula> (9)
+C27H46O
+
+>  <Reg. Date> (9)
+11/28/2003
+
+>  <REG_ID> (9)
+304
+
+>  <Registration Number> (9)
+AB-000087
+
+>  <Sequence Number> (9)
+87
+
+>  <Compound Registrar> (9)
+T5_85
+
+>  <MW2> (9)
+386.654
+
+>  <FORMULA2> (9)
+C27H46O
+
+>  <ROOT_REG_DATE> (9)
+11/28/2003 1:15:38 PM
+
+>  <MF Text> (9)
+
+>  <MW Text> (9)
+
+>  <Structure/Stereochemistry Comment> (9)
+no_comment
+
+>  <ROOT_NUMBER> (9)
+AB-000087
+
+>  <Prefix> (9)
+AB
+
+>  <Last Mod Person> (9)
+
+>  <Last Mod Date> (9)
+
+>  <Project> (9)
+unspecified
+
+>  <BATCH_NUMBER> (9)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (9)
+unspecified
+
+>  <Reference and Vendor data> (9)
+
+>  <Storage Requirements and Warnings> (9)
+
+>  <Chemist> (9)
+unspecified
+
+>  <BP> (9)
+
+>  <MP> (9)
+
+>  <Flash Point> (9)
+
+>  <Optical Rotation> (9)
+
+>  <Refractive Index> (9)
+
+>  <Salt> (9)
+no_salt
+
+>  <Creation Date> (9)
+
+>  <Submitted Amount> (9)
+
+>  <Notebook> (9)
+
+>  <BATCH_REG_PERSON_ID> (9)
+T5_85
+
+>  <Entry Person> (9)
+T5_85
+
+>  <Last Mod Person> (9)
+
+>  <BATCH_REG_DATE> (9)
+11/28/2003
+
+>  <Last Mod Date> (9)
+
+>  <Preparation> (9)
+
+>  <Batch Comment> (9)
+
+>  <Page> (9)
+
+>  <Physical Form> (9)
+
+>  <1HNMR> (9)
+
+>  <Color> (9)
+
+>  <13CNMR> (9)
+
+>  <IR> (9)
+
+>  <FIA/MS> (9)
+
+>  <GC> (9)
+
+>  <BATCH_FORMULA> (9)
+
+>  <SOLVATE_ID> (9)
+no_solvate
+
+>  <Equivalents> (9)
+
+>  <Equivalents> (9)
+
+>  <Formula Weight> (9)
+386.654
+
+>  <Salt Name> (9)
+
+>  <MW> (9)
+
+>  <Solvate Name> (9)
+
+>  <MW> (9)
+
+>  <Percent Active> (9)
+100
+
+>  <Units> (9)
+
+>  <Purity> (9)
+
+>  <HPLC> (9)
+
+>  <Appearance> (9)
+
+>  <LC/UV/MS> (9)
+
+>  <CHN> (9)
+
+>  <UV> (9)
+
+>  <LogD> (9)
+
+>  <Solubility> (9)
+
+>  <IDENTIFIER_TYPE> (9)
+0
+
+>  <IDENTIFIER> (9)
+Cholest-5-en-3ß-ol
+
+>  <cpd_internal_id> (9)
+304
+
+$$$$
+
+  ChemDraw294-27440-40294002D
+
+ 22 25  0  0  0  0  0  0  0  0999 V2000
+   -2.4543   -0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.4543   -1.4480    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.7425   -1.8652    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0308   -1.4480    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0308   -0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.7425   -0.1964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3190   -1.8652    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3927   -1.4480    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3927   -0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3190   -0.1964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1045   -0.1964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1045    0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3927    1.0308    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3190    0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5279   -0.1964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5279    0.6136    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8162    1.0308    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.1660   -1.8652    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1045    1.4480    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8162    1.8652    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5279    1.4480    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1660    1.8162    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  1  0      
+  1  6  1  0      
+  4  7  1  0      
+  7  8  1  0      
+  8  9  1  0      
+  9 10  1  0      
+  5 10  1  0      
+  9 11  1  0      
+ 11 12  1  0      
+ 12 13  1  0      
+ 13 14  1  0      
+ 10 14  1  0      
+ 15 16  1  0      
+ 16 17  1  0      
+ 12 17  1  0      
+ 11 15  1  0      
+  2 18  2  0      
+ 12 19  1  0      
+ 17 20  1  0      
+ 17 21  1  0      
+ 21 22  3  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+V    9 8
+V   10 9
+V   11 10
+V   12 11
+V   13 12
+V   14 13
+V   15 14
+V   16 15
+V   17 16
+V   18 17
+V   19 18
+V   20 19
+V   21 20
+V   22 21
+M  END
+
+>  <cpd_internal_id> (10)
+311
+ 
+>  <MolWeight> (10)
+298.419
+>  <Formula> (10)
+C20H26O2
+
+>  <Reg. Date> (10)
+11/28/2003
+
+>  <REG_ID> (10)
+311
+
+>  <Registration Number> (10)
+AB-000094
+
+>  <Sequence Number> (10)
+94
+
+>  <Compound Registrar> (10)
+T5_85
+
+>  <MW2> (10)
+298.419
+
+>  <FORMULA2> (10)
+C20H26O2
+
+>  <ROOT_REG_DATE> (10)
+11/28/2003 1:15:43 PM
+
+>  <MF Text> (10)
+
+>  <MW Text> (10)
+
+>  <Structure/Stereochemistry Comment> (10)
+no_comment
+
+>  <ROOT_NUMBER> (10)
+AB-000094
+
+>  <Prefix> (10)
+AB
+
+>  <Last Mod Person> (10)
+
+>  <Last Mod Date> (10)
+
+>  <Project> (10)
+unspecified
+
+>  <BATCH_NUMBER> (10)
+1
+
+>  <NOTEBOOK_INTERNAL_ID> (10)
+unspecified
+
+>  <Reference and Vendor data> (10)
+
+>  <Storage Requirements and Warnings> (10)
+
+>  <Chemist> (10)
+unspecified
+
+>  <BP> (10)
+
+>  <MP> (10)
+
+>  <Flash Point> (10)
+
+>  <Optical Rotation> (10)
+
+>  <Refractive Index> (10)
+
+>  <Salt> (10)
+no_salt
+
+>  <Creation Date> (10)
+
+>  <Submitted Amount> (10)
+
+>  <Notebook> (10)
+
+>  <BATCH_REG_PERSON_ID> (10)
+T5_85
+
+>  <Entry Person> (10)
+T5_85
+
+>  <Last Mod Person> (10)
+
+>  <BATCH_REG_DATE> (10)
+11/28/2003
+
+>  <Last Mod Date> (10)
+
+>  <Preparation> (10)
+
+>  <Batch Comment> (10)
+
+>  <Page> (10)
+
+>  <Physical Form> (10)
+
+>  <1HNMR> (10)
+
+>  <Color> (10)
+
+>  <13CNMR> (10)
+
+>  <IR> (10)
+
+>  <FIA/MS> (10)
+
+>  <GC> (10)
+
+>  <BATCH_FORMULA> (10)
+
+>  <SOLVATE_ID> (10)
+no_solvate
+
+>  <Equivalents> (10)
+
+>  <Equivalents> (10)
+
+>  <Formula Weight> (10)
+298.419
+
+>  <Salt Name> (10)
+
+>  <MW> (10)
+
+>  <Solvate Name> (10)
+
+>  <MW> (10)
+
+>  <Percent Active> (10)
+100
+
+>  <Units> (10)
+
+>  <Purity> (10)
+
+>  <HPLC> (10)
+
+>  <Appearance> (10)
+
+>  <LC/UV/MS> (10)
+
+>  <CHN> (10)
+
+>  <UV> (10)
+
+>  <LogD> (10)
+
+>  <Solubility> (10)
+
+>  <IDENTIFIER_TYPE> (10)
+0
+
+>  <IDENTIFIER> (10)
+Norethindrone
+
+>  <cpd_internal_id> (10)
+311
+
+$$$$

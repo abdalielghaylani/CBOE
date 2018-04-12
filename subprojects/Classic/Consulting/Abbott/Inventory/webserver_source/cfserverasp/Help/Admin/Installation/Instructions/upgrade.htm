@@ -1,0 +1,73 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- Installation Win2000</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="minimum_requirements.htm"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="../WinNT%20Install/csdo.htm"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>ChemOffice WebServer for use with Win 2000</STRONG>&nbsp;
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  Upgrading ChemOffice WebServer  from 7.1 to 7.2</h1>
+<P>Please follow the following steps,&nbsp;if you are 
+upgrading from 7.1 to 7.2:</P>
+<OL><li>Uninstall Webserver Core 7.1 and Registration System 7.1 (if app.) in the following 
+order: 
+  <ol><li>Registration System 7.1:
+    <ol><li>Backup Regdb.mst, Regdb.msi files and 
+      cfserver.ini configuration file, custom databases and customized forms. 
+      <LI>Backup the <STRONG>chemoffice.asp</STRONG>     
+             file.
+      <LI>Run the uninstall from add/remove programs.</LI>       
+    </ol>
+  <li>Webserver Core 7.1: 
+    <ol><li>Run the uninstall from add/remove programs.</li>       </ol></li>
+  </ol>
+  <LI>Upgrade Webserver Core to 7.2: 
+  <OL><li>Run installer. 
+    <LI>Go to <STRONG>Components Services&gt;Com+ Objects</STRONG> and delete 
+    CSDO and CSDO7 COM objects. 
+    <LI>Open an execute the following file: 
+    <BR><STRONG>ChemOffice\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB\alter_cs_security_for_global_security.cmd 
+    </STRONG> 
+
+    <LI>Update the cs_security.udl with the current Oracle 
+    Service name.</LI>       
+      
+</OL></LI></OL>        
+<P>
+<P><A href="http://misty/COWS/ChemOffice/webserver_source/cfserverasp/Help/Admin/Installation/Instructions/csdo71.htm" >Step 3: Register CSDO 7.1&nbsp;Objects with 
+COM+ Component Services</A></P>
+<OL></OL>
+<OL></OL>   
+
+</body>
+
+</html>

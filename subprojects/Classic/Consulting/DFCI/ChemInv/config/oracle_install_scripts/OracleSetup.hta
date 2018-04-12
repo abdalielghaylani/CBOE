@@ -1,0 +1,508 @@
+<SCRIPT LANGUAGE="vbscript">
+	Dim WshShell	
+	Dim homeDir
+	Set WshShell = CreateObject("WScript.Shell")
+
+	Function RunCmd(workingDir, fileName)
+		if workingDir = "" then
+			fullCmdCall = fileName & " " & workingDir
+		else
+			fullCmdCall = workingDir & "\" & fileName & " " & workingDir
+		end if
+		rc = WshShell.Run(fullCmdCall, 5, true)
+		RunCmd = false
+	End Function
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+	<title>CambridgeSoft --Oracle Script Configuration Tool</title>
+	<HTA:APPLICATION ID="OSCF" 
+		APPLICATIONNAME="Oracle Script Configuration Tool" 
+		BORDER="thick"
+		CAPTION="yes"
+		ICON="/graphics/creature.ico"
+		SHOWINTASKBAR="yes"
+		SINGLEINSTANCE="yes"
+		SYSMENU="yes"
+		WINDOWSTATE="normal">
+
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+SPAN
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: blue;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: underline
+}
+-->
+    </style>
+</HEAD>
+
+<body>
+
+<h1>Oracle Script Installation for Inventory Enterprise</h1>
+
+<p>The following will step you through the installation of Oracle scripts
+necessary for the successful installation of Inventory Enterprise.&nbsp; Before
+proceeding you must be sure you are aware of the specifics of your Oracle
+installation and what schemas have already been created.&nbsp; Actions taken
+(e.g. dropping tablespaces which already exist) cannot be
+undone.&nbsp;&nbsp;&nbsp; </p>
+
+<p>Clicking on links in this file will open command windows which require some
+user feedback.&nbsp; The command files used run SQL scripts.&nbsp; Some
+parameters, defining how the schemas will be created, can be adjusted.&nbsp; The
+default values are adequate for standard, smaller installations, but should be
+adjusted by a knowledgeable DBA to suit the environment of<span style="mso-spacerun: yes">
+</span>midsize-large production installations.&nbsp; To access additional information about
+the parameters file and the file itself, click <a href="parameters_help.htm">here</a>. </p>
+
+<h2>Minimum Oracle Requirements</h2>
+
+<p>The following must be installed BEFORE running any scripts:</p>
+
+<ul>
+  <li>CS Oracle Cartridge 9.0<br>
+    &nbsp;&nbsp;</li>
+  <li>For Oracle 9.2.0.4 or 9.2.0.5 Installations</li>
+  <ul>
+	<li>Oracle OLEDB Provider 9.2.0.4</li>
+	<li>Oracle ODBC Driver 9.2.0.4<br>&nbsp;&nbsp;</li>
+	</ul>
+	<li>For Oracle 10g R2 (10.2.0.1) Installations
+	<ul>
+		<li>Oracle Enterprise Edition OR </li>
+		<li>Oracle Standard Edition</li>
+	</ul>
+&nbsp; </li>
+	<li>MSXML 4 (The MSXML 4 installer is found at <font face="Arial" size="2">/installers/msxml4/msxml.msi
+    on the installation CD</font>, or find it on the Microsoft
+    website)</li>
+</ul>
+
+<ol>
+  <li>
+
+<h2>Create/Upgrade CS Security Schema</h2>
+
+  </li>
+</ol>
+The following scripts will prepare the cs_security schema for use with
+ChemOffice Enterprise 2005 (version 9.0).&nbsp; If you have already created the cs_security schema for version 
+9.0, continue on to step 2.&nbsp;&nbsp;<br>
+<b>Note</b>: The cs_security parameters help file is located <a href="../../../cs_security/config/Oracle_Install_Scripts/parameters_help.htm">here</a>.
+<ol type="a">
+  <li><b><i>New</i></b> CS Security Install:&nbsp;<br>
+    If you have not yet created the schema for CS Security, click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB\','create_cs_security.cmd'">here</span>
+    to create the cs_security schema in Oracle.<br>
+    <b>Note:</b> <font color="#FF0000">Running this script will drop any users and roles for 
+  ChemOffice Enterprise applications that
+    may already be entered.<br>
+    &nbsp; </font>&nbsp;&nbsp;<br>
+    <i>OR</i><br>
+    &nbsp; &nbsp;&nbsp;</li>
+  <li><b><i>Upgrade</i></b> CS Security from <b> 9.0 to 9.0 SR2</b>:<br>
+    If you would like to upgrade your version 9.0 CS Security schema, click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB\','upgrade_cs_security_9_to_9SR2.cmd'">here</span>.<br>
+    &nbsp;<br>
+    <i>OR<br>
+&nbsp; </i></li>
+  <li><b><i>Upgrade</i></b> CS Security from <b> 7.2 to 9.0</b>:<br>
+    If you would like to upgrade your version 7.2 CS Security schema, click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB\','upgrade_cs_security_72_to_80.cmd'">here</span>.<br>
+    &nbsp;<br>
+    <i>OR</i><br>
+    &nbsp;&nbsp;&nbsp;</li>
+  <li><b><i>Upgrade</i></b> CS Security from <b>7.1 to 9.0</b>:<br>
+    If you would like to upgrade your version 7.2 CS Security schema, click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB\','upgrade_cs_security_71_to_80.cmd'">here</span>.</li>
+</ol>
+<ol start="2">
+  <li>
+<h2>Create Inventory Enterprise Schema</h2>
+  </li>
+</ol>
+  <ol type="a"><li><i><b>New Blank</b></i> Inventory Enterprise Install:&nbsp;<br>
+      If you have not yet created the schema for Inventory Enterprise, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\','Create_Blank_ChemInvDB.cmd'">here</span>
+    to create the cheminvdb2 schema in Oracle.<br>
+    <b>Note:</b> <font color="#FF0000">Running this script will drop any
+    previously entered data associated with inventory containers and substances
+    in a previous installation of Inventory Enterprise.</font>&nbsp;&nbsp;<br>
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<br>
+    <i>
+    OR<br>
+    &nbsp;&nbsp;</i>
+    <li><i><b>New Test </b></i>Inventory Enterprise Install:&nbsp;<br>
+      If you have not yet created the schema for Inventory Enterprise, click <span style="cursor:hand" onClick="RunCmd 'Create_test_ChemInv_DB\','Create_Test_ChemInvDB.cmd'">here</span>
+      to create the cheminvdb2 schema in Oracle.&nbsp; This script will import <b><i>Test Data</i></b> 
+      into your database.<br>
+    <b>Note:</b> <font color="#FF0000">Running this script will drop any
+    previously entered data associated with inventory containers and substances
+    in a previous installation of Inventory Enterprise.</font>&nbsp;<br>
+      &nbsp;&nbsp;<br>
+  </li>
+    <i>
+    AND<br>
+    &nbsp;&nbsp;</i>
+    <LI><i><b>Upgrade </b></i>the newly installed Inventory Enterprise Schema from <b>9.0 to 10.0</b> by performing steps 3a through 3d.&nbsp;<br>
+    </ol>
+
+<ol start="3">
+  <li>
+<h2>Upgrade Inventory Enterprise Schema</h2>
+  </li>
+</ol>
+  <ol type='a'>
+<!--
+    <li><b><i>Upgrade</i></b> Inventory Enterprise <b>from 9.X to 9.0SR3</b>:<br>
+      If you would like to upgrade your version 9.X Inventory Enterprise schema, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','Update_Inventory_to_9SR3.cmd'">here</span>.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+  </li>
+-->
+  </li>
+
+    <li><b><i>Upgrade</i></b> Inventory Enterprise from <b>9.0 to 9.0SR1</b>:<br>
+      If you would like to upgrade your version 9.0 Inventory Enterprise schema, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','Update_Inventory_9_to_9SR1.cmd'">here</span>.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+
+  </li>
+      <li><b><i>Upgrade</i></b> Inventory Enterprise from <b>9.0SR1 to 9.0SR2</b>:<br>
+      If you would like to upgrade your version 9.0SR1 Inventory Enterprise schema, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','Update_Inventory_9SR1_to_9SR2.cmd'">here</span>.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+
+  </li>
+    <li><b><i>Upgrade</i></b> Inventory Enterprise from <b>9.0SR2 to 9.0SR3</b>:<br>
+      If you would like to upgrade your version 9.0SR2 Inventory Enterprise schema, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','Update_Inventory_9SR2_to_9SR3.cmd'">here</span>.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+  </li>
+  <li><b><i>Upgrade</i></b> Inventory Enterprise from <b>9.0SR3 to 10.0</b>:<br>
+      If you would like to upgrade your version 9.0SR3 Inventory Enterprise schema, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','Update_Inventory_9SR3_to_10.cmd'">here</span>.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+  </li>
+  </ol>
+  <b><i>Integrate</i> </b>with Registration Enterprise:
+  <br>If you would like to integrate Inventory Enterprise with Registration Enterprise, please go through step 8 
+  under the <b>Required Configuration</b> topic. If you have already integrated Registration Enterprise, please go 
+  to step 9, within step 8,&nbsp; to create Registration integration views.&nbsp;&nbsp;
+    <br>
+      <i>&nbsp; </i>
+
+
+<h2>Required Configuration</h2>
+
+<ol>
+  <li>Define the Data Source in the cs_security UDL
+  <ol><li>
+          Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em>
+          cs_security/config/</strong>
+    <li>Double-click <strong>cs_security.udl</strong> (to
+        open it).<li>Change the <strong>Data Source</strong> to the name
+        of your Oracle service. For information about your Oracle Service Name,
+        please see your Oracle DBA or consultant.<li>Enter <strong>oracle</strong> as the password and
+        click <strong>Test Connection</strong>.<li>Click <strong>OK</strong>.<li>Click <strong>OK</strong>.<br>
+      &nbsp;&nbsp;</ol>
+  </li>
+
+
+  <li>Define the Inventory Enterprise CS Security Data Source in the Inventory 
+  Enterprise cs_security UDL
+  <ol><li>
+          Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em>
+          cheminv/config/</strong>
+    <li>Double-click <strong>cs_security.udl</strong> (to
+        open it).<li>Change the <strong>Data Source</strong> to the name
+        of your Oracle service. For information about your Oracle Service Name,
+        please see your Oracle DBA or consultant.<li>Enter <strong>oracle</strong> as the password and
+        click <strong>Test Connection</strong>.<li>Click <strong>OK</strong>.<li>Click <strong>OK</strong>.<br>
+      &nbsp;&nbsp;</ol>
+  </li>
+
+
+  <li>Define the Inventory Enterprise Data Source in the Inventory Enterprise UDL
+  <ol><li>
+          Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em>
+          cheminv/config/</strong>
+    <li>Double-click <strong>cheminv.udl</strong> (to
+        open it).<li>Change the <strong>Data Source</strong> to the name
+        of your Oracle service. For information about your Oracle Service Name,
+        please see your Oracle DBA or consultant.<li>Enter <strong>oracle</strong> as the password and
+        click <strong>Test Connection</strong>.<li>Click <strong>OK</strong>.<li>Click <strong>OK</strong>.<br>
+      &nbsp;&nbsp;</ol>
+  </li>
+
+
+  <li>Use the <strong>ODBC Control Panel</strong> to create a system DSN (for the
+  report writer)
+  <ol>
+    <li class="Numbered-substep">Open the ODBC Control Panel by going to<br>
+      <strong>START &gt;Programs&gt;Administrative Tools&gt;Data Sources</strong>
+    <li class="Numbered-substep">Select<strong> System DSN</strong> tab.
+    <li class="Numbered-substep">Click <strong>Add.</strong>
+    <li class="Numbered-substep">Highlight <em class="Strong"><strong>Oracle
+      ODBC Driver</strong>. (or for 9i - select <b>Oracle in OraHome92</b>, for 10g - select <b>Oracle in OraDb10g_home1</b>)</em>
+    <li class="Numbered-substep">Click <strong>Finish</strong>.
+    <li class="Numbered-substep">Fill in the following information:
+      <ul>
+        <li class="Bulleted-indent-sub"><strong>Data Source Name</strong> :
+          Chem_Inv
+        <li class="Bulleted-indent-sub"><strong>Description</strong>: Chem_Inv
+        <li class="Bulleted-indent-sub"><strong>Service Name</strong> :
+          &lt;Oracle Service Name&gt; for your target database. For information
+          about your Oracle Service Name, please see your Oracle DBA or
+          consultant.
+        <li class="Bulleted-indent-sub"><strong>User ID</strong> : cheminvdb2</li>
+      </ul>
+    </li>
+  </ol>
+
+    &nbsp;&nbsp;
+  </li>
+
+
+  <li>Update the configuration Files
+    <ol>
+      <li class="Numbered">Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/chemInv.ini</strong>
+        <ul>
+          <li class="Bulleted-indent">Verify that the <strong>STRUC_DB_PATH</strong>
+            entry is set to NULL.
+          <li class="Bulleted-indent">Verify that the <strong>CONNECTION_STRING</strong>
+            entry agrees with the application path chosen in the installer (by
+            default C:Inetpub\wwwroot\ChemOffice\Cheminv\Config\Cheminv.udl).<br>
+            &nbsp;&nbsp;</li>
+        </ul>
+      <li class="Numbered">Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/cfserver.ini</strong>
+        <ul>
+          <li class="Bulleted-indent">Set the <strong>ORA_SERVICENAME</strong>
+            entry to the Oracle service name of your target server.<br>
+            For information about your Oracle Service Name, please see your
+            Oracle DBA or consultant.</li>
+          <li class="Bulleted-indent">Set the <b>DBA_USERNAME</b> to a valid DBA
+            username which can be used for accessing limited dba functions for
+            users with permissions allowing adding users/roles.</li>
+          <li class="Bulleted-indent">Set the <b>DBA_PWD</b> to the password for
+            the username entered in DBA_USERNAME.</li>
+          <li class="Bulleted-indent">The <b>ENCRYPT_PWD</b> key controls 
+          password encryption in the configuration file.&nbsp; The default is set to 
+          FALSE, no password encryption.&nbsp; If the key is set to TRUE, the 
+          CHEMINV_PWD, SEC_PWD, and DBA_PWD settings will be encrypted in the 
+          configuration file upon the first login.&nbsp; See the Inventory Enterprise 
+          Admin guide's description of the cfserver.ini file for more details.<br>
+            &nbsp;&nbsp;</li>
+        </ul>
+      <li class="Numbered">Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong>
+        <ul>
+          <li class="Bulleted-indent">The <strong>INV_SERVER_NAME</strong>
+            should point to Server hosting the Inventory Enterprise database.&nbsp;<br>
+            &nbsp;This refers to the fully qualified domain name of the server,
+            not the Oracle Service Name.
+          <li class="Bulleted-indent">Verify that the <strong>RPT_PATH</strong>
+            entry agrees with the ChemOffice Enterprise installation path
+          <li class="Bulleted-indent">Verify that the <strong>REPORT_DB_PATH</strong>
+            entry agrees with the database path chosen in the installer (by
+            default C:\ChemOffice_data\ChemInv\Cheminv_reports.mdb)</li>
+        </ul>
+      </li>
+    </ol>
+    &nbsp;
+  </li>
+
+
+  <li>Setup barcode support.
+    <ol>
+      <li class="Numbered">Browse to <strong>&lt;webroot&gt;\ChemOffice\<em class="Strong">
+        ChemInv\Installation\Tbarcode</em></strong> .
+      <li class="Numbered">Run the <strong>Tbarcode.ocx</strong> installer.
+    </ol>
+    &nbsp;&nbsp;&nbsp;
+
+  </li>
+
+  <li>Configure the Report Writer. <i> (If this step has already been taken for another
+    application setup, it does not have to be repeated.)</i>
+  <ol>
+        <li>Login as the user that the report service is running under (this is the
+          user name entered during the ChemOffice Enterprise 
+          installation).
+            <li>Set
+              a default printer or Install Win2PDF (a PDF printer driver whose
+              installer is found <span style="cursor:hand" onClick="RunCmd '..\..\installation\win2pdf','w2pdf_setup.exe'">here</span>
+              .&nbsp;
+              A license is required.).
+            <li>Launch
+              MS Access to clear any initial dialogs for the user.<br>
+              &nbsp;&nbsp;
+
+</ol>
+
+  </li>
+
+
+  <li>Integrate with Registration System.<br>
+    <font color="#FF0000">
+    <b>Note:</b> If you are not planning to integrate Inventory Enterprise with Registration System, set the REG_SERVER_NAME in &lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini
+    to NULL.<br>
+    &nbsp;&nbsp;</font>
+  <ol><li>Browse to and double-Click <strong>&lt;webroot&gt;/ChemOffice/<em class="Strong">
+      cheminv/config/ChemReg.udl</em></strong>
+      <li>Change the <strong>Data Source</strong> to the name of your Oracle
+      Service.<br>
+      For information about your Oracle Service Name, please see your Oracle DBA
+      or consultant.
+        <li>Click <strong>OK</strong> .&nbsp;
+        <li>
+        Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong>
+        <li>Change the <strong>REG_SERVER_NAME</strong>
+          entry to point to the Server hosting Registration System.<br>
+          This refers to the fully qualified domain name of the server, not the
+          Oracle Service Name.
+        <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/chem_reg/config/<em class="Strong">
+            &nbsp;</em></strong>
+        <li>Open <strong><em class="Strong">Cfserver.ini</em></strong>
+        <li>Change <em class="Strong"><strong>POST_MARKED_SEND_TO_PAGE=NULL</strong></em>
+          to:<br>
+          <strong><em class="Strong">POST_MARKED_SEND_TO_PAGE= </em><em>http://IIS_SERVER_NAME/cheminv/gui/ImportFromChemReg.asp</em></strong><br>
+          (where IIS_SERVER_NAME is the name of the IIS server that is hosting
+          Inventory Enterprise)</li>
+        <li>
+            <b><i>Create</i></b> Registration integration views in the Inventory Enterprise schema:<br>
+          If you would like to integrate Registration Enterprise with Inventory Enterprise, click <span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\sql\Update_Scripts\','RegistrationIntegration.cmd'">here</span>.&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;
+        </li>
+
+      </ol>
+  </li>
+
+
+<li>Integrate with ChemACX Database.<br>
+  <font color="#FF0000">
+  <b>Note:</b> If you are not planning to integrate with Inventory Enterprise with ChemACX, set the ACX_SERVER_NAME in &lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini
+  to NULL.</font><br>
+  <ol>
+    <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/</strong>
+    <li>Double
+      click <strong>ChemACX.udl</strong>
+      <li>For <i>Microsoft Access</i> Installations of ChemACX: Make sure the
+        location of the ChemACX database (ChemACX.mdb) is correct.<br>
+        For <i>Oracle</i> Installations of ChemACX: Change the <strong>Data
+        Source</strong> to the name of your Oracle Service.
+      <li>
+      Click <strong>OK</strong>.
+      <li>Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong>
+      <li>Change the <strong>ACX_SERVER_NAME</strong> to point to the Server
+      hosting ChemACX<br>
+      This refers to the fully qualified domain name of the server, not the
+      Oracle Service Name.<br>
+      If set to NULL ChemACX integration will be disabled.
+      <li>Browse to and open <strong>&lt;webroot&gt;/ChemOffice/chemacx/config/acxconfig.ini</strong>
+      <li>Set <strong>EXPORT_TO_CHEMINV</strong>=&quot;<strong><em>True</em></strong>&quot;
+      <LI><EM><b>If ChemACX is working with an Oracle database</b></EM>: update 
+      <STRONG>invacx.ini</STRONG>. 
+     <OL>
+     <LI>Browse to and open 
+     <STRONG>&lt;webroot&gt;/ChemOffice/cheminv/config/invacx.ini</STRONG>
+     <LI>Replace all occurrences of <STRONG><EM>ACCESS</EM></STRONG> with 
+     <STRONG><EM>ORACLE</EM></STRONG>.<br>
+      &nbsp;&nbsp;</LI></OL></LI>
+  </ol>
+
+  <li>Integrate with Doc Manager Database.<br>
+    <font color="#FF0000">
+    <b>Note:</b> If you are not planning to integrate Inventory Enterprise with
+    Document Manager, set the DOCMANAGER_SERVER_NAME in &lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini
+    to NULL.</font><br>
+  <ol>
+      <li>Browse to and open <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong>
+      <li>Change the <strong>DOCMANAGER_SERVER_NAME</strong> to point to the Server
+      hosting Document Manager<br>
+      This refers to the fully qualified domain name of the server, not the
+      Oracle Service Name.<br>
+      If set to NULL Document Manager integration will be disabled.
+    <li>Set SHOW <b>DOCMANAGER_LINK</b> to 1.</li>
+  </ol>
+
+    &nbsp;
+
+  </li>
+
+  <li>Perform an IISRESET.
+    <p>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+  </li>
+
+</ol>
+
+<h2>Uninstalling the Inventory Enterprise and CS Security Schemas</h2>
+<ul>
+  <li><b><i>Inventory Enterprise</i></b>: To uninstall (drop cheminvdb2) the 
+  Inventory Enterprise schema in Oracle, click
+<span style="cursor:hand" onClick="RunCmd 'Create_blank_ChemInv_DB\','Drop_ChemInvDB.cmd'">here</span>.<br>
+    &nbsp;&nbsp;</li>
+  <li><b><i>CS Security</i></b>: To uninstall (drop cs_security) the CS Security
+    schema in Oracle,
+    click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB','drop_cs_security.cmd'">here</span>.</li>
+</ul>
+
+<h2>&nbsp;</h2>
+
+</body>
+
+</html>

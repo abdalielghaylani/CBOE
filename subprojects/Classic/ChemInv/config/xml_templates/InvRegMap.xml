@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<RegNewInvContainerMap>
+	<fields>
+		<field invSessionVar="LocationID" xPath="" constantVal="" />
+		<field invSessionVar="ContainerName" xPath="MultiCompoundRegistryRecord/BatchList/Batch/FullRegNumber" constantVal="Container" />
+		<field invSessionVar="QtyInitial" xPath="MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='AMOUNT']" constantVal="" />
+		<field invSessionVar="QtyMax" xPath="MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='AMOUNT']" constantVal="" />
+		<field invSessionVar="UOMID" xPath="MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='AMOUNT_UNITS']" constantVal="" />
+	</fields>
+</RegNewInvContainerMap>

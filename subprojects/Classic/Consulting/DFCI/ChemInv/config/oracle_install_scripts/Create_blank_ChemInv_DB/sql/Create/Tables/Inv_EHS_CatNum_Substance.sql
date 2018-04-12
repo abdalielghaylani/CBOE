@@ -1,0 +1,70 @@
+CREATE TABLE "INV_EHS_CATNUM_SUBSTANCE"(
+    "EHS_CATNUM_SUBSTANCE_ID" NUMBER(5) NOT NULL, 
+    "SUPPLIER_ID_FK" NUMBER(4) NOT NULL, 
+    "SUPPLIER_CATNUM" VARCHAR2(50) NOT NULL, 
+    "SUPPLIER_CATNUM_INTERNAL" VARCHAR2(50) NOT NULL, 
+    "SUBSTANCE_NAME" VARCHAR2(500) NOT NULL, 
+    "CAS" VARCHAR2(15) NOT NULL, 
+    "CAS_INTERNAL" VARCHAR2(15) NOT NULL, 
+    "EHS_GROUP_1" VARCHAR2(10), 
+    "EHS_GROUP_2" VARCHAR2(10), 
+    "EHS_GROUP_3" VARCHAR2(10), 
+    "HEALTH" NUMBER(1), 
+    "FLAMMABILITY" NUMBER(1), 
+    "REACTIVITY" NUMBER(1), 
+    "IS_SENSITIZER" NUMBER(1) DEFAULT 0 NOT NULL, 
+    "IS_REFRIGERATED" NUMBER(1) DEFAULT 0 NOT NULL, 
+    "PACKING_GROUP" NUMBER(1), 
+    "UN_NUMBER" NUMBER(4), 
+    "IARC_CARCINOGEN" VARCHAR2(10), 
+    "EU_CARCINOGEN" VARCHAR2(50), 
+    "IS_OSHA_CARCINOGEN" NUMBER(1) DEFAULT 0 NOT NULL, 
+    "ACGIH_CARCINOGEN_CATEGORY" VARCHAR2(2), 
+    CONSTRAINT "EHS_CATNUM_HEALTH_CHK" 
+		CHECK(Health BETWEEN 0 AND 4), 
+    CONSTRAINT "EHS_CATNUM_FLAM_CHK" 
+		CHECK(Flammability BETWEEN 0 AND 4), 
+    CONSTRAINT "EHS_CATNUM_REAC_CHK" 
+		CHECK(Reactivity BETWEEN 0 AND 4), 
+    CONSTRAINT "EHS_CATNUM_PACK_CHK" 
+		CHECK(packing_Group BETWEEN 1 AND 3), 
+    CONSTRAINT "EHS_CATNUM_ACGIH_CHK" 
+		CHECK(ACGIH_Carcinogen_Category IN ('A1', 'A2')), 
+    CONSTRAINT "EHS_CAT_SUPPLIER_U1" 
+		UNIQUE("SUPPLIER_ID_FK", 
+				"SUPPLIER_CATNUM") USING INDEX TABLESPACE &&indexTableSpaceName,  
+    CONSTRAINT "EHS_CATNUM_SUPPLIER_U2" 
+		UNIQUE("SUPPLIER_ID_FK", 
+			   "SUPPLIER_CATNUM_INTERNAL") USING INDEX TABLESPACE &&indexTableSpaceName, 
+    CONSTRAINT "EHS_CATNUM_PK" 
+		PRIMARY KEY("EHS_CATNUM_SUBSTANCE_ID")
+	);
+
+create sequence SEQ_INV_EHS_CatNum_Substance INCREMENT BY 1 START WITH 1 MAXVALUE 99999 MINVALUE 1 NOCYCLE NOCACHE ORDER;
+
+CREATE OR REPLACE TRIGGER TRG_INV_EHS_CatNum_bi0 BEFORE INSERT
+ON INV_EHS_CatNum_Substance
+FOR EACH ROW
+BEGIN
+    :NEW.CAS_Internal := TRANSLATE(UPPER(:NEW.CAS),
+                                   Constants.cCASTranslation1, Constants.cCASTranslation2);
+    :NEW.supplier_catnum_Internal := TRANSLATE(UPPER(:NEW.supplier_catnum),
+                                               Constants.cCatNumTranslation1, Constants.cCatNumTranslation2);
+END;
+/
+
+CREATE OR REPLACE TRIGGER TRG_INV_EHS_CatNum_bu0 BEFORE UPDATE
+ON INV_EHS_CatNum_Substance
+FOR EACH ROW
+WHEN (NEW.CAS <> OLD.CAS OR NEW.supplier_catnum <> OLD.supplier_catnum)
+BEGIN
+    :NEW.CAS_Internal := TRANSLATE(UPPER(:NEW.CAS),
+                                   Constants.cCASTranslation1, Constants.cCASTranslation2);
+    :NEW.supplier_catnum_Internal := TRANSLATE(UPPER(:NEW.supplier_catnum),
+                                               Constants.cCatNumTranslation1, Constants.cCatNumTranslation2);
+END;
+/
+
+CREATE INDEX EHS_CatNum_Supplier_FK_IDX ON inv_EHS_CatNum_Substance(supplier_id_fk ASC) TABLESPACE &&indexTableSpaceName;
+
+

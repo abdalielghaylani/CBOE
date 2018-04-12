@@ -1,0 +1,161 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Global Search</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="0,85,385,515" HREF="fields/substructure.htm">
+
+<area SHAPE="RECT" COORDS="385,85,590,125" HREF="fields/substance_name.htm">
+<area SHAPE="RECT" COORDS="385,125,590,165" HREF="fields/cas_number.htm">
+<area SHAPE="RECT" COORDS="385,165,590,205" HREF="fields/acx_number.htm">
+<area SHAPE="RECT" COORDS="385,205,590,242" HREF="fields/molecular_formula.htm">
+<area SHAPE="RECT" COORDS="385,242,590,282" HREF="fields/molweight_range.htm">
+<area SHAPE="RECT" COORDS="385,282,590,322" HREF="fields/registry_number.htm">
+<area SHAPE="RECT" COORDS="385,322,590,362" HREF="fields/registry_sequence.htm">
+<area SHAPE="RECT" COORDS="385,362,590,402" HREF="fields/reg_alt_ids.htm">
+
+
+</map> 
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <strong>User's Guide</strong>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="42952" -->
+<h1>Global Search</h1>
+<p> 
+The Global Search form allows users to search over the 
+Registration Enterprise, ChemACX, or both, simultaneously with an Inventory Enterprise 
+search. When results are returned, Inventory, Registration, and ACX 
+results remain separate, but the application indicates if the retrieved substance is found 
+in any inventory containers. </p>
+<p> 
+The global search option allows searching through 
+the use of <a href="fields/substance_name.htm">Substance Name</a> 
+        
+ , <a href="fields/cas_number.htm">CAS number</a>, <a href="fields/acx_number.htm">ACX number</a>, <a href="fields/molecular_formula.htm">Molecular Formula</a>, <a href="fields/molweight_range.htm">MolWeight Range</a>, <a href="fields/registry_number.htm">Registry Number</a>, <a href="fields/registry_sequence.htm">Registry Sequence</a>, <a href="fields/reg_alt_ids.htm">Reg Alternate IDs</a>, and&nbsp;<a href="fields/substructure.htm">Substructure</a>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;<img src="../images/global_seach.gif" useMap="#screenshot" border="0" width="603" height="495"> </p>
+<p> 
+How to search: </p>
+<ol>
+  <li>Select the checkboxes next to the applications you 
+  would like to search over.
+  <li>Enter the desired information to search for. For 
+  more information about entering search criteria, see Searching ChemOffice Enterprise Applications in the 
+  <a href="../../../webserver_source/cfserverasp/Help/global/searching.html">ChemOffice Enterprise Users Guide</a>. <br>Additional fields may appear on this search form.&nbsp;Any additional fields have been defined for your site.&nbsp;Please see you 
+  system administrator for more details.&nbsp;&nbsp;         
+                 
+     
+  <li>Click <img src="../images/search_btn.gif" border="0" width="80" height="21">
+  <b>Search</b> in the toolbar. <br>A list 
+  of&nbsp;substances matching your search parameters is returned.         
+                 
+     
+  <li>Click on the radio button next to the appropriate 
+  application to see results retrieved from that application. For more information, 
+  please see <a href="#1">Viewing Results for a Global Search</a>. </li></ol>
+
+
+<h2><a name="1">Viewing Results for a Global Search</a></h2>
+
+
+<p>Search results from a global search are split into three 
+lists, one for each application. To access results from an application, 
+select the radio button next to the application's name. Results are 
+initially listed by substance. To view the results by container, click the 
+<img src="../images/details_btn.gif" width="54" height="16">&nbsp;<strong>Details</strong>              
+     button for a 
+substance.&nbsp;The Details button is only active if there is an 
+associated container.<br>
+<table cellSpacing="1" cellPadding="1" width="75%" border="0">
+  
+  <tr>
+    <td>
+      <p align="center"><strong>Browse 
+      Results by Container</strong></p></td>
+    <td><strong>
+      <p align="center"><strong>Browse Results by 
+    Substance</strong></p>  </strong></td></tr>
+  <tr>
+    <td valign="top"><img src="../images/global_search_results2.gif" width="252" height="149"></td>
+    <td valign="top"><img src="../images/global_search_results.gif" width="493" height="295"></td></tr></table></p>
+<p>To retrieve Registration Enterprise or ChemACX data for a 
+substance, click the linked Registration number or ACX number respectively. Click on the image below for more information about the Inventory 
+interface to the Registration Enterprise or ChemACX.</p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="75%" border="0">
+  
+  <tr>
+    <td>
+      <p align="center"><strong><a href="global_search_reg.htm">Registration Substance in 
+      Inventory</a>   
+</strong></p></td>
+    <td><strong><strong>
+      <p align="center"><strong><a href="global_search_acx.htm">ChemACX&nbsp;Substance in 
+      Inventory</a>  
+      </strong></p></strong></strong></td></tr>
+  <tr>
+    <td vAlign="top" Align="middle"><a href="global_search_reg.htm">
+    <img src="../images/reg.gif" border="0" width="201" height="228"></a></td>
+    <td vAlign="top" Align="middle"><a href="global_search_acx.htm">
+    <img src="../images/acx.gif" border="0" width="202" height="231"></a></td></tr></table></p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="35659" -->  
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<H3 style="MARGIN: 12pt 0in 3pt"><FONT face=Arial>Overview:<?xml:namespace 
+prefix = o ns = "urn:schemas-microsoft-com:office:office" 
+/><o:p></o:p></FONT></H3>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">This document describes the process 
+to set up the ChemACX.Com Enterprise Application for use as the public 
+ChemACX.Com server. <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>Starting with 
+version 9.0a2 of ChemACX Enterprise, all the .Com specific changes have been 
+refactored and parameterized so that the public server can be easily configured 
+without requiring the usual code hacks.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>Note that ChemACX 9.0 is backwards compatible with COWS 8.1 so it can be 
+setup under either COWS 2004 or COWS 2005 servers.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<H3 style="MARGIN: 12pt 0in 3pt"><FONT 
+face=Arial>Installation:<o:p></o:p></FONT></H3>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Install, 
+configure and test COWS CORE 2004 or 2005<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Install 
+ChemACX 9.0a2 or later (This can be done from the installer, or by manually 
+checking-out the ChemACX project from SS and manually setting up the ChemACX 
+virtual)<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Set up 
+IIS such that the ChemACX application is on its own website (This may require 
+manually recreating ChemOffice, cfserverasp, cfwtemp and ChemACX 
+virtuals)<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">During 
+testing of the server upgrade, the website must be setup with a host header in 
+the cambridgesoft.com domain to ensure that authentication cookies are shared 
+with the <B style="mso-bidi-font-weight: normal">accounts.cambridgesoft.com</B> 
+server.<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Setup up 
+a redirect.asp page as the default page for the web site and make the page 
+Response.Redirect to “/chemacx/index.asp”<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Copy the 
+ChemACX database to the server<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">If a 
+previous version of ChemACX existed on the server, clean up the cfwtemp cache to 
+remove old cdx files.<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Test the 
+ChemACX application using the standard settings for ChemACX 
+Enterprise<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><B style="mso-bidi-font-weight: normal"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Create a folder named “uploads” 
+under the ChemACX virtual </SPAN></B><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">to hold uploaded catalogs<B 
+style="mso-bidi-font-weight: normal"><o:p></o:p></B></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<H3 style="MARGIN: 12pt 0in 3pt"><FONT 
+face=Arial>Configuration:<o:p></o:p></FONT></H3>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">The following files should be edited 
+to configure the application for public service.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>Only ini entries requiring a change are 
+listed.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Other entries can be left 
+in their default state.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+style="mso-bidi-font-weight: normal"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">global.asa:<o:p></o:p></SPAN></B></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Set the 
+</SPAN>bUseCSWebUserAccounts variable near the top of the file to 
+true<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+style="mso-bidi-font-weight: normal">acxConfig.ini:<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN><o:p></o:p></B></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">[MSDX]<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">SHOW_MSDX_LOOKUP_LINK= 
+0<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">[CHEMREG]<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">REG_SERVER_NAME=NULL<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">REGISTER_FROM_ACX=0<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in"><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">[SHOPPINGCART]<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">EXPORT_TO_EXCEL= 
+"False"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">EXPORT_TO_WORD= 
+"False"<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">EXPORT_TO_CHEMINV="False"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">ADD_WITHOUT_PRICE= 
+"True"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">SHOW_LISTPRICE= 
+"False"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">SAVE_IN_DB= 
+"False"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in"><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">[SEARCHLOG]<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in">LOG_SEARCHES= 
+"True"<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="mso-tab-count: 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+style="mso-bidi-font-weight: normal"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">cfserver.ini:<o:p></o:p></SPAN></B></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">[GLOBALS]<SPAN 
+style="mso-tab-count: 1"> </SPAN><o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_FLAT_SDFILE_EXPORT=0<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_HITLIST_MANAGEMENT=0<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">EXPIRE_HITLIST_HISTORY_DAYS=1<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_PUBLIC_HITLISTS=0<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_HITILIST_MNGMNT_FG_SELECTOR=0<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_QUERY_MANAGEMENT=1<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">EXPIRE_QUERY_HISTORY_DAYS=1<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">ALLOW_PUBLIC_QUERIES=0<SPAN 
+style="mso-tab-count: 1">&nbsp; </SPAN><o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in"><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">[CS_SECURITY]<o:p></o:p></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.25in">USE_CS_SECURITY_APP=0<o:p></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><SPAN 
+style="mso-tab-count: 15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><SPAN 
+style="mso-tab-count: 6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+style="mso-bidi-font-weight: normal"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">chemacx,ini:<o:p></o:p></SPAN></B></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Limit the number of records 
+exportable via sdf by adjusting all occurrences of MAXRECORDS:500 to a lower 
+number like 100.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+style="mso-bidi-font-weight: normal"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">searchlog.udl:<o:p></o:p></SPAN></B></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Use SQL 
+Server provider<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Server 
+Name: 172.17.1.18<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Use SQL 
+authentication<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Username: 
+cows2000<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Password: 
+cambridgesoft<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Database:<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>xxxxxxxx (ask if you don’t know 
+it)<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Click to 
+store the password in the udl<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><SPAN 
+style="mso-tab-count: 9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><o:p></o:p></SPAN></P>
+<H3 style="MARGIN: 12pt 0in 3pt"><FONT 
+face=Arial>Maintenance:<o:p></o:p></FONT></H3>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Note that it may be necessary to 
+turnoff Query management as it may consume too much database resources. <SPAN 
+style="mso-spacerun: yes">&nbsp;</SPAN>This has not been tested on the public 
+server.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Definitely turn off hitlist 
+management!<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>TODO:<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>Allow Pro users but disallow Net users 
+to access Query and Hitlist Management.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>This should be monitored once in production.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">There are a number of files listed 
+below that are used exclusively by the .Com server.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>This files can be edited by the 
+marketing/database team at their convenience, but they should always be checked 
+into ChemACX Source Safe project.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>If you need to edit any other files, please coordinate with the 
+Informatics team.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">Acxcom_np_form.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">banner.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">datatips.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">handlesubmission.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">leftnavigationlist.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">searchtips.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">services.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">simplesearchbox.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">submit.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">suppliers.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">suppliersabout.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal 
+style="MARGIN: 0in 0in 0pt 0.5in; TEXT-INDENT: -0.25in; mso-list: l0 level1 lfo1; tab-stops: list .5in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: Arial"><SPAN 
+style="mso-list: Ignore">-<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></SPAN><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">whyparticipate.asp<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt 0.25in"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><SPAN 
+style="FONT-SIZE: 10pt; FONT-FAMILY: Arial"><o:p>&nbsp;</o:p></SPAN></P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,7 @@
+http://dgblaptop/chemacx/chemacx/chemacx_action.asp?dbname=chemacx&formgroup=base_form_group&dataaction=get_structure&Table=Substance&Field=Structure&DisplayType=rawbase64cdx&StrucID=1488
+
+
+http://localhost/chemacx/chemacx/chemacx_action.asp?dbname=chemacx&formgroup=base_form_group&dataaction=search_no_gui&return_fields=Substance.CAS&Substance.CsNum=1048
+
+
+http://dgblaptop/sample/sample/sample_action.asp?dbname=sample&formgroup=base_form_group&dataaction=get_structure&Table=Substance&Field=Structure&DisplayType=cdx&StrucID=1488

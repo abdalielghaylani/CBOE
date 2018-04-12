@@ -1,0 +1,104 @@
+
+Connected to: Oracle Database 10g Enterprise Edition Release 10.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP and Data Mining options
+Export done in WE8MSWIN1252 character set and AL16UTF16 NCHAR character set
+server uses WE8ISO8859P1 character set (possible charset conversion)
+
+About to export specified users ...
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user BIOSARDB 
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user BIOSARDB 
+About to export BIOSARDB's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export BIOSARDB's tables via Conventional Path ...
+. . exporting table                COESAVEDHITLIST
+                                                            0 rows exported
+. . exporting table              COESAVEDHITLISTID
+                                                            0 rows exported
+. . exporting table                 COETEMPHITLIST
+                                                            0 rows exported
+. . exporting table               COETEMPHITLISTID
+                                                            7 rows exported
+. . exporting table                    CSDOHITLIST
+                                                            0 rows exported
+. . exporting table                  CSDOHITLISTID
+                                                            2 rows exported
+. . exporting table                      DB_COLUMN
+                                                         2198 rows exported
+. . exporting table       DB_DATATYPE_DISPLAY_TYPE
+                                                           18 rows exported
+. . exporting table              DB_DISPLAY_OPTION
+                                                           12 rows exported
+. . exporting table                DB_DISPLAY_TYPE
+                                                           13 rows exported
+. . exporting table                   DB_DTYP_DOPT
+                                                           12 rows exported
+. . exporting table                        DB_FORM
+                                                           72 rows exported
+. . exporting table                   DB_FORMGROUP
+                                                           24 rows exported
+. . exporting table            DB_FORMGROUP_TABLES
+                                                           35 rows exported
+. . exporting table                    DB_FORMTYPE
+                                                            3 rows exported
+. . exporting table               DB_FORMTYPE_DOPT
+                                                           20 rows exported
+. . exporting table                   DB_FORM_ITEM
+                                                          385 rows exported
+. . exporting table           DB_HTTP_CONTENT_TYPE
+                                                           17 rows exported
+. . exporting table                  DB_INDEX_TYPE
+                                                            5 rows exported
+. . exporting table                       DB_QUERY
+                                                            0 rows exported
+. . exporting table                  DB_QUERY_ITEM
+                                                            0 rows exported
+. . exporting table                DB_RELATIONSHIP
+                                                          181 rows exported
+. . exporting table                      DB_SCHEMA
+                                                            5 rows exported
+. . exporting table                       DB_TABLE
+                                                          251 rows exported
+. . exporting table               DB_XML_TEMPL_DEF
+                                                           84 rows exported
+. . exporting table                        GLOBALS
+                                                            2 rows exported
+. . exporting table                       TEMP_IDS
+. . exporting table                      TREE_ITEM
+                                                          285 rows exported
+. . exporting table                 TREE_ITEM_TYPE
+                                                            2 rows exported
+. . exporting table                      TREE_NODE
+                                                           11 rows exported
+. . exporting table                      TREE_TYPE
+                                                            8 rows exported
+. . exporting table                    USERHITLIST
+                                                            5 rows exported
+. . exporting table                  USERHITLISTID
+                                                            2 rows exported
+. . exporting table                  USER_SETTINGS
+                                                            0 rows exported
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully without warnings.
+
+
+script for recreating roles and grants has been spooled to ..\exported_data\recreate_biosar_roles_and_grants.sql

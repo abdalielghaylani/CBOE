@@ -1,0 +1,115 @@
+
+csChFnd70/01030316462D
+
+  9  5  0  0  0  0  0  0  0  0999 V2000
+    6.3896    0.8215    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9332    2.1450    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2943    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1532    0.8215    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6097    2.1450    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1450    3.3316    0.0000 Cr  0  1  0  0  0  0  0  0  0  0  0  0
+    2.1450    1.4604    0.0000 Cl  0  5  0  0  0  0  0  0  0  0  0  0
+    4.7466    4.7466    0.0000 Cl  0  5  0  0  0  0  0  0  0  0  0  0
+    0.0000    5.0205    0.0000 Cl  0  5  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  3  2  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  2  0  0  0  0
+  2  5  1  0  0  0  0
+M  END
+>  <CsNum> (1)
+167861
+ 
+>  <Substance.ACX_ID> (1)
+X1167861-2
+
+>  <Substance.HASPRODUCTS> (1)
+True
+
+>  <PRODUCT> (1)
+SUPPLIERID -- CATALOGNUM -- PRODNAME -- PRODDESCRIP230 -- 203833 -- CHROMIUM TRICHLORIDE TETRAHYDROFURANATE --   125 -- C21910 -- Chromium Trichloride Tetrahydrofuranate --    -- 
+>  <SUPPLIER> (1)
+NAME -- SUPPLIERIDICN Biomedical Research Products -- 230Pfaltz & Bauer, Inc. -- 125 -- 
+>  <PACKAGE> (1)
+SIZE -- PRICE -- CATALOG2NUM10g -- 989.60 --   10 G -- 106.46 --    -- 
+ 
+ 
+$$$$
+
+csChFnd70/01030316462D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.3518    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3636    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7574    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2515    1.3518    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1560    2.2235    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+M  END
+>  <CsNum> (2)
+1462
+ 
+>  <Substance.ACX_ID> (2)
+X1001462-5
+
+>  <Substance.HASPRODUCTS> (2)
+True
+
+>  <PRODUCT> (2)
+SUPPLIERID -- CATALOGNUM -- PRODNAME -- PRODDESCRIP52 -- 11977 -- Furan -- 98%, stabilized52 -- 18111 -- Furan -- 99+%, stabilized224 -- AC11977 -- Furan, stabilized with 0.025 to 0.04% BHT -- 98%224 -- AC18111 -- Furan, contains 0.025 to 0.04% BHT -- 99+%25 -- A13102 -- Furan -- 98%230 -- 151175 -- FURAN --   60 -- 3736 -- Furan --   125 -- D55440 -- Divinylene Oxide --   125 -- F06090 -- Furan --   125 -- O04380 -- Oxole --   125 -- T08990 -- Tetrole --   79 -- F0074 -- Furan -- stabilized with BHT315 -- AV13102 -- Furan -- 98%53 -- 185922 -- FURAN -- 99+%53 -- F019558 -- FURAN --   59 -- 47990 -- FURAN -- STAB.294 --    -- Furan --   247 --    -- Furan -- liquid244 -- F7259 -- Furan -- Contains 0.025% BHT by weight225 -- F1094 -- Furan -- Reagent319 --    -- Furan -- Wako 1st Grade -- 
+>  <SUPPLIER> (2)
+NAME -- SUPPLIERIDAcros Organics - International -- 52Acros Organics - International -- 52Acros Organics - USA -- 224Acros Organics - USA -- 224Alfa Aesar -- 25ICN Biomedical Research Products -- 230Lancaster Synthesis Inc. -- 60Pfaltz & Bauer, Inc. -- 125Pfaltz & Bauer, Inc. -- 125Pfaltz & Bauer, Inc. -- 125Pfaltz & Bauer, Inc. -- 125TCI -- 79ABCR GmbH & Co. KG -- 315Aldrich -- 53Aldrich -- 53Fluka -- 59Kanto Chemical Co., Inc. -- 294Penn Specialty Chemicals, Inc. -- 247Sigma -- 244Spectrum Quality Products, Inc. -- 225Wako Pure Chemical Industries, Ltd. -- 319 -- 
+>  <PACKAGE> (2)
+SIZE -- PRICE -- CATALOG2NUM500 GR -- 15.8 -- AC11977-50001 KG -- 26.5 -- AC11977-00105 ML -- 9 -- AC18111-0050250 ML -- 14.9 -- AC18111-25001 LT -- 30.8 -- AC18111-0010100ml -- 10.60 --   500ml -- 18.40 --   2500ml -- 85.10 --   1 kg -- 50.80 --   500 g -- 26.00 --   100 g -- 12.00 --   500mL -- 15.80 --   100mL -- 9.80 --   500 G -- 11.23 --   1 KG -- 19.26 --   500 G -- 20.86 --   500 G -- 11.23 --   1 KG -- 19.26 --   500 G -- 11.23 --   1 KG -- 19.26 --   25ml --    --   500ml --    --   500ML -- 25.70 --   5ML -- 10.10 --   100ML -- 10.70 --   500ML -- 15.90 --   50ML -- 11.55 --   250ML -- 13.30 --   1L -- 35.95 --   500G -- 27.50 --   100 ml -- 14.2 --   500 ml -- 34.5 --   25 ml --    -- 061-01653500 ml --    -- 065-01656 -- 
+ 
+ 
+$$$$
+
+csChFnd70/01030316462D
+
+  9  9  0  0  0  0  0  0  0  0999 V2000
+    1.7641    1.1326    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1641    1.1326    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5967    2.4641    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4641    3.2870    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3315    2.4641    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9282    2.8967    0.0000 H   1  0  0  0  0  0  0  0  0  0  0  0
+    3.9870    0.0000    0.0000 H   1  0  0  0  0  0  0  0  0  0  0  0
+    0.9412    0.0000    0.0000 H   1  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    2.8967    0.0000 H   1  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  2  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  5  1  2  0  0  0  0
+  3  6  1  0  0  0  0
+  2  7  1  0  0  0  0
+  1  8  1  0  0  0  0
+  5  9  1  0  0  0  0
+M  ISO  1   6   2
+M  ISO  1   7   2
+M  ISO  1   8   2
+M  ISO  1   9   2
+M  END
+>  <CsNum> (3)
+70117
+ 
+>  <Substance.ACX_ID> (3)
+X1070117-2
+
+>  <Substance.HASPRODUCTS> (3)
+True
+
+>  <PRODUCT> (3)
+SUPPLIERID -- CATALOGNUM -- PRODNAME -- PRODDESCRIP52 -- 32138 -- Furan-d4 -- Stabilized, packaged in ampules, 99 atom% D224 -- AC32138 -- Furan-d4, inh. with 0.025% BHT, pack. in ampule -- 99 atom% D315 -- D-184 -- Furan-d4 --   53 -- 338753 -- FURAN-D4 -- 99 ATOM % D30 -- 82-030-14-9 -- Furan-d4 -- Atom %: 98 -- 
+>  <SUPPLIER> (3)
+NAME -- SUPPLIERIDAcros Organics - International -- 52Acros Organics - USA -- 224ABCR GmbH & Co. KG -- 315Aldrich -- 53Isotec Inc. -- 30 -- 
+>  <PACKAGE> (3)
+SIZE -- PRICE -- CATALOG2NUM10 G -- 101.4 -- AC32138-00101G -- 45.80 --   5G -- 153.30 --   5 g -- 146 --    -- 
+ 
+ 
+$$$$

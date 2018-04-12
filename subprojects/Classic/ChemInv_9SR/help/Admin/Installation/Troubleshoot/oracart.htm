@@ -1,0 +1,258 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Registration System Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<h1>Is the Oracle Cartridge Installed?</h1>
+<p>           
+           
+           
+  CambridgeSoft's Oracle Cartridge is required by Inventory Enterprisestem.&nbsp;</p>
+<p>           
+           
+           
+  Do the following to install the Oracle Cartridge:</p>
+<h3>           
+           
+           
+        Before installation</h3>
+<p>           
+           
+         Before attempting 
+to install the Oracle Cartridge, please take the following steps:</p>
+<ul>
+  <li>
+<div>           
+           
+       The file init.ora must contain the following line: 
+  <br>COMPATIBLE=           
+           
+           
+       8.1.0 or higher.</div>
+  <li>
+<div>           
+           
+       Users           
+           
+       planning to index their 
+tables with the cartridge must have the following privileges granted:</div>
+  <ul><li>
+<div>           
+           
+           
+        CREATE TABLE</div>
+  <li>
+<div>           
+           
+           
+       CREATE ANY INDEXTYPE</div></li></ul></li></ul>
+<h3>           
+           
+           
+         Installation</h3>
+<p>           
+           
+                
+         
+            
+            
+             
+              
+             
+            
+              
+                
+              
+             
+        
+           
+          
+         
+               
+           
+       Please take the following 
+steps to install the Oracle Cartridge (for the first time):</p>
+<ol>
+  <li>
+<div>           
+           
+                
+         
+            
+            
+             
+              
+             
+            
+              
+                
+              
+             
+        
+           
+          
+         
+               
+           
+           
+ Double-click the SetupCartridge.exe Windows program. The following dialog appears:</div>
+  <li>
+<div>           
+           
+                
+         
+            
+        Fill in the required fields for the required 
+  platform, then hit OK. <br>           
+           
+                
+         
+            
+            
+             
+              
+             
+            
+              
+                
+              
+             
+        
+          The installation           
+           
+                
+         
+            
+            
+             
+              
+             
+            
+              
+                
+              
+             
+        
+          program 
+checks if Oracle is configured correctly to be able to 
+run the extproc agent. Without the correct configuration, the 
+cartridge can not be used.           
+           
+       See &#147;What to do 
+if creating an index fails&#148; in the Oracle Cartridge manual.</div></li>
+</ol>
+<p>During the installation the installer executes a sql script, and copies files 
+to the server. </p>
+<ul>
+  <li>In Windows installations the installer must run on the 
+  server. 
+  <li>In Unix installations, the server must run ftp service. If the server does 
+  not run an ftp service, or using it is not allowed for security reasons, the 
+  Unix system access must be left empty. In this case the files to be copied to 
+  the <strong>${ORACLE_HOME}/lib</strong> are copied to the users temporary 
+  directory, usually <br><strong>Documents and settings\user_name\Local 
+  Settings\Temp</strong> <br>and it is the DBA&#146;s responsibility to copy them to 
+  the target directory. </li></ul>           
+           
+                
+         
+            
+            
+             
+              
+             
+            
+              
+                
+              
+             
+        
+           
+          
+         
+               
+           
+           
+         
+<h3>Un-installation </h3>
+<p>To uninstall the Oracle Cartridge, please do the following: </p>
+<ol>
+  <li>Remove the following file: 
+  <ul><li>On Windows: CsCartridge.dll from ${ORACLE_HOME}/bin 
+
+    <li>On UNIX: CsCartridge.so from ${ORACLE_HOME}/lib </li></ul>
+  <li>Execute the DROP USER CsCartridge command while connected to Oracle as a 
+  system administrator.</li></ol>
+<h3>           
+           
+           
+         Re-installation</h3>
+<p>           
+           
+              
+               
+            
+            
+             
+                  
+           
+       Re-installing the Oracle Cartridge 
+can be accomplished by following the same steps as Installation.</p>
+<p>It must be noted, that the indexes created with the optional PARAMETERS 
+clause will be re-created. That is, as soon as the re-installation is finished, 
+those indexes are immediately ready for use. The remaining indexes need to be 
+manually created by executing DROP INDEX and CREATE INDEX statements. </p>
+<p>Only users with CREATE TABLE and CREATE ANY INDEXTYPE privileges can index 
+tables with the cartridge.</p>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

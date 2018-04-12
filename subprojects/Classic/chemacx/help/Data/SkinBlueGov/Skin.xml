@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultSkin Version="1" Comment="This is the default skin" Anchors="Width,Height" Width="800px" Height="600px" Top="0px" Left="0px" Bottom="168px" Right="224px" Tabs="TOC,Search,Favorites" DefaultTab="TOC" Title="CommunityDevelopmentPartner Online Guide" BrowserSetup="Resizable" AutoSyncTOC="True" UseBrowserDefaultSize="False">
+    <!-- saved from url=(0014)about:internet -->
+    <Index BinaryStorage="True" />
+    <HtmlHelpOptions ShowMenuBar="False" TopmostWindowStyle="False" Buttons="Hide,Locate,Back,Forward,Stop,Refresh,Home,Font,Print" EnableButtonCaptions="True" />
+    <WebHelpOptions HideNavigationOnStartup="False" NavigationPaneWidth="175" NavigationPanePosition="Left" />
+    <Stylesheet Link="Stylesheet.xml">
+    </Stylesheet>
+    <Toolbar EnableCustomLayout="True" Buttons="ToggleNavigationPane|Print|QuickSearch|AddTopicToFavorites" />
+</CatapultSkin>

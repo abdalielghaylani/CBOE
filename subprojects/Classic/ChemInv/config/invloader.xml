@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<invloader>
+  <fields>
+    <field target="PLATE" designator="P_WELLCOORDINATES" xmlparent="" xmlposition="" field="" display="Well Coordinates" type="eText"/>
+    <field target="PLATE" designator="P_ROW" xmlparent="" xmlposition="" field="" display="Row" type="eText"/>
+    <field target="PLATE" designator="P_COL" xmlparent="" xmlposition="" field="" display="Column" type="eText"/>
+    <field target="PLATE" designator="P_REG" xmlparent="WELL" xmlposition="ATTRIBUTE" field="REG_ID_FK" display="Reg Number" type="eText"/>
+    <field target="PLATE" designator="P_BATCHNUMBER" xmlparent="WELL" xmlposition="ATTRIBUTE" field="BATCH_NUMBER_FK" display="Batch Number" type="eInteger"/>
+    <field target="PLATE" designator="P_BARCODE" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="PLATE_BARCODE" display="Barcode" type="eText" width="32"/>
+    <field target="PLATE" designator="P_PLATENAME" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="PLATE_NAME" display="Plate Name" type="eText" width="50"/>
+    <field target="PLATE" class="INV" designator="P_NAME" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="SUBSTANCE_NAME" display="Compound Name" type="eText" width="2000"/>
+    <field target="PLATE" class="INV" designator="P_CAS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="CAS" display="CAS Number" type="eText" width="15"/>
+    <field target="PLATE" class="INV" designator="P_ACX" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ACX_ID" display="ChemACX ID" type="eText" width="15"/>
+    <field target="PLATE" class="REG" designator="P_DUPACTION" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="REGPARAMETER" display="Duplicate Action" type="eText" required="Y" picklist="*Add new batch|B|Make new compound|D|Ignore Compound|N" default="Add new batch"/>
+    <field target="PLATE" class="REG" designator="P_PREFIX" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="SEQUENCE" display="Prefix" type="eText" required="Y" picklist="PREFIX"/>
+    <field target="PLATE" class="REG" designator="P_PROJECT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="PROJECTID" display="Project" type="eText" picklist="PROJECT" canbelist="Y"/>
+    <field target="PLATE" class="REG" designator="P_FRAGMENT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="FRAGMENTID" display="Fragment" type="eText" picklist="FRAGMENT" canbelist="Y"/>
+	<field target="PLATE" class="REG" designator="P_EQUIVALENTS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="EQUIVALENTS" display="Equivalents" type="eText" canbelist="Y"/>
+    <field target="PLATE" class="REG" designator="P_BATCHPROJECT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="BATCHPROJECT" display="Batch Project" type="eText" picklist="BATCHPROJECT" canbelist="Y"/>
+    <field target="PLATE" class="REG" designator="C_STRUC_COMMENTS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="STRUC_COMMENTS" display="Structure Comments" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_CMP_COMMENTS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="CMP_COMMENTS" display="Component Comments" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_SCIENTIST_ID" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="SCIENTIST_ID" display="Scientist" type="eText" picklist="SCIENTIST"/>
+    <field target="PLATE" class="REG" designator="C_NOTEBOOK_TEXT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="NOTEBOOK_TEXT" display="Notebook Text" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_AMOUNT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="AMOUNT" display="Amount" type="eReal"/>
+    <field target="PLATE" class="REG" designator="C_AMOUNT_UNITS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="AMOUNT_UNITS" display="Amount Units" type="eText" picklist="AMOUNTUNITS"/>
+    <field target="PLATE" class="REG" designator="C_PURITY" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="PURITY" display="Purity" type="eReal"/>
+    <field target="PLATE" class="REG" designator="C_PURITY_COMMENTS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="PURITY_COMMENTS" display="Purity Comments" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_SAMPLEID" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="SAMPLEID" display="Sample Id" type="eInteger"/>
+    <field target="PLATE" class="REG" designator="C_SOLUBILITY" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="SOLUBILITY" display="Solubility" type="eReal"/>
+    <field target="PLATE" class="REG" designator="C_BATCH_COMMENT" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="BATCH_COMMENT" display="Batch Comments" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_STORAGE_REQ_AND_WARNINGS" xmlparent="COMPOUND" xmlposition="REGSUBSTANCE" field="STORAGE_REQ_AND_WARNINGS" display="Storage requirements" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_REG_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="REG_IDENTIFIER" display="Reg Identifiers" picklist="REGIDENTIFIER" canbelist="Y" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_INPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="INPUTTEXT" display="Reg Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_BATCH_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="BATCH_IDENTIFIER" display="Batch Identifiers" picklist="BATCHIDENTIFIER" canbelist="Y" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_BATCHINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="Batch_InputText" display="Batch Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="PLATE" class="REG" designator="C_STRUCTURE_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STRUCTURE_IDENTIFIER" display="Structure Identifiers" picklist="STRUCTUREIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="PLATE" class="REG" designator="C_STRUCTUREINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STRUCTURE_InputText" display="Structure Identifiers Value" canbelist="Y" type="eText"/>
+	<field target="PLATE" class="REG" designator="C_COMPONENT_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="COMPONENT_IDENTIFIER" display="Component Identifiers" picklist="COMPONENTIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="PLATE" class="REG" designator="C_COMPONENTINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="Component_InputText" display="Component Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="PLATE" designator="P_SUPPLIER" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="SUPPLIER" display="Supplier" type="eText" picklist="SUPPLIERSHORTNAME"/>
+    <field target="PLATE" designator="P_SUPPLIERBARCODE" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="SUPPLIER_BARCODE" display="Supplier Barcode" type="eText" width="50"/>
+    <field target="PLATE" designator="P_SUPPLIERSHIPMENTDATE" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="SUPPLIER_SHIPMENT_DATE" display="Supplier Shipment Date" type="eDate"/>
+    <field target="PLATE" designator="P_SUPPLIERSHIPMENTCODE" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="SUPPLIER_SHIPMENT_CODE" display="Supplier Shipment Code" type="eText" width="50"/>
+    <field target="PLATE" designator="P_SUPPLIERPLATENUMBER" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="SUPPLIER_SHIPMENT_NUMBER" display="Supplier Plate Number" type="eInteger"/>
+    <field target="PLATE" designator="P_QTYINIT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="QTY_INITIAL" display="Initial Quantity" type="eReal"/>
+	<field target="PLATE" designator="P_QTYINITUNIT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="QTY_INITIAL_UNIT" display="Initial Quantity Unit" type="eText" picklist="QUANTITYUNITS"/>
+    <field target="PLATE" designator="P_CONCENTRATION" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="CONCENTRATION" display="Concentration" type="eReal"/>
+	<field target="PLATE" designator="P_CONCENTRATIONUNIT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="UOCID" display="Concentration Unit" type="eText" picklist="CONCUNITS" />
+    <field target="PLATE" designator="P_WEIGHT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="WEIGHT" display="Weight" type="eReal"/>
+	<field target="PLATE" designator="P_WEIGHTUNIT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="WEIGHT_UNIT_FK" display="Weight Unit" type="eText" picklist="MASSUNITS"/>
+    <field target="PLATE" designator="P_SOLVENT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="SOLVENT" display="Plate Solvent" type="eText" picklist="SOLVENT"/>
+    <field target="PLATE" designator="P_SOLVENTVOLUME" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME" display="Plate Solvent Volume" type="eReal"/>
+    <field target="PLATE" designator="P_SOLVENTVOLUMEINITIAL" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME_INITIAL" display="Plate Init. Solvent Vol." type="eReal"/>
+    <field target="PLATE" designator="P_SOLVENTVOLUMEUNIT" xmlparent="PLATE+WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME_UNIT_NAME" display="Plate Solvent Unit" type="eText" picklist="VOLUMEUNITS"/>
+    <field target="PLATE" designator="P_WELLSOLVENT" xmlparent="WELL" xmlposition="ATTRIBUTE" field="SOLVENT" display="Well Solvent" type="eText"/>
+    <field target="PLATE" designator="P_WELLSOLVENTVOLUME" xmlparent="WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME" display="Well Solvent Volume" type="eReal"/>
+    <field target="PLATE" designator="P_WELLSOLVENTVOLUMEINITIAL" xmlparent="WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME_INITIAL" display="Well Init. Solvent Vol." type="eReal"/>
+    <field target="PLATE" designator="P_WELLSOLVENTVOLUMEUNIT" xmlparent="WELL" xmlposition="ATTRIBUTE" field="SOLVENT_VOLUME_UNIT_NAME" display="Well Solvent Unit" type="eText" picklist="VOLUMEUNITS"/>
+    <field target="PLATE" class="INV" designator="P_CLOGP" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="CLOGP" display="cLogP" type="eReal"/>
+    <field target="PLATE" class="INV" designator="P_ROTATABLEBONDS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ROTATABLE_BONDS" display="Rotatable Bonds" type="eInteger"/>
+    <field target="PLATE" class="INV" designator="P_TOTPOLSURFAREA" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="TOT_POL_SURF_AREA" display="Total Polar Surface Area" type="eReal"/>
+    <field target="PLATE" class="INV" designator="P_HBONDACC" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="HBOND_ACCEPTORS" display="H-bond Acceptors" type="eInteger"/>
+    <field target="PLATE" class="INV" designator="P_HBONDDON" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="HBOND_DONORS" display="H-bond Donors" type="eInteger"/>
+    <field target="PLATE" designator="P_PLATEFIELD1" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="FIELD_1" display="Plate Field 1" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_PLATEFIELD2" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="FIELD_2" display="Plate Field 2" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_PLATEFIELD3" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="FIELD_3" display="Plate Field 3" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_PLATEFIELD4" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="FIELD_4" display="Plate Field 4" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_PLATEFIELD5" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="FIELD_5" display="Plate Field 5" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_PLATEDATE1" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="DATE_1" display="Plate Date 1" type="eDate"/>
+    <field target="PLATE" designator="P_PLATEDATE2" xmlparent="PLATE" xmlposition="ATTRIBUTE" field="DATE_2" display="Plate Date 2" type="eDate"/>
+    <field target="PLATE" designator="P_WELLFIELD1" xmlparent="WELL" xmlposition="ATTRIBUTE" field="FIELD_1" display="Well Field 1" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_WELLFIELD2" xmlparent="WELL" xmlposition="ATTRIBUTE" field="FIELD_2" display="Well Field 2" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_WELLFIELD3" xmlparent="WELL" xmlposition="ATTRIBUTE" field="FIELD_3" display="Well Field 3" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_WELLFIELD4" xmlparent="WELL" xmlposition="ATTRIBUTE" field="FIELD_4" display="Well Field 4" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_WELLFIELD5" xmlparent="WELL" xmlposition="ATTRIBUTE" field="FIELD_5" display="Well Field 5" type="eText" width="2000"/>
+    <field target="PLATE" designator="P_WELLDATE1" xmlparent="WELL" xmlposition="ATTRIBUTE" field="DATE_1" display="Well Date 1" type="eDate"/>
+    <field target="PLATE" designator="P_WELLDATE2" xmlparent="WELL" xmlposition="ATTRIBUTE" field="DATE_2" display="Well Date 2" type="eDate"/>
+    <field target="CONTAINER" designator="C_COMPOUNDIDFK" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="COMPOUNDID" display="Compound ID" type="eInteger"/>
+    <field target="CONTAINER" designator="C_REGNUMBER" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="REGID" display="Registration Number" type="eText"/>
+    <field target="CONTAINER" designator="C_BATCHNUMBERFK" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="BATCHNUMBER" display="Batch Number" type="eInteger"/>
+    <field target="CONTAINER" designator="C_LOCATIONBARCODE" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="LOCATIONID" display="Location Barcode" type="eText" required="Y"/>
+    <field target="CONTAINER" designator="C_CONTAINERNAME" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="CONTAINERNAME" display="Container Name" type="eText" width="255"/>
+    <field target="CONTAINER" designator="C_CONTAINERDESCRIPTION" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="CONTAINERDESC" display="Container Description" type="eText" width="255"/>
+    <field target="CONTAINER" designator="C_CONTAINERCOMMENTS" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="COMMENTS" display="Container Comments" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_CONTAINERTYPEIDFK" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="CONTAINERTYPEID" display="Container Type" type="eText" picklist="CONTAINERTYPE" default="bottle"/>
+    <field target="CONTAINER" designator="C_CONTAINERSTATUSIDFK" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="CONTAINERSTATUSID" display="Container Status" type="eText" picklist="CONTAINERSTATUS" default="Available"/>
+    <field target="CONTAINER" designator="C_CBARCODE" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="BARCODE" display="Barcode" type="eText" width="50"/>
+    <field target="CONTAINER" designator="C_QTYMAX" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="MAXQTY" display="Container Size" type="eReal"/>
+    <field target="CONTAINER" designator="C_QTYINITIAL" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="INITIALQTY" display="Initial Quantity" type="eReal"/>
+    <field target="CONTAINER" designator="C_UNITOFMEASIDFK" xmlparent="CONTAINER" xmlposition="ATTRIBUTE" field="UOMID" display="Unit Of Measure" type="eText" picklist="QUANTITYUNITS" default="ml"/>
+    <field target="CONTAINER" designator="C_QTYMINSTOCK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="MINSTOCKQTY" display="Min Stock Quantity" type="eReal"/>
+    <field target="CONTAINER" designator="C_QTYMAXSTOCK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="MAXSTOCKQTY" display="Max Stock Quantity" type="eReal"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERSUBSTANCENAME" xmlparent="INVSUBSTANCE" xmlposition="ELEMENT" field="substanceName" display="Compound Name" type="eText" width="2000" required="Y" default="No Name"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERCAS" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="CAS" display="CAS Number" type="eText" width="15"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERACX" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="ACX_ID" display="ChemACX ID" type="eText" width="15"/>
+    <field target="CONTAINER" class="REG" designator="C_DUPACTION" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="REGPARAMETER" display="Duplicate Action" type="eText" required="Y" picklist="*Add new batch|B|Make new compound|D|Ignore Compound|N" default="Add new batch"/>
+    <field target="CONTAINER" class="REG" designator="C_PREFIX" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="SEQUENCE" display="Prefix" type="eText" required="Y" picklist="PREFIX"/>
+    <field target="CONTAINER" class="REG" designator="C_PROJECT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="PROJECTID" display="Project" type="eText" picklist="PROJECT" canbelist="Y"/>
+    <field target="CONTAINER" class="REG" designator="C_REG_COMMENTS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="REG_COMMENTS" display="Reg Comments" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_FRAGMENT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="FRAGMENTID" display="Fragment" type="eText" picklist="FRAGMENT" canbelist="Y"/>
+	<field target="CONTAINER" class="REG" designator="C_EQUIVALENTS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="EQUIVALENTS" display="Equivalents" type="eText" canbelist="Y"/>
+    <field target="CONTAINER" class="REG" designator="C_BATCHPROJECT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="BATCHPROJECT" display="Batch Project" type="eText" picklist="BATCHPROJECT" canbelist="Y"/>
+    <field target="CONTAINER" class="REG" designator="C_STRUC_COMMENTS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STRUC_COMMENTS" display="Structure Comments" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_CMP_COMMENTS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="CMP_COMMENTS" display="Component Comments" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_SCIENTIST_ID" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="SCIENTIST_ID" display="Scientist" type="eText" picklist="SCIENTIST"/>
+    <field target="CONTAINER" class="REG" designator="C_NOTEBOOK_TEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="NOTEBOOK_TEXT" display="Notebook Text" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_AMOUNT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="AMOUNT" display="Amount" type="eReal"/>
+    <field target="CONTAINER" class="REG" designator="C_AMOUNT_UNITS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="AMOUNT_UNITS" display="Amount Units" type="eText" picklist="AMOUNTUNITS"/>
+    <field target="CONTAINER" class="REG" designator="C_PURITY" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="PURITY" display="Purity" type="eReal"/>
+    <field target="CONTAINER" class="REG" designator="C_PURITY_COMMENTS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="PURITY_COMMENTS" display="Purity Comments" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_SAMPLEID" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="SAMPLEID" display="Sample Id" type="eInteger"/>
+    <field target="CONTAINER" class="REG" designator="C_SOLUBILITY" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="SOLUBILITY" display="Solubility" type="eReal"/>
+    <field target="CONTAINER" class="REG" designator="C_BATCH_COMMENT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="BATCH_COMMENT" display="Batch Comments" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_STORAGE_REQ_AND_WARNINGS" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STORAGE_REQ_AND_WARNINGS" display="Storage requirments" type="eText"/>
+	<field target="CONTAINER" class="REG" designator="C_REG_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="REG_IDENTIFIER" display="Reg Identifiers" picklist="REGIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="CONTAINER" class="REG" designator="C_INPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="INPUTTEXT" display="Reg Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_BATCH_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="BATCH_IDENTIFIER" display="Batch Identifiers" picklist="BATCHIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="CONTAINER" class="REG" designator="C_BATCHINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="Batch_InputText" display="Batch Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="CONTAINER" class="REG" designator="C_STRUCTURE_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STRUCTURE_IDENTIFIER" display="Structure Identifiers" picklist="STRUCTUREIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="CONTAINER" class="REG" designator="C_STRUCTUREINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="STRUCTURE_InputText" display="Structure Identifiers Value" canbelist="Y" type="eText"/>
+	 <field target="CONTAINER" class="REG" designator="C_COMPONENT_IDENTIFIER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="COMPONENT_IDENTIFIER" display="Component Identifiers" picklist="COMPONENTIDENTIFIER" canbelist="Y" type="eText"/>
+	<field target="CONTAINER" class="REG" designator="C_COMPONENTINPUTTEXT" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="Component_InputText" display="Component Identifiers Value" canbelist="Y" type="eText"/>
+    <field target="CONTAINER" designator="C_DATEEXPIRES" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="EXPDATE" display="Expiration Date" type="eDate"/>
+    <field target="CONTAINER" designator="C_PURITY1" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="PURITY" display="Container Purity" type="eReal"/>
+    <field target="CONTAINER" designator="C_UNITOFPURITYIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="UOPID" display="Unit Of Purity" type="eText" picklist="CONCUNITS"/>
+    <field target="CONTAINER" designator="C_SOLVENTIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="SOLVENTIDFK" display="Solvent" type="eText" picklist="SOLVENT"/>
+    <field target="CONTAINER" designator="C_CCONCENTRATION" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="CONCENTRATION" display="Concentration" type="eReal"/>
+    <field target="CONTAINER" designator="C_UNITOFCONCIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="UOCID" display="Unit Of Conc." type="eText" picklist="CONCUNITS"/>
+    <field target="CONTAINER" designator="C_GRADE" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="GRADE" display="Grade" type="eText" width="255"/>
+    <field target="CONTAINER" designator="C_TAREWEIGHT" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="TAREWEIGHT" display="Tare Weight" type="eReal"/>
+    <field target="CONTAINER" designator="C_FINALWGHT" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FINALWEIGHT" display="Final Weight" type="eReal"/>
+    <field target="CONTAINER" designator="C_NETWGHT" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="NETWEIGHT" display="Net Weight" type="eReal"/>
+    <field target="CONTAINER" designator="C_UNITOFWGHTIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="UOWID" display="Unit Of Weight" type="eText" picklist="MASSUNITS"/>
+    <field target="CONTAINER" designator="C_CDENSITY" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DENSITY" display="Density" type="eReal"/>
+    <field target="CONTAINER" designator="C_UNITOFDENSITYIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="UODID" display="Unit Of Density" type="eText" picklist="DENSITYUNITS"/>
+    <field target="CONTAINER" designator="C_STORAGECONDITIONS" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="STORAGECONDITIONS" display="Storage Conditions" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_HANDLINGPROCEDURES" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="HANDLINGPROCEDURES" display="Handling Procedures" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_SUPPLIERIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="SUPPLIERID" display="Supplier" type="eText" picklist="SUPPLIERSHORTNAME"/>
+    <field target="CONTAINER" designator="C_SUPPLIERCATNUM" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="SUPPLIERCATNUM" display="Supplier Catalog Num" type="eText" width="50"/>
+    <field target="CONTAINER" designator="C_DATEPRODUCED" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATEPRODUCED" display="Date Produced" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATEORDERED" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATEORDERED" display="Date Ordered" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATERECEIVED" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATERECEIVED" display="Date Received" type="eDate"/>
+    <field target="CONTAINER" designator="C_LOTNUM" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="LOTNUM" display="Lot Num" type="eText" width="50"/>
+    <field target="CONTAINER" designator="C_CONTAINERCOST" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="CONTAINERCOST" display="Container Cost" type="eReal"/>
+    <field target="CONTAINER" designator="C_PONUMBER" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="PONUMBER" display="PO Number" type="eInteger"/>
+    <field target="CONTAINER" designator="C_POLINENUMBER" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="POLINENUMBER" display="PO Line Number" type="eInteger"/>
+    <field target="CONTAINER" designator="C_REQNUMBER" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="REQNUMBER" display="Req Number" type="eInteger"/>
+    <field target="CONTAINER" designator="C_OWNERIDFK" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="OWNERID" display="Owner ID" type="eText" picklist="OWNER"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERCLOGP" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="CLOGP" display="cLogP" type="eReal"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERROTATABLEBONDS" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="ROTATABLE_BONDS" display="Rotatable Bonds" type="eInteger"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERTOTPOLSURFAREA" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="TOT_POL_SURF_AREA" display="Total Polar Surface Area" type="eReal"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERHBONDACC" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="HBOND_ACCEPTORS" display="H-bond Acceptors" type="eInteger"/>
+    <field target="CONTAINER" class="INV" designator="C_CONTAINERHBONDDON" xmlparent="INVSUBSTANCE" xmlposition="ATTRIBUTE" field="HBOND_DONORS" display="H-bond Donors" type="eInteger"/>
+    <field target="CONTAINER" designator="C_FIELD1" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_1" display="Field 1" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD2" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_2" display="Field 2" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD3" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_3" display="Field 3" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD4" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_4" display="Field 4" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD5" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_5" display="Field 5" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD6" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_6" display="Field 6" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD7" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_7" display="Field 7" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD8" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_8" display="Field 8" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD9" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_9" display="Field 9" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_FIELD10" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="FIELD_10" display="Field 10" type="eText" width="2000"/>
+    <field target="CONTAINER" designator="C_DATE1" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATE_1" display="Date 1" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATE2" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATE_2" display="Date 2" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATE3" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATE_3" display="Date 3" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATE4" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATE_4" display="Date 4" type="eDate"/>
+    <field target="CONTAINER" designator="C_DATE5" xmlparent="OPTIONALPARAMS" xmlposition="ELEMENT" field="DATE_5" display="Date 5" type="eDate"/>
+    <field target="COMPOUND" designator="S_CCAS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="CAS" display="CAS" type="eText" width="15"/>
+    <field target="COMPOUND" designator="S_ACXID" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ACX_ID" display="ACX ID" type="eText" width="15"/>
+    <field target="COMPOUND" designator="S_SUBSTANCENAME" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="SUBSTANCE_NAME" display="Substance Name" type="eText" width="2000"/>
+    <field target="COMPOUND" designator="S_DENSITY" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="DENSITY" display="Density" type="eReal"/>
+    <field target="COMPOUND" designator="S_CCLOGP" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="CLOGP" display="cLogP" type="eReal"/>
+    <field target="COMPOUND" designator="S_CROTATABLEBONDS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ROTATABLE_BONDS" display="Rotatable Bonds" type="eInteger"/>
+    <field target="COMPOUND" designator="S_CTOTPOLSURFAREA" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="TOT_POL_SURF_AREA" display="Total Polar Surface Area" type="eReal"/>
+    <field target="COMPOUND" designator="S_HBONDACCEPTORS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="HBOND_ACCEPTORS" display="H-bond Acceptors" type="eInteger"/>
+    <field target="COMPOUND" designator="S_HBONDDONORS" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="HBOND_DONORS" display="H-bond Donors" type="eInteger"/>
+    <field target="COMPOUND" designator="S_ALTID1" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ALT_ID1" display="Alternative ID1" type="eText" width="255"/>
+    <field target="COMPOUND" designator="S_ALTID2" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ALT_ID2" display="Alternative ID2" type="eText" width="255"/>
+    <field target="COMPOUND" designator="S_ALTID3" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ALT_ID3" display="Alternative ID3" type="eText" width="255"/>
+    <field target="COMPOUND" designator="S_ALTID4" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ALT_ID4" display="Alternative ID4" type="eText" width="255"/>
+    <field target="COMPOUND" designator="S_ALTID5" xmlparent="COMPOUND" xmlposition="ATTRIBUTE" field="ALT_ID5" display="Alternative ID5" type="eText" width="255"/>
+  </fields>
+  <picklists>
+    <picklist name="SOLVENT">select solvent_name,solvent_id from inv_solvents order by solvent_name</picklist>
+    <picklist name="CONCUNITS">select u.unit_abreviation, u.unit_id from inv_units u, inv_unit_types ut where ut.unit_type_id=u.unit_type_id_fk and ut.unit_type_name='CONCENTRATION' order by u.unit_abreviation</picklist>
+    <picklist name="QUANTITYUNITS">select u.unit_abreviation, u.unit_id from inv_units u, inv_unit_types ut where ut.unit_type_id=u.unit_type_id_fk and ut.unit_type_name in ('VOLUME','MASS') order by u.unit_abreviation</picklist>
+    <picklist name="MASSUNITS">select u.unit_abreviation, u.unit_id from inv_units u, inv_unit_types ut where ut.unit_type_id=u.unit_type_id_fk and ut.unit_type_name ='MASS' order by u.unit_abreviation</picklist>
+    <picklist name="VOLUMEUNITS">select u.unit_abreviation, u.unit_id from inv_units u, inv_unit_types ut where ut.unit_type_id=u.unit_type_id_fk and ut.unit_type_name ='VOLUME' order by u.unit_abreviation</picklist>
+    <picklist name="DENSITYUNITS">select u.unit_abreviation, u.unit_id from inv_units u, inv_unit_types ut where ut.unit_type_id=u.unit_type_id_fk and ut.unit_type_name ='DENSITY' order by u.unit_abreviation</picklist>
+    <picklist name="SUPPLIERSHORTNAME">select supplier_short_name,supplier_id from inv_suppliers order by supplier_short_name,supplier_id</picklist>
+    <picklist name="OWNER">select owner_id as owner_name,owner_id from inv_owners order by owner_id</picklist>
+    <picklist name="CONTAINERTYPE">select container_type_name,container_type_id from inv_container_types</picklist>
+    <picklist name="CONTAINERSTATUS">select container_status_name,container_status_id from inv_container_status</picklist>
+  </picklists>
+  <regpicklists>
+    <picklist name="PREFIX">SELECT SEQUENCEID, PREFIX FROM REGDB.VW_SITE_PREFIX</picklist>
+    <picklist name="PROJECT">SELECT PROJECTID, NAME FROM REGDB.VW_PROJECT WHERE ACTIVE='T' AND TYPE IN ('A','R') ORDER BY NAME</picklist>
+    <picklist name="NOTEBOOK">SELECT NOTEBOOKID, NAME FROM REGDB.VW_NOTEBOOK WHERE ACTIVE='T' ORDER BY NAME</picklist>
+    <picklist name="SALT">SELECT FRAGMENTID, F.DESCRIPTION FROM REGDB.VW_FRAGMENT F, VW_FRAGMENTTYPE FT WHERE F.FRAGMENTTYPEID=FT.ID AND UPPER(FT.DESCRIPTION)='SALT' ORDER BY CODE</picklist>
+    <picklist name="FRAGMENT">SELECT FRAGMENTID, DESCRIPTION FROM REGDB.VW_FRAGMENT ORDER BY CODE</picklist>
+    <picklist name="BATCHPROJECT">SELECT PROJECTID, NAME FROM REGDB.VW_PROJECT WHERE ACTIVE='T' AND TYPE IN ('B','A') ORDER BY NAME</picklist>
+    <picklist name="ACTIVEPERSON">SELECT PERSON_ID, USER_ID FROM CS_SECURITY.PEOPLE WHERE ACTIVE=1 ORDER BY USER_ID</picklist>
+    <picklist name="AMOUNTUNITS">SELECT ID, UNIT FROM REGDB.VW_UNIT ORDER BY UNIT</picklist>
+    <picklist name="SCIENTIST">SELECT PERSONID, USERID FROM REGDB.VW_PEOPLE ORDER BY USERID</picklist>
+    <picklist name="REGIDENTIFIER">SELECT ID, NAME FROM REGDB.VW_IDENTIFIERTYPE WHERE TYPE='R' OR TYPE = 'A' ORDER BY ID</picklist>
+    <picklist name="BATCHIDENTIFIER">SELECT ID, NAME FROM REGDB.VW_IDENTIFIERTYPE WHERE TYPE='B' OR TYPE = 'A' ORDER BY ID</picklist>
+    <picklist name="STRUCTUREIDENTIFIER">SELECT ID, NAME,TYPE FROM REGDB.VW_IDENTIFIERTYPE WHERE TYPE='S' OR TYPE = 'A' ORDER BY ID</picklist>	
+	<picklist name="COMPONENTIDENTIFIER">SELECT ID, NAME,TYPE FROM REGDB.VW_IDENTIFIERTYPE WHERE TYPE='C' OR TYPE = 'A' ORDER BY ID</picklist>	
+  </regpicklists>
+  <regfields>
+    <regfield name="SEQUENCE" type="COMPOUND">/MultiCompoundRegistryRecord/RegNumber/SequenceID</regfield>
+    <regfield name="PROJECTID" type="COMPOUND" listelement="Project,ProjectID">/MultiCompoundRegistryRecord/ProjectList</regfield>
+	<regfield name="REG_IDENTIFIER" type="COMPOUND" listelement="Identifier,IdentifierID">/MultiCompoundRegistryRecord/IdentifierList</regfield>
+	<regfield name="INPUTTEXT" type="COMPOUND" listelement="InputText">/MultiCompoundRegistryRecord/IdentifierList/Identifier</regfield>
+    <regfield name="REG_COMMENTS" type="COMPOUND">/MultiCompoundRegistryRecord/PropertyList/Property[@name="REG_COMMENTS"]</regfield>
+    <regfield name="STRUC_COMMENTS" type="COMPOUND">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/BaseFragment/Structure/PropertyList/Property[@name="STRUCT_COMMENTS"]</regfield>
+    <regfield name="CMP_COMMENTS" type="COMPOUND">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/PropertyList/Property[@name="CMP_COMMENTS"]</regfield>
+    <regfield name="BATCH_IDENTIFIER" type="BATCH" listelement="Identifier,IdentifierID">/MultiCompoundRegistryRecord/BatchList/Batch/IdentifierList</regfield>
+	<regfield name="BATCH_INPUTTEXT" type="BATCH" listelement="Batch_InputText">/MultiCompoundRegistryRecord/BatchList/Batch/IdentifierList/Identifier</regfield>
+	<regfield name="STRUCTURE_IDENTIFIER" type="COMPOUND" listelement="Identifier,IdentifierID">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/BaseFragment/Structure/IdentifierList</regfield>
+	<regfield name="STRUCTURE_INPUTTEXT" type="COMPOUND" listelement="Structure_InputText">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/BaseFragment/Structure/IdentifierList/Identifier</regfield>
+	<regfield name="COMPONENT_IDENTIFIER" type="COMPOUND" listelement="Identifier,IdentifierID">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/IdentifierList</regfield>
+	<regfield name="COMPONENT_INPUTTEXT" type="COMPOUND" listelement="Component_InputText">/MultiCompoundRegistryRecord/ComponentList/Component/Compound/IdentifierList/Identifier</regfield>
+    <regfield name="FRAGMENTID" type="BATCH" listelement="BatchComponentFragment,FragmentID">BatchComponentList/BatchComponent/BatchComponentFragmentList</regfield>
+    <regfield name="EQUIVALENTS" type="BATCH" listelement="Equivalents">BatchComponentList/BatchComponent/BatchComponentFragmentList/BatchComponentFragment</regfield>
+    <regfield name="SCIENTIST_ID" type="BATCH">PropertyList/Property[@name="SCIENTIST_ID"]</regfield>
+    <regfield name="NOTEBOOK_TEXT" type="BATCH">PropertyList/Property[@name="NOTEBOOK_TEXT"]</regfield>
+    <regfield name="AMOUNT" type="BATCH">PropertyList/Property[@name="AMOUNT"]</regfield>
+    <regfield name="AMOUNT_UNITS" type="BATCH">PropertyList/Property[@name="AMOUNT_UNITS"]</regfield>
+    <regfield name="PURITY" type="BATCH">PropertyList/Property[@name="PURITY"]</regfield>
+    <regfield name="PURITY_COMMENTS" type="BATCH">PropertyList/Property[@name="PURITY_COMMENTS"]</regfield>
+    <regfield name="SAMPLEID" type="BATCH">PropertyList/Property[@name="SAMPLEID"]</regfield>
+    <regfield name="SOLUBILITY" type="BATCH">PropertyList/Property[@name="SOLUBILITY"]</regfield>
+    <regfield name="BATCH_COMMENT" type="BATCH">PropertyList/Property[@name="BATCH_COMMENT"]</regfield>
+    <regfield name="STORAGE_REQ_AND_WARNINGS" type="BATCH">PropertyList/Property[@name="STORAGE_REQ_AND_WARNINGS"]</regfield>
+    <regfield name="PERCENT_ACTIVE" type="BATCH">PropertyList/Property[@name="PERCENT_ACTIVE"]</regfield>
+    <regfield name="BATCHPROJECT" type="BATCH" listelement="Project,ProjectID">ProjectList</regfield>
+  </regfields>
+  
+
+
+</invloader>

@@ -1,0 +1,226 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>ReorderContainer</h1><p>          
+                         
+            
+    <span lang="en-us">Places order for an already ordered or existing 
+	container. </span></p><h3>Syntax</h3> <pre>/cheminv/api/ReorderContainer.asp?DeliveryLocationID<span lang="en-us">=adNumeric&amp;ContainerID=adNumeric&amp;ContainerName=adVarChar&amp;Comments=adVarChar&amp;</span>OwnerID<span lang="en-us">=adVarChar&amp;</span>CurrentUserID<span lang="en-us">=adVarChar&amp;</span>NumCopies<span lang="en-us">=adNumeric&amp;Project=adVarChar&amp;Job=adVarChar&amp;RushOrder=adNumeric&amp;ReorderReson=adVarChar&amp;</span>ReorderReasonOther<span lang="en-us">=adVarChar</span></pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="87" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="340"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="63"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">DeliveryLocationID</td>
+		<td width="87">adNumeric</td>
+		<td width="340">Specifies the ID of the location 
+		where the container is
+		to be delivered. </td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINER_ORDER</td>
+		<td width="92">DELIVERY_LOCATION_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="87">adNumeric</td>
+		<td width="340">Specifies the ID of the container 
+		to be reordered.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINERS</td>
+		<td width="92"><span lang="en-us">CONTAINER_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">ContainerName</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the name of the container to be reordered.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINERS</td>
+		<td width="92">CONTAINER_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">Comments</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the comments associated with the container. </td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINERS</td>
+		<td width="92"><span style="font-size: 11.0pt; font-family: Garamond">
+		CONTAINER_COMMENTS</span></td>
+	</tr>
+	<tr>
+		<td width="117">OwnerID</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the owner of the container.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINERS</td>
+		<td width="92"><span style="font-size: 11.0pt; font-family: Garamond">
+		OWNER_ID_FK</span></td>
+	</tr>
+	<tr>
+		<td width="117">CurrentUserID</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the current user of the container.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINERS</td>
+		<td width="92"><span style="font-size: 11.0pt; font-family: Garamond">
+		CURRENT_USER_ID_FK</span></td>
+	</tr>
+	<tr>
+		<td width="117" height="25">NumCopies</td>
+		<td width="87" height="25">adNumeric</td>
+		<td width="340" height="25">Specifies the number of container copies to 
+		be ordered.</td>
+		<td width="63" height="25">&nbsp;</td>
+		<td width="70" height="25" align="center"><span lang="en-us">Y</span></td>
+		<td height="25">N/A</td>
+		<td width="92" height="25">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">Project</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the project 
+		under which the container is to be ordered.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINER_ORDER</td>
+		<td width="92">PROJECT_NO</td>
+	</tr>
+	<tr>
+		<td width="117">Job</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the job associated with the 
+		project under which the container is ordered.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINER_ORDER</td>
+		<td width="92">JOB_NO</td>
+	</tr>
+	<tr>
+		<td width="117">RushOrder</td>
+		<td width="87"><span lang="en-us">adNumeric</span></td>
+		<td width="340">Specifies whether or not it is a rush 
+		order. 1 indicates that the order is rush order, 0 indicates that the 
+		order is not a rush order.</td>
+		<td width="63"><span lang="en-us">1|0</span></td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINER_ORDER</td>
+		<td width="92">ISRUSHORDER</td>
+	</tr>
+	<tr>
+		<td width="117">DueDate</td>
+		<td width="87"><span lang="en-us">Date</span></td>
+		<td width="340">Specifies the date on which the order 
+		should be delivered. The date is specified in the date-time literal 
+		format. For example 01-27-2001.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>INV_CONTAINER_ORDER</td>
+		<td width="92">DUE_DATE</td>
+	</tr>
+	<tr>
+		<td width="117">ReorderReason</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the reason for reordering 
+		the container.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+	<tr>
+		<td width="117">ReorderReasonOther</td>
+		<td width="87"><span lang="en-us">adVarChar</span></td>
+		<td width="340">Specifies the reason for reordering container, if the 
+		reason is other than those defined already in Inventory Enterprise. </td>
+		<td width="63">&nbsp;</td>
+		<td width="70"><span lang="en-us">Y, If Other is specified in 
+		ReorderReason.</span></td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+</table>
+
+<h5></h5>
+
+<h3>Output</h3>
+<p><span lang="en-us">The ID of the newly created container, which is stored in the </span>
+N<span lang="en-us">ew</span>ContainerID<span lang="en-us"> parameter. The data 
+type of the NewContainerID parameter is adNumeric.</span></p>
+
+<h3><span lang="en-us">Example</span></h3>
+<p>The following code reorders a container with ContainerID 
+1764:</span></p> <pre>/cheminv/api/ReorderContainer.asp?DeliveryLocationID<span lang="en-us">=1&amp;ContainerID=1764&amp;ContainerName=nitrobenzene&amp;Comments=adVarChar&amp;</span>OwnerID<span lang="en-us">=adVarChar&amp;</span>CurrentUserID<span lang="en-us">=System&amp;</span>NumCopies<span lang="en-us">=1&amp;Project=2&amp;Job=1&amp;RushOrder=1&amp;ReorderReson=Insufficient Quantity</span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

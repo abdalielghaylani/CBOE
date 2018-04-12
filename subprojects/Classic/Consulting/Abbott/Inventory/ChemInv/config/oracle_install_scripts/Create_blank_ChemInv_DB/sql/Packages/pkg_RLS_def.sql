@@ -1,0 +1,11 @@
+CREATE OR REPLACE PACKAGE RLS
+AS
+  FUNCTION SetPredicate (
+  	p_schema VARCHAR2,
+		p_name VARCHAR2) RETURN VARCHAR2;
+
+END RLS;
+
+/
+
+show errors;

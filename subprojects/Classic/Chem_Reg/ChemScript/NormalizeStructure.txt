@@ -1,0 +1,5 @@
+from ChemScript import *
+m=Mol.loadData(base64, 'cdx')
+m.normalizeStructure()
+out_m=m
+

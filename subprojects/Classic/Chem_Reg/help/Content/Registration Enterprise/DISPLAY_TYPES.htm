@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|CFServer.ini Configuration File" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>DISPLAY_TYPES</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="CFServer_ini_Configurati.htm#Registration_Admin_4136631045_998459">CFServer.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">DISPLAY_TYPES</span>
+        </div>
+        <h4 class="Heading4"><a name="Registration_Admin_4136631045_1002469"></a>DISPLAY_TYPES</h4>
+        <div class="Body">Example: DISPLAY_TYPES1 = AMOUNT;TEXT:5</div>
+        <div class="Body">Description: The DISPLAY_TYPES entries define the appearance of and validate option for fields. For example, in the example above, the field AMOUNT will appear to users in an input form as a text box and before being submitted will be verified to be a positive float. </div>
+        <div class="Body">We do not recommend changing the fieldnames or adding/removing any of the items in the list. If you see NOT CONFIGURABLE next to the field this means it is not configurable. </div>
+        <div class="Body">The general format is - <span class="_Override" style="font-weight: bold;">FieldName;Input Field:Option[; Display Field : Option]</span> <![CDATA[ ]]></div>
+        <div class="Body"><span class="_Override" style="font-weight: bold;">Display Field:Option</span> is optional. It is used only when the display field has some sort of formatting consideration. It is really used when the display type is different from Input Field Type. If not specified, same Field Type will be used for display. For example, CHECKBOX:GIF, FORMULA:24, HYPERLINK:FULL, HYPERLINK:FILE and HYPERLINK:LINK are the only valid options.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>Input Field covers search mode, add record and edit mode. Validation will occur in all modes.</blockquote>
+        <div class="Body">Compatible Input Field Types:</div>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Text </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Checkbox </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		TextArea </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Picklist </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Hyperlink </td>
+            </tr>
+        </table>
+        <div class="Body">Compatible Display Field Types:</div>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		If not specified, same as Input Field Type. This is default. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Checkbox </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_inner" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Hyperlink </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">		Formula - formats formula using superscripts and subscripts as long as FORMAT_FORMULA=1 in cfserver.ini file. </td>
+            </tr>
+        </table>
+        <div class="Body">Display Field is really used when the display type changes. For example, CHECKBOX:GIF and HYPERLINK:FULL or HYPERLINK:FILE or HYPERLINK:LINK </div>
+        <div class="Body">For all Field Types, the options for validation are:</div>
+        <p class="GraphicAnchor"> &#160;</p>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="344px" style="width: 276px;caption-side: none;">
+            <col width="115px" relativeWidth="0%" />
+            <col width="161px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 27px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">Validate Option </p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">Interpretation</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">1</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Valid Integer</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">2</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Float</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">3</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Positive Integer</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">5</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Positive Float</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">8</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Data mm/dd/yyyy</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">21</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">CAS Number</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">22</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">not empty</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3142255085">
+                        <p class="TableText">24</p>
+                    </td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">Formula</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">When Input Field Type is Checkbox, same validation options are available. When Display Field Type is Checkbox, the options are:</div>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="165px" style="width: 275px;caption-side: none;">
+            <col width="110px" relativeWidth="0%" />
+            <col width="165px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 43px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">CheckBox Option </p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">Interpretation</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">0</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Shows raw value </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_3142255085">
+                        <p class="TableText">GIF</p>
+                    </td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">Shows a gif with an X for values of "" or 0 and a check for values of "1"</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">When Input or Display Field Type is Hyperlink, the options are:</div>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="617px" style="width: 275px;caption-side: none;">
+            <col width="112px" relativeWidth="0%" />
+            <col width="163px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 43px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">Hyperlink Option </p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">Interpretation</p>
+                    </td>
+                </tr>
+                <tr style="height: 168px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">FULL</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Displays full value in field as link text. Add http:// if missing </p>
+                        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>Supports to access absolute and relative path of web address.</blockquote>
+                    </td>
+                </tr>
+                <tr style="height: 168px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">LINK</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Displays the work link as the link text. Adds http:// if missing </p>
+                        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>Supports to access absolute and relative path of web address. </blockquote>
+                    </td>
+                </tr>
+                <tr style="height: 186px;">
+                    <td class="CellClass_3142255085">
+                        <p class="TableText">FILE</p>
+                    </td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">Displays path of the system’s file. </p>
+                        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>Supports to access local system files. Also supports to access LAN connected system’s file. </blockquote>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">Alternatively the format of HYPERLINK:Link_Type[|Link_Name] can also be used:</div>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">Link_Type is the type of the link (e.g. http, mailto, file, https, ftp) </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">Link_Name is optional. It is the name that should be displayed for the link. If not specified, the full link is displayed.</td>
+            </tr>
+        </table>
+        <div class="Body">The following shortcuts can also be used instead of the Link_Type|Link_Name format:</div>
+        <div class="Body">When Input Field Type is Text or Picklist, a default value can be added. To indicate a default value, add a "!" after <span class="_Override" style="font-weight: bold;">InputType:Option</span>. This will input that value when in add mode or set the Picklist to that value. Valid for Text and Picklist only. </div>
+        <div class="Body">When Input Field Type is Picklist, picklist items must be separated by pipes (i.e. "|"). Default values are added after the last item in the pick list. It is also an option to add <span class="_Override" style="font-weight: bold;">:VALIDATE:myScript(this)</span> where myScript(this) is a valid script in app_js.js to add script validation for add mode.</div>
+        <div class="Body">Default: N/A</div>
+        <div class="Body">Options: FieldName ; Input Field : Option [; Display Field : Option]</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

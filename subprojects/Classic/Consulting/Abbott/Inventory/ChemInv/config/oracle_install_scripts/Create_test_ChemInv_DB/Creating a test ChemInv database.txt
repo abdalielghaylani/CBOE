@@ -1,0 +1,11 @@
+Instructions to Load Test Chemical Inventory Database
+
+Warning:  Loading the test ChemInv database will destroy the contents of the preexisting ChemInv database.  All user data will be lost.  Make sure to backup valid data before proceeding with instructions.
+
+Note: The sql scripts provided have been designed to be executed with the command line version of SQL*Plus.  This scripts contain substitution variables which will not be proccessed correctly when run from SQL*Plus Worksheet.  To execute the scripts with SQL*Plus just double click the provided command files.
+ 
+
+1. Execute the Create_Test_ChemInvDB.cmd file.  A blank database will be built and populated with test inventory data.
+
+
+

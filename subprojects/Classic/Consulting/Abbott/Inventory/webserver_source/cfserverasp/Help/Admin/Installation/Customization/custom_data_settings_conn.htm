@@ -1,0 +1,180 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Connection Options in&nbsp;Dataview INI Files</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<a name="type"></a><h1> Connection Options in&nbsp;Dataview INI Files</h1><h2> Connection Types</h2>
+<h3>DBQ</h3>
+<p>For DBQ, CONN_TYPE must be a full text specification with the following 
+minimum of information for each type of datasource. The ODBC control panel will 
+help you to&nbsp;determine information about drivers installed on the server. In 
+general this will use the default OLEDB driver and may not be optimized. The 
+default driver is MSDASQL.</p>
+<blockquote>
+    <p><strong>ACCESS<br></strong><i>database 
+    path</i>;DRIVER={<i>drivername</i>)<br><em><strong>Example:</strong> </em>CONNECTION_STRING = C:\ 
+  Samples\sample.MDB;<br>   
+    DRIVER={Microsoft Access Driver(*.mdb)}</p>
+    <p><strong>SQLSERVER 
+    <br></strong>DRIVER={<i>drivername</i>};DATA 
+    SOURCE=<i>server_name</i>;INITIAL CATALOG<i>=database name<br>
+    <strong>Example</strong>: </i>
+    CONNECTION_STRING<i>=DRIVER={SQL Server}; <br>  DATA SOURCE = 
+    myServer;INITIAL CATALOB=sample</i></p></blockquote>
+<blockquote>
+    <p><strong>ORACLE<br></strong>DRIVER={<i>drivername</i>};<i> SERVER</i>=<i>net8 
+    service_name<br><strong>Example:</strong> </i>CONNECTION_STRING<i>=DRIVER-{Microsofr ODBC for Oracle}; <br>    SERVICE =   
+       my_world</i></p></blockquote>
+<h3>DSN</h3>
+<p>For DSN, define the DSN in the ODBC control panel.</p>
+<blockquote>
+  <p><strong>ACCESS, SQLSERVER, ORACLE 
+  <br>   
+      </strong><i>
+    Dsn name<br><strong>Example:</strong> </i>CONNECTION_STRING<i>=sample</p></i>
+    <p>Other data source specification will depend on the driver you are using. 
+    Often DSN: the connection string should be simply the name of the dsn, such 
+    as &quot;sample_dsn&quot; that you have created via the ODBC control panel on the 
+    server.</p></blockquote>
+<h3>OLEDB</h3>
+<p> When using OLEDB, specify the PROVIDER in addition to the other 
+information using slightly different keywords then DBQ. In general the ODBC 
+provider default is MSDASQL which is Microsoft&#146;s global ODBC driver. Many 
+datasources also have Native providers that can increase performance over the 
+default Microsoft provider.</p>
+<blockquote>
+    <p><strong>ACCESS:<br></strong>PROVIDER=<i>provider_name;<br></i>DATA SOURCE=<em>database path or 
+  DSN name<br>    <br><strong>Example:</strong> CONNECTION_STRING= 
+  Provider= Microsoft.Jet.OLEDB.4.0;<br>Data Source=C:\Samples\sample.MDB<br></em>
+    OR&nbsp;with a DSN<br><em>CONNECTION_STRING= 
+  Provider=Microsoft.Jet.OLEDB.4.0;<br>Data Source=sample</em></p>
+</blockquote>
+<blockquote>
+    <p><strong>SQLSERVER<br></strong>PROVIDER=<i>provider_name;<br></i>DATA SOURCE=<i>server_name or dsn_namee 
+    </i>;<br>INITIAL 
+  CATALOG<em>=database name<br> <br><strong>Example:</strong> CONNECTION_STRING= 
+  PROVIDER=SQLOLEDB;<br>DATA SOURCE= 
+  myServer;<br> INITIAL CATALOG=sample<br></em>OR&nbsp;With 
+  a DSN<br><em>CONNECTION_STRING= PROVIDER=SQLOLEDB;<br>DATA 
+  SOURCE= sample</em></p>
+   <p><strong>ORACLE<br></strong>PROVIDER=<i>provider_name;<br></i>DATA SOURCE=<em>net8_service_name or dsn_name<br>
+    <strong>Example:</strong> CONNECTION_STRING= 
+  PROVIDER= 
+  MSDAORA;<br>DATA SOURCE= myWorld<br></em>OR with 
+  DSN
+  <br><em>CONNECTION_STRING= PROVIDER=MSDAORA;DATA 
+  SOURCE=sample</em></p></blockquote>
+<a name="password"></a><h2>Connection Passwords Tables</h2>
+<blockquote>
+  <p>Assuming a username of abigail and password of 
+  FbOr (in cases when there is a password):</p>
+  <p><strong>ACCESS </strong></p>
+  <p>
+  <table cellSpacing="3" cellPadding="3" border="1" width="600">
+    
+    <tr style="COLOR: khaki; BACKGROUND-COLOR: darkblue">
+      <td></td>
+      <td><strong>NO&nbsp;password</strong></td>
+      <td><strong>DBQ or DSN</strong>  </td>
+      <td><strong>OLEDB</strong></td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_USERNAME=</strong></td>
+      <td>&quot;&quot;</td>
+      <td>abigail</td>
+      <td>User ID=abigail</td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_PASSWORD=</strong></td>
+      <td>&quot;&quot;</td>
+      <td>FbOr</td>
+      <td>Password = FbOr </td></tr></table></p>
+  <p><strong>SQLSERVER </strong></p>
+  <p>
+  <table cellSpacing="3" cellPadding="3" border="1" width="600">
+    
+    <tr style="COLOR: khaki; BACKGROUND-COLOR: darkblue">
+      <td></td>
+      <td><strong>NO&nbsp;password</strong></td>
+      <td><strong>DBQ or DSN</strong> </td>
+      <td><strong>OLEDB</strong></td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_USERNAME=</strong></td>
+      <td>&quot;&quot;</td>
+      <td>UID=abigail </td>
+      <td>User ID=abigail</td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_PASSWORD=</strong></td>
+      <td>&quot;&quot;</td>
+      <td>PASSWORD=FbOr</td>
+      <td>Password=FbOr </td></tr></table></p>
+  <p><strong>ORACLE</strong> </p>
+  <p>
+  <table cellSpacing="3" cellPadding="3" border="1" width="600">
+    
+    <tr style="COLOR: khaki; BACKGROUND-COLOR: darkblue">
+      <td></td>
+      <td><strong>DBQ or DSN</strong> </td>
+      <td><strong>OLEDB</strong></td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_USERNAME=</strong></td>
+      <td>UID=abigail </td>
+      <td>User ID=abigail</td></tr>
+    <tr>
+      <td style="COLOR: khaki; BACKGROUND-COLOR: darkblue"><strong>CONNECTION_PASSWORD=</strong></td>
+      <td>PASSWORD=FbOr</td>
+      <td>Password=FbOr </td></tr></table>            
+  </p></blockquote>
+<a name="datatypes"></a>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

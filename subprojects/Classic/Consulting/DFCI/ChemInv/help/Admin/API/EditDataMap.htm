@@ -1,0 +1,239 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">EditDataMap</span></h1><p>Updates <span lang="en-us">a</span> data map, as 
+specified.</p><h3>Syntax</h3>
+<pre>/cheminv/api/<span lang="en-us">Edit</span>DataMap.asp?DataMapTypeID=adNumeric&amp;DataMapID=adNumeric&amp;DataMapName=adVarChar&amp;DataMapComments=adVarChar&amp;NumColumns=adInteger&amp;ColumnDelimiter=adVarChar[&amp;NumHeaderRows=adInteger&amp;DataMapFieldList=adVarChar&amp;DataMapColumnList=adVarChar&amp;UseWellCoordinates=adInteger]</pre>
+<h3><span lang="en-us">In</span>puts<span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></h3>
+<table border="1" width="118%" height="88">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center" height="42"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center" height="42"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298" height="42"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92" height="42"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70" height="42"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" height="42"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center" height="42"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapTypeID</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the type of the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">DATA_MAP_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapID</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">DATA_MAP_ID</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapName</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the name of the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">DATA_MAP_NAME</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapComments</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the comments associated with the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">DATA_MAP_COMMENTS</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		NumHeaderRows</td>
+		<td width="97" height="38">
+		adInteger</td>
+		<td width="298" height="38">
+		Specifies the number of header rows contained in the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">NUM_HEADER_ROWS</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		NumColumns</td>
+		<td width="97" height="38">
+		adInteger</td>
+		<td width="298" height="38">
+		Specifies the number of columns contained in the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">NUM_COLUMNS</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		ColumnDelimiter</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the column delimiter used for the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">COLUMN_DELIMITER</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapFieldList</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the field list for the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		DataMapColumnList</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the column list for the data map.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		UseWellCoordinates</td>
+		<td width="97" height="38">
+		adInteger</td>
+		<td width="298" height="38">
+		&nbsp;</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_DATA_MAPS</span></td>
+		<td width="92" height="38">USE_WELL_COORDINATES</td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<p>The ID of the edited data map, which is stored in the DataMapID parameter. </p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code edits data map with ID 20:</span></p>
+<pre>/cheminv/api/<span lang="en-us">Edit</span>DataMap.asp?DataMapTypeID=<span lang="en-us">19</span>&amp;DataMapID=<span lang="en-us">20</span>&amp;DataMapName=<span lang="en-us">TestTemplate</span>&amp;DataMapComments=<span lang="en-us">Creating Plates</span>&amp;NumColumns=<span lang="en-us">8</span>&amp;ColumnDelimiter=<span lang="en-us">tab</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

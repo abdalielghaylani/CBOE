@@ -1,0 +1,711 @@
+Enter the target Oracle service name:bimdb
+Enter the Oracle major version number (9):
+Enter the name of an Oracle account with system privileges (system):
+Enter the above oracle account password (manager2):bimdb
+Connected.
+
+Grant succeeded.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+CREATE TABLE "INV_CONTAINER_BATCHES"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+	"CONTAINER_STATUS_ID_FK" NUMBER(4),
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+	"MINIMUM_STOCK_THRESHOLD" NUMBER(4)
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+
+Table altered.
+
+   	"COMMENTS" CLOB,
+   	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+CREATE TABLE "INV_GRAPHIC_TYPES"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_GRAPHICS"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_DOC_TYPES"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_DOCS"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_UNIT_CONVERSION_FORMULA"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_ORG_UNIT"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_ORG_ROLES"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE TABLE "INV_ORG_USERS"(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+	"BATCH_ID_FK" NUMBER(4),
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+	"BATCH_ID_FK" NUMBER(4),
+	*
+ERROR at line 3:
+ORA-01430: column being added already exists in table 
+
+
+ALTER TABLE INV_REQUESTS MODIFY CONTAINER_ID_FK NULL
+                                *
+ERROR at line 1:
+ORA-01451: column to be modified to NULL cannot be modified to NULL 
+
+
+ALTER TABLE INV_REQUESTS MODIFY USER_ID_FK NULL
+                                *
+ERROR at line 1:
+ORA-01451: column to be modified to NULL cannot be modified to NULL 
+
+
+	"ORG_UNIT_ID_FK" NUMBER(4),
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+	"COLLAPSE_CHILD_NODES" NUMBER(1)
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+	"CELL_NAMING" NUMBER(1),
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+	"GRAPHIC_ID_FK" NUMBER(4),
+	*
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+CREATE INDEX CONTAINER_BATCH_ID_FK_IDX ON INV_CONTAINERS(BATCH_ID_FK) TABLESPACE T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE INDEX CONTAINER_REG_ID_FK_IDX ON INV_CONTAINERS(REG_ID_FK) TABLESPACE T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE INDEX CONTAINER_BATCH_NUMBER_FK_IDX ON INV_CONTAINERS(BATCH_NUMBER_FK) TABLESPACE T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE INDEX REQUESTS_BATCH_ID_FK_IDX ON INV_REQUESTS(BATCH_ID_FK) TABLESPACE T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE INDEX DOC_TYPE_ID_FK_IDX ON INV_DOCS(DOC_TYPE_ID_FK) TABLESPACE T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE INDEX BATCHES_CONT_STATUS_ID_FK_IDX ON INV_CONTAINER_BATCHES(CONTAINER_STATUS_ID_FK) TABLESPACE  T_CHEMINVDB2_INDEX
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_INV_CONTAINER_BATCHES INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_INV_GRAPHICS INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_INV_GRAPHIC_TYPES INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_DOC_ID INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_DOC_TYPE_ID INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_ORG_UNIT_ID INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_INV_ORG_ROLE_ID INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE SEQUENCE SEQ_INV_ORG_USER_ID INCREMENT BY 1 START WITH 1
+                *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+INSERT INTO INV_REQUEST_STATUS (REQUEST_STATUS_ID, REQUEST_STATUS_NAME) VALUES (8,'Pending')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_REQUEST_STATUS_PK) violated 
+
+
+INSERT INTO INV_REQUEST_STATUS (REQUEST_STATUS_ID, REQUEST_STATUS_NAME) VALUES (9,'Reserved')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_REQUEST_STATUS_PK) violated 
+
+
+INSERT INTO INV_GRAPHIC_TYPES (GRAPHIC_TYPE_ID,GRAPHIC_TYPE_NAME) VALUES (1,'Tree Icons')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_GRAPHIC_TYPE_PK) violated 
+
+
+
+1 row created.
+
+
+6 rows updated.
+
+INSERT INTO INV_GRAPHICS (GRAPHIC_ID,GRAPHIC_NAME,GRAPHIC_TYPE_ID_FK,GRAPHIC_WIDTH,GRAPHIC_HEIGHT,URL_ACTIVE,URL_INACTIVE) VALUES (1,'Freezer',1,16,16,'freezer_open.gif','freezer_close.gif')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_GRAPHIC_PK) violated 
+
+
+INSERT INTO INV_GRAPHICS (GRAPHIC_ID,GRAPHIC_NAME,GRAPHIC_TYPE_ID_FK,GRAPHIC_WIDTH,GRAPHIC_HEIGHT,URL_ACTIVE,URL_INACTIVE) VALUES (2,'Rack',1,16,16,'rack_open.gif','rack_closed.gif')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_GRAPHIC_PK) violated 
+
+
+INSERT INTO INV_GRAPHICS (GRAPHIC_ID,GRAPHIC_NAME,GRAPHIC_TYPE_ID_FK,GRAPHIC_WIDTH,GRAPHIC_HEIGHT,URL_ACTIVE, URL_INACTIVE) VALUES (3,'Plate',1,16,16,'icon_openfold2.gif','icon_clsdfold2.gif')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_GRAPHIC_PK) violated 
+
+
+INSERT INTO INV_GRAPHICS (GRAPHIC_ID,GRAPHIC_NAME,GRAPHIC_TYPE_ID_FK,GRAPHIC_WIDTH,GRAPHIC_HEIGHT,URL_ACTIVE, URL_INACTIVE) VALUES (4,'Trash',1,16,16,'trash_open.gif','trash_closed.gif')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_GRAPHIC_PK) violated 
+
+
+INSERT INTO INV_LOCATION_TYPES (LOCATION_TYPE_ID,LOCATION_TYPE_NAME,GRAPHIC_ID_FK) VALUES (27,'Rack',2)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_LOCATION_TYPES_PK) violated 
+
+
+
+4 rows updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+INSERT INTO INV_DOC_TYPES (DOC_TYPE_ID,TYPE_NAME) VALUES (1,'Batch Sample Request Receipt')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_DOC_TYPE_PK) violated 
+
+
+INSERT INTO INV_DOC_TYPES (DOC_TYPE_ID,TYPE_NAME) VALUES (2,'Batch Sample Worksheet')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_DOC_TYPE_PK) violated 
+
+
+INSERT INTO INV_ENUMERATION_SET (ESET_ID,ESET_NAME,ESET_TYPE_ID_FK) VALUES (9,'Batch Document Types',2)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_ENUMERATION_SET_PK) violated 
+
+
+INSERT INTO INV_ENUMERATION_SET (ESET_ID,ESET_NAME,ESET_TYPE_ID_FK) VALUES (10,'Organization Types',1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_ENUMERATION_SET_PK) violated 
+
+
+INSERT INTO INV_ENUMERATION (ENUM_ID,ENUM_VALUE,ESET_ID_FK) VALUES (19,'Group',10)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_ENUMERATION_PK) violated 
+
+
+INSERT INTO INV_ENUMERATION (ENUM_ID,ENUM_VALUE,ESET_ID_FK) VALUES (20,'Department',10)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_ENUMERATION_PK) violated 
+
+
+INSERT INTO INV_CONTAINER_STATUS (CONTAINER_STATUS_ID,CONTAINER_STATUS_NAME,CONTAINER_STATUS_DESC) VALUES (23,'Requestable','')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_CONTAINER_STATUS_PK) violated 
+
+
+INSERT INTO INV_REPORTTYPES (REPORTTYPE_ID,REPORTTYPEDESC) VALUES (8,'Batch Report')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_REPORTTYPES_PK) violated 
+
+
+INSERT INTO INV_REPORTS(ID,REPORTDISPLAYNAME,REPORTNAME,REPORTTYPE_ID) VALUES (13,'Batch Search Results Report 1','rptBatchSearchResults1',8)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_REPORTS_PK) violated 
+
+
+INSERT INTO INV_REPORTS(ID,REPORTDISPLAYNAME,REPORTNAME,REPORTTYPE_ID) VALUES (14,'Batch Search Results Report 2','rptBatchSearchResults2',8)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CHEMINVDB2.INV_REPORTS_PK) violated 
+
+
+
+Commit complete.
+
+
+Package created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Procedure created.
+
+No errors.
+
+Procedure created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Function created.
+
+No errors.
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+Connected.
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_CONTAINER_BATCHES')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_UNIT_CONVERSION_FORMULA')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_GRAPHICS')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_GRAPHIC_TYPES')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_DOCS')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_DOC_TYPES')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_ORG_UNIT')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_ORG_ROLES')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'SELECT', 'CHEMINVDB2', 'INV_ORG_USERS')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'EXECUTE', 'CHEMINVDB2', 'RACKS')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'EXECUTE', 'CHEMINVDB2', 'DOCS')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'EXECUTE', 'CHEMINVDB2', 'ORGANIZATION')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+INSERT INTO CS_SECURITY.OBJECT_PRIVILEGES VALUES ('INV_BROWSE_ALL', 'EXECUTE', 'CHEMINVDB2', 'BATCH')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CS_SECURITY.OBJECT_PRIV_U) violated 
+
+
+
+Commit complete.
+
+Connected.
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+

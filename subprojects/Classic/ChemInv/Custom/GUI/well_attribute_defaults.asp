@@ -1,0 +1,6 @@
+<%
+
+Sub SetDefaultAttributeValues()
+
+End Sub
+%>

@@ -1,0 +1,35 @@
+
+<table><tr><td>
+Expose_Table API Test
+<p>&nbsp;</p>
+<p>The following are all the name/value pairs that must be in the post:</p>
+<form method="POST" action="http://localhost/biosar_browser/biosar_browser/biosar_api.asp">
+
+
+user_id<input type="text" name="user_id" size="20" value = "BioSAR_ADMIN"> example: biosar_admin Must 
+be a user with ADD_SCHEMA privilege<p>
+user_pwd<input type="text" name="user_pwd" size="20"  value = "BioSAR_ADMIN"> example: biosar_admin<p>
+request_type<input type="text" name="request_type" value="ADMIN" size="20"> Always &quot;ADMIN&quot;<p>
+method<input type="text" name="method" value="Expose_Table" size="20"> Always Expose_Table<p>
+
+schemaname<input type="text" name="schemaname" size="20" value = "REGDB"> for example BIOHTSDB<p>
+tablename<input type="text" name="tablename" size="20" value="REG_NUMBERS"> for example 
+AVV_1002_comp<p>
+
+     pk_column_name<input type="text" name="pk_column_name" size="20" value="REG_ID"> for 
+     example row_num (or leave blank if this will never be a basetable in a 
+     form)<p>
+
+      table_display_name<input type="text" name="table_display_name" size="20" value="REG NUMBERS">for 
+      example :ASSAY-NUM1<p>
+
+    
+  
+  
+  
+  
+  
+  
+  <input type="submit" value="Submit" name="B1"><input type="reset" value="Reset" name="B2"></p>
+</form>
+</td></tr></table>

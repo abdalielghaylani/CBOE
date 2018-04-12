@@ -1,0 +1,10 @@
+vti_encoding:SR|utf8-nl
+vti_author:SR|CAMSOFT\\mschoenberg
+vti_modifiedby:SR|CAMSOFT\\mschoenberg
+vti_timelastmodified:TR|19 Aug 2005 20:30:24 -0000
+vti_timecreated:TR|19 Aug 2005 20:30:24 -0000
+vti_lineageid:SR|{EC245A43-96AB-4802-9CE7-EEC3CF419BEC}
+vti_cacheddtm:TX|19 Aug 2005 20:30:24 -0000
+vti_filesize:IR|0
+vti_extenderversion:SR|5.0.2.5012
+vti_backlinkinfo:VX|

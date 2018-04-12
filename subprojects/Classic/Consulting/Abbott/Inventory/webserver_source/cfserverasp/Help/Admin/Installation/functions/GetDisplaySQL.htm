@@ -1,0 +1,95 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- GetDisplaySQL</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="#"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="#"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="#"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>     ChemOffice 
+WebServer</STRONG>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  GetDisplaySQL</h1>
+<P>This subroutine call appears in the following file:</P>
+<UL>
+  <LI>sample_result_list.asp</LI></UL>
+
+<TABLE style="WIDTH: 95%" cellSpacing=4 cellPadding=1 border=0>
+  <TBODY vAlign=top>
+  
+  <TR>
+    <TD>
+      <H4>Subroutine</H4></TD>
+    <TD><PRE>GetDisplySQL(dbkey,formgroup,sql_get_fields,sql_base_table,sql_info,uniqueid,sql_options)</PRE>
+         </TD></TR>
+  <TR>
+    <TD>
+      <H4>Description</H4></TD>
+    <TD>
+      <P>Create SQL string to get 
+      a recordset</P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Parameters</H4></TD>
+    <TD>
+      <p>dbkey =<EM></FONT> 
+      &lt;dataview name&gt;</EM>  &nbsp;
+      <p>formgroup =</FONT><EM> &lt;formgroup name&gt;</EM>
+      <H5></H5>
+      <P>sql_get_fields = &lt;the fields to return&gt;</P>
+      <P>sql_base_table = &lt;the base table to search&gt;</P>
+      <P>sql_info = &lt;additional sql for statement&gt;</P>
+      <P>uniqueid = &lt;used to create recordset&gt;</P>
+      <P>sql_options = 
+      <EM>SHOWSQL|SQL_WHERE|SQL_FULL|SQL_NO_DISTINCT</EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description 
+      of type of sql in 
+      sql_info<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showsql 
+      : response.write resulting in SQL; use for 
+      debugging<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql_where 
+      : WHERE 
+      clause<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql_full : 
+      full SELECT 
+      statement<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql_no_distinct : removes distinct/distinct 
+      row from 
+      SQL statement<BR></P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Example</H4></TD>
+    <TD><PRE>sql=GetDisplaySQL(dbkey,formgroup,"MolTable.*","MolTable","",BaseID,"")</PRE></TD></TR>
+  <TR>
+    <TD>
+      <H4>Note</H4></TD>
+    <TD>Once you have a data connection and SQL 
+      statement, the following creates the recordset:
+    <pre>Set BaseRS = DataConn.Execute(sql)</pre></TD></TR></TBODY></TABLE>
+
+</body>
+
+</html>

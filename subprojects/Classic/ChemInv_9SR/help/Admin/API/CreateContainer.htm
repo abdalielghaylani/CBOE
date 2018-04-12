@@ -1,0 +1,243 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<br>
+<br>
+<h1>CreateContainer</h1>
+<p>Creates a new container and returns its Container_ID.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/CreateContainer.asp?LocationID=adNumeric&amp;UOMID=adNumeric&amp;QtyMax=adDouble&amp;QtyInitial=adDouble&amp;ContainerTypeID=adNumeric&amp;ContainerStatusID=adNumeric[&amp;Barcode=adVarChar&amp;CompoundID=adNumeric&amp;RegBatchID=adVarChar&amp;ExpDate=adDBTimeStamp&amp;MinStockQty<strong>=</strong>adDouble&amp;MaxStockQty=adDouble&amp;ContainerName=adVarChar&amp;ContainerDesc=adVarChar&amp;TareWeight=adDouble&amp;UOWID=adNumeric&amp;Purity=AdDouble&amp;UOPID=adNumeric&amp;Concentration=adDouble&amp;UOCID=adNumeric&amp;Grade=adVarChar&amp;Solvent=adVarChar&amp;Comments=adVarChar&amp;SupplierID=adNumeric&amp;SupplierCatNum=adVarChar&amp;LotNum=adVarChar&amp;DateProduced=adDBTimeStamp&amp;DateOrdered=adDBTimeStamp&amp;DateReceived=adDBTimeStamp&amp;ContainerCost=adNumeric&amp;OwnerID=adVarChar&amp;CurrentUserID=adVarChar&amp;PONumber=adVarChar&amp;ReqNumber=adVarChar&amp;NumCopies=adVarChar]<br></pre>
+<h3 class="param">Inputs</h3>
+<h5 class="param">LocationID</h5>
+<p class="param"><font size="2">The Location_ID value of the 
+location where the container is stored.</font>          </p>
+<h5 class="param">UOMID</h5>
+<p class="param"><font size="2">The unit of measure to be used 
+for this container as a UNIT_ID value. Use ShowContainerUnits to see 
+valid UNIT_ID values.</font>                     </p>
+<h5 class="param">QtyMax</h5>
+<p class="param"><font size="2">Maximum capacity of the 
+container in the units defined by UOMID.</font>          </p>
+<h5 class="param">QtyInitial</h5>
+<p class="param"><font size="2">Quantity of material present in 
+the container at creation time in the units defined by UOMID.</font>               </p>
+<h5 class="param">ContainerTypeID</h5>
+<p class="param"><font size="2">Type of container as a Type_ID 
+value. Use ShowContainerTypes to see valid Type_ID values.</font>              </p>
+<h5 class="param">ContainerStatusID</h5>
+<p class="param"><font size="2">      
+  Status&nbsp;of container as a Status_ID value. Use      
+  ShowContainerStatus to see valid Status_ID values.&nbsp;</font>          
+   </p>
+<h5 class="param">[Barcode]</h5>
+<p class="param">       
+A unique alphanumerical       
+identifier used to print a container       
+barcode.</p>
+<h5></h5>
+<h5 class="param">[CompoundID]&nbsp;</h5>
+<p class="param"><font size="2">Compound_ID value associating 
+the substance in the container with a preexisting inventory compund.</font>            </p>
+<h5 class="param">[RegID]&nbsp;</h5>
+<p class="param"><font size="2">   
+   A registry number from the Registration System.</font>         
+   </p>
+<h5 class="param">[BatchNumber]&nbsp;</h5>
+<p class="param"><font size="2">A&nbsp;batch number (associated with the given 
+RegID) from the&nbsp;Registration System.</font></p>
+<h5 class="param">[ExpDate]</h5>
+<p class="param"><font size="2">Content's expiration date as 
+date-time literal (ie. 01-27-2001)&nbsp;</font>       
+</p>
+<h5 class="param">[MinStockQty]</h5>
+<p class="param"><font size="2">Quantity of material in the 
+units defined by UOMID upon which the system should issue a re-stock 
+warning.</font>                 </p>
+<h5 class="param">[MaxStockQty]</h5>
+<p class="param"><font size="2">Quantity of material in the 
+units defined by UOMID upon which the system should issue an over-stock 
+warning.</font>                 </p>
+<h5 class="param">[ContainerName]</h5> 
+<p class="param"><font size="2">The name of the container.&nbsp; 
+If empty, defaults to the system's internal&nbsp;ContainerID.</font>           </p>
+<h5 class="param">[ContainerDesc]</h5>
+<p class="param"><font size="2">A description of the 
+container.</font>    </p>
+<h5 class="param">[TareWeight]</h5>
+<p class="param">The tare weight of the physical container in the units of UOWID.    </p>
+<h5 class="param">[NetWeight]</h5>
+<p class="param">The net weight of the physical container in the units of UOWID. 
+</p>
+<h5 class="param">[FinalWeight]</h5>
+<p class="param">The final weight of the physical container in the units of UOWID. 
+</p>
+<h5 class="param">[UOWID]</h5>
+<p class="param"><font size="2">Unit of 
+weight value as a Unit_ID value from the Units table.&nbsp; ShowContainerUnits to see valid UNIT_ID values.</font></p>
+<h5 class="param">[Purity]
+<p></p></h5>
+<p class="param"><font size="2">The purity of the substance 
+designated by CompoundID in units of UOPID.</font>           </p>
+<h5 class="param">[UOPID]</h5>
+<p class="param"><font size="2">Unit of purity value as a 
+Unit_ID value from the Units table.</font>&nbsp; <font size="2">ShowContainerUnits to see valid UNIT_ID values.</font>           </p>
+<h5 class="param">[Concenctration]</h5>
+<p class="param">The concentration of the substance designated by CompoundID in 
+units of UOCID.</p>
+<h5 class="param">[Density]</h5>
+<p class="param">The density of the substance.</p>
+<h5 class="param">[UOCID]</h5>
+<p class="param"><font size="2">Unit of concentration value as a 
+Unit_ID value from the Units table.</font>&nbsp; <font size="2">ShowContainerUnits to see valid UNIT_ID values.</font>           </p>
+<h5 class="param">[UODID]</h5>
+<p class="param"><font size="2">Unit of density value as a Unit_ID value from the 
+Units table.</font>&nbsp; <font size="2">ShowDensityUnits to see valid UNIT_ID 
+values.</font> </p>
+<h5 class="param">[Grade]</h5>
+<p class="param">The quality or purity designation associated 
+with the substance designated by CompoundID.</p>
+<h5 class="param">[Solvent]</h5>
+<p class="param"><font size="2">The name of the substance's 
+solvent.</font>    </p>
+<h5 class="param">[Comments]</h5>
+<p class="param"><font size="2">Comments or instructions 
+associated with this container. Maximum length is 4000 characters. It may be 
+passed as form value to avoid truncation by querystring size limit. </font>                           </p>
+<h5 class="param">[SupplierID]</h5>
+<p class="param"><font size="2">Supplier_ID value associating the Supplier with a 
+preexisting Supplier Name.&nbsp; Use ShowSuppliers to see valid Supplier_ID 
+values.</font></p>
+<h5 class="param">[SupplierCatNum]</h5>
+<p class="param"><font size="2"> 
+The catalog number for the&nbsp;product assigned by the 
+supplier.</font></p>
+<h5 class="param">[LotNum]</h5>
+<p class="param"><font size="2">Supplier's Lot Number</font></p>
+<h5 class="param">[DateProduced]</h5>
+<p class="param"><font size="2">The date 
+the&nbsp;compound was produced as date-time literal (ie. 
+01-27-2001).</font></p>
+<h5 class="param">[DateOrdered]</h5>
+<p class="param"><font size="2">The date 
+the compound was ordered as date-time literal (ie. 
+01-27-2001).</font></p>
+<h5 class="param">[DateReceived]</h5>
+<p class="param"><font size="2"><font size="2">The date the compound was received as date-time literal (ie. 
+01-27-2001).</font>    
+</font></p>
+<h5 class="param">[ContainerCost]</h5>
+<p class="param"><font size="2">The unit 
+cost of the container.&nbsp; Currency is assumed to be 
+USD.</font></p>
+<h5 class="param">[OwnerID]</h5>
+<p class="param"><font size="2"> 
+     User_ID value&nbsp;of the user who owns responsibility of the 
+container.</font></p>
+<h5 class="param">[CurrentUserID]</h5>
+<p class="param"><font size="2">      User_ID value&nbsp;of 
+the user currently responsible for the 
+container.</font></p>
+<h5 class="param">[PONumber]</h5>
+<p class="param"><font size="2">   The 
+PONumer under which the container   was 
+ordered.</font></p>
+<h5 class="param">[POLineNumber]</h5>
+<p class="param">The POLine number for the container.</p>
+<h5 class="param">[ReqNumber]</h5>
+<p class="param"><font size="2">The internal requisition number under which the container was 
+ordered.</font></p>
+<h5 class="param">[NumCopies]</h5>
+<p class="param"><font size="2">Number of container copies to create.</font></p>
+<h5 class="param">[Field_1]</h5>
+<p class="param"><font size="2">Value of the customizable Field_1.</font></p>
+<h5 class="param">[Field_2]</h5>
+<p class="param"><font size="2">Value of the customizable Field_2.</font></p>
+<h5 class="param">[Field_3]</h5>
+<p class="param"><font size="2">Value of the customizable Field_3.</font></p>
+<h5 class="param">[Field_4]</h5>
+<p class="param"><font size="2">Value of the customizable Field_4.</font></p>
+<h5 class="param">[Field_5]</h5>
+<p class="param"><font size="2">Value of the customizable Field_5.</font></p>
+<h5 class="param">[Field_6]</h5>
+<p class="param"><font size="2">Value of the customizable Field_6.</font></p>
+<h5 class="param">[Field_7]</h5>
+<p class="param"><font size="2">Value of the customizable Field_7.</font></p>
+<h5 class="param">[Field_8]</h5>
+<p class="param"><font size="2">Value of the customizable Field_8.</font></p>
+<h5 class="param">[Field_9]</h5>
+<p class="param"><font size="2">Value of the customizable Field_9.</font></p>
+<h5 class="param">[Field_10]</h5>
+<p class="param"><font size="2">Value of the customizable Field_10.</font></p>
+<h5 class="param">[Date_1]</h5>
+<p class="param"><font size="2">Value of the customizable Date_1.</font></p>
+<h5 class="param">[Date_2]</h5>
+<p class="param"><font size="2">Value of the customizable Date_2.</font></p>
+<h5 class="param">[Date_3]</h5>
+<p class="param"><font size="2">Value of the customizable Date_3.</font></p>
+<h5 class="param">[Date_4]</h5>
+<p class="param"><font size="2">Value of the customizable Date_4.</font></p>
+<h5 class="param">[Date_5]</h5>
+<p class="param"><font size="2">Value of the customizable Date_5.</font></p>
+<h3 class="param">Outputs</h3>
+<p class="param">Pipe (|) delimited list of new container 
+IDs.&nbsp;For example: 100|101</p>
+<h3 class="param">Example</h3>
+<p class="param">A user wants to create a container in 
+Location 101 which is a flask (ID=13) with a max quantity of 200 ml 
+(ID=3).&nbsp; The container&nbsp;will initially have 100 ml in it and the status 
+is In Transit (ID=6).&nbsp; &nbsp;&nbsp;</p>
+<pre class="param">/cheminv/api/CreateContainer.asp?LocationID=101&amp;UOMID=3&amp;QtyMax=200&amp;QtyInitial=100&amp;ContainerTypeID=13&amp;ContainerStatusID=6</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

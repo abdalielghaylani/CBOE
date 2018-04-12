@@ -1,0 +1,327 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:Garamond;
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">UpdateAddress</span></h1>
+<p><span style="font-size: 11.0pt; font-family: Garamond">U</span>pdates the 
+address of the specified supplier or location.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/<span lang="en-us">Update</span>Address.asp?TableName=adVarChar&amp;TablePKID=adVarChar[&amp;AddressID=adVarChar&amp;ContactName=adVarChar&amp;Address1=adVarChar&amp;Address2=adVarChar&amp;Address3=adVarChar&amp;Address4=adVarChar&amp;City=adVarChar&amp;StateIDFK=adNumeric&amp;CountryIDFK=adNumeric&amp;ZIP=adVarChar&amp;FAX=adVarChar&amp;Phone=adVarChar&amp;Email=adVarChar]</pre>
+<h3><span lang="en-us">In</span>puts<span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></h3>
+<table border="1" width="118%" height="88">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center" height="42"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center" height="42"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298" height="42"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92" height="42"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70" height="42"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" height="42"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center" height="42"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		TableName</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the table the address associated with which is to be updated.</td>
+		<td width="92" height="38">
+		<span lang="en-us">INV</span>_<span lang="en-us">SUPPLIERS</span>| 
+		<span lang="en-us">INV</span>_<span lang="en-us">LOCATIONS</span></td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">N/A</span></td>
+		<td width="92" height="38"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		TablePKID</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the primary key ID. This ID specifies the location or 
+		supplier, whose address is to be updated. </td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">N/A</span></td>
+		<td width="92" height="38"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		AddressID</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the ID of the address to be updated.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ADDRESS_ID</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		ContactName</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the contact name.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">CONTACT_NAME</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Address1</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the first line of the address.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ADDRESS1</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Address2</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the second line of the address.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ADDRESS2</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Address3</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the third line of the address.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ADDRESS3</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Address4</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the fourth line of the address.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ADDRESS4</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		City</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the name of the city.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">CITY</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		StateIDFK</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the state.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">STATE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		CountryIDFK</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the country.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">COUNTRY_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		ZIP</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the zip code.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">ZIP</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		FAX</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the fax number<span lang="en-us">.</span> </td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">FAX</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Phone</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the phone number.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">PHONE</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		Email</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies the email address.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_ADDRESS</span></td>
+		<td width="92" height="38">EMAIL</td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<p><span lang="en-us">T</span>he ID of the updated address, which is stored in the 
+AddressID parameter.</p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code updates the address of a supplier:</span></p>
+<pre>/cheminv/api/<span lang="en-us">Update</span>Address.asp?TableName=INV_SUPPLIERS&amp;TablePKID=<span lang="en-us">12</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

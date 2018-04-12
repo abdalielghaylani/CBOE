@@ -1,0 +1,121 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>ReconcileContainer</h1><p>          
+                            
+                        
+            
+ Takes three lists of container ids: verified, awol and 
+missing. Verified are updated as being where they ought to be. Awol are moved 
+from where they used to be to the current location and marked as found during 
+reconciliation. Missing are marked and moved as          
+                            
+                        
+            
+ missing.</p><h3>Syntax</h3> <pre>/cheminv/api/ReconcileContainer.asp?LocationID=adNumeric&amp;VerifiedContainerIDList=adVarChar[&amp;AwolContainerIDList=adVarChar&amp;MissingContainerIDList=adVarChar&amp;CurrentUserID=adVarChar&amp;OwnerID=adVarChar&amp;ContainerStatusID= adNumeric]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">LocationID</h5>
+<p>         Location ID 
+for the&nbsp;location. </p>
+
+<h5 class="param">[VerifiedContainerIDList]</h5>
+<p class="param">A comma delimited list of container IDs of containers verified as 
+being in the specified location.<br><em>Required if AwolContainerIDList and 
+Missing ContainerIDList are empty.</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<h5 class="param">[AwolContainerIDList]</h5>
+<p class="param">A comma delimited list of container IDs of 
+containers&nbsp;observer&nbsp;in the specified location, but not previously 
+assigned to that location.<br><em>Required if VerifiedContainerIDList and 
+Missing ContainerIDList are empty.</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">[CurrentUserID]</h5>
+<p>The user ID for the curret 
+user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">[OwnerID]</h5>
+<p>The ID for the Owner of the 
+containers.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">[MissingContainerIDList]</h5>
+<p class="param">A comma delimited list of container IDs of containers assigned to 
+the specified location but not verified as physically being in that 
+location.<br><em>Required if AwolContainerIDList and 
+VerifiedContainerIDList&nbsp;are empty.</em>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<h5 class="param">[ContainerStatusID]</h5>
+<p>The ID of the status that the containers will be given 
+after the action is 
+complete.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>       
+            
+             
+               
+                      
+A user has verified that containers 12345 and 12245 are 
+in the specified location (ID = 101) but container 12225 is also in the location 
+and wasn't previously assigned       
+            
+             
+               
+                      
+there.&nbsp;</p> <pre> <pre>/cheminv/api/ReconcileContainer.asp?LocationID=101&amp;VerifiedContainerIDList=12345,12245&amp;AwolContainerIDList= 12225</pre> </pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

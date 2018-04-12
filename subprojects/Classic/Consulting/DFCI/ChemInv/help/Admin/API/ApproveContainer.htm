@@ -1,0 +1,133 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">ApproveContainer</span></h1><p>Approves or rejects 
+certification of a container, as specified. If a container is approved the 
+status of the container is set to the status defined in the invconfig.ini file 
+for the approved containers, otherwise it is set to the status defined in the 
+invconfig.ini file for the rejected containers.</p><h3>Syntax</h3><pre>/cheminv/api/ApproveContainer.asp?ApprovedContainerIDList=adVarChar&amp;StatusApproved=adNumeric&amp;StatusDefault=adNumeric<span lang="en-us">[</span>&amp;RejectedContainerIDList=adVarChar<span lang="en-us">]</span></pre>
+<h3><span lang="en-us">In</span>puts</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="77"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="52"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="213"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="210" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ApprovedContainerIDList</td>
+		<td width="97">adVarChar</td>
+		<td width="77">Specifies a comma delimited list of the IDs of 
+		containers, whose certification is to be approved.</td>
+		<td width="52">&nbsp;</td>
+		<td width="213" align="center">Y, if RejectedContainerIDList is empty</td>
+		<td><span style="font-size: 12.0pt; font-family: Times New Roman">
+		INV_CONTAINERS</span></td>
+		<td width="210">CONTAINER_ID</td>
+	</tr>
+	<tr>
+		<td width="117">StatusApproved</td>
+		<td width="97">adNumeric</td>
+		<td width="77">Specifies the ID of the status to be used for the 
+		approved containers. </td>
+		<td width="52">&nbsp;</td>
+		<td width="213" align="center">Y</td>
+		<td><span style="font-size: 12.0pt; font-family: Times New Roman">
+		INV_CONTAINERS</span></td>
+		<td width="210">CONTAINER_STATUS_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">RejectedContainerIDList</td>
+		<td width="97">adVarChar</td>
+		<td width="77">Specifies a comma delimited list of the IDs of the 
+		containers, whose certification is to be rejected.</td>
+		<td width="52">&nbsp;</td>
+		<td width="213" align="center">Y, if ApprovedRejectedContainerIDList is 
+		empty</td>
+		<td><span style="font-size: 12.0pt; font-family: Times New Roman">
+		INV_CONTAINERS</span></td>
+		<td width="210">CONTAINER_ID</td>
+	</tr>
+	<tr>
+		<td width="117">StatusDefault</td>
+		<td width="97">adNumeric</td>
+		<td width="77">Specifies the ID of the default status that is used for 
+		a container when it is rejected.</td>
+		<td width="52">&nbsp;</td>
+		<td width="213" align="center">Y</td>
+		<td><span style="font-size: 12.0pt; font-family: Times New Roman">
+		INV_CONTAINERS</span></td>
+		<td width="210">CONTAINER_STATUS_ID_FK</td>
+	</tr>
+	</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">None.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code approves the containers with IDs </span>
+C1176<span lang="en-us"> and </span>C1004<span lang="en-us">:</span></p>
+<pre>/cheminv/api/ApproveContainer.asp?ApprovedContainerIDList=C1176,C1004&amp;StatusApproved=1&amp;StatusDefault=<span lang="en-us">1</span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

@@ -1,0 +1,182 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>GetBatchInfo</h1><p>          
+                <span lang="en-us">Provides </span>information for 
+				<span lang="en-us">a</span> <span lang="en-us">particular </span>batch          
+              or          
+           registered compound.</p><h3>Syntax</h3><pre>/cheminv/api/GetBatchInfo.asp?RegID=adVarChar&amp;RegNumber=adVarChar[&amp;BatchNumber=adNumeric]</pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="79" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="277"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="121" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">RegID</td>
+		<td width="79">adNumeric</td>
+		<td width="277"><span lang="en-us">Specifies the registration ID of the 
+		batch, information about which is to be gathered.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70"><span lang="en-us">Y, if RegNumber is not provided.</span></td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="121"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">RegNumber</td>
+		<td width="79">adVarChar</td>
+		<td width="277"><span lang="en-us">Specifies the registration number of 
+		the batch. </span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70"><span lang="en-us">Y, if RegID is not provided.</span></td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="121"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">BatchNumber</td>
+		<td width="79">adNumeric</td>
+		<td width="277"><span lang="en-us">Specifies the batch number. If a value is specified 
+		for </span><span lang="en-us"> RegID but not for </span>BatchNumber<span lang="en-us">, BatchNumber is set to 1.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="121"><span lang="en-us">N/A</span></td>
+	</tr>
+</table>
+
+<h3>Outputs</h3>
+<table border="1" width="69%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="127" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="80" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="266"><b><span lang="en-us">
+		Description</span></b></td>
+	</tr>
+	<tr>
+		<td width="127">reg_number</td>
+		<td width="80">adVarChar</td>
+		<td width="266">Specifies the registration 
+		number of the compound. For example, AB-000001.</td>
+	</tr>
+	<tr>
+		<td width="127">notebook_text</td>
+		<td width="80">adVarchar</td>
+		<td width="266">Specifies the notebook 
+		text associated with the batch.</td>
+	</tr>
+	<tr>
+		<td width="127">notebook_page</td>
+		<td width="80">adVarchar</td>
+		<td width="266">Specifies the notebook reference for 
+		the batch.</td>
+	</tr>
+	<tr>
+		<td width="127">scientist_user_id</td>
+		<td width="80">adVarChar</td>
+		<td width="266">Specifies the user id associated with the batch. The 
+		table field associated with this parameter is cs_security.people.user_id.</td>
+	</tr>
+	<tr>
+		<td width="127">amount_units</td>
+		<td width="80">adVarChar</td>
+		<td width="266">Specifies the unit in which the 
+		amount of the compound is measured.</td>
+	</tr>
+	<tr>
+		<td width="127">amount</td>
+		<td width="80">adNumeric</td>
+		<td width="266">Specifies the amount of the 
+		substance.</td>
+	</tr>
+	<tr>
+		<td width="127">reg_id</td>
+		<td width="80">adNumeric</td>
+		<td width="266">Specifies an integer reference 
+		for the registered compound. This integer reference 
+		is typically the non-padded number part of the 
+		registry number. </td>
+	</tr>
+	<tr>
+		<td width="127">batch_number</td>
+		<td width="80">adNumeric</td>
+		<td width="266">Specifies the batch
+		number of the compound.</td>
+	</tr>
+</table>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code provides information </span>for the batch with RegNumber        
+                      
+AB12345<span lang="en-us">:</span></p><pre>/cheminv/api/GetBatchInfo.asp?RegNumber=AB12345</pre><p>
+<span lang="en-us">The following code provides information about the
+</span>batch with RegID AB12345 and BatchNumber 3:</span></p><pre>/cheminv/api/GetBatchInfo.asp?RegID=AB12345[&amp;BatchNumber=3]</pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

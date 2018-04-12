@@ -1,0 +1,63 @@
+Chemical Registration version 7.152 service pack 2
+For Microsoft  Windows NT, and Windows 2000
+Copyright 1999-2003, CambridgeSoft Corporation
+July 16, 2002
+
+****Chemical Registration Project Row Level Security*****
+
+Prerequisites:
+
+Row Level Security (RLS) requires a minimim of COWebserver 7.1.151 SP 1.14
+
+
+The Row Level Security feature in ChemReg is composed of three parts.
+
+	1. 	A new table, called  Project_People, allows Users to be associated with Projects. This new 
+			table is managed via the registry tables/projects interface.
+			This is only available for users with roles that have the privilege "Manage_People_Project"  		
+			associated with them. After installation the role "supervising_chemical_admin" has this privilege. It is
+			advised that this privilege NOT be given to any other role as it contains the power to allow users to view 
+			registry and the point of the feature is to tightly control this.
+	
+	2.      Duplicate checking is performed on a compound and project basis. Compounds that are duplicates within the system but not duplicates within a project will be added to a duplicates table. However the registrar will not see a duplicate window since the compound is not a duplicate within the project.
+		Administrators ("supervising_chemical_admin"- e.g. T5_85 user) with the privilege "Manage_System_Duplicates" will see a button on the Main page "view duplicates" which allows them to view all the duplicates across projects that exist in the system.
+
+	3. 	a.  a predicate function that filters any select statement run against it so that only records where the  projects the current user has access to will be returned.
+			This function, once installed, can be viewed in dba studio when logged in with DBA privileges under FUNCTIONS/REGDB/PEOPLE_PROJECT_RLS_FUNCTIOn 
+		
+		b.  addition of policy to tables referenced in the function to enforce this action.
+
+	NOTES_1: Because the policies are applied to the Oracle schema rather then ChemReg, the policies are in force no matter how you try to access the data. For instance, another application, sql Worksheet, sql Plus, DBA Studio
+
+	NOTES_2:The REGDB and SYSTEM Users have been specifically excluded from the policy so there is a way to view all information in the registry for a qualified user. Of more importance the REGDB user must have all privileges to the data as the REGDB user in this RLS mode is the user that actually commits the data to the registry and  to the temporary tables.  
+
+	NOTES_3:Every User, including admin roles in chem_reg ("supervising_chemical_admin") must be EXPLICITY assigned to a project, or they will not see that projects data. Not doing so can lead to the wrong conclusions - e.g. data is missing. 
+
+	NOTES_4:Upon installation, the test users t5_85 is assigned to the unspecified project plus since any record entered into the system where an appropriate project cannot be found is assigned to unspecified.  Whatever you do DO NOT remove the unspecified project. 
+
+INSTALLATION:
+
+	1. Open sql_worksheet. 
+	2. Open Run: 2002_7.1.152_update_script.sql
+	3. Open and Run:CREATE_FGAC_FOR_PROJECT_RLS.sql
+
+	4.Open CFserver.ini and change the following settings:
+
+		a. PRIMARY_STRWHERE = COMPOUND_PROJECT
+		b. PROJECT_LEVEL_ROW_SECURITY=1
+
+	5.if ChemReg is running restart the application or iisreset
+
+
+UNINSTALLING (disabling policies):
+	1. Open sql_worksheet.
+	2. Open and Run: REMOVE_FGAC_FOR_PROJECT_RLS.sql
+
+	3. Open CFserver.ini and change the following settings:
+
+		a. PRIMARY_STRWHERE = COMPOUND_ONLY
+		b. PROJECT_LEVEL_ROW_SECURITY=0
+
+	4. if ChemReg is running restart the application or iisreset
+	
+	

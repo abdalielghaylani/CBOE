@@ -1,0 +1,118 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<br>
+
+<br>
+<a name="1970480"></a>
+<h1>UpdateContainer&nbsp;</h1>
+<p><font color="#ff0000">[Deprecated function. Do Not 
+Use!]</font>                    </p>
+<p>Updates one or more container attributes.  Ommiting a given optional parameter from the function call leaves the ommited attribute unchanged.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/UpdateContainer.asp?ContainerID=adNumeric[&amp;UOMID=adNumeric&amp;QtyMax=adDouble&amp;QtyRemaining=adDouble&amp;ContainerTypeID=adNumeric&amp;CompoundID=adNumeric&amp;MinStockQty=adDouble&amp;MaxStockQty=adDouble&amp;ExpDate=adDBTimeStamp&amp;ContainerName=adVarChar&amp;ContainerDesc=adVarChar&amp;UOWID=adNumeric&amp;UOCID=adNumeric&amp;UOPID=adNumeric&amp;TareWeight=adDouble&amp;Concentration=adDouble&amp;Purity=adDouble&amp;Grade=adVarChar&amp;Solvent=adVarChar&amp;Comments=adVarChar]</pre>
+<h4 class="param">Inputs</h4>
+<h5 class="param">ConatinerID</h5>
+<p class="param">ContainerID of container to be moved.</p>
+<h5 class="param">[UOMID]</h5>
+<p class="param">The unit of measure to be used for this container as a UNIT_OF_MEAS_ID value.  Use ShowContainerUnits to see valid UNIT_OF_MEAS_ID values</p>
+<h5 class="param">[QtyMax]</h5>
+<p class="param">Maximum capacity of the container in the units defined by UOMID.</p>
+<h5 class="param">[ContainerTypeID]</h5>
+<p class="param">Type of container as a Type_ID value.  Use ShowContainerTypes to see valid Type_ID values.</p>
+<h5 class="param">[CompoundID]</h5>
+<p class="param">Compound_ID value associating the substance in the container with a preexisting inventory compund.</p>
+<h5 class="param">[ExpDate]</h5>
+<p class="param">Content's expiration date as date-time literal (ie. 
+01-27-2001)&nbsp;</p>
+<h5 class="param">[MinStockQty]</h5>
+<p class="param">Quantity of material in the units defined by UOMID upon which the system should issue a re-stock warning.</p>
+<h5 class="param">[MaxStockQty]</h5>
+<p class="param">Quantity of material in the units defined by UOMID upon which the system should issue an over-stock warning.</p>
+<h5 class="param">[ContainerName]</h5> 
+<p class="param">The name of the container.</p>
+<h5 class="param">[ContainerDesc]</h5>
+<p class="param">A description of the container.</p>
+<h5 class="param">[TareWeight]</h5>
+<p class="param">The weight of the physical container in the units of UOWID.</p>
+<h5 class="param">[UOWID]</h5>
+<p class="param">Unit of weight value as a Unit_ID value from the Units table.</p>
+<h5 class="param">[Purity]</h5>
+<p class="param">The purity of the substance designated by CompoundID in units of UOPID.</p>
+<h5 class="param">[UOPID]</h5>
+<p class="param">Unit of purity value as a Unit_ID value from the Units 
+table.</p>
+<h5 class="param">[Concenctration]</h5>
+<p class="param">The concentration of the substance designated by CompoundID in units of UOCID.</p>
+<h5 class="param">[UOCID]</h5>
+<p class="param">Unit of concentration value as a Unit_ID value from the Units 
+table.</p>
+<h5 class="param">[Grade]</h5>
+<p class="param">The quality or purity designation associated with the substance 
+designated by CompoundID.</p>
+<h5 class="param">[Solvent]</h5>
+<p class="param">The name of the solvent.</p>
+<h5 class="param">[Comments]</h5>
+<p class="param">Comments or instructions associated with this container.  Maximum length is 4000 characters.  It may be passed as form value to avoid truncation by querystring size limit.</p>
+<h3>Required User Privileges and Roles</h3>
+<h5 class="param">Privileges</h5>
+<p>&lt;PrivilegeName&gt;</p>
+<h5 class="param">Roles</h5>
+<p>&lt;RoleName&gt;</p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

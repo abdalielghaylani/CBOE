@@ -1,0 +1,13 @@
+Instructions to Import a previously dumped CS_SECURITY Database
+
+Warning:  Importing the CS_SECURITY database will destroy the contents of the preexisting CS_SECURITY database.  All user data will be lost.  Make sure to backup valid data before proceeding with instructions.
+
+Note: The sql scripts provided have been designed to be executed with the command line version of SQL*Plus.  This scripts contain substitution variables which will not be proccessed correctly when run from SQL*Plus Worksheet.  To execute the scripts with SQL*Plus just double click the provided command files.
+ 
+1. Execute the Create_Empty_CS_SecurityDB.cmd file.
+
+2. Copy the CS_SecurityDB.dmp file produced during the dump process to the \sql folder below this instructions file.
+
+3. Execute the Import_CS_SecurityDB.cmd file which uses the Oracle import utility to import the sql\CS_SecurityDB.dmp dump file using sql\CS_SecurityDB.inp file as the pararameter file.
+	Note: The inp file assumes the default system/manager connection string.  Please modify if required.
+

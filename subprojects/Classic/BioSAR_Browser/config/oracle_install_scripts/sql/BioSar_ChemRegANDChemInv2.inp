@@ -1,0 +1,5 @@
+USERID=system/manager2
+FILE=biosar_ChemRegAndChemInv2.dmp
+FULL=Y
+IGNORE=Y
+LOG=biosar_ChemRegAndChemInv2.log

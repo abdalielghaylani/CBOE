@@ -1,0 +1,37 @@
+Type=Exe
+Reference=*\G{49D704A0-89F7-11D0-8527-00C04FD8D503}#1.0#0#..\..\..\WINNT\System32\adsiis.dll#Active DS IIS Namespace Provider
+Reference=*\G{97D25DB0-0363-11CF-ABC4-02608C9E7553}#1.0#0#..\..\..\WINNT\system32\activeds.tlb#Active DS Type Library
+Module=Module1; removeVirtuals.bas
+Startup="Sub Main"
+HelpFile=""
+Title="removeVirtuals"
+ExeName32="removeVirtuals.exe"
+Command32="core"
+Name="removeVirtuals"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=6
+AutoIncrementVer=1
+ServerSupportFiles=0
+VersionCompanyName="Home"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=-1
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+DebugStartupOption=0
+
+[MS Transaction Server]
+AutoRefresh=1

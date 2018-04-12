@@ -1,0 +1,1 @@
+INSERT INTO &&schemaName.."INV_REPORTTYPES" (REPORTTYPEDESC) VALUES ('Request Label');

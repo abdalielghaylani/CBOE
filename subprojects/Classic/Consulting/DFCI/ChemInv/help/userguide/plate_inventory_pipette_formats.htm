@@ -1,0 +1,397 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Merge&nbsp;Containers</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="10,70,520,100" HREF="fields/container_name.htm">
+<area SHAPE="RECT" COORDS="10,100,520,125" HREF="fields/location_name.htm">
+<area SHAPE="RECT" COORDS="10,125,520,150" HREF="fields/container_status.htm">
+</map><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="32296" -->
+<p><h1>Pipette Log Template Options</h1>
+<p>Pipette logs imported into Inventory Enterprise through the Create Plates 
+from Pipette Logs interface must be in one of the following supported 
+formats:</p>
+<table cellSpacing="1" cellPadding="1" width="75%" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Template Name</strong></td>
+    <td><strong># of Header Rows</strong></td>
+    <td><strong>File Delimiter</strong></td>
+    <td><strong># of Columns</strong></td></tr>
+  <tr>
+    <td><a href="#cs">CS Default</a> </td>
+    <td>0</td>
+    <td>comma</td>
+    <td>23</td></tr>
+  <tr>
+    <td><a href="#2col">2 Column</a> </td>
+    <td>1</td>
+    <td>tab</td>
+    <td>2</td></tr>
+  <tr>
+    <td><a href="#hitlist">Hitlist Format</a> </td>
+    <td>0</td>
+    <td>tab</td>
+    <td>5</td></tr>
+  <tr>
+    <td><a href="#utf">Unified Transfer Format</a>  </td>
+    <td>7</td>
+    <td>comma</td>
+    <td>15</td></tr>
+  <tr>
+    <td><a href="#p1">Plate 1</a> </td>
+    <td>1</td>
+    <td>tab</td>
+    <td>7</td></tr>
+  <tr>
+    <td><a href="#p2">Plate 2</a> </td>
+    <td>1</td>
+    <td>tab</td>
+    <td>7</td></tr>
+  <tr>
+    <td><a href="#btk">BTK File Format</a>  </td>
+    <td>0</td>
+    <td>comma</td>
+    <td>8</td></tr></table>
+<p></p>
+      <a name="CS"></a><h2>CS Default </h2><p>The CS Default format is delimited by commas and 
+contains&nbsp;0 header lines.&nbsp;The following columns make up this type of file: </p><p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>Source Plate Barcode</td></tr>
+  <tr>
+    <td>B</td>
+    <td> Source Well Number</td></tr>
+      <tr>
+    <td>C</td>
+    <td>Target Plate Barcode</td></tr>
+      <tr>
+    <td>D</td>
+    <td>Target Well Number</td></tr>
+      <tr>
+    <td>E</td>
+
+    <td>Initial Quantity</td></tr>  <tr>
+    <td>F</td>
+    <td>Units of Measure ID</td></tr>
+      <tr>
+    <td>G</td>
+    <td>Concentration</td></tr>
+      <tr>
+    <td>H</td>
+    <td>Units of Concentration ID</td></tr>
+      <tr>
+    <td>I</td>
+    <td>Solvent ID</td></tr>
+      <tr>
+    <td>J</td>
+    <td>Field 1</td></tr>
+      <tr>
+    <td>K</td>
+    <td>Field 2</td></tr>
+      <tr>
+    <td>L</td>
+    <td>Field 3</td></tr>
+      <tr>
+    <td>M</td>
+    <td>Field 4</td></tr>
+      <tr>
+    <td>N</td>
+    <td>Field 5</td></tr>
+      <tr>
+    <td>O</td>
+    <td>Field 6</td></tr>
+      <tr>
+    <td>P</td>
+    <td>Field 7</td></tr>
+      <tr>
+    <td>Q</td>
+
+    <td>Well Field 1</td></tr>  <tr>
+    <td>R</td>
+    <td>     
+      Well Field     
+      2</td></tr>
+      <tr>
+    <td>S</td>
+    <td>     
+      Well Field     
+      3</td></tr>
+      <tr>
+    <td>T</td>
+    <td>     
+      Well Field     
+      4</td></tr>
+      <tr>
+    <td>U</td>
+    <td>     
+      Well Field     
+      5</td></tr>
+      <tr>
+    <td>V</td>
+    <td>     
+      Well Date     
+      1</td></tr>
+      <tr>
+    <td>W</td>
+    <td>     
+      Well Date     
+      2</td></tr></table>  </p>
+<p>&nbsp;</p>
+      <a name="2col"></a><h2>2 Column </h2><p>The 2 column format is delimited by tabs and contains 1 
+header line.&nbsp;The following columns make up this type of file: </p><p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>Target Plate Barcode</td></tr>
+  <tr>
+    <td>B</td>
+    <td>Source Plate Barcode</td></tr></table>  </p>
+      <div><img style="LEFT: 11px; TOP: 666px" src="../images/pipette_2col.gif" width="559" height="409">   ' </div>
+      <div>&nbsp;</div>
+      <a name="hitlist"></a><h2>Hitlist Format </h2><p>The&nbsp;Hitlist Format&nbsp;is delimited by tabs and contains&nbsp;0 
+header lines.&nbsp;The following columns make up this type of file: </p><p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>  Target Plate Barcode  </td></tr>
+  <tr>
+    <td>B</td>
+    <td>  Target Well Coordinate  </td></tr>
+      <tr>
+    <td>C</td>
+    <td>  Source Plate Barcode  </td></tr>
+  <tr>
+    <td>D</td>
+    <td>  Source Well Coordinate  </td></tr></table>  </p>
+      <div><img src="../images/pipette_hitlist.gif" width="559" height="409">    </div>
+      <div>    </div>
+      <a name="utf"></a><h2>Unified Transfer Format </h2>
+      <div>
+<p>The&nbsp;Unified Transfer Format&nbsp;is delimited by commas and 
+contains&nbsp;7 header lines.&nbsp;The following columns make up this type of 
+file: </p>
+<p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>B</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>C</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>D</td>
+    <td>  N/A </td></tr>
+   <tr>
+    <td>E</td>
+    <td>Source Plate Barcode </td></tr>
+  <tr>
+    <td>F</td>
+    <td>Source Well Number </td></tr>
+  <tr>
+    <td>G</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>H</td>
+    <td>  N/A </td></tr>
+    <tr>
+    <td>I</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>J</td>
+    <td>Target Plate Barcode </td></tr>
+  <tr>
+    <td>K</td>
+    <td>Target Well Number </td></tr>
+  <tr>
+    <td>L</td>
+    <td>  N/A </td></tr>
+     <tr>
+    <td>M</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>N</td>
+    <td>  N/A </td></tr></table></p>    </div>
+<div>    </div>
+      <a name="p1"></a><h2> Plate 1</h2>
+      <div>
+<p>The&nbsp;Plate 1 format is delimited by tabs and 
+contains&nbsp;1 header line.&nbsp;The following columns make up this type of 
+file: </p>
+<p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td> Well Coordinate </td></tr>
+  <tr>
+    <td>B</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>C</td>
+    <td>  N/A </td></tr>
+  <tr>
+    <td>D</td>
+    <td> Initial Quantity </td></tr>
+   <tr>
+    <td>E</td>
+    <td>  Solvent </td></tr>
+  <tr>
+    <td>F</td>
+    <td>  Concentration </td></tr>
+  <tr>
+    <td>G</td>
+    <td> Lot comment </td></tr></table></p>    </div>
+      <div>  &nbsp; </div>
+      <a name="p2"></a><h2>Plate 2</h2>
+<div>
+<p>The&nbsp;Plate&nbsp;2 format is delimited by tabs and contains&nbsp;1 header 
+line.&nbsp;The following columns make up this type of file: </p>
+<p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>Well Coordinate </td></tr>
+  <tr>
+    <td>B</td>
+    <td>N/A </td></tr>
+  <tr>
+    <td>C</td>
+    <td>N/A</td></tr>
+  <tr>
+    <td>D</td>
+    <td>Initial Quantity </td></tr>
+  <tr>
+    <td>E</td>
+    <td>Concentration</td></tr>
+  <tr>
+    <td>F</td>
+    <td>Solvent</td></tr>
+  <tr>
+    <td>G</td>
+    <td>Lot comment</td></tr></table></p></div>
+<div>&nbsp;</div>
+      <a name="btk"></a><h2>BTK file format </h2>
+<div>
+<p>The&nbsp;BTK File&nbsp;format is delimited by commas and contains&nbsp;0 
+header lines.&nbsp;When imported, this file uses a z pattern interleaving 
+process to layout the new plate.&nbsp;The following columns make up this type 
+of file: </p>
+<p>
+<table style="WIDTH: 336px; HEIGHT: 75px" cellSpacing="1" cellPadding="1" width="336" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Column</strong></td>
+    <td><strong>Contains ...</strong></td></tr>
+  <tr>
+    <td>A</td>
+    <td>N/A </td></tr>
+  <tr>
+    <td>B</td>
+    <td>N/A</td></tr>
+  <tr>
+    <td>C</td>
+    <td>Target Plate Barcode </td></tr>
+  <tr>
+    <td>D</td>
+    <td>Target Quadrant</td></tr>
+  <tr>
+    <td>E</td>
+    <td>Source Plate Barcode </td></tr>
+  <tr>
+    <td>F</td>
+    <td>N/A</td></tr>
+  <tr>
+    <td>G</td>
+    <td>N/A</td></tr></table></p></div>
+      <div><img src="../images/pipette_btk.gif" width="697" height="441">   </div>
+      <div>  &nbsp; </div>
+<p></p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="31920" -->             
+</body>
+</html>

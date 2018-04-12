@@ -1,0 +1,110 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>UpdateSubstance</h1><p>          
+                         
+            
+               
+                 Updates a          
+              substance          
+           using 
+the entered&nbsp;parameters.</p><h3>Syntax</h3> <pre>/cheminv/api/UpdateSubstance.asp?EditCompoundID=adNumeric&amp;SubstanceName=adVarChar[&amp;Structure=Structure&amp;CAS=adVarChar&amp;ACX_ID=adVarChar&amp;ALT_ID_1=adVarChar&amp;ALT_ID_2=adVarChar&amp;ALT_ID_3=adVarChar&amp;ALT_ID_4=adVarChar&amp;ALT_ID_5= adVarChar]</pre> <h3> Inputs&nbsp;</h3>
+<h5 class="param">EditCompoundID </h5>
+<p class="param">The ID for the&nbsp;compound being 
+updated. </p>
+<h5 class="param">SubstanceName </h5>
+<p class="param">The name of the substance. </p>
+<h5 class="param">[Structure] </h5>
+<p class="param">The chemical structure of the substance. </p>
+<h5 class="param">[CAS] </h5>
+<p class="param">The CAS number of the substance. </p>
+<h5 class="param">[ACX_ID] </h5>
+<p class="param">The ACX ID for the substance. </p>
+<h5 class="param">[ALT_ID_1] </h5>
+<p class="param">The value of the configurable field 
+ALT_ID_1. </p>
+<h5 class="param">[ALT_ID_2] </h5>
+<p class="param">The value of the configurable field 
+ALT_ID_2. </p>
+<h5 class="param">[ALT_ID_3] </h5>
+<p class="param">The value of the configurable field 
+ALT_ID_3. </p>
+<h5 class="param">[ALT_ID_4] </h5>
+<p class="param">The value of the configurable field 
+ALT_ID_4. </p>
+<h5 class="param">[ALT_ID_5] </h5>
+<p class="param">The value of the configurable field 
+ALT_ID_5. </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>       
+            
+             
+  A user wants to update a substance with ID 111.&nbsp; It 
+is       
+            
+             
+  Benzene with a CAS number of&nbsp;        
+                      
+71-43-2.&nbsp;&nbsp;</p><pre>cheminv/api/UpdateSubstance.asp?EditCompoundID=111&amp;SubstanceName=Benzene[&amp;CAS=71-43-2]</pre>  
+<pre></pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>MoveLocation</h1>
+<p>    <span lang="en-us">Change the parent location of a 
+location. When the parent location of a location is modified,</span>
+<span lang="en-us">the location of the contents of the location, such as 
+containers and plates, is also modified</span>.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/MoveLocation.asp?LocationID=adNumeric&amp;ParentID=adNumeric</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the ID of the </span>
+		location to be moved.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>
+		<p class="param"><span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92">LOCATION_ID</td>
+	</tr>
+	<tr>
+		<td width="117">ParentID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the ID of the new parent 
+		location of the location.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td>
+		<p class="param"><span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92">PARENT_ID</td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p>The ID of the new parent location of the location. This ID is stored in the 
+ParentID parameter, the 
+data type of which is </span>adNumeric.</p>
+<h3 class="param">Example</h3>
+<p>The following code <span lang="en-us">modifies</span> the 
+parent location of a location with </span>ID<span lang="en-us"> </span>122<span lang="en-us">1 
+to a location with ID </span>111<span lang="en-us">:</span></p><pre class="param">/cheminv/api/MoveLocation.asp?LocationID=1221&amp;ParentID=111</pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>CreateSearchResultsReport</h1>
+<p class="MsoNormal">Causes the RPT report writer to generate a printable&nbsp;Search 
+results report. Search results report contains the list of the containers or 
+plates obtained in a particular Inventory Enterprise search. This list of 
+containers or plates is termed as hit list.</p>
+<p class="MsoNormal">&nbsp;<span lang="en-us"><b>Note:</b> The Search</span> results&nbsp;report<span lang="en-us"> 
+for a particular search can be generated only if the hit list for the search 
+exists on the server. </span>Hit<span lang="en-us"> </span>list
+<span lang="en-us">persists on the server</span> <span lang="en-us">
+only </span>for the 
+duration the user session <span lang="en-us">of the search persists</span>.&nbsp;&nbsp;</p>
+<h3>Syntax</h3><pre>/cheminv/api/CreateSearchResultsReport.asp?ReportName=adVarChar&amp;HitListID=adNumeric[<span lang="en-us">&amp;</span>ReportFormat=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="77" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="250"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="160"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ReportName</td>
+		<td width="77">adVarChar</td>
+		<td width="250">Specifies the name of the 
+		report template to be used to generate the 
+		report. The template name is specified in the 
+		similar way as <span lang="en-us">it is </span>defined in the MS 
+		Access reports database<span lang="en-us">.</span></td>
+		<td width="160">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td>REPORTDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">HitListID</td>
+		<td width="77">adNumeric</td>
+		<td width="250"><span lang="en-us">Specifies the ID of the hit list of 
+		the search for which the report is to be generated.</span></td>
+		<td width="160">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">ReportFormat</td>
+		<td width="77">adVarChar</td>
+		<td width="250">Specifies the format of the report. <span lang="en-us">A 
+		default value for the ReportFormat parameter is defined in the invconfig.ini 
+		file.</span></td>
+		<td width="160">Access Report SnapShot (SNP) | Adobe Acrobat Portable 
+		Document Format (PDF) | Rich Text Format (RTF) | Microsoft Excel (XLS)</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_REPORTFORMATS</span></td>
+		<td>FORMATDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">PlateID or ContainerID</td>
+		<td width="77">adNumeric</td>
+		<td width="250">Specifies the container or plate IDs on the basis of 
+		which the containers or plates listed in the Search results report are 
+		to be filtered.</td>
+		<td width="160">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS or INV_PLATES</span></td>
+		<td>CONTAINER_ID<span lang="en-us"> or PLATE_ID</span></td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p>       <span lang="en-us">The file name of the Search</span> results<span lang="en-us"> 
+report that is saved in the </span>server's reports directory.<span lang="en-us"> 
+Typically, the location of the </span>server's reports directory<span lang="en-us"> is </span>/cfserverasp/RPT/Reports/<span lang="en-us">.</span></p>
+<p>       <span lang="en-us"><b>Note:</b> To determine the location of the
+</span>server's reports directory<span lang="en-us"> on your server, please 
+check the </span>invconfig.ini&nbsp;file<span lang="en-us">.</span></p>
+<h3 class="param">Example</h3>
+<p>The following code generates a </span>Search 
+<span lang="en-us">results</span> <span lang="en-us">report for </span>
+hit list ID 7<span lang="en-us">, report name </span>SearchResults2<span lang="en-us">,
+and report format</span> SNP<span lang="en-us">:</span></p><pre>/cheminv/api/CreateSearchResultsReport.asp?ReportName=SearchResults2&amp;HitListID=7<span lang="en-us">[&amp;ReportFormat=SNP]</p></span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan --></body></html>

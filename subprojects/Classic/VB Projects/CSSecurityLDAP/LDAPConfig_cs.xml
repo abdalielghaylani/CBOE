@@ -1,0 +1,41 @@
+<test>
+<ldapauthenticate>
+	<schemaOwner>CS_SECURITY</schemaOwner>
+	<exemptuser>cssadmin</exemptuser>
+	<exemptuser>invadmin</exemptuser>
+	<server ldapVersion="3" name="boron2.camsoft.com" port="389"/>
+	<process>
+		<bind pwdRequired="True" error="failedToBind">
+                	<dn>%username%</dn>
+                </bind>
+		<unbind/>
+	</process>
+	<errors displayDetails="False">
+		<failedToBind>Failed to bind to LDAP as %username%.</failedToBind>
+	</errors>
+</ldapauthenticate>
+<getUserInfo>
+	<server ldapVersion="3" name="boron2.camsoft.com" port="389"/>
+	<process>
+		<bind pwdRequired="True" error="failedToBind">
+                                          <dn>%svcaccount%</dn>
+                                </bind>
+		<query timeOut="2" scope="subtree" error="userNotFound">
+			<dn>CN=Users,DC=camsoft,DC=com</dn>
+			<filter>(sAMAccountName=%username%)</filter>
+			<attr>dn</attr>
+			<attr displayName="User code" mapTo="Usercode">foo</attr>
+			<attr displayName="First Name" mapTo="FirstName">givenName</attr>
+			<attr displayName="Middle Name" mapTo="MiddleName">initials</attr>
+			<attr displayName="Last Name" mapTo="LastName">sn</attr>
+			<attr displayName="Email" mapTo="Email">mail</attr>
+		</query>
+		<unbind/>
+	</process>
+	<errors displayDetails="False">
+		<failedToBind>Failed to bind to LDAP as %svcaccount%.</failedToBind>
+		<userNotFound>The username %username% was not found in LDAP.</userNotFound>
+	</errors>
+</getUserInfo>
+
+</test>

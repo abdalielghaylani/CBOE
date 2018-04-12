@@ -1,0 +1,8 @@
+Instructions to Export the Whole Contents of the Chemical Inventory Database
+
+1. Execute the ExpChemInvDB.cmd file which uses the Oracle export utility to extract the entire contents of ChemInv database using the exp file as a parameter file.
+
+2. Make a back copy of the ChemInv.msi and ChemInv.mst files located in the path specified in the ChemInv.ini file.
+
+The resulting cheminvdb.dmp file can be imported into an empty ChemInv database by using the Oracle import utilty as discussed in the instruction to create an empty ChemInv database.
+	Note: You will need to modify the inp parameter file to use the resulting dmp file instead of Test_ChemInvDb.dmp file.

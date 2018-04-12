@@ -1,0 +1,170 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;<h1>ReconcileContainer</h1>
+<p>Rectifies the contents of a location by performing the following tasks:</p>
+<ul>
+	<li>Move the misplaced <span lang="en-us">containers</span> to the location being rectified. Misplaced 
+	<span lang="en-us">containers</span> are those that are not present at the location being rectified, but 
+	should be there. </li>
+	<li>Move the missing <span lang="en-us">containers </span>to the Missing location. Missing 
+	<span lang="en-us">containers </span>are 
+	those that are present at the location being rectified, but should not be 
+	there. </li>
+	<li>Mark the <span lang="en-us">containers </span>as Verified if they are verified to be present at the 
+	location being rectified.</li>
+</ul>
+<h3>Syntax</h3> <pre>/cheminv/api/ReconcileContainer.asp?LocationID=adNumeric&amp;VerifiedContainerIDList=adVarChar[&amp;AwolContainerIDList=adVarChar&amp;MissingContainerIDList=adVarChar]</pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="261"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="129"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="97">adNumeric</td>
+		<td width="261"><span lang="en-us">Specifies the ID of the </span>
+		location<span lang="en-us">, the containers stored in which are to be 
+		reconciled</span>.</td>
+		<td width="129">&nbsp;</td>
+		<td width="70">
+		<p align="center">Y</td>
+		<td><span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92"><span lang="en-us">LOCATION_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">VerifiedContainerIDList</td>
+		<td width="97">adVarChar</td>
+		<td width="261">Specifies a comma delimited 
+		list of the IDs of containers verified as 
+		being present at the specified location.</td>
+		<td width="129">&nbsp;</td>
+		<td width="70">Y -&nbsp; if AwolContainerIDList and Missing 
+		ContainerIDList are empty</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">AwolContainerIDList</td>
+		<td width="97">adVarChar</td>
+		<td width="261">Specifies a comma delimited list of the IDs of the 
+		misplaced containers.</td>
+		<td width="129">&nbsp;</td>
+		<td width="70">Y - if VerifiedContainerIDList and Missing 
+		ContainerIDList are empty</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117"><span lang="en-us">CurrentUserID</span></td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="261"><span lang="en-us">Specifies the ID of the current user 
+		in the container.</span></td>
+		<td width="129">&nbsp;</td>
+		<td width="70"><span lang="en-us">Y - </span>if VerifiedContainerIDList 
+		and Missing ContainerIDList are empty</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92"><span lang="en-us">CURRENT_USER_ID_FK</span></td>
+	</tr>
+	<tr>
+		<td width="117"><span lang="en-us">MakeDefault</span></td>
+		<td width="97">adNumeric</td>
+		<td width="261"><span lang="en-us">Specifies the default location.</span></td>
+		<td width="129">&nbsp;</td>
+		<td width="70">&nbsp;</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">MissingContainerIDList</td>
+		<td width="97">adVarChar</td>
+		<td width="261">Specifies a comma delimited list of the IDs of the 
+		missing containers.</td>
+		<td width="129">&nbsp;</td>
+		<td width="70">Y - if AwolContainerIDList and 
+		VerifiedContainerIDList&nbsp;are empty.&nbsp;&nbsp;</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	</table>
+
+<h3>Output</h3>
+<p>None<span lang="en-us">.</span></p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+               
+                      
+<span lang="en-us">The following code reconciles the contents of the 
+location with ID 101:</span></p> <pre> <pre>/cheminv/api/ReconcileContainer.asp?LocationID=101&amp;VerifiedContainerIDList=12345,12245<span lang="en-us">[</span>&amp;AwolContainerIDList=12225<span lang="en-us">]</span></pre> </pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_login_utils_vbs.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_utils_vbs.asp" -->
+<OBJECT RunAt="Server" Scope="Session" Id="PostRelay_dict" ProgID="Scripting.Dictionary"></OBJECT>
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+' Copyright 1999-2003 CambridgeSoft Corporation. All rights reserved
+
+Dim APP_INI_ERRORS
+Dim DB_INI_ERRORS
+Dim vid_debug
+
+vid_debug = false	
+cowsFile = "cows"
+
+Set INIVAR= Server.CreateObject("cowsUtils.cowsini") 
+
+Sub Application_OnStart
+	Application("appkey") = "cs_security"
+	'set application values find in cows.ini file
+	Application("ServerDrive")= GetINIValue( "required", "GLOBALS", "SERVER_DRIVE", "cows", cowsFile)
+	Application("ServerRoot")= GetINIValue( "required", "GLOBALS", "SERVER_DIR", "cows", cowsFile)
+	Application("DocumentRoot")= GetINIValue( "required", "GLOBALS", "DOC_ROOT", "cows", cowsFile)
+	Application("COWSRoot")= GetINIValue( "optional", "GLOBALS", "COWS_ROOT", "cows", cowsFile)
+	
+	Application("LDAPConfigXmlPath") = Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\chemoffice\config\LDAPConfig.xml"
+	
+	'!DGB! debug change
+	if vid_debug then
+		Application("COWSRoot")=""
+	End if
+	Application("COWSVersion") = GetINIValue( "required", "GLOBALS", "COWS_VERSION", "cows", "cows")
+	
+	
+	' Read the servers plugin threshold
+	Application("CD_PLUGIN_THRESHOLD")=GetINIValue( "optional", "GLOBALS", "CD_PLUGIN_THRESHOLD", "chemoffice", "chemoffice")
+	if (Application("CD_PLUGIN_THRESHOLD")="INIEmpty" or Application("CD_PLUGIN_THRESHOLD") = "NULL" or Application("CD_PLUGIN_THRESHOLD") = "") then
+		Application("CD_PLUGIN_THRESHOLD")="5.1"
+	end if
+	
+
+	' Check LDAP Authentication Option
+	'Application("AUTHENTICATION_MODE") = GetINIValue("optional", "GLOBALS", "AUTHENTICATION_MODE", "chemoffice", "chemoffice")
+	'if (Application("AUTHENTICATION_MODE")="INIEmpty" or Application("AUTHENTICATION_MODE") = "NULL" or Application("AUTHENTICATION_MODE") = "") then
+		Application("AUTHENTICATION_MODE")="COELDAP"
+	'end if
+	
+	' Check Active Directory Domain
+	Application("ACTIVE_DIRECTORY_DOMAIN") = GetINIValue("optional", "GLOBALS", "ACTIVE_DIRECTORY_DOMAIN", "chemoffice", "chemoffice")
+	if (Application("ACTIVE_DIRECTORY_DOMAIN")="INIEmpty" or Application("ACTIVE_DIRECTORY_DOMAIN") = "NULL" or Application("ACTIVE_DIRECTORY_DOMAIN") = "") then
+		Application("ACTIVE_DIRECTORY_DOMAIN")=""
+	end if
+	
+	' Check LDAP Service Account Name
+	Application("LDAP_SERVICE_ACCOUNT_NAME") = GetINIValue("optional", "GLOBALS", "LDAP_SERVICE_ACCOUNT_NAME", "chemoffice", "chemoffice")
+	if (Application("LDAP_SERVICE_ACCOUNT_NAME")="INIEmpty" or Application("LDAP_SERVICE_ACCOUNT_NAME") = "NULL" or Application("LDAP_SERVICE_ACCOUNT_NAME") = "") then
+		Application("LDAP_SERVICE_ACCOUNT_NAME")=""	
+	end if
+	
+	
+	' Check LDAP Service Account PWD
+	Application("LDAP_SERVICE_ACCOUNT_PWD") = GetINIValue("optional", "GLOBALS", "LDAP_SERVICE_ACCOUNT_PWD", "chemoffice", "chemoffice")
+	if (Application("LDAP_SERVICE_ACCOUNT_PWD")="INIEmpty" or Application("LDAP_SERVICE_ACCOUNT_PWD") = "NULL" or Application("LDAP_SERVICE_ACCOUNT_PWD") = "") then
+		Application("LDAP_SERVICE_ACCOUNT_PWD")=""	
+	end if
+	
+	Application("NumberCurrentUsers") = 0
+	
+	
+	'Get all inivalues for the web application
+	GetAppINIValues()
+End Sub
+
+Sub GetAppINIValues()
+	Application("AppPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("COWSRoot") & "\" & Application("appkey")
+	Application("CODirPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("COWSRoot") & "\"
+	'!DGB! debug change
+	if vid_debug then
+		Application("AppPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("appkey")
+		Application("CODirPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot")
+	End if
+	Application("AppPathHTTP")= "/" & Application("appkey")
+	Application("mainwindow")=GetINIValue( "option", "GLOBALS", "MAIN_WINDOW", "web_app", "cfserver")
+	if Application("mainwindow") = "" then
+		Application("mainwindow") = "top.frames[""main""]"
+	end if
+	Application("PRIV_TABLE_NAME")=GetINIValue( "required", "CS_SECURITY", "PRIV_TABLE_NAME", "web_app", "cfserver")
+	
+	Application("SEC_PWD")=GetINIValue( "required", "GLOBALS", "SEC_PWD", "web_app", "cfserver")
+	Application("SEC_USERNAME")=GetINIValue( "required", "GLOBALS", "SEC_USERNAME", "web_app", "cfserver")
+	
+	'MRE added 11/30/04
+	'Used to determin the requried fields on the user account page.
+	Application("UserInfoRequiredFieldList") = "username,password,roles,lastname"
+	additionalFields=GetINIValue( "option", "CS_SECURITY", "ADDITIONAL_REQUIRED_USER_ATTRIBUTES", "web_app", "cfserver")
+	if NOT (additionalFields="INIEmpty" or additionalFields = "NULL" or additionalFields = "") then
+		Application("UserInfoRequiredFieldList") = Application("UserInfoRequiredFieldList") & "," & additionalFields 
+	end if
+	userFieldList = split(Application("UserInfoRequiredFieldList"),",")
+	for j = 0 to UBound(userFieldList)
+		if userFieldList(j) <> "" then
+			Application("UserInfoRequiredFieldList" & UCase(userFieldList(j))) = true
+		end if
+	next
+	Application("NO_NAV_APPLICATION_WINDOW")=GetINIValue( "option", "CS_SECURITY", "NO_NAV_APPLICATION_WINDOW", "web_app", "cfserver")
+	if (Application("NO_NAV_APPLICATION_WINDOW")="INIEmpty" or Application("NO_NAV_APPLICATION_WINDOW") = "NULL" or Application("NO_NAV_APPLICATION_WINDOW") = "") then
+		Application("NO_NAV_APPLICATION_WINDOW") = 0
+	end if
+	Application("AUDIT_USER_LOGINS")=GetINIValue( "option", "CS_SECURITY", "AUDIT_USER_LOGINS", "web_app", "cfserver")
+	if (Application("AUDIT_USER_LOGINS")="INIEmpty" or Application("AUDIT_USER_LOGINS") = "NULL" or Application("AUDIT_USER_LOGINS") = "") then
+		Application("AUDIT_USER_LOGINS") = 0
+	end if
+	Call GetSecurityINIValues()
+End Sub
+
+Sub Session_OnStart()
+	Call AuthenticateUserFromRequest("cs_security")
+End Sub
+
+
+Function GetINIValue(ByVal allowempty, ByVal theSection, ByVal theKeyname, ByVal INIType, ByVal ININame )
+	on error resume next
+	Select Case INIType
+		Case "cows"
+				inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), ININame & ".ini")
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file: winnt/" & ININame & ".ini. <br>"
+			End if
+		Case "web_app"
+			Application("inipath") = Application("AppPath")  & "\config\" & ININame &".ini"
+			inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), Application("inipath"))
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file:  /config/" & ININame & ".ini. <br>" 
+			End if
+		Case "chemoffice"
+			chemoffice_path = Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\chemoffice\config\chemoffice.ini"
+		
+			inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), Trim(chemoffice_path))
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file: /chemoffice/" & ININame & ".ini. <br>"
+			End if
+	End Select
+	if inivalue = "INIEmpty" then
+		Select case allowempty
+			case "required"
+				RaiseDBError "A required entry in the ini file is missing. ", emptyval , " SECTION:  " & theSection & "<br> KEY:  "& theKeyname
+			case "optional"
+				inivalue = ""
+		End select
+	end if
+	'if err.number > 0 then
+			'RaiseDBError "ini problem "& err.number & " " & err.description, "" , "SECTION:  " & theSection & "<br> KEY:  "& theKeyname		
+	'Exit Function
+	'end if
+	
+	GetINIValue = Trim(inivalue)	
+End Function
+
+</SCRIPT>
+

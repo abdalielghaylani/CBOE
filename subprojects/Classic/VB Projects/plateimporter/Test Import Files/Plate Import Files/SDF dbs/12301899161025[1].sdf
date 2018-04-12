@@ -1,0 +1,196 @@
+
+  ChemDraw312-12-8-2-8312002D
+
+  8  8  0  0  0  0  0  0  0  0999 V2000
+   -0.7142    0.4129    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7142   -0.4129    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000   -0.8257    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7129   -0.4129    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7129    0.4129    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000    0.8243    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4285    0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4285    0.8257    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  2  0      
+  1  6  1  0      
+  1  7  1  0      
+  5  8  1  0      
+V    1 0
+V    2 1
+V    3 2
+V    4 3
+V    5 4
+V    6 5
+V    7 6
+V    8 7
+M  END
+
+>  <Reg_Numbers_cpd_internal_id> (1)
+1959
+ 
+>  <MolWeight> (1)
+108.141
+
+>  <Formula> (1)
+C6H8N2
+
+>  <Reg. Date> (1)
+3/23/2004
+
+>  <REG_NUMBERS_REG_ID> (1)
+1959
+
+>  <Registration Number> (1)
+AB-001756
+
+>  <Sequence Number> (1)
+1756
+
+>  <Compound Registrar> (1)
+T5_85,
+
+>  <COMPOUND_MOLECULE_MW2> (1)
+108.14112
+
+>  <COMPOUND_MOLECULE_FORMULA2> (1)
+C6H8N2
+
+>  <OUND_MOLECULE_ROOT_REG_DATE> (1)
+3/23/2004 5:41:05 PM
+
+>  <MF Text> (1)
+
+>  <MW Text> (1)
+
+>  <Structure/Stereochemistry Comment> (1)
+no_comment
+
+>  <MPOUND_MOLECULE_ROOT_NUMBER> (1)
+AB-001756
+
+>  <Prefix> (1)
+AB
+
+>  <Last Mod Person> (1)
+
+>  <Last Mod Date> (1)
+
+>  <Project> (1)
+unspecified
+
+>  <BATCHES_BATCH_NUMBER> (1)
+1
+
+>  <ATCHES_NOTEBOOK_INTERNAL_ID> (1)
+unspecified
+
+>  <Reference and Vendor data> (1)
+
+>  <Storage Requirements and Warnings> (1)
+
+>  <Chemist> (1)
+T5_85,
+
+>  <BP> (1)
+
+>  <MP> (1)
+
+>  <Flash Point> (1)
+
+>  <Optical Rotation> (1)
+
+>  <Refractive Index> (1)
+
+>  <Salt> (1)
+no_salt
+
+>  <Creation Date> (1)
+
+>  <Submitted Amount> (1)
+
+>  <Notebook> (1)
+
+>  <BATCHES_BATCH_REG_PERSON_ID> (1)
+T5_85,
+
+>  <Entry Person> (1)
+T5_85,
+
+>  <Last Mod Person> (1)
+
+>  <BATCHES_BATCH_REG_DATE> (1)
+3/23/2004
+
+>  <Last Mod Date> (1)
+
+>  <Preparation> (1)
+
+>  <Batch Comment> (1)
+
+>  <Page> (1)
+
+>  <Physical Form> (1)
+
+>  <1HNMR> (1)
+
+>  <Color> (1)
+
+>  <13CNMR> (1)
+
+>  <IR> (1)
+
+>  <FIA/MS> (1)
+
+>  <GC> (1)
+
+>  <BATCHES_BATCH_FORMULA> (1)
+
+>  <BATCHES_SOLVATE_ID> (1)
+no_solvate
+
+>  <Equivalents> (1)
+
+>  <Equivalents> (1)
+
+>  <Formula Weight> (1)
+108.14112
+
+>  <Salt Name> (1)
+
+>  <MW> (1)
+
+>  <Solvate Name> (1)
+
+>  <MW> (1)
+
+>  <Percent Active> (1)
+100
+
+>  <Units> (1)
+
+>  <Purity> (1)
+
+>  <HPLC> (1)
+
+>  <Appearance> (1)
+
+>  <LC/UV/MS> (1)
+
+>  <CHN> (1)
+
+>  <UV> (1)
+
+>  <LogD> (1)
+
+>  <Solubility> (1)
+
+>  <ALT_IDS_ALL_IDENTIFIER_TYPE> (1)
+1
+
+>  <ALT_IDS_ALL_IDENTIFIER> (1)
+108-50-9
+
+$$$$

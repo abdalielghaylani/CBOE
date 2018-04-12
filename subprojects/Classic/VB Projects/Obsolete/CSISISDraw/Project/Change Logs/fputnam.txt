@@ -1,0 +1,830 @@
+12-Oct-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-60185: Adding duplicate structures through registration is allowed and causes error.  Remedy: Re-enable the "Remove Identical Structures before ISIS/Draw editing" code.
+
+11-Oct-2005
+-----------
+    Fix bug CSBR-60164: ChemBase Registration picker does not match and throws error.  Remedy: Install new code to sort fragments for molecules (in the fix to CSBR-60135, the new code was for salts only).
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-60165: ISIS/Draw Interface Warning is fragmented.  Remedy: Change messages as suggested.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-61075: Data SGroups are lost on fragments that are not part of a group.  Remedy: Fix regression due to the fix to CSBR-60135
+    Fix bug CSBR-61076: Data SGroups are lost on fragments that are not part of a group.  Remedy: Fix regression due to the fix to CSBR-60135
+Source\ISISDrawCSListener.cls
+    Fix bug in last check-in - RemoveIdentical was disabled.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-60135: Organon test file Salt_stoichiometry_Chiral.mol fails to import correctly into E-Notebook from ChemBase.  Remedy: Implement new code to sort fragments that are at the same X coordinate by their Y coordinate (for fragment identification in ISIS and ChemDraw format conversions), and fix the code for detecting the position of fragments so it is always based on atom positions.
+    Change message for molecular weight tests to: 'Molecular weight test for XXX, ChemDraw MW=YYY, ISIS MW=ZZZ.  Check structure.' and 'Molecular weight test for XXX, ISIS MW=YYY, ChemDraw MW=ZZZ.  Check structure.'
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-59963:  Message appearing indicating ambiguity is not appropriate when no reaction is drawn.  Remedy: Add a 100 ms wait after edit to make sure the structure is returned from the event.
+Source\ISISDrawCSListener.cls
+    Remove the 'Remove Identical' test before the ISIS/Draw edit, as the Reaction Toolbar now prevents identical structures from being added.
+Source\ObjectTagUtils.bas.
+    Fix bug CSBR-60138: Coefficients added through the salt dialog from MF property are added too close to the structure.  Remedy: Place the salt coefficients further up and to the left.
+
+9-Oct-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-60051: Organon test file salt_dataS.mol fails to import correctly into E-Notebook from ChemBase.  Remedy:  Enhance code to cover this case.
+    Fix bug CSBR-60078: one structure, one residue sharing a dataDgroup looses structure in display and structures becomes apart of the residue in reluanches of ISIS.  Remedy:  Enhance code to cover this case.
+
+7-Oct-2005
+-----------
+Source\MolfileIO.cls
+    Added comment with reference to CSBR-58484.
+Source\ISISListenerCommon.bas
+Source\ObjectTagUtils.bas.
+    Fix bug CSBR-60067: SDS (Data Sgroups that span multiple fragments) “wander” upon ISIS/Draw edits.
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-59963: Message appearing indicating ambiguity is not appropriate when no reaction is drawn.  Remedy: Improve ambiguity detection logic.
+    Fix bug CSBR-59987: Interpretation dialog clears the reaction drawing during retry  Remedy: Improve ambiguity detection logic.
+Source\AddSaltGListener.cls
+    Fix bug CSBR-59769: HClO4 salt, added from Add Salt, stoichiometry coefficient disappears and the fragments are no longer grouped.  Remedy: Option (2) below.  Add code to remove the spurious group if it is present.
+
+6-Oct-2005
+-----------
+Source\ISISListenerCommon.bas
+   Fix bug CSBR-60047: MW test fails if a salt fragment with a Data Sgroup is a contracted label, when editing in ISIS/Draw.  Remedy: Add code to cover this case.
+   Fix bug CSBR-60048: Organon test file salt_dataS_chiral.mol fails to import correctly into E-Notebook from ChemBase
+Source\AddSaltGListener.cls
+Source\ISISListenerCommon.bas
+    Fix CSBR-58833: Salts which have Data Sgroups that span all fragments are not recognized as salts.  (Fix version control code error.)
+
+5-Oct-2005
+-----------
+Source\ISISDrawCSListener.cls
+Source\ISISListenerCommon.bas
+    Fix CSBR-59763: Acronym section is not using ISIS. Listener gives error.  Previous fix on Oct. 3 was apparently not checked in.
+Source\frmStructure.frm
+Source\ISISDrawEdit.cls
+Source\ISISListenerCommon.bas
+Source\MolfileIO.cls
+Source\StoicCalculator.cls
+    Fix bug CSBR-59940: spontaneous grouping of reactant above arrow and product in ISIS/Draw editing.  Remedy:  Add new code to cover this case.
+Source\frmEditStructure.frm
+Source\ISISDrawEdit.cls
+Source\ISISListenerCommon.bas
+Source\MolfileIO.cls
+Source\StoicCalculator.cls
+    Fix bug CSBR-59108: Edit to reactant causes disappear from the grid.  Remedy: Discard the previous fix, and add an edit retry loop.  The user is prompted to retry if the reactants and products are ambiguously placed.
+
+4-Oct-2005
+-----------
+Source\frmEditStructure.frm
+Source\ISISDrawEdit.cls
+Source\ISISListenerCommon.bas
+Source\MolfileIO.cls
+Source\StoicCalculator.cls
+    Fix bug CSBR-59108: Edit to reactant causes disappear from the grid.  Remedy: Discard the previous fix, and add an edit retry loop.  The user is prompted to retry if the reactants and products are ambiguously placed.
+Source\modReadWriteISIS.bas
+    Added debug code.
+Source\ISISDrawEdit.cls
+    Added debug code.
+Source\ISISDrawCSListener.cls
+    Partial fix to bug CSBR-57083: ChemDraw is available the first time you right click - It is not ViewOnly.  
+Source\AddSaltGListener.cls
+    Improve error handling.
+Source\frmEditStructure.frm
+Source\StoicCalculator.cls
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-59108: Edits to reactant causes disappearance from the grid.  Remedy:  Replace the use of ChemDraw’s quirky (see below) reaction parser with a simpler one:  Any molecule whose center is to the left of the reaction arrowhead is a reactant, and any other molecule is considered a product.  (This also provides more efficient use of screen real estate, as the reaction no longer needs to be confined to a horizontal line of molecules and an arrow.)
+
+3-Oct-2005
+-----------
+Source\ISISDrawEdit.cls
+    Fix CSBR-59058: Reaction arrow is displayed very thick.  Remedy:  When returning back from an ISIS/Draw edit, set the properties of the graphic of type ArrowType as follows: Linetype="", HeadSize="1000".
+Source\ISISListenerCommon.bas
+    Fix CSBR-59763: Acronym section is not using ISIS. Listener gives error.  Remedy: Add code to eliminate error when the ENISISDraw9.ISISDrawCSListener was used on a section that is not a Reaction section type.
+
+2-Oct-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix CSBR-59789: regression: Data Sgroups placed on non-salt molecules are not preserved in ISIS/Draw edits.  Remedy:  Enhance code to fix this regression.
+Source\MolfileIO.cls
+    Improved error handling for the error "ISISlib failed to read mol file.".
+Source\ISISListenerCommon.bas
+    Fix CSBR-59788: Molecular weight test failure removes Data Sgroups.  Remedy: Make the molecular weight test a warning only.
+Source\ISISListenerCommon.bas
+    Fix CSBR-59606: Problems with DataS group as unknown and stereoisomer1.  Remedy: Reverse order of deletion of Data Sgroups.
+Source\StoicCalculator.cls
+Source\ObjectTagUtils.bas.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-59749: Data Sgroups field names should be compared without case sensitivity.  Remedy: Enhance code to compare text without case sensitivity.
+Source\MolfileIO.cls
+    Fix bug CSBR-59756: if V3000 mol files are created or received, a warning message box should appear.  Remedy: Add code to detect a V3000 mol file, and a message box with title "ISIS/Draw mol file I/O Warning" and text "A V3000 mol file has been received." or "A V3000 mol file has been generated.".
+Source\AddSaltGListener.cls
+    Fix bug CSBR-59769: HClO4 salt does not display in MF field instead parent MF is replicated.  Remedy: Disable code to set fragment as parent, as Object tags do not survive round-trip edits to ISIS/Draw.
+Source\AddSaltGListener.cls
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-58833: Salts which have Data Sgroups that span all fragments are not recognized as salts.  Remedy: Add code to take this case into account.
+    Fix bug CSBR-59774: Adding salt to first and second reagent sequentially causes the second clear its row.  Remedy: Fix bug in previous ckeckin (change i to k).
+
+29-Sep-2005
+-----------
+Goods\Release Notes.doc
+    changes for version 9.0.101
+
+24-Sep-2005
+-----------
+Source\StoicCalculator.cls
+    Fix bug CSBR-59295: Using quick add and adding first reactant on top of the arrow gives error upon adding additional reactants.  Remedy: Change grid synchronization logic to avoid error. 
+Source\AddSaltGListener.cls
+Source\ObjectTagUtils.bas.
+    Fix bug CSBR-59475: Fractional salt coefficients need to be supported.  Remedy: Code generalized to provide this support.
+Source\StoicCalculator.cls
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-59101: Adding starting material twice causes problems.  Remedy:  Delete the identical structures and rows when doing ISIS/Draw editing.  Fix bugs in last check-in.
+Source\ISISDrawCQListener.cls
+    Removed unnecessary code.
+
+23-Sep-2005
+-----------
+Source\frmSaltWeight.frm
+    Fix bug CSBR-57390: Add salt dialog needs to improve its organization and presentation.  Remedy: Modify per bug report.
+Source\StoicCalculator.cls
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-59101: Adding starting material twice causes problems.  Remedy:  Delete the identical structures and rows when doing ISIS/Draw editing.
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+    Fix bug CSBR-57083: ChemDraw is available the first time you right click.  Remedy: Fix a bug in the previous checkin (the Analyze Reaction Listener wasn't firing).
+
+22-Sep-2005
+-----------
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+    Fix bug CSBR-57083: ChemDraw is available the first time you right click.  Remedy: Set ChemDraw to ViewOnly mode earlier, and in a more reliable way.
+Source\ISISListenerCommon.bas
+Source\StoicCalculator.cls
+    Fix bug CSBR-59244: Editing experiment created by batch explorer form tool gives error upon commit to EN.  Remedy: Recode to avoid error.
+    Fix bug CSBR-59356: ISIS/Draw editing of a single molecule with a Data Sgroup gives error.  Remedy: Recode to avoid error.
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+    Fix bug CSBR-59006: Login then immediately create an experiment causes ISIS to fail to launch.  Remedy: Revise code so there is less dependency on IENFieldListener_Show occurring.
+Source\frmModalEditDialog.frm
+    Fix bug CSBR-59317: ISIS/Draw edit modal dialog displays annoying time value after edit.  Remedy:  Remove second time string.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-59090: Reaction drawing problems with grouping.  Remedy:  Change Reactants/Products detection to whether the middle of the structure is to the right or to the left of the end of the arrow with the arrowhead on it.
+
+21-Sep-2005
+-----------
+Source\MolfileIO.cls
+    Fix bug CSBR-59352: ISIS - CDXMLtoMolFile sometimes returns V3000 Molfile.  Remedy:  Add code to change the colors of all atoms and bonds to black before we ask the ISIS ADK to render the mol file.
+Source\frmEditStructure.frm
+    Branched.  Remove sharing of this file with the Core.
+ENIsisDraw.vbp
+     Fix bug CSBR-58484: Grouped product structures clears orgnumber on relaunch of ISIS dialog.  Add reference to molserver9.dll.
+Source\EditStructureTListener.cls
+    Fix bug CSBR-59076: COMBI: Data S groups for salt coefficients are lost on committing to ENotebook on samples tab.  Remedy:  Recode to use the new technology for ISIS/Draw editing, the modal method of ENISISDraw9.ISISDrawEdit.
+
+20-Sep-2005
+-----------
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-58960: Draw a reaction on the bottom half of the ISIS screen causes reaction not to be visible in structure field.  Remedy:  Add code to cause ChemDraw to refresh.
+Source\ISISDrawCSListener.cls
+    Added debug code (commented out).
+Source\frmModalEditDialog.frm
+    Fix bug CSBR-59317: ISIS/Draw edit modal dialog displays annoying time value after edit.  Remedy:  Remove time string.
+Source\AddSaltGListener.cls
+Source\cFindWindow.cls
+    Remove debug print statements.
+Source\MolfileIO.cls
+    Changed comment re bug CSBR-58484.  Although the work-around of setting the display of implicit hydrogens to the ChemDraw and Organon default (ON HETERO), we leave it in anyway.
+Source\frmEditStructure.frm
+Source\StoicCalculator.cls
+    Fix bug CSBR-58484: Grouped product structures clears orgnumber on relaunch of ISIS dialog.  Remedy: Work around ChemDraw bug CSBR-58797 by adding new code to use canonical codes rather than SMILES string for detecting changes in chemistry.
+Source\ISISListenerCommon.bas
+    Add code to prevent error when there is no reaction.
+    Fix bug CSBR-58484: Grouped product structures clears orgnumber on relaunch of ISIS dialog.  Remedy: Work around ChemDraw bug CSBR-58797 by adding new code to use canonical codes rather than SMILES string for detecting changes in chemistry.
+
+13-Sep-2005
+----------
+Source\MolfileIO.cls
+Source\frmStructure.frm
+    Fix bug CSBR-58703: Repeated round-trips from ChemDraw to ISIS/Draw in skc format causes CHIRAL flag to move away from product and hop to another product.
+    Fix bug CSBR-58754: Product structure with chiral flag is significantly “separated” after registration in Chembase.
+    Remedy:  Work around ChemDraw bug by repositioning the chiral flag (1) when importing a structure via MolfileIO(), and (2) when preparing the structure for editing with ISIS/Draw (use isislib function LayoutChiralFlag(skId)).
+
+8-Sep-2005
+-----------
+Source\MolfileIO.cls
+    Fix bug CSBR-58484: Grouped product structures clears orgnumber on relaunch of ISIS dialog.  Remedy: When a molfile is imported, set display of implicit hydrogens to to Organon default (ON HETERO).
+
+7-Sep-2005
+-----------
+    Marked Beta 2 in this file.
+
+2-Sep-2005
+-----------
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-58643: Invisible Atom Numbers are displayed as visible atom values in isisdraw.  Remedy:  Work around ChemDraw bug CSBR-58661:  Add code to remove AtomNumbers when importing data from ChemDraw to ISIS/Draw for editing.
+Source\frmStrucure.frm
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-58415: ELN removes "+" and “-” symbols from molecules if reactants are separated by plus signs.  Remedy:  Work around ChemDraw bug CSBR-58650, as follows: Remove the plus signs between reactants and products with the ISIS/Draw API, just after the sketch comes back from ISIS/Draw.  Delete the old code that was doing this removal with the ChemDraw API just before loading the structure into ChemDraw.
+
+25-Aug-2005
+-----------
+Core\Containers\ENClientRemote.vbp
+Addins\ISISDraw\Source\frmStructure.frm
+  Fix bug CSBR-58315: To get ISIS/Draw save-and-close icon to appear, the ISIS/Draw editing window title bar must contain the string “ENClientRemote”.  Remedy: Set the ENClientRemote.vbp application Title="CambridgeSoft E-NOtebook", and set the ISISDraw interface to look for this string.  (This leaves the file named ENClientRemote.exe.)
+
+23-Aug-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-58251: No-Structure Data Sgroup does not survive edit round-trip.  Remedy: Code added to cover this case.
+
+22-Aug-2005
+-----------
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-57907: Save icon is indicating changes when no changes have been made.  Remedy:  Add code to handle this case.
+    Deleted Old Code.
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-57915: Isis shows structures as grouped when they should be separate.  Remedy: Enable PreserveDataSGroups for this case.  It is necessary (and does no harm) to execute the Data Sgroup code even in cases where there aren't any Data Sgroups.
+Project\Specs\Editing Long Reactions.doc
+    Design to fix work around bug CSBR-57318: Reactant/product structures not inline with arrow cause structures below arrow to be missing in tables
+
+18-Aug-2005
+-----------
+Source\frmStrucure.frm
+    Fix bug CSBR-56858: The ISIS/Draw Save-and-Close icon is not correct.  
+    Fix bug CSBR-58083: For the ISIS/Draw save-and-close button to appear, the “database description” in ELN_PARAMETERS must contain the string “E-Notebook”.
+       Remedy for both bugs: First try "ENClientRemote" as the MDLbox.ApplicationName property substring to search for.  If not found, try "E-Notebook” (works for IE as the client)" as the MDLbox.ApplicationName property.
+Source\frmStrucure.frm
+    Fix bug CSBR-58094; Structures are not left-justified in the ISIS/Draw editing window when ISIS/Draw launches for editing.  Remedy: Eliminate the offset.  The structure is now left-justified.
+
+************* Beta 2 ***************************
+
+17-Aug-2005
+-----------
+Source\ISISListenerCommon.bas
+Source\frmStrucure.frm
+    Fix bug CSBR-56841: If two reactants or products differing only in their Data Sgroups is entered in ISIS/Draw, one of them is deleted when the reaction is passed back to E-Notebook.  Remedy:  Include the Data Sgroups in the code that checks for identical molecules.
+
+16-Aug-2005
+-----------
+Source\ISISDrawEdit.cls
+Source\frmModalEditDialog.frm - added
+ENIsisDraw.vbp
+    Fix bug CSBR-57904: Focus on the reaction field can be changed while editing in isisdraw, and this causes problems.  Remedy;  Add a modal dialog box, which is present only during ISIS/Draw editing, and which prevents the user clicking elsewhere in E-Notebook.  It also displays the status information, "Launching ISIS/Draw...", and "ISIS/Draw editing in process...".
+Source\ISISDrawEdit.cls
+Source\modMain.bas
+    Fix bug CSBR-57943: Able to launch two different ISIS windows for EN and committing structures causes EN to crash.  Remedy:  Add code to prevent editing more than one structure at a time, and a message box that beeps and alerts the user with the message "ISIS/Draw editing is already in process.  More than one editing session is not allowed." if they try to edit more than one structure.
+ENtoIsis\ENtoIsis.vbp
+ENIsisDraw.vbp
+Source\RegistryUtils.bas - added, shared with ENtoISIS project.
+Source\MolfileIO.cls
+Source\ISISDrawCSListener.cls
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-57917: Structures get bigger after subsequent isisdraw launches, and bug CSBR-57942: Text in the structure shrinks until it is no longer legible, and bug CSBR-57906: automatic wrapping of the reaction drawing with three medium sized reactants and one product.  Remedy:  In the ISISDrawEdit class, replace the ChemDraw .Data method with .SourceURL method for loading cdxml data into the ChemDraw control. 
+
+12-Aug-2005
+-----------
+Source\frmStructure.frm
+    Fix bug CSBR-57570: ISIS/Draw crashes when going from isisdraw to eln when atom label editor is active.  Remedy: instead of termnating ISIS/Draw in this case, modify code to account for the mdlbox control event being in another thread in this case
+
+10-Aug-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fixed bug CSBR-57670: spontaneous grouping caused by drawing structures far apart so that one is not part of the reaction.  Remedy:  Instead of using ChemDraw's count of the number of reactants and products (e.g. .ReactionSchemes(1).Reactants.Count), write code to count the number of molecules to each side of the arrow.
+
+9-Aug-2005
+----------
+Source\ISISDrawEdit.cls
+Source\IEnumChildWindowsSink.cls - added class for enumerating child windows
+    Fix bug CSBR-56849: ISIS/Draw editing fails if the user has an instance of ISIS/Draw extant before initiating the edit and the child window in ISIS/Draw is not maximized.  Remedy: Remedy: Add additional code to check for the presence of unmaximized child windows doing E-Notebook structure editing.
+Source\frmStructure.frm
+    Added investigatory code to put top-level sketch IDs to a file.  This code served it's purpose (investigation for CSBR-56855) and is now commented out so it is available for further investigations.
+Source\ISISDrawCQListener.cls
+    Fix bug CSBR-57749: On query sections, ISIS fails to launch when double clicking within structure fields.   Remedy: Remove the dependency of the double-click-to-edit code on whether the IENFieldListener_Show method has fired.
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+Source\frmCSTimer.frm
+Source\frmCQTimer.frm
+    Fix bug CSBR-57570: Crashing bug when going from isisdraw to eln when atom label editor is active.  Remedy: Change Listener code to use ISISDrawEdit, which eliminates the crash in E-Notebook.  ISIS/Draw still crashes, however.
+
+5-Aug-2005
+----------
+Source\ISISDrawEdit.cls
+    Fix bug CSBR-57656: Combi with ISIS: Error when X’ing out ISISDraw.  Remedy: Add code to supply input cdxml structure as the result when editing is canceled without any change (prior code was returning a null string).
+
+4-Aug-2005
+----------
+Source\StoicCalculator.cls
+    Fix bug CSBR-57392: Error duing deletion of reactant or product using remove functions from the grids.  Remedy: Same as CSBR-57468 -- Rework code to account for reactant and product insertion and deletion from the grid. 
+    fix bugs in last checkin
+
+3-Aug-2005
+----------
+Source\frmStructure.frm
+    Partial fix to CSBR-57570: Crashing bug when going from isisdraw to eln when atom label editor is active
+Source\StoicCalculator.cls
+    Fix bug CSBR-57465: “ORA-01401: inserted value too large for column” error occured while saving experiment. Remedy: Delete SMILES strings from attributes after temporary use.
+    Fix bug CSBR-57468: error on editing reaction after reactant has been added manually.  Remedy: Rework code to account for reactant and product insertion and deletion from the grid.
+Source\MolfileIO.cls
+    Added error checking.
+ENtoISIS\Goods\TestENtoISIS\ENtoISIS.doc
+    fixed bug - added Base64com.dll to install directions
+ENtoISIS
+    Added label - ENtoISIS 9.0.9100 Patch B
+ENtoISIS\Goods\TestENtoISIS\ENtoISIS.doc
+ENtoISIS\Goods\TestENtoISIS\test.mol
+ENtoISIS\Goods\TestENtoISIS\test after roundtrip.mol
+ENtoISIS\Goods\TestENtoISIS\test.cdxml
+ENtoISIS\Goods\TestENtoISIS\Source\frmTest.frm
+ENtoISIS\Goods\TestENtoISIS\Source\TestENtoISIS.vbp
+ENtoISIS\Goods\TestENtoISIS\TestENtoISIS.exe
+    Organon deliverables in 9.0.9100 Patch B
+ENtoISIS\Goods\TestENtoISIS - project created
+ENtoISIS\Goods\TestENtoISIS\Source - project created
+    Test program to be delivered to Organon
+
+28-Jul-2005
+-----------
+Goods\Release Notes.doc
+    Fix bug CSBR-55694: Error appears when double clicking structure field when ISIS has never been started on the machine.  Remedy: Supplied language that needs to be in the IQ(s), stating that ISIS/Draw must be run once as part of the installation process.
+
+27-Jul-2005
+-----------
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+    Fix bug CSBR-56712: Able to make changes to structures in show details dialog.  Remedy: Add a check for .IsEditable to double-click handler.
+
+26-Jul-2005
+-----------
+Source\ISISDrawCSListener.cls
+    Added debug code.
+Source\ISISListenerCommon.bas
+    Fixed CSBR-57260: Salt Stoichiometry coefficient lost during edit after a double-click on the Chemical Structure field.  Remedy: Add new code to detect the position of a salt from it’s atoms for this case.
+    Added debug code.
+Label "Org - 9.0.9101"
+ENIsisDraw.vbp
+ENtoIsis\ENtoIsis.vbp
+    Change version to 9.0.9101 for patch.
+
+25-Jul-2005
+-----------
+Source\MolfileIO.cls
+    Fix bug CSBR-57221: ENtoISIS round-trip format conversion drops Data Sgroups.  Remedy: Move the conversion of salt subsketches to mols to before the addition of Data Sgroups to  the sketch.
+Label "v. 9.0.9001"
+    development build for Mark Jackson
+ENIsisDraw.vbp
+    Changed version to 9.0.9001.
+
+21-Jul-2005
+-----------
+Source\MolfileIO.cls
+    Fixed CSBR-57129: The fragments in salt mol files imported from external sources are not being grouped.  Remedy: Add code to work-around to ChemDraw bug CSBR-57006.  The new code convert salts subsketch objects (written erroneously by ChemDraw) to mol objects when doing the cdxml to skc format conversion.
+ENtoIsis\Test\TestENtoISIS.exe
+    Check in new version with GUID that Organon wants.
+ENtoIsis\Test\frmTest.frm
+    revised to take test.mol through a round trip, and to ignore any input files that are not found.
+ENtoIsis\Test\TestENtoISIS.vbp
+ENtoIsis\Test\ENtoIsis9.dll
+    Check in proper compatibility GUID for Organon.
+    Changed version to 9.0.9001.
+
+20-Jul-2005
+-----------
+Source\ISISListenerCommon.bas
+Source\ObjectTagUtils.bas.
+    Fix bug CSBR-56857: SGroups shift around after salt and coefficient are added to reaction
+    Fix bug CSBR-56854: coefficient does not stay where put when making the transition from ISIS to ENotebook
+      Remedy: Implement visible Object Tags for rendering ISIS Data Sgroups in ChemDraw:
+      - Delete Data Sgroups after extracting their properties, when doing format conversion from skc to cdxml.
+      - Work around CSBR-56268 by adding a visible Object Tag on an atom for UI rendering only (not saved in any round trips).
+    Fix the bug that caused the Organon test file i14.mol to fail, by detecting the lefthand side of each molecule and salt fragment via atom positions rather than the isislib bounding box (which includes the Data Sgroup).
+    Implement Data Sgroup postion storage in Object Tags as relative to the position of the group they are attached to (prevents Data Sgroup wandering).  Add code to define relative coordinates via atom positions for polyatomic fragments, and via the bounding box for atomic fragments.
+    Fixed bug that caused loss of Data Sgroups when miltiple Data Sgroups exist.
+    Add bonds to Data Sgroups when recreating them, increasing fidelity of round-trip format conversion.
+    Set Data Sgroup Field Type, increasing fidelity of round-trip format conversion.
+    Removed repositioning of salt stoichiometry Data Sgroups, so users can move them to wherever they like, and so that they are treated like other Data Sgroups in regard to positioning (except for creation by the Add Salt listener).
+    Fixed bug: display of "1" for salt stoichiometric coefficient.
+
+Source\MolfileIO.cls
+    Work around CSBR-57078: ChemDraw writes subsketch objects to skc and tfg files in some cases when it should write mol sketch objects.  For now, do not group fragments in salt mol files.
+
+18-Jul-2005
+-----------
+ENtoIsis\Test\Structure 2.mol
+    Fixed bad structure. (Data Sgroups were way out of place.)
+
+15-Jul-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix CSBR-56859: Adding salt on more than one molecule causes crashing bug.  Remedy: Add code to prevent E-Notebook from crashing when errors occur in ISIS/Draw editing.  Provide more detail for the error message "Data Sgroup molecular weight test failed..."
+Source\ISISListenerCommon.bas
+    Fix CSBR-56859: Adding salt on more than one molecule causes crashing bug.  Remedy: Fix salt fragment detection logic. 
+    Added salt stoichiometry coefficient position offset.
+
+14-Jul-2005
+-----------
+Source\ObjectTagUtils.bas
+    Fix bug CSBR-56852: Using add salt causes coefficient to be placed in front of the parent.  Remedy: Add new code that places the visible Object Tag (showing the stoichiometric coefficient) on an atom in the fragment, and uses relative positioning of the object tag
+
+12-Jul-2005
+----------
+CHANGES TO SUPPORT ISIS/Draw EDITING IN COMBI:
+ENIsisDraw.vbp
+Source\mWindow.bas (added)
+Source\cFindWindow.cls
+Source\IEnumWindowsSink.cls
+    Add windows enumeration code (from http://www.vbaccelerator.com/home/VB/Code/Libraries/Windows/Enumerating_Windows/article.asp)
+Source\frmStructure.frm
+    Add code to support Windows enumeration in ISISDrawEdit.cls
+Source\ISISDrawEdit.cls
+    Add code to support Windows enumeration -- new method for waiting for edit completion.
+Source\IsisUtils.bas
+    Rename varibles to be more correct.
+
+ENtoIsis\ENtoIsis.vbp
+    Changed version number to .891 for new build for Organon testing.
+    Added label on ENtoISIS (9.0.981)
+
+11-Jul-2005
+----------
+Source\ISISDrawCQListener.cls
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-56769: Sometimes the ChemDraw toolbar shows up even when the ISIS/Draw listener is on the Chemical Structure or Chemical Query field.  Remedy:  Add additional code to set the ChemDraw ViewOnly flag in more places.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-56768: Data SGroups are not positioned correctly.  Remedy:  Add code that stores a relative position in the Data Sgroup, so the Data Sgroup can be repositioned correctly after a round-trip.
+
+7-Jul-2005
+----------
+ENtoIsis\ENtoIsis.vbp
+    Changed version number to 9.0.881.
+
+5-Jul-2005
+----------
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-56560: Round-trip format conversion from mol to CDXML fails with mol. wt. mismatch error, and CSBR-56563: Round-trip format conversion from mol to CDXML fails.  Remedy: Use the isislib intrinsic GetMolWeightDotDisconnect() for molecular weight calculation.
+
+29-Jun-2005
+-----------
+ENtoIsis\ENtoIsis.vbp
+ENtoIsis\Source\Base64Utils.bas - added
+ENtoIsis\Source\DBUtils.bas - added
+    Fix bug CSBR-56318 (see project ENIsisDraw.vbp) - add modules to support this fix in this project.
+
+29-Jun-2005
+-----------
+Source\ISISDrawCQListener.cls
+Source\ISISDrawCSListener.cls
+    Fix bug CSBR-55959: Organon & GSK - stoichiometry grid should be updated when ISIS/Draw editing is complete,  Remedy:  Add code to Validate the Chemical Structure Control.
+
+28-Jun-2005
+-----------
+Source\frmStructure.frm
+    Changed the title bar detection code of the ISIS/Draw save-and-close button so that it looks for any app with a window title bar containing the string "E-Notebook".  This covers all known containers in use.  ISIS/Draw no longer displats "in ENClientRemote".
+Source\MolfileIO.cls
+Source\EditStructureTListener.cls
+Source\ISISDrawEdit.cls
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+ENIsisDraw.vbp
+Source\Base64Utils.bas (added)
+    Fix CSBR-56318: Successive E-Notebook edits with ISIS/Draw shrink structures and some labels.  Remedies:  (1) Use version 9.0.4.901 or later version of the ChemDraw control, (2) Use the SourceURL() method rather than the Data() method of the ChemDraw control to load it’s data.
+ENtoIsis\Test\frmTest.frm
+    Change form caption.
+
+24-Jun-2005
+-----------
+Source\ISISDrawCSListener.cls
+    Removed debug code
+Source\frmStructure.frm
+    Fixed bug found in testing.  Added code to make sure all *.skc Subsketch objects are converted to Mol sketch objects.
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-55956: Organon - Salt stoichiometry coefficients wander around.  Remedy:  Add code to reposition stoichiometry Data Sgroups to left of molecule.
+
+23-Jun-2005
+-----------
+Source\ISISListenerCommon.bas
+    Fix bug CSBR-55956: Organon - Salt stoichiometry coefficients wander around  Remedy: Position the Data SGroups using the ISISDraw API when they are put back in the sketch on the way to ISIS/Draw editing.
+Source\MolfileIO.cls
+    Add code to work around development environment problem relating to initialization of isislib.dll
+ENtoIsis\ENtoIsis.vbp
+ENIsisDraw.vbp
+Source\frmMDLbox.frm
+    Add form containing mdlbox control to work around development environment problem relating to initialization of isislib.dll
+ENIsisDraw.vbp
+    partial fix to CSBR-55965: ISIS/Draw editing is not available for E-Notebook Combi.  Remedy: Added code that encapsulates the ISIS/Draw editing in a single function call.
+
+22-Jun-2005
+-----------
+Source\ISISDrawEdit.cls
+Source\WaitableTimer.bas (added)
+    partial fix to CSBR-55965: ISIS/Draw editing is not available for E-Notebook Combi.  Remedy: Added code that encapsulates the ISIS/Draw editing in a single function call.
+Source\ISISDrawEdit.cls
+    fixed declaration bug
+Source\IsisUtils.bas
+    fixed bug in last checkin
+
+20-Jun-2005
+-----------
+Source\frmStructure.frm
+Source\IsisUtils.bas
+    Additional fix to CSBR-54523.
+
+19-Jun-2005
+-----------
+ENIsisDraw.vbp
+    Fix bug CSBR-54523 -- Add IsisUtils.bas
+Source\frmStructure.frm
+    Fix bug CSBR-54523: ‘Untitled in ENClientRemote’ appears in the ISIS title bar when using web client, and save-and-close button is absent
+    Remedy:  Add code to detect the following application title bar titles, and set up ISIS/Draw’s save-and-close button to appear in each case:
+    1. "ENClientRemote"
+    2. "E-Notebook - Microsoft Internet Explorer"
+    3. "CambridgeSoft E-Notebook"
+    4. "HELN9"
+Source\AddSaltGListener.cls
+    Add workarounds for type mismatches.
+
+17-Jun-2005
+-----------
+Source/IsisUtils.bas
+    NEW: Utility functions for ISIS/Draw integration.  The first one is used to get the window title bars.
+
+15-Jun-2005
+-----------
+ENIsisDraw.vbp
+    Aded new source files.
+        Source\ISISDrawEdit.cls
+        Source\frmChemDraw.frm
+        Source\frmISISDrawEditTimer.frm
+        Source\AddSaltGListener.cls
+        Source\frmAddSalt.frm
+        Source\frmSaltWeightConfig.frm
+        Source\SubclassTextBoxUtils.bas
+        Source\modReadWriteISIS.bas
+     Add utility code for testing.
+Source\ISISDrawEdit.cls
+    Add functionality.
+Source\frmStructure.frm
+    Move Data SGroup extraction earlier.
+Source\frmISISDrawEditTimer.frm
+    Fixed bug in initial version.
+Source\AnalyzeRxnCSListener.cls
+    Added workaround to type mismatch problem.
+
+14-Jun-2005
+-----------
+Source\frmSaltWeightConfig.frm
+    NEW: for configuration of the AddSaltGListener.cls
+Source\frmAddSalt.frm
+Source\AddSaltGListener.cls
+    NEW Code written by MRubenstein to meet Organon's Salt requirements.
+Source\frmISISDrawEditTimer.frm
+    NEW: Form with one-shot timer for ISIS/Draw editing
+Source\frmChemDraw.frm
+    NEW: A form used to instantiate the ChemDraw control for format conversions, etc.
+
+13-Jun-2005
+-----------
+Source\ISISDrawEdit.cls
+    NEW: Class to encapsulate a round-trip edit with ISIS/Draw.
+
+3-Jun-2005
+-----------
+ENtoIsis\TestENtoISIS.vbp
+ENtoIsis\frmTest.frm
+ENtoIsis\structure 1.cdxml
+ENtoIsis\Structure 2.mol
+ENtoIsis\roundtrip0.mol
+ENtoIsis\Test 
+    test program for ENtoISIS (created), and test input files
+ENtoIsis\ENtoIsis.vbp
+    cleanup of debug code
+    fixed name of modMain to agree with class file name
+Source\ISISListenerCommon.bas
+    removed debug calls to .SaveAs (works around failure to save ObjectTag changes)
+
+27-May-2005
+-----------
+Source\StoicCalculator.cls
+Source\AnalyzeRxnCSListener.cls
+Source\ISISListenerCommon.bas
+Source\ISISDrawCSListener.cls
+    Implement new feature:  Data Sgroups are chemically significant.
+
+20-May-2005
+-----------
+Goods\Release Notes.doc
+     Corrected the Requirements -- MDL ISIS Desktop 2.5 is required.
+
+11-May-2005
+-----------
+Source\ISISListenerCommon.bas
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+Source\frmStructure.frm
+Goods\Release Notes.doc
+    version 0.92 revisions.  In this version, plus signs are no longer required.
+
+2-May-2005
+-----------
+ENIsisDraw.vbp
+Source\EditStructureTListener.cls
+    prototype v. 0.9 - Add support for editing structures in table cells.
+Source\frmStructure.frm
+    Add some additional debugging code.
+Source\ISISDrawCSListener.cls
+    Fixed a bug that might have generated a type mismatch when reading the result of an ISIS/Draw edit.
+Goods\Release Notes.doc
+    Add the fact that Josh Bond has the installation CD for ISIS/Draw.
+
+30-Apr-2005
+-----------
+Goods\Release Notes.doc
+    updated to prototype v. 0.8
+Source\ISISListenerCommon.bas
+Source\ISISDrawCSListener.cls
+Source\ISISDrawCQListener.cls
+    Add code to support reactantsabove and below the reaction arrow.
+
+27-Apr-2005
+-----------
+Goods\Release Notes.doc
+    changes for version 0.7
+Source\ISISDrawCQListener.cls
+Source\frmCSTimer.frm
+Source\frmCQTimer.frm
+Source\ISISListenerCommon.bas
+ENIsisDraw.vbp
+    Changes to implement ISIS/Draw integration for the Chemical Query field.
+
+25-Apr-2005
+-----------
+Goods\Release Notes.doc
+Source\frmStructure.frm
+Source\ISISDrawCSListener.cls
+Source\modReadWriteISIS.bas
+   Modifications for v. 0.6
+
+11-Apr-2005
+-----------
+ENISISDraw9.dll
+Goods\Release Notes.doc
+Source\frmStructure.frm
+Source\ISISDrawCSListener.cls
+Source\modReadWriteISIS.bas
+Source\StoicCalculator.cls
+    Modifications for version 0.5
+
+11-Apr-2005
+-----------
+Goods\Hide implicit hydrogens.cdx
+    Add file to hide implicit hydrogens.
+Goods\Release Notes.doc
+    revisions for prototype version 0.4
+
+4-Apr-2005
+-----------
+Source\ISISDrawCSListener.cls
+    1. Implement design change:  Eliminate skc file conversion from editing loop.  2. Remove explicit declaration of ChemDrawCtl, so it's an object only, to avoid type mismatch errors.
+
+31-Mar-2005
+-----------
+System Components\Note - this is MDL licensed software.txt
+System Components\isislib.dll
+System Components\mdlbox.ocx
+    MDL objects needed for the build.  Not for distribution - this is licensed software.
+Source\LeakUtils.bas
+Source\BooleanUtils.bas
+Source\LanguageUtils.bas
+Source\DBUtils.bas
+Source\ErrorUtils.bas
+Source\MCDUtils.bas
+Source\frmEditStructure.frm
+Source\frmAnalyzeReactionListener.frm
+    Share Core files for prototype Version 0.4 of the E-Notebook ISIS/Draw integration.
+Goods\Release Notes.doc
+Build\Building ISISDraw.txt
+ENISISDraw9.dll
+ENIsisDraw.vbp
+Source\objlib.bas
+Source\modReadWriteISIS.bas
+Source\modMain.bas
+Source\ConvertFormat.cls
+Source\AnalyzeRxnCSListener.cls
+Source\ISISDrawCSListener.cls
+Source\StoicCalculator.cls
+Source\frmStructure.frm
+Source\frmStructure.frx
+    Add files for prototype Version 0.4 of the E-Notebook ISIS/Draw integration.
+Source\prototype 0.1\frmISISServer.frm
+Source\prototype 0.1\frmISISServer.frx
+Source\prototype 0.1\ChemicalStructureCtl.ctl
+    "Share and Branch"ed these files into the new project, and deleted them from the \Source project.
+Source\prototype 0.1
+    Created subproject:
+    Early prototype of ISIS/Draw integration, using an entirely different method than later work.
+
+16-Feb-2005
+----------
+Source\ChemicalStructureCtl.ctl
+    Updated to be compatible with the Core version 9.0.68.
+
+15-Feb-2005
+----------
+Source\ChemicalStructureCtl.ctl
+    Updated to be compatible with the Core version 9.0.67.
+
+9-Feb-2005
+----------
+Source\ChemicalStructureCtl.ctl
+    Error handling was added to prevent crashes if errors were returned in ISIS/Draw code.
+
+2-Feb-2005
+----------
+Source\ChemicalStructureCtl.ctl
+    version compatible with E-Notebook 9.0.63 and 9.0.64.
+Deleted ENISISDrawCtl.vbp
+Deleted Build\MakeLicenseKey.bat
+Deleted Build\NewGUIDs.exe
+Deleted Build\Field Types.xml
+Deleted Source\CChemicalStructureCtl.cls
+Deleted Source\DBUtils.bas
+Deleted Source\ErrorUtils.bas
+Deleted Source\ExportUtils.bas
+Deleted Source\LanguageUtils.bas
+Deleted Source\LeakUtils.bas
+Deleted Source\MCDUtils.bas
+Deleted Source\ReactionComponent.cls
+    These files are no longer needed as the code is no longer made as a separate ocx.
+Build\Building ISISDraw.txt
+    update - These files are no longer needed as the code is no longer made as a separate ocx.
+1-20-05
+--------
+Added label "ISISDraw version 0.1"
+    basic round-trip editing functionality is demoable in this version
+Source\ChemicalStructureCtl.ctl
+    add code for version 0.1 basic round-trip editing functionality
+Sources\frmISISServer.frm
+Sources\frmISISServer.frx
+    add code to update ChemDraw after edit
+ENISISDrawCtl.vbp
+    add form to hold ISISDraw object
+Source\frmAnalyzeReactionListener.frm
+Source\AnalyzeRxnCSListener.cls
+    Deleted these.
+
+1-20-05
+--------
+Source\LanguageUtils.bas
+Source\frmAnalyzeReactionListener.frm
+Source\AnalyzeRxnCSListener.cls
+    Shared this from ENotebook 09.0.0\Core\Standard\Source\Stoichiometry.
+
+1-19-05
+--------
+Added label 'ISISDraw 0.1'
+    First version that works in E-Notebook -- control is identical to Core control
+Build\Building ISISDraw.txt
+Build\Field Types.xml
+Build\MakeLicenseKey.bat
+Build\NewGUIDs.exe
+    first build and install instructions
+ENISISDraw.vbp
+    Add Project for devopment of ISIS/Draw enhancements.
+Source\ReactionComponent.cls
+    Shared this from ENotebook 09.0.0\Core\Standard\Source\Stoichiometry.
+Source\CChemicalStructureCtl.cls
+    Shared this from ENotebook 09.0.0\Core\Standard\Source\ChemicalStructure.
+Source\DBUtils.bas
+Source\ErrorUtils.bas
+Source\ExportUtils.bas
+Source\LeakUtils.bas
+Source\MCDUtils.bas
+    Shared these from ENotebook 09.0.0\Core\Framework\Source.
+Source\ChemicalStructureCtl.ctl
+    Branch 9.0.58 version of this file from ENotebook 09.0.0\Core\Standard\Source\ChemicalStructure
+
+1-10-04
+--------
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    Storage and rendering sections revised.
+
+1-5-05
+--------
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    requirement added: that format conversions be acceptable
+Project\Specs\ISISDraw integration file format support.doc
+    added this document
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    fix incorrect date in previous checkin
+    Revised per recent design discussions
+
+1-4-05
+--------
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    Revised per recent design discussions
+
+12-22-04
+--------
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    Changed “field” to “column” in section 3.1.1
+Project\Specs\E-Notebook ISISDraw Compatibility Requirements.doc
+    First draft checked in.
+    Project created, for E-Notebook ISISDraw Compatibility
+

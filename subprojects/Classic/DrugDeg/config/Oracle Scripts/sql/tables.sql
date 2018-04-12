@@ -1,0 +1,105 @@
+
+prompt starting tables.sql
+
+
+
+CREATE TABLE DRUGDEG_BASE64
+(
+  BASE64_ID   NUMBER(8)                         NOT NULL,
+  MOL_ID      NUMBER(8)                         DEFAULT 0,
+  BASE64_CDX  CLOB
+)
+TABLESPACE &&tableSpaceName  NOLOGGING LOB (base64_cdx)
+STORE AS(
+	DISABLE STORAGE IN ROW  NOCACHE PCTVERSION 10
+	TABLESPACE &&lobsTableSpaceName STORAGE (INITIAL 4 NEXT 4));
+
+
+
+
+CREATE TABLE DRUGDEG_CONDS
+(
+  DEG_COND_KEY   NUMBER(8)                      NOT NULL,
+  DEG_COND_TEXT  VARCHAR2(50 BYTE)              NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_DEGS
+(
+  DEG_CMPD_KEY  NUMBER(8)                       NOT NULL,
+  MOL_ID        NUMBER(8)                       DEFAULT 0,
+  COMPOUND_ID     VARCHAR2(50 BYTE),
+  COMPOUND_NUMBER  VARCHAR2(50 BYTE),
+  ALIAS         VARCHAR2(50 BYTE),
+  MW_AMT_CHG    NUMBER                          DEFAULT 0,
+  MW_DIR_CHG    NUMBER(8)                       DEFAULT 0,
+  DEG_EXPT_FK   NUMBER(8)                       NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_DEGSFGROUP
+(
+  DEG_CMPD_ID    NUMBER(8)                      NOT NULL,
+  DEG_FGROUP_ID  NUMBER(8)                      NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_EXPTS
+(
+  EXPT_KEY        NUMBER(8)                     NOT NULL,
+  PARENT_CMPD_FK  NUMBER(8)                     NOT NULL,
+  DEG_COND_FK     NUMBER(8)                     NOT NULL,
+  NOTES           CLOB,
+  STATUS          VARCHAR2(50 BYTE),
+  SUBMITTED_BY    VARCHAR2(50 BYTE),
+  API_FRM         VARCHAR2(50 BYTE),
+  REFERENCES      VARCHAR2(4000),
+  EXPT_CONDS      VARCHAR2(4000)
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_FGROUPS
+(
+  DEG_FGROUP_KEY   NUMBER(8)                    NOT NULL,
+  DEG_FGROUP_TEXT  VARCHAR2(50 BYTE)            NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_MECHS
+(
+  MECH_KEY     NUMBER(8)                        NOT NULL,
+  MOL_ID       NUMBER(8),
+  DEG_CMPD_FK  NUMBER(8)                        NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_PARENTS
+(
+  PARENT_CMPD_KEY  NUMBER(8)                    NOT NULL,
+  MOL_ID           NUMBER(8),
+  NOTEBOOK_NUMBER  VARCHAR2(75 BYTE),
+  SALT             VARCHAR2(50 BYTE),
+  GENERIC_NAME     VARCHAR2(100 BYTE),
+  TRADE_NAME       VARCHAR2(100 BYTE),
+  COMMON_NAME      VARCHAR2(100 BYTE),
+  SUBMITTED_BY     VARCHAR2(100 BYTE),
+  COMPOUND_NUMBER  VARCHAR2(100 BYTE),
+  STATUS           VARCHAR2(100 BYTE)
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_SALTS
+(
+  SALT_KEY   NUMBER(8)                          NOT NULL,
+  SALT_CODE  VARCHAR2(3 BYTE),
+  SALT_NAME  VARCHAR2(50 BYTE)
+) TABLESPACE &&tableSpaceName;
+
+
+CREATE TABLE DRUGDEG_STATUSES
+(
+  STATUS_KEY   NUMBER(8)                        NOT NULL,
+  STATUS_TEXT  VARCHAR2(50 BYTE)                NOT NULL
+) TABLESPACE &&tableSpaceName;
+
+

@@ -1,0 +1,4 @@
+Note that the COM components mdlbox.ocx and isislib.dll are Licensed to CambridgeSoft by MDL via CambridgeSoft being in the MDL partner program.
+
+These components should not be distribued outside CambridgeSoft.  We only have four seats on this license, and the license expires at the end of 2005.
+

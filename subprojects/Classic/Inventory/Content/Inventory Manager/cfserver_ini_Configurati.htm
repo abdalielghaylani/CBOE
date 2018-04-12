@@ -1,0 +1,622 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide|INI Configuration Files" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>cfserver.ini Configuration File</title>
+        <link href="../Resources/TableStyles/_2col_table.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Adm.htm#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="INI_Configuration_Files.htm#Inventory_Manager_User_Guide_1879958712_1084761">INI Configuration Files</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">cfserver.ini Configuration File</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1084766"></a><a name="kanchor310"></a><a name="kanchor311"></a>cfserver.ini Configuration File</h3>
+        <p class="Body">The cfserver.ini file is appears at the following location: </p>
+        <p class="Body">&lt;webroot&gt;/ChemOffice/cheminv/config </p>
+        <p class="Body">This file defines parameters that allow Inventory Enterprise to find necessary information and how to react in certain situations. When editing fields in this file, it is important to be sure what is going to change because many of these settings are necessary for the application to function properly.</p>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is the responsibility of a site's administrator to propagate any changes made to ChemBioOffice Enterprise application files to future versions of the application. New versions of the ChemBioOffice Enterprise use default configurations.</div>
+        <p class="Body">The cfserver.ini file consists of the following sections:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">GLOBALS</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">ChemInv</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">CS_SECURITY</td>
+            </tr>
+        </table>
+        <h4 class="Heading4"><a name="kanchor312"></a><a name="kanchor313"></a>GLOBALS</h4>
+        <h5 class="Heading5"><a name="kanchor314"></a>ADMIN_REQUIRED</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ADMIN_REQUIRED = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Set to True(1) flags the system indicating that user names and passwords are required. Editing this value will cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor315"></a>ALLOW_HITLIST_MANAGEMENT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_HITLIST_MANAGEMENT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines if hitlist management can be accessed from the application. Hitlist management allows users to add, subtract, create the intersection, and union of hitlists. 1 indicates hitlist management is allowed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor316"></a>ALLOW_HITLIST_MNGMNT_FG_SELECTOR</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_HITLIST_MNGMNT_FG_SELECTOR = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines if form group hitlist management can be accessed from the application. Form group selector allows users to view restore hitlists. 1 indicates form group selector is allowed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1 </p>
+        <h5 class="Heading5"><a name="kanchor317"></a>ALLOW_PUBLIC_HITLISTS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_PUBLIC_HITLISTS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines if saved hitlists can be made public. Making a hitlist public allows all other users of the application to access that hitlist. 1 indicates hitlists can be made public. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1 </p>
+        <h5 class="Heading5"><a name="kanchor318"></a>ALLOW_PUBLIC_QUERIES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_PUBLIC_QUERIES = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines if saved queries can be made public. Making a query public allows all other users of the application to access that query.1 indicates queries can be made public.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1 </p>
+        <h5 class="Heading5"><a name="kanchor319"></a>ALLOW_QUERY_MANAGEMENT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_QUERY_MANAGEMENT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines if query management can be accessed from the application. Query management allows users save and recover queries. 1 indicates query management is allowed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor320"></a>APP_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> APP_NAME = cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the application displayed in some parts of the user interface.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span>
+        </p>
+        <table class="TableStyle__2col_table" style="width: 276px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <caption valign="top" style="padding-bottom: 4pt;">
+                <p class="GraphicAnchor">&#160;</p>
+            </caption>
+            <col width="170px" />
+            <col width="106px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Application Name</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">APP_Name Value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Sample</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">sample</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Registration System</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chem_reg</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Inventory Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">cheminv</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Mixture Registration</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">BioSAR Browser</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">biosar_browser</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">ChemACX</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chemacx</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="Body">Documentation Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="Heading5"><a name="kanchor321"></a>APP_TYPE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> APP_TYPE = ChemInv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Tells the system that this is a Inventory application. </p>
+        <p class="Body">Default: ChemInv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor322"></a>CDX_CACHING</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CDX_CACHING = false</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> If set to True, the application will cache cdx files. Registration Enterprise overrides this value internally, so changing the setting will not make a difference in Registration Enterprise.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> false</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> true | false</p>
+        <h5 class="Heading5"><a name="kanchor323"></a>DATE_FORMAT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DATE_FORMAT = 8</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which international date format to use. The choices are:</p>
+        <p class="Body">8 - US - mm/dd/yyyy </p>
+        <p class="Body">9 - Europe - dd/mm/yyyy </p>
+        <p class="Body">10 - Japanese - yyyy/mm/dd</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 8 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 8 | 9 | 10</p>
+        <h5 class="Heading5"><a name="kanchor324"></a>DB_NAMES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DB_NAMES = cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the directory containing the forms necessary for proper operation of the application. Editing this value may cause unpredictable behavior. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Usually the name of the application. If you would like to enter a list of directories, separate the list with a comma.<span class="_Override" style="font-size: 12pt;line-height: 14pt;"></span></p>
+        <table class="TableStyle__2col_table" style="width: 276px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="170px" />
+            <col width="106px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Application Name</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">APP_Name Value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Sample</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">sample</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Registration System</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chem_reg</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Inventory Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">cheminv</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Mixture Registration</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">BioSAR Browser</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">biosar_browser</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">ChemACX</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chemacx</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="Body">Documentation Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="Heading5"><a name="kanchor325"></a>DIRECT_KEYWORD_SUPPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DIRECT_KEYWORD_SUPPORT = true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Takes care of problems in the back end associated with different versions of Oracle. Should be set to false or NONE when the Oracle instance is found on a UNIX machine, or with Oracle version 7. Otherwise, set to true.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> true</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> true | false | NONE</p>
+        <h5 class="Heading5"><a name="kanchor326"></a>ENCRYPT_PWD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ENCRYPT_PWD = False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> When this setting is turned on for the first time, the user names and passwords (listed under the ENCRYPT_PWD_KEYS in this file should be entered in plain text ahead of time. When the application is accessed for the first time the passwords will be encrypted and inserted into this INI file as encrypted text. If a password is changed, change all passwords in this INI file back to plain text and restart the application. The passwords will again be encrypted and stored.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> true | false</p>
+        <h5 class="Heading5"><a name="kanchor327"></a>ENCRYPT_PWD_KEYS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ENCRYPT_PWD = ChemInv_PWD</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of password settings to be encrypted.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CHEMINV_PWD, INVREG_PWD, INVACX_PWD, SEC_PWD</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The names of password settings in the cfserver.ini file to be encrypted.</p>
+        <h5 class="Heading5"><a name="kanchor328"></a>ENCRYPT_PWD_SECTION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ENCRYPT_PWD = ChemInv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting identifies the heading name that the password settings are found under in the cfserver.ini file.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ChemInv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The name of a heading in the cfserver.ini file.</p>
+        <h5 class="Heading5"><a name="kanchor329"></a>EXPIRE_HITLIST_HISTORY_DAYS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> EXPIRE_HITLIST_HISTORY_DAYS = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The value of this setting is in days. After the number of days specified, hitlist history entries are removed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> An integer indicating a number of days.</p>
+        <h5 class="Heading5"><a name="kanchor330"></a>EXPIRE_QUERY_HISTORY_DAYS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> EXPIRE_QUERY_HISTORY_DAYS = 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The value of this setting is in days. After the number of days specified, queries in the history are removed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> An integer indicating a number of days.</p>
+        <h5 class="Heading5"><a name="kanchor331"></a>GLOBAL_SEARCH_DBS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> GLOBAL_SEARCH_DBS = cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> An internal setting required for global searching.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The name of an application, or list of applications separated by a comma.</p>
+        <table class="TableStyle__2col_table" style="width: 276px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="170px" />
+            <col width="106px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Application Name</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">APP_Name Value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Sample</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">sample</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Registration System</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chem_reg</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Inventory Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">cheminv</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Mixture Registration</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">BioSAR Browser</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">biosar_browser</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">ChemACX</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chemacx</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="Body">Documentation Manager</p>
+                        <p class="Body">&#160;</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="Heading5"><a name="kanchor332"></a>GLOBAL_SEARCH_BASE_DB</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> GLOBAL_SEARCH_BASE_DB = cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> An internal setting required for global searching. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The name of an application.<span class="_Override" style="font-size: 12pt;line-height: 14pt;"></span></p>
+        <table class="TableStyle__2col_table" style="width: 276px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="170px" />
+            <col width="106px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Application Name</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">APP_Name Value</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Sample</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">sample</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Registration System</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chem_reg</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Inventory Manager</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">cheminv</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Mixture Registration</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">BioSAR Browser</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">biosar_browser</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">ChemACX</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">chemacx</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="Body">Documentation Manager</p>
+                        <p class="Body">&#160;</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColEnd">
+                        <p class="TableText">&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="Heading5"><a name="kanchor333"></a>MAIN_WINDOW</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> MAIN_WINDOW = top.frames["main"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The frame name for the central frame used internally by javascript. Editing this value may cause unpredictable behavior</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> top.frames["main"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited</p>
+        <h5 class="Heading5"><a name="kanchor334"></a>NAV_BAR_WINDOW</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> NAV_BAR_WINDOW = top.frames["navbar"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The frame name for the top most frame used internally by javascript. Editing this value may cause unpredictable behavior</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> top.frames["navbar"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited</p>
+        <h5 class="Heading5"><a name="kanchor335"></a>NAV_BUTTONS_GIF_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> NAV_BUTTONS_GIF_PATH = /cfserverasp/source/graphics/navbuttons/</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Default graphics path</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> /cfserverasp/source/graphics/navbuttons/</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Absolute or relative path to a directory containing images.</p>
+        <h5 class="Heading5"><a name="kanchor336"></a>PARTITION_THRESH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PARTITION_THRESH = 5000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> An internal setting required for proper functionality</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 5000 </p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Options:</p>
+        <h5 class="Heading5"><a name="kanchor337"></a>SEARCH_PREF_DEFAULTS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SEARCH_PREF_DEFAULTS = S1:true,S2:true,S3:true,S4:true,S5:true,S6:90,S7:false,S8:true,S9:true,S10:true,S11:false,S12:false,S13:false </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the default search preferences. The following maps the search preference name to its ID in this setting:</p>
+        <p class="Body">MATCH_TET_STEREO = PrefsS1 </p>
+        <p class="Body">MATCH_TET_DB = PrefsS2 </p>
+        <p class="Body">HIT_ANY_CHARGE_CARBON = PrefsS3 </p>
+        <p class="Body">RXN_HIT_RXN_CENTER = PrefsS4 </p>
+        <p class="Body">HIT_ANY_CHARGE_HETERO = PrefsS5 </p>
+        <p class="Body">SIM_SEARCH_THRESHOLD = PrefsS6 </p>
+        <p class="Body">FULL_STRUCTURE_SIMILARITY = PrefsS7 </p>
+        <p class="Body">EXTRA_FRAGS_OK = PrefsS8 </p>
+        <p class="Body">EXTRA_FRAGS_OK_IF_RXN = PrefsS9 </p>
+        <p class="Body">FRAGS_CAN_OVERLAP = PrefsS10 </p>
+        <p class="Body">IDENTITY = PrefsS11 </p>
+        <p class="Body">RELATIVE_TET_STEREO = PrefsS12 </p>
+        <p class="Body">ABSOLUTE_HITS_REL = PrefsS13 </p>
+        <p class="Body">&#160;</p>
+        <p class="Body">Therefore S1:true means MATCH_TET_STEREO is true, and etc. </p>
+        <p class="Body">&#160;</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> S1:true,S2:true,S3:true,S4:true,S5:true,S6:90,S7:false,S8:true,S9:true,S10:true,S11:false,S12:false,S13:false</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list of preference ID followed by a colon and either true or false.</p>
+        <h5 class="Heading5"><a name="kanchor338"></a>SELECTED_GLOBAL_SEARCH_DBS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SELECTED_GLOBAL_SEARCH_DBS = cheminv, invacx, invreg</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Globally searches database server for different applications.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv, invacx, invreg</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> cheminv, invacx, invreg</p>
+        <h5 class="Heading5"><a name="kanchor339"></a>TEMP_DIR_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> TEMP_DIR_NAME = CFWTEMP</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the virtual directory which stores temporary files. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CFWTEMP</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> This can be changed to whatever you would like the name of the temp directory to be. The path to the directory is found in TEMP_DIR_PATH </p>
+        <h5 class="Heading5"><a name="kanchor340"></a>TEMP_DIR_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> TEMP_DIR_PATH=C:\Inetpub\wwwroot\ChemOffice\cfwtemp</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The path to the directory where temporary files are stored. If the installation is not made to the C drive, this must be edited.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> C:\Inetpub\wwwroot\ChemOffice\cfwtemp</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> This can be changed to wherever you would like the temp directory to exist. The name of the directory is found in TEMP_DIR_NAME</p>
+        <h5 class="Heading5"><a name="kanchor341"></a>USER_INFO_WINDOW</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USER_INFO_WINDOW = top.frames["userinfo"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The frame name for the left most frame used internally by javascript. Editing this value may cause unpredictable behavior.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> top.frames["userinfo"]</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited</p>
+        <h5 class="Heading5"><a name="kanchor342"></a>USERWINDOWBACKGROUND</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USERWINDOWBACKGROUND = "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Determines the background gif to be used in the left most frame of the window. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "#FFFFFF"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A hexadecimal number representing a color or path to a GIF.</p>
+        <h4 class="Heading4"><a name="kanchor343"></a><a name="kanchor344"></a>ChemInv</h4>
+        <h5 class="Heading5"><a name="kanchor345"></a>CHEMINV_USERNAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CHEMINV_USERNAME = CHEMINVDB2 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The user name that can be used for accessing the cheminvdb2 schema.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CHEMINVDB2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A user name for CHEMINVDB2 database with correct permissions.</p>
+        <h5 class="Heading5"><a name="kanchor346"></a>CHEMINV_PWD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CHEMINV_PWD = ORACLE </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The password that can be used for accessing the cheminvdb2 schema.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A password for CHEMINVDB2 database with correct permissions.</p>
+        <h5 class="Heading5"><a name="kanchor347"></a>INVACX_PWD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> INVACX_PWD = Admin </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The password that can be used for accessing the ChemACX database. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Admin</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A password for the ChemACX database with correct permissions.</p>
+        <h5 class="Heading5"><a name="kanchor348"></a>INVACX_USERNAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> INVACX_USERNAME = Admin </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The user name that can be used for accessing the ChemACX database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Admin </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A user name for the ChemACX database with correct permissions.</p>
+        <h5 class="Heading5"><a name="kanchor349"></a>INVREG_PWD </h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> INVREG_PWD = ORACLE </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The password that can be used for accessing the Registration Enterprise schema.   </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ORACLE   </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A password for the Registration enterprise schema with correct permissions. </p>
+        <h5 class="Heading5"><a name="kanchor350"></a>INVREG_USERNAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> INVREG_USERNAME = REGDB</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The user name that can be used for accessing the Registration Enterprise schema.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> REGDB</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A user name for the Registration Enterprise schema with correct permissions.</p>
+        <h5 class="Heading5"><a name="kanchor351"></a>ORA_SERVICENAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ORA_SERVICENAME = SERVICE1 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The Oracle service name where the regdb schema resides. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Your Oracle service name.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The name of the Oracle service, such as SERVICE1.</p>
+        <h5 class="Heading5"><a name="kanchor352"></a>ORA_SQLLDRPATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ORA_SQLLDRPATH = sqlldr.exe</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The path to the oracle sqlldr executable. This may need to be set to a full path name. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> sqlldr.exe</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Relative or absolute path to the sqlldr executable.</p>
+        <h5 class="Heading5"><a name="kanchor353"></a>ORASCHEMANAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ORASCHEMANAME = CHEMINVDB2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the Oracle schema for Inventory Manager.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CHEMINVDB2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Text - the name of a valid schema</p>
+        <h5 class="Heading5"><a name="kanchor354"></a>PRIV_TABLE_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PRIV_TABLE_NAME = Cheminv_Privileges </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The table name in the cs_security schema that stores the flags for the privileges that toggle buttons in the user interface.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Cheminv_Privileges</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Table name</p>
+        <h5 class="Heading5"><a name="kanchor355"></a>SEC_PWD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SEC_PWD = ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The CS_Security schema password.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A password for the CS_Security schema.</p>
+        <h5 class="Heading5"><a name="kanchor356"></a>SEC_USERNAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SEC_USERNAME = CS_SECURITY</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The CS_Security schema owner.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CS_SECURITY</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A user name for the CS_Security schema.</p>
+        <h5 class="Heading5"><a name="kanchor357"></a>TABLES_WITH_BASE64_CDX</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> TABLES_WITH_BASE64_CDX = STRUCTURES,TEMPORARY_STRUCTURES</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting tells the registration system what tables Base64_CDX fields that must be updated when a structure is edited. Editing this value will result in unpredictable behavior. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> STRUCTURES,TEMPORARY_STRUCTURES</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h4 class="Heading4"><a name="kanchor358"></a><a name="kanchor359"></a>CS_SECURITY</h4>
+        <h5 class="Heading5"><a name="kanchor360"></a>ALLOW_COOKIE_LOGIN</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_COOKIE_LOGIN = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited. </p>
+        <h5 class="Heading5"><a name="kanchor361"></a>COOKIE_EXPIRES_MINUTES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> COOKIE_EXPIRES_MINUTES = 25</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature. Indicates how long a user should stay logged in after a period of inactivity (in minutes).</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> = 25</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Integer in minutes</p>
+        <p class="Body">&#160;</p>
+        <h5 class="Heading5"><a name="kanchor362"></a>CS_SECURITY_UDL_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CS_SECURITY_UDL_PATH = "C:\Inetpub\wwwroot\chemoffice\cs_security\config\cs_security.udl"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature. Value is the path to the cs_security udl file.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> C:\Inetpub\wwwroot\chemoffice\cs_security\config\cs_security.udl</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Relative or absolute path to the cs_security.udl file.</p>
+        <h5 class="Heading5"><a name="kanchor363"></a>MINIMUM_REQUIRED_PRIVILEGE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> MINIMUM_REQUIRED_PRIVILEGE = "INV_BROWSE_ALL"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> INV_BROWSE_ALL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor364"></a>PRIVILEGE_TABLE_LIST</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PRIVILEGE_TABLE_LIST = "CS_SECURITY_PRIVILEGES, CHEM_REG_PRIVILEGES"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> CHEMINV_PRIVILEGES, CS_SECURITY_PRIVILEGES, CHEM_REG_PRIVILEGES, DOCMANAGER_PRIVILEGES</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor365"></a>STARTUP_LOCATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> STARTUP_LOCATION = "/cs_security/home.asp "</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "/cs_security/home.asp" </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor366"></a>USE_CS_SECURITY_APP</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CS_SECURITY_APP = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal setting for disabling/enabling the global login feature.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1 </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

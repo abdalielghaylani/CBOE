@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide|INI Configuration Files" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>invconfig.ini Configuration File</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Adm.htm#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="INI_Configuration_Files.htm#Inventory_Manager_User_Guide_1879958712_1084761">INI Configuration Files</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">invconfig.ini Configuration File</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1085323"></a><a name="kanchor401"></a><a name="kanchor402"></a>invconfig.ini Configuration File</h3>
+        <p class="Body">The Invconfig.ini file is found in the following location: &lt;webroot&gt;/ChemOffice/cheminv/config. This file defines many parameters that allow Inventory Enterprise to function properly, including the format of custom fields. Most of this file should not be edited since editing this file in the wrong place could cause major problems when running the Inventory Enterprise application.</p>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is the responsibility of a site's administrator to propagate any changes made to ChemBioOffice Enterprise application files to future versions of the application. New versions of the ChemBioOffice Enterprise use default configurations.</div>
+        <h4 class="Heading4"><a name="kanchor403"></a><a name="kanchor404"></a>APPLICATION</h4>
+        <h5 class="Heading5"><a name="kanchor405"></a>INV_SERVER_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> INV_SERVER_NAME = server1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what server the inventory (Web service) application resides on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> no default</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid server name on the network.</p>
+        <h4 class="Heading4"><a name="kanchor406"></a><a name="kanchor407"></a>CHEMREG</h4>
+        <h5 class="Heading5"><a name="kanchor408"></a>REG_SERVER_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> REG_SERVER_NAME = server1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what server the Registration schema resides on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> no default</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid server name on the network.</p>
+        <h5 class="Heading5"><a name="kanchor409"></a>USE_NOTEBOOK_TABLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_NOTEBOOK_TABLE = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the notebook table is used in the Registration System. This MUST match the Registration Enterprise setting.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor410"></a>REG_CONTAINERS_ONLY</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> REG_CONTAINERS_ONLY = false</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the status of the container of Registration Enterprise.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> false</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> false | true </p>
+        <h4 class="Heading4"><a name="kanchor411"></a><a name="kanchor412"></a>DOCMANAGER</h4>
+        <h5 class="Heading5"><a name="kanchor413"></a>DOCMANAGER_SERVER_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DOCMANAGER_SERVER_NAME = server1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting is equal to the server name where Document Manager is installed. This is necessary for successful integration with Document Manger. Set this value to NULL if DOcument Manager integration is not desired. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> NULL </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> The name of a valid server name (or IP address) or set to NULL </p>
+        <h5 class="Heading5"><a name="kanchor414"></a>SHOW_DOCMANAGER_LINK</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_DOCMANAGER_LINK = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting turns the Doc Manager links on in the Inventory Manager interface (a Manage Documents link under the Summary and Substance Container Tabs). This is necessary for Document Manager integration. Set to 0 if Document Manager integration is not desired.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor415"></a><a name="kanchor416"></a>CHEMACX</h4>
+        <h5 class="Heading5"><a name="kanchor417"></a>ACX_SERVER_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ACX_SERVER_NAME = server1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what server the ChemACX database resides on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid server name on the network</p>
+        <h5 class="Heading5"><a name="kanchor418"></a>IMPORT_CONTAINER_PICKLIST_1_FIELD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_1_FIELD = Field_1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of a field which should be added to the Send Hits to Inventory Manager from ChemACX dialog box (default configuration of dialog box is pictured below). Adding the name of a field here makes an additional field present in the dialog box allowing the user to populate that field during the import. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_TITLE and IMPORT_CONTAINER_PICKLIST_1_SQL </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> “”</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid Field name</p>
+        <h5 class="Heading5"><a name="kanchor419"></a>IMPORT_CONTAINER_PICKLIST_1_SQL</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_1_SQL= "SELECT PickList_Display AS Value, substr(PickList_Display, 1 , 20) AS DisplayText FROM cheminvdb2.inv_picklists WHERE picklist_domain = 1 ORDER BY lower(DisplayText) ASC"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The SQL used to populate the field (in the interface) for the of a field in IMPORT_CONTAINER_PICKLIST_1_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_FIELD and IMPORT_CONTAINER_PICKLIST_1_TITLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid SQL statement.</p>
+        <h5 class="Heading5"><a name="kanchor420"></a>IMPORT_CONTAINER_PICKLIST_1_TITLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_1_TITLE = Category</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The label (in the interface) for the of a field in IMPORT_CONTAINER_PICKLIST_1_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_1_FIELD and IMPORT_CONTAINER_PICKLIST_1_SQL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any text</p>
+        <h5 class="Heading5"><a name="kanchor421"></a>IMPORT_CONTAINER_PICKLIST_2_FIELD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_2_FIELD = Field_2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of a field which should be added to the Send Hits to Inventory Manager from ChemACX dialog box (default configuration of dialog box is pictured below). Adding the name of a field here makes an additional field present in the dialog box allowing the user to populate that field during the import. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_TITLE and IMPORT_CONTAINER_PICKLIST_2_SQL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid Field name</p>
+        <h5 class="Heading5"><a name="kanchor422"></a>IMPORT_CONTAINER_PICKLIST_2_SQL</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_2_SQL = "SELECT PickList_Display AS Value, substr(PickList_Display, 1 , 20) AS DisplayText FROM cheminvdb2.inv_picklists WHERE picklist_domain = 1 ORDER BY lower(DisplayText) ASC"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The SQL used to populate the field (in the interface) for the of a field in IMPORT_CONTAINER_PICKLIST_2_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_FIELD and IMPORT_CONTAINER_PICKLIST_2_TITLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid SQL statement</p>
+        <h5 class="Heading5"><a name="kanchor423"></a>IMPORT_CONTAINER_PICKLIST_2_TITLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> IMPORT_CONTAINER_PICKLIST_1_TITLE = Category</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The label (in the interface) for the of a field in IMPORT_CONTAINER_PICKLIST_2_FIELD. This setting is linked to IMPORT_CONTAINER_PICKLIST_2_FIELD and IMPORT_CONTAINER_PICKLIST_2_SQL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any text</p>
+        <h5 class="Heading5"><a name="kanchor424"></a>MSDX_LOOK_AHEAD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> MSDX_LOOK_AHEAD = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the MSDX lookup link should appear greyed out if there is no MSDX data available. A value of 1 makes the application look ahead to see if data exists and greys out the link if it doesn't. This can slow down the loading process in some cases.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor425"></a>SHOW_ACX_LOOKUP_LINK</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_ACX_LOOKUP_LINK = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the ACX lookup link should be visible to users. A value of 1 makes the link visible.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor426"></a>SHOW_MSDX_LOOKUP_LINK</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_MSDX_LOOKUP_LINK = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the MSDX lookup link should be visible to users. A value of 1 makes the link visible.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor427"></a>LOG_SEARCHES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> LOG_SEARCHES = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting is an internal setting which should not be changed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> n/a</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> n/a</p>
+        <h5 class="Heading5"><a name="kanchor428"></a>SEARCH_LOG_DB_CONNSTR</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SEARCH_LOG_DB_CONNSTR = ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This setting is an internal setting which should not be changed.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> n/a</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> n/a </p>
+        <h4 class="Heading4"><a name="kanchor429"></a><a name="kanchor430"></a>SEARCH</h4>
+        <h5 class="Heading5"><a name="kanchor431"></a>NP_SEARCH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> NP_SEARCH = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if a no plugin search is available. After switching this flag, the no plugin search must also be implemented. If it isn't implemented, changing this flag has no effect.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor432"></a>SPECIAL_LOCATIONS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SPECIAL_LOCATIONS = "1,2,3"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which locations will appear in the "Special Locations" window. The Special Locations window lists possible special locations. These locations are not recognized as special until a user selects the appropriate check box in the application.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "1,2,3"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of valid location IDs</p>
+        <h5 class="Heading5"><a name="kanchor433"></a>DEFAULT_SEARCH_DATABASE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SEARCH_DATABASE="invreg"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the default database to be searched.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> invreg|invacx|cheminv</p>
+        <h5 class="Heading5"><a name="kanchor434"></a>DEFAULT_SEARCH_TAB</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SEARCH_TAB = "Simple"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the type of search is available for the user.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Simple</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Simple|Advanced|Substructure|Batches|Global|Plate</p>
+        <h5 class="Heading5"><a name="kanchor435"></a>DEFAULT_EXCLUDE_SPECIAL_LOCATIONS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_EXCLUDE_SPECIAL_LOCATIONS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which locations to be excluded while performing the search. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor436"></a>DEFAULT_SEARCH_SUBLOCATIONS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEAFULT_SEARCH_SUBLOCATIONS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates that sublocations will be included in performing the search.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor437"></a>DISPLAY_SUBSTANCE_RESULT_AS_LIST</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_SUBSTANCE_RESULT_AS_LIST= "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the substance result in a list form.False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_STRUCTURE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_STRUCTURE= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the structures of the matching compounds in a search result. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_SUBSTANCE_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_SUBSTANCE_NAME= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the substance names in a search result. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_COMPOUND_ID</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_COMPOUND_ID= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the compound ids of all the matching compounds in a search result. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_CAS_NUMBER</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_CAS_NUMBER= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the CAS number of all the matching compounds in a search result. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_NUM_CONTAINERS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_NUM_CONTAINERS= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the number of searchable containers for a search. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">DISPLAY_RECORD_NUM</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_RECORD_NUM= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the number of records in a search result. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h4 class="Heading4"><a name="kanchor438"></a><a name="kanchor439"></a>CONTAINERS</h4>
+        <h5 class="Heading5"><a name="kanchor440"></a>DEFAULT_CONTAINER_STATUS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_STATUS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what container status should appear as the default in the New Container dialog. The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> <![CDATA[ ]]></p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid container status ID.</p>
+        <h5 class="Heading5"><a name="kanchor441"></a>DEFAULT_LOCATION_OVERRIDE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_LOCATION_OVERRIDE = INVContainerOrderDeliveryLoc </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the default location for the containers created through the New Container link in the ChemBioOffice Enterprise homepage. This field should be set to any available user property specifying a valid location ID, such as “INVContainerOrderDeliveryLoc” or “INVDefLoc”, which correspond to the user’s default container order delivery location and the user’s default home location, respectively</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> INVContainerOrderDeliveryLoc</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid location ID, such as INVContainerOrderDeliveryLoc and INVDefLoc.</p>
+        <h5 class="Heading5">DISPLAY_EHS_DATA</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_EHS_DATA= "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Shows the EH&amp;S tab in the Container Details frame. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor442"></a>EXPIRATION_DATE_INCREMENT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> EXPIRATION_DATE_INCREMENT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the default expiration date increment (in years). For example, a value of 1 would default the expiration date of a new container to 1 year from the current date.</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Default:</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A positive number</p>
+        <h5 class="Heading5"><a name="kanchor443"></a>DISPLAY_CREATED_CONTAINERS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_CREATED_CONTAINERS = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Display summary of the new created containers. False turns off the feature; true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor444"></a>WARN_FOR_NO_COMPOUND</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> WARN_FOR_NO_COMPOUND= 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Displays a warning that no compound has been created for new container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0|1</p>
+        <h5 class="Heading5"><a name="kanchor445"></a>CUSTOM_FIELDS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CUSTOM_FIELDS = FIELD_1:Custom Field 1;0,FIELD_2:Custom Field 2;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all relevant forms. Names of field are in the following format:</p>
+        <p class="Body">&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</p>
+        <p class="Body">where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h4 class="Heading4"><a name="kanchor446"></a><a name="kanchor447"></a>PLATES</h4>
+        <h5 class="Heading5"><a name="kanchor448"></a>ENABLE_PLATE_MANAGEMENT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ENABLE_PLATE_MANAGEMENT = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Enables plate management if set to True.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor449"></a>PLATE_DEFAULT_VOL_UNIT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PLATE_DEFAULT_VOL_UNIT = 4</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what the default volumetric units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 4</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid Unit ID</p>
+        <h5 class="Heading5"><a name="kanchor450"></a>PLATE_DEFAULT_CONC_UNIT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PLATE_DEFAULT_CONC_UNIT = 91</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what the default concentration units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 91</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid Unit ID</p>
+        <h5 class="Heading5"><a name="kanchor451"></a>PLATE_DEFAULT_MASS_UNIT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PLATE_DEFAULT_MASS_UNIT = 8</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what the default mass units should be in the creation of a new plate. The value must be equal to a valid unit ID from the INV_UNITS table.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 8</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid Unit ID</p>
+        <h5 class="Heading5"><a name="kanchor452"></a>CUSTOM_PLATE_FIELDS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CUSTOM_PLATE_FIELDS = FIELD_1:Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field 2;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all plate details forms. Names of fields are in the following format:</p>
+        <p class="Body">&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</p>
+        <p class="Body">where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h5 class="Heading5"><a name="kanchor453"></a>CUSTOM_WELL_FIELDS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CUSTOM_WELL_FIELDS = FIELD_1:Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field2;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of the optional customizable fields that are in use. If the field appears in this list, it will appear on all well details forms. Names of fields are in the following format:</p>
+        <p class="Body">&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</p>
+        <p class="Body">where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h4 class="Heading4"><a name="kanchor454"></a><a name="kanchor455"></a>SUBSTANCES</h4>
+        <h5 class="Heading5"><a name="kanchor456"></a>GET_CARTRIDGE_MW_FORMULA</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> GET_CARTRIDGE_MW_FORMULA = False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates how the molecular weight and molecular formula are searched.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True|False</p>
+        <h5 class="Heading5"><a name="kanchor457"></a>ALT_IDS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALT_IDS = inv_compounds.ALT_ID_1:Substance ID 1;1-U,inv_compounds.ALT_ID_2:Substance ID 2;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of the alternate compound IDs. Alt IDs are in the following format:</p>
+        <p class="Body">&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</p>
+        <p class="Body">where Field_Name is the name of the alt ID field (as shown in the INI file), Field Label is how the alt id should show up in the interface, and the last parameter indicates if the field is required (1) or not (0). Add a -U to the end of an alt ID's definition to make the ID a unique identifier.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> inv_compounds.ALT_ID_1:Substance ID 1;1-U,inv_compounds.ALT_ID_2:Substance ID 2;0,inv_compounds.ALT_ID_3:Substance ID 3;0,inv_compounds.ALT_ID_4:Substance ID 4;0,inv_compounds.ALT_ID_5:Substance ID 5;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h4 class="Heading4"><a name="kanchor458"></a><a name="kanchor459"></a>BARCODES</h4>
+        <h5 class="Heading5"><a name="kanchor460"></a>REQUIRE_BARCODE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> REQUIRE_BARCODE = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the container barcode should be required in the New Container dialog. If set to 1, the container barcode will be required.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h4 class="Heading4"><a name="kanchor461"></a><a name="kanchor462"></a>RETIRE</h4>
+        <h5 class="Heading5"><a name="kanchor463"></a>DEFAULT_RETIRED_LOCATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_RETIRED_LOCATION = 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates where retired containers are put by default.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any location ID.</p>
+        <h5 class="Heading5"><a name="kanchor464"></a>DEFAULT_RETIRED_STATUS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_RETIRED_STATUS = 6</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what status is given to retired containers by default.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 6</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid status ID.</p>
+        <h5 class="Heading5"><a name="kanchor465"></a>PLATE_DEFAULT_RETIRED_LOCATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PLATE_DEFAULT_RETIRED_LOCATION = 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The location ID of the location where retired containers should be placed by default.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Location ID</p>
+        <h5 class="Heading5"><a name="kanchor466"></a>PLATE_DEFAULT_RETIRED_STATUS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PLATE_DEFAULT_RETIRED_STATUS = 6</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The status ID of the status which should be assigned to retired containers by default.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 6</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Status ID </p>
+        <h4 class="Heading4"><a name="kanchor467"></a><a name="kanchor468"></a>RECTIFICATION</h4>
+        <h5 class="Heading5"><a name="kanchor469"></a>DISABLE_CHECKBOXES_DURING_RECTIFICATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISABLE_CHECKBOXES_DURING_RECTIFICATION = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if, while rectifying a location, check boxes should be available to manually check off containers listed (instead of having to scan in barcodes). True indicates no check boxes are available, False indicates check boxes are available.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h4 class="Heading4"><a name="kanchor470"></a><a name="kanchor471"></a>SECURITY</h4>
+        <h5 class="Heading5"><a name="kanchor472"></a>PERSIST_AUTHENTICATION_COOKIES</h5>
+        <h4 class="Heading4"><a name="kanchor473"></a><a name="kanchor474"></a>CHECKIN_CHECKOUT</h4>
+        <h5 class="Heading5"><a name="kanchor475"></a>SHOW_CHECKIN_DETAILS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_CHECKIN_DETAILS = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the fields defined in the CUSTOM_CHECKIN_DETAILS setting should be displayed in the Check In dialog.</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Default:</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor476"></a>CUSTOM_CHECKIN_FIELDS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CUSTOM_CHECKIN_FIELDS = FIELD_1:Custom Checkin Field 1;0,FIELD_2:Custom Checkin Field 2;0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of the optional customizable fields that are in use. If the field appears in this list, it will appear on the container checkin form. Names of fields are in the following format:</p>
+        <p class="Body">&lt;Field_Name&gt;:&lt;Field_Label&gt;;&lt;0|1&gt;</p>
+        <p class="Body">where Field_Name is the name of the configurable field (as shown in the INI file), Field Label is how the field should be labeled in the interface, and the last parameter indicates if the field is required (1) or not (0). NOTE: Putting spaces in field names may make the field display in a less then optimal way.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h4 class="Heading4"><a name="kanchor477"></a><a name="kanchor478"></a>REQUESTS</h4>
+        <h5 class="Heading5"><a name="kanchor479"></a>ALLOW_REQUESTS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_REQUESTS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if users will be able to use the request feature of the software. False turns off the request feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5">BYPASS_REQUEST_APPROVAL</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> BYPASS_REQUEST_APPROVAL = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates whether container requests will go through the approval workflow. When the value is set to False, the container request starts with New status and it needs to be approved. When the value is set to True, the container request starts with Approved status and it does not need to be approved. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor480"></a>SHOW_REQUEST_SAMPLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_REQUEST_SAMPLE = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the Request Sample feature should be turned on. The Request Sample feature lets you request part of a container or batch of containers as opposed to the Request Container feature in which you request the whole container. </p>
+        <p class="Body">In addition to the Request Sample feature, this setting also enables the Manage Sample Requests and Manage Orders features, if set to 1.</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Default:</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span>0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor481"></a>RETIRE_FULFILLED_CONTAINERS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> RETIRE_FULFILLED_CONTAINERS="True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates that containers whose requests are fulfilled gets retired.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True|False</p>
+        <h5 class="Heading5"><a name="kanchor482"></a>STATUS_REQUESTED_SAMPLES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SAMPLE_UOC="26=mg/ml"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Sets a default unit of concentration for a new sample.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> None.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid unit in which the concentration of the sample can be measured.</p>
+        <h5 class="Heading5"><a name="kanchor483"></a><a name="kanchor484"></a>SHOW_CREATE_SAMPLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_CREATE_SAMPLE="True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates that the user can create a sample. False turns off the feature, true turns it on.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True|False</p>
+        <h4 class="Heading4"><a name="kanchor485"></a><a name="kanchor486"></a><a name="kanchor487"></a><a name="kanchor488"></a>SAMPLES</h4>
+        <h5 class="Heading5"><a name="kanchor489"></a>SHOW_SAMPLE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_SAMPLE = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Enables the sample container function is set to True.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor490"></a>DEFAULT_SAMPLE_UOM</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SAMPLE_UOM="1=ml"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Sets a default unit of measurement for a new sample.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> None.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid unit in which the quantity of the sample can be measured. </p>
+        <h5 class="Heading5"><a name="kanchor491"></a>DEFAULT_SAMPLE_UOC</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SAMPLE_UOC="26=mg/ml"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Sets a default unit of concentration for a new sample.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> None.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid unit in which the concentration of the sample can be measured.</p>
+        <h5 class="Heading5"><a name="kanchor492"></a>DEFAULT_SAMPLE_CONTAINER_TYPE_ID</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SAMPLE_CONTAINER_TYPE_ID="2"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Sets default container type for a new sample.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> None.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid container type.</p>
+        <h5 class="Heading5"><a name="kanchor493"></a>DEFAULT_SAMPLE_REQUEST_CONC</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_SAMPLE_REQUEST_CONC="6=mg"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Sets a default unit of concentration for a sample that is requested from an already existing container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> None.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any valid unit in which the concentration of the sample can be measured. </p>
+        <h5 class="Heading5"><a name="kanchor494"></a>STATUS_OREDR_CONTAINERS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> STATUS_ORDER_CONTAINERS = 16</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the status of the requested containers.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 16</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Depends on the table INV_CONTAINER_STATUS</p>
+        <h5 class="Heading5"><a name="kanchor495"></a>SAMPLE_CREATE_LIMIT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SAMPLE_CREATE_LIMIT = 200</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates a limit for a maximum number of samples created.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 200</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> any positive integer</p>
+        <h4 class="Heading4"><a name="kanchor496"></a><a name="kanchor497"></a>SPLITTING</h4>
+        <h5 class="Heading5"><a name="kanchor498"></a>SHOW_SPLIT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_SPLIT = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Enables the split container function is set to True.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h4 class="Heading4"><a name="kanchor499"></a><a name="kanchor500"></a>CERTIFICATION</h4>
+        <h5 class="Heading5"><a name="kanchor501"></a>SHOW_CERTIFY</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_CERTIFY = TRUE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the Certify Container feature should be turned on. The Certify Container feature requires the INV_CERTIFY_CONTAINER privilege. In order to use this feature, the STATUS_CERTIFIED status must also be set.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> TRUE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> FALSE | TRUE</p>
+        <h5 class="Heading5"><a name="kanchor502"></a>STATUS_APPROVED</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> STATUS_APPROVED = 1001</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what state a container should be set to when approved through the Manage Approvals interface. The Manage Approvals interface is only available if SHOW_CERTIFY = 1 (the Certification workflow is turned on). The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> <![CDATA[ ]]></p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid container status ID</p>
+        <h5 class="Heading5"><a name="kanchor503"></a>STATUS_CERTIFIED</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> STATUS_CERTIFIED = 1001</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates what state a container should be set to when certified through the Certify Container feature. The Certify Container feature is only available if SHOW_CERTIFY = 1 (the Certification workflow is turned on). The value must be a valid container status ID in the INV_CONTAINER_STATUS table.</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Default:</p>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>There is no default value for STATUS_CERTIFIED. </div>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A valid container status ID</p>
+        <h4 class="Heading4"><a name="kanchor504"></a><a name="kanchor505"></a>CONTAINER_ORDERING</h4>
+        <h5 class="Heading5"><a name="kanchor506"></a>BYPASS_ORDERING_SCREENS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> BYPASS_ORDERING_SCREENS = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Displays an ordering screen while ordering the containers from ChemACX to ChemInv.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor507"></a>ALLOW_USER_TO_SET_DELIVERY_LOCATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ALLOW_USER_TO_SET_DELIVERY_LOCATION= 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates that a user can set the delivery location for the container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0|1</p>
+        <h5 class="Heading5"><a name="kanchor508"></a>DEFAULT_CONTAINER_ORDER_PROJECT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_PROJECT = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which project user wants to select by default while ordering the container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0| 1</p>
+        <h5 class="Heading5"><a name="kanchor509"></a>DEFAULT_CONTAINER_ORDER_JOB</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_JOB= 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which job user wants to select by default while ordering the container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor510"></a>DEFAULT_CONTAINER_ORDER_DELIVERY_LOCATION</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_DELIVERY_LOCATION = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates by default which location user wants to set the container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> depends on the location id.</p>
+        <h5 class="Heading5"><a name="kanchor511"></a><a name="Inventory_Manager_User_Guide_1879958712_61782"></a>DEFAULT_CONTAINER_ORDER_DUE_DAYS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_DUE_DAYS = 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the number of days into the future the due date for ordering a container should be set.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Depends on the company requirements.</p>
+        <h5 class="Heading5"><a name="kanchor512"></a>DEFAULT_CONTAINER_ORDER_STATUS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_STATUS = 3</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the status of the ordered container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> any valid container status id</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> depends on the container status id</p>
+        <h5 class="Heading5"><a name="kanchor513"></a>DEFAULT_CONTAINER_ORDER_OWNER</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_OWNER = ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates which owner user wants to set by default while ordering the container.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ""</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> depends on the user id</p>
+        <h5 class="Heading5"><a name="kanchor514"></a><a name="kanchor515"></a>DEFAULT_CONTAINER_ORDER_SIZE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_SIZE = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates the size of the ordered container</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <h5 class="Heading5"><a name="kanchor516"></a>DEFAULT_CONTAINER_ORDER_REASON</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_ORDER_REASON= 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates while ordering the container default selected reason.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> any valid reason id</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> depends on container reason id.</p>
+        <h5 class="Heading5"><a name="Inventory_Manager_User_Guide_1879958712_1099376"></a><a name="Inventory_Manager_User_Guide_1879958712_76211"></a>ORDER_WORKFLOW_OPTION</h5>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Example:</p>
+        <p class="Body">ORDER_WORKFLOW_OPTION=1</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Description:<span class="_Override"> Indicates whether or not the existing ACX&gt;Inventory workflow should be maintained. Setting the value to 2 indicates that the user needs to specify the destination location and the container details. No internal order will be created and no order workflow needs to be utilized.</span></p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 1 and 2.</p>
+        <h4 class="Heading4"><a name="kanchor517"></a><a name="kanchor518"></a>INTERFACE</h4>
+        <h5 class="Heading5"><a name="kanchor519"></a>USE_CUSTOM_BANNER_FRAME_LINKS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CUSTOM_BANNER_FRAME_LINKS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the application should look for a custom file to define the links found in the Banner Frame (top frame in search mode). True indicates a custom file is used, False indicates the standard should be used. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor520"></a>USE_CUSTOM_BROWSEBANNER_FRAME_LINKS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CUSTOM_BROWSEBANNER_FRAME_LINKS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the application should look for a custom file to define the links found in the Browse Banner Frame (top frame in browse mode). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor521"></a>USE_CUSTOM_LIST_FRAME_LINKS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CUSTOM_LIST_FRAME_LINKS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the application should look for a custom file to define the links found in the Container List Frame (middle, right hand side). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor522"></a>USE_CUSTOM_TAB_FRAME_LINKS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CUSTOM_TAB_FRAME_LINKS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the application should look for a custom file to define the links found in the Container Tab Frame (lower right hand side). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor523"></a>USE_CUSTOM_SEARCH_FORM_TABS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USE_CUSTOM_SEARCH_FORM_TABS = "False"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if the application should look for a custom file to define new search forms (therefore new search form tabs). True indicates a custom file is used, False indicates the standard should be used.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> False</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor524"></a>HIDE_OTHER_TAB</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> HIDE_OTHER_TAB = "True"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> If set to true, this entry hides the Custom Fields tab in the container details frame. The tab should probably only be set to visible (false) if there are custom fields defined.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> True</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> True | False</p>
+        <h5 class="Heading5"><a name="kanchor525"></a>OTHER_TAB_POPUP_HELP</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> OTHER_TAB_POPUP_HELP = "Custom configured fields"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The text which appears when the customer fields tab is moused over. This is only relevant if the custom fields tab is visible (HIDE_OTHER_TAB = "False").</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Custom configured fields</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Text (any string)</p>
+        <h5 class="Heading5"><a name="kanchor526"></a>OTHER_TAB_TEXT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> OTHER_TAB_TEXT = "Other"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The label on the Custom Fields Tab, if the tab is visible (HIDE_OTHER_TAB = "False").</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> Other</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Text (any string)</p>
+        <h4 class="Heading4"><a name="kanchor527"></a><a name="kanchor528"></a>REPORTS</h4>
+        <h5 class="Heading5"><a name="kanchor529"></a>DEFAULT_CONTAINER_SEARCH_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_SEARCH_REPORT = "rptContainerSearchResults1"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default search report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptContainerSearchResults1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor530"></a>DEFAULT_CONTAINER_LABEL_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_LABEL_REPORT = "rptContainerBarCodeLabels2"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default label report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptContainerBarCodeLabels2</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor531"></a>DEFAULT_CONTAINER_LOCATION_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_CONTAINER_LOCATION_REPORT = "rptLocationReport1"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default location report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptLocationReport1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor532"></a>DEFAULT_PLATE_SEARCH_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_PLATE_SEARCH_REPORT = "rptPlateSearchResults1"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default search report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptPlateSearchResults1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor533"></a>DEFAULT_PLATE_LABEL_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_PLATE_LABEL_REPORT = "rptPlateBarCodeLabels1"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default label report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptPlateBarCodeLabels1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor534"></a>DEFAULT_PLATE_LOCATION_REPORT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_PLATE_LOCATION_REPORT = "rptPlateLocationReport1"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name of the default location report in the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> rptPlateLocationReport1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Name of report in the database.</p>
+        <h5 class="Heading5"><a name="kanchor535"></a>DEFAULT_REPORT_FORMAT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DEFAULT_REPORT_FORMAT = "SNP"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The default format for the report writer. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> SNP </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> SNP | PDF (if installed) </p>
+        <h5 class="Heading5"><a name="kanchor536"></a>REPORT_DB_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> REPORT_DB_PATH = C:\Chemoffice_data\ChemInv\ChemInv_reports.mdb</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The path to the report writer Access database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> C:\Chemoffice_data\ChemInv\ChemInv_reports.mdb</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Absolute or relative path to the report writer database.</p>
+        <h5 class="Heading5"><a name="kanchor537"></a>RPT_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> RPT_PATH = "C:\Inetpub\wwwroot\ChemOffice\webserver_source\cfserverasp\RPT\"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The path to the necessary report writer files.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "C:\Inetpub\wwwroot\ChemOffice\webserver_source\cfserverasp\RPT\"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Absolute or relative path to the report writer files.</p>
+        <h5 class="Heading5"><a name="kanchor538"></a>REPORTS_HTTP_PATH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> REPORTS_HTTP_PATH = "/cfserverasp/RPT/Reports/"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The path used in a URL for the report writer.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "/cfserverasp/RPT/Reports/"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Absolute or relative path to the report writer files.</p>
+        <h4 class="Heading4"><a name="kanchor539"></a><a name="kanchor540"></a>MANAGE_TABLES</h4>
+        <h5 class="Heading5"><a name="kanchor541"></a>EDITABLE_TABLES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> EDITABLE_TABLES = inv_grid_format:Grid Format,inv_location_types:Location Types</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> A comma delimited list of tables that can be edited by the Edit Tables interface in the application. Names of tables are in the following format:</p>
+        <p class="Body">&lt;Oracle_Table&gt;:&lt;Display Name&gt;</p>
+        <p class="Body">where Oracle_Table is the name of the table in Oracle and Display Name is how the table should be labeled in the interface.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> inv_container_status:Container Status,inv_container_types:Container Types,inv_grid_format:Grid Format,inv_enumeration(eset_id_fk;3):Grid Format Types,inv_location_types:Location Types,inv_enumeration(eset_id_fk;6):Plate Corners,inv_enumeration(eset_id_fk;7):Plate Directions,inv_enumeration(eset_id_fk;4):Plate Inventory Settings,inv_enumeration(eset_id_fk;5):Plate Libraries,inv_enumeration(eset_id_fk;2):Plate Status,inv_plate_types:Plate Types,inv_reporttypes:Report Types,inv_reservation_types:Reservation Types,inv_units:Units,inv_unit_types:Unit Types,inv_enumeration(eset_id_fk;1):Well Formats </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A comma delimited list in the above format.</p>
+        <h5 class="Heading5"><a name="kanchor542"></a>SHOW_BATCH</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SHOW_BATCH = 1</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Indicates if batch view should be turned on. A batch is defined as a group of sibling containers created through the Create Sample feature. Batch view lets you view batch summary data.</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Default:</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> 0 | 1</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

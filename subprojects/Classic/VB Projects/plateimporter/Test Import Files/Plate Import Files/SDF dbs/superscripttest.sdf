@@ -1,0 +1,170 @@
+
+csChFnd70/12300210332D
+
+ 10 10  0  0  0  0  0  0  0  0999 V2000
+    6.3001    1.2124    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9001    1.2124    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2001    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8001    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1001    1.2124    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8001    2.4249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2001    2.4249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7000    1.2124    0.0000 N   0  3  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    2.4249    0.0000 O   0  5  0  0  0  0  0  0  0  0  0  0
+  2  1  1  0  0  0  0
+  3  2  1  0  0  0  0
+  4  3  2  0  0  0  0
+  5  4  1  0  0  0  0
+  6  5  2  0  0  0  0
+  7  6  1  0  0  0  0
+  7  2  2  0  0  0  0
+  9  8  2  0  0  0  0
+ 10  8  1  0  0  0  0
+  5  8  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (1)
+37
+ 
+>  <COMMIT_TYPE> (1)
+full_commit
+
+>  <REG_INTERNAL_ID> (1)
+
+>  <CPD_INTERNAL_ID> (1)
+
+>  <Notebook> (1)
+1
+
+>  <Project> (1)
+1
+
+>  <Chemical Name> (1)
+p-Nitroaniline
+
+>  <Prefix> (1)
+1
+
+>  <CAS No> (1)
+
+>  <BP> (1)
+
+>  <MP> (1)
+
+>  <Flash Point> (1)
+
+>  <Optical Rotation> (1)
+
+>  <Refractive Index> (1)
+
+>  <Structure/Stereochemistry Comment> (1)
+1
+
+>  <Creation Date> (1)
+
+>  <Salt> (1)
+1
+
+>  <BASE64_CDX> (1)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI3IDE2OjQzOjQyIDIwMDIEAhAA//87AAAAPAAN9m8AwgDDAAEJCAAAAAAAAAAAAAIJCAAAAKsAAAD/AAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAP//OwAAADwADfZvAMIAwwADgAMAAAAEgAQAAAAAAggABvtVAMMAwwACBAIABwA5BAMAAAAwBoAFAAAAAAcZAAIAAAADAGAAyAADAAIABQAgAMgAAwBOSDIAAAAABIAGAAAAAAIIAAb7VQCXAKUAOQQDAAAAMQAABIAHAAAAAAIIAA32bwCCAJYAOQQDAAAAMgAABIAIAAAAAAIIAA32bwBWAHgAOQQDAAAAMwAABIAJAAAAAAIIAAb7VQBPAGkAOQQDAAAANAAABIAKAAAAAAIIAAAAPABWAHgAOQQDAAAANQAABIALAAAAAAIIAAAAPACCAJYAOQQDAAAANgAABIAMAAAAAAIIAAb7VQAVAEsAAgQCAAcAIQQEAAAAAAE5BAMAAAA3BoANAAAAAAcYAAIAAAADAGAAyAADAAEABQBAAKAAAwBOKwAAAAAEgA4AAAAAAggADfZvAAAAPAACBAIACAA5BAMAAAA4BoAPAAAAAAcNAAEAAAADAGAAyAADAE8AAAAABIAQAAAAAAIIAAAAPAAAADwAAgQCAAgAIQQEAAAAAP85BAMAAAA5BoARAAAAAAcYAAIAAAADAGAAyAADAAEABQBAAKAAAwBPLQAAAAAFgBIAAAAEBgQABgAAAAUGBAAEAAAAAAAFgBMAAAAEBgQABwAAAAUGBAAGAAAAAAAFgBQAAAAEBgQACAAAAAUGBAAHAAAAAAYCAAIAAAAFgBUAAAAEBgQACQAAAAUGBAAIAAAAAAAFgBYAAAAEBgQACgAAAAUGBAAJAAAAAAYCAAIAAAAFgBcAAAAEBgQACwAAAAUGBAAKAAAAAAAFgBgAAAAEBgQACwAAAAUGBAAGAAAAAAYCAAIAAAAFgBkAAAAEBgQADgAAAAUGBAAMAAAAAAYCAAIAAAAFgBoAAAAEBgQAEAAAAAUGBAAMAAAAAAAFgBsAAAAEBgQACQAAAAUGBAAMAAAAAAAAAAAAAAA=
+
+>  <Synonym> (1)
+
+>  <Reference and Vendor data> (1)
+
+>  <Page> (1)
+
+>  <Submitted Amount> (1)
+
+>  <Batch Comment> (1)
+
+>  <Notebook> (1)
+
+>  <MW Text> (1)
+
+>  <MF Text> (1)
+
+>  <Entry Person> (1)
+95
+
+>  <Last Mod Person> (1)
+
+>  <Entry Date> (1)
+12/27/2002
+
+>  <Last Mod Date> (1)
+
+>  <Storage Requirements and Warnings> (1)
+
+>  <Preparation> (1)
+
+>  <Chemist> (1)
+95
+
+>  <Physical Form> (1)
+
+>  <Color> (1)
+
+>  <<sup>13</sup>CNMR> (1)
+
+>  <IR> (1)
+
+>  <FIA/MS> (1)
+
+>  <GC> (1)
+
+>  <<sup>1</sup>HNMR> (1)
+
+>  <BATCH_FORMULA> (1)
+
+>  <LOAD_ID> (1)
+vvv2002 12 27, 16:40:20
+
+>  <SOLVATE_ID> (1)
+1
+
+>  <Equivalents> (1)
+
+>  <Equivalents> (1)
+
+>  <Formula Weight> (1)
+138.1256
+
+>  <Product Type> (1)
+
+>  <Salt Name> (1)
+
+>  <MW> (1)
+
+>  <Solvate Name> (1)
+
+>  <MW> (1)
+
+>  <HPLC> (1)
+
+>  <Percent Active> (1)
+100
+
+>  <Units> (1)
+
+>  <Purity> (1)
+>99.0
+
+>  <Appearance> (1)
+yellow fine crystalline product
+
+>  <LC/UV/MS> (1)
+
+>  <CHN> (1)
+
+>  <UV> (1)
+
+>  <LogD> (1)
+
+>  <Solubility> (1)
+
+>  <TEMPORARY_STRUCTURES> (1)
+
+ 
+ 
+$$$$

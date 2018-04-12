@@ -1,0 +1,210 @@
+<SCRIPT LANGUAGE="vbscript">
+	Dim WshShell	
+	Dim homeDir
+	Set WshShell = CreateObject("WScript.Shell")
+
+	Function RunCmd(workingDir, fileName)
+		if workingDir = "" then
+			fullCmdCall = fileName & " " & workingDir
+		else
+			fullCmdCall = workingDir & "\" & fileName & " " & workingDir
+		end if
+		rc = WshShell.Run(fullCmdCall, 5, true)
+		RunCmd = false
+	End Function
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+	<title>CambridgeSoft --Oracle Script Configuration Tool</title>
+	<HTA:APPLICATION ID="OSCF" 
+		APPLICATIONNAME="Oracle Script Configuration Tool" 
+		BORDER="thick"
+		CAPTION="yes"
+		ICON="/graphics/creature.ico"
+		SHOWINTASKBAR="yes"
+		SINGLEINSTANCE="yes"
+		SYSMENU="yes"
+		WINDOWSTATE="normal">
+
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+SPAN
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: blue;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: underline
+}
+-->
+    </style>
+</HEAD>
+
+<body>
+
+<h1>Oracle Script Installation for ChemACX</h1>
+
+<p>The following will step you through the installation of Oracle scripts
+necessary for the successful installation of ChemACX.&nbsp; Before
+proceeding you must be sure you are aware of the specifics of your Oracle
+installation and what schemas have already been created.&nbsp; Actions taken
+(e.g. dropping tablespaces which already exist) cannot be
+undone.&nbsp;&nbsp;&nbsp; </p>
+
+<p>Clicking on links in this file will open command windows which require some
+user feedback.&nbsp; The command files used run SQL scripts.&nbsp; Some
+parameters, defining how the schemas will be created, can be adjusted.&nbsp; The
+default values are adequate for standard, smaller installations, but should be
+adjusted by a knowledgeable DBA to suit the environment of<span style="mso-spacerun: yes">
+</span>midsize-large production installations.&nbsp; To access additional
+information about the parameters file and the file itself, click <a href="parameters_help.htm">here</a>. </p>
+
+<h2>Minimum Oracle Requirements</h2>
+
+<p>The following must be installed BEFORE running any scripts:</p>
+
+<ul>
+  <li>CS Oracle Cartridge 9.0.x<br>
+    &nbsp;&nbsp;</li>
+  <li>Oracle 9i </li>
+  <ul><li>Oracle OLEDB Provider 9.2.0.2</li></ul>
+  <BR>Note:  The installation scripts assume that the Oracle instance has been set up with available db_cache to accomadate tablespaces with 2K, 8K and 16K blocks.  If this is not the case, either reconfigure the target instance to support these block sizes, or modify the parameters.sql file to use only avaiable block sizes.<BR><BR>
+To change the cache size:<br>
+  <br>
+  connect sys/&lt;syspwd&gt;@&lt;schema&gt; as sysdba<br>
+  Alter system set db_2k_cache_size=16M scope=spfile;<br>
+  Alter system set db_16k_cache_size=16M scope=spfile;<br>
+  shutdown<br>
+  startup<br>
+  <p>Note: To avoid possible error during creation of functional indexes the 
+	installation script asks permission to change parameter&nbsp; 
+	QUERY_REWRITE_ENABLED to TRUE with the SCOPE=BOTH (ALTER SYSTEM SET 
+	query_rewrite_enabled=TRUE SCOPE=BOTH). Answer Y to allow automatic update 
+	or N to do it manually.<br> 
+</ul>
+
+<h2>Create/Upgrade CS Security Schema</h2>
+<ul>
+	<li>If you have not previously installed the CS_Security schema and need to, 
+	please browse to
+	<WEBROOT>/ChemOffice/cs_security/config/Oracle_Install_Scripts/create_blank_cs_security_DB/ 
+	and run the following file: <br>
+	Create_cs_security.cmd </li>
+</ul>
+<h2>Create/Upgrade ChemACX Schema and Load data.</h2>
+<ul>
+  <li>If you do not have ChemACX database for Oracle, click <span style="cursor:hand" onClick="RunCmd '','Create_ChemACXDB.cmd'">here</span>
+    to create the Chemacxdb schema and import dump file.  The ChemACX data will be automatically imported from an Oracle dump file.  The import process can take between 2 and 6 hours depending on the Oracle environment.  After the import completes, 
+	CSCartridge index creation will be started automatically. Chemical index creation will take 
+	up to 2 hours.<br>
+  </li><BR>
+  <li>If you are upgrading from version 8.1 of the ChemACX database then click <span style="cursor:hand" onClick="RunCmd '','Update_ChemACX_8_to_9.2.cmd'">here.</span>  The existing data will be dropped and replaced with data from the dump file and the chemical cartridge index will be automatically recreated.  This process will take between 4 and 6 hours depending on your Oracle environment.<br>
+  </li>
+</ul>
+
+<h2>Required Configuration</h2>
+
+<ol>
+  <li>Replace Access files with Oracle files.
+    <ol>
+      <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/ChemACX/Config/oraini</strong>
+      <li>Copy&nbsp;the following files: chemacx.ini, cfserver.ini, chemacx.udl
+      <li>Paste the copies of the files into <strong>&lt;webroot&gt;/ChemOffice/ChemACX/Config/</strong>
+        overwriting the files with the same name in that directory.<br>
+        &nbsp;&nbsp;</li>
+    </ol>
+  </li>
+  <li>Define the Data Source in the cs_security UDL
+  </li>
+  <ol><li>
+          Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em>
+          cs_security/config/</strong>
+    <li>Double-click <strong>cs_security.udl</strong> (to
+        open it).<li>Change the <strong>Data Source</strong> to the name
+        of your Oracle service. For information about your Oracle Service Name,
+        please see your Oracle DBA or consultant.<li>Enter <strong>oracle</strong> as the password and
+        click <strong>Test Connection</strong>.<li>Click <strong>OK</strong>.<li>Click <strong>OK</strong>.<br>
+      &nbsp;&nbsp;</ol>
+
+
+  <li>Define the Data Source in the ChemACX UDLs.
+  </li>
+  <ol><li>
+          Browse to <strong>&lt;webroot&gt;/ChemOffice</strong> <em class="Strong"><strong>/chemacx/config/</strong></em>
+    <li>Double-click <strong><em>chemacx.udl</em></strong> (to
+        open it).<li>Change the <strong>Data Source</strong> to the name
+        of your Oracle service. For information about your Oracle Service Name,
+        please see your Oracle DBA or consultant.<li>Enter <strong>oracle</strong> as the password and
+        click <strong>Test Connection</strong>.<li>Click <strong>OK</strong>.<li>Click <strong>OK</strong>.<br>
+      &nbsp;&nbsp;</ol>
+
+
+</ol>
+
+<h2>Uninstalling the ChemACX and CS Security Schemas</h2>
+<ul>
+  <li><b>ChemACX: </b>To uninstall (drop chemacxdb) the ChemACX schema in Oracle, click <span style="cursor:hand" onClick="RunCmd '','Drop_ChemACXDB.cmd'">here</span>.<br>
+    &nbsp;&nbsp;</li>
+  <li><b><i>CS Security</i></b>: To uninstall (drop cs_security) the CS Security
+    schema in Oracle,
+    click <span style="cursor:hand" onClick="RunCmd '..\..\..\cs_security\config\Oracle_Install_Scripts\create_blank_cs_security_DB','drop_cs_security.cmd'">here</span>.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

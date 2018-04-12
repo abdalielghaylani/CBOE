@@ -1,0 +1,101 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<br>
+<br>
+<h1>CreateContainerReport</h1><p>          
+         
+        
+         
+        
+      Causes the RPT          
+         
+        
+         
+        
+      report writer to 
+produce a printable container report.&nbsp;&nbsp;Container reports are typically used to 
+produce container labels which include a container barcode plus additional 
+container attributes.&nbsp;The function returns the  file name of the report as saved&nbsp;to the 
+reports directory.&nbsp; Typically the URL to the reports&nbsp;directory is 
+/cfserverasp/RPT/Reports/.&nbsp; Check the invconfig.ini&nbsp;file  for the&nbsp;location of the 
+reports directory on your server.&nbsp;&nbsp;</p>
+
+<h3>Syntax</h3>
+
+<pre>/cheminv/api/CreateContainerReport.asp?ContainerList=adVarChar&amp;ReportName=adVarChar[&amp;ReportFormat=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<h5 class="param">ContainerList</h5>
+<p class="param">A list of containers&nbsp;to be included in the container report. Use a 
+comma to separate multiple Conatiner_ID values. Use a dash to express a range of Container_ID values.</p>
+
+<h5 class="param">ReportName</h5>
+<p class="param">       The&nbsp;name of the report template as 
+defined in the       MS Access reports database.</p>
+<p class="param"><font size="2"><strong>[ReportFormat]</strong></font>          </p>
+<p class="param"><font size="2">      
+        </font></p>
+<p class="param"><font size="2">The format 
+of the&nbsp;printable report.&nbsp; Allowed values include SNP (Access SnapShot 
+format), PDF (Adobe Portable Document Format), RTF (Rich Text Format) and XLS (Microsoft 
+Excel document).&nbsp; Defaults to SNP.</font></p>
+<h3 class="param">Outputs</h3>
+<h5 class="param">None</h5>
+<h3 class="param">Example</h3>
+<p class="param">A user wants to create a location report 
+(LocationReport2) for containers in that location (IDs= 111, 112, and 
+113).&nbsp; The default format is SNP.</p><pre class="param">/cheminv/api/CreateContainerReport.asp?ContainerList=111,112,113&amp;ReportName=LocationReport2</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+
+<head><script language="javascript">
+var theActionVal
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+
+function setAction(theAction){
+			var theValue = eval('document.SubmitAction.DBDirs.options[document.SubmitAction.DBDirs.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.DBName.value = theValue 
+		document.SubmitAction.submit()
+}
+
+
+</script>
+
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+</head>
+
+<body>
+
+<table border="1">
+<TBODY>
+  <tr>
+    <td height="14" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; </strong></td>
+  </tr>
+  <tr>
+    <td valign="top"><table border="0" bgcolor="#c0c0c0">
+<TBODY>
+      <tr>
+        <td valign="top"><form method="post" Name="SubmitAction"
+        action="WebEditor.ASP?WCI=edit_app_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="DBName" value><table border="0">
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td valign="center"><table border="0" width="673" height="129">
+                    <tr>
+                      <td width="274"><input type="submit" value="    OK    " name="OK"
+                      onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                      onClick="setAction('Cancel')"><input type="button" value="Help" name="Help"
+                      onClick="getHelp('app_settings')"></td>
+                    </tr>
+                    <tr>
+                      <td height="21" valign="top" nowrap>Temporary Directory Path<WC@TEMP_DIR_PATH></WC@TEMP_DIR_PATH><input type="button"
+                      value="Browse..." name="Browse"
+                      OnClick="JSBrowser = new BrowserObj(document.SubmitAction.TEMP_DIR_PATH,true,TFILE,SMALL);"></td>
+                    </tr>
+                    <tr>
+                      <td height="15" valign="top" nowrap>Graphics Path for Navigation Buttons<WC@GRAPHICS_PATH></WC@GRAPHICS_PATH><input
+                      type="button" value="Browse..." name="Browse1"
+                      OnClick="JSBrowser = new BrowserObj(document.SubmitAction.NAV_BUTTONS_GIF_PATH,true,TFILE,SMALL);"><br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="185" height="15" valign="top"><table border="1" width="693">
+                        <tr>
+                        <td width="687">Databases Directories <WC@DB_NAMES></WC@DB_NAMES><small><small><input type="submit" name="Remove"
+                        value="Remove" onClick="setAction('RemoveDB')"></small></small><input name="Add1"
+                        type="button" value="   Add    " onclick="getDialog('AddDB')"><input type="button"
+                        value="Help" name="Help" onClick="getHelp('database_directories')"></td>
+                        </tr>
+                        <tr>
+                        <td width="687"><input name="Database Paths" onclick="setAction('EditDBPaths')"
+                        type="button" value="Database Paths"><input name="Tables" onclick="setAction('EditTables')"
+                        type="button" value="Tables"><input name="Form Groups" onclick="setAction('EditFormGroups')"
+                        type="button" value="Form Groups"><input name="DBGlobals"
+                        onclick="setAction('GlobalSettings')" type="button" value="Global Settings"></td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+</body>
+</html>

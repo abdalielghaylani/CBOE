@@ -1,0 +1,87 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- TableSpaces in Oracle</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>      TableSpaces in Oracle</h1>
+<ol>
+  <li>Browse 
+  to:<br><strong>START&gt;Programs&gt;Oracle&gt;Enterprise 
+  Manager&gt;Console</strong>        
+     
+  <li>Enter&nbsp;a user name and password&nbsp;(i.e. 
+  <strong>system</strong>, <strong>manager</strong>         ).
+  <li>Expand <strong>Tablespaces</strong> .
+  <li>Look and see if there is a tablespace with the same name as the mdb file 
+  you are going to convert. If there is, you can do two things:
+     <ul>
+      <li>Rename the mdb file. 
+      <li>Remove the tablespace:<br>If the tablespace was 
+    generated from an earlier conversion of the same mdb file:<br>   
+        <ol>
+      <li>Delete the table space. 
+      <li>            
+                   
+        Go to the oracle home directory/databases directory (i.e. if your 
+      setup uses all the defaults this is orant/databases) and remove the 
+      physical table space file.
+      <li>Open the Security manager and remove the user that 
+      has the same name.</li>             
+                      
+                 
+    </ol></li>   </ul></li></ol>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

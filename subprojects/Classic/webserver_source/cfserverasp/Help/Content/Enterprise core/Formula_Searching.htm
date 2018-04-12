@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="135" MadCap:lastWidth="587" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="ChemBioOffice Enterprise User Guide" MadCap:InPreviewMode="false" MadCap:previewFolder="file:///D:/Informatics/Documentation/Current User Guide files/CheOfficeWebserver/ChemBioOffice Enterprise/Output/ssengupta/Temporary/MyWebHelp/Preview/" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>Formula searching</title>
+        <link href="../Resources/TableStyles/_2col_table.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="ChemBioOffice_Enterprise.htm#ChemOffice_2570923470_1152635">ChemBioOffice Enterprise User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Formula searching</span>
+        </div>
+        <h2 class="Heading2"><a name="ChemOffice_2570923470_1138379"></a><a name="kanchor44"></a>Formula searching</h2>
+        <div class="Body">Formula searching allows you to search molecular stoichiometry, either exactly or in the range that you specify. Formula queries consist of element symbols and element counts or ranges. The following table lists a few examples of Formula search:</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <table class="TableStyle__2col_table" style="width: 275px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="113px" />
+            <col width="162px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Formula Entered </p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Results Found</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">C6H6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Compounds with 6 carbon and 6 hydrogen atoms, plus any number of other elements. Finds C6H6, C6H6N2O.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">=C6H6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Compounds with exactly 6 carbon atoms, 6 hydrogen atoms, and no other elements.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">C6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Compounds with 6 carbon atoms plus any number of other elements.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">C6 N1-3</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Compounds with 6 carbon atoms, one to three nitrogen atoms, plus any number of other elements.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">In Formula searching, various rules apply, which are: </div>
+        <div class="Bullet1-1st">Symbols may be one or two letters. Symbols may be in upper or lower case. If there are ambiguities, the program resolves them according to a set of rules. To avoid ambiguities:</div>
+        <div class="Bullet2-1st">Capitalize the symbols properly. </div>
+        <div class="Bullet2-inner">Insert spaces between symbols. </div>
+        <div class="Bullet2-last">Use the Periodic Table to enter formulas.</div>
+        <div class="Bullet1-inner">Element counts are single integers or ranges between two integers, which are separated by a hyphen. If a count is omitted, it is assumed to be 1.</div>
+        <div class="Bullet1-last">If the formula query contains no wild card character, such as '*', it is assumed to be an Exact search. The search requires an exact formula match, containing no elements other than those indicated. If there is an asterisk (*) anywhere in the string then the search is a partial match and other elements may be present in the hits. Symbols may be repeated. For example, CH3CH3 is interpreted as C2H6. </div>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>Formula searches are completely non-structural: CH3CH2OH will match both dimethyl ether and ethyl alcohol because both compounds have the same molecular formula: C2H6O. </div>
+        <div class="Bullet1-1st">Parentheses may be used to group elements and apply a count to the entire group. For example, (CH2)3 is interpreted as C3H6. </div>
+        <div class="Bullet1-inner">Spaces or non-alphanumeric characters other than parentheses are ignored. </div>
+        <div class="Bullet1-inner">If a symbol is properly capitalized (first letter upper case, followed by zero, one, or two lower-case letters) then the longest valid symbol which matches is preferred. For example, "Phe" matches phenylalanine rather than phosphorus; "Co" matches cobalt. </div>
+        <div class="Bullet1-last">If symbols are not properly capitalized then the shortest symbol which matches is preferred. For example, 'co' is interpreted as carbon-oxygen instead of cobalt. However, there is an exception. The exception is that if two characters represent a valid two-letter symbol and also a valid one-letter symbol followed by an invalid one, then the two-letter symbol is favored. cl is interpreted as chlorine and not as carbon followed by the invalid symbol L.</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

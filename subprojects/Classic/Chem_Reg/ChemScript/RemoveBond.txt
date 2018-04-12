@@ -1,0 +1,5 @@
+from ChemScript import *
+m=Mol.loadData(base64, 'cdx')
+m.removeBond(m.bonds[0], True)
+out_m=m
+

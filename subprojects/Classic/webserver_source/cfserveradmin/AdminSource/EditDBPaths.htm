@@ -1,0 +1,135 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script language="javascript">
+var theActionVal
+function getConnInfo(){
+	conn_type = document.SubmitAction.CONN_TYPE_Hidden.value
+	
+	for(i=0;i<document.SubmitAction.CONN_TYPE.length;i++){
+		if (document.SubmitAction.CONN_TYPE[i].value == "DSN"){
+			document.SubmitAction.CONN_TYPE[i].checked = true
+		}
+	}	
+
+	if (conn_type == "DSN"){	
+		document.SubmitAction.DSN_NAME.value = document.SubmitAction.DSN_NAME_Hidden.value
+		document.SubmitAction.DB_PATH.value = ""
+			}
+	else{
+		document.SubmitAction.DSN_NAME.value = ""
+		document.SubmitAction.DB_PATH.value = document.SubmitAction.DB_PATH_Hidden.value
+			}
+}
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function setAction(theAction){
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.ADOConnGroupName.value = "base_connection"
+		document.SubmitAction.submit()
+				
+}
+
+
+</script>
+<script Language="JavaScript"
+SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+</head>
+
+<body onload="getConnInfo()">
+
+<table border="0">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0" width="650">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp;</strong> <WC@APP_NAME></WC@APP_NAME><strong>&nbsp; Data
+    View:&nbsp;</strong> <WC@DB_NAME></WC@DB_NAME></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="1" bgcolor="#C0C0C0">
+<TBODY>
+      <tr>
+        <td valign="top"><form method="post" Name="SubmitAction"
+        action="WebEditor.ASP?WCI=edit_db_paths&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="ADOConnGroupName"
+          value="base_connection"><input type="hidden" name="dialogVal" value><table border="0">
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td designtimesp="21938" valign="top" width="80">Connection: </td>
+                  <td height="38" designtimesp="21939"><WC@CONN_INFO></WC@CONN_INFO><table border="1">
+                    <tr>
+                      <td valign="top"><table border="0" width="547">
+                        <tr>
+                        <td width="120" valign="top"><input type="radio" value="DSN" name="CONN_TYPE">DSN</td>
+                        <td width="93" valign="top" nowrap>DSN Name:</td>
+                        <td width="322" valign="top"><input type="text" name="DSN_NAME" size="9"></td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top"><table border="0" width="586">
+                        <tr>
+                        <td width="121" valign="top"><input type="radio" value="DBQ" name="CONN_TYPE">DBQ<br>
+                        (MS Access only)</td>
+                        <td width="95" valign="top" nowrap>Database Path:</td>
+                        <td width="358" valign="top"><input type="text" name="DB_PATH" size="35"><input
+                        type="button" value="Browse..." name="Browse2"
+                        OnClick="JSBrowser = new BrowserObj(document.SubmitAction.DB_PATH,true,TFILE,SMALL);"></td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td designtimesp="21966" valign="top" width="80" nowrap>User Name:</td>
+                  <td height="19" designtimesp="21967" valign="top"><small><WC@CONN_USER_NAME DESIGNTIMESP="21968"></WC@CONN_USER_NAME></small></td>
+                </tr>
+                <tr>
+                  <td designtimesp="21971" valign="top" width="80">Password:</td>
+                  <td height="19" designtimesp="21972" valign="top"><small><WC@CONN_PASSWORD DESIGNTIMESP="21973"></WC@CONN_PASSWORD></small></td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" align="right"><table border="0">
+<TBODY>
+                <tr>
+                  <td valign="top" align="right"><div align="right"><p><input type="submit" name="OK"
+                  Value="  OK  " onclick="setAction('Done')"><input type="submit" name="Cancel"
+                  value="Cancel" onclick="setAction('Cancel')"><small><input name="Help1" type="button"
+                  value="Help" onClick="getHelp('ado_conn_groups')"></small></td>
+                </tr>
+</TBODY>
+              </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+</body>
+</html>

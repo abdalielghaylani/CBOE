@@ -1,0 +1,41 @@
+Log file opened on Tuesday, September 02, 2003, 14:32
+Importing SDFile C:\Documents and Settings\emanganelli.CAMSOFT\Desktop\SDF dbs\36_nested.sdf
+Appending to database C:\Documents and Settings\emanganelli.CAMSOFT\Desktop\SDF dbs\36_nested.mdb
+Database version: ChemFinder 7; Mst version: 37
+Starting at beginning -- line 1.
+Redundant reagents will only be stored once.
+A ChemDraw-style (CDX) version will only be stored where distinct from the ChemFinder version.
+
+SDFile Input Fields
+Structure      	type=Structure
+MOL_ID         	type=Long
+Registry date  	type=Text(9)
+Reg number     	type=Text(10)
+Root number    	type=Text(10)
+Sequence number	type=Long
+MV_Raw_Data    	type=Text(111)
+
+Creating form
+Records found in input file: 36
+Structures in current database: 36
+Records in current database: 36
+Next available mol ID: 37
+-------------------------
+End of file reached
+
+     0 errors, 0 distinct.
+     0 warnings, 0 distinct.
+    36 records existed at start of import.
+    72 records exist after import.
+    36 records were read from file.
+    36 records were created in database.
+    32 principal structures were created.
+     4 principal structures were blank, but records were also created for them.
+     0 secondary structures were created.
+     0 input records were merged with preexisting ones.
+  Principal structures inhabit the "Structure" field in the
+  main table.  Secondary structures are catalysts and reagents,
+  which are visible only from secondary tables.
+
+Form file saved: C:\Documents and Settings\emanganelli.CAMSOFT\Desktop\SDF dbs\36_nested.CFW
+Log file closed on Tuesday, September 02, 2003, 14:32

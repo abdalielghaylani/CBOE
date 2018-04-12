@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTargetIndex Count="48">
+    <IndexEntry>
+        <Entries>
+            <IndexEntry Term="Cancel">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor17" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Compound Search">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Compound Search" Link="/Content/Registration/Compound_Search.htm#kanchor45" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Creating Registry Records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Creating Registry Records" Link="/Content/Registration/Creating_Registry_Record.htm#kanchor11" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Deleting a Duplicate">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor53" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Deleting Records in Temporary Table">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Deleting Records from Temporary Table" Link="/Content/Registration/Deleting_Records_from_Te.htm#kanchor23" UsedConditions="" />
+                    <IndexLink Title="Deleting Records from Temporary Table" Link="/Content/Registration/Deleting_Records_from_Te.htm#kanchor24" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Duplicate Checking">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor51" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Editing Records in Temporary Table">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Editing Records in the Temporary Table" Link="/Content/Registration/Editing_Records_in_the_T.htm#kanchor21" UsedConditions="" />
+                    <IndexLink Title="Editing Records in the Temporary Table" Link="/Content/Registration/Editing_Records_in_the_T.htm#kanchor22" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Export Hits">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Export Hits" Link="/Content/Registration/Export_Hits.htm#kanchor37" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Form Fields">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Optional Feature" Link="/Content/Registration/Optional_Feature.htm#kanchor46" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Form View">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Form View" Link="/Content/Registration/Form_View.htm#kanchor31" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Getting Started">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Getting Started" Link="/Content/Registration/Getting_Started.htm#kanchor5" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Handling Dupliactes">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Handling Duplicates" Link="/Content/Registration/Handling_Duplicates.htm#kanchor44" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Integration">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Integration" Link="/Content/Registration/Integration.htm#kanchor4" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Introduction">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Introduction" Link="/Content/Registration/Introduction1.htm#kanchor1" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Linkage of Projects With People">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor49" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="List View">
+                <Entries />
+                <Links>
+                    <IndexLink Title="List View" Link="/Content/Registration/List_View.htm#kanchor30" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Load">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor14" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Logging in">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Logging in" Link="/Content/Registration/Logging_in.htm#kanchor6" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Logging out">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Logging out" Link="/Content/Registration/Logging_out.htm#kanchor8" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Managing Duplicates">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Deleting Records from Temporary Table" Link="/Content/Registration/Deleting_Records_from_Te.htm#kanchor26" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Managing records in temporary table">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing temporary records" Link="/Content/Registration/Managing_temporary_recor.htm#kanchor19" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Managing temporary records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing temporary records" Link="/Content/Registration/Managing_temporary_recor.htm#kanchor18" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Manipulating Queries">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Manipulating Queries" Link="/Content/Registration/Manipulating_Queries.htm#kanchor33" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Marking Records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Marking Records" Link="/Content/Registration/Marking_Records.htm#kanchor32" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Options available in Submit Record Form">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor12" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Queries and Hitlist">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Queries and Hitlist" Link="/Content/Registration/Queries_and_Hitlist.htm#kanchor27" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Refining Search Results">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining Search Results" Link="/Content/Registration/Refining_Search_Results.htm#kanchor36" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Register">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor16" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering a Batch Record">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Handling Duplicates" Link="/Content/Registration/Handling_Duplicates.htm#kanchor43" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering a Compound Record">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering a Temporary Record" Link="/Content/Registration/Registering_a_Temporary.htm#kanchor41" UsedConditions="" />
+                    <IndexLink Title="Registering a Temporary Record" Link="/Content/Registration/Registering_a_Temporary.htm#kanchor42" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering a Temporary Record">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Registering a Temporary Record" Link="/Content/Registration/Registering_a_Temporary.htm#kanchor39" UsedConditions="" />
+                    <IndexLink Title="Registering a Temporary Record" Link="/Content/Registration/Registering_a_Temporary.htm#kanchor40" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registering Records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Deleting Records from Temporary Table" Link="/Content/Registration/Deleting_Records_from_Te.htm#kanchor25" UsedConditions="" />
+                    <IndexLink Title="Registering Records" Link="/Content/Registration/Registering_Records.htm#kanchor38" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Registration Enterprise Workflow">
+                <Entries />
+                <Links>
+                    <IndexLink Title="The Registration Process" Link="/Content/Registration/The_Registration_Process.htm#kanchor2" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Required Fields">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Required Fields" Link="/Content/Registration/Required_Fields.htm#kanchor10" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Restore Queries">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Restore Queries" Link="/Content/Registration/Restore_Queries.htm#kanchor35" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Row Level Security">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor47" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Save">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor13" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Saving Queries">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Saving Queries" Link="/Content/Registration/Saving_Queries.htm#kanchor34" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Search Criteria">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Search Criteria" Link="/Content/Registration/Search_Criteria.htm#kanchor28" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Searching Records in Temporary Table">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching Records in Temporary Table" Link="/Content/Registration/Searching_Records_in_Tem.htm#kanchor20" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Submit">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#kanchor15" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Submit New Record">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Submitting New Records" Link="/Content/Registration/Submitting_New_Records.htm#kanchor9" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="The Main Menu">
+                <Entries />
+                <Links>
+                    <IndexLink Title="The Main Menu" Link="/Content/Registration/The_Main_Menu.htm#kanchor7" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="The Registration Process">
+                <Entries />
+                <Links>
+                    <IndexLink Title="The Registration Process" Link="/Content/Registration/The_Registration_Process.htm#kanchor3" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Unspecified Project">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor50" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="User Interface">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor48" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Viewing Search Results">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Viewing Search Results" Link="/Content/Registration/Viewing_Search_Results.htm#kanchor29" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+            <IndexEntry Term="Viewing System Duplicates">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#kanchor52" UsedConditions="" />
+                </Links>
+            </IndexEntry>
+        </Entries>
+        <Links />
+    </IndexEntry>
+</CatapultTargetIndex>

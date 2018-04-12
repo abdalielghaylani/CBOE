@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="D:\Projects\Documentation\CBOE Enterprise 11.0\DocManager\DocManager Enterprise\DocManager Enterprise.book" DescendantCount="11">
+    <!-- saved from url=(0014)about:internet -->
+    <TocEntry Title="DocManager 11.0" Link="/Content/MyImport/docmanager.htm#docmanager_703747821_1005264" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="10">
+        <TocEntry Title="About this guide" Link="/Content/MyImport/docmanager.htm#docmanager_703747821_1007913" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="Overview" Link="/Content/MyImport/docmanager.htm#docmanager_703747821_1005916" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="Logging into ChemBioOffice" Link="/Content/MyImport/Logging_into_ChemBioOffi.htm#docmanager_703747821_1006372" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="DocManager basics" Link="/Content/MyImport/Logging_into_ChemBioOffi.htm#docmanager_703747821_1000084" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Submitting documents" Link="/Content/MyImport/Submitting_documents.htm#docmanager_703747821_998318" ComputedFirstTopic="false" DescendantCount="1">
+            <TocEntry Title="Viewing recent activities" Link="/Content/MyImport/Submitting_documents.htm#docmanager_703747821_1008880" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Searching for documents" Link="/Content/MyImport/Searching_for_documents.htm#docmanager_703747821_998360" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Performing a search" Link="/Content/MyImport/Searching_for_documents.htm#docmanager_703747821_1000115" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Basic text searching" Link="/Content/MyImport/Searching_for_documents.htm#docmanager_703747821_998379" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Advanced text searching" Link="/Content/MyImport/Searching_for_documents.htm#docmanager_703747821_1008986" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+    </TocEntry>
+</CatapultToc>

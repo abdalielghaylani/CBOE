@@ -1,0 +1,114 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise Admin Guide -- Installation Win2000</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<a href="install_webserver.htm"><img height="16" alt="Previous" src="../../../images/back.gif" width="16" border="0"></a>
+<a href="installation.htm"><img height="16" alt="Up One Level" src="../../../images/uplevel.gif" width="16" border="0"></a>
+<a href="report_writer.htm"><img height="16" alt="Next" src="../../../images/next.gif" width="16" border="0"></a>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>     ChemOffice Enterprise</strong>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>Tips for Installing on Windows 2003 Server</h1>
+<p>Windows 2003 Server requires a few additional steps to be taken before 
+concluding.&nbsp; If you are installing on Windows 2003 Server, please do the 
+following:</p>
+<ol>
+  <li>
+  Add the &quot;Application Server&quot; role which installs IIS 
+  6.0 (No longer installed by default).
+  <ol><li>
+          
+       Go to <strong>START&gt;Settings&gt;Control 
+    Panel</strong>. 
+    <li>Double-click <strong>Add/Remove Programs</strong>.
+    <li>Click <strong>Add/Remove Windows Components</strong> 
+    (make sure&nbsp;the checkmark is in a white box, indicating all components 
+    will be installed).
+    <li>Click Next. <br> &nbsp;</li>
+          
+       </ol>
+  <li>Enable ASP, Server Side Includes.&nbsp; </li>
+  <ol>
+    <li>Go to <strong>START&gt;Programs&gt;Administrative 
+    Tools&gt;IIS</strong>   
+    <li>Expand&nbsp; the node with the name of your computer.
+    <li>Click on the <strong>Web</strong> <strong>Service 
+    Extentions</strong> node.
+    <li>Highlight <strong>Active Server Pages</strong>. 
+    <li>Click the <strong>Allow</strong>           
+      Button.<br>&nbsp; 
+    </li></ol>
+  <li>&quot;Enable Parent Paths&quot; for asp application virtual 
+  folders. <br><strong>Note:</strong>       
+    This used to be the default in IIS 5.0 but it changed in IIS 
+  6.0.&nbsp; To change it: .&nbsp; 
+  <ol>
+    <li>Go to <strong>START&gt;Programs&gt;Administrative 
+    Tools&gt;IIS Management Console</strong>     
+
+    <li>Expand the&nbsp;node with the name of your computer. 
+
+    <li>Exapnd&nbsp;the <strong>Websites</strong> node. 
+    <li>Expand the <strong>Default Website</strong> node. 
+    <li>Left click <strong>Sample</strong>. 
+    <li>Select <strong>Properties</strong>. 
+    <li>Select the <strong>Virtual Directory</strong> Tab.
+    <li>Click the <strong>Configuration</strong> button.
+    <li>Select the<strong> Options</strong> Tab.
+    <li>Select&nbsp;the <strong>Enable Parents Folder</strong>         
+           checkbox. 
+    <li>Click <strong>OK</strong>.</li></ol>           
+                  
+   </li></ol>         
+            
+    <p><a href="report_writer.htm">Step 4: Configure the Report 
+Writer</a></p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

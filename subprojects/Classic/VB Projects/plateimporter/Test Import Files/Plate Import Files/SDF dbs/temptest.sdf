@@ -1,0 +1,3323 @@
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1240    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2078    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4156    0.7080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4156    2.1240    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2078    2.7904    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (1)
+83
+ 
+>  <COMMIT_TYPE> (1)
+full_commit
+
+>  <REG_INTERNAL_ID> (1)
+
+>  <CPD_INTERNAL_ID> (1)
+
+>  <Notebook> (1)
+1
+
+>  <Project> (1)
+1
+
+>  <Chemical Name> (1)
+Benzene
+
+>  <Prefix> (1)
+1
+
+>  <CAS No> (1)
+
+>  <BP> (1)
+
+>  <MP> (1)
+
+>  <Flash Point> (1)
+
+>  <Optical Rotation> (1)
+
+>  <Refractive Index> (1)
+
+>  <Structure/Stereochemistry Comment> (1)
+1
+
+>  <Creation Date> (1)
+
+>  <Salt> (1)
+1
+
+>  <BASE64_CDX> (1)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQxIDIwMDIEAhAAAAA8AAAAPAA+y3cAFMNvAAEJCAAAAAAAAAAAAAIJCAAAALMAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAPst3ABTDbwADgAMAAAAEgAQAAAAAAggAdEdKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAWp9oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAPst3AIrhVQA5BAMAAAAyAAAEgAcAAAAAAggAWp9oABTDbwA5BAMAAAAzAAAEgAgAAAAAAggAdEdKABTDbwA5BAMAAAA0AAAEgAkAAAAAAggAAAA8AIrhVQA5BAMAAAA1AAAFgAoAAAAEBgQABAAAAAUGBAAFAAAAAAYCAAIAAAAFgAsAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAwAAAAEBgQABgAAAAUGBAAHAAAAAAYCAAIAAAAFgA0AAAAEBgQABwAAAAUGBAAIAAAAAAAFgA4AAAAEBgQACAAAAAUGBAAJAAAAAAYCAAIAAAAFgA8AAAAEBgQABAAAAAUGBAAJAAAAAAAAAAAAAAA=
+
+>  <Synonym> (1)
+
+>  <Reference and Vendor data> (1)
+
+>  <Page> (1)
+
+>  <Submitted Amount> (1)
+
+>  <Batch Comment> (1)
+
+>  <Notebook> (1)
+
+>  <MW Text> (1)
+
+>  <MF Text> (1)
+
+>  <Entry Person> (1)
+14
+
+>  <Last Mod Person> (1)
+
+>  <Entry Date> (1)
+12/26/2002
+
+>  <Last Mod Date> (1)
+
+>  <Storage Requirements and Warnings> (1)
+
+>  <Preparation> (1)
+
+>  <Chemist> (1)
+1
+
+>  <Physical Form> (1)
+
+>  <Color> (1)
+
+>  <<sup>13</sup>CNMR> (1)
+
+>  <IR> (1)
+
+>  <FIA/MS> (1)
+
+>  <GC> (1)
+
+>  <<sup>1</sup>HNMR> (1)
+
+>  <BATCH_FORMULA> (1)
+
+>  <LOAD_ID> (1)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (1)
+1
+
+>  <Equivalents> (1)
+
+>  <Equivalents> (1)
+
+>  <Formula Weight> (1)
+78.1134
+
+>  <Product Type> (1)
+
+>  <Salt Name> (1)
+
+>  <MW> (1)
+
+>  <Solvate Name> (1)
+
+>  <MW> (1)
+
+>  <HPLC> (1)
+
+>  <Percent Active> (1)
+100
+
+>  <Units> (1)
+
+>  <Purity> (1)
+
+>  <Appearance> (1)
+
+>  <LC/UV/MS> (1)
+
+>  <CHN> (1)
+
+>  <UV> (1)
+
+>  <LogD> (1)
+
+>  <Solubility> (1)
+
+>  <TEMPORARY_STRUCTURES> (1)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  7  7  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1018    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7006    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2121    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7006    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1018    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2121    2.8000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6339    2.8024    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+  5  7  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (2)
+84
+ 
+>  <COMMIT_TYPE> (2)
+full_commit
+
+>  <REG_INTERNAL_ID> (2)
+
+>  <CPD_INTERNAL_ID> (2)
+
+>  <Notebook> (2)
+1
+
+>  <Project> (2)
+1
+
+>  <Chemical Name> (2)
+Bromobenzene
+
+>  <Prefix> (2)
+1
+
+>  <CAS No> (2)
+
+>  <BP> (2)
+
+>  <MP> (2)
+
+>  <Flash Point> (2)
+
+>  <Optical Rotation> (2)
+
+>  <Refractive Index> (2)
+
+>  <Structure/Stereochemistry Comment> (2)
+1
+
+>  <Creation Date> (2)
+
+>  <Salt> (2)
+1
+
+>  <BASE64_CDX> (2)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQxIDIwMDIEAhAA//87AAAAPABWDXgAc96JAAEJCAAAAAAAAAAAAAIJCAAAALQAAADFAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAP//OwAAADwAVg14AHPeiQADgAMAAAAEgAQAAAAAAggAVQNLAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAAAppAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAVg14ACb5VQA5BAMAAAAyAAAEgAcAAAAAAggAAAppAD/lbwA5BAMAAAAzAAAEgAgAAAAAAggAVQNLAD/lbwA5BAMAAAA0AAAEgAkAAAAAAggAKQ08ACb5VQA5BAMAAAA1AAAEgAoAAAAAAggAAAA8AHTeiQACBAIAIwA5BAMAAAA2BoALAAAAAAcOAAEAAAADAGAAyAADAEJyAAAAAAWADAAAAAQGBAAEAAAABQYEAAUAAAAABgIAAgAAAAWADQAAAAQGBAAFAAAABQYEAAYAAAAAAAWADgAAAAQGBAAGAAAABQYEAAcAAAAABgIAAgAAAAWADwAAAAQGBAAHAAAABQYEAAgAAAAAAAWAEAAAAAQGBAAIAAAABQYEAAkAAAAABgIAAgAAAAWAEQAAAAQGBAAEAAAABQYEAAkAAAAAAAWAEgAAAAQGBAAIAAAABQYEAAoAAAAAAAAAAAAAAA==
+
+>  <Synonym> (2)
+
+>  <Reference and Vendor data> (2)
+
+>  <Page> (2)
+
+>  <Submitted Amount> (2)
+
+>  <Batch Comment> (2)
+
+>  <Notebook> (2)
+
+>  <MW Text> (2)
+
+>  <MF Text> (2)
+
+>  <Entry Person> (2)
+14
+
+>  <Last Mod Person> (2)
+
+>  <Entry Date> (2)
+12/26/2002
+
+>  <Last Mod Date> (2)
+
+>  <Storage Requirements and Warnings> (2)
+
+>  <Preparation> (2)
+
+>  <Chemist> (2)
+1
+
+>  <Physical Form> (2)
+
+>  <Color> (2)
+
+>  <<sup>13</sup>CNMR> (2)
+
+>  <IR> (2)
+
+>  <FIA/MS> (2)
+
+>  <GC> (2)
+
+>  <<sup>1</sup>HNMR> (2)
+
+>  <BATCH_FORMULA> (2)
+
+>  <LOAD_ID> (2)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (2)
+1
+
+>  <Equivalents> (2)
+
+>  <Equivalents> (2)
+
+>  <Formula Weight> (2)
+157.0095
+
+>  <Product Type> (2)
+
+>  <Salt Name> (2)
+
+>  <MW> (2)
+
+>  <Solvate Name> (2)
+
+>  <MW> (2)
+
+>  <HPLC> (2)
+
+>  <Percent Active> (2)
+100
+
+>  <Units> (2)
+
+>  <Purity> (2)
+
+>  <Appearance> (2)
+
+>  <LC/UV/MS> (2)
+
+>  <CHN> (2)
+
+>  <UV> (2)
+
+>  <LogD> (2)
+
+>  <Solubility> (2)
+
+>  <TEMPORARY_STRUCTURES> (2)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.8357    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4327    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1536    1.1342    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    2.2637    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (3)
+85
+ 
+>  <COMMIT_TYPE> (3)
+full_commit
+
+>  <REG_INTERNAL_ID> (3)
+
+>  <CPD_INTERNAL_ID> (3)
+
+>  <Notebook> (3)
+1
+
+>  <Project> (3)
+1
+
+>  <Chemical Name> (3)
+Furan
+
+>  <Prefix> (3)
+1
+
+>  <CAS No> (3)
+
+>  <BP> (3)
+
+>  <MP> (3)
+
+>  <Flash Point> (3)
+
+>  <Optical Rotation> (3)
+
+>  <Refractive Index> (3)
+
+>  <Structure/Stereochemistry Comment> (3)
+1
+
+>  <Creation Date> (3)
+
+>  <Salt> (3)
+1
+
+>  <BASE64_CDX> (3)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQyIDIwMDIEAhAAAAA8AAAAPADDgWwASyZqAAEJCAAAAAAAAAAAAAIJCAAAAKgAAACmAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAw4FsAEsmagADgAMAAAAEgAQAAAAAAggAfytFAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA7ztjAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAxIFsANyPWAA5BAMAAAAyAAAEgAcAAAAAAggA/TNUAEsmagA5BAMAAAAzAAAEgAgAAAAAAggAAAA8ANyPWAACBAIACAA5BAMAAAA0BoAJAAAAAAcNAAEAAAADAGAAyAADAE8AAAAABYAKAAAABAYEAAQAAAAFBgQABQAAAAAGAgACAAAABYALAAAABAYEAAUAAAAFBgQABgAAAAAABYAMAAAABAYEAAYAAAAFBgQABwAAAAAGAgACAAAABYANAAAABAYEAAcAAAAFBgQACAAAAAAABYAOAAAABAYEAAQAAAAFBgQACAAAAAAAAAAAAAAA
+
+>  <Synonym> (3)
+
+>  <Reference and Vendor data> (3)
+
+>  <Page> (3)
+
+>  <Submitted Amount> (3)
+
+>  <Batch Comment> (3)
+
+>  <Notebook> (3)
+
+>  <MW Text> (3)
+
+>  <MF Text> (3)
+
+>  <Entry Person> (3)
+14
+
+>  <Last Mod Person> (3)
+
+>  <Entry Date> (3)
+12/26/2002
+
+>  <Last Mod Date> (3)
+
+>  <Storage Requirements and Warnings> (3)
+
+>  <Preparation> (3)
+
+>  <Chemist> (3)
+1
+
+>  <Physical Form> (3)
+
+>  <Color> (3)
+
+>  <<sup>13</sup>CNMR> (3)
+
+>  <IR> (3)
+
+>  <FIA/MS> (3)
+
+>  <GC> (3)
+
+>  <<sup>1</sup>HNMR> (3)
+
+>  <BATCH_FORMULA> (3)
+
+>  <LOAD_ID> (3)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (3)
+1
+
+>  <Equivalents> (3)
+
+>  <Equivalents> (3)
+
+>  <Formula Weight> (3)
+68.075
+
+>  <Product Type> (3)
+
+>  <Salt Name> (3)
+
+>  <MW> (3)
+
+>  <Solvate Name> (3)
+
+>  <MW> (3)
+
+>  <HPLC> (3)
+
+>  <Percent Active> (3)
+100
+
+>  <Units> (3)
+
+>  <Purity> (3)
+
+>  <Appearance> (3)
+
+>  <LC/UV/MS> (3)
+
+>  <CHN> (3)
+
+>  <UV> (3)
+
+>  <LogD> (3)
+
+>  <Solubility> (3)
+
+>  <TEMPORARY_STRUCTURES> (3)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.8357    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4327    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1536    1.1342    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    2.2637    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (4)
+86
+ 
+>  <COMMIT_TYPE> (4)
+full_commit
+
+>  <REG_INTERNAL_ID> (4)
+
+>  <CPD_INTERNAL_ID> (4)
+
+>  <Notebook> (4)
+1
+
+>  <Project> (4)
+1
+
+>  <Chemical Name> (4)
+Thiophene
+
+>  <Prefix> (4)
+1
+
+>  <CAS No> (4)
+
+>  <BP> (4)
+
+>  <MP> (4)
+
+>  <Flash Point> (4)
+
+>  <Optical Rotation> (4)
+
+>  <Refractive Index> (4)
+
+>  <Structure/Stereochemistry Comment> (4)
+1
+
+>  <Creation Date> (4)
+
+>  <Salt> (4)
+1
+
+>  <BASE64_CDX> (4)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQzIDIwMDIEAhAAAAA8AAAAPADDgWwASyZqAAEJCAAAAAAAAAAAAAIJCAAAAKgAAACmAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAw4FsAEsmagADgAMAAAAEgAQAAAAAAggAfytFAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA7ztjAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAxIFsANyPWAA5BAMAAAAyAAAEgAcAAAAAAggA/TNUAEsmagA5BAMAAAAzAAAEgAgAAAAAAggAAAA8ANyPWAACBAIAEAA5BAMAAAA0BoAJAAAAAAcNAAEAAAADAGAAyAADAFMAAAAABYAKAAAABAYEAAQAAAAFBgQABQAAAAAGAgACAAAABYALAAAABAYEAAUAAAAFBgQABgAAAAAABYAMAAAABAYEAAYAAAAFBgQABwAAAAAGAgACAAAABYANAAAABAYEAAcAAAAFBgQACAAAAAAABYAOAAAABAYEAAQAAAAFBgQACAAAAAAAAAAAAAAA
+
+>  <Synonym> (4)
+
+>  <Reference and Vendor data> (4)
+
+>  <Page> (4)
+
+>  <Submitted Amount> (4)
+
+>  <Batch Comment> (4)
+
+>  <Notebook> (4)
+
+>  <MW Text> (4)
+
+>  <MF Text> (4)
+
+>  <Entry Person> (4)
+14
+
+>  <Last Mod Person> (4)
+
+>  <Entry Date> (4)
+12/26/2002
+
+>  <Last Mod Date> (4)
+
+>  <Storage Requirements and Warnings> (4)
+
+>  <Preparation> (4)
+
+>  <Chemist> (4)
+1
+
+>  <Physical Form> (4)
+
+>  <Color> (4)
+
+>  <<sup>13</sup>CNMR> (4)
+
+>  <IR> (4)
+
+>  <FIA/MS> (4)
+
+>  <GC> (4)
+
+>  <<sup>1</sup>HNMR> (4)
+
+>  <BATCH_FORMULA> (4)
+
+>  <LOAD_ID> (4)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (4)
+1
+
+>  <Equivalents> (4)
+
+>  <Equivalents> (4)
+
+>  <Formula Weight> (4)
+84.1356
+
+>  <Product Type> (4)
+
+>  <Salt Name> (4)
+
+>  <MW> (4)
+
+>  <Solvate Name> (4)
+
+>  <MW> (4)
+
+>  <HPLC> (4)
+
+>  <Percent Active> (4)
+100
+
+>  <Units> (4)
+
+>  <Purity> (4)
+
+>  <Appearance> (4)
+
+>  <LC/UV/MS> (4)
+
+>  <CHN> (4)
+
+>  <UV> (4)
+
+>  <LogD> (4)
+
+>  <Solubility> (4)
+
+>  <TEMPORARY_STRUCTURES> (4)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.8357    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4327    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1536    1.1342    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3329    2.2637    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (5)
+87
+ 
+>  <COMMIT_TYPE> (5)
+full_commit
+
+>  <REG_INTERNAL_ID> (5)
+
+>  <CPD_INTERNAL_ID> (5)
+
+>  <Notebook> (5)
+1
+
+>  <Project> (5)
+1
+
+>  <Chemical Name> (5)
+Pyrrole
+
+>  <Prefix> (5)
+1
+
+>  <CAS No> (5)
+
+>  <BP> (5)
+
+>  <MP> (5)
+
+>  <Flash Point> (5)
+
+>  <Optical Rotation> (5)
+
+>  <Refractive Index> (5)
+
+>  <Structure/Stereochemistry Comment> (5)
+1
+
+>  <Creation Date> (5)
+
+>  <Salt> (5)
+1
+
+>  <BASE64_CDX> (5)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQzIDIwMDIEAhAAAAA8AAAAPADDgWwASyZqAAEJCAAAAAAAAAAAAAIJCAAAAKgAAACmAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAw4FsAEsmagADgAMAAAAEgAQAAAAAAggAfytFAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA7ztjAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAxIFsANyPWAA5BAMAAAAyAAAEgAcAAAAAAggA/TNUAEsmagA5BAMAAAAzAAAEgAgAAAAAAggAAAA8ANyPWAACBAIABwA5BAMAAAA0BoAJAAAAAAcOAAEAAAADAGAAyAADAE5IAAAAAAWACgAAAAQGBAAEAAAABQYEAAUAAAAABgIAAgAAAAWACwAAAAQGBAAFAAAABQYEAAYAAAAAAAWADAAAAAQGBAAGAAAABQYEAAcAAAAABgIAAgAAAAWADQAAAAQGBAAHAAAABQYEAAgAAAAAAAWADgAAAAQGBAAEAAAABQYEAAgAAAAAAAAAAAAAAA==
+
+>  <Synonym> (5)
+
+>  <Reference and Vendor data> (5)
+
+>  <Page> (5)
+
+>  <Submitted Amount> (5)
+
+>  <Batch Comment> (5)
+
+>  <Notebook> (5)
+
+>  <MW Text> (5)
+
+>  <MF Text> (5)
+
+>  <Entry Person> (5)
+14
+
+>  <Last Mod Person> (5)
+
+>  <Entry Date> (5)
+12/26/2002
+
+>  <Last Mod Date> (5)
+
+>  <Storage Requirements and Warnings> (5)
+
+>  <Preparation> (5)
+
+>  <Chemist> (5)
+1
+
+>  <Physical Form> (5)
+
+>  <Color> (5)
+
+>  <<sup>13</sup>CNMR> (5)
+
+>  <IR> (5)
+
+>  <FIA/MS> (5)
+
+>  <GC> (5)
+
+>  <<sup>1</sup>HNMR> (5)
+
+>  <BATCH_FORMULA> (5)
+
+>  <LOAD_ID> (5)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (5)
+1
+
+>  <Equivalents> (5)
+
+>  <Equivalents> (5)
+
+>  <Formula Weight> (5)
+67.0902
+
+>  <Product Type> (5)
+
+>  <Salt Name> (5)
+
+>  <MW> (5)
+
+>  <Solvate Name> (5)
+
+>  <MW> (5)
+
+>  <HPLC> (5)
+
+>  <Percent Active> (5)
+100
+
+>  <Units> (5)
+
+>  <Purity> (5)
+
+>  <Appearance> (5)
+
+>  <LC/UV/MS> (5)
+
+>  <CHN> (5)
+
+>  <UV> (5)
+
+>  <LogD> (5)
+
+>  <Solubility> (5)
+
+>  <TEMPORARY_STRUCTURES> (5)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.8618    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4551    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3240    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1514    1.1171    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3240    2.2755    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (6)
+88
+ 
+>  <COMMIT_TYPE> (6)
+full_commit
+
+>  <REG_INTERNAL_ID> (6)
+
+>  <CPD_INTERNAL_ID> (6)
+
+>  <Notebook> (6)
+1
+
+>  <Project> (6)
+1
+
+>  <Chemical Name> (6)
+Cyclopentane
+
+>  <Prefix> (6)
+1
+
+>  <CAS No> (6)
+
+>  <BP> (6)
+
+>  <MP> (6)
+
+>  <Flash Point> (6)
+
+>  <Optical Rotation> (6)
+
+>  <Refractive Index> (6)
+
+>  <Structure/Stereochemistry Comment> (6)
+1
+
+>  <Creation Date> (6)
+
+>  <Salt> (6)
+1
+
+>  <BASE64_CDX> (6)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQzIDIwMDIEAhAAAAA8AAAAPAD/wmwAHxpqAAEJCAAAAAAAAAAAAAIJCAAAAKgAAACmAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwA/8JsAB8aagADgAMAAAAEgAQAAAAAAggAod1EAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAWgJjAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggA/8JsAN1eWAA5BAMAAAAyAAAEgAcAAAAAAggA+tJUACAaagA5BAMAAAAzAAAEgAgAAAAAAggAAAA8AN1eWAA5BAMAAAA0AAAFgAkAAAAEBgQABAAAAAUGBAAFAAAAAAAFgAoAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAsAAAAEBgQABgAAAAUGBAAHAAAAAAAFgAwAAAAEBgQABwAAAAUGBAAIAAAAAAAFgA0AAAAEBgQABAAAAAUGBAAIAAAAAAAAAAAAAAA=
+
+>  <Synonym> (6)
+
+>  <Reference and Vendor data> (6)
+
+>  <Page> (6)
+
+>  <Submitted Amount> (6)
+
+>  <Batch Comment> (6)
+
+>  <Notebook> (6)
+
+>  <MW Text> (6)
+
+>  <MF Text> (6)
+
+>  <Entry Person> (6)
+14
+
+>  <Last Mod Person> (6)
+
+>  <Entry Date> (6)
+12/26/2002
+
+>  <Last Mod Date> (6)
+
+>  <Storage Requirements and Warnings> (6)
+
+>  <Preparation> (6)
+
+>  <Chemist> (6)
+1
+
+>  <Physical Form> (6)
+
+>  <Color> (6)
+
+>  <<sup>13</sup>CNMR> (6)
+
+>  <IR> (6)
+
+>  <FIA/MS> (6)
+
+>  <GC> (6)
+
+>  <<sup>1</sup>HNMR> (6)
+
+>  <BATCH_FORMULA> (6)
+
+>  <LOAD_ID> (6)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (6)
+1
+
+>  <Equivalents> (6)
+
+>  <Equivalents> (6)
+
+>  <Formula Weight> (6)
+70.134
+
+>  <Product Type> (6)
+
+>  <Salt Name> (6)
+
+>  <MW> (6)
+
+>  <Solvate Name> (6)
+
+>  <MW> (6)
+
+>  <HPLC> (6)
+
+>  <Percent Active> (6)
+100
+
+>  <Units> (6)
+
+>  <Purity> (6)
+
+>  <Appearance> (6)
+
+>  <LC/UV/MS> (6)
+
+>  <CHN> (6)
+
+>  <UV> (6)
+
+>  <LogD> (6)
+
+>  <Solubility> (6)
+
+>  <TEMPORARY_STRUCTURES> (6)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  3  3  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.3949    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2258    0.7186    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  1  3  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (7)
+89
+ 
+>  <COMMIT_TYPE> (7)
+full_commit
+
+>  <REG_INTERNAL_ID> (7)
+
+>  <CPD_INTERNAL_ID> (7)
+
+>  <Notebook> (7)
+1
+
+>  <Project> (7)
+1
+
+>  <Chemical Name> (7)
+Cyclopropane
+
+>  <Prefix> (7)
+1
+
+>  <CAS No> (7)
+
+>  <BP> (7)
+
+>  <MP> (7)
+
+>  <Flash Point> (7)
+
+>  <Optical Rotation> (7)
+
+>  <Refractive Index> (7)
+
+>  <Structure/Stereochemistry Comment> (7)
+1
+
+>  <Creation Date> (7)
+
+>  <Salt> (7)
+1
+
+>  <BASE64_CDX> (7)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ0IDIwMDIEAhAAAAA8AAAAPAD/41kAdURWAAEJCAAAAAAAAAAAAAIJCAAAAJUAAACSAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwA/+NZAHVEVgADgAMAAAAEgAQAAAAAAggAAAA8AAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA/+NZAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggA/n1KAHVEVgA5BAMAAAAyAAAFgAcAAAAEBgQABAAAAAUGBAAFAAAAAAAFgAgAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAkAAAAEBgQABAAAAAUGBAAGAAAAAAAAAAAAAAA=
+
+>  <Synonym> (7)
+
+>  <Reference and Vendor data> (7)
+
+>  <Page> (7)
+
+>  <Submitted Amount> (7)
+
+>  <Batch Comment> (7)
+
+>  <Notebook> (7)
+
+>  <MW Text> (7)
+
+>  <MF Text> (7)
+
+>  <Entry Person> (7)
+14
+
+>  <Last Mod Person> (7)
+
+>  <Entry Date> (7)
+12/26/2002
+
+>  <Last Mod Date> (7)
+
+>  <Storage Requirements and Warnings> (7)
+
+>  <Preparation> (7)
+
+>  <Chemist> (7)
+1
+
+>  <Physical Form> (7)
+
+>  <Color> (7)
+
+>  <<sup>13</sup>CNMR> (7)
+
+>  <IR> (7)
+
+>  <FIA/MS> (7)
+
+>  <GC> (7)
+
+>  <<sup>1</sup>HNMR> (7)
+
+>  <BATCH_FORMULA> (7)
+
+>  <LOAD_ID> (7)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (7)
+1
+
+>  <Equivalents> (7)
+
+>  <Equivalents> (7)
+
+>  <Formula Weight> (7)
+42.0804
+
+>  <Product Type> (7)
+
+>  <Salt Name> (7)
+
+>  <MW> (7)
+
+>  <Solvate Name> (7)
+
+>  <MW> (7)
+
+>  <HPLC> (7)
+
+>  <Percent Active> (7)
+100
+
+>  <Units> (7)
+
+>  <Purity> (7)
+
+>  <Appearance> (7)
+
+>  <LC/UV/MS> (7)
+
+>  <CHN> (7)
+
+>  <UV> (7)
+
+>  <LogD> (7)
+
+>  <Solubility> (7)
+
+>  <TEMPORARY_STRUCTURES> (7)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  4  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3976    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3976    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  1  4  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (8)
+90
+ 
+>  <COMMIT_TYPE> (8)
+full_commit
+
+>  <REG_INTERNAL_ID> (8)
+
+>  <CPD_INTERNAL_ID> (8)
+
+>  <Notebook> (8)
+1
+
+>  <Project> (8)
+1
+
+>  <Chemical Name> (8)
+Cyclobutane
+
+>  <Prefix> (8)
+1
+
+>  <CAS No> (8)
+
+>  <BP> (8)
+
+>  <MP> (8)
+
+>  <Flash Point> (8)
+
+>  <Optical Rotation> (8)
+
+>  <Refractive Index> (8)
+
+>  <Structure/Stereochemistry Comment> (8)
+1
+
+>  <Creation Date> (8)
+
+>  <Salt> (8)
+1
+
+>  <BASE64_CDX> (8)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ0IDIwMDIEAhAAAAA8AAAAPAAAAFoA2PJZAAEJCAAAAAAAAAAAAAIJCAAAAJYAAACVAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAAABaANjyWQADgAMAAAAEgAQAAAAAAggAAAA8AAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAAABaAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAAABaANjyWQA5BAMAAAAyAAAEgAcAAAAAAggAAAA8ANjyWQA5BAMAAAAzAAAFgAgAAAAEBgQABAAAAAUGBAAFAAAAAAAFgAkAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAoAAAAEBgQABgAAAAUGBAAHAAAAAAAFgAsAAAAEBgQABAAAAAUGBAAHAAAAAAAAAAAAAAA=
+
+>  <Synonym> (8)
+
+>  <Reference and Vendor data> (8)
+
+>  <Page> (8)
+
+>  <Submitted Amount> (8)
+
+>  <Batch Comment> (8)
+
+>  <Notebook> (8)
+
+>  <MW Text> (8)
+
+>  <MF Text> (8)
+
+>  <Entry Person> (8)
+14
+
+>  <Last Mod Person> (8)
+
+>  <Entry Date> (8)
+12/26/2002
+
+>  <Last Mod Date> (8)
+
+>  <Storage Requirements and Warnings> (8)
+
+>  <Preparation> (8)
+
+>  <Chemist> (8)
+1
+
+>  <Physical Form> (8)
+
+>  <Color> (8)
+
+>  <<sup>13</sup>CNMR> (8)
+
+>  <IR> (8)
+
+>  <FIA/MS> (8)
+
+>  <GC> (8)
+
+>  <<sup>1</sup>HNMR> (8)
+
+>  <BATCH_FORMULA> (8)
+
+>  <LOAD_ID> (8)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (8)
+1
+
+>  <Equivalents> (8)
+
+>  <Equivalents> (8)
+
+>  <Formula Weight> (8)
+56.1072
+
+>  <Product Type> (8)
+
+>  <Salt Name> (8)
+
+>  <MW> (8)
+
+>  <Solvate Name> (8)
+
+>  <MW> (8)
+
+>  <HPLC> (8)
+
+>  <Percent Active> (8)
+100
+
+>  <Units> (8)
+
+>  <Purity> (8)
+
+>  <Appearance> (8)
+
+>  <LC/UV/MS> (8)
+
+>  <CHN> (8)
+
+>  <UV> (8)
+
+>  <LogD> (8)
+
+>  <Solubility> (8)
+
+>  <TEMPORARY_STRUCTURES> (8)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4013    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2121    0.7006    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4242    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4242    1.3990    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  1  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  3  5  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (9)
+91
+ 
+>  <COMMIT_TYPE> (9)
+full_commit
+
+>  <REG_INTERNAL_ID> (9)
+
+>  <CPD_INTERNAL_ID> (9)
+
+>  <Notebook> (9)
+1
+
+>  <Project> (9)
+1
+
+>  <Chemical Name> (9)
+Spiropentane
+
+>  <Prefix> (9)
+1
+
+>  <CAS No> (9)
+
+>  <BP> (9)
+
+>  <MP> (9)
+
+>  <Flash Point> (9)
+
+>  <Optical Rotation> (9)
+
+>  <Refractive Index> (9)
+
+>  <Structure/Stereochemistry Comment> (9)
+1
+
+>  <Creation Date> (9)
+
+>  <Salt> (9)
+1
+
+>  <BASE64_CDX> (9)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ1IDIwMDIEAhAAAAA8AAAAPADgBloAufJvAAEJCAAAAAAAAAAAAAIJCAAAAJYAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwA4AZaALnybwADgAMAAAAEgAQAAAAAAggAAAA8AAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA4AZaAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAcANLABb5VQA5BAMAAAAyAAAEgAcAAAAAAggA4AZaALrybwA5BAMAAAAzAAAEgAgAAAAAAggAnQw8ALrybwA5BAMAAAA0AAAFgAkAAAAEBgQABAAAAAUGBAAFAAAAAAAFgAoAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAsAAAAEBgQABAAAAAUGBAAGAAAAAAAFgAwAAAAEBgQABgAAAAUGBAAHAAAAAAAFgA0AAAAEBgQABwAAAAUGBAAIAAAAAAAFgA4AAAAEBgQABgAAAAUGBAAIAAAAAAAAAAAAAAA=
+
+>  <Synonym> (9)
+
+>  <Reference and Vendor data> (9)
+
+>  <Page> (9)
+
+>  <Submitted Amount> (9)
+
+>  <Batch Comment> (9)
+
+>  <Notebook> (9)
+
+>  <MW Text> (9)
+
+>  <MF Text> (9)
+
+>  <Entry Person> (9)
+14
+
+>  <Last Mod Person> (9)
+
+>  <Entry Date> (9)
+12/26/2002
+
+>  <Last Mod Date> (9)
+
+>  <Storage Requirements and Warnings> (9)
+
+>  <Preparation> (9)
+
+>  <Chemist> (9)
+1
+
+>  <Physical Form> (9)
+
+>  <Color> (9)
+
+>  <<sup>13</sup>CNMR> (9)
+
+>  <IR> (9)
+
+>  <FIA/MS> (9)
+
+>  <GC> (9)
+
+>  <<sup>1</sup>HNMR> (9)
+
+>  <BATCH_FORMULA> (9)
+
+>  <LOAD_ID> (9)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (9)
+1
+
+>  <Equivalents> (9)
+
+>  <Equivalents> (9)
+
+>  <Formula Weight> (9)
+68.1182
+
+>  <Product Type> (9)
+
+>  <Salt Name> (9)
+
+>  <MW> (9)
+
+>  <Solvate Name> (9)
+
+>  <MW> (9)
+
+>  <HPLC> (9)
+
+>  <Percent Active> (9)
+100
+
+>  <Units> (9)
+
+>  <Purity> (9)
+
+>  <Appearance> (9)
+
+>  <LC/UV/MS> (9)
+
+>  <CHN> (9)
+
+>  <UV> (9)
+
+>  <LogD> (9)
+
+>  <Solubility> (9)
+
+>  <TEMPORARY_STRUCTURES> (9)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4172    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4172    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2087    2.0953    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  2  0  0  0  0
+  2  3  2  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (10)
+92
+ 
+>  <COMMIT_TYPE> (10)
+full_commit
+
+>  <REG_INTERNAL_ID> (10)
+
+>  <CPD_INTERNAL_ID> (10)
+
+>  <Notebook> (10)
+1
+
+>  <Project> (10)
+1
+
+>  <Chemical Name> (10)
+Isopyrrole
+
+>  <Prefix> (10)
+1
+
+>  <CAS No> (10)
+
+>  <BP> (10)
+
+>  <MP> (10)
+
+>  <Flash Point> (10)
+
+>  <Optical Rotation> (10)
+
+>  <Refractive Index> (10)
+
+>  <Structure/Stereochemistry Comment> (10)
+1
+
+>  <Creation Date> (10)
+
+>  <Salt> (10)
+1
+
+>  <BASE64_CDX> (10)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ1IDIwMDIEAhAAAAA8AAAAPAD25WgAF8xvAAEJCAAAAAAAAAAAAAIJCAAAAKQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwA9uVoABfMbwADgAMAAAAEgAQAAAAAAggA9uVKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggA9uVoAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggA9uVoABjMbwA5BAMAAAAyAAAEgAcAAAAAAggA9uVKABjMbwA5BAMAAAAzAAAEgAgAAAAAAggAAAA8AFzmVQACBAIABwA5BAMAAAA0BoAJAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABYAKAAAABAYEAAQAAAAFBgQABQAAAAAABYALAAAABAYEAAYAAAAFBgQABwAAAAAABYAMAAAABAYEAAcAAAAFBgQACAAAAAAABYANAAAABAYEAAQAAAAFBgQACAAAAAAGAgACAAAABYAOAAAABAYEAAUAAAAFBgQABgAAAAAGAgACAAAAAAAAAAAA
+
+>  <Synonym> (10)
+
+>  <Reference and Vendor data> (10)
+
+>  <Page> (10)
+
+>  <Submitted Amount> (10)
+
+>  <Batch Comment> (10)
+
+>  <Notebook> (10)
+
+>  <MW Text> (10)
+
+>  <MF Text> (10)
+
+>  <Entry Person> (10)
+14
+
+>  <Last Mod Person> (10)
+
+>  <Entry Date> (10)
+12/26/2002
+
+>  <Last Mod Date> (10)
+
+>  <Storage Requirements and Warnings> (10)
+
+>  <Preparation> (10)
+
+>  <Chemist> (10)
+1
+
+>  <Physical Form> (10)
+
+>  <Color> (10)
+
+>  <<sup>13</sup>CNMR> (10)
+
+>  <IR> (10)
+
+>  <FIA/MS> (10)
+
+>  <GC> (10)
+
+>  <<sup>1</sup>HNMR> (10)
+
+>  <BATCH_FORMULA> (10)
+
+>  <LOAD_ID> (10)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (10)
+1
+
+>  <Equivalents> (10)
+
+>  <Equivalents> (10)
+
+>  <Formula Weight> (10)
+67.0902
+
+>  <Product Type> (10)
+
+>  <Salt Name> (10)
+
+>  <MW> (10)
+
+>  <Solvate Name> (10)
+
+>  <MW> (10)
+
+>  <HPLC> (10)
+
+>  <Percent Active> (10)
+100
+
+>  <Units> (10)
+
+>  <Purity> (10)
+
+>  <Appearance> (10)
+
+>  <LC/UV/MS> (10)
+
+>  <CHN> (10)
+
+>  <UV> (10)
+
+>  <LogD> (10)
+
+>  <Solubility> (10)
+
+>  <TEMPORARY_STRUCTURES> (10)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4195    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4195    1.4000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2109    2.0975    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+  2  3  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (11)
+93
+ 
+>  <COMMIT_TYPE> (11)
+full_commit
+
+>  <REG_INTERNAL_ID> (11)
+
+>  <CPD_INTERNAL_ID> (11)
+
+>  <Notebook> (11)
+1
+
+>  <Project> (11)
+1
+
+>  <Chemical Name> (11)
+Pyrazole
+
+>  <Prefix> (11)
+1
+
+>  <CAS No> (11)
+
+>  <BP> (11)
+
+>  <MP> (11)
+
+>  <Flash Point> (11)
+
+>  <Optical Rotation> (11)
+
+>  <Refractive Index> (11)
+
+>  <Structure/Stereochemistry Comment> (11)
+1
+
+>  <Creation Date> (11)
+
+>  <Salt> (11)
+1
+
+>  <BASE64_CDX> (11)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ2IDIwMDIEAhAAAAA8AAAAPAB/8mgA0dhvAAEJCAAAAAAAAAAAAAIJCAAAAKQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAf/JoANHYbwADgAMAAAAEgAQAAAAAAggAgPJKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAgPJoAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAgPJoANHYbwA5BAMAAAAyAAAEgAcAAAAAAggAgPJKANHYbwACBAIABwA5BAMAAAAzBoAIAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAJAAAAAAIIAAAAPACw8lUAAgQCAAcAOQQDAAAANAaACgAAAAAHDgABAAAAAwBgAMgAAwBOSAAAAAAFgAsAAAAEBgQABAAAAAUGBAAFAAAAAAYCAAIAAAAFgAwAAAAEBgQABgAAAAUGBAAHAAAAAAYCAAIAAAAFgA0AAAAEBgQABwAAAAUGBAAJAAAAAAAFgA4AAAAEBgQABAAAAAUGBAAJAAAAAAAFgA8AAAAEBgQABQAAAAUGBAAGAAAAAAAAAAAAAAA=
+
+>  <Synonym> (11)
+
+>  <Reference and Vendor data> (11)
+
+>  <Page> (11)
+
+>  <Submitted Amount> (11)
+
+>  <Batch Comment> (11)
+
+>  <Notebook> (11)
+
+>  <MW Text> (11)
+
+>  <MF Text> (11)
+
+>  <Entry Person> (11)
+14
+
+>  <Last Mod Person> (11)
+
+>  <Entry Date> (11)
+12/26/2002
+
+>  <Last Mod Date> (11)
+
+>  <Storage Requirements and Warnings> (11)
+
+>  <Preparation> (11)
+
+>  <Chemist> (11)
+1
+
+>  <Physical Form> (11)
+
+>  <Color> (11)
+
+>  <<sup>13</sup>CNMR> (11)
+
+>  <IR> (11)
+
+>  <FIA/MS> (11)
+
+>  <GC> (11)
+
+>  <<sup>1</sup>HNMR> (11)
+
+>  <BATCH_FORMULA> (11)
+
+>  <LOAD_ID> (11)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (11)
+1
+
+>  <Equivalents> (11)
+
+>  <Equivalents> (11)
+
+>  <Formula Weight> (11)
+68.078
+
+>  <Product Type> (11)
+
+>  <Salt Name> (11)
+
+>  <MW> (11)
+
+>  <Solvate Name> (11)
+
+>  <MW> (11)
+
+>  <HPLC> (11)
+
+>  <Percent Active> (11)
+100
+
+>  <Units> (11)
+
+>  <Purity> (11)
+
+>  <Appearance> (11)
+
+>  <LC/UV/MS> (11)
+
+>  <CHN> (11)
+
+>  <UV> (11)
+
+>  <LogD> (11)
+
+>  <Solubility> (11)
+
+>  <TEMPORARY_STRUCTURES> (11)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4195    0.0000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4195    1.4000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2109    2.0975    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  1  5  1  0  0  0  0
+  2  3  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (12)
+94
+ 
+>  <COMMIT_TYPE> (12)
+full_commit
+
+>  <REG_INTERNAL_ID> (12)
+
+>  <CPD_INTERNAL_ID> (12)
+
+>  <Notebook> (12)
+1
+
+>  <Project> (12)
+1
+
+>  <Chemical Name> (12)
+1,2,3-Triazole
+
+>  <Prefix> (12)
+1
+
+>  <CAS No> (12)
+
+>  <BP> (12)
+
+>  <MP> (12)
+
+>  <Flash Point> (12)
+
+>  <Optical Rotation> (12)
+
+>  <Refractive Index> (12)
+
+>  <Structure/Stereochemistry Comment> (12)
+1
+
+>  <Creation Date> (12)
+
+>  <Salt> (12)
+1
+
+>  <BASE64_CDX> (12)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ2IDIwMDIEAhAAAAA8AAAAPAB/8mgA0dhvAAEJCAAAAAAAAAAAAAIJCAAAAKQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwAf/JoANHYbwADgAMAAAAEgAQAAAAAAggAgPJKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAgPJoAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggAgPJoANHYbwACBAIABwA5BAMAAAAyBoAHAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAIAAAAAAIIAIDySgDR2G8AAgQCAAcAOQQDAAAAMwaACQAAAAAHDQABAAAAAwBgAMgAAwBOAAAAAASACgAAAAACCAAAADwAsPJVAAIEAgAHADkEAwAAADQGgAsAAAAABw4AAQAAAAMAYADIAAMATkgAAAAABYAMAAAABAYEAAQAAAAFBgQABQAAAAAGAgACAAAABYANAAAABAYEAAYAAAAFBgQACAAAAAAGAgACAAAABYAOAAAABAYEAAgAAAAFBgQACgAAAAAABYAPAAAABAYEAAQAAAAFBgQACgAAAAAABYAQAAAABAYEAAUAAAAFBgQABgAAAAAAAAAAAAAA
+
+>  <Synonym> (12)
+
+>  <Reference and Vendor data> (12)
+
+>  <Page> (12)
+
+>  <Submitted Amount> (12)
+
+>  <Batch Comment> (12)
+
+>  <Notebook> (12)
+
+>  <MW Text> (12)
+
+>  <MF Text> (12)
+
+>  <Entry Person> (12)
+14
+
+>  <Last Mod Person> (12)
+
+>  <Entry Date> (12)
+12/26/2002
+
+>  <Last Mod Date> (12)
+
+>  <Storage Requirements and Warnings> (12)
+
+>  <Preparation> (12)
+
+>  <Chemist> (12)
+1
+
+>  <Physical Form> (12)
+
+>  <Color> (12)
+
+>  <<sup>13</sup>CNMR> (12)
+
+>  <IR> (12)
+
+>  <FIA/MS> (12)
+
+>  <GC> (12)
+
+>  <<sup>1</sup>HNMR> (12)
+
+>  <BATCH_FORMULA> (12)
+
+>  <LOAD_ID> (12)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (12)
+1
+
+>  <Equivalents> (12)
+
+>  <Equivalents> (12)
+
+>  <Formula Weight> (12)
+69.0658
+
+>  <Product Type> (12)
+
+>  <Salt Name> (12)
+
+>  <MW> (12)
+
+>  <Solvate Name> (12)
+
+>  <MW> (12)
+
+>  <HPLC> (12)
+
+>  <Percent Active> (12)
+100
+
+>  <Units> (12)
+
+>  <Purity> (12)
+
+>  <Appearance> (12)
+
+>  <LC/UV/MS> (12)
+
+>  <CHN> (12)
+
+>  <UV> (12)
+
+>  <LogD> (12)
+
+>  <Solubility> (12)
+
+>  <TEMPORARY_STRUCTURES> (12)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  1  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (13)
+95
+ 
+>  <COMMIT_TYPE> (13)
+full_commit
+
+>  <REG_INTERNAL_ID> (13)
+
+>  <CPD_INTERNAL_ID> (13)
+
+>  <Notebook> (13)
+1
+
+>  <Project> (13)
+1
+
+>  <Chemical Name> (13)
+1,2-Pyran
+
+>  <Prefix> (13)
+1
+
+>  <CAS No> (13)
+
+>  <BP> (13)
+
+>  <MP> (13)
+
+>  <Flash Point> (13)
+
+>  <Optical Rotation> (13)
+
+>  <Refractive Index> (13)
+
+>  <Structure/Stereochemistry Comment> (13)
+1
+
+>  <Creation Date> (13)
+
+>  <Salt> (13)
+1
+
+>  <BASE64_CDX> (13)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ2IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQA5BAMAAAAyAAAEgAcAAAAAAggAh/1oAETlbwA5BAMAAAAzAAAEgAgAAAAAAggAlvZKAETlbwA5BAMAAAA0AAAEgAkAAAAAAggAAAA8AOn4VQACBAIACAA5BAMAAAA1BoAKAAAAAAcNAAEAAAADAGAAyAADAE8AAAAABYALAAAABAYEAAQAAAAFBgQABQAAAAAGAgACAAAABYAMAAAABAYEAAUAAAAFBgQABgAAAAAABYANAAAABAYEAAYAAAAFBgQABwAAAAAGAgACAAAABYAOAAAABAYEAAcAAAAFBgQACAAAAAAABYAPAAAABAYEAAgAAAAFBgQACQAAAAAABYAQAAAABAYEAAQAAAAFBgQACQAAAAAAAAAAAAAA
+
+>  <Synonym> (13)
+
+>  <Reference and Vendor data> (13)
+
+>  <Page> (13)
+
+>  <Submitted Amount> (13)
+
+>  <Batch Comment> (13)
+
+>  <Notebook> (13)
+
+>  <MW Text> (13)
+
+>  <MF Text> (13)
+
+>  <Entry Person> (13)
+14
+
+>  <Last Mod Person> (13)
+
+>  <Entry Date> (13)
+12/26/2002
+
+>  <Last Mod Date> (13)
+
+>  <Storage Requirements and Warnings> (13)
+
+>  <Preparation> (13)
+
+>  <Chemist> (13)
+1
+
+>  <Physical Form> (13)
+
+>  <Color> (13)
+
+>  <<sup>13</sup>CNMR> (13)
+
+>  <IR> (13)
+
+>  <FIA/MS> (13)
+
+>  <GC> (13)
+
+>  <<sup>1</sup>HNMR> (13)
+
+>  <BATCH_FORMULA> (13)
+
+>  <LOAD_ID> (13)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (13)
+1
+
+>  <Equivalents> (13)
+
+>  <Equivalents> (13)
+
+>  <Formula Weight> (13)
+82.1018
+
+>  <Product Type> (13)
+
+>  <Salt Name> (13)
+
+>  <MW> (13)
+
+>  <Solvate Name> (13)
+
+>  <MW> (13)
+
+>  <HPLC> (13)
+
+>  <Percent Active> (13)
+100
+
+>  <Units> (13)
+
+>  <Purity> (13)
+
+>  <Appearance> (13)
+
+>  <LC/UV/MS> (13)
+
+>  <CHN> (13)
+
+>  <UV> (13)
+
+>  <LogD> (13)
+
+>  <Solubility> (13)
+
+>  <TEMPORARY_STRUCTURES> (13)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  1  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (14)
+96
+ 
+>  <COMMIT_TYPE> (14)
+full_commit
+
+>  <REG_INTERNAL_ID> (14)
+
+>  <CPD_INTERNAL_ID> (14)
+
+>  <Notebook> (14)
+1
+
+>  <Project> (14)
+1
+
+>  <Chemical Name> (14)
+Cyclohexane
+
+>  <Prefix> (14)
+1
+
+>  <CAS No> (14)
+
+>  <BP> (14)
+
+>  <MP> (14)
+
+>  <Flash Point> (14)
+
+>  <Optical Rotation> (14)
+
+>  <Refractive Index> (14)
+
+>  <Structure/Stereochemistry Comment> (14)
+1
+
+>  <Creation Date> (14)
+
+>  <Salt> (14)
+1
+
+>  <BASE64_CDX> (14)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ3IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQA5BAMAAAAyAAAEgAcAAAAAAggAh/1oAETlbwA5BAMAAAAzAAAEgAgAAAAAAggAlvZKAETlbwA5BAMAAAA0AAAEgAkAAAAAAggAAAA8AOn4VQA5BAMAAAA1AAAFgAoAAAAEBgQABAAAAAUGBAAFAAAAAAAFgAsAAAAEBgQABQAAAAUGBAAGAAAAAAAFgAwAAAAEBgQABgAAAAUGBAAHAAAAAAAFgA0AAAAEBgQABwAAAAUGBAAIAAAAAAAFgA4AAAAEBgQACAAAAAUGBAAJAAAAAAAFgA8AAAAEBgQABAAAAAUGBAAJAAAAAAAAAAAAAAA=
+
+>  <Synonym> (14)
+
+>  <Reference and Vendor data> (14)
+
+>  <Page> (14)
+
+>  <Submitted Amount> (14)
+
+>  <Batch Comment> (14)
+
+>  <Notebook> (14)
+
+>  <MW Text> (14)
+
+>  <MF Text> (14)
+
+>  <Entry Person> (14)
+14
+
+>  <Last Mod Person> (14)
+
+>  <Entry Date> (14)
+12/26/2002
+
+>  <Last Mod Date> (14)
+
+>  <Storage Requirements and Warnings> (14)
+
+>  <Preparation> (14)
+
+>  <Chemist> (14)
+1
+
+>  <Physical Form> (14)
+
+>  <Color> (14)
+
+>  <<sup>13</sup>CNMR> (14)
+
+>  <IR> (14)
+
+>  <FIA/MS> (14)
+
+>  <GC> (14)
+
+>  <<sup>1</sup>HNMR> (14)
+
+>  <BATCH_FORMULA> (14)
+
+>  <LOAD_ID> (14)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (14)
+1
+
+>  <Equivalents> (14)
+
+>  <Equivalents> (14)
+
+>  <Formula Weight> (14)
+84.1608
+
+>  <Product Type> (14)
+
+>  <Salt Name> (14)
+
+>  <MW> (14)
+
+>  <Solvate Name> (14)
+
+>  <MW> (14)
+
+>  <HPLC> (14)
+
+>  <Percent Active> (14)
+100
+
+>  <Units> (14)
+
+>  <Purity> (14)
+
+>  <Appearance> (14)
+
+>  <LC/UV/MS> (14)
+
+>  <CHN> (14)
+
+>  <UV> (14)
+
+>  <LogD> (14)
+
+>  <Solubility> (14)
+
+>  <TEMPORARY_STRUCTURES> (14)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (15)
+97
+ 
+>  <COMMIT_TYPE> (15)
+full_commit
+
+>  <REG_INTERNAL_ID> (15)
+
+>  <CPD_INTERNAL_ID> (15)
+
+>  <Notebook> (15)
+1
+
+>  <Project> (15)
+1
+
+>  <Chemical Name> (15)
+Pyridine
+
+>  <Prefix> (15)
+1
+
+>  <CAS No> (15)
+
+>  <BP> (15)
+
+>  <MP> (15)
+
+>  <Flash Point> (15)
+
+>  <Optical Rotation> (15)
+
+>  <Refractive Index> (15)
+
+>  <Structure/Stereochemistry Comment> (15)
+1
+
+>  <Creation Date> (15)
+
+>  <Salt> (15)
+1
+
+>  <BASE64_CDX> (15)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ3IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQA5BAMAAAAyAAAEgAcAAAAAAggAh/1oAETlbwA5BAMAAAAzAAAEgAgAAAAAAggAlvZKAETlbwA5BAMAAAA0AAAEgAkAAAAAAggAAAA8AOn4VQACBAIABwA5BAMAAAA1BoAKAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABYALAAAABAYEAAQAAAAFBgQABQAAAAAGAgACAAAABYAMAAAABAYEAAUAAAAFBgQABgAAAAAABYANAAAABAYEAAYAAAAFBgQABwAAAAAGAgACAAAABYAOAAAABAYEAAcAAAAFBgQACAAAAAAABYAPAAAABAYEAAgAAAAFBgQACQAAAAAGAgACAAAABYAQAAAABAYEAAQAAAAFBgQACQAAAAAAAAAAAAAA
+
+>  <Synonym> (15)
+
+>  <Reference and Vendor data> (15)
+
+>  <Page> (15)
+
+>  <Submitted Amount> (15)
+
+>  <Batch Comment> (15)
+
+>  <Notebook> (15)
+
+>  <MW Text> (15)
+
+>  <MF Text> (15)
+
+>  <Entry Person> (15)
+14
+
+>  <Last Mod Person> (15)
+
+>  <Entry Date> (15)
+12/26/2002
+
+>  <Last Mod Date> (15)
+
+>  <Storage Requirements and Warnings> (15)
+
+>  <Preparation> (15)
+
+>  <Chemist> (15)
+1
+
+>  <Physical Form> (15)
+
+>  <Color> (15)
+
+>  <<sup>13</sup>CNMR> (15)
+
+>  <IR> (15)
+
+>  <FIA/MS> (15)
+
+>  <GC> (15)
+
+>  <<sup>1</sup>HNMR> (15)
+
+>  <BATCH_FORMULA> (15)
+
+>  <LOAD_ID> (15)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (15)
+1
+
+>  <Equivalents> (15)
+
+>  <Equivalents> (15)
+
+>  <Formula Weight> (15)
+79.1012
+
+>  <Product Type> (15)
+
+>  <Salt Name> (15)
+
+>  <MW> (15)
+
+>  <Solvate Name> (15)
+
+>  <MW> (15)
+
+>  <HPLC> (15)
+
+>  <Percent Active> (15)
+100
+
+>  <Units> (15)
+
+>  <Purity> (15)
+
+>  <Appearance> (15)
+
+>  <LC/UV/MS> (15)
+
+>  <CHN> (15)
+
+>  <UV> (15)
+
+>  <LogD> (15)
+
+>  <Solubility> (15)
+
+>  <TEMPORARY_STRUCTURES> (15)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (16)
+98
+ 
+>  <COMMIT_TYPE> (16)
+full_commit
+
+>  <REG_INTERNAL_ID> (16)
+
+>  <CPD_INTERNAL_ID> (16)
+
+>  <Notebook> (16)
+1
+
+>  <Project> (16)
+1
+
+>  <Chemical Name> (16)
+Pyridazine
+
+>  <Prefix> (16)
+1
+
+>  <CAS No> (16)
+
+>  <BP> (16)
+
+>  <MP> (16)
+
+>  <Flash Point> (16)
+
+>  <Optical Rotation> (16)
+
+>  <Refractive Index> (16)
+
+>  <Structure/Stereochemistry Comment> (16)
+1
+
+>  <Creation Date> (16)
+
+>  <Salt> (16)
+1
+
+>  <BASE64_CDX> (16)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ4IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQA5BAMAAAAyAAAEgAcAAAAAAggAh/1oAETlbwA5BAMAAAAzAAAEgAgAAAAAAggAlvZKAETlbwACBAIABwA5BAMAAAA0BoAJAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAKAAAAAAIIAAAAPADp+FUAAgQCAAcAOQQDAAAANQaACwAAAAAHDQABAAAAAwBgAMgAAwBOAAAAAAWADAAAAAQGBAAEAAAABQYEAAUAAAAABgIAAgAAAAWADQAAAAQGBAAFAAAABQYEAAYAAAAAAAWADgAAAAQGBAAGAAAABQYEAAcAAAAABgIAAgAAAAWADwAAAAQGBAAHAAAABQYEAAgAAAAAAAWAEAAAAAQGBAAIAAAABQYEAAoAAAAABgIAAgAAAAWAEQAAAAQGBAAEAAAABQYEAAoAAAAAAAAAAAAAAA==
+
+>  <Synonym> (16)
+
+>  <Reference and Vendor data> (16)
+
+>  <Page> (16)
+
+>  <Submitted Amount> (16)
+
+>  <Batch Comment> (16)
+
+>  <Notebook> (16)
+
+>  <MW Text> (16)
+
+>  <MF Text> (16)
+
+>  <Entry Person> (16)
+14
+
+>  <Last Mod Person> (16)
+
+>  <Entry Date> (16)
+12/26/2002
+
+>  <Last Mod Date> (16)
+
+>  <Storage Requirements and Warnings> (16)
+
+>  <Preparation> (16)
+
+>  <Chemist> (16)
+1
+
+>  <Physical Form> (16)
+
+>  <Color> (16)
+
+>  <<sup>13</sup>CNMR> (16)
+
+>  <IR> (16)
+
+>  <FIA/MS> (16)
+
+>  <GC> (16)
+
+>  <<sup>1</sup>HNMR> (16)
+
+>  <BATCH_FORMULA> (16)
+
+>  <LOAD_ID> (16)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (16)
+1
+
+>  <Equivalents> (16)
+
+>  <Equivalents> (16)
+
+>  <Formula Weight> (16)
+80.089
+
+>  <Product Type> (16)
+
+>  <Salt Name> (16)
+
+>  <MW> (16)
+
+>  <Solvate Name> (16)
+
+>  <MW> (16)
+
+>  <HPLC> (16)
+
+>  <Percent Active> (16)
+100
+
+>  <Units> (16)
+
+>  <Purity> (16)
+
+>  <Appearance> (16)
+
+>  <LC/UV/MS> (16)
+
+>  <CHN> (16)
+
+>  <UV> (16)
+
+>  <LogD> (16)
+
+>  <Solubility> (16)
+
+>  <TEMPORARY_STRUCTURES> (16)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (17)
+99
+ 
+>  <COMMIT_TYPE> (17)
+full_commit
+
+>  <REG_INTERNAL_ID> (17)
+
+>  <CPD_INTERNAL_ID> (17)
+
+>  <Notebook> (17)
+1
+
+>  <Project> (17)
+1
+
+>  <Chemical Name> (17)
+Pyrimidine
+
+>  <Prefix> (17)
+1
+
+>  <CAS No> (17)
+
+>  <BP> (17)
+
+>  <MP> (17)
+
+>  <Flash Point> (17)
+
+>  <Optical Rotation> (17)
+
+>  <Refractive Index> (17)
+
+>  <Structure/Stereochemistry Comment> (17)
+1
+
+>  <Creation Date> (17)
+
+>  <Salt> (17)
+1
+
+>  <BASE64_CDX> (17)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ4IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQA5BAMAAAAyAAAEgAcAAAAAAggAh/1oAETlbwACBAIABwA5BAMAAAAzBoAIAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAJAAAAAAIIAJb2SgBE5W8AOQQDAAAANAAABIAKAAAAAAIIAAAAPADp+FUAAgQCAAcAOQQDAAAANQaACwAAAAAHDQABAAAAAwBgAMgAAwBOAAAAAAWADAAAAAQGBAAEAAAABQYEAAUAAAAABgIAAgAAAAWADQAAAAQGBAAFAAAABQYEAAYAAAAAAAWADgAAAAQGBAAGAAAABQYEAAcAAAAABgIAAgAAAAWADwAAAAQGBAAHAAAABQYEAAkAAAAAAAWAEAAAAAQGBAAJAAAABQYEAAoAAAAABgIAAgAAAAWAEQAAAAQGBAAEAAAABQYEAAoAAAAAAAAAAAAAAA==
+
+>  <Synonym> (17)
+
+>  <Reference and Vendor data> (17)
+
+>  <Page> (17)
+
+>  <Submitted Amount> (17)
+
+>  <Batch Comment> (17)
+
+>  <Notebook> (17)
+
+>  <MW Text> (17)
+
+>  <MF Text> (17)
+
+>  <Entry Person> (17)
+14
+
+>  <Last Mod Person> (17)
+
+>  <Entry Date> (17)
+12/26/2002
+
+>  <Last Mod Date> (17)
+
+>  <Storage Requirements and Warnings> (17)
+
+>  <Preparation> (17)
+
+>  <Chemist> (17)
+1
+
+>  <Physical Form> (17)
+
+>  <Color> (17)
+
+>  <<sup>13</sup>CNMR> (17)
+
+>  <IR> (17)
+
+>  <FIA/MS> (17)
+
+>  <GC> (17)
+
+>  <<sup>1</sup>HNMR> (17)
+
+>  <BATCH_FORMULA> (17)
+
+>  <LOAD_ID> (17)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (17)
+1
+
+>  <Equivalents> (17)
+
+>  <Equivalents> (17)
+
+>  <Formula Weight> (17)
+80.089
+
+>  <Product Type> (17)
+
+>  <Salt Name> (17)
+
+>  <MW> (17)
+
+>  <Solvate Name> (17)
+
+>  <MW> (17)
+
+>  <HPLC> (17)
+
+>  <Percent Active> (17)
+100
+
+>  <Units> (17)
+
+>  <Purity> (17)
+
+>  <Appearance> (17)
+
+>  <LC/UV/MS> (17)
+
+>  <CHN> (17)
+
+>  <UV> (17)
+
+>  <LogD> (17)
+
+>  <Solubility> (17)
+
+>  <TEMPORARY_STRUCTURES> (17)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (18)
+100
+ 
+>  <COMMIT_TYPE> (18)
+full_commit
+
+>  <REG_INTERNAL_ID> (18)
+
+>  <CPD_INTERNAL_ID> (18)
+
+>  <Notebook> (18)
+1
+
+>  <Project> (18)
+1
+
+>  <Chemical Name> (18)
+Pyrazine
+
+>  <Prefix> (18)
+1
+
+>  <CAS No> (18)
+
+>  <BP> (18)
+
+>  <MP> (18)
+
+>  <Flash Point> (18)
+
+>  <Optical Rotation> (18)
+
+>  <Refractive Index> (18)
+
+>  <Structure/Stereochemistry Comment> (18)
+1
+
+>  <Creation Date> (18)
+
+>  <Salt> (18)
+1
+
+>  <BASE64_CDX> (18)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjQ5IDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQACBAIABwA5BAMAAAAyBoAHAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAIAAAAAAIIAIf9aABE5W8AOQQDAAAAMwAABIAJAAAAAAIIAJb2SgBE5W8AOQQDAAAANAAABIAKAAAAAAIIAAAAPADp+FUAAgQCAAcAOQQDAAAANQaACwAAAAAHDQABAAAAAwBgAMgAAwBOAAAAAAWADAAAAAQGBAAEAAAABQYEAAUAAAAABgIAAgAAAAWADQAAAAQGBAAFAAAABQYEAAYAAAAAAAWADgAAAAQGBAAGAAAABQYEAAgAAAAABgIAAgAAAAWADwAAAAQGBAAIAAAABQYEAAkAAAAAAAWAEAAAAAQGBAAJAAAABQYEAAoAAAAABgIAAgAAAAWAEQAAAAQGBAAEAAAABQYEAAoAAAAAAAAAAAAAAA==
+
+>  <Synonym> (18)
+
+>  <Reference and Vendor data> (18)
+
+>  <Page> (18)
+
+>  <Submitted Amount> (18)
+
+>  <Batch Comment> (18)
+
+>  <Notebook> (18)
+
+>  <MW Text> (18)
+
+>  <MF Text> (18)
+
+>  <Entry Person> (18)
+14
+
+>  <Last Mod Person> (18)
+
+>  <Entry Date> (18)
+12/26/2002
+
+>  <Last Mod Date> (18)
+
+>  <Storage Requirements and Warnings> (18)
+
+>  <Preparation> (18)
+
+>  <Chemist> (18)
+1
+
+>  <Physical Form> (18)
+
+>  <Color> (18)
+
+>  <<sup>13</sup>CNMR> (18)
+
+>  <IR> (18)
+
+>  <FIA/MS> (18)
+
+>  <GC> (18)
+
+>  <<sup>1</sup>HNMR> (18)
+
+>  <BATCH_FORMULA> (18)
+
+>  <LOAD_ID> (18)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (18)
+1
+
+>  <Equivalents> (18)
+
+>  <Equivalents> (18)
+
+>  <Formula Weight> (18)
+80.089
+
+>  <Product Type> (18)
+
+>  <Salt Name> (18)
+
+>  <MW> (18)
+
+>  <Solvate Name> (18)
+
+>  <MW> (18)
+
+>  <HPLC> (18)
+
+>  <Percent Active> (18)
+100
+
+>  <Units> (18)
+
+>  <Purity> (18)
+
+>  <Appearance> (18)
+
+>  <LC/UV/MS> (18)
+
+>  <CHN> (18)
+
+>  <UV> (18)
+
+>  <LogD> (18)
+
+>  <Solubility> (18)
+
+>  <TEMPORARY_STRUCTURES> (18)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  1  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (19)
+101
+ 
+>  <COMMIT_TYPE> (19)
+full_commit
+
+>  <REG_INTERNAL_ID> (19)
+
+>  <CPD_INTERNAL_ID> (19)
+
+>  <Notebook> (19)
+1
+
+>  <Project> (19)
+1
+
+>  <Chemical Name> (19)
+Piperazine
+
+>  <Prefix> (19)
+1
+
+>  <CAS No> (19)
+
+>  <BP> (19)
+
+>  <MP> (19)
+
+>  <Flash Point> (19)
+
+>  <Optical Rotation> (19)
+
+>  <Refractive Index> (19)
+
+>  <Structure/Stereochemistry Comment> (19)
+1
+
+>  <Creation Date> (19)
+
+>  <Salt> (19)
+1
+
+>  <BASE64_CDX> (19)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjUwIDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAA5BAMAAAAxAAAEgAYAAAAAAggARgF4AOn4VQACBAIABwA5BAMAAAAyBoAHAAAAAAcOAAEAAAADAGAAyAADAE5IAAAAAASACAAAAAACCACH/WgAROVvADkEAwAAADMAAASACQAAAAACCACW9koAROVvADkEAwAAADQAAASACgAAAAACCAAAADwA6fhVAAIEAgAHADkEAwAAADUGgAsAAAAABw4AAQAAAAMAYADIAAMATkgAAAAABYAMAAAABAYEAAQAAAAFBgQABQAAAAAABYANAAAABAYEAAUAAAAFBgQABgAAAAAABYAOAAAABAYEAAYAAAAFBgQACAAAAAAABYAPAAAABAYEAAgAAAAFBgQACQAAAAAABYAQAAAABAYEAAkAAAAFBgQACgAAAAAABYARAAAABAYEAAQAAAAFBgQACgAAAAAAAAAAAAAA
+
+>  <Synonym> (19)
+
+>  <Reference and Vendor data> (19)
+
+>  <Page> (19)
+
+>  <Submitted Amount> (19)
+
+>  <Batch Comment> (19)
+
+>  <Notebook> (19)
+
+>  <MW Text> (19)
+
+>  <MF Text> (19)
+
+>  <Entry Person> (19)
+14
+
+>  <Last Mod Person> (19)
+
+>  <Entry Date> (19)
+12/26/2002
+
+>  <Last Mod Date> (19)
+
+>  <Storage Requirements and Warnings> (19)
+
+>  <Preparation> (19)
+
+>  <Chemist> (19)
+1
+
+>  <Physical Form> (19)
+
+>  <Color> (19)
+
+>  <<sup>13</sup>CNMR> (19)
+
+>  <IR> (19)
+
+>  <FIA/MS> (19)
+
+>  <GC> (19)
+
+>  <<sup>1</sup>HNMR> (19)
+
+>  <BATCH_FORMULA> (19)
+
+>  <LOAD_ID> (19)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (19)
+1
+
+>  <Equivalents> (19)
+
+>  <Equivalents> (19)
+
+>  <Formula Weight> (19)
+86.1364
+
+>  <Product Type> (19)
+
+>  <Salt Name> (19)
+
+>  <MW> (19)
+
+>  <Solvate Name> (19)
+
+>  <MW> (19)
+
+>  <HPLC> (19)
+
+>  <Percent Active> (19)
+100
+
+>  <Units> (19)
+
+>  <Purity> (19)
+
+>  <Appearance> (19)
+
+>  <LC/UV/MS> (19)
+
+>  <CHN> (19)
+
+>  <UV> (19)
+
+>  <LogD> (19)
+
+>  <Solubility> (19)
+
+>  <TEMPORARY_STRUCTURES> (19)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    0.0000    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7007    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    0.7007    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4218    2.1019    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2120    2.8002    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (20)
+102
+ 
+>  <COMMIT_TYPE> (20)
+full_commit
+
+>  <REG_INTERNAL_ID> (20)
+
+>  <CPD_INTERNAL_ID> (20)
+
+>  <Notebook> (20)
+1
+
+>  <Project> (20)
+1
+
+>  <Chemical Name> (20)
+s-Triazine
+
+>  <Prefix> (20)
+1
+
+>  <CAS No> (20)
+
+>  <BP> (20)
+
+>  <MP> (20)
+
+>  <Flash Point> (20)
+
+>  <Optical Rotation> (20)
+
+>  <Refractive Index> (20)
+
+>  <Structure/Stereochemistry Comment> (20)
+1
+
+>  <Creation Date> (20)
+
+>  <Salt> (20)
+1
+
+>  <BASE64_CDX> (20)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjUxIDIwMDIEAhAAAAA8AAAAPABFAXgAROVvAAEJCAAAAAAAAAAAAAIJCAAAALQAAACrAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwARQF4AETlbwADgAMAAAAEgAQAAAAAAggAlvZKAAAAPAA5BAMAAAAwAAAEgAUAAAAAAggAh/1oAAAAPAACBAIABwA5BAMAAAAxBoAGAAAAAAcNAAEAAAADAGAAyAADAE4AAAAABIAHAAAAAAIIAEYBeADp+FUAOQQDAAAAMgAABIAIAAAAAAIIAIf9aABE5W8AAgQCAAcAOQQDAAAAMwaACQAAAAAHDQABAAAAAwBgAMgAAwBOAAAAAASACgAAAAACCACW9koAROVvADkEAwAAADQAAASACwAAAAACCAAAADwA6fhVAAIEAgAHADkEAwAAADUGgAwAAAAABw0AAQAAAAMAYADIAAMATgAAAAAFgA0AAAAEBgQABAAAAAUGBAAFAAAAAAYCAAIAAAAFgA4AAAAEBgQABQAAAAUGBAAHAAAAAAAFgA8AAAAEBgQABwAAAAUGBAAIAAAAAAYCAAIAAAAFgBAAAAAEBgQACAAAAAUGBAAKAAAAAAAFgBEAAAAEBgQACgAAAAUGBAALAAAAAAYCAAIAAAAFgBIAAAAEBgQABAAAAAUGBAALAAAAAAAAAAAAAAA=
+
+>  <Synonym> (20)
+
+>  <Reference and Vendor data> (20)
+
+>  <Page> (20)
+
+>  <Submitted Amount> (20)
+
+>  <Batch Comment> (20)
+
+>  <Notebook> (20)
+
+>  <MW Text> (20)
+
+>  <MF Text> (20)
+
+>  <Entry Person> (20)
+14
+
+>  <Last Mod Person> (20)
+
+>  <Entry Date> (20)
+12/26/2002
+
+>  <Last Mod Date> (20)
+
+>  <Storage Requirements and Warnings> (20)
+
+>  <Preparation> (20)
+
+>  <Chemist> (20)
+1
+
+>  <Physical Form> (20)
+
+>  <Color> (20)
+
+>  <<sup>13</sup>CNMR> (20)
+
+>  <IR> (20)
+
+>  <FIA/MS> (20)
+
+>  <GC> (20)
+
+>  <<sup>1</sup>HNMR> (20)
+
+>  <BATCH_FORMULA> (20)
+
+>  <LOAD_ID> (20)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (20)
+1
+
+>  <Equivalents> (20)
+
+>  <Equivalents> (20)
+
+>  <Formula Weight> (20)
+81.0768
+
+>  <Product Type> (20)
+
+>  <Salt Name> (20)
+
+>  <MW> (20)
+
+>  <Solvate Name> (20)
+
+>  <MW> (20)
+
+>  <HPLC> (20)
+
+>  <Percent Active> (20)
+100
+
+>  <Units> (20)
+
+>  <Purity> (20)
+
+>  <Appearance> (20)
+
+>  <LC/UV/MS> (20)
+
+>  <CHN> (20)
+
+>  <UV> (20)
+
+>  <LogD> (20)
+
+>  <Solubility> (20)
+
+>  <TEMPORARY_STRUCTURES> (20)
+ 
+ 
+$$$$
+
+csChFnd70/12270212382D
+
+  9 10  0  0  0  0  0  0  0  0999 V2000
+    2.4266    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4266    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6376    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8463    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8463    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6376    2.7976    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2134    2.8000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  2  0  0  0  0
+  4  5  1  0  0  0  0
+  5  6  2  0  0  0  0
+  1  6  1  0  0  0  0
+  1  7  1  0  0  0  0
+  7  8  1  0  0  0  0
+  8  9  2  0  0  0  0
+  2  9  1  0  0  0  0
+M  END
+>  <Temp_Compound_ID> (21)
+103
+ 
+>  <COMMIT_TYPE> (21)
+full_commit
+
+>  <REG_INTERNAL_ID> (21)
+
+>  <CPD_INTERNAL_ID> (21)
+
+>  <Notebook> (21)
+1
+
+>  <Project> (21)
+1
+
+>  <Chemical Name> (21)
+Indene
+
+>  <Prefix> (21)
+1
+
+>  <CAS No> (21)
+
+>  <BP> (21)
+
+>  <MP> (21)
+
+>  <Flash Point> (21)
+
+>  <Optical Rotation> (21)
+
+>  <Refractive Index> (21)
+
+>  <Structure/Stereochemistry Comment> (21)
+1
+
+>  <Creation Date> (21)
+
+>  <Salt> (21)
+1
+
+>  <BASE64_CDX> (21)
+VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42IFtmb3IgQ2hlbURyYXcgNitdIC8gRGVjIDI2IDA5OjM4OjUxIDIwMDIEAhAAAAA8AAAAPADS/3cAltmjAAEJCAAAAAAAAAAAAAIJCAAAALMAAADfAAUIBAAAAB4AAAMyAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8AAP//AYACAAAABAIQAAAAPAAAADwA0v93AJbZowADgAMAAAAEgAQAAAAAAggA6f9KAJ//bwA5BAMAAAAwAAAEgAUAAAAAAggA6f9oAJ//bwA5BAMAAAAxAAAEgAYAAAAAAggA0/93AMnyiQA5BAMAAAAyAAAEgAcAAAAAAggA6f9oAJfZowA5BAMAAAAzAAAEgAgAAAAAAggA6f9KAJfZowA5BAMAAAA0AAAEgAkAAAAAAggA4gw8AMnyiQA5BAMAAAA1AAAEgAoAAAAAAggAAAA8ABsAVgA5BAMAAAA2AAAEgAsAAAAAAggA6f9KAAAAPAA5BAMAAAA3AAAEgAwAAAAAAggA6f9oAAAAPAA5BAMAAAA4AAAFgA0AAAAEBgQABAAAAAUGBAAFAAAAAAYCAAIAAAAFgA4AAAAEBgQABQAAAAUGBAAGAAAAAAAFgA8AAAAEBgQABgAAAAUGBAAHAAAAAAYCAAIAAAAFgBAAAAAEBgQABwAAAAUGBAAIAAAAAAAFgBEAAAAEBgQACAAAAAUGBAAJAAAAAAYCAAIAAAAFgBIAAAAEBgQABAAAAAUGBAAJAAAAAAAFgBMAAAAEBgQABAAAAAUGBAAKAAAAAAAFgBQAAAAEBgQACgAAAAUGBAALAAAAAAAFgBUAAAAEBgQACwAAAAUGBAAMAAAAAAYCAAIAAAAFgBYAAAAEBgQABQAAAAUGBAAMAAAAAAAAAAAAAAA=
+
+>  <Synonym> (21)
+
+>  <Reference and Vendor data> (21)
+
+>  <Page> (21)
+
+>  <Submitted Amount> (21)
+
+>  <Batch Comment> (21)
+
+>  <Notebook> (21)
+
+>  <MW Text> (21)
+
+>  <MF Text> (21)
+
+>  <Entry Person> (21)
+14
+
+>  <Last Mod Person> (21)
+
+>  <Entry Date> (21)
+12/26/2002
+
+>  <Last Mod Date> (21)
+
+>  <Storage Requirements and Warnings> (21)
+
+>  <Preparation> (21)
+
+>  <Chemist> (21)
+1
+
+>  <Physical Form> (21)
+
+>  <Color> (21)
+
+>  <<sup>13</sup>CNMR> (21)
+
+>  <IR> (21)
+
+>  <FIA/MS> (21)
+
+>  <GC> (21)
+
+>  <<sup>1</sup>HNMR> (21)
+
+>  <BATCH_FORMULA> (21)
+
+>  <LOAD_ID> (21)
+t5_852002 12 26, 09:37:33
+
+>  <SOLVATE_ID> (21)
+1
+
+>  <Equivalents> (21)
+
+>  <Equivalents> (21)
+
+>  <Formula Weight> (21)
+116.1622
+
+>  <Product Type> (21)
+
+>  <Salt Name> (21)
+
+>  <MW> (21)
+
+>  <Solvate Name> (21)
+
+>  <MW> (21)
+
+>  <HPLC> (21)
+
+>  <Percent Active> (21)
+100
+
+>  <Units> (21)
+
+>  <Purity> (21)
+
+>  <Appearance> (21)
+
+>  <LC/UV/MS> (21)
+
+>  <CHN> (21)
+
+>  <UV> (21)
+
+>  <LogD> (21)
+
+>  <Solubility> (21)
+
+>  <TEMPORARY_STRUCTURES> (21)
+ 
+ 
+$$$$

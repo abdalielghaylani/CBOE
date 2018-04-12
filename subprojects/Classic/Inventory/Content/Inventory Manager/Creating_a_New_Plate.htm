@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise User Guide|Plate Inventory" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>Creating a New Plate</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Use.htm#Inventory_Manager_User_Guide_1879958712_1096394">Inventory Enterprise User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Plate_Inventory.htm#Inventory_Manager_User_Guide_1879958712_1000596">Plate Inventory</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Creating a New Plate</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1000603"></a><a name="kanchor161"></a><a name="kanchor162"></a>Creating a New Plate</h3>
+        <p class="Body">In Inventory Enterprise 11.0, plates can be created in various ways, which are:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Using Excel spreadsheet</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Using text file</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Using Inventory Loader</td>
+            </tr>
+        </table>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>Using Inventory Loader for creating plates is described in <a class="MCXref_Heading_And_Page" href="Loading_Compounds.htm#Inventory_Manager_User_Guide_1879958712_1001376">"Loading Compounds into Plates"</a>.</div>
+        <h4 class="Heading4"><a name="kanchor163"></a><a name="kanchor164"></a>Creating a Plate from Excel Spreadsheet</h4>
+        <p class="Body">You can create plates from the data contained in an Excel spreadsheet. The conditions wherein it is useful to create plates from the Excel spreadsheet are:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">You need to reformat the plates, especially when you want to merge the 4 96 well plates into 1 384 well plate. You can perform this action using the 4 96 Well to 1 384 Well Map template.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">You need to create multiple daughter plates in single step. You can perform this action using the Daughter template.</td>
+            </tr>
+        </table>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>If you want to daughter only one plate from the parent plate, you should create the daughter plate using the Create Daughter Plates link in the Plate Details frame.</div>
+        <p class="Body">The columns in the Excel spreadsheet that is used in this section, are:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">No: Specifies a sequential number corresponding to each parent plate.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Quadrant 1, Quadrant 2, Quadrant 3, Quadrant 3: Specify barcodes of the parent plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Plate Format: Specifies format of the target plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Plate Type: Specifies type of the target plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Plate Template: Specifies name of the plate maps from which the target plates are to be created.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Barcode: Specifies barcode of the target plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Copies: Specifies the number of copies that are to be created for the target plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Assign to Library: Specifies the library to which the target plates are to be assigned.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Place in Location: Specifies the location at which the target plates are to be stored.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Status: Specifies the status that is to be assigned to the target plates.</td>
+            </tr>
+        </table>
+        <p class="Body">To create plates from an Excel spreadsheet:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Click the <b class="Action_Object">Tasks</b> link within the <b class="Action_Object">Inventory Enterprise</b> section in the home page of ChemBioOffice Enterprise. The <b class="Action_Object">Administrative Menu</b> window appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Click the <b class="Action_Object">Create Plates from Excel</b> link. The<b class="Action_Object"> Create Plates From Excel</b> window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_excel2.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.028164px;margin-bottom: 1.015919px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="3. " valign="top">Click the <b class="Action_Object">Browse</b> button and locate the Excel spreadsheet from which the plates are to be created.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>4. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="4. " valign="top">Click <b class="Action_Object">OK</b>. Observe that the new plates are created at the specified location.</td>
+            </tr>
+        </table>
+        <h4 class="Heading4"><a name="kanchor165"></a><a name="kanchor166"></a>Creating a Plate from Text File</h4>
+        <p class="Body">Inventory Enterprise 11.0 lets you create plates from the data contained in a text file. The following figure displays a sample text file that can be used to create plates in Inventory Enterprise 11.0:</p>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_textfile1.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.9928819px;margin-bottom: 1.016636px;" />
+        </p>
+        <p class="Body">The preceding text file consists of one header line and four columns. The four columns of the text file are:</p>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Target plate barcode: Specifies barcode of the target plate.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Target well coordinates: Specifies coordinates of the wells of the target plate.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Source plate barcode: Specifies barcode of the source plate.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Source well coordinates: Specifies coordinates of the wells of the source plate.</td>
+            </tr>
+        </table>
+        <p class="Body">To create a plate from a text file, you should have a Plate Import template for the text file. For information about already existing Plate Import templates, see <a class="MCXref_Heading_And_Page" href="Inventory_Tasks.htm#Inventory_Manager_User_Guide_1879958712_1002037">"Plate Import Templates"</a>.</p>
+        <p class="Body">However, if the template is not available already, you can create a new Plate Import template for the text file.</p>
+        <h5 class="Heading5">Creating New Plate Import Template</h5>
+        <p class="Body">To create a Plate Import template for the preceding text file:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Click the <b class="Action_Object">Tasks</b> link within the <b class="Action_Object">Inventory Enterprise</b> section in the home page of ChemBioOffice Enterprise. The <b class="Action_Object">Administrative Menu</b> window appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Click the <b class="Action_Object">Plate Settings</b> link. The following window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_textfile2.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.2483941px;margin-bottom: 0.968403px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="3. " valign="top">Click the <b class="Action_Object">New</b> link next to the <b class="Action_Object">Plate Import Templates</b> drop down list. The following window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_textfile3.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.028164px;margin-bottom: 1.033917px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>4. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="4. " valign="top">Perform the following tasks in the preceding window:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Enter the name of the template in the <b class="Action_Object">Template Name</b> text box.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Enter remarks in the <b class="Action_Object">Remarks </b>text box.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Enter 1 in the <b class="Action_Object">File Header Lines</b> text box.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Enter 4 in the <b class="Action_Object">Data Columns</b> text box, as the text file contains four columns.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Enter tab in the <b class="Action_Object">Data Column Delimiter</b> text box, as the text file is tab delimited.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Select the <b class="Action_Object">Well Coordinates</b> check box, as the text file contains well coordinates and not the well numbers.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>5. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="5. " valign="top">Click <b class="Action_Object">Next</b>. The preceding window is populated with some additional fields, as shown in this figure:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_textfile4.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.028156px;margin-bottom: 1.028156px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>6. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="6. " valign="top">Perform the following tasks in this window:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Select <b class="Action_Object">Target Plate Barcode</b> from the <b class="Action_Object">Column 1 Mapping</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Select <b class="Action_Object">Target Well</b> from the <b class="Action_Object">Column 2 Mapping</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Select <b class="Action_Object">Source Plate Barcode</b> from the <b class="Action_Object">Column 3 Mapping</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Select <b class="Action_Object">Source Well</b> from the <b class="Action_Object">Column 4 Mapping</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>7. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="7. " valign="top">Click <b class="Action_Object">OK</b>. A window informing you that the template is created successfully appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>8. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="8. " valign="top">Click <b class="Action_Object">OK</b>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>9. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="9. " valign="top">Click the <b class="Action_Object">Close</b> button.</td>
+            </tr>
+        </table>
+        <p class="Body">After creating the Plate Import template for a text file, you can create two types of plates, which are:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Target plates: Refers to the plates that are created from the plates existing already in Inventory Enterprise 11.0.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Source plates: Refers to the new plates that are created with the new compounds, which do not exist in Inventory Enterprise 11.0 already. While creating a source plate, you cannot insert compounds in it.</td>
+            </tr>
+        </table>
+        <h5 class="Heading5"><a name="Inventory_Manager_User_Guide_1879958712_1000682"></a><a name="Inventory_Manager_User_Guide_1879958712_95563"></a><a name="kanchor167"></a>Creating a Target Plate</h5>
+        <p class="Body">To create a target plate from a text file:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Click the <b class="Action_Object">Tasks</b> link within the <b class="Action_Object">Inventory Enterprise</b> section in the home page of ChemBioOffice Enterprise. The <b class="Action_Object">Administrative Menu</b> window appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Click the <b class="Action_Object">Create Plates from Text File</b> link. The <b class="Action_Object">Create Plates From Text File</b> window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="plate_inventory_new_textfile5.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.028164px;margin-bottom: 1.033917px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="3. " valign="top">Perform the following tasks in the <b class="Action_Object">Create Plates From Text File</b> window:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Select appropriate Plate Import template from the <b class="Action_Object">Import Template</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Click the <b class="Action_Object">Browse</b> button next to the <b class="Action_Object">Text File</b> text box and locate the text file from which the plate is to be created.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Click the <b class="Action_Object">Browse</b> button next to the <b class="Action_Object">Location ID</b> text box and select the location where the new plate is to be added.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Select plate type from the <b class="Action_Object">Plate Type</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Select plate format from the <b class="Action_Object">Plate Format</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Select plate status from the <b class="Action_Object">Plate Status</b> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>4. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="4. " valign="top">Click <b class="Action_Object">OK</b>.</td>
+            </tr>
+        </table>
+        <h5 class="Heading5"><a name="Inventory_Manager_User_Guide_1879958712_1000697"></a><a name="Inventory_Manager_User_Guide_1879958712_55931"></a><a name="kanchor168"></a>Creating a Source Plate</h5>
+        <p class="Body">To create a source plate from a text file:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Click the <b class="Action_Object">Tasks</b> link within the <b class="Action_Object">Inventory Enterprise</b> section in the home page of ChemBioOffice Enterprise. The <b class="Action_Object">Administrative Menu</b> window appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Click the <b class="Action_Object">Create Plates from Text File</b> link. The <b class="Action_Object">Create Plates From Text File</b> window appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="3. " valign="top">Select the <b class="Action_Object">Create Source Plate(s)</b> radio button.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>4. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="4. " valign="top">Set the fields in the <b class="Action_Object">Create Plates From Text File</b> window in the similar manner as they are set for the target plates.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>5. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="5. " valign="top">Click <b class="Action_Object">OK</b>.</td>
+            </tr>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

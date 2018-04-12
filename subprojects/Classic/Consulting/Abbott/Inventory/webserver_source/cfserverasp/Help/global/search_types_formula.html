@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise -- Formula Searching</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="54205" -->
+<h1>Formula Searching</h1>
+<p>Formula searching allows you to 
+search molecular stoichiometry, exact or in the range that you specify.
+</p>
+<p>
+       
+   <table border="1" width="100%"><tr bgColor="darkblue" style="COLOR: khaki">
+   <td width="100" valign="top"><strong>  Formula 
+        Entered </strong>
+      
+   </td><td valign="top"><strong>Results Found</strong>
+   
+   </td></tr>
+   <tr><td valign="top">C6H6
+   </td><td valign="top">Compounds with 6 
+      carbons and 6 hydrogens, plus any number of other elements. Finds C6H6, 
+      C6H6N2O.   
+   </td></tr>
+  <tr>
+    <td vAlign="top">=C6H6</td>
+    <td vAlign="top">Finds compounds with 
+      exactly 6 carbons and 6 hydrogens and no other 
+elements</td></tr>
+  <tr>
+    <td vAlign="top">C6</td>
+    <td vAlign="top">Finds compounds with 6 
+      carbons plus any number of other elements
+    </td></tr>
+   <tr><td valign="top">C6 N1-3</td>
+   <td valign="top">Find compounds with 6 
+      carbons and one to three nitrogens, plus any number of other 
+      elements
+      </td></tr></table>
+</p>
+<p>Formula queries consist of element 
+symbols and element counts or ranges. 
+</p>
+<p>The 
+following rules apply: </p>
+
+<p><ul style:size="-1">
+<li>Symbols may be one or two letters. Symbols may be in upper or lower case. 
+If there are ambiguities, the program resolves them according to a set of 
+rules.<br>
+<b>NOTE:</b> To avoid ambiguities:<br>
+  <ul><li>Capitalize the symbols properly.
+  <li>Insert spaces between symbols.
+  <li>Use the Periodic Table to enter formulas.</li>      
+  </ul>
+<li>Element counts are single integers or ranges (two 
+  integers separated by a hyphen). If a count is omitted, it is assumed to be 1.<font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font>
+  <li>If the formula 
+  query contains no wild card character, such as*C6H6 or C6*, it is assumed to 
+  be an exact search. The search requires an exact formula match, containing no 
+  elements other than those indicated. If there is an asterisk (*) anywhere in 
+  the string, then the search is a partial match: other elements may be present 
+  in the hits.<span lang="en-us"> </span>Symbols may be repeated. 
+For example, CH3CH3 is interpreted as C2H6.
+<br><b>NOTE:</b> 
+  Formula searches are completely non-structural: CH3CH2OH will match dimethyl 
+  ether and ethyl alcohol because both compounds have the same molecular 
+  formula: C2H6O.
+  <li>Parentheses may 
+  be used to group elements and apply a count to the entire group. For example, 
+  (CH2)3 is interpreted as C3H6.
+  <li>Spaces or 
+  non-alphanumeric characters other than parentheses are ignored.
+  <li>If a symbol is 
+  properly capitalized (first letter upper case, followed by zero, one, or two 
+  lower-case letters), then the longest valid symbol which matches is preferred. 
+  Thus &quot;Phe&quot; matches phenylalanine rather than phosphorus; &quot;Co&quot; matches 
+  cobalt.
+  <li>If symbols are not 
+properly capitalized (such as all lower-case), then, with the exception noted 
+below, the shortest symbol which matches is preferred. Thus co is interpreted as 
+carbon-oxygen instead of cobalt.<br>
+The 
+  exception is that if two characters represent a valid two-letter symbol and 
+  also a valid one-letter symbol followed by an invalid one, then the two-letter 
+  symbol is favored. cl is interpreted as chlorine and not as carbon followed by 
+  the invalid symbol L. </li>      
+           
+              
+            
+
+</ul>
+<p></p>
+<p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <IMG height=31 src="../images/getacrobat.gif" width=88 border=0></a>
+</td><td>
+  <font size="2"><A href="../ChemOffice%20WebServer.pdf">Download ChemOffice Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><A onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;" href   ="../ChemOffice%20WebServer%20User's%20Guide.chm" >Download ChemOffice Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="41102" -->
+</body>
+</html>

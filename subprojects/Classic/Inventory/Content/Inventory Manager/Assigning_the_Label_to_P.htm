@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide|Zebra Label Printing" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>Assigning the Label to Printer</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Adm.htm#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Zebra_Label_Printing.htm#Inventory_Manager_User_Guide_1879958712_1100874">Zebra Label Printing</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Assigning the Label to Printer</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1099441"></a>Assigning the Label to Printer</h3>
+        <p class="Body">Once an LPR definition has been created, you need to group that definition with a label type and assign it to a particular printer. You also need to provide additional information that the LPR service needs in order to communicate with the printer itself. This information is managed through the new inv_label_printers table, which is named “Label Printers” within the Manage Tables GUI. The GUI exposes the following fields, all of which are required:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Server name, which is the DNS name or actual IP address to the printer (or print server, as the case may be).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Queue name, which may or may not exist on the Zebra printer (or print server).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">LPR definition foreign key, which points to the LPR definition ID set up previously.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Report type foreign key, which points to one of the valid inv_reporttypes records (1 = container barcode, 7 = plate barcode, 9 = location barcode).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Display name, which is a 200-character string that will show to the user when printing.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">Is Available, which is a 1/0 boolean flag to tell the application whether a particular printer is to be displayed to the user or not This is useful when a printer is offline for service.</td>
+            </tr>
+        </table>
+        <p class="Body">When the user chooses to print a label within the GUI forms, the application takes the following actions:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Determines which kind of barcode is to be printed (containers, plates, or locations).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Selects all of the available printers that match that label type. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">If no LPR printers are available, the standard Access snapshot report generator is displayed to the user.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">If LPR printers are available, the user is given a choice as to which kind of label they wish to generate, as shown in this figure:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="admin_image1.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.9691278px;margin-bottom: 0.9691278px;" />
+        </p>
+        <p class="GraphicAnchor">&#160;</p>
+        <p class="Body">In this context, the user is given an option between “Network” printers or “My local” printers. The former utilize the new LPR print mechanism, while the latter utilize the existing legacy Access snapshot report generator, which requires printing through the user’s local desktop.</p>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">If the user chooses one of the local printer reports, the default Access snapshot viewer is displayed as normal.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">If the user chooses one of the network printer reports, the following actions occur:</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">Based on the LPR definition, the application reads in the appropriate header, label, and footer files from the file system.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">All recognized special tags in all three file templates are replaced with the appropriate values from the object data result set and stored in memory.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">A single print job is created by concatenating the header, label, and footer data together into a single output stream.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">The single output stream is written out to a unique temporary file, and this file is sent to the LPR service.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">The LPR service reads the temporary file and handles communication with the printer, as specified by the Label Printer record in the database.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet2-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 19.2px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet2-1st" valign="top"><span>• </span>
+                </td>
+                <td class="AutoNumber_div_Bullet2-1st" MadCap:autonum="• " valign="top">User retrieves barcode.</td>
+            </tr>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

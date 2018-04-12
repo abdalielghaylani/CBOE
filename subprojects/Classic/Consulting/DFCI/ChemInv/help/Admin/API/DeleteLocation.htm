@@ -1,0 +1,116 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>DeleteLocation</h1>
+<p>Deletes a location 
+from Inventory Enterprise. You can delete a location only if it is empty. The 
+location can be emptied by deleting the containers, plates, and sublocations 
+from it using the <a href="DeleteContainer.htm">DeleteContainer</a>,
+<a href="DeletePlate.htm">DeletePlate</a>, 
+and DeleteLocation APIs, respectively<span lang="ja">.</span></p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/DeleteLocation.asp?LocationID=adNumeric&amp;Recursively=adInteger</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="122" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="310"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="63"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="108"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Database 
+		Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="122">adNumeric</td>
+		<td width="310"><span lang="en-us">Specifies the ID of </span>the location 
+		to be deleted<span lang="en-us">.</span></td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td width="108">I<span lang="ja">NV</span>_L<span lang="ja">OCATIONS</span></td>
+		<td><span lang="ja">LOCATION_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">Recursively</td>
+		<td width="122">adInteger</td>
+		<td width="310"><span lang="en-us">Specifies whether to delete the 
+		location recursively. When you delete a location recursively, in 
+		addition to the location, the sublocations of the location are also 
+		deleted. The location is deleted recursively if the Recursively 
+		parameter is set to 1</span>.</td>
+		<td width="63">0 | 1</td>
+		<td width="70" align="center">Y</td>
+		<td width="108"><span lang="ja">N/A</span></td>
+		<td><span lang="ja">N/A</span></td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p><span lang="ja">T</span>he ID of the parent location of the deleted location. 
+This ID is stored in the ParentID parameter, the data type of which is adNumeric<span lang="ja">.</span></p>
+<h3 class="param">Example</h3>
+<p><span lang="en-us">The following code recursively </span>delete<span lang="ja">s</span> a location
+<span lang="ja">with </span>ID<span lang="en-us"> 
+</span>101<span lang="en-us">:</span></p><pre class="param">/cheminv/api/DeleteLocation.asp?LocationID=101&amp;Recursively=1</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

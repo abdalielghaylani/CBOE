@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<response>
+   <header version="1.0">
+      <return returnCode="A">
+         <returnMessage>
+            <![CDATA[Authentication Failure]]>
+         </returnMessage>
+      </return>
+   </header>
+   <body>
+      <loginURL/>
+   </body>
+</response>

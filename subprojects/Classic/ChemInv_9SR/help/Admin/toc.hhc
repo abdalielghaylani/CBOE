@@ -1,0 +1,1035 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Installation of Inventory Enterprise">
+		<param name="Local" value="Installation/installation.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Minimum Requirements">
+			<param name="Local" value="Installation/minimum_requirements.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Install Inventory Enterprise">
+			<param name="Local" value="Installation/install_inv.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Create the Inventory Enterprise Database">
+			<param name="Local" value="Installation/create_database.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Required Configuration">
+			<param name="Local" value="Installation/configure.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Integrate With Other Applications">
+			<param name="Local" value="Installation/integrate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Enable PDF and Barcode Support">
+			<param name="Local" value="Installation/pdf_barcode.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Install InvLoader">
+			<param name="Local" value="Installation/Instructions_invloader.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Test the Installation">
+			<param name="Local" value="Installation/test.htm">
+			</OBJECT>
+	</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Troubleshooting">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tips for Installing XML XDK">
+				<param name="Local" value="Installation/Troubleshoot/xml_sdk.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Is the Oracle Cartridge Installed?">
+				<param name="Local" value="Installation/Troubleshoot/oracart.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Check Configuration File Settings">
+				<param name="Local" value="Installation/Troubleshoot/ini_settings.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Check the ODBC Data Source and UDL">
+				<param name="Local" value="Installation/Troubleshoot/odbc_udl.htm">
+				</OBJECT>
+		</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="INI Configuration Files">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Cfserver.ini Configuration File">
+			<param name="Local" value="Installation/cfserver.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GLOBALS">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ADMIN_REQUIRED">
+					<param name="Local" value="Installation/ini_settings/ADMIN_REQUIRED.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_HITLIST_MANAGEMENT">
+					<param name="Local" value="Installation/ini_settings/ALLOW_HITLIST_MANAGEMENT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_HITLIST_MNGMNT_FG_SELECTOR">
+					<param name="Local" value="Installation/ini_settings/ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_PUBLIC_HITLISTS">
+					<param name="Local" value="Installation/ini_settings/ALLOW_PUBLIC_HITLISTS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_PUBLIC_QUERIES">
+					<param name="Local" value="Installation/ini_settings/ALLOW_PUBLIC_QUERIES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_QUERY_MANAGEMENT">
+					<param name="Local" value="Installation/ini_settings/ALLOW_QUERY_MANAGEMENT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="APP_NAME">
+					<param name="Local" value="Installation/ini_settings/APP_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="APP_TYPE">
+					<param name="Local" value="Installation/ini_settings/APP_TYPE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CDX_CACHING">
+					<param name="Local" value="Installation/ini_settings/CDX_CACHING.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DATE_FORMAT">
+					<param name="Local" value="Installation/ini_settings/DATE_FORMAT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DB_NAMES">
+					<param name="Local" value="Installation/ini_settings/DB_NAMES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DIRECT_KEYWORD_SUPPORT">
+					<param name="Local" value="Installation/ini_settings/DIRECT_KEYWORD_SUPPORT.htm">
+					</OBJECT>
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ENCRYPT_PWD">
+					<param name="Local" value="Installation/ini_settings/ENCRYPT_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ENCRYPT_PWD_KEYS">
+					<param name="Local" value="Installation/ini_settings/ENCRYPT_PWD_KEYS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ENCRYPT_PWD_SECTION">
+					<param name="Local" value="Installation/ini_settings/ENCRYPT_PWD_SECTION.htm">
+					</OBJECT>
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EXPIRE_HITLIST_HISTORY_DAYS">
+					<param name="Local" value="Installation/ini_settings/EXPIRE_HITLIST_HISTORY_DAYS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EXPIRE_QUERY_HISTORY_DAYS">
+					<param name="Local" value="Installation/ini_settings/EXPIRE_QUERY_HISTORY_DAYS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="GLOBAL_SEARCH_DBS">
+					<param name="Local" value="Installation/ini_settings/GLOBAL_SEARCH_DBS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="GLOBAL_SEARCH_BASE_DB">
+					<param name="Local" value="Installation/ini_settings/GLOBAL_SEARCH_BASE_DB.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MAIN_WINDOW">
+					<param name="Local" value="Installation/ini_settings/MAIN_WINDOW.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NAV_BAR_WINDOW">
+					<param name="Local" value="Installation/ini_settings/NAV_BAR_WINDOW.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NAV_BUTTONS_GIF_PATH">
+					<param name="Local" value="Installation/ini_settings/NAV_BUTTONS_GIF_PATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PARTITION_THRESH">
+					<param name="Local" value="Installation/ini_settings/PARTITION_THRESH.htm">
+					</OBJECT>
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SEARCH_PREF_DEFAULTS">
+					<param name="Local" value="Installation/ini_settings/SEARCH_PREF_DEFAULTS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SELECTED_GLOBAL_SEARCH_DBS">
+					<param name="Local" value="Installation/ini_settings/SELECTED_GLOBAL_SEARCH_DBS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEMP_DIR_NAME">
+					<param name="Local" value="Installation/ini_settings/TEMP_DIR_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEMP_DIR_PATH">
+					<param name="Local" value="Installation/ini_settings/TEMP_DIR_PATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USER_INFO_WINDOW">
+					<param name="Local" value="Installation/ini_settings/USER_INFO_WINDOW.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USERWINDOWBACKGROUND">
+					<param name="Local" value="Installation/ini_settings/USERWINDOWBACKGROUND.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ChemInv">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CHEMINV_USERNAME">
+					<param name="Local" value="Installation/ini_settings/CHEMINV_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CHEMINV_PWD">
+					<param name="Local" value="Installation/ini_settings/CHEMINV_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DBA_PWD">
+					<param name="Local" value="Installation/ini_settings/DBA_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DBA_USERNAME">
+					<param name="Local" value="Installation/ini_settings/DBA_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INVACX_PWD">
+					<param name="Local" value="Installation/ini_settings/INVACX_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INVACX_USERNAME">
+					<param name="Local" value="Installation/ini_settings/INVACX_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INVREG_PWD">
+					<param name="Local" value="Installation/ini_settings/INVREG_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INVREG_USERNAME">
+					<param name="Local" value="Installation/ini_settings/INVREG_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ORA_SERVICENAME">
+					<param name="Local" value="Installation/ini_settings/ORA_SERVICENAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ORA_SQLLDRPATH">
+					<param name="Local" value="Installation/ini_settings/ORA_SQLLDRPATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ORASCHEMANAME">
+					<param name="Local" value="Installation/ini_settings/ORASCHEMANAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PRIV_TABLE_NAME">
+					<param name="Local" value="Installation/ini_settings/PRIV_TABLE_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SEC_PWD">
+					<param name="Local" value="Installation/ini_settings/SEC_PWD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SEC_USERNAME">
+					<param name="Local" value="Installation/ini_settings/SEC_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TABLES_WITH_BASE64_CDX">
+					<param name="Local" value="Installation/ini_settings/TABLES_WITH_BASE64_CDX.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CS_SECURITY">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_COOKIE_LOGIN">
+					<param name="Local" value="Installation/ini_settings/ALLOW_COOKIE_LOGIN.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COOKIE_EXPIRES_MINUTES">
+					<param name="Local" value="Installation/ini_settings/COOKIE_EXPIRES_MINUTES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CS_SECURITY_UDL_PATH">
+					<param name="Local" value="Installation/ini_settings/CS_SECURITY_UDL_PATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MINIMUM_REQUIRED_PRIVILEGE">
+					<param name="Local" value="Installation/ini_settings/MINIMUM_REQUIRED_PRIVILEGE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PRIVILEGE_TABLE_LIST">
+					<param name="Local" value="Installation/ini_settings/PRIVILEGE_TABLE_LIST.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STARTUP_LOCATION">
+					<param name="Local" value="Installation/ini_settings/STARTUP_LOCATION.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CS_SECURITY_APP">
+					<param name="Local" value="Installation/ini_settings/USE_CS_SECURITY_APP.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ChemInv.ini Configuration File">
+			<param name="Local" value="Installation/cheminvini.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GLOBALS">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ABOUT_WINDOW">
+					<param name="Local" value="Installation/cheminvini_fields/ABOUT_WINDOW.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ADO_CONNECTION_NAMES">
+					<param name="Local" value="Installation/cheminvini_fields/ADO_CONNECTION_NAMES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CFW_INSTANCE">
+					<param name="Local" value="Installation/cheminvini_fields/CFW_INSTANCE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CHEM_CONNECTION_NAMES">
+					<param name="Local" value="Installation/cheminvini_fields/CHEM_CONNECTION_NAMES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DB_RECORD_COUNT">
+					<param name="Local" value="Installation/cheminvini_fields/DB_RECORD_COUNT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DB_TYPE">
+					<param name="Local" value="Installation/cheminvini_fields/DB_TYPE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DISPLAY_NAME">
+					<param name="Local" value="Installation/cheminvini_fields/DISPLAY_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="FIELD_MAP_GROUPS">
+					<param name="Local" value="Installation/cheminvini_fields/FIELD_MAP_GROUPS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="FORM_GROUPS">
+					<param name="Local" value="Installation/cheminvini_fields/FORM_GROUPS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MAXHITS">
+					<param name="Local" value="Installation/cheminvini_fields/MAXHITS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SUBFORM_VIEW_NAMES">
+					<param name="Local" value="Installation/cheminvini_fields/SUBFORM_VIEW_NAMES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TABLE_ALIASES">
+					<param name="Local" value="Installation/cheminvini_fields/TABLE_ALIASES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TABLE_GROUPS">
+					<param name="Local" value="Installation/cheminvini_fields/TABLE_GROUPS.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ADO Connection Definitions">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONN_TYPE">
+					<param name="Local" value="Installation/cheminvini_fields/CONN_TYPE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONNECTION_PASSWORD">
+					<param name="Local" value="Installation/cheminvini_fields/CONNECTION_PASSWORD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONNECTION_STRING">
+					<param name="Local" value="Installation/cheminvini_fields/CONNECTION_STRING.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONNECTION_TIMEOUT">
+					<param name="Local" value="Installation/cheminvini_fields/CONNECTION_TIMEOUT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONNECTION_USERNAME">
+					<param name="Local" value="Installation/cheminvini_fields/CONNECTION_USERNAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COMMAND_TIMEOUT">
+					<param name="Local" value="Installation/cheminvini_fields/COMMAND_TIMEOUT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DBMS">
+					<param name="Local" value="Installation/cheminvini_fields/DBMS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PWD_KEYWORD">
+					<param name="Local" value="Installation/cheminvini_fields/PWD_KEYWORD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USERID_KEYWORD">
+					<param name="Local" value="Installation/cheminvini_fields/USERID_KEYWORD.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="InvConfig.ini Configuration File">
+			<param name="Local" value="Installation/invconfigini.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="APPLICATION">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALLOW_REQUESTS">
+					<param name="Local" value="Installation/invconfigini_settings/ALLOW_REQUESTS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_CONTAINER_STATUS">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_CONTAINER_STATUS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_RETIRED_LOCATION">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_RETIRED_LOCATION.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_RETIRED_STATUS">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_RETIRED_STATUS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DISABLE_CHECKBOXES_DURING_RECTIFICATION">
+					<param name="Local" value="Installation/invconfigini_settings/DISABLE_CHECKBOXES_DURING_RECTIFICATION.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EDITABLE_TABLES">
+					<param name="Local" value="Installation/invconfigini_settings/EDITABLE_TABLES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ENABLE_PLATE_MANAGEMENT">
+					<param name="Local" value="Installation/invconfigini_settings/ENABLE_PLATE_MANAGEMENT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EXPIRATION_DATE_INCREMENT">
+					<param name="Local" value="Installation/invconfigini_settings/EXPIRATION_DATE_INCREMENT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INV_SERVER_NAME">
+					<param name="Local" value="Installation/invconfigini_settings/INV_SERVER_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NP_SEARCH">
+					<param name="Local" value="Installation/invconfigini_settings/NP_SEARCH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLATE_DEFAULT_CONC_UNIT">
+					<param name="Local" value="Installation/invconfigini_settings/PLATE_DEFAULT_CONC_UNIT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLATE_DEFAULT_MASS_UNIT">
+					<param name="Local" value="Installation/invconfigini_settings/PLATE_DEFAULT_MASS_UNIT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLATE_DEFAULT_RETIRED_LOCATION">
+					<param name="Local" value="Installation/invconfigini_settings/PLATE_DEFAULT_RETIRED_LOCATION.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLATE_DEFAULT_RETIRED_STATUS">
+					<param name="Local" value="Installation/invconfigini_settings/PLATE_DEFAULT_RETIRED_STATUS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLATE_DEFAULT_VOL_UNIT">
+					<param name="Local" value="Installation/invconfigini_settings/PLATE_DEFAULT_VOL_UNIT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="REQUIRE_BARCODE">
+					<param name="Local" value="Installation/invconfigini_settings/REQUIRE_BARCODE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_BATCH">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_BATCH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_CERTIFY">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_CERTIFY.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_CHECKIN_DETAILS">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_CHECKIN_DETAILS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_REQUEST_SAMPLE">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_REQUEST_SAMPLE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_SAMPLE">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_SAMPLE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_SPLIT">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_SPLIT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SPECIAL_LOCATIONS">
+					<param name="Local" value="Installation/invconfigini_settings/SPECIAL_LOCATIONS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STATUS_APPROVED">
+					<param name="Local" value="Installation/invconfigini_settings/STATUS_APPROVED.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STATUS_CERTIFIED">
+					<param name="Local" value="Installation/invconfigini_settings/STATUS_CERTIFIED.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CUSTOM_BANNER_FRAME_LINKS">
+					<param name="Local" value="Installation/invconfigini_settings/USE_CUSTOM_BANNER_FRAME_LINKS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CUSTOM_BROWSEBANNER_FRAME_LINKS">
+					<param name="Local" value="Installation/invconfigini_settings/USE_CUSTOM_BROWSEBANNER_FRAME_LINKS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CUSTOM_LIST_FRAME_LINKS">
+					<param name="Local" value="Installation/invconfigini_settings/USE_CUSTOM_LIST_FRAME_LINKS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CUSTOM_TAB_FRAME_LINKS">
+					<param name="Local" value="Installation/invconfigini_settings/USE_CUSTOM_TAB_FRAME_LINKS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_CUSTOM_SEARCH_FORM_TABS">
+					<param name="Local" value="Installation/invconfigini_settings/USE_CUSTOM_SEARCH_FORM_TABS.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="REPORTS">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_CONTAINER_SEARCH_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_CONTAINER_SEARCH_REPORT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_CONTAINER_LABEL_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_CONTAINER_LABEL_REPORT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_CONTAINER_LOCATION_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_CONTAINER_LOCATION_REPORT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_PLATE_SEARCH_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_PLATE_SEARCH_REPORT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_PLATE_LABEL_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_PLATE_LABEL_REPORT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_PLATE_LOCATION_REPORT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_PLATE_LOCATION_REPORT.htm">
+					</OBJECT>
+
+
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DEFAULT_REPORT_FORMAT">
+					<param name="Local" value="Installation/invconfigini_settings/DEFAULT_REPORT_FORMAT.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="REPORT_DB_PATH">
+					<param name="Local" value="Installation/invconfigini_settings/REPORT_DB_PATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="RPT_PATH">
+					<param name="Local" value="Installation/invconfigini_settings/RPT_PATH.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="REPORTS_HTTP_PATH">
+					<param name="Local" value="Installation/invconfigini_settings/REPORTS_HTTP_PATH.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SEARCHLOG">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LOG_SEARCHES">
+					<param name="Local" value="Installation/invconfigini_settings/LOG_SEARCHES.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SEARCH_LOG_DB_CONNSTR">
+					<param name="Local" value="Installation/invconfigini_settings/SEARCH_LOG_DB_CONNSTR.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CHEMREG">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="REG_SERVER_NAME">
+					<param name="Local" value="Installation/invconfigini_settings/REG_SERVER_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="USE_NOTEBOOK_TABLE">
+					<param name="Local" value="Installation/invconfigini_settings/USE_NOTEBOOK_TABLE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="REG_CONTAINERS_ONLY">
+					<param name="Local" value="Installation/invconfigini_settings/REG_CONTAINERS_ONLY.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CHEMACX">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ACX_SERVER_NAME">
+					<param name="Local" value="Installation/invconfigini_settings/ACX_SERVER_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_1_FIELD">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_FIELD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_1_SQL">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_SQL.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_1_TITLE">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_1_TITLE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_2_FIELD">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_FIELD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_2_SQL">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_SQL.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IMPORT_CONTAINER_PICKLIST_2_TITLE">
+					<param name="Local" value="Installation/invconfigini_settings/IMPORT_CONTAINER_PICKLIST_2_TITLE.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MSDX_LOOK_AHEAD">
+					<param name="Local" value="Installation/invconfigini_settings/MSDX_LOOK_AHEAD.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_ACX_LOOKUP_LINK">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_ACX_LOOKUP_LINK.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_MSDX_LOOKUP_LINK">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_MSDX_LOOKUP_LINK.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DOCMANAGER">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DOCMANAGER_SERVER_NAME">
+					<param name="Local" value="Installation/invconfigini_settings/DOCMANAGER_SERVER_NAME.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SHOW_DOCMANAGER_LINK">
+					<param name="Local" value="Installation/invconfigini_settings/SHOW_DOCMANAGER_LINK.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CUSTOM_FIELDS">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ALT_IDS">
+					<param name="Local" value="Installation/invconfigini_settings/ALT_IDS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CUSTOM_CHECKIN_FIELDS">
+					<param name="Local" value="Installation/invconfigini_settings/CUSTOM_CHECKIN_FIELDS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CUSTOM_FIELDS">
+					<param name="Local" value="Installation/invconfigini_settings/CUSTOM_FIELDS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CUSTOM_PLATE_FIELDS">
+					<param name="Local" value="Installation/invconfigini_settings/CUSTOM_PLATE_FIELDS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CUSTOM_WELL_FIELDS">
+					<param name="Local" value="Installation/invconfigini_settings/CUSTOM_WELL_FIELDS.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="HIDE_TAB">
+					<param name="Local" value="Installation/invconfigini_settings/HIDE_TAB.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TAB_POPUP_HELP">
+					<param name="Local" value="Installation/invconfigini_settings/TAB_POPUP_HELP.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TAB_TEXT">
+					<param name="Local" value="Installation/invconfigini_settings/TAB_TEXT.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice Enterprise API">
+		<param name="Local" value="../../../webserver_source/cfserverasp/Help/Admin/API/default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search">
+			<param name="Local" value="../../../webserver_source/cfserverasp/Help/Admin/API/Search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Get_structure">
+			<param name="Local" value="../../../webserver_source/cfserverasp/Help/Admin/API/get_structure.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Query_string">
+			<param name="Local" value="../../../webserver_source/cfserverasp/Help/Admin/API/query_string.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Inventory Enterprise API">
+		<param name="Local" value="API/FunctionReference.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="AllotContainer">
+			<param name="Local" value="API/AllotContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CalcMolarConc">
+			<param name="Local" value="API/CalcMolarConc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CheckOutContainer">
+			<param name="Local" value="API/CheckOutContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CheckSufficientSourcePlateQty">
+			<param name="Local" value="API/CheckSufficientSourcePlateQty.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CopyContainer">
+			<param name="Local" value="API/CopyContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateContainer">
+			<param name="Local" value="API/CreateContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateContainerReport">
+			<param name="Local" value="API/CreateContainerReport.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateCustomReport">
+			<param name="Local" value="API/CreateCustomReport.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateLink">
+			<param name="Local" value="API/CreateLink.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateLocation">
+			<param name="Local" value="API/CreateLocation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateLocationReport">
+			<param name="Local" value="API/CreateLocationReport.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreatePhysPlateType">
+			<param name="Local" value="API/CreatePhysPlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreatePlateFormat">
+			<param name="Local" value="API/CreatePlateFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreatePlateType">
+			<param name="Local" value="API/CreatePlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateRequest">
+			<param name="Local" value="API/CreateRequest.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateReservation">
+			<param name="Local" value="API/CreateReservation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateSearchResultsReport">
+			<param name="Local" value="API/CreateSearchResultsReport.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateSubstance">
+			<param name="Local" value="API/CreateSubstance.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateSynonym">
+			<param name="Local" value="API/CreateSynonym.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateTableRow">
+			<param name="Local" value="API/CreateTableRow.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CreateWellContentType">
+			<param name="Local" value="API/CreateWellContentType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteCompound">
+			<param name="Local" value="API/DeleteCompound.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteContainer">
+			<param name="Local" value="API/DeleteContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteContainers">
+			<param name="Local" value="API/DeleteContainers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteGridFormat">
+			<param name="Local" value="API/DeleteGridFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteLink">
+			<param name="Local" value="API/DeleteLink.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteLocation">
+			<param name="Local" value="API/DeleteLocation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteLocations">
+			<param name="Local" value="API/DeleteLocations.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeletePhysPlateType">
+			<param name="Local" value="API/DeletePhysPlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeletePlate">
+			<param name="Local" value="API/DeletePlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeletePlateFormat">
+			<param name="Local" value="API/DeletePlateFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeletePlateType">
+			<param name="Local" value="API/DeletePlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteRequest">
+			<param name="Local" value="API/DeleteRequest.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteReservation">
+			<param name="Local" value="API/DeleteReservation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteSubstance">
+			<param name="Local" value="API/DeleteSubstance.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteSynonym">
+			<param name="Local" value="API/DeleteSynonym.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteTableRow">
+			<param name="Local" value="API/DeleteTableRow.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeleteWellContentType">
+			<param name="Local" value="API/DeleteWellContentType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DeliverRequest">
+			<param name="Local" value="API/DeliverRequest.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GetBatchInfo">
+			<param name="Local" value="API/GetBatchInfo.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GetKeyContainerAttributes">
+			<param name="Local" value="API/GetKeyContainerAttributes.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GetLocationFromBarcode">
+			<param name="Local" value="API/GetLocationFromBarcode.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GetLocationFromID">
+			<param name="Local" value="API/GetLocationFromID.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MoveContainer">
+			<param name="Local" value="API/MoveContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MoveContainers">
+			<param name="Local" value="API/MoveContainers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MoveLocation">
+			<param name="Local" value="API/MoveLocation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MovePlate">
+			<param name="Local" value="API/MovePlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="OrderContainer">
+			<param name="Local" value="API/OrderContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ReconcileContainer">
+			<param name="Local" value="API/ReconcileContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ReformatPlate">
+			<param name="Local" value="API/ReformatPlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ReorderContainer">
+			<param name="Local" value="API/ReorderContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="RetireContainer">
+			<param name="Local" value="API/RetireContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="RetirePlate">
+			<param name="Local" value="API/RetirePlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="SolvatePlate">
+			<param name="Local" value="API/SolvatePlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UndoDelivery">
+			<param name="Local" value="API/UndoDelivery.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateAllContainerFields">
+			<param name="Local" value="API/UpdateAllContainerFields.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateAllPlateFields">
+			<param name="Local" value="API/UpdateAllPlateFields.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateContainer">
+			<param name="Local" value="API/UpdateContainer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateContainer2">
+			<param name="Local" value="API/UpdateContainer2.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateContainerQtyRemaining">
+			<param name="Local" value="API/UpdateContainerQtyRemaining.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateGridFormat">
+			<param name="Local" value="API/UpdateGridFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateLink">
+			<param name="Local" value="API/UpdateLink.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateLocation">
+			<param name="Local" value="API/UpdateLocation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdatePhysPlateType">
+			<param name="Local" value="API/UpdatePhysPlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdatePlate">
+			<param name="Local" value="API/UpdatePlate.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdatePlateFormat">
+			<param name="Local" value="API/UpdatePlateFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdatePlateType">
+			<param name="Local" value="API/UpdatePlateType.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateRequest">
+			<param name="Local" value="API/UpdateRequest.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateReservation">
+			<param name="Local" value="API/UpdateReservation.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateSubstance">
+			<param name="Local" value="API/UpdateSubstance.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateSynonym">
+			<param name="Local" value="API/UpdateSynonym.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateTable">
+			<param name="Local" value="API/UpdateTable.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateWell">
+			<param name="Local" value="API/UpdateWell.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="UpdateWellContentType">
+			<param name="Local" value="API/UpdateWellContentType.htm">
+			</OBJECT>
+	</UL>
+
+</UL>
+</BODY></HTML>

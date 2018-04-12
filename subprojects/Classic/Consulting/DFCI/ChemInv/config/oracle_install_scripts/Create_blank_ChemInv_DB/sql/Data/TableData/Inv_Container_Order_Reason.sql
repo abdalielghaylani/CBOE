@@ -1,0 +1,7 @@
+insert into INV_CONTAINER_ORDER_REASON (CONTAINER_ORDER_REASON_ID, NAME, SORT_ORDER)
+values (1, 'Insufficient Quantity', 1);
+insert into INV_CONTAINER_ORDER_REASON (CONTAINER_ORDER_REASON_ID, NAME, SORT_ORDER)
+values (2, 'Old/Expired Reagent', 2);
+insert into INV_CONTAINER_ORDER_REASON (CONTAINER_ORDER_REASON_ID, NAME, SORT_ORDER)
+values (3, 'Other', 3);
+commit;

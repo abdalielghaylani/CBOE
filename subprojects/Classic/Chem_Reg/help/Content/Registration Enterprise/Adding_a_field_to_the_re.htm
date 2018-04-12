@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|Reg.ini Configuration File" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Adding a field to the required field list</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Reg_ini_Configuration_Fi.htm#Registration_Admin_4136631045_1002673">Reg.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Adding a field to the required field list</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_1002764"></a>Adding a field to the required field list</h5>
+        <div class="Body">The only information necessary to add a field to the required field list is the table the field is found in, the name of the field, and the field's datatype. </div>
+        <div class="Body">For example, to make the CAS number a required field, we need to know the following values:</div>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="209px" style="width: 277px;caption-side: none;">
+            <col width="158px" relativeWidth="0%" />
+            <col width="119px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 27px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">Syntax Variable</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">Value</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;TableName&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Temporary_Structures</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;FieldName&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">CAS_Number</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;DataType&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">0</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3142255085">
+                        <p class="TableText">&lt;Displayed Name&gt;</p>
+                    </td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">CAS Number</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">To make this field required, add the following to the end of the required fields entry:	,Temporary_Structures.CAS_Number;0</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

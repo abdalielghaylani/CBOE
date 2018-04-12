@@ -1,0 +1,55 @@
+<!ELEMENT ACXdata (substance+ , supplier* )>
+
+<!-- substance section -->
+<!ELEMENT substance (structure* , substanceName* , product*)>
+<!ATTLIST substance 	acxNum CDATA #IMPLIED	
+						csNum CDATA #REQUIRED
+						casNum CDATA #IMPLIED >
+
+<!ELEMENT structure (base64cdx?)>
+<!ATTLIST structure 	type (cdx | gif | base64cdx| mol) #REQUIRED  
+						src CDATA #REQUIRED
+						formula CDATA #REQUIRED 
+						molWeight CDATA #REQUIRED >
+<!ELEMENT base64cdx (#PCDATA)>
+<!ELEMENT substanceName (#PCDATA)>
+<!ATTLIST	substanceName type (primary | synonym) #IMPLIED>
+
+<!ELEMENT product (prodName , prodDescription? , prodProperty*, package*)>
+<!ATTLIST product 	ACXprodID CDATA #REQUIRED 
+					supplierID IDREF #REQUIRED	
+					catNum CDATA #IMPLIED >
+<!ELEMENT prodName (#PCDATA)>
+<!ELEMENT prodDescription (#PCDATA)>
+<!ELEMENT prodProperty (#PCDATA)>
+<!ATTLIST prodProperty	property CDATA #REQUIRED> 
+<!ELEMENT package (packSize , packPrice , currencySymbol)>
+<!ATTLIST package	ACXpackID CDATA #REQUIRED
+					supplierPackID CDATA #IMPLIED >
+<!ELEMENT packSize (#PCDATA)>
+<!ELEMENT packPrice (#PCDATA)>
+<!ATTLIST packPrice	currency (USD | GBP | EUR | DEM) #REQUIRED>
+<!ELEMENT currencySymbol (#PCDATA)>
+<!-- supplier section-->
+<!ELEMENT supplier (supplierName , supplierShortName , supplierAddress* , supplierEmail* , supplierURL* , supplierPhone* )>
+<!ATTLIST supplier 	supplierID ID #REQUIRED
+					supplierCode CDATA #REQUIRED
+					supplierType CDATA #REQUIRED >
+<!ELEMENT supplierName (#PCDATA)>
+<!ELEMENT supplierShortName (#PCDATA)>
+<!ELEMENT supplierAddress (address1 , address2? , city , state , zipcode , country)>
+<!ELEMENT address1 (#PCDATA)>
+<!ELEMENT address2 (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zipcode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT supplierEmail (#PCDATA)>
+<!ELEMENT supplierURL (#PCDATA)>
+<!ELEMENT supplierPhone (countryCode , areaCode , phoneNum )>
+<!ATTLIST supplierPhone location CDATA #REQUIRED
+						type (TEL | FAX) #REQUIRED >
+<!ELEMENT countryCode (#PCDATA)>
+<!ELEMENT areaCode (#PCDATA)>
+<!ELEMENT phoneNum (#PCDATA)>						
+

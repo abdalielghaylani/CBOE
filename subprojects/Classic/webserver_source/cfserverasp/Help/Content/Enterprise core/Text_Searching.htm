@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="135" MadCap:lastWidth="587" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="ChemBioOffice Enterprise User Guide" MadCap:InPreviewMode="false" MadCap:previewFolder="file:///D:/Informatics/Documentation/Current User Guide files/CheOfficeWebserver/ChemBioOffice Enterprise/Output/ssengupta/Temporary/MyWebHelp/Preview/" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>Text searching</title>
+        <link href="../Resources/TableStyles/_2col_table.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="ChemBioOffice_Enterprise.htm#ChemOffice_2570923470_1152635">ChemBioOffice Enterprise User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Text searching</span>
+        </div>
+        <h2 class="Heading2"><a name="ChemOffice_2570923470_1137909"></a><a name="kanchor38"></a>Text searching</h2>
+        <div class="Body">In text searching, information can be entered using wildcard ("*") characters to broaden the search results or "=" to narrow to exact wording.</div>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>You cannot enter "AND", "OR", or "NOT" into the text searches.</div>
+        <div class="Body">The following table lists examples of text queries:</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <table class="TableStyle__2col_table" style="width: 277px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="91px" />
+            <col width="186px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Text Entered </p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Results Found </p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">ben</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves records that start with "ben", but may have any characters after. For example, the search returns benzene and benzofuran, but not bromobenzene.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">*ben</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves records that have any character before "ben" and any character after "ben" in the name field. For example, the search returns benzene, bromobenzene, and benzofuran.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">=Benzene</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves the exact text typed. For example, the search returns Benzene.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">Ben*chl</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Retrieves compounds with "ben" at the beginning, any character after "ben" and before "chl" and any character after "chl". For example, the search returns Benzyl Chloride.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

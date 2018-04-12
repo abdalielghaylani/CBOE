@@ -1,0 +1,93 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- Installation Win2000</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<a href="csdo.htm"><img height="16" alt="Previous" src="../../../images/back.gif" width="16" border="0"></a>
+<a href="installation.htm"><img height="16" alt="Up One Level" src="../../../images/uplevel.gif" width="16" border="0"></a>
+<a href="report_writer.htm"><img height="16" alt="Next" src="../../../images/next.gif" width="16" border="0"></a>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>     ChemOffice WebServer</strong>
+</td>
+</tr>
+</table>
+</div>
+
+<h1> Set Admin Permissions</h1>
+<ol>
+  <li>
+<div>Go to <strong>Start &gt; Programs &gt; 
+  Administrative Tools &gt; Internet Services Manager</strong>    .</div>
+  <li>
+<div>Expand the node with the name of your machine.</div>
+  <li>
+<div>Expand the <strong>Default Web Site</strong>    node.</div>
+  <li>
+<div>In the Default Web Site node, right click on 
+  <strong>CFServerAdmin</strong> and select <strong>Properties</strong>from the drop down menu.</div>
+  <li>
+<div>Select the <strong>Directory Security</strong>    tab.</div>
+  <li>
+<div>Under <strong>Anonymous Access and Authentication 
+  Control</strong>, click the <strong>Edit</strong>    button.</div>
+  <li>
+<div>Make sure the <strong>Allow Anonymous 
+  Access</strong> check box is selected and click the <strong>Edit</strong>    button.</div>
+  <li>
+<div>Change the Username to 
+  <strong><em>ADMINISTRATOR</em></strong> (or the name of a local administrator) 
+  and set the Password to the <administrator password>for the local machine. 
+  <br><strong>Note:</strong> It is necessary to deselect the Allow IIS to 
+  control password check box, in order to change the password.</div></li></ol>
+<p></p>
+<div><strong>Note:</strong> All virtual directories default 
+to using the Administrator user for the user name and password. If you would 
+like to change this username, or if the Administrator does not have 
+administrator privileges, please be sure to change the username and password to 
+a user with the appropriate privileges. Exit any open windows.</div>
+<p><a href="report_writer.htm">Step 5: Setup the Report 
+Writer</a></p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+PROMPT Starting Alter_Add_Authority_Columns.sql
+
+-- Execute as inventory owner
+-- Add ownership (principal) columns to inventory schema
+
+ALTER TABLE INV_CONTAINERS ADD (PRINCIPAL_ID_FK NUMBER(8));
+
+
+ALTER TABLE INV_PLATES ADD (PRINCIPAL_ID_FK NUMBER(8));
+
+
+ALTER TABLE INV_Locations ADD (PRINCIPAL_ID_FK NUMBER(8));
+
+
+ALTER TABLE INV_Locations ADD (ISPUBLIC NUMBER(2) default 0);
+ALTER TABLE INV_CONTAINERS
+DROP CONSTRAINT INV_CONT_CURRUSERID_FK;

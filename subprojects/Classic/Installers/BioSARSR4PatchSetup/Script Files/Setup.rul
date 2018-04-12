@@ -1,0 +1,157 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+#define TITLE_TEXT "ChemOffice_Data Folder."
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+#define EXAMPLE1 "cfserver"    
+
+// Full names of Config files.
+
+#define EXAMPLE1_INI IISROOTFOLDER^"ChemOffice\\BioSAR_Browser\\Config\\" + EXAMPLE1 + ".ini" 
+
+    // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND);    
+    export prototype IniBackUp(HWND);
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.     
+    STRING  szTitle, szMsg, svDir, sMsg;
+    BOOL    bCreate, bFolderExists;
+    NUMBER  nResult, nBuffer;
+begin             
+   // To Do:  Write script that will be executed when MyFunction is called.
+  // Loop until user cancels or selects an existing folder.
+   repeat
+
+
+
+      // Set a default folder for the SelectDir dialog.
+
+      svDir = INSTALLDIR;
+
+
+
+      // Set the message to display in the SelectDir dialog.
+
+      szMsg   = "Please Browse to the ChemOffice_Data Folder\n on your computer.";
+
+
+
+      // Get an existing folder name from the user. The fourth
+
+      // parameter indicates that a non-existing folder should
+
+      // not be created.
+
+      nResult = (SelectDir (TITLE_TEXT, szMsg, svDir, FALSE) < 0) ;
+
+
+
+      if nResult = 0 then
+
+
+
+         // Determine whether the folder exists.
+
+         bFolderExists = ExistsDir (svDir);
+
+
+
+         if bFolderExists = NOTEXISTS then
+
+            // The folder does not exist.  Ask user to select again.
+
+            szMsg = "%s does not exist.\nPlease choose an existing folder.";
+
+            SprintfBox  (WARNING, szTitle, szMsg, svDir);
+
+         endif;
+
+
+
+      endif;
+
+
+
+   until (nResult = CANCEL) || (bFolderExists = EXISTS);
+
+
+
+   if (bFolderExists = EXISTS) then
+
+
+
+      // Display the name of the selected folder.
+      SprintfBox(INFORMATION, "Selected Location", "You have selected %s.", svDir);
+      MsiSetProperty(ISMSI_HANDLE, "DataDirectory", svDir);
+      INSTALLDIR = svDir ;
+   endif;
+ 
+end;
+   
+function IniBackUp(hMSI)
+
+begin
+     if (ConfigFileLoad (EXAMPLE1_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE1_INI + ".", SEVERE);
+
+       // abort;
+
+ endif;        
+    
+    if (ConfigFileSave (EXAMPLE1 + ".*") < 0) then
+
+       MessageBox ("Unable to backup " + EXAMPLE1_INI + ".", SEVERE);
+
+      //  abort;
+
+    else
+      // MessageBox (EXAMPLE1_INI + " backed up.",INFORMATION);
+    endif;   
+end;

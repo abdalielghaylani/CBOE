@@ -1,0 +1,79 @@
+<html>
+
+<head><script Language="JavaScript"
+SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+function setAction(theAction){
+
+		//var theValue = eval('document.SubmitAction.FormGroups.options[document.SubmitAction.FormGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.submit()
+		
+}
+
+
+
+
+</script>
+
+<title>ChemOffice Web Wizard</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body>
+
+<p>&nbsp;</p>
+
+<form Name="SubmitAction"
+ACTION="WebEditor.ASP?WCI=create_app&amp;WCE=SubmitAction&amp;WCU" METHOD="post"
+border="1">
+  <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+  type="hidden" name="SubmitValue" value><table border="1">
+    <tr>
+      <td><table bgcolor="#C0C0C0">
+        <tr>
+          <td><table border="0" width="340" bgcolor="#000080">
+            <tr>
+              <td width="334"><font color="#FFFFFF"><strong>ChemOffice Web Wizard</strong></font></td>
+            </tr>
+          </table>
+          <table border="0" width="342">
+            <tr>
+              <td width="132"><img src="chemof1.jpg" width="132" height="133"
+              alt="wpe56A.jpg (3678 bytes)"></td>
+              <td rowspan="2" width="198" valign="middle">Select the number of results to display in the
+              result list view:<br>
+              <p><WC@INPUT></WC@INPUT></p>
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="132"></td>
+            </tr>
+          </table>
+          <hr>
+          <table border="0">
+            <tr>
+              <td><input type="submit" value="Help" name="Help" onClick="getHelp('WebAppName')"></td>
+              <td><input type="submit" value="Cancel" name="Cancel" onClick="setAction('Cancel')"></td>
+              <td><input type="submit" value="Next&gt;" name="Next" onClick="setAction('Next')"></td>
+              <td><input type="submit" value="&lt;Back" name="Back" onClick="setAction('Back')"></td>
+              <td><input type="submit" value="Finish" name="Finish" onClick="setAction('Finish')"> </td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<WC@Error>
+</WC@Error>
+</body>
+</html>

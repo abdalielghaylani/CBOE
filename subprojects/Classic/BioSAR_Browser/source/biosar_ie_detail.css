@@ -1,0 +1,350 @@
+BODY
+{
+    FONT-SIZE: 14px;
+    MARGIN-LEFT: 0px;
+    COLOR: black;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+TABLE
+{
+    BORDER-TOP: medium none;
+    FONT-SIZE: 6pt;
+    LEFT: 0pt;
+    FLOAT: none;
+    BORDER-LEFT: medium none;
+    BORDER-BOTTOM: medium none;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif
+    BORDER-RIGHT: medium none;
+    POSITION: relative;
+    TOP: 0pt;
+    TABLE-ALIGN: top
+    FLOAT: none
+}
+TD
+{
+    FONT-SIZE: 8pt;
+    FLOAT: none;
+    OVERFLOW: visible;
+    FONT-FAMILY: Verdana, Arial;
+    POSITION: relative
+}
+SELECT
+{
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: white;
+    FONT-VARIANT: normal
+}
+A
+{
+    TEXT-DECORATION: none
+}
+A:link
+{
+}
+A:visited
+{
+}
+.ButtonBar
+{
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: MS Sans Serif,Verdana, arial;
+    BACKGROUND-COLOR: white
+}
+A.ButtonBar:link
+{
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: MS Sans Serif,Verdana, arial;
+    BACKGROUND-COLOR: transparent;
+    TEXT-DECORATION: none
+}
+A.ButtonBar:visited
+{
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+    FONT-FAMILY: MS Sans Serif,Verdana, arial;
+    BACKGROUND-COLOR: transparent;
+    TEXT-DECORATION: none
+}
+TABLE.main_table
+{
+    FLOAT: none
+}
+TD.main_table_c1_value
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TD.main_table_c1_header
+{
+    FLOAT: none;
+    COLOR: #cccccc;
+    POSITION: relative
+}
+TABLE.parent_table
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TABLE.parent_table_detail
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TD.parent_table_cell_value
+{
+    FONT-SIZE: 9pt;
+    FLOAT: none;
+    COLOR: fuchsia;
+    FONT-FAMILY: 'Lucida Console';
+    POSITION: relative
+}
+TD.parent_table_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_table_cell_name
+{
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_structure_cell_value
+{
+    FLOAT: none;
+    OVERFLOW: visible;
+    POSITION: absolute
+}
+TD.parent_structure_cell_header
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TD.parent_structure_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_mw_cell_value
+{
+    Z-INDEX: -1;
+    FLOAT: right;
+    VERTICAL-ALIGN: top;
+    POSITION: relative
+}
+TD.parent_mw_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_mw_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_formula_cell_value
+{
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    POSITION: relative;
+    TEXT-ALIGN: left
+}
+TD.parent_formula_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_formula_cell_name
+{
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.parent_cell_value
+{
+    FONT-SIZE: 9pt;
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    FONT-FAMILY: 'Lucida Console';
+    POSITION: relative
+}
+TABLE.child_table
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TABLE.child_table_detail
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TD.child_table_detail
+{
+    FLOAT: none;
+    POSITION: relative
+}
+TD.child_table_cell_value
+{
+    FONT-SIZE: 9pt;
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    OVERFLOW: visible;
+    FONT-FAMILY: 'Lucida Console';
+    POSITION: relative
+}
+TD.child_table_cell_header
+{
+    FLOAT: none;
+    FONT-FAMILY: Verdana, Arial;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_structure_cell_value
+{
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    POSITION: relative
+}
+TD.child_structure_cell_header
+{
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_structure_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_mw_cell_value
+{
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    OVERFLOW: visible;
+    POSITION: relative
+}
+TD.child_mw_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_mw_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_formula_cell_value
+{
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    OVERFLOW: visible;
+    POSITION: relative
+}
+TD.child_formula_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_formula_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_cell_name
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_cell_header
+{
+    FLOAT: none;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.child_cell_value
+{
+    FONT-SIZE: 9pt;
+    FLOAT: none;
+    VERTICAL-ALIGN: top;
+    OVERFLOW: visible;
+    FONT-FAMILY: 'Lucida Console';
+    POSITION: relative
+}
+TABLE.query_main_table
+{
+    FLOAT: none;
+    COLOR: white;
+    POSITION: relative
+}
+TD.query_table_cell_value
+{
+    FONT-WEIGHT: bolder;
+    FLOAT: none;
+    POSITION: relative
+}
+TD.query_table_cell_header
+{
+    FONT-WEIGHT: bold;
+    FLOAT: none;
+    COLOR: black;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+TD.query_table_cell_name
+{
+    FONT-WEIGHT: 700;
+    COLOR: dimgray;
+    BACKGROUND-COLOR: white
+}
+DIV.columnNameClass
+{
+    Z-INDEX: 2;
+    VISIBILITY: visible;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+DIV.tableHeaderClass
+{
+    Z-INDEX: 2;
+    VISIBILITY: visible;
+    POSITION: relative;
+    BACKGROUND-COLOR: #cccccc
+}
+DIV.firstColumnClass
+{
+    Z-INDEX: 2;
+    VISIBILITY: visible;
+    POSITION: relative
+}
+DIV.parent_table_div
+{
+    Z-INDEX: 3;
+    VISIBILITY: visible;
+    POSITION: relative
+}

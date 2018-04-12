@@ -1,0 +1,120 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+<style>
+<!--
+DIV.Section1 {
+	page: Section1
+}
+LI.MsoNormal {
+	FONT-SIZE: 12pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"
+}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>CopyContainer</h1><p>          
+  <span lang="en-us">Creates multiple copies of a container. The 
+	attributes of the copied containers are exactly similar to the original 
+	container.</span>&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CopyContainer.asp?ContainerID=adNumeric&amp;NumContainers=<span lang="en-us">adNumeric</span></pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the ID of the&nbsp;container to be copied.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>I<span lang="en-us">NV_CONTAINERS</span></td>
+		<td width="92"><span lang="en-us">CONTAINER_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">NumContainers</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the number of the container 
+		copies to be created.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	</table>
+
+<h3>Output</h3>
+<p>A Pipe (|) delimited list of the IDs of the new containers. For example: 
+100|101. These IDs are stored in the <span lang="en-us">New</span>ContainerID parameter, the data type of 
+which is adVarChar<span lang="en-us">.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code allows you to create 4 copies of the 
+container with ID 111:</span></p>
+<pre>/cheminv/api/CopyContainer.asp?ContainerID=111&amp;NumContainers=4</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

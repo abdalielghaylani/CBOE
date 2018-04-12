@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="D:\Projects\Documentation\CBOE Enterprise 11.0\Registration 11.0.1\Source Files\Registration.book" DescendantCount="49">
+    <TocEntry Title="Introduction" Link="/Content/Registration/Introduction1.htm#Introduction_3358748554_999296" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="2">
+        <TocEntry Title="The Registration Process" Link="/Content/Registration/The_Registration_Process.htm#Introduction_3358748554_999209" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Integration" Link="/Content/Registration/Integration.htm#Introduction_3358748554_999232" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Getting Started" Link="/Content/Registration/Getting_Started.htm#Getting_Started_3362405106_999222" ComputedFirstTopic="false" DescendantCount="3">
+        <TocEntry Title="Logging in" Link="/Content/Registration/Logging_in.htm#Getting_Started_3362405106_999112" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="The Main Menu" Link="/Content/Registration/The_Main_Menu.htm#Getting_Started_3362405106_999498" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Logging out" Link="/Content/Registration/Logging_out.htm#Getting_Started_3362405106_999199" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Submitting New Records" Link="/Content/Registration/Submitting_New_Records.htm#Submit_Records_2794373798_999206" ComputedFirstTopic="false" DescendantCount="12">
+        <TocEntry Title="Pure Compounds" Link="/Content/Registration/Pure_Compounds.htm#Submit_Records_2794373798_1002876" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Mixtures" Link="/Content/Registration/Mixtures.htm#Submit_Records_2794373798_1002878" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Batch" Link="/Content/Registration/Batch.htm#Submit_Records_2794373798_1002858" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Parts of a Registry Record" Link="/Content/Registration/Parts_of_a_Registry_Reco.htm#Submit_Records_2794373798_1002917" depth="0" ComputedFirstTopic="false" DescendantCount="5">
+            <TocEntry Title="Registry Information" Link="/Content/Registration/Registry_Information.htm#Submit_Records_2794373798_1002999" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Component Information" Link="/Content/Registration/Component_Information.htm#Submit_Records_2794373798_1003056" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Batch Information" Link="/Content/Registration/Batch_Information.htm#Submit_Records_2794373798_1003226" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Batch Component Information" Link="/Content/Registration/Batch_Component_Informat.htm#Submit_Records_2794373798_1003276" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Required Fields" Link="/Content/Registration/Required_Fields.htm#Submit_Records_2794373798_1003103" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Creating Registry Records" Link="/Content/Registration/Creating_Registry_Record.htm#Submit_Records_2794373798_999123" depth="0" ComputedFirstTopic="false" DescendantCount="1">
+            <TocEntry Title="Options available in Submit Record Form" Link="/Content/Registration/Options_available_in_Sub.htm#Submit_Records_2794373798_1002185" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Direct Register" Link="/Content/Registration/Direct_Register.htm#Submit_Records_2794373798_1003493" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Managing temporary records" Link="/Content/Registration/Managing_temporary_recor.htm#Search_temp_1701990757_999217" ComputedFirstTopic="false" DescendantCount="4">
+        <TocEntry Title="Managing records in temporary table" Link="/Content/Registration/Managing_temporary_recor.htm#Search_temp_1701990757_999385" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Searching Records in Temporary Table" Link="/Content/Registration/Searching_Records_in_Tem.htm#Search_temp_1701990757_999387" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing Records in the Temporary Table" Link="/Content/Registration/Editing_Records_in_the_T.htm#Search_temp_1701990757_999125" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting Records from Temporary Table" Link="/Content/Registration/Deleting_Records_from_Te.htm#Search_temp_1701990757_999134" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="Queries and Hitlist" Link="/Content/Registration/Queries_and_Hitlist.htm#Managing_Queries_808531033_999435" ComputedFirstTopic="false" DescendantCount="10">
+        <TocEntry Title="Search Criteria" Link="/Content/Registration/Search_Criteria.htm#Managing_Queries_808531033_999210" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Viewing Search Results" Link="/Content/Registration/Viewing_Search_Results.htm#Managing_Queries_808531033_999226" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="List View" Link="/Content/Registration/List_View.htm#Managing_Queries_808531033_999244" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Form View" Link="/Content/Registration/Form_View.htm#Managing_Queries_808531033_999265" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Marking Records" Link="/Content/Registration/Marking_Records.htm#Managing_Queries_808531033_999273" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Manipulating Queries" Link="/Content/Registration/Manipulating_Queries.htm#Managing_Queries_808531033_999291" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Saving Queries" Link="/Content/Registration/Saving_Queries.htm#Managing_Queries_808531033_999305" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Restore Queries" Link="/Content/Registration/Restore_Queries.htm#Managing_Queries_808531033_999338" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Refining Search Results" Link="/Content/Registration/Refining_Search_Results.htm#Managing_Queries_808531033_999344" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Export Hits" Link="/Content/Registration/Export_Hits.htm#Managing_Queries_808531033_999345" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Registering Records" Link="/Content/Registration/Registering_Records.htm#register_records_384769933_999147" ComputedFirstTopic="false" DescendantCount="2">
+        <TocEntry Title="Registering a Temporary Record" Link="/Content/Registration/Registering_a_Temporary.htm#register_records_384769933_999169" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Handling Duplicates" Link="/Content/Registration/Handling_Duplicates.htm#register_records_384769933_999369" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Managing Registered Records" Link="/Content/Registration/Managing_Registered_Reco.htm#Search_2278811971_999338" ComputedFirstTopic="false" DescendantCount="7">
+        <TocEntry Title="Compound Search" Link="/Content/Registration/Compound_Search.htm#Search_2278811971_999118" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Editing Registered Record" Link="/Content/Registration/Editing_Registered_Recor.htm#Search_2278811971_999265" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Batches" Link="/Content/Registration/Batches.htm#Search_2278811971_999272" depth="0" ComputedFirstTopic="false" DescendantCount="4">
+            <TocEntry Title="Adding A Batch" Link="/Content/Registration/Adding_A_Batch.htm#Search_2278811971_999526" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing A Batch" Link="/Content/Registration/Editing_A_Batch.htm#Search_2278811971_999130" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting A Batch" Link="/Content/Registration/Deleting_A_Batch.htm#Search_2278811971_999308" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Moving A Batch" Link="/Content/Registration/Moving_A_Batch.htm#Search_2278811971_999295" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+    </TocEntry>
+    <TocEntry Title="Optional Feature" Link="/Content/Registration/Optional_Feature.htm#Appendix_3549196451_999175" ComputedFirstTopic="false" DescendantCount="1">
+        <TocEntry Title="Row Level Security" Link="/Content/Registration/Row_Level_Security.htm#Appendix_3549196451_999247" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+</CatapultToc>

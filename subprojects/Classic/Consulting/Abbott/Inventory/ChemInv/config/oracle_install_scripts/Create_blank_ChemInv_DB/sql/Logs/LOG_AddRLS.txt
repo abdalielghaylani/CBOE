@@ -1,0 +1,90 @@
+Connected.
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+Connected.
+CREATE TABLE inv_role_locations (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+CREATE CONTEXT ctx_cheminv USING cheminvdb2.ctx_cheminv_mgr
+*
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Package created.
+
+
+Package body created.
+
+
+Trigger created.
+
+
+PL/SQL procedure successfully completed.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+Connected.
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+

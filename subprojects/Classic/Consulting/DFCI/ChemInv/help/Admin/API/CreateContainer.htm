@@ -1,0 +1,711 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>CreateContainer</h1>
+<p>Creates a new container and returns its ID.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/CreateContainer.asp?LocationID=adNumeric&amp;UOMID=adNumeric&amp;QtyMax=adDouble&amp;Qty<span lang="en-us">Initial</span>=adDouble&amp;ContainerTypeID=adNumeric&amp;ContainerStatusID=adNumeric<span lang="en-us">[</span>&amp;<span lang="en-us">Barcode=a</span>dVarChar&amp;BarcodeDescID=adNumeric&amp;CompoundID=adNumeric&amp;<span lang="en-us">RegID=adVarChar&amp;</span>B<span lang="en-us">atchNumber=adNumeric&amp;</span>ExpDate=adDBTimeStamp&amp;MinStockQty<strong>=</strong>adDouble&amp;MaxStockQty=adDouble&amp;ContainerName=adVarChar&amp;ContainerDesc=adVarChar&amp;TareWeight=adDouble<span lang="en-us">&amp;NetWeight=adDouble&amp;FinalWeight=adDouble</span>&amp;UOWID=adNumeric&amp;Purity=<span lang="en-us">a</span>dDouble&amp;UOPID=adNumeric&amp;Concentration=adDouble&amp;<span lang="en-us">Density=adDouble&amp;</span>UOCID=adNumeric<span lang="en-us">&amp;UODID=adNumeric</span>&amp;Grade=adVarChar&amp;Solvent<span lang="en-us">IDFK</span>=adVarChar&amp;Comments=adVarChar&amp;StorageConditions=adVarChar&amp;HandlingProcedures=adVarChar&amp;SupplierID=adNumeric&amp;SupplierCatNum=adVarChar&amp;LotNum=adVarChar&amp;DateProduced=adDBTimeStamp&amp;DateOrdered=adDBTimeStamp&amp;DateReceived=adDBTimeStamp&amp;ContainerCost=adNumeric&amp;UOCostID=adNumeric&amp;OwnerID=adVarChar&amp;CurrentUserID=adVarChar&amp;PONumber=adVarChar&amp;POLineNumber=adVarChar<span lang="en-us">&amp;</span>ReqNumber=adVarChar&amp;NumCopies=adNumeric]<br></pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="112" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="105" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="248"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="52"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="112">LocationID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the location 
+		where </span>the<span lang="en-us"> </span>container is
+		<span lang="en-us">to be </span>stored. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">L<span lang="en-us">OCATION</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">UOMID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the unit in which 
+		the contents of the container are to be measured. You can determine 
+		the ID of an unit using </span>ShowContainerUnits<span lang="en-us">.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">U<span lang="en-us">NIT</span>_O<span lang="en-us">F</span>_M<span lang="en-us">EAS</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">QtyMax</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the maximum quantity of the 
+		substance that the container can hold.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">QTY_MAX</td>
+	</tr>
+	<tr>
+		<td width="112">QtyInitial</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the quantity of the 
+		substance to be stored in the container initially. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">QTY_INITIAL</td>
+	</tr>
+	<tr>
+		<td width="112">ContainerTypeID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the type of the 
+		container. You can determine the values that ContainerTypeID 
+		parameter can take using </span>ShowContainerTypes. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">ContainerStatusID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the status of the 
+		container. You can determine the values that ContainerStatusID 
+		parameter can take using </span>ShowContainer<span lang="en-us">Status.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_STATUS_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">Barcode</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the barcode of the container. The container barcode is an </span>alphanumerical 
+		identifier<span lang="en-us"> used to identify the container uniquely.
+		</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">BARCODE</td>
+	</tr>
+	<tr>
+		<td width="112">BarcodeDescID</td>
+		<td width="105">adNumeric</td>
+		<td width="248">Specifies the ID of the barcode description to be used 
+		for the container.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_BARCODE_DESC</span></td>
+		<td width="92">BARCODE_DESC_ID</td>
+	</tr>
+	<tr>
+		<td width="112">CompoundID</td>
+		<td width="105">adNumeric</td>
+		<td width="248">Specifies the ID of the substance 
+		that is to be stored in the container. &nbsp;</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">COMPOUND_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">RegID</td>
+		<td width="105">adVarChar</td>
+		<td width="248">Specifies 
+		the registration ID of the substance that is to be stored in the container. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">REG_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">BatchNumber</td>
+		<td width="105">adNumeric</td>
+		<td width="248">Specifies the batch number 
+		associated with the registration ID of the substance 
+		stored in the new container&nbsp; </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">BATCH_NUMBER_FK</td>
+	</tr>
+	<tr>
+		<td width="112">ExpDate</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the expiration date of the 
+		contents of the container. </span>&nbsp; </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_EXPIRES</td>
+	</tr>
+	<tr>
+		<td width="112">MinStockQty</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the minimum stock quantity 
+		for the contents of the container. Minimum stock quantity is the 
+		minimum quantity of the substance that stock should always hold. Inventory Enterprise</span> <span lang="en-us">issues a
+		</span>re-stock warning<span lang="en-us"> if the quantity of the 
+		substance in the stock is less than the value of the MinStockQty 
+		parameter</span>. <span lang="en-us">The unit for the minimum stock 
+		quantity is same as the value of the </span>UOMID<span lang="en-us"> 
+		parameter.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">QTY_MINSTOCK</td>
+	</tr>
+	<tr>
+		<td width="112">MaxStockQty</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the maximum stock quantity 
+		for the contents of the container. Maximum stock quantity is the 
+		maximum quantity of the substance that stock can hold. Inventory Enterprise</span> <span lang="en-us">issues a over</span>-stock warning<span lang="en-us"> 
+		if the quantity of the substance in the stock exceeds than the value of 
+		the MaxStockQty 
+		parameter</span>.<span lang="en-us"> The unit for the maximum stock 
+		quantity is same as the value of the </span>UOMID<span lang="en-us"> 
+		parameter. </span> </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">QTY_MAXSTOCK</td>
+	</tr>
+	<tr>
+		<td width="112">ContainerName</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the name of&nbsp; the container. 
+		By default, the ContainerName parameter is set to the internal </span>container<span lang="en-us"> </span>ID<span lang="en-us"> 
+		if no value is specified for this parameter</span>. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_NAME</td>
+	</tr>
+	<tr>
+		<td width="112">ContainerDesc</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the description of the container.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_DESCRIPTION</td>
+	</tr>
+	<tr>
+		<td width="112">TareWeight</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the </span>tare weight of the<span lang="en-us"> 
+		</span>container<span lang="en-us">. The unit for the tare weight 
+		of the container is specified in the </span>UOWID<span lang="en-us"> 
+		parameter</span>. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">TARE_WEIGHT</td>
+	</tr>
+	<tr>
+		<td width="112">NetWeight</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the net </span>weight of the<span lang="en-us"> 
+		</span>container<span lang="en-us">. The unit for the net weight of 
+		the container is specified in the </span>UOWID<span lang="en-us"> 
+		parameter</span>.&nbsp; </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">NET_WGHT</td>
+	</tr>
+	<tr>
+		<td width="112">FinalWeight</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the final</span> weight of the<span lang="en-us"> 
+		</span>container<span lang="en-us">. The unit for the final weight 
+		of a container is specified in the </span>UOWID<span lang="en-us"> 
+		parameter</span>. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FINAL_WGHT</td>
+	</tr>
+	<tr>
+		<td width="112">UOWID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the unit in which 
+		the tare, net, and final weights of the container are measured</span>.<span lang="en-us"> 
+		You can determine the values that the UOWID parameter can take using</span> ShowContainerUnits<span lang="en-us">.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">UNIT_OF_WGHT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">Purity</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the purity of the substance 
+		specified in the CompoundID parameter. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">PURITY</td>
+	</tr>
+	<tr>
+		<td width="112">UOPID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the unit in which 
+		the purity of the container contents is measured. You can determine the 
+		values that the UOPID parameter can take using</span> ShowContainerUnits. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">UNIT_OF_PURITY_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">Concentration</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the </span>concentration of the substance<span lang="en-us"> 
+		stored in the container</span>.<span lang="en-us"> </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONCENTRATION</td>
+	</tr>
+	<tr>
+		<td width="112">Density</td>
+		<td width="105">adDouble</td>
+		<td width="248"><span lang="en-us">Specifies the </span>density of the substance<span lang="en-us"> 
+		stored in the container</span>.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DENSITY</td>
+	</tr>
+	<tr>
+		<td width="112">UOCID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the unit in which 
+		the concentration </span>o<span lang="en-us">f the container contents is 
+		measured. You can determine the values that the UOCID parameter can take 
+		using</span> ShowContainerUnits. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">UNIT_OF_COST_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">UODID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the unit in which 
+		the density of the container contents is measured.</span>
+		<span lang="en-us">You can determine the values that the UODID parameter 
+		can take using</span> ShowContainerUnits.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">UNIT_OF_DENSITY_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">Grade</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the grade associated with
+		</span>quality or purity <span lang="en-us">of the container contents</span>.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">GRADE</td>
+	</tr>
+	<tr>
+		<td width="112">Solvent<span lang="en-us">IDFK</span></td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the solvent for the 
+		contents of the container. </span> </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">SOLVENT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">Comments</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the comments or additional 
+		information associated with the container.</span> <span lang="en-us">
+		The Comments parameter can take comments up to </span>4000 characters.<span lang="en-us"> 
+		The Comments parameter can be passed as form value, so that it is not 
+		truncated if the size of the query string size exceeds the specified 
+		limit.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_COMMENTS</td>
+	</tr>
+	<tr>
+		<td width="112">StorageConditions</td>
+		<td width="105">adVarChar</td>
+		<td width="248">Specifies the storage conditions for the container.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">STORAGE_CONDITIONS</td>
+	</tr>
+	<tr>
+		<td width="112">HandlingProcedures</td>
+		<td width="105">adVarChar</td>
+		<td width="248">Specifies the handling procedures for the container.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">HANDLING_PROCEDURES</td>
+	</tr>
+	<tr>
+		<td width="112">SupplierID</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the supplier of 
+		the container. You can determine the values that the SupplierID 
+		parameter can take using</span> ShowSuppliers.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">SUPPLIER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">SupplierCatNum</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the catalog number that 
+		supplier of the container has associated with the container. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">SUPPLIER_CATNUM</td>
+	</tr>
+	<tr>
+		<td width="112">LotNum</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the lot number of the 
+		supplier of the container.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">LOT_NUM</td>
+	</tr>
+	<tr>
+		<td width="112">DateProduced</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the date the contents of 
+		the container were produced. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_PRODUCED</td>
+	</tr>
+	<tr>
+		<td width="112">DateOrdered</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the date the container was 
+		ordered.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_ORDERED</td>
+	</tr>
+	<tr>
+		<td width="112">DateRecieved</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the </span>date the
+		<span lang="en-us">container was</span> received<span lang="en-us">.</span> </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_RECEIVED</td>
+	</tr>
+	<tr>
+		<td width="112">ContainerCost</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the cost of the new 
+		container. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CONTAINER_COST</td>
+	</tr>
+	<tr>
+		<td width="112">UOCostID</td>
+		<td width="105">adNumeric</td>
+		<td width="248">Specifies the unit of the cost of the container. By 
+		default, the unit of the cost of the container is USD. </td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">UNIT_OF_COST_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">OwnerID</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the owner of the 
+		container.</span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">OWNER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">CurrentUserID</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the ID of the user of the 
+		container. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">CURRENT_USER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="112">PONumber</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the </span>PO<span lang="en-us">
+		</span>n<span lang="en-us">umber </span>under which the<span lang="en-us"> 
+		</span>container was ordered.<span lang="en-us"> </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">PO_NUMBER</td>
+	</tr>
+	<tr>
+		<td width="112">POLineNumber</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the </span>PO<span lang="en-us"> 
+		line</span> number <span lang="en-us">of</span> the container.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">PO_LINE_NUMBER</td>
+	</tr>
+	<tr>
+		<td width="112">ReqNumber</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the </span>internal requisition number under which the 
+		container was ordered.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">REQ_NUMBER</td>
+	</tr>
+	<tr>
+		<td width="112">NumCopies</td>
+		<td width="105">adNumeric</td>
+		<td width="248"><span lang="en-us">Specifies the number</span> of 
+		<span lang="en-us">copies to be created for the container. </span></td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">N/A</span></td>
+		<td width="92"><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="112">Field_1</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value </span>of the configurable field Field_1.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_1</td>
+	</tr>
+	<tr>
+		<td width="112">Field_2</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable<span lang="en-us">
+		</span>field Field_2.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_2</td>
+	</tr>
+	<tr>
+		<td width="112">Field_3</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_3.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_3</td>
+	</tr>
+	<tr>
+		<td width="112">Field_4</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_4.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_4</td>
+	</tr>
+	<tr>
+		<td width="112">Field_5</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span>of the configurable&nbsp;field Field_5.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_5</td>
+	</tr>
+	<tr>
+		<td width="112">Field_6</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_6.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_6</td>
+	</tr>
+	<tr>
+		<td width="112">Field_7</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_7.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_7</td>
+	</tr>
+	<tr>
+		<td width="112">Field_8</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_8.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_8</td>
+	</tr>
+	<tr>
+		<td width="112">Field_9</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_9.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_9</td>
+	</tr>
+	<tr>
+		<td width="112">Field_10</td>
+		<td width="105">adVarChar</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Field_10.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">FIELD_10</td>
+	</tr>
+	<tr>
+		<td width="112">Date_1</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Date_1.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_1</td>
+	</tr>
+	<tr>
+		<td width="112">Date_2</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Date_2.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_2</td>
+	</tr>
+	<tr>
+		<td width="112">Date_3</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Date_3.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_3</td>
+	</tr>
+	<tr>
+		<td width="112">Date_4</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the value </span>of the configurable&nbsp;field Date_4.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_4</td>
+	</tr>
+	<tr>
+		<td width="112">Date_5</td>
+		<td width="105">adDBTimeStamp</td>
+		<td width="248"><span lang="en-us">Specifies the value</span> of the configurable&nbsp;field Date_5.</td>
+		<td width="52">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92">DATE_5</td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p>A </span>Pipe (|) delimited list of the IDs of the new containers, which are stored in the 
+ContainerID parameter</span>.<span lang="en-us"> </span>For example: 100|101. 
+The data type of the ContainerID parameter is ad<span lang="en-us">VarChar</span>.</p>
+
+<h3 class="param">Example</h3>
+<p><span lang="en-us">The following code allows you to create a 
+new container with location ID 101, container type ID 13, maximum quantity 200, 
+initial quantity 100, unit of measurement ID 3, and status ID 6: </span></p>
+<pre class="param">/cheminv/api/CreateContainer.asp?LocationID=101&amp;UOMID=3&amp;QtyMax=200&amp;QtyInitial=100&amp;ContainerTypeID=13&amp;ContainerStatusID=6</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

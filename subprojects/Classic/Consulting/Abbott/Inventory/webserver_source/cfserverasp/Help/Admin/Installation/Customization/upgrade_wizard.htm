@@ -1,0 +1,195 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<b>
+<h1>Upgrading version 7.2 Wizard Applications&nbsp;to 9.0</b>&nbsp;</h1>
+<p>There are no changes necessary for 8.0 wizard application to run with version 
+9.0.</p>
+<p>The following files need to be updated in order to allow 
+your wizard applications to run with ChemOffice WebServer 9.0: 
+<br><strong>Note</strong> : All files for 
+an application are found in &lt;webroot&gt;/ChemOffice/&lt;appname&gt;. </p>           
+        
+<ul>
+  <li>
+<div>     
+               
+  &lt;appname&gt;/global.asa</div>
+  <li>
+  <div>  &lt;appname&gt;/navbar.asp </div>
+  <li>
+  <div> 
+   &lt;appname&gt;/config/&lt;dbname&gt;.ini </div>
+  <li>
+  <div> 
+              
+                   
+               
+  &lt;appname&gt;/config/cfserver.ini</div></li>
+</ul><p>To upgrade your wizard application: 
+<ol>
+  <li>Gather the following information: 
+  <ul><li>&lt;appname&gt; - refers to the name of your 
+    applicaiton, which is the name of the root virtual directory. 
+    <li>&lt;dbname&gt;&nbsp;- the name of the database you converted. The ini 
+    file in the /config directory will match this name 
+  (&lt;dbname&gt;.ini)</li></ul>
+  <li>Upgrade <strong>global.asa</strong>  
+  <ol><li>Browse to the application's <strong>config</strong> 
+    directory.<li>Open <strong>global.asa</strong> in your current web 
+    application and copy the line:<br>Application(&quot;appkey&quot;) = &quot; &lt;Your 
+    Name app&gt;&quot;&nbsp;<br>       
+             
+           to the clipboard.
+    <li>Open <strong><a href="web_app%207.2_to_8.0%20upgrade/global.asa">&lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 
+    7.2_to_8.0 upgrade/global.asa</a></strong> and replace 
+    <br>Application(&quot;appkey&quot;) = &quot;#APP_KEY&quot;&nbsp;<br>           
+       with the line you copied in step 
+    2.&nbsp;
+    <li> Copy the new global.asa to your web application 
+    replacing the older version.&nbsp;</li>               
+              </ol>
+  <li>Upgrade <strong>Navbar.asp</strong>
+  <ol><li>Browse to <strong><a href="web_app%207.2_to_8.0%20upgrade/">&lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 
+    7.2_to_8.0 upgrade/</a></strong><li>Copy the file <strong>navbar.asp</strong> to your 
+    web application (&lt;webroot&gt;/ChemOffice/&lt;appname&gt;)&nbsp;replacing 
+    the older version.&nbsp;</li></ol>
+  <li>Upgrade <strong>cfserver.ini</strong>
+  <ol><li>Browse to 
+    <strong>&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/</strong>
+    <li>Open cfserver.ini and copy the following lines to your clipboard <br><strong>Note</strong>: These lines will be populated with information - the example shows them as blank): 
+    <br><pre>
+    appname= 
+    NAV_BUTTONS_GIF_PATH = 
+    MAIN_WINDOW=     
+    NAV_BAR_WINDOW= 
+    USER_INFO_WINDOW = 
+    TEMP_DIR_NAME= 
+    TEMP_DIR_PATH= 
+    dbnames= 
+    GLOBAL_SEARCH_DBS= sample 
+    GLOBAL_SEARCH_BASE_DB= sample
+    ADD_MODE=&quot;TRUE&quot;</pre>
+      <li>      
+               
+  Browse to 
+    <strong>&lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 
+    7.2_to_9.0 upgrade/upgrade_fields/</strong>
+      <li>      
+               
+  Open <strong>cfserver.ini</strong> and replace the 
+    items  with the  same       
+    name   with those you copied in the previous 
+    step.&nbsp;
+    <li> Copy the new <strong>cfserver.ini </strong>to your 
+    web application 
+    (<strong>&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/</strong> ) 
+    replacing the older version.&nbsp;</li></ol>
+      <li>      
+               
+  Upgrade <strong><em>&lt;dbname&gt;</em> 
+  .ini</strong>
+  <ol>      
+               
+       
+                
+      <li>Browse to 
+    <strong>&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/</strong>      
+               
+             
+                
+      <li>Open your web application's 
+    <strong><em>&lt;dbname&gt;</em> .ini</strong>      
+               
+       
+                
+      <li>Locate the <strong>Base_connection</strong>      
+               
+       
+                
+      section.<li>Change the entries to match the following (using 
+    the appropriate server_drive and appname and dbname were indicated): 
+    <br><pre>
+    CONN_TYPE = File Name 
+    CONNECTION_STRING = &lt;SERVER_DRIVE&gt;\Inetpub\wwwroot\ChemOffice\&lt;appname&gt;\config\&lt;dbname&gt;.udl&nbsp;</pre>
+    <li>Browse to 
+    <strong>&lt;webroot&gt;/ChemOffice/webserver_source/cfserverasp/help/web_app 
+    7.2_to_9.0 upgrade/upgrade_fields/</strong>
+    <li>Copy the file <strong>dbname.udl</strong> to your application's /config 
+    folder 
+    (<strong>&lt;webroot&gt;/ChemOffice/&lt;appname&gt;/config/</strong>). 
+    <li>Rename the file&nbsp;to match the dbname of your ini file. <br>       
+                 For example if 
+      you application is names &quot;sample&quot; then the udl should be sample.udl.&nbsp;
+      <li>Open the udl (by double-clicking) and point it to the database that the web application is 
+      using.&nbsp;</li></ol>
+    <li>Adding your web application to ChemOffice.ini&nbsp; 
+    <ol><li>Browse to &lt;webroot&gt;/chemoffice/config/<li>Open <strong>chemoffice.ini</strong>  
+     
+    <li>Add your application's name (i.e. appname) to the 
+    <br><pre>
+    WIZARD_APPNAMES= </pre>key.&nbsp;
+    <li>Enter a group to the file for your web application 
+    using the following format: <br>          
+        <pre>
+        [&lt;appname&gt;]
+        SECTION =
+        WIZARD DBNAMES = &lt;dbname&gt;
+        &lt;dbname&gt;_DISPLAY_NAME=  &lt;appname&gt;-
+        &lt;dbname&gt;&lt;dbname&gt;_START_PATH=&quot;/&lt;appname&gt;/default.asp?formgroup=base_form_group&amp;
+        dbname=&lt;dbname&gt; &quot; 
+        </pre></li></ol>     </li></ol><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+<ol></ol>
+</body>
+
+</html>

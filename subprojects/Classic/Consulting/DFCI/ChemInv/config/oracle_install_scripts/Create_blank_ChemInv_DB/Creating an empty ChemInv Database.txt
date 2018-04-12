@@ -1,0 +1,9 @@
+Instructions to Create an Empty Chemical Inventory Database
+
+
+Note: The sql scripts provided have been designed to be executed with the command line version of SQL*Plus.  This scripts contain substitution variables which will not be proccessed correctly when run from SQL*Plus Worksheet.  To execute the scripts with SQL*Plus just double click the provided command files.
+
+1. If the CS_Secutiry tables have not yet been created on your Oracle server then execute the Create_CS_security.cmd file provided with the cs_Security oracle scripts.
+	Note: This step will irreversably delete any preexisting users and roles from the CS_security tables. 
+2. Execute the Create_Blank_ChemInvDB.cmd file.
+	

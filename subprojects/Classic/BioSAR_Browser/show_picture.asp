@@ -1,0 +1,1 @@
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/show_picture.asp"-->

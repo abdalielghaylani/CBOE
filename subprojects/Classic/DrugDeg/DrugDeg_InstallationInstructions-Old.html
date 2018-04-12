@@ -1,0 +1,269 @@
+<html>
+
+<head>
+	<title>DrugDeg installation instructions</title>
+</head>
+
+<body  bgcolor = "#FFFFFF">
+
+<h1>DrugDeg installation instructions</h1>
+
+<hr>
+
+
+<h2>Set up the Local Service Name</h2>
+
+<p>
+There may already be a Local Service Name (or TNS) to the server for DrugDeg's Oracle database.  If there
+isn't, though, you will need to make one.  To do that:
+<ol>
+	<li>
+		Run Oracle's Net8 Configuration Assistant (<b>Start > Programs > <i>[Oracle]</i> > Network
+		Administration > Net8 Configuration Assistant</b>).
+	</li>
+	<li>
+		Select <b>Local Net Service Name configuration</b>, then click the <b>Next</b> button.
+	</li>
+	<li>
+		Select <b>Add</b>, then click the <b>Next</b> button.
+	</li>
+	<li>
+		Select the version of Oracle being used, then click the <b>Next</b> button.
+	</li>
+	<li>
+		Enter a service name: usually this is of the form <i>computer name</i><b>.</b><i>domain</i>.
+		When done, click the <b>Next</b> button.
+	</li>
+	<li>
+		Select the network protocol to use: usually this is <b>TCP</b>.
+		When done, click the <b>Next</b> button.
+	</li>
+	<li>
+		Enter a host name (usually the name of the computer on the network) and a port (you will likely
+		want the default port), then click the <b>Next</b> button.
+	</li>
+	<li>
+		You will probably want to test the connection.  To do that:
+		<ol>
+			<li>
+				Select <b>Yes, perform a test</b>, then click the <b>Next</b> button.
+			</li>
+			<li>
+				The dialog now shows the results of the test.  If it failed, click <b>Change Login</b>,
+				enter a valid username and password for that database,  then try again.
+			</li>
+		</ol>
+	</li>
+	<li>
+		You will be asked to provide a Net Service name.  The default (the server's name on the
+		network) is fine, so just click the <b>Next</b> button.
+	</li>
+	<li>
+		You will now be asked whether you wish to configure another net service name.  Select <b>No</b>,
+		then click the <b>Next</b> button.
+	</li>
+	<li>
+		Click the <b>Next</b> button once more, then click the <b>Finish</b> button.
+	</li>
+</ol>
+</p>
+
+
+<h2>Set up a DSN for DrugDeg</h2>
+
+<p>
+You will need to set up a system data source, or DSN, for DrugDeg.  For Oracle databases, the following
+are the instructions for setting up a DSN:
+<ol>
+	<li>
+		Start the ODBC Data Source Administrator (<b>Start > Programs > Administrative Tools > Data Sources</b>).
+	</li>
+	<li>
+		Click the <b>System DSN</b> tab.
+	</li>
+	<li>
+		Click the <b>Add...</b> button.
+	</li>
+	<li>
+		Select <b>Microsoft ODBC for Oracle</b>, then click the <b>Finish</b> button.
+	</li>
+	<li>
+		Enter the following values into the indicated text fields:
+		<ul>
+			<li>
+				<b>Data Source Name:</b> DrugDeg
+			</li>
+			<li>
+				<b>Description:</b> Drug Degradation database
+			</li>
+			<li>
+				<b>User Name:</b> DrugDeg
+			</li>
+			<li>
+				<b>Server:</b> <i>the name of the database server on the network</i>
+			</li>
+		</ul>
+		When finished, click the <b>OK</b> button.
+	</li>
+	<li>
+		Back at the dialog for ODBC Data Source Administrator, click the <b>OK</b> button.
+	</li>
+</ol>
+</p>
+
+
+<h2>Put the DrugDeg files in place</h2>
+
+<p>
+Unzip the file DrugDeg.zip into the folder <b>[webroot]/ChemOffice</b>.
+</p>
+
+
+<h2>Add DrugDeg to the ChemOffice .ini file</h2>
+
+<p>
+Edit the file <b>[webroot]/ChemOffice/config/chemoffice.ini</b>: add "DrugDeg" to the "AppName" line.
+</p>
+
+
+<h2>Add DrugDeg to the ChemOffice Web Server web page</h2>
+
+<p>
+Edit the file <b>[webroot]/chemoffice.asp</b>:
+<ul>
+	<li>
+		<i>Find the section for </i>Sample<i>, copy it, then change "Sample" to "DrugDeg".</i>
+	</li>
+</ul>
+</p>
+
+
+<h2>Add the Oracle Service Name to the CFServer initialization file</h2>
+
+<p>
+Edit the file <b>[webroot]/ChemOffice/DrugDeg/config/cfserver.ini</b>: set <b>ORA_SERVICENAME</b> to
+the Oracle Service name (from the Local Service Name: the name of the database server on the network).
+</p>
+
+
+<h2>Set up the DrugDeg initialization file</h2>
+
+<p>
+<ul>
+	<li>
+		<i>In the </i>[base_connection]<i> section, set </i><b>CONNECTION_STRING</b><i> to the Data
+		Source Name ("DrugDeg").</i>
+	</li>
+	<li>
+		<i>Look for </i>STRUC_DB_PATH<I>: wherever you find it, set it to the path to the DrugDeg.mst file,
+		which should be in <b>[webroot]/ChemOffice/DrugDeg/DrugDegDB</b></i>.
+	</li>
+</ul>
+</p>
+
+
+<h2>Set up a virtual directory for DrugDeg</h2>
+
+<p>
+<ol>
+	<li>
+		Start the Internet Service Manager (<b>Start > Programs > Administrative Tools > Internet Service Manager</b>).
+	</li>
+	<li>
+		Expand the item for the server.
+	</li>
+	<li>
+		Right-click on <b>Default Web Site</b> and select the <b>New > Virtual Directory</b> item.
+	</li>
+	<li>
+		Click the <b>Next</b> button.
+	</li>
+	<li>
+		Enter "DrugDeg" as the alias, then click the <b>Next</b> button.
+	</li>
+	<li>
+		Browse to the folder <b>[webroot]/ChemOffice/</b>, click on the <b>DrugDeg</b> folder, and click
+		the <b>OK</b> button.
+	</li>
+	<li>
+		Click the <b>Next</b> button.
+	</li>
+	<li>
+		For <b>Access Permissions</b>, make sure only the following boxes are checked: <b>Read</b>,
+		<b>Run Scripts</b>, and <b>Write</b>.  After that, click the <b>Next</b> button
+	</li>
+	<li>
+		Click the <b>Finish</b> button.
+	</li>
+</ol>
+</p>
+
+
+<h2>Set folder permissions</h2>
+
+<p>
+Make sure that the folders <b>[webroot]/ChemOffice/DrugDeg/DrugDeg</b> and
+<b>[webroot]/ChemOffice/DrugDeg/DrugDegDB</b> have the proper permissions.
+For each of those two folders:
+<ol>
+	<li>
+		Right-click on the folder and select <b>Properties</b>.
+	</li>
+	<li>
+		Click the <b>Security</b> tab.
+	</li>
+	<li>
+		Make sure that the checkbox for "Allow inheritable permissions from parent to propagate ..."
+		is checked.
+	</li>
+</ol>
+</p>
+
+
+<h2>Set up Oracle database</h2>
+
+<p>
+You need to run some scripts to create and configure the Oracle database for DrugDeg.  The scripts
+are in the folder <b>[webroot]/ChemOffice/DrugDeg/config/Oracle Scripts</b>.  You <em>must</em>
+run these scripts on the computer which will be the server for the database.  To run the scripts,
+Run Oracle's SQLPlus Worksheet (<b>Start > Programs > <i>[Oracle]</i> > Database Administration > 
+SQLPlus Worksheet</b>).  For each script:
+<ol>
+	<li>
+		Go to the <b>File</b> menu and select <b>Open...</b>.
+	</li>
+	<li>
+		Browse to and select the script, then click the <b>Open</b> button.
+	</li>
+	<li>
+		Execute the script: either press the F5 button, click the lightning bolt icon to the left, or go to
+		the <b>Worksheet</b> menu and select <b>Execute</b>.
+	</li>
+</ol>
+</p>
+
+<p>
+The scripts to be run, <em>in this order</em>, are:
+<ul>
+	<li>
+		"1 - Create_DrugDeg_ora.sql"
+	</li>
+	<li>
+		If ChemReg isn't already on this server: "2 (opt) - Create_CS_Security_ora.sql"
+	</li>
+	<li>
+		"3 - Alter_CS_Security_for_DrugDeg_ora.sql"
+	</li>
+	<li>
+		"4 - Create_DrugDeg_users.sql"
+	</li>
+	<li>
+		"5 - Add_DrugDeg_DocMgr_integration_items.sql"
+	</li>
+</ul>
+</p>
+
+
+</body>
+
+</html>

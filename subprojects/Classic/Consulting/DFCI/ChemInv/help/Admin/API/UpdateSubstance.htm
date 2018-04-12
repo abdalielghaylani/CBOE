@@ -1,0 +1,195 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;
+<h1>UpdateSubstance</h1><p>          
+                         
+            
+               
+                 Updates the attributes of an already existing substance.</p><h3>Syntax</h3> <pre>/cheminv/api/UpdateSubstance.asp?CompoundID=adNumeric&amp;SubstanceName=adVarChar[&amp;Structure=CLOB&amp;CAS=adVarChar&amp;ACX_ID=adVarChar&amp;ALT_ID_1=adVarChar&amp;ALT_ID_2=adVarChar&amp;ALT_ID_3=adVarChar&amp;ALT_ID_4=adVarChar&amp;ALT_ID_5=adVarChar]</pre> <h3> Inputs&nbsp;</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">CompoundID</td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the compound to be updated.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="92">COMPOUND_ID</td>
+	</tr>
+	<tr>
+		<td width="117">SubstanceName</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the name of the compound.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">SUBSTANCE_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">Structure</td>
+		<td width="97">CLOB</td>
+		<td width="298"><span lang="en-us">Specifies the chemical structure of 
+		the compound. </span>The <span lang="en-us">Structure parameter stores 
+		the </span>chemical structure of the substance as <span lang="en-us">the
+		</span>base64 encoded cdx data.  Due to the length of cdx data, it is recommended 
+		<span lang="en-us">to pass this data as the </span>form data 
+		<span lang="en-us">instead of passing it through </span>the query string.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">BASE64_CDX</td>
+	</tr>
+	<tr>
+		<td width="117">CAS</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the CAS number of the 
+		substance.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">CAS</td>
+	</tr>
+	<tr>
+		<td width="117">ACX_ID</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the ACX ID of the 
+		substance.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ACX_ID</td>
+	</tr>
+	<tr>
+		<td width="117">ALT_ID_1</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the value of the 
+		configurable field </span>ALT_ID_1<span lang="en-us">.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ALT_ID_1</td>
+	</tr>
+	<tr>
+		<td width="117">ALT_ID_2</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the value of the 
+		configurable field </span>ALT_ID_<span lang="en-us">2.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ALT_ID_2</td>
+	</tr>
+	<tr>
+		<td width="117">ALT_ID_3</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the value of the 
+		configurable field </span>ALT_ID_<span lang="en-us">3.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ALT_ID_3</td>
+	</tr>
+	<tr>
+		<td width="117">ALT_ID_4</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the value of the 
+		configurable field </span>ALT_ID_<span lang="en-us">4.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ALT_ID_4</td>
+	</tr>
+	<tr>
+		<td width="117">ALT_ID_5</td>
+		<td width="97"><span lang="en-us">adVarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the value of the 
+		configurable field </span>ALT_ID_<span lang="en-us">5.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV</span>_<span lang="en-us">COMPOUNDS</span></td>
+		<td width="115">ALT_ID_5</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">The ID of the updated compound. This ID is stored in the 
+compound_id parameter, the data type of which is adNumeric.</span></p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+  <span lang="en-us">The following code updates a substance with ID 111:</span>&nbsp;&nbsp;</p><pre>cheminv/api/UpdateSubstance.asp?EditCompoundID=111&amp;SubstanceName=Benzene[&amp;CAS=71-43-2]</pre>  
+<pre></pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

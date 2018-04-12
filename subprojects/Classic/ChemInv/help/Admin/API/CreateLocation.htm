@@ -1,0 +1,193 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>CreateLocation</h1>
+<p>Creates a new location and returns its <span lang="en-us">ID.</span></p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/CreateLocation.asp?ParentID=adNumeric&amp;LocationName=adVarChar(128)[&amp;Barcode=adVarChar(4000)&amp;LocationDesc=adVarChar(255)&amp;LocationTypeID=adNumericGridFormatID=adNumeric&amp;PlateTypeList=adVarChar&amp;LocationOwnerID=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="122" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="310"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="63"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Database 
+		Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ParentID</td>
+		<td width="122">adNumeric</td>
+		<td width="310">Specifies the ID of the parent of the 
+		location. </td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_ID</td>
+	</tr>
+	<tr>
+		<td width="117">LocationName</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies the name of the location.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">BarcodeDescID</td>
+		<td width="122">adNumeric</td>
+		<td width="310">Specifies the ID of the barcode description for the 
+		location.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">
+		N<td>INV_BARCODE_DESC</td>
+		<td><span lang="en-us">BARCODE_DESC_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">Barcode</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies a unique 
+		alphanumerical identifier, which is termed as 
+		barcode, for the location. 
+		</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">
+		N<td>INV_LOCATIONS</td>
+		<td>LOCATION_BARCODE</td>
+	</tr>
+	<tr>
+		<td width="117">LocationDesc</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies
+		the description of the
+		location.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_DESCRIPTION</td>
+	</tr>
+	<tr>
+		<td width="117">LocationTypeID</td>
+		<td width="122">adNumeric</td>
+		<td width="310">Specifies the ID associated with the 
+		type of the location. You can determine the values that the LocationTypeID parameter can take using ShowLocationTypes.&nbsp; </td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">GridFormatID</td>
+		<td width="122">adNumeric</td>
+		<td width="310">Specifies the ID associated 
+		with the grid format of the 
+		location. Grid format allows you&nbsp;to create sublocations 
+		for the location, while the location is being created.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td><span lang="en-us">GRID_FORMAT_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">PlateTypeList</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies the plate types 
+		that can reside in the location. Commas are used to separate different plate
+		types.&nbsp;</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>N/A</td>
+		<td><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">LocationOwnerID</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies the ID associated with 
+		the user or owner of the location.&nbsp;</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>OWNER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">AllowContainers</td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies the list of the containers that are allowed to 
+		be stored at the location.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>ALLOWS_CONTAINERS</td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p><span lang="en-us">The ID of the new location. The location ID is stored 
+in the LocationID parameter, the data type of which is adNumeric.</span></p>
+<h3 class="param">Example</h3>
+<p><span lang="en-us">The following code </span>create<span lang="en-us">s</span> a location<span lang="en-us"> 
+with parent location ID </span>121<span lang="en-us"> and name</span> Fridge<span lang="en-us">:</span></p>
+<pre class="param">/cheminv/api/CreateLocation.asp?ParentID=121&amp;LocationName=Fridge&nbsp;</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

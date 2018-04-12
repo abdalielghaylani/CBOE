@@ -1,0 +1,1 @@
+REreplace sample.ini; F:\datafolder\appname\; [A-Za-z]:\\[\w\\-]+\\

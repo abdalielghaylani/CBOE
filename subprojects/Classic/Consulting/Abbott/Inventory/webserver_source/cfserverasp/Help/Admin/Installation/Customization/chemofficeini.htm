@@ -1,0 +1,94 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1> Chemoffice.ini Configuration File</h1>
+
+<p> The ChemOffice.ini file is&nbsp;necessary for any 
+ChemOffice WebServer application to function properly.&nbsp; This file gives the 
+WebServer basic information about the applications such as a start path and database names.</p>
+
+<p> The file starts with the following GLOBAL settings:</p>
+
+<ul><li><a href="chemofficeini/CD_PLUGIN_THRESHOLD.htm">CD_PLUGIN_THRESHOLD</a>
+  <li><a href="chemofficeini/CD_PLUGIN_DOWNLOAD_PATH.htm">CD_PLUGIN_DOWNLOAD_PATH</a>
+  <li><a href="chemofficeini/AppName.htm">AppName </a>
+  <li><a href="chemofficeini/WIZARD_APPNAMES.htm">WIZARD_APPNAMES</a>
+  <li><a href="chemofficeini/CS_SECURITY.htm">CS_SECURITY</a>
+  <li><a href="chemofficeini/FORCE_ORACLE_SESSION_CURSOR_SHARING.htm">FORCE_ORACLE_SESSION_CURSOR_SHARING</a></li></ul>
+
+<p> and then continues with a section for each application.&nbsp; 
+Application sections begin with a section heading (the application 
+name in brackets.&nbsp; For example, the following is the default application 
+definition for Sample:&nbsp;</p>
+
+<p>
+<table style="WIDTH: 615px; HEIGHT: 122px" cellSpacing="1" cellPadding="1" width="615" border="1">
+  
+  <tr>
+    <td>[SAMPLE] <br>SECTION=CO_WebServer_STANDARD <br>DBNAMES=SAMPLE<br>SAMPLE_START_PATH=&quot;/sample/default.asp?formgroup=base_form_group&amp;dbname=sample&quot; 
+      <br>SAMPLE_DISPLAY_NAME=&quot;Sample&quot;</td></tr></table>   </p>
+
+<p> Each application section can contain the following 
+settings (any missing settings are set to the default):</p>
+<ul>
+  <li><a href="chemofficeini/SECTION.htm">SECTION </a>
+  <li><a href="chemofficeini/DBNAMES.htm">DBNAMES </a>
+  <li><a href="chemofficeini/GLOBAL_SEARCH.htm">GLOBAL_SEARCH</a>
+  <li><a href="chemofficeini/GLOBAL_SEARCH_DISPLAY_NAME.htm">GLOBAL_SEARCH_DISPLAY_NAME</a>
+  <li><a href="chemofficeini/GLOBAL_SEARCH_START_PATH.htm">GLOBAL_SEARCH_START_PATH</a>
+  <li><a href="chemofficeini/SAMPLE_START_PATH.htm">&lt;DBNAME&gt;_START_PATH</a>
+  <li><a href="chemofficeini/SAMPLE_DISPLAY_NAME.htm">&lt;DBNAME&gt;_DISPLAY_NAME</a></li></ul><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowInputField</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>  ShowStrucInputField</h1>
+<p>This subroutine call appears in the following file:</p>
+<ul><li>sample_input_form.asp</li></ul>
+
+
+      <h4>Subroutine</h4>
+<pre>ShowStrucInputField 
+      dbkey,formgroup,table.field,fieldtype,width,height,search_options,display_options</pre>
+
+      <h4>Description</h4>
+
+      <p>Shows the ChemDraw plugin box for structure input and displays options 
+      for search</p>
+
+      <h4>Parameters</h4>
+
+      <p>dbkey =<em></font> 
+      &lt;dataview name&gt;</em>  &nbsp;
+      <p>formgroup =</font><em> &lt;formgroup name&gt;</em>
+      <h5></h5> 
+      <p>table.field =</font><em> &lt;table and field name 
+      using dot syntax&gt;</em>      
+      &nbsp;
+      <p>fieldtype =</font><em> &lt;indicates chemical 
+      information&gt;</em>  
+      &nbsp;
+      <p>width =</font><em> &lt;width of plugin 
+      box&nbsp;&gt;</em>   &nbsp;
+      <p>height =</font><em> &lt;height of plugin box&gt; 
+      </em>
+      <h5></h5>   
+      <p>search_options = 
+      <em>All_Options|SubStructure|Exact|Tanimoto</em>&nbsp; 
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All_Options: 
+      show drop down list with options<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Substructure:&nbsp;always 
+      substructure search<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact: 
+      always exact search<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanimoto: 
+      always similarity search
+      </p>
+      <p>display_options = 
+      <em>None|Select_List|Select_List_Edit<br></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None: 
+      no display type needed<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select_list: 
+      shows chocies - substructure, exact, similarity<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select_List_Edit: 
+      structure button<br></p>
+
+      <h4>Example</h4>
+<pre>ShowStrucInputField 
+      dbkey,formgroup,&quot;MolTable.Structure&quot;,&quot;5&quot;,&quot;340&quot;,&quot;AllOptions&quot;,&quot;Select_List&quot;</pre>
+<!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

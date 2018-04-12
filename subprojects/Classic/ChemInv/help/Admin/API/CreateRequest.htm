@@ -1,0 +1,219 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;
+<h1>CreateRequest</h1><p>          
+           Creates a new&nbsp;container request.&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CreateRequest.asp?ContainerID=adNumeric&amp;UserID=adVarChar&amp;QtyRequired=adNumeric&amp;LocationID=adNumeric&amp;RequestTypeID=adNumeric&amp;ContainerTypeID=adNumeric&amp;NumContainers=adNumeric&amp;QtyList=adVarChar[&amp;DateRequired=Date&amp;RequestComments=adVarChar&amp;ShipToName=adVarChar&amp;RequestStatusID=adNumeric&amp;ExpenseCenter=adVarChar]<span lang="ja"> </span></pre>
+
+<h3>Inputs</h3>
+<table border="1" width="126%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="114" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="68" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="310"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="57"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="141"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="114">ContainerID</td>
+		<td width="68">adNumeric</td>
+		<td width="310"><span lang="en-us">Specifies the </span>ID
+		<span lang="en-us">associated with </span>the container
+		<span lang="en-us">to be </span>requested.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">CONTAINER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">UserID</td>
+		<td width="68">adVarChar</td>
+		<td width="310"><span lang="en-us">Specifies the </span>ID
+		<span lang="en-us">associated with </span>the user who
+		<span lang="en-us">has requested the container.</span></td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">USER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">QtyRequired</td>
+		<td width="68"><span lang="ja">adNumeric</span></td>
+		<td width="310"><span lang="en-us">Specifies the quantity of </span>
+		substance<span lang="en-us"> that requested container should contain</span>.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">
+		Y<td>INV_REQUESTS</td>
+		<td width="141">QTY_REQUIRED</td>
+	</tr>
+	<tr>
+		<td width="114">LocationID</td>
+		<td width="68">adNumeric</td>
+		<td width="310"><span lang="en-us">Specifies the </span>ID
+		<span lang="en-us">associated with </span>the location<span lang="en-us">,</span> where the
+		<span lang="en-us">requested container is to be delivered</span>.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">DELIVERY_LOCATION_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">DateRequired</td>
+		<td width="68">Date</td>
+		<td width="310"><span lang="en-us">Specifies the </span>date
+		<span lang="en-us">on which the requested container is to be delivered. 
+		The date is specified in the </span>date-time literal <span lang="en-us">
+		format. For example, </span>01-27-200<span lang="en-us">6</span>.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center"><span lang="ja">N</span></td>
+		<td>INV_REQUESTS</td>
+		<td width="141">DATE_REQUIRED</td>
+	</tr>
+	<tr>
+		<td width="114">RequestComments</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the comments associated 
+		with the container request.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">REQUEST_COMMENTS</td>
+	</tr>
+	<tr>
+		<td width="114">RequestTypeID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the type of the request.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">REQUEST_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">ContainerTypeID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the type of the sample containers.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">CONTAINER_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">NumContainers</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the number of samples requested.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">NUMBER_CONTAINERS</td>
+	</tr>
+	<tr>
+		<td width="114">QtyList</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the list of quantities that each sample 
+		container should contain.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">QUANTITY_LIST</td>
+	</tr>
+	<tr>
+		<td width="114">ShipToName</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the user to whom the request is to be shipped.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">SHIP_TO_NAME</td>
+	</tr>
+	<tr>
+		<td width="114">RequestStatusID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the ID of the status of the request.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_REQUESTS</td>
+		<td width="141">REQUEST_STATUS_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">ExpenseCenter</td>
+		<td width="68">adVarChar</td>
+		<td width="310">&nbsp;</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center"><span lang="ja">N</span></td>
+		<td>INV_REQUESTS</td>
+		<td width="141">EXPENSE_CENTER</td>
+	</tr>
+</table>
+
+<h3>Output<span lang="ja">&nbsp;&nbsp;&nbsp; </span></h3>
+<p><span lang="en-us">The ID of</span> the new request<span lang="en-us">. 
+This ID is stored in the Request_ID parameter, the data 
+type of which is adNumeric.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code places request for a container with 
+user ID mjs, container ID 111, date required November 12, 2006, quantity 
+required 10 ml, and location ID 12345:</span></p><pre>/cheminv/api/CreateRequest.asp?ContainerID=111&amp;UserID=mjs&amp;QtyRequired=10&amp;LocationID=12345&amp;DateRequired=11-13-2003</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+USERID=system/manager
+FILE=biosar_schemas.DMP
+FULL=Y
+IGNORE=Y
+LOG=biosar_schemas_export.log

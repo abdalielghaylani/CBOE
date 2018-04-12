@@ -1,0 +1,425 @@
+Untitled Document
+  ChemDraw3141966464314002D
+
+  7  7  0  0  0  0  0  0  0  0999 V2000
+   -0.7145    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145   -0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.2375    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145   -0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    1.2375    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  2  0      
+  6  1  1  0      
+  6  7  1  0      
+M  END
+
+>  <cpd_internal_id> (1)
+2
+ 
+>  <MolWeight> (1)
+92.1384
+
+>  <Formula> (1)
+C7H8
+
+>  <Reg. Date> (1)
+3/18/2004
+
+>  <REG_ID> (1)
+2
+
+>  <Registration Number> (1)
+AB-000002
+
+>  <Sequence Number> (1)
+2
+
+>  <Compound Registrar> (1)
+T5_85,
+
+>  <REG_ID> (1)
+2
+
+>  <COMPOUND_MOLECULE> (1)
+MW2 -- FORMULA2 -- ROOT_REG_DATE -- MF Text -- MW Text -- Structure/Stereochemistry Comment -- ROOT_NUMBER -- Prefix -- Last Mod Person -- Last Mod Date92.1384 -- C7H8 -- 3/18/2004 11:44:56 AM --    --    -- 1 -- AB-000002 -- 1 --    --   
+>  <PROJECTS> (1)
+Project1
+>  <BATCHES> (1)
+BATCH_NUMBER -- NOTEBOOK_INTERNAL_ID -- Reference and Vendor data -- Storage Requirements and Warnings -- Chemist -- BP -- MP -- Flash Point -- Optical Rotation -- Refractive Index -- Salt -- Creation Date -- Submitted Amount -- Notebook -- BATCH_REG_PERSON_ID -- Entry Person -- Last Mod Person -- BATCH_REG_DATE -- Last Mod Date -- Preparation -- Batch Comment -- Page -- Physical Form -- 1HNMR -- Color -- 13CNMR -- IR -- FIA/MS -- GC -- BATCH_FORMULA -- SOLVATE_ID -- Equivalents -- Equivalents -- Formula Weight -- Salt Name -- MW -- Solvate Name -- MW -- Percent Active -- Units -- Purity -- HPLC -- Appearance -- LC/UV/MS -- CHN -- UV -- LogD -- Solubility1 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 92.1384 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --   
+>  <ALT_IDS_ALL> (1)
+IDENTIFIER_TYPE -- IDENTIFIER0 -- Toluene
+ 
+ 
+$$$$
+Untitled Document
+  ChemDraw314-2137-6-7-6314002D
+
+  4  5  0  0  0  0  0  0  0  0999 V2000
+   -0.3572    0.6188    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.3572   -0.2063    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3572    0.2063    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3572   -0.6188    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0      
+  2  3  1  0      
+  3  1  1  0      
+  2  4  1  0      
+  4  3  1  0      
+M  END
+
+>  <cpd_internal_id> (2)
+4
+ 
+>  <MolWeight> (2)
+54.0904
+
+>  <Formula> (2)
+C4H6
+
+>  <Reg. Date> (2)
+3/18/2004
+
+>  <REG_ID> (2)
+4
+
+>  <Registration Number> (2)
+AB-000004
+
+>  <Sequence Number> (2)
+4
+
+>  <Compound Registrar> (2)
+T5_85,
+
+>  <REG_ID> (2)
+4
+
+>  <COMPOUND_MOLECULE> (2)
+MW2 -- FORMULA2 -- ROOT_REG_DATE -- MF Text -- MW Text -- Structure/Stereochemistry Comment -- ROOT_NUMBER -- Prefix -- Last Mod Person -- Last Mod Date54.0904 -- C4H6 -- 3/18/2004 3:13:34 PM --    --    -- 1 -- AB-000004 -- 1 --    --   
+>  <PROJECTS> (2)
+Project1
+>  <BATCHES> (2)
+BATCH_NUMBER -- NOTEBOOK_INTERNAL_ID -- Reference and Vendor data -- Storage Requirements and Warnings -- Chemist -- BP -- MP -- Flash Point -- Optical Rotation -- Refractive Index -- Salt -- Creation Date -- Submitted Amount -- Notebook -- BATCH_REG_PERSON_ID -- Entry Person -- Last Mod Person -- BATCH_REG_DATE -- Last Mod Date -- Preparation -- Batch Comment -- Page -- Physical Form -- 1HNMR -- Color -- 13CNMR -- IR -- FIA/MS -- GC -- BATCH_FORMULA -- SOLVATE_ID -- Equivalents -- Equivalents -- Formula Weight -- Salt Name -- MW -- Solvate Name -- MW -- Percent Active -- Units -- Purity -- HPLC -- Appearance -- LC/UV/MS -- CHN -- UV -- LogD -- Solubility1 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 54.0904 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --   2 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 54.0904 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --    -- 
+>  <ALT_IDS_ALL> (2)
+ 
+ 
+$$$$
+Untitled Document
+  ChemDraw314-1528-8-8-8314002D
+
+ 24 24  0  0  0  0  0  0  0  0999 V2000
+   -1.4289    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4289   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7144   -0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7144    0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7144    0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4289    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7144    1.6499    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1433    0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8578    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5722    0.8250    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.8578   -0.4124    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7144   -1.6499    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4289   -2.0624    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000   -2.0624    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1433   -0.8250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1433   -1.6499    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8578   -0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8578    0.4125    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5722   -0.8250    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1433    0.8249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5722    0.8249    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4289    2.0624    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  2  0      
+  6  1  1  0      
+  5  7  1  0      
+  7  8  2  0      
+  7  9  1  0      
+  8 10  1  0      
+ 10 11  1  0      
+ 11 12  1  0      
+ 11 13  2  0      
+  3 14  1  0      
+ 14 15  2  0      
+ 14 16  1  0      
+  2 17  1  0      
+ 17 18  1  0      
+ 17 19  1  0      
+ 19 20  1  0      
+ 19 21  2  0      
+ 20 22  1  0      
+ 20 23  2  0      
+  9 24  1  0      
+M  END
+
+>  <cpd_internal_id> (3)
+5
+ 
+>  <MolWeight> (3)
+395.244
+
+>  <Formula> (3)
+C18H19O5Br
+
+>  <Reg. Date> (3)
+3/18/2004
+
+>  <REG_ID> (3)
+5
+
+>  <Registration Number> (3)
+AB-000005
+
+>  <Sequence Number> (3)
+5
+
+>  <Compound Registrar> (3)
+T5_85,
+
+>  <REG_ID> (3)
+5
+
+>  <COMPOUND_MOLECULE> (3)
+MW2 -- FORMULA2 -- ROOT_REG_DATE -- MF Text -- MW Text -- Structure/Stereochemistry Comment -- ROOT_NUMBER -- Prefix -- Last Mod Person -- Last Mod Date395.2445 -- C18H19O5Br -- 3/18/2004 3:13:36 PM --    --    -- 1 -- AB-000005 -- 1 --    --   
+>  <PROJECTS> (3)
+Project1
+>  <BATCHES> (3)
+BATCH_NUMBER -- NOTEBOOK_INTERNAL_ID -- Reference and Vendor data -- Storage Requirements and Warnings -- Chemist -- BP -- MP -- Flash Point -- Optical Rotation -- Refractive Index -- Salt -- Creation Date -- Submitted Amount -- Notebook -- BATCH_REG_PERSON_ID -- Entry Person -- Last Mod Person -- BATCH_REG_DATE -- Last Mod Date -- Preparation -- Batch Comment -- Page -- Physical Form -- 1HNMR -- Color -- 13CNMR -- IR -- FIA/MS -- GC -- BATCH_FORMULA -- SOLVATE_ID -- Equivalents -- Equivalents -- Formula Weight -- Salt Name -- MW -- Solvate Name -- MW -- Percent Active -- Units -- Purity -- HPLC -- Appearance -- LC/UV/MS -- CHN -- UV -- LogD -- Solubility1 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 395.2445 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --   2 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 -- 1/2/2002 -- 22 --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    -- 222 --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 395.2445 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg -- 88 -- 0 -- clear -- 0 -- 0 -- 0 --    --    -- 
+>  <ALT_IDS_ALL> (3)
+ 
+ 
+$$$$
+Untitled Document
+  ChemDraw314-1009-6-9-6314002D
+
+ 32 32  0  0  0  0  0  0  0  0999 V2000
+   -1.4290   -0.0441    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4290   -0.8692    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145   -1.2817    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.8692    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.0441    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145    0.3684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145    0.3684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4290   -0.0441    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145    1.1934    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1435    0.3684    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8580   -0.0441    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5724    0.3684    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.8580   -0.8691    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145   -2.1067    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4290   -2.5192    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000   -2.5192    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435   -1.2817    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435   -2.1067    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -0.8692    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -0.0442    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5724   -1.2817    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435    0.3683    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5724    0.3683    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4290    1.6059    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435    1.1933    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8579    1.6057    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4291    1.6057    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4291    2.4307    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.6322    1.3922    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4187    0.5954    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2197    2.1067    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9342    2.5192    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  2  0      
+  6  1  1  0      
+  5  7  1  0      
+  7  8  2  0      
+  7  9  1  0      
+  8 10  1  0      
+ 10 11  1  0      
+ 11 12  1  0      
+ 11 13  2  0      
+  3 14  1  0      
+ 14 15  2  0      
+ 14 16  1  0      
+  2 17  1  0      
+ 17 18  1  0      
+ 17 19  1  0      
+ 19 20  1  0      
+ 19 21  2  0      
+ 20 22  1  0      
+ 20 23  2  0      
+  9 24  1  0      
+ 22 25  1  0      
+ 25 26  1  0      
+ 25 27  2  0      
+ 27 28  1  0      
+ 27 29  1  0      
+ 29 30  1  0      
+ 29 31  1  0      
+ 31 32  1  0      
+M  END
+
+>  <cpd_internal_id> (4)
+10
+ 
+>  <MolWeight> (4)
+505.441
+
+>  <Formula> (4)
+C26H33O5Br
+
+>  <Reg. Date> (4)
+3/18/2004
+
+>  <REG_ID> (4)
+10
+
+>  <Registration Number> (4)
+AB-000010
+
+>  <Sequence Number> (4)
+10
+
+>  <Compound Registrar> (4)
+T5_85,
+
+>  <REG_ID> (4)
+10
+
+>  <COMPOUND_MOLECULE> (4)
+MW2 -- FORMULA2 -- ROOT_REG_DATE -- MF Text -- MW Text -- Structure/Stereochemistry Comment -- ROOT_NUMBER -- Prefix -- Last Mod Person -- Last Mod Date505.4412 -- C26H33O5Br -- 3/18/2004 5:29:34 PM --    --    -- 1 -- AB-000010 -- 1 --    --   
+>  <PROJECTS> (4)
+Project1
+>  <BATCHES> (4)
+BATCH_NUMBER -- NOTEBOOK_INTERNAL_ID -- Reference and Vendor data -- Storage Requirements and Warnings -- Chemist -- BP -- MP -- Flash Point -- Optical Rotation -- Refractive Index -- Salt -- Creation Date -- Submitted Amount -- Notebook -- BATCH_REG_PERSON_ID -- Entry Person -- Last Mod Person -- BATCH_REG_DATE -- Last Mod Date -- Preparation -- Batch Comment -- Page -- Physical Form -- 1HNMR -- Color -- 13CNMR -- IR -- FIA/MS -- GC -- BATCH_FORMULA -- SOLVATE_ID -- Equivalents -- Equivalents -- Formula Weight -- Salt Name -- MW -- Solvate Name -- MW -- Percent Active -- Units -- Purity -- HPLC -- Appearance -- LC/UV/MS -- CHN -- UV -- LogD -- Solubility1 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 505.4412 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --   
+>  <ALT_IDS_ALL> (4)
+ 
+ 
+$$$$
+Untitled Document
+  ChemDraw314-10320-20314002D
+
+ 37 37  0  0  0  0  0  0  0  0999 V2000
+   -1.4290   -0.1640    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4290   -0.9891    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145   -1.4016    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.9891    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.1640    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145    0.2485    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145    0.2485    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4290   -0.1640    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7145    1.0735    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1435    0.2485    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8580   -0.1640    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5724    0.2485    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.8580   -0.9890    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7145   -2.2266    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4290   -2.6391    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0000   -2.6391    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435   -1.4016    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435   -2.2266    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -0.9891    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8580   -0.1641    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5724   -1.4016    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435    0.2484    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5724    0.2484    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4290    1.4860    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1435    1.0733    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8579    1.4858    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4291    1.4858    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4291    2.3108    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.6322    1.2723    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4187    0.4755    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2197    1.9868    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9342    2.3993    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3570    1.0454    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1539    1.2589    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3674    2.0558    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.7841    2.6391    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9348    2.3414    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0      
+  2  3  1  0      
+  3  4  2  0      
+  4  5  1  0      
+  5  6  2  0      
+  6  1  1  0      
+  5  7  1  0      
+  7  8  2  0      
+  7  9  1  0      
+  8 10  1  0      
+ 10 11  1  0      
+ 11 12  1  0      
+ 11 13  2  0      
+  3 14  1  0      
+ 14 15  2  0      
+ 14 16  1  0      
+  2 17  1  0      
+ 17 18  1  0      
+ 17 19  1  0      
+ 19 20  1  0      
+ 19 21  2  0      
+ 20 22  1  0      
+ 20 23  2  0      
+  9 24  1  0      
+ 22 25  1  0      
+ 25 26  1  0      
+ 25 27  2  0      
+ 27 28  1  0      
+ 27 29  1  0      
+ 29 30  1  0      
+ 29 31  1  0      
+ 31 32  1  0      
+ 10 33  1  0      
+ 33 34  2  0      
+ 34 35  1  0      
+ 35 36  2  0      
+ 37 36  1  0      
+M  END
+
+>  <cpd_internal_id> (5)
+11
+ 
+>  <MolWeight> (5)
+571.542
+
+>  <Formula> (5)
+C31H39O5Br
+
+>  <Reg. Date> (5)
+3/18/2004
+
+>  <REG_ID> (5)
+11
+
+>  <Registration Number> (5)
+AB-000011
+
+>  <Sequence Number> (5)
+11
+
+>  <Compound Registrar> (5)
+T5_85,
+
+>  <REG_ID> (5)
+11
+
+>  <COMPOUND_MOLECULE> (5)
+MW2 -- FORMULA2 -- ROOT_REG_DATE -- MF Text -- MW Text -- Structure/Stereochemistry Comment -- ROOT_NUMBER -- Prefix -- Last Mod Person -- Last Mod Date571.5424 -- C31H39O5Br -- 3/18/2004 5:29:36 PM --    --    -- 1 -- AB-000011 -- 1 --    --   
+>  <PROJECTS> (5)
+Project1
+>  <BATCHES> (5)
+BATCH_NUMBER -- NOTEBOOK_INTERNAL_ID -- Reference and Vendor data -- Storage Requirements and Warnings -- Chemist -- BP -- MP -- Flash Point -- Optical Rotation -- Refractive Index -- Salt -- Creation Date -- Submitted Amount -- Notebook -- BATCH_REG_PERSON_ID -- Entry Person -- Last Mod Person -- BATCH_REG_DATE -- Last Mod Date -- Preparation -- Batch Comment -- Page -- Physical Form -- 1HNMR -- Color -- 13CNMR -- IR -- FIA/MS -- GC -- BATCH_FORMULA -- SOLVATE_ID -- Equivalents -- Equivalents -- Formula Weight -- Salt Name -- MW -- Solvate Name -- MW -- Percent Active -- Units -- Purity -- HPLC -- Appearance -- LC/UV/MS -- CHN -- UV -- LogD -- Solubility1 -- 1 --    --    -- 14 --    --    --    --    --    -- 1 --    --    --    -- 14 -- 14 --    -- 3/18/2004 --    --    --    --    --    -- 0 --    -- 0 -- 0 -- 0 -- 0 --    -- 1 -- 1 -- 1 -- 571.5424 -- no_salt -- 0 -- no_solvate -- 0 -- 100 -- mg --    -- 0 --    -- 0 -- 0 -- 0 --    --   
+>  <ALT_IDS_ALL> (5)
+ 
+ 
+$$$$

@@ -1,0 +1,125 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>UpdateGridFormat</h1><p>          
+                         
+            
+Updates the grid format (also known          
+                as storage format)          
+              with          
+           the 
+passed parameters.</p><h3>Syntax</h3> <pre> /cheminv/api/UpdateGridFormat.asp?grid_format_id=adNumeric&amp;Name=adVarChar&amp;row_count=adNumeric&amp;col-count=adNumeric[&amp;row_prefix=adVarChar&amp;col_prefix=adVarChar&amp;row_use_letters=adNumeric&amp;col_use_letters=adNumeric&amp;name_separator=adVarChar&amp;number_start_corner=adNUmeric&amp;number_direction=adNUmeric&amp;description=adVarChar&amp;grid_format_type= adNUmeric]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param"><font>        
+  grid_format_id&nbsp;</font></h5>
+
+<p class="param">The ID for the grid format being 
+updated.</p>
+<h5 class="param">Name </h5>
+<p class="param">The name of the grid format. </p>
+<h5 class="param">Row_Count </h5>
+<p class="param">The number of rows in the grid. </p>
+<h5 class="param">Col_Count </h5>
+<p class="param">The number of columns in the grid. </p>
+<h5 class="param">[row_prefix] </h5>
+<p class="param">A prefix added to each row for 
+identification purposes. </p>
+<h5 class="param">[col_prefix] </h5>
+<p class="param">A prefix added to each&nbsp;column for 
+identification purposes. </p>
+<h5 class="param">[row_use_letters] </h5>
+<p class="param">Indicte if consecutive letters should be 
+used to identify rows instead of numbers. </p>
+<h5 class="param">[col_use_letters] </h5>
+<p class="param">Indicte if consecutive letters should be 
+used to identify columns instead of numbers. </p>
+<h5 class="param">[name_separator] </h5>
+<p class="param">. </p>
+<h5 class="param">[number_start_corner] </h5>
+<p class="param">. </p>
+<h5 class="param">[number_direction] </h5>
+<p class="param">. </p>
+<h5 class="param">[description] </h5>
+<p class="param">. </p>
+<h5 class="param">[grid_format_type] </h5>
+<p class="param">. </p>
+
+<h3>Outputs</h3>
+<h5 class="param">None</h5>
+
+<h3>Example</h3>
+<p>       
+            
+             
+  A user wants to update the grid format with name OldGrid 
+(ID=14) to have 8 columns and 12 rows and       
+            
+             
+  place a C prefix on all        
+                      
+columns.&nbsp;&nbsp;</p><pre>/cheminv/api/UpdateGridFormat.asp?grid_format_id=14&amp;Name=OldGrid_Invert&amp;row_count=12&amp;col_count=8[&amp;col_prefix=C]</pre>  
+<pre></pre>
+
+<h3>Required User Privileges and Roles</h3>
+<h5 class="param">Privileges</h5>
+<p>&lt;PrivilegeName&gt;</p>
+<h5 class="param">Roles</h5>
+<p>&lt;RoleName&gt;</p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+</html>

@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>CFServer.ini Configuration File</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">CFServer.ini Configuration File</span>
+        </div>
+        <h3 class="Heading3"><a name="Registration_Admin_4136631045_998459"></a><a class="XRefAnchor" name="Registration_Admin_4136631045_97442"></a>CFServer.ini Configuration File</h3>
+        <div class="Body">The CFServer.ini file, found in the following location: 	<span class="_Override" style="font-weight: bold;">&lt;webroot&gt;/ChemOffice/chem_reg/config</span> 	defines parameters that allow the Registration Enterprise application to find necessary information and how to react in certain situations. When editing fields in this file, it is important to be sure what is going to change because many of these settings are necessary for the application to function properly. </div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="4683px" style="margin-left: 0.01in;width: 278px;caption-side: none;">
+            <col width="152px" relativeWidth="0%" />
+            <col width="126px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 27px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">[GLOBALS]</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">[CS_SECURITY] </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ADJUST_NETSCAPE_WIDTHS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ALLOW_COOKIE_LOGIN </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ADOCONN_PWDKeyword</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">COOKIE_EXPIRES_MINUTES </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ADOCONN_UserIDKeyword</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">CS_SECURITY_UDL_PATH</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ADMIN_REQUIRED</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">MINIMUM_REQUIRED_PRIVILEGE </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_RDFILE_EXPORT </p>
+                    </td>
+                    <td class="CellClass_185389339">&#160;</td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">&#160;</td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_FLAT_SDFILE_EXPORT </p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PRIVILEGE_TABLE_LIST </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_HITLIST_MANAGEMENT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">STARTUP_LOCATION </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_PUBLIC_HITLISTS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">USE_CS_SECURITY_APP </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_PUBLIC_QUERIES</p>
+                    </td>
+                    <td class="CellClass_185389339">&#160;</td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALLOW_QUERY_MANAGEMENT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">[REGISTRATION] </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ALWAYS_DISPLAY_ALERTS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ADD_BATCH_FROM_REG_RESULTS </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ANIMATED_GIF_PATH</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ADD_IDENTIFIERS_COMMIT_TABLE_ORDER</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">APP_NAME</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ADD_SALT_COMMIT_TABLE_ORDER</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">APP_TYPE</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ALLOW_BATCH_FOR_UNAPPROVED_CMPD </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">BODY_BACKGROUND</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ANALYTICS_USED </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">BRACKET_IN_STRUC_HANDLING</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">APPROVED_FLAG_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">CDX_CACHING</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">APPROVED_SCOPE</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DATE_FORMAT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">AUTOGENERATED_CHEMICAL_NAME</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DB_NAMES</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">BATCH_LEVEL </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DIRECT_KEYWORD_SUPPORT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">BATCH_NUMBER_LENGTH_GUI </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_FORM_IE</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">BATCH_PROJECTS_USED </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_FORM_NS6</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">BATCHES_TO_TEMP </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_FORM_NS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">BUILD_SITE_ID </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_LIST_IE</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">COMPOUND_TYPES_USED </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_LIST_NS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DBA_PWD </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">DISPLAY_GIFS_ONLY_LIST_NS6</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DBA_USERNAME</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ENCRYPT_PWD</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DEFAULT_PREFIX </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ENCRYPT_PWD_KEYS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DELETE_BATCH_TABLE_ORDER </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ENCRYPT_PWD_SECTION</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DELETE_COMPOUND_TABLE_ORDER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">EXPIRE_HITLIST_HISTORY_DAYS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DELETE_SALT_TABLE_ORDER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">EXPIRE_MARKED_HITS_DAYS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DERIVED_FIELDS</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">EXPIRE_QUERY_HISTORY_DAYS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">DISPLAY_APPKEY</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">FIELD_SPLIT_CHARACTER</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">FORMULA_WT_CALC</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">FLOAT_FORMAT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">FULL_COMMIT_TABLE_ORDER</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">FORMAT_FORMULA</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">GET_MW_FORMULA_METHOD </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">GLOBAL_SEARCH_DBS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">IDENTIFIERS_TO_TEMP </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">GLOBAL_SEARCH_BASE_DB</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">NEW_BATCH_COMMIT_TABLE_ORDER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">HIGHLIGHT_BACKGROUND</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">NO_STRUCTURE_TEXT </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">HIGHLIGHT_REQUIRED_FIELDS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">NOTEBOOK_LOOKUP</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MAIN_WINDOW</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">NOTEBOOK_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MARKED_HITS_MAX</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ORA_SERVICENAME </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MOLSERVER_VERSION</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ORA_SQLLDRPATH</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MW_ROUND_DIGIT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">OUTPUT_AS_GIF_ON_REG</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">NAV_BAR_WINDOW</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PREFIX_DELIMITER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">NAV_BUTTONS_GIF_PATH</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PRIMARY_STRWHERE </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">NON_CHEMICAL_SUBMIT</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PRIV_TABLE_NAME </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">POST_MARKED_HITS_PAGE</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PRODUCER_ID_FIELD </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">POST_MARKED_HITS_TARGET_MENU_NAME</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PRODUCER_LOOKUP </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">POST_MARKED_SEND_TO_PAGE</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PROJECT_LEVEL_ROW_SECURITY </p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">POST_MARKED_SUPPORTED_FORMGROUPS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PROJECTS_NAMED_OWNER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">PREFS_FORM_GROUPS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">PROJECTS_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">RESIZE_GIFS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REAGENT_BYPASS_DUPLICATES </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">SEARCH_DEFAULT_PREFS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REAGENT_SEQUENCE</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">TEMP_DIR_NAME</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REAGENTS_TO_TEMP</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">TEMP_DIR_PATH</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REAGENTS_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">USE_ANIMATED_GIF</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REG_DELIMITER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">USE_SESSION_RECORD_COUNTS</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REG_PWD </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">USER_INFO_WINDOW</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">REG_USERNAME </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">USERWINDOWBACKGROUND</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">ROOT_NUMBER_LENGTH</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">[DUPLICATE CHECKING]</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SALT_EDITABLE_FOR_REG_SALTS </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">ABSOLUTE_HITS_REL</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SALTS_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">EXTRA_FRAGS_OK</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SEC_PWD </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">EXTRA_FRAGS_OK_IF_RXN</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SEC_USERNAME </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">FRAGS_CAN_OVERLAP</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SHOW_NOTEBOOK_USER </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">HIT_ANY_CHARGE_CARBON</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SHOW_MF_WITH_SALT_NAME </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">HIT_ANY_CHARGE_HETERO</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SHOW_SAR_TABLE</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">IDENTITY</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SHOW_SEC_TBLES_IN_USR_MGR</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MATCH_DB_STEREO</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SHOW_USER_NOTEBOOKS_ONLY </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">MATCH_TET_STEREO</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SITES_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">RELATIVE_TET_STEREO</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">SOLVATES_USED </p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">RXN_HIT_RXN_CENTER</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">START_BATCH_NUMBER</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">TAUTOMER</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">STRUCTURE_COMMENTS_TEXT</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">TABLES_WITH_BASE64_CDX</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">TABLES_WITH_MOLIDS</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">TEMP_TABLE_QUERY_FORM</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">USE_BATCH_SCIENTIST_AS_REGISTRAR</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">USE_GUI_DEFAULTS_IN_API</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">USER_LOOKUP</p>
+                    </td>
+                </tr>
+                <tr style="height: 58px;">
+                    <td class="CellClass_1119458133">&#160;</td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">UTILIZATION_PERMISSIONS_USED</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_3142255085">&#160;</td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">WORKGROUPS_USED</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">Entries starting with GUI_FIELDS_TO_HIDE, FIELD_LABELS, and DISPLAY_TYPES have standard formats, but the number of entries and values can vary greatly from site to site. These entries make it easy for administrators to define new fields and to control field properties. These entries are specific to the Registration Enterprise cfserver.ini file. For information regarding how to change similar properties in another application, please see the Admin guide for that application or for the Core ChemOffice Enterprise.</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <div class="MCMiniTocBox">
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="Globals.htm#Registration_Admin_4136631045_1005557">Globals</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="Duplicate_Checking1.htm#Registration_Admin_4136631045_1006349">Duplicate Checking</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="CS_Security.htm#Registration_Admin_4136631045_1001399">CS_Security</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="Registration.htm#Registration_Admin_4136631045_1003795">Registration</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="DISPLAY_TYPES.htm#Registration_Admin_4136631045_1002469">DISPLAY_TYPES</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="FIELD_LABELS.htm#Registration_Admin_4136631045_1002632">FIELD_LABELS</a>
+            </div>
+            <div class="MCMiniTocLink"><a class="MCMiniTocLink" href="GUI_FIELDS_TO_HIDE1.htm#Registration_Admin_4136631045_1007151">GUI_FIELDS_TO_HIDE</a>
+            </div>
+        </div>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+Upgrading version 7.2 Wizard Applications to 8.0 
+
+The following files need to be updated in order to allow your wizard applications to run with ChemOffice WebServer 8.0: 
+Note : All files for an application are found in <webroot>/ChemOffice/<appname>. 
+<appname>/global.asa
+<appname>/navbar.asp 
+<appname>/config/<dbname>.ini 
+<appname>/config/cfserver.ini
+
+To upgrade your wizard application: 
+1. Gather the following information: 
+	<appname> - refers to the name of your applicaiton, which is the name of the root virtual directory. 
+	<dbname> - the name of the database you converted. The ini file in the /config directory will match this name (<dbname>.ini)
+
+2. Upgrade global.asa 
+	1. Browse to the application's config directory.
+	2. Open global.asa in your current web application and copy the line:
+	Application("appkey") = " <Your Name app>" 
+	to the clipboard. 
+	3. Open <webroot>/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/global.asa and replace 
+	Application("appkey") = "#APP_KEY" 
+	with the line you copied in step 2.  
+	4. Copy the new global.asa to your web application replacing the older version.  
+3. Upgrade Navbar.asp 
+	1. Browse to <webroot>/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/
+	2. Copy the file navbar.asp to your web application (<webroot>/ChemOffice/<appname>) replacing the older version. 
+4. Upgrade cfserver.ini 
+	1. Browse to <webroot>/ChemOffice/<appname>/config/ 
+	2. Open cfserver.ini and copy the following lines to your clipboard 
+	Note: These lines will be populated with information - the example shows them as blank): 
+
+	    appname= 
+	    NAV_BUTTONS_GIF_PATH = 
+ 	    MAIN_WINDOW=     
+  	    NAV_BAR_WINDOW= 
+ 	    USER_INFO_WINDOW = 
+ 	    TEMP_DIR_NAME= 
+  	   TEMP_DIR_PATH= 
+   	   dbnames= 
+    	   GLOBAL_SEARCH_DBS= sample 
+    	   GLOBAL_SEARCH_BASE_DB= sample
+
+	3. Browse to <webroot>/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/upgrade_fields/ 
+	4. Open cfserver.ini and replace the items with the same name with those you copied in the previous step.  
+	5. Copy the new cfserver.ini to your web application (<webroot>/ChemOffice/<appname>/config/ ) replacing the older version. 
+5. Upgrade <dbname> .ini 
+	1. Browse to <webroot>/ChemOffice/<appname>/config/ 
+	2. Open your web application's <dbname> .ini 
+	3. Locate the Base_connection section.
+	4. Change the entries to match the following (using the appropriate server_drive and appname and dbname were indicated): 
+
+	    CONN_TYPE = File Name 
+	    CONNECTION_STRING = <SERVER_DRIVE>\Inetpub\wwwroot\ChemOffice\<appname>\config\<dbname>.udl 
+
+	5. Browse to <webroot>/ChemOffice/webserver_source/cfserverasp/help/web_app 7.2_to_8.0 upgrade/upgrade_fields/ 
+	6. Copy the file dbname.udl to your application's /config folder (<webroot>/ChemOffice/<appname>/config/). 
+	7. Rename the file to match the dbname of your ini file. 
+	For example if you application is names "sample" then the udl should be sample.udl.  
+	8. Open the udl (by double-clicking) and point it to the database that the web application is using. 
+
+6. Adding your web application to ChemOffice.ini  
+	1. Browse to <webroot>/chemoffice/config/
+	2. Open chemoffice.ini 
+	3. Add your application's name (i.e. appname) to the 
+	    WIZARD_APPNAMES= 
+	key.  
+	4. Enter a group to the file for your web application using the following format: 
+
+	        [<appname>]
+	        SECTION =
+	        WIZARD DBNAMES = <dbname>
+	        <dbname>_DISPLAY_NAME= <appname>- <dbname>
+	        <dbname>_START_PATH="/<appname>/default.asp?formgroup=base_form_group&
+	        dbname=<dbname> "

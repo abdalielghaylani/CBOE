@@ -1,0 +1,586 @@
+<SCRIPT LANGUAGE="vbscript">
+	option explicit
+	Dim COWSIniPath
+	Dim oIniHelper
+	Dim fso
+	Dim DOC_ROOT
+	Dim COWS_ROOT
+	Dim SERVER_DIR
+	Dim SERVER_DRIVE
+	Dim WshShell	
+	Dim homeDir
+	Dim chemOfficePath
+	Dim COEFrameworkInstallPath
+	Dim cssecurityScriptPath
+	Dim coedbScriptPath
+	Dim biosarScriptPath
+	Dim inventoryScriptPath
+	Dim chemacxScriptPath
+	Dim docmgrScriptPath
+	Dim drugdegScriptPath
+	Dim d3ScriptPath
+	Dim bioAssayScriptPath
+	Dim ENotebookScriptPath
+	Dim CBVNScriptPath
+	Dim regScriptPath
+	Dim ACXCOWSWebserviceScriptPath
+	Dim InvCOWSWebserviceScriptPath
+	Dim REGCOWSWebserviceScriptPath
+	Dim sTraceLevel
+	Dim msgAction
+	Dim bLogFileOverwrite
+	Dim sLogFileName
+	Dim deploymentPath
+	Dim setupLogsPath
+	Const VERBOSEMSG = 5
+	Const INFOMSG = 10
+	Const ERRORMSG = 30
+	Const NOMSG = 100
+	Const ForReading = 1 
+	Const ForWriting = 2
+
+
+	
+	
+	sTraceLevel = INFOMSG
+	msgAction = "LOG"  	'Options: INTERACTIVE|LOG|BOTH|NONE
+	bLogFileOverwrite = True
+	
+	
+
+	Init()
+	
+
+	Function ScriptPath()
+		ScriptPath = document.location.pathname
+		ScriptPath = Replace(ScriptPath,"%20"," ")
+		ScriptPath = Left(ScriptPath,InStrRev(ScriptPath,"\"))
+	End Function	
+
+	Function RunCmd(appName, cmdPath, sqlfilePath, logfilePath)
+		Dim AnalyzeCmdCall
+		Dim sqlLogFileName
+		Dim workingDir
+		Dim fullCmdCall
+		Dim rc
+		Dim summaryLogName
+		
+		SetVarsFromCOWSIni()
+		Select Case Ucase(appName)
+			Case "CS_SECURITY"
+				workingDir = cssecurityScriptPath & cmdPath
+			Case "COEDB"
+				workingDir = coedbScriptPath & cmdPath	
+			Case "BIOSAR_BROWSER"
+			 	workingDir = biosarScriptPath & cmdPath
+			Case "REGISTRATION"
+			 	workingDir = regScriptPath & cmdPath
+			Case "BIOASSAY"
+			 	workingDir = bioAssayScriptPath & cmdPath
+			Case "CHEMINV"
+			 	workingDir = inventoryScriptPath & cmdPath
+			Case "DOCMANAGER"
+			 	workingDir = docmgrScriptPath & cmdPath
+			Case "DRUGDEG"
+			 	workingDir = drugdegScriptPath & cmdPath
+			Case "D3"
+			 	workingDir = d3ScriptPath & cmdPath
+			Case "CHEMACX"
+			 	workingDir = chemacxScriptPath & cmdPath
+			Case "ACXCOWSWS"
+			 	workingDir = ACXCOWSWebserviceScriptPath & cmdPath
+			Case "INVCOWSWS"
+			 	workingDir = INVCOWSWebserviceScriptPath & cmdPath
+			Case "REGCOWSWS"
+			 	workingDir = REGCOWSWebserviceScriptPath & cmdPath
+			Case "ENOTEBOOK"
+			 	workingDir = ENotebookScriptPath & cmdPath
+			Case "CHEMBIOVIZNET"
+			 	workingDir = CBVNScriptPath & cmdPath		
+		End Select	
+		
+		fullCmdCall = "sqlplus /NOLOG @" & """" & sqlfilePath & """"
+		
+		on error resume next
+		WshShell.CurrentDirectory = workingDir
+		if err.number <> 0 then
+			
+			if err.number = -2147024893 OR err.number = -2147024894 then
+				msgbox "Expected script path could not be found." & vbCrLf & "Path:" & workingDir & vbCrLf & "Command: " & fullCmdCall
+			else	
+				msgbox "Error while setting the working path: " & err.numer & " : " & err.description
+			end if
+			on error goto 0				
+		else
+			rc = WshShell.Run(fullCmdCall, 5, true)
+			
+			sqlLogFileName = replace(lcase(logfilePath), "patches\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "sql\", "")			
+			sqlLogFileName = replace(lcase(sqlLogFileName), "logs\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "scripts\patches\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "scripts\", "")
+			sqlLogFileName = replace(lcase(sqlLogFileName), "..\..\", "")
+		
+			if rc = -1073741510 then
+				msgbox "Action cancelled or failed.  Script was not executed."
+			else
+				if sqlLogFileName <> "" then
+					CopyFile logFilePath , setupLogsPath & sqlLogFileName
+					WshShell.CurrentDirectory = setupLogsPath
+
+					 
+					AnalyzeCmdCall = "..\Deployment\AnalizeDBLog.cmd " & appName & "_" & replace(sqlLogFileName," ","") & " " & Ucase(sqlLogFileName)
+					
+					summaryLogName = "SummaryLog_" & appName & "_" & replace(sqlLogFileName," ","")
+					rc = WshShell.Run(AnalyzeCmdCall, 5, true)
+					
+					REReplaceInFile summaryLogName, "", "\x0a\x2e\x20", vbUseDefault
+					REReplaceInFile summaryLogName, vbCrLf, "\x0d\x0a\x0a", vbUseDefault
+		
+					rc = WshShell.Run("notepad.exe " & summaryLogName, 5, true)
+				end if
+			end if
+			RunCmd = false
+		end if
+	End Function
+
+	Function RunVbs(scriptPath, scriptName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & scriptPath
+		rc = WshShell.Run("cscript " & scriptName, 5, true)
+		RunVbs = false
+	End Function
+
+	Function RunInstaller(installerPath, exeName)
+		Dim rc
+
+		WshShell.CurrentDirectory = deploymentPath  & installerPath
+		rc = WshShell.Run(exeName, 5, true)
+		
+		RunInstaller = false
+	End Function
+
+	Function RunExe(pathFromChemoffice, exeName)
+		Dim rc
+		
+		SetVarsFromCOWSIni()
+		
+		rc = WshShell.Run(chemofficePath & pathFromChemoffice & exeName, 5, true)
+		
+		RunExe = false
+	End Function
+
+	Sub Init()
+		Set WshShell = CreateObject("WScript.Shell")
+		deploymentPath = ScriptPath() & "Deployment\"
+		setupLogsPath = ScriptPath() & "SetupLogs\"
+		sLogFileName = SetupLogsPath & "\log_SetupGuide.txt" 
+		Set fso = CreateObject("Scripting.FileSystemObject")
+		COWSIniPath = fso.GetSpecialFolder(0) & "\Cows.ini"
+	End sub
+
+	Sub SetVarsFromCOWSIni()
+		SERVER_DRIVE = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DRIVE")
+		SERVER_DIR = GetINIValue(COWSIniPath, "GLOBALS", "SERVER_DIR")
+		DOC_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "DOC_ROOT")
+		COWS_ROOT = GetINIValue(COWSIniPath, "GLOBALS", "COWS_ROOT")
+		chemOfficePath = SERVER_DRIVE & "\" & SERVER_DIR & "\" & DOC_ROOT & "\" &  COWS_ROOT & "\"
+		COEFrameworkInstallPath = GetINIValue(chemOfficePath & "config\chemoffice.ini", "GLOBALS", "COEFRAMEWORK_INSTALLPATH")
+		cssecurityScriptPath = chemofficePath & "cs_security\config\Oracle_Install_Scripts\"
+		coedbScriptPath = COEFrameworkInstallPath & "Framework\DBInstallScripts\CoeDB\Oracle_Install_Scripts\"
+		regScriptPath = COEFrameworkInstallPath & "Registration\DBInstallScripts\Oracle_Install_Scripts\"
+		biosarScriptPath = chemofficePath & "biosar_browser\config\Oracle_Install_Scripts\"
+		inventoryScriptPath = chemofficePath & "ChemInv\config\oracle_install_scripts\"
+		docmgrScriptPath = chemofficePath & "\DocManager\config\oracle_install_scripts\"
+		drugdegScriptPath = chemofficePath & "\DrugDeg\config\oracle scripts\"
+		d3ScriptPath = chemofficePath & "\D3\config\oraclescripts\"
+		chemacxScriptPath = chemofficePath & "ChemACX\config\Oracle_Install_Scripts\"
+		ACXCOWSWebserviceScriptPath = COEFrameworkInstallPath & "COWSWebService .NET 2.0\Database\ACX\"	
+	    INVCOWSWebserviceScriptPath = COEFrameworkInstallPath & "COWSWebService .NET 2.0\Database\INV\"
+		REGCOWSWebserviceScriptPath = COEFrameworkInstallPath & "..\E-Notebook 11.0\COEIntegrationConfig\RegistryConfig\RegDB\"
+		bioAssayScriptPath = COEFrameworkInstallPath & "BioAssay\Database\OracleScripts\"
+		ENotebookScriptPath = COEFrameworkInstallPath & "..\E-Notebook 11.0\database\Oracle\"
+		CBVNScriptPath = COEFrameworkInstallPath & "ChemBioViz.Net_Client\DBInstallScripts\"
+	End Sub
+	
+	Function GetCOEProgramsInstallPath()
+	    
+	    
+	End Function
+	
+	Function GetINIValue(iniPath, sectionName, keyName)
+		Set oIniHelper= CreateObject("cowsUtils.cowsini")
+				
+		Dim iniValue
+		iniValue = oIniHelper.VBGetPrivateProfileString(Trim(sectionName), Trim(keyName), Trim(iniPath))
+		TraceLogError VERBOSEMSG, "GetIniValue" , "iniPath=" & iniPath & vbCrLf & Space(12) &  "sectionName=" & sectionName & vbCrLf & Space(12) & "keyName=" & keyName & vbCrLf & Space(12) & "inivalue=" & iniValue
+		if iniValue <> "INIEmpty" then
+			GetINIValue = iniVAlue
+		else
+			GetINIValue = ""
+		end if
+	End Function
+
+
+Sub REReplaceInFile(PathSpec, theReplacement, theREPattern, fFormat)
+    Dim theString
+    Dim ColFiles
+    Dim iFile
+    Dim FolderPath
+    Dim inExt
+    Dim fnExt
+    Dim inLength
+    Dim inlastSlash
+    Dim indot
+    Dim fnLength
+    Dim fndot
+    Dim Rts
+    Dim Wts
+    Dim inFileName	
+	
+    inLength = Len(PathSpec)
+    inlastSlash = InStr(1, StrReverse(PathSpec), "\")
+    indot = InStr(1, PathSpec, ".")
+    FolderPath = Left(PathSpec, inLength - inlastSlash + 1)
+    'on error resume next	
+    inExt = Mid(PathSpec, indot, inLength - indot + 1)
+    
+    If inlastSlash > 0 Then
+        inFileName = Mid(PathSpec, (inLength - inlastSlash) + 2, indot - (inLength - inlastSlash) + 2)
+    Else
+        inFileName = PathSpec
+    End If
+    
+    If InStr(1, inFileName, "*") > 0 Then
+        Set ColFiles = GetFilesCollection(FolderPath)
+        For Each File In ColFiles
+            fnLenght = Len(File.Name)
+            fndot = InStr(1, File.Name, ".")
+            fnExt = Mid(File.Name, fndot, fnLenght - fndot + 1)
+            If fnExt = inExt Then
+                'on error resume next
+                If ReadOnlyBit(FolderPath & File.Name) = 1 Then
+      			ToggleReadOnlyBit(FolderPath & File.Name)
+   		End If
+		
+		Set Rts = File.OpenAsTextStream(ForReading, fFormat)
+			if err.number <> 0 then
+				TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+				err.clear
+				Exit sub
+			End if
+                theString = Rts.ReadAll()
+                Rts.Close
+                Set Wts = File.OpenAsTextStream(ForWriting, fFormat)
+                Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+                Wts.Close
+            End If
+        Next
+    Else
+	'on error resume next
+	If ReadOnlyBit(PathSpec) = 1 Then
+      		ToggleReadOnlyBit(PathSpec)
+   	End If
+        Set Rts = fso.OpenTextFile(PathSpec, ForReading, False, fFormat)
+        
+	if err.number <> 0 then
+		TraceLogError ERRORMSG, "REREPLACE", "Error editing file= " & pathSpec & vbCrLf & space(12) & "Error= " & err.Source & " " & err.number & " " & err.Description
+		err.clear
+		Exit sub
+        End if
+        theString = Rts.ReadAll()
+        Rts.Close
+       
+        Set Wts = fso.OpenTextFile(PathSpec , ForWriting, True, fFormat)
+        Wts.Write (REReplace(theString, theReplacement, theREPattern, True))
+        Wts.Close
+        Set Rts = Nothing
+        Set Wts = Nothing
+    End If
+    
+End Sub
+
+Function REReplace(pString, pReplacement, pREPattern, bIsGlobal)
+    Dim oRE
+    
+    Set oRE = New RegExp
+    oRE.Global = bIsGlobal
+    oRE.Pattern = pREPattern
+    REReplace = oRE.Replace(pString, pReplacement)
+End Function
+
+Function ReadOnlyBit(filespec)
+   Dim f
+   on error resume next	
+   Set f = fso.GetFile(filespec)
+   
+   if err.number <> 0 then
+	TraceLogError ERRORMSG, "ReadOnlyBit", "Error in ReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+   End if
+   If f.attributes and 1 Then
+      ReadOnlyBit = 1
+   Else
+      ReadOnlyBit = 0
+   End If
+End Function
+
+Function ToggleReadOnlyBit(filespec)
+   Dim f
+   on error resume next
+   Set f = fso.GetFile(filespec)
+   if err.number <> 0 then
+	TraceLogError ERRORMSG, "ToggleReadOnlyBit", "Error in ToggleReadOnlyBit: " & filespec & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+   End if
+   If f.attributes and 1 Then
+      f.attributes = f.attributes - 1
+      ToggleReadOnlyBit = "Readonly bit is cleared."
+   Else
+      f.attributes = f.attributes + 1
+      ToggleReadOnlyBit = "Readonly bit is set."
+   End If
+End Function
+
+
+
+	'//////////////////////////////////////////////////////////////////////
+	'  Setup for Tracing, Logging and Error Reporting
+	'//////////////////////////////////////////////////////////////////////
+	Dim logLine
+	Dim FileSetup
+	Dim oFso
+	Dim sTempFolder
+	Dim oLogFileObject
+
+	'//////////////////////////////////////////////////////////////////////
+	'  TraceandLogError
+	'//////////////////////////////////////////////////////////////////////
+	Sub TraceLogError(nLevel, sCodeLocation, sText)
+
+    	if sTraceLevel <= nLevel Then 
+    		Dim label
+		label = "Info"
+		if nLevel >= 30 then 
+			label = "**ERROR**"
+			errCount = errCount + 1
+		end if 
+    		LogLine =  Now & "   Severity: " & nLevel & "  Message Occurred in: " & sCodeLocation & _
+    			vbNewline & "   " & label & ": " & sText & vbNewLine
+    	
+    		If msgAction = "INTERACTIVE" or msgAction = "BOTH" Then
+    			msgbox LogLine
+    		End If
+
+    		If msgAction = "LOG" or msgAction = "BOTH" Then
+    			If FileSetup <> True Then 
+    				SetupFileLogging sLogFileName
+    			End If
+    			oLogFileObject.writeline LogLine
+    		End If
+    	End If
+	End Sub
+
+
+
+	'//////////////////////////////////////////////////////////////////////
+	'  Log File Setup (required for tracelogerror
+	'//////////////////////////////////////////////////////////////////////
+	Sub SetupFileLogging(sFilename)
+	' Could be removed if file logging will never be used
+		Set oFSO = CreateObject("Scripting.FileSystemObject")
+		sTempFolder = oFSO.GetSpecialFolder(2)
+	
+		If sFilename <> "" Then
+			'sTempName = oFSO.GetFileName(sFilename)
+			'sLogFileName = sTempFolder & "\" & sTempName
+		Else
+			'Generate random name
+			sTempName = oFSO.GetFileName(oFSO.GetTempName)
+			sLogFileName = sTempFolder & "\" & lcase(left(sTempName, InstrRev(sTempName,".")-1)) & ".log"
+		End If
+	
+		If oFSO.FileExists(sLogFileName) and not bLogFileOverwrite Then
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 8, False)
+		Else
+			Set oLogFileObject = oFSO.OpenTextFile(sLogFileName, 2, True)
+		End If
+		oLogFileObject.writeline Now & "  Logging Started"
+	
+		FileSetup = True
+	
+	End Sub
+
+	Sub CopyFile(fromPath, toPath)
+		Dim file
+		on error resume next
+	
+		fso.CopyFile fromPath, toPath
+	
+		if err.number <> 0 then
+			TraceLogError ERRORMSG, "CopyFile", "Error in CopyFile: " & fromPath & " to " & toPath & vbcrlf & space(12) & "Error Info: " & err.Source & " " & err.number & " " & err.Description
+		Else
+			TraceLogError INFOMSG,  "CopyFile", "Copied file(s) " & fromPath & " to " & toPath
+		End if
+	End sub
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+	<title>CambridgeSoft --ChemBioOffice Enterprise Database Upgrade Guide</title>
+	<HTA:APPLICATION ID="OSCF" 
+		APPLICATIONNAME="ChemBioOffice Enterprise Database Upgrade Guide" 
+		BORDER="thick"
+		CAPTION="yes"
+		ICON="/graphics/creature.ico"
+		SHOWINTASKBAR="yes"
+		SINGLEINSTANCE="yes"
+		SYSMENU="yes"
+		WINDOWSTATE="normal">
+
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+SPAN
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: blue;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: underline
+}
+-->
+    </style>
+</HEAD>
+
+<body>
+<h1>ChemBioOffice Enterprise Database Upgrade Guide</h1>
+
+
+<p>This page provides convenient links to database upgrade scripts for all ChemBioOffice Enterprise applications.&nbsp;&nbsp;For detailed information refer to the <i>ChemBioOffice Enterprise Installation Guide</i>.&nbsp;Please carefully review that document before proceeding.  You must ensure that all prerequisites have been met, and that all information prompted by the scripts is readily available.</P>
+
+<h2>Upgrade ChemBioOffice Enterprise database schemas:</h1>
+
+<h4><font color="red">WARNING:</font>&nbsp;Scripts are only intended to run against 11.0.1 schemas.
+<!--- Comment until 10 migration is ready
+Scripts are only intended to run against 10.0 or later schemas.  If your database is running an earlier version, follow the upgrade instructions proviced with the CBOE 10 Installer to patch all schemas to version 10.0 before proceding
+--->
+</h4>
+
+<ul>
+  <li>
+	<p>Upgrade CS_SECURITY and COE Framework Schemas (COEDB) <span style="cursor:hand" onClick="RunCmd 'COEDB','', 'sql\Patches\HEADERFILE_PATCH_CoeDB_ora.sql', 'sql\Patches\log_Patches_CoeDB_ora.txt'">click here</span>
+	</p>
+  	
+  </li>
+  <li>
+	<p>Upgrade Registration System Schema &nbsp;<span style="cursor:hand" onClick="RunCmd 'REGISTRATION','', 'sql\Patches\HEADERFILE_PATCH_chemreg_ora.sql', 'sql\Patches\log_Patches_chemreg_ora.txt'">click here</span></p>	
+	<p><font color="red">Note:  If you are upgrading from version 10, you must:<Br> 1) Import the COE10Migration configuration <BR> 2) Execute the following data migration script:</font></p>
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Migrate <b>version 10</b> Registration System Data <span style="cursor:hand" onClick="RunCmd 'REGISTRATION','', 'sql\Patches\Patch 11.0.1\sql\Migrate_10_to_11.0.1.sql', 'log_Migrate_10_to_11.0.1.txt'">click here</span> <font color=red>(Run this only on Registration 10 systems)</font></p>
+	</li>
+  <li>
+	<p>Upgrade Inventory Manager Schema <span style="cursor:hand" onClick="RunCmd 'CHEMINV','Create_blank_ChemInv_DB\sql\', 'Patches\HEADERFILE_PATCH_CHEMINVDB2.sql', 'Patches\log_Patches_CHEMINVDB2.txt'">click here</span>
+	<!--- Comment until 10 migration is ready
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">(Note: Before executing the integration script below, you must first import the Registration configuration)</font></p>
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create views for integration with Registration:&nbsp;&nbsp;<span style="cursor:hand" onClick="RunCmd 'CHEMINV','Create_blank_ChemInv_DB\sql\', 'Update_Scripts\RegistrationIntegration\RegistrationEnterprise.sql', 'Logs\LOG_RegistrationIntegration.txt'">click here</span></p>
+	---><BR>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optional:
+	<BR>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upgrade views for integration with Registration <span style="cursor:hand" onClick="RunCmd 'CHEMINV','Create_blank_ChemInv_DB\sql\', 'Patches\HEADERFILE_PATCH_REGINTEGRATION_CHEMINVDB2.sql', 'Patches\log_Patches_CHEMINVDB2.txt'">click here</span></p>	
+  </p></li>
+  <li>
+	<p>Upgrade BioAssay Schema <span style="cursor:hand" onClick="RunCmd 'BIOASSAY','InventoryRegrant10x\sql\', 'InventoryRegrant10x_ora.sql', 'InventoryRegrant10x_ora.log'">click here</span></p>
+  </li>
+  <li>
+	<p>Upgrade BioSARDB Schema <span style="cursor:hand" onClick="RunCmd 'BIOSAR_BROWSER','sql\', 'Patches\HEADERFILE_PATCH_BIOSARDB.sql', 'Patches\log_Patches_BIOSARDB.txt'">click here</span></p>
+  </li>	
+  <li>
+	<p>Upgrade Document Manager Schema <span style="cursor:hand" onClick="RunCmd 'DOCMANAGER','scripts\', 'Patches\HEADERFILE_PATCH_DOCMGR.sql', 'Patches\log_Patches_DOCMGR.txt'">click here</span></p>
+  </li>
+  <li>
+	<p>Upgrade Drug Degradation Schema <span style="cursor:hand" onClick="RunCmd 'DRUGDEG','sql\', 'Patches\HEADERFILE_PATCH_DRUGDEG.sql', 'Patches\log_Patches_DRUGDEG.txt'">click here</span></p>
+  </li>
+
+  <!-- No ACX upgrade scripts exist yet	
+  <li>
+	<p>Create ChemACX Schema <span style="cursor:hand" onClick="RunCmd 'CHEMACX','', 'sql\create_chemacx.sql', 'sql\log_create_chemacx.txt'">click here</span>
+	<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Note: You must first extract and copy the ChemACX Oracle database distribution to:
+	<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<webroot>\ChemOffice\ChemACX\Config\oracle_install_scripts\
+	<BR>
+	<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Script expects 2K and 16K buffer cache available. 
+	<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Script will take between 3 and 6 hours to execute. 
+	</p>
+  </li>
+-->
+</ul>
+<!--
+<h2>Optional: Update Schemas for ENotebook Integration Addins</h1>
+<h4><font color="red">Note:</font>&nbsp;You must run the COWSWebServieNet2 Installers before executing these scripts.</h4>
+
+<ul>
+  <li>
+	<p>Create COWSWebserviceNet2 objects in ChemACX Schema <span style="cursor:hand" onClick="RunCmd 'ACXCOWSWS','', 'sql\install_GetACXXML.sql', 'sql\log_install_GetACXXML.txt'">click here</span></p>
+  </li>
+  <li>
+	<p>Create COWSWebserviceNet2 objects in Inventory Manager Schema <span style="cursor:hand" onClick="RunCmd 'INVCOWSWS','sql\', 'CSCheminv.sql', 'log_cscheminv.txt'">click here</span></p>
+  </li>
+  <li>
+	<p>Create COWSWebserviceNet2 objects in Registration System Schema <span style="cursor:hand" onClick="RunCmd 'REGCOWSWS','', 'sql\HEADERFILE_CsChemReg_update_script.sql', 'sql\log_create_CsChemReg_package_CowsWebService.txt'">click here</span></p>
+  </li>
+</ul>
+-->
+<p>&nbsp;</p>
+
+</body>
+	
+</html>

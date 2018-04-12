@@ -1,0 +1,153 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">CheckOutContainer</span></h1>
+<p><span lang="en-us">Checks out </span>a container <span lang="en-us">from its 
+current location for subsequent use at </span>a different location<span lang="en-us">. 
+This API also </span>modif<span lang="en-us">ies</span> the current user and status of<span lang="en-us"> </span>the 
+container<span lang="en-us">, if specified</span>.&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CheckOutContainer.asp?LocationID=adNumeric&amp;ContainerID=adNumeric&amp;[CurrentUserID=adVarChar&amp;DefaultLocationID=adNumeric&amp;OwnerID=adNumeric&amp;ContainerStatusID=adNumeric]</pre>
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="110" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="299"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="210" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">LocationID</td>
+		<td width="110">adNumeric</td>
+		<td width="299"><span lang="en-us">Specifies the ID of the location to 
+		which the container is to be checked out.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">L<span lang="en-us">OCATION</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="110">adNumeric</td>
+		<td width="299"><span lang="en-us">Specifies the ID of the container 
+		that is to be checked out. </span> </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">C<span lang="en-us">ONTAINER</span>_ID</td>
+	</tr>
+	<tr>
+		<td width="117">CurrentUserID</td>
+		<td width="110">adVarChar</td>
+		<td width="299"><span lang="en-us">Specifies the </span>I<span lang="en-us">D 
+		of the current user of the </span>container<span lang="en-us">.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">C<span lang="en-us">URRENT</span>_U<span lang="en-us">SER</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">DefaultLocationID</td>
+		<td width="110">adNumeric</td>
+		<td width="299"><span lang="en-us">Specifies the ID of the current 
+		location of the container.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">L<span lang="en-us">OCATION</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">OwnerID</td>
+		<td width="110">adNumeric</td>
+		<td width="299"><span lang="en-us">Specifies the ID </span>o<span lang="en-us">f 
+		user to which the container is to be assigned, when it is checked out.
+		</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">O<span lang="en-us">WNER</span>_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerStatusID</td>
+		<td width="110">adNumeric</td>
+		<td width="299"><span lang="en-us">Specifies the ID of the status to be associated 
+		with the container, when it is checked out.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_C<span lang="en-us">ONTAINERS</span></td>
+		<td width="210">C<span lang="en-us">ONTAINER</span>_<span lang="en-us">STATUS</span>_<span lang="en-us">ID</span>_<span lang="en-us">FK</span></td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p><span lang="en-us">T</span>he ID of the location where the container is 
+checked out<span lang="en-us">. This ID is stored in the LocationID parameter.</span></p>
+<h3 class="param">Example</h3>
+<p>The following code allows you to check out a 
+container with ID 12345 to a different location and change its status to In Use. 
+The ID<span lang="en-us">s</span> of the current location, destination location, 
+and current user of the container <span lang="en-us">are</span> </span>110<span lang="en-us">, 111, and mlp, respectively. </p></span></p><preclass="param">
+<pre>/cheminv/api/CheckOutContainer.asp?LocationID=111&amp;ContainerID=12345&amp;[CurrentUserID=&quot;mlp&quot;&amp;DefaultLocationID=110&amp;ContainerStatusID=&quot;In Use&quot;]</pre>
+<pre></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

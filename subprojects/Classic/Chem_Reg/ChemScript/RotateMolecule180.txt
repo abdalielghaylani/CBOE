@@ -1,0 +1,8 @@
+from ChemScript import *
+m=Mol.loadData(base64, 'cdx')
+m.list(True, True, True)
+axis = Point(1, 0, 0)
+m.rotate(axis, 180)
+m.list(True, True, True)
+out_m=m
+

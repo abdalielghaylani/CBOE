@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemDraw Plug-in">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/searching_query.html#chemdraw">
+		</OBJECT>	
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="combination searching">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_combination.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="formula searching">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_formula.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="marking records">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_viewing_marking.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="numerical searching">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_numerical.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Preferences box">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/preferences.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="queries">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="edit">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_editing.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="refine">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_refining.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="search">
+			<param name="See Also" value="Query Input Form">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Query Input Form">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/searching_query.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="results">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="export">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_exporting.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="form view">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_viewing_form.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="list view">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_viewing_list.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="viewing additional hits">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results_viewing_hits.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="search">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/searching.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="performing">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/searching.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="preferences">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/preferences.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="results">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_results.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="types">
+			<param name="See Also" value="search types">
+			</OBJECT>
+	</UL>
+	
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="search types">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types.html">
+		</OBJECT>	
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="combination">
+			<param name="See Also" value="combination searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="formulas">
+			<param name="See Also" value="formula searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="numerical">
+			<param name="See Also" value="numerical searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="structure">
+			<param name="See Also" value="structure searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="text">
+			<param name="See Also" value="text searching">
+			</OBJECT>	
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Search Type Listbox">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/searching_query.html#search_type">
+		</OBJECT>	
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="structure searching">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_structure.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="exact">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_structure_exact.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="similarity">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_structure_similar.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="substructure">
+			<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_structure_sub.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tanimoto">
+			<param name="See Also" value="similarity">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="text searching">
+		<param name="Local" value="chemoffice/webserver_source/cfserverasp/help/global/search_types_text.html">
+		</OBJECT>
+</UL>
+</BODY></HTML>

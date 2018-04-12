@@ -1,0 +1,95 @@
+
+Installation instructions for Millennium Patch
+December 13th, 2007
+==========================================================================
+
+I.  Pre-Requisites
+==========================================================================
+
+Inventory Enterprise SR3 with custom Millennium enhancements.  Note that this update
+is an incremental update to an existing Millennium installation, and is not intended
+to be a complete patch containing all Millennium enhancements.
+
+
+II.  Procedure
+==========================================================================
+
+1.  Extract contents of ZIP file to a temporary folder on the webserver
+2.  Copy complete directory structure from TEMP_FOLDER\ChemInv\ to C:\Inetpub\wwwroot\ChemOffice\ChemInv\ and overwrite files
+3.  Copy complete directory structure from TEMP_FOLDER\cs_security\ to C:\Inetpub\wwwroot\ChemOffice\cs_security\ and overwrite files
+4.  From TEMP_FOLDER\Oracle, launch Update_Millennium.cmd script to update Oracle database
+5.  Modify C:\Inetpub\wwwroot\ChemOffice\ChemInv\config\invconfig.ini accordingly:
+
+	a. Under the [REPORTS] section, add the following entry:
+
+		DEFAULT_LOCATION_LABEL_REPORT = "rptLocationBarCodeLabels1"
+	
+	b. Under the [CONTAINER_ORDERING] section, modify the following entries:
+
+		DEFAULT_CONTAINER_ORDER_STATUS=1
+		DEFAULT_CONTAINER_ORDER_UNIT_OF_MEAS=5
+
+	c. Under the [CONTAINERS] section, modify the following entry:
+
+		EXPIRATION_DATE_INCREMENT="0"
+
+6.  Modify C:\Inetpub\wwwroot\ChemOffice\ChemInv\config\cheminv.ini accordingly:
+	
+	a. Under the [GLOBALS] section, modify the following entry:
+
+		MAXHITS=1000000
+
+7.  Open C:\Chemoffice_data\ChemInv\ChemInv_Reports.mdb and perform the following sequence of tasks:
+
+	a. Click on the Queries link to display all queries
+	b. Right-click on qryLocationReport and choose "Save As" from the pop-up menu
+	c. Enter the following name (must be exact): qryLocationBarcodeReport
+	d. Choose Query as the type, then click on OK
+	e. Click on the Reports link to display all reports
+	f. Right-click on rptContainerBarCodeLabels2
+	g. Choose "Save As" from the pop-up menu
+	h. Enter the following name (must be exact): rptLocationBarCodeLabels1
+	i. Choose Report as the type, then click on OK
+	j. Right-click on the newly created report rptLocationBarCodeLabels1
+	k. Choose "Design View" from the pop-up menu
+	l. Go to View...Properties and choose Report from the drop-down
+	m. Click on the Data tab
+	n. Change the "Record Source" field to "qryLocationBarcodeReport" by choosing it from the drop-down
+	o. Close the property dialog and then the report by clicking on the X in the upper-right corner
+	p. Close Access
+
+
+III.  New/Updated Files:
+==========================================================================
+	/ChemInv/Global.asa
+	/ChemInv/API/CreateLocationBarcodeReport.asp
+	/ChemInv/ChemInv/tree_frame_links.asp
+	/ChemInv/config/invconfig.ini
+	/ChemInv/config/cheminv.ini
+	/ChemInv/graphics/Tab/Reconcile_Misplaced.png
+	/ChemInv/graphics/Tab/Reconcile_New.png
+	/ChemInv/GUI/CreateOrEditContainer.asp
+	/ChemInv/GUI/EditReport.asp
+	/ChemInv/GUI/EditOrDeleteTableRow.asp
+	/ChemInv/GUI/ManageReports.asp
+	/ChemInv/GUI/PrintLocationLabel.asp
+	/ChemInv/GUI/reconcile.asp
+	/ChemInv/GUI/reconcile_report.asp
+	/ChemInv/GUI/ReorderContainer.asp
+	/ChemInv/GUI/ReorderContainer_bypass.asp
+	/ChemInv/GUI/ViewContainer.asp
+	/cs_security/config/home.xml
+
+
+IV.  Enhancements/Bug Fixes:
+==========================================================================
+
+	a. Supplier address ID FK is no longer editable from Manage Tables
+	b. New containers may now have a default blank expiration date by setting EXPIRATION_DATE_INCREMENT to 0
+	c. Printing of location barcodes is now possible through the Location context menu
+	d. Fixed bug with editing a custom report and losing required parameter information
+	e. Manage substance and create container links now require appropriate privileges
+	f. Timestamp on containers are now updated when reconciling a location
+	g. Rectify contents no longer prompts for creating a new container when barcode is not recognized.  Instead, a list of
+	   new containers is maintained and can be printed.
+	h. Re-ordering an ACX container will utilize bypass ordering screens

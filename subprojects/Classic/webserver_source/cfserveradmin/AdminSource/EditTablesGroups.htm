@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+var theActionVal
+function getList(theName){
+	theRealField = eval('document.SubmitAction.' + theName)
+	theHiddenList = eval('document.SubmitAction.' + theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.theRealField.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a new value from the list:<br><form name="getit"><Select name="theList" size = 5>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+function getAddList(theAction,theName){
+	document.SubmitAction.FormAction.value = theAction
+	theHiddenList = eval('document.SubmitAction.' +  theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.document.SubmitAction.theVal.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;opener.document.SubmitAction.submit();self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a field to add from the list:<br><form name="getit"><Select name="theList" size = 10>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+
+//set up new window
+	var w = window.open("", "", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+	w.document.write "<form name = "ChangeForm">
+	w.document.write "Select a new table from the list" + "<br>" & theSelectList
+	w.document.write ("<input type = 'button' name = 'OK' onClick='opener.getVal();self.close();'>")
+	w.document.write ("<input type = 'button' name = 'Cancel' onClick='self.close();'>")
+}	
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+
+function setAction(theAction){
+		var theValue = eval('document.SubmitAction.FormGroups.options[document.SubmitAction.FormGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.TableGroupName.value = theValue 
+		document.SubmitAction.submit()
+}
+
+
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500" height="49"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0" height="272">
+  <tr>
+    <td height="15" bgcolor="#FFFFFF"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Database:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="0" bgcolor="#c0c0c0">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_table_groups_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="TableGroupName" value><table border="0">
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td valign="center"><table border="0" width="687">
+                    <tr>
+                      <td width="274" height="27" valign="top"><input type="submit" value="    OK    " name="OK"
+                      onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                      onClick="setAction('Cancel')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><table border="0">
+                    <tr>
+                      <td width="620"><strong>Table Group</strong><WC@TABLE_GROUPS></WC@TABLE_GROUPS><input type="submit" name="New" value="New"
+                      onClick="getDialog('AddTableGroup')"><small><small><input type="submit" name="Delete"
+                      value="Delete" onClick="setAction('RemoveTableGroup')"></small></small><input
+                      type="button" value="Help" name="Help1" onClick="getHelp('table_groups')"></td>
+                    </tr>
+                    <tr>
+                      <td width="620"><table border="0">
+                        <tr>
+                        <td><table border="1" width="548">
+                        <tr>
+                        <td width="194" height="26">Base Table Name</td>
+                        <td width="104" height="26"><WC@BASE_TABLE></WC@BASE_TABLE></td>
+                        <td width="232" height="26"><small designtimesp="19613"><small designtimesp="19614"><input
+                        name="Change" onclick="getList('BASE_TABLE')" type="button" value="Change" designtimesp="19615"></small></small></td>
+                        </tr>
+                        <tr>
+                        <td width="194" height="25">Molecule Table Name</td>
+                        <td width="104" height="25"><WC@MOLECULE_TABLE></WC@MOLECULE_TABLE></td>
+                        <td width="232" height="25"><small designtimesp="19613"><small designtimesp="19614"><input
+                        name="Change1" onclick="getList('MOLECULE_TABLE')" type="button" value="Change"
+                        designtimesp="19615"></small></small></td>
+                        </tr>
+                        <tr>
+                        <td width="194" height="19">Table SQL Order</td>
+                        <td width="104" height="19"><WC@TABLE_SQL_ORDER></WC@TABLE_SQL_ORDER></td>
+                        <td width="232" height="19"><small designtimesp="19613"><small designtimesp="19614"><input
+                        name="Change2" onclick="getList('TABLE_SQL_ORDER')" type="button" value="Change"
+                        designtimesp="19615"></small></small></td>
+                        </tr>
+                        </table>
+                        </td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp; </p>
+</body>
+</html>
+<script language="javascript">
+
+function removeApp(){
+	var theValue = eval('document.RemoveDB.theList.options[document.RemoveDB.theList.selectedIndex].text')
+	document.RemoveDB.RemoveDB.value = theValue}
+function SetEditType(theName){
+document.EditType.EditType.value = theName}
+
+
+
+</script>

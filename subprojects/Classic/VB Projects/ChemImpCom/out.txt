@@ -1,0 +1,39 @@
+
+ChemImp 1.04 (03 Feb 05)
+Fast SDFile loader for CS Oracle
+Copyright (c) 2004-5, CambridgeSoft Corp.
+
+7:53:18 PM:	Begin job 3/10/2005
+------------
+Input parameters:
+UserID:		regdb/oracle@dgb
+Input file:	c:\small.sdf
+Output table:	XXX
+Log file:	
+Pause:		NO
+Scan only:	NO
+Scan file:	
+Append:		NO
+Feedback:	100
+Scan feedback:	500
+Index:		NO
+------------
+7:53:18 PM:	Begin scan
+
+Recs scanned:	6
+Mol size:	avg=590 max=731
+Rec size:	avg=709 max=855
+7:53:18 PM:	End scan
+------------
+Fields in file:
+RECNO                      Long         
+STRUCTURE                  Memo         
+Formula                    Text    (9)  
+Mol_ID                     Long         
+Molname                    Text    (15) 
+MolWeight                  Double       
+------------
+7:53:19 PM:	Connected to host 'dgb'
+Table exists: XXX
+OK to delete? (N) 
+7:53:29 PM:	Job aborted

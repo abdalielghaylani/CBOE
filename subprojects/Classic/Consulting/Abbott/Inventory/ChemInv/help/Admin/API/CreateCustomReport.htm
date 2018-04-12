@@ -1,0 +1,78 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+&nbsp;
+<h1>CreateCustomReport</h1><p>          
+    Creates an entry in the reports Access database 
+for a new custom report template.&nbsp;&nbsp;</p>
+<h3>Syntax</h3><pre>/cheminv/api/CreateCustomReport.asp?ReportName=adVarChar[&amp;ReportFormat= adVarChar]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">ReportName</h5>
+<p>      The name of the 
+new report.&nbsp; </p>
+<h5 class="param">[ReportFormat]</h5>
+<p>The deafult format for the report.&nbsp;If no value is given, the SNP format 
+is assumed.&nbsp; </p>
+
+<h3>Outputs</h3>
+<h5 class="param">ReportName</h5>
+
+<h3>Example</h3>
+<p>A user create a new report tempalte with the name 
+NewSearchTemplate.&nbsp; Thedefault report format is SNP, so the parameter is not 
+passed.</p><pre>/cheminv/api/CreateCustomReport.asp?ReportName= NewSearchTemplate</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+</body>
+</html>

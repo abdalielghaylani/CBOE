@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="BioSAR Enterprise 10 User Guide|BioSAR_Browser.ini Configuration File" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>GLOBALS</title>
+        <link href="../Resources/Stylesheets/BioSAR Browser User's Guide.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapBody.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapHighlighter.js">/*<![CDATA[*/ /*]]>*/</script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/BioSAR.png" />
+        </p>
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR_Enterprise_10_Use.htm#BioSAR_Browser_User_s_Guide_2882306399_1155135">BioSAR Enterprise 10 User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="BioSAR_Browser_ini_Confi.htm#BioSAR_Browser_User_s_Guide_2882306399_1156112">BioSAR_Browser.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">GLOBALS</span>
+        </div>
+        <h3 class="Heading3"><a name="BioSAR_Browser_User_s_Guide_2882306399_1156119"></a><a name="kanchor2414"></a><a name="kanchor2415"></a><a name="kanchor2416"></a><a name="kanchor2417"></a><a name="kanchor2418"></a><a name="kanchor2419"></a><a name="kanchor2420"></a><a name="kanchor2421"></a><a name="kanchor2422"></a><a name="kanchor2423"></a><a name="kanchor2424"></a>GLOBALS</h3>
+        <h4 class="Heading4"><a name="kanchor2425"></a><a name="kanchor2426"></a><a name="kanchor2427"></a><a name="kanchor2428"></a><a name="kanchor2429"></a><a name="kanchor2430"></a><a name="kanchor2431"></a><a name="kanchor2432"></a><a name="kanchor2433"></a><a name="kanchor2434"></a><a name="kanchor2435"></a>ABOUT_WINDOW</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ABOUT_WINDOW = BioSAR Enterprise 9</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The text that appears in the about window describing the name of the data view.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: BioSAR Browser 9</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Up to one line of text</p>
+        <h4 class="Heading4"><a name="kanchor2436"></a><a name="kanchor2437"></a><a name="kanchor2438"></a><a name="kanchor2439"></a><a name="kanchor2440"></a><a name="kanchor2441"></a><a name="kanchor2442"></a><a name="kanchor2443"></a><a name="kanchor2444"></a><a name="kanchor2445"></a><a name="kanchor2446"></a>ADO_CONNECTION_NAMES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: ADO_CONNECTION_NAMES = base_connection</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Names of all ado connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. An ADO definition section describes variables for connecting to data source via ADO. In general there is only the default definition base_connection_group, since most views access the same database. However, this is flexible and allows more definitions then just the default. ADO_Connection_Names are referenced by individual tables.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: base_connection</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of connection definitions found in the ini file</p>
+        <h4 class="Heading4"><a name="kanchor2447"></a><a name="kanchor2448"></a><a name="kanchor2449"></a><a name="kanchor2450"></a><a name="kanchor2451"></a><a name="kanchor2452"></a><a name="kanchor2453"></a><a name="kanchor2454"></a><a name="kanchor2455"></a><a name="kanchor2456"></a><a name="kanchor2457"></a>CHEM_CONNECTION_NAMES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CHEM_CONNECTION_NAMES = NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Names of all ChemFinder connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. A ChemFinder connection definition section describes variables for connecting to ChemFinder for searching of chemical information. In views that deal with reaction databases, there may be three (or more) definitions, one for the reaction, one for the solvent and one for the catalyst. (e.g.config/chemprep.ini file in the chemrxn application).</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of ChemFinder connection definitions found in the ini file.</p>
+        <h4 class="Heading4"><a name="kanchor2458"></a><a name="kanchor2459"></a><a name="kanchor2460"></a><a name="kanchor2461"></a><a name="kanchor2462"></a><a name="kanchor2463"></a><a name="kanchor2464"></a><a name="kanchor2465"></a><a name="kanchor2466"></a><a name="kanchor2467"></a><a name="kanchor2468"></a>DB_RECORD_COUNT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DB_RECORD_COUNT = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The number of records in the database. This appears in all input and result windows in the upper left corner next to TotalRecords.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any integer (equal to the number of records in the database)</p>
+        <h4 class="Heading4"><a name="kanchor2469"></a><a name="kanchor2470"></a><a name="kanchor2471"></a><a name="kanchor2472"></a><a name="kanchor2473"></a><a name="kanchor2474"></a><a name="kanchor2475"></a><a name="kanchor2476"></a><a name="kanchor2477"></a><a name="kanchor2478"></a><a name="kanchor2479"></a>DB_TYPE</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DB_TYPE = STRUC</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: States the type of database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: STRUC</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>:</p>
+        <h4 class="Heading4"><a name="kanchor2480"></a><a name="kanchor2481"></a><a name="kanchor2482"></a><a name="kanchor2483"></a><a name="kanchor2484"></a><a name="kanchor2485"></a><a name="kanchor2486"></a><a name="kanchor2487"></a><a name="kanchor2488"></a><a name="kanchor2489"></a><a name="kanchor2490"></a>DISPLAY_NAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DISPLAY_NAME = BioSAR Browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The name used in global search screens to identify the view.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: BioSAR Browser</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any text</p>
+        <h4 class="Heading4"><a name="kanchor2491"></a><a name="kanchor2492"></a><a name="kanchor2493"></a><a name="kanchor2494"></a><a name="kanchor2495"></a><a name="kanchor2496"></a><a name="kanchor2497"></a><a name="kanchor2498"></a><a name="kanchor2499"></a><a name="kanchor2500"></a><a name="kanchor2501"></a>FIELD_MAP_GROUPS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: FIELD_MAP_GROUPS = NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Names of field map group definition sections in the ini file. This must be comma delimited, with no spaces. If the field group names are not here, they will not be loaded by the application. Field Map groups specify field mapping used by global search. If global searching is not used, the FIELD_MAP_GROUPS (default group created by the wizard) can be set to NULL. FIELD_MAP_GROUPS are reference by formgroups.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of field map group definitions found in the ini file.</p>
+        <h4 class="Heading4"><a name="kanchor2502"></a><a name="kanchor2503"></a><a name="kanchor2504"></a><a name="kanchor2505"></a><a name="kanchor2506"></a><a name="kanchor2507"></a><a name="kanchor2508"></a><a name="kanchor2509"></a><a name="kanchor2510"></a><a name="kanchor2511"></a><a name="kanchor2512"></a>FORM_GROUPS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: FORM_GROUPS = base_form_group,manage_users_form_group,manage_roles_form_group,manage_tables_form_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Names of form group definition sections in the ini file. This must be comma delimited, with no spaces. If the form group names are not here, they will not be loaded by the application. Form_groups specify a sub set of information including the input and result forms to use, the fields that can be searched, the table group to use for searching as well as additional information that will be described in later sections. The default formgroup is "base_form_group" this group is used most commonly. There may also be "basenp_form_group" which is used for input forms that do not have a plugin, "gs_form_group" used for performing global searches over many data views in the application; "add_record_form_group" which is reserved for future use but is not currently implemented and "drill_down_form_group" for displaying results for a drill down link contained in another form groups such as "base_form_group". Form_groups are referenced by hyperlinks from the main.asp page and carried throughout all functions and subroutines within ChemOffice Enterprise.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: base_form_group,manage_users_form_group,manage_roles_form_group,manage_tables_form_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of form group definitions found in the ini file.</p>
+        <h4 class="Heading4"><a name="kanchor2513"></a><a name="kanchor2514"></a><a name="kanchor2515"></a><a name="kanchor2516"></a><a name="kanchor2517"></a><a name="kanchor2518"></a><a name="kanchor2519"></a><a name="kanchor2520"></a><a name="kanchor2521"></a><a name="kanchor2522"></a><a name="kanchor2523"></a>MAIN_PAGE</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: MAIN_PAGE = 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Displays main page of the application.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 0</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor2524"></a><a name="kanchor2525"></a><a name="kanchor2526"></a><a name="kanchor2527"></a><a name="kanchor2528"></a><a name="kanchor2529"></a><a name="kanchor2530"></a><a name="kanchor2531"></a><a name="kanchor2532"></a><a name="kanchor2533"></a><a name="kanchor2534"></a>MAXHITS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: MAXHITS = 1000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The number of hits returned before a Get More button will appear.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 1000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Any integer</p>
+        <h4 class="Heading4"><a name="kanchor2535"></a><a name="kanchor2536"></a><a name="kanchor2537"></a><a name="kanchor2538"></a><a name="kanchor2539"></a><a name="kanchor2540"></a><a name="kanchor2541"></a><a name="kanchor2542"></a><a name="kanchor2543"></a><a name="kanchor2544"></a><a name="kanchor2545"></a>SUBFORM_VIEW_NAMES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: SUBFORM_VIEW_NAMES = NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Internal Setting.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited.</p>
+        <h4 class="Heading4"><a name="kanchor2546"></a><a name="kanchor2547"></a><a name="kanchor2548"></a><a name="kanchor2549"></a><a name="kanchor2550"></a><a name="kanchor2551"></a><a name="kanchor2552"></a><a name="kanchor2553"></a><a name="kanchor2554"></a><a name="kanchor2555"></a><a name="kanchor2556"></a>TABLE_ALIASES</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TABLE_ALIASES = MolTable,Sites,biosar_browser_PRIVILEGES,Privilege_Tables,Security_Roles,People</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Names of all table definition sections in the ini file. This list must be comma delimited with no spaces. If the table name is not here, it will not be loaded by the application. Table definition sections describe all the information needed by ChemOffice Enterprise for searching tables.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: MolTable,Sites,biosar_browser_PRIVILEGES,Privilege_Tables,Security_Roles,People</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of tables</p>
+        <h4 class="Heading4"><a name="kanchor2557"></a><a name="kanchor2558"></a><a name="kanchor2559"></a><a name="kanchor2560"></a><a name="kanchor2561"></a><a name="kanchor2562"></a><a name="kanchor2563"></a><a name="kanchor2564"></a><a name="kanchor2565"></a><a name="kanchor2566"></a><a name="kanchor2567"></a>TABLE_GROUPS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: TABLE_GROUPS = base_table_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Name of table group definition sections in the ini file. This must be comma delimited, with no spaces. If the table group names are not here, they will not be loaded by the application. A table group specifies information about the order of searching tables, what the base table (searched via ADO) is and what the molecule table (searched via ChemFinder) is. The majority of applications use the <span class="_Override" style="font-style: italic;">default</span> table group named "base_table_group". Table_groups are referenced by Form_Groups.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: base_table_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Comma delimited list of table group definitions found in the ini file.</p>
+        <h4 class="Heading4"><a name="kanchor2568"></a><a name="kanchor2569"></a><a name="kanchor2570"></a><a name="kanchor2571"></a><a name="kanchor2572"></a><a name="kanchor2573"></a><a name="kanchor2574"></a><a name="kanchor2575"></a><a name="kanchor2576"></a><a name="kanchor2577"></a><a name="kanchor2578"></a>BASE_CONNECTION</h4>
+        <p class="Body">CONN_TYPE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CONN_TYPE = DBQ</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Specifies the type of connection string.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: DBQ </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: DBQ | DSN | OLEDB </p>
+        <h4 class="Heading4"><a name="kanchor2579"></a><a name="kanchor2580"></a><a name="kanchor2581"></a><a name="kanchor2582"></a><a name="kanchor2583"></a><a name="kanchor2584"></a><a name="kanchor2585"></a><a name="kanchor2586"></a><a name="kanchor2587"></a><a name="kanchor2588"></a><a name="kanchor2589"></a>CONNECTION_PASSWORD</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CONNECTION_PASSWORD = "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Contains the password for the connection. The way the password is entered is different for different datasources. Otherwise, this entry are probably left empty.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: N/A</p>
+        <h4 class="Heading4"><a name="kanchor2590"></a><a name="kanchor2591"></a><a name="kanchor2592"></a><a name="kanchor2593"></a><a name="kanchor2594"></a><a name="kanchor2595"></a><a name="kanchor2596"></a><a name="kanchor2597"></a><a name="kanchor2598"></a><a name="kanchor2599"></a><a name="kanchor2600"></a>CONNECTION_STRING</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CONNECTION_STRING = C:\Inetpub\wwwroot\ChemOffice\BioSar_Browser\config\biosar_browser.udl</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The connection string for the CONN_TYPE specified.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: C:\Inetpub\wwwroot\ChemOffice\BioSar_Browser\config\biosar_browser.udl</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: A Connection String</p>
+        <h4 class="Heading4"><a name="kanchor2601"></a><a name="kanchor2602"></a><a name="kanchor2603"></a><a name="kanchor2604"></a><a name="kanchor2605"></a><a name="kanchor2606"></a><a name="kanchor2607"></a><a name="kanchor2608"></a><a name="kanchor2609"></a><a name="kanchor2610"></a><a name="kanchor2611"></a>CONNECTION_TIMEOUT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CONNECTION_TIMEOUT = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The amount of time in minutes before a connection will automatically close upon no activity. We suggest 15 to 30 minutes.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: An integer indicating a number of minutes</p>
+        <h4 class="Heading4"><a name="kanchor2612"></a><a name="kanchor2613"></a><a name="kanchor2614"></a><a name="kanchor2615"></a><a name="kanchor2616"></a><a name="kanchor2617"></a><a name="kanchor2618"></a><a name="kanchor2619"></a><a name="kanchor2620"></a><a name="kanchor2621"></a><a name="kanchor2622"></a>CONNECTION_USERNAME</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: CONNECTION_USERNAME = "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: Contains the username for the connection.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: N/A</p>
+        <h4 class="Heading4"><a name="kanchor2623"></a><a name="kanchor2624"></a><a name="kanchor2625"></a><a name="kanchor2626"></a><a name="kanchor2627"></a><a name="kanchor2628"></a><a name="kanchor2629"></a><a name="kanchor2630"></a><a name="kanchor2631"></a><a name="kanchor2632"></a><a name="kanchor2633"></a>COMMAND_TIMEOUT</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: COMMAND_TIMEOUT = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The amount of time in minutes before a command object will automatically close upon no activity. We suggest 15 to 30 minutes.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: An integer indicating a number of minutes.</p>
+        <h4 class="Heading4"><a name="kanchor2634"></a><a name="kanchor2635"></a><a name="kanchor2636"></a><a name="kanchor2637"></a><a name="kanchor2638"></a><a name="kanchor2639"></a><a name="kanchor2640"></a><a name="kanchor2641"></a><a name="kanchor2642"></a><a name="kanchor2643"></a><a name="kanchor2644"></a>DBMS</h4>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example</span>: DBMS = ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description</span>: The version number for the ini file.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default</span>: ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options</span>: Should not be edited.</p>
+        <p class="Body"> &#160;</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

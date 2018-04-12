@@ -1,0 +1,82 @@
+<!--Test program to read barcode scanner data from a browser using TConnector.
+The data ca be read only if the device is open, and then the "read buffer"
+button is pressed.
+If Tconnector is set to StartListen, the data is read from the scanner, but the OnData event
+is not detected by the script.
+Is is possible to use the OnData event from client side script?
+ -->
+<html>
+	<head>
+		<!-- TConnector ActiveX (invisible)-->
+		<object id=tc classid="clsid:52359ACE-0952-11D4-988C-0000B4AA4B61"
+		Width="20" Height="20">
+		</object>
+		<Script language="vbScript">
+		tc.SetDebugLevel 5
+			'Bind procedure to OnData event
+			Function tc_OnData(Data)
+			    MsgBox Data
+			    document.form1.databox.value = Data
+			End function
+			Function tc_onclose()
+				MsgBox "Close Event"
+			End function
+		</script>
+		<Script language="VbScript">
+			Dim OpenActive
+			OpenActive = False
+			
+			Sub btnOpenDevice()    
+			    tc.Object.SendKeyStrokes = True
+			    tc.Object.Open
+			    
+				MsgBox "Device Opened"
+			    OpenActive = True
+			End Sub
+
+			Sub btnStartListen()
+			    Dim dummy
+			    If OpenActive = False Then
+			        MsgBox "No device has been opened." 
+			    Else
+			        'clear buffer by reading 65000 bytes (we suppose that the buffer won't hold more data)
+			        On Error Resume Next
+					dummy = tc.Object.Read(65000, 100)     'read 65000 Bytes within 100 msec
+			       
+			        'On Error GoTo StartListenfailed
+			        'start listen (async mode)
+			        tc.Object.StartListen
+			        MsgBox "Now listening"
+			    End If
+			End Sub
+
+			Sub btnStopListen()
+			    tc.Object.StopListen
+			End Sub
+
+			Sub btnCloseDevice()
+			    tc.Object.Close
+			    OpenActive = False
+			End Sub
+			
+			'Reads 20 chracters from the buffer
+			Sub btnReadBuffer()
+				Dim Data
+				Data= tc.Object.Read(20,5000)
+				MsgBox Data
+				document.form1.databox.value = Data
+			End Sub
+		</Script>
+	</head>
+	<body>
+		<form name=form1>
+			Data read from scanner:&nbsp;<input type=text name=databox size=30>
+			<p>
+			<input type=button value="Open Device" onclick="btnOpenDevice">
+			<input type=button value="Close Device" onclick="btnCloseDevice">	
+			<input type=button value="Start Listen" onclick="btnStartListen">
+			<input type=button value="Stop Listen" onclick="btnStopListen">
+			<input type=button value="Read Buffer" onclick="btnReadBuffer">
+		</form>
+	</body>
+</html>

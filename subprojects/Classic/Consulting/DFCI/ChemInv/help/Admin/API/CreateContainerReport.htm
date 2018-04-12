@@ -1,0 +1,147 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>CreateContainerReport</h1><p>          
+         
+Causes the RPT report writer to generate a printable Container report. 
+<span lang="en-us">You can use the Container reports to gather information about 
+the attributes of the container or to generate container barcodes. </span></p>
+
+<h3>Syntax</h3>
+
+<pre>/cheminv/api/CreateContainerReport.asp?ContainerList=adVarChar&amp;ReportName=adVarChar[&amp;ReportFormat=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="98%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="69" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="168"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">ContainerList</td>
+		<td width="69">
+		<p class="param">adVarChar</td>
+		<td width="92">
+		<p class="param"><span lang="en-us">Specifies a comma delimited list or 
+		range of IDs of the </span>containers&nbsp;to be included in the container 
+		report. <span lang="en-us">You need to use a D</span>ash 
+		<span lang="en-us">(-) </span>to <span lang="en-us">express the range of 
+		the container IDs</span>.</td>
+		<td width="168">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td><span lang="en-us">INV_CONTAINERS</span></td>
+		<td>CONTAINER_ID</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">ReportName</td>
+		<td width="69">
+		<p class="param">adVarChar</td>
+		<td width="92">
+		<p class="param"><span lang="en-us">Specifies the </span>name of the 
+		report template<span lang="en-us"> to be used to generate the 
+		report.</span> <span lang="en-us">The template name is specified in the 
+		similar way </span>as <span lang="en-us">it is </span>defined in the MS 
+		Access reports database<span lang="en-us">.</span></td>
+		<td width="168">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td>REPORTDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">ReportFormat</td>
+		<td width="69">
+		<p class="param">adVarChar</td>
+		<td width="92">
+		Specifies the format of the report. <span lang="en-us">A default value 
+		for the ReportFormat parameter is defined in the invconfig.ini.</span></td>
+		<td width="168">
+		Access Report SnapShot (SNP) | Adobe Acrobat Portable 
+		Document Format (PDF) | Rich Text Format (RTF) | Microsoft Excel (XLS)</td>
+		<td width="70" align="center">
+		<p class="param">N</td>
+		<td><span lang="en-us">INV_REPORTFORMATS</span></td>
+		<td>FORMATDISPLAYNAME</td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p>       <span lang="en-us">The file name of the Container 
+report that is saved in the </span>server's reports directory.<span lang="en-us"> 
+The location of the </span>server's reports directory<span lang="en-us"> is </span>/cfserverasp/RPT/Reports/<span lang="en-us">.</span></p>
+<p>       <span lang="en-us"><b>Note:</b> To determine the location of the
+</span>server's reports directory<span lang="en-us"> on your server, please 
+check the </span>invconfig.ini&nbsp;file<span lang="en-us">.</span></p>
+<h3 class="param">Example</h3>
+<p class="param"><span lang="en-us">The following code generates a container 
+report for container IDs </span>111, 112, and 113<span lang="en-us">, report 
+name </span>LocationReport2<span lang="en-us">, and report format SNP: </span></p><pre class="param">/cheminv/api/CreateContainerReport.asp?ContainerList=111,112,113&amp;ReportName=LocationReport2<span lang="en-us">[&amp;ReportFormat=SNP]</span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- Register CSDO7 Objects with COM+&nbsp;Microsoft Transaction&nbsp;Services</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="../../../../../../../ChemOffice/webserver_source/cfserverasp/Help/Admin/Installation/Instructions/install_webserver.htm"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="../../../../../../../ChemOffice/webserver_source/cfserverasp/Help/Admin/Installation/Instructions/installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="../../../../../../../ChemOffice/webserver_source/cfserverasp/Help/Admin/Installation/Instructions/config.htm"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>ChemOffice WebServer for use with Win 2000</STRONG>&nbsp;
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  Register CSDO7.1 Objects with COM+&nbsp;Microsoft Transaction&nbsp;Services</h1>
+<P>Please follow the following steps:</P>
+<P>
+<OL>
+    <LI> Go to <B>Start &gt; Programs &gt; 
+    Administrative Tools &gt; Component Services</B>. 
+    <LI>Expand <B>Component 
+    Services&gt;Computers&gt;My Computer</B> node. 
+    <LI>Expand <B>COM+ Applications</B> 
+  node. 
+    <LI>Click on <B>COM+ Applications</B> folder and right click. 
+    <LI>Select <B>New &gt; Application</B> from the menu. 
+    <LI>Click <B>Next</B>
+    <LI>Click the <B>Create an Empty Application 
+    </B>button. 
+    <LI>Enter the name: <B>CSDO71</B> in 
+  the text field. 
+    <LI>Select <B>Server application 
+    </B>option. 
+    <LI>Click the <B>Next</B> button. 
+    <LI>Select <B>this user</B> radio 
+  button. 
+    <LI>Under <B>User:</B> enter 
+  “Administrator” 
+    <LI>Under Password: enter the password for the local 
+  Administrator account 
+    <LI>Confirm the password. 
+  <LI>Click <STRONG>Next</STRONG>  . 
+    <LI>Click<B> </B>the<B> Finish</B> button. 
+    <LI>The <B>CSDO71</B> Package should appear in 
+    the <B>COM+ Applications </B>folder. 
+    <LI>Expand the <B>CSDO71</B> Package and left 
+    click on the <B>Components</B> folder. 
+    <LI>Right click on the selected 
+    <B>Components</B> folder and choose <B>New &gt; Component</B>. 
+    <LI>Click <B>Next</B>
+    <LI>Click the <B>Import Component(s) that are 
+    already registered</B> button. 
+    <LI>From the <B>Components on My Computer</B> list, select the following 
+    components:
+      <OL type=a>
+        <LI><B>CSDO71.Connection</B>
+        <LI><B>CSDO71.Request</B></LI>
+      </OL>
+    <LI>Click <STRONG>Next</STRONG>.
+  <LI>Click the <B>Finish</B> button. The 
+    <B>CSDO71</B> components should appear in the <B>Components</B> folder. 
+    <LI>Exit program</LI></OL>
+<P><A href="../../../../../../../ChemOffice/webserver_source/cfserverasp/Help/Admin/Installation/Instructions/config.htm">Step 4:&nbsp;Configure your system for the ChemOffice 
+WebServer </A></P>
+
+</body>
+
+</html>

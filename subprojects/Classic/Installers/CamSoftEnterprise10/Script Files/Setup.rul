@@ -1,0 +1,560 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+#define EXAMPLE1 "cfserver"    
+#define EXAMPLE2 "chemoffice"    
+#define RegisteryKey "SOFTWARE\\CambridgeSoft\\Chemoffice\\10.0\\Webserver_Core10.0"
+#define RegisteryKeyValue "VIRTUAL_DIRECTORY"  
+#define RegistryKeySN "SITENUMBER" 
+// Full names of Config files.
+
+#define EXAMPLE1_INI INSTALLDIR^"Cs_Security\\Config\\" + EXAMPLE1 + ".ini"
+#define EXAMPLE2_INI INSTALLDIR^"Config\\" + EXAMPLE2 + ".ini"  
+    
+ // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND);  
+    export prototype CreateTlb(HWND);  
+    export prototype RemoveVirtualDir(HWND);
+    export prototype CheckVirtDirExists(string);     
+    export prototype CheckWebSite(HWND);   
+    export prototype ReadRegValues(HWND); 
+    export prototype LaunchUserSetup(HWND);
+    export prototype GrantSvcRights(HWND); 
+    export prototype ValidateUser(HWND);  
+    export prototype EditUDL(HWND);
+    export prototype DeleteScriptMaps(HWND);  
+    export prototype DeleteFolder(HWND);
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.
+begin             
+   //  if (ConfigFileLoad (EXAMPLE1_INI) < 0) then
+
+   //     MessageBox ("Unable to load " + EXAMPLE1_INI + ".", SEVERE);
+
+       // abort;
+
+/// endif;        
+    
+ //   if (ConfigFileSave (EXAMPLE1 + ".*") < 0) then
+ //
+ //      MessageBox ("Unable to backup " + EXAMPLE1_INI + ".", SEVERE);
+
+      //  abort;
+
+ //   else
+      // MessageBox (EXAMPLE1_INI + " backed up.",INFORMATION);
+  //  endif;   
+ //  
+    if (ConfigFileLoad (EXAMPLE2_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE2_INI + ".", SEVERE);
+
+       // abort;
+
+ endif;        
+    
+ConfigFileSave(EXAMPLE2 + ".*");
+
+    //   MessageBox ("Unable to backup " + EXAMPLE2_INI + ".", SEVERE);
+
+      //  abort;
+
+    //else
+      // MessageBox (EXAMPLE1_INI + " backed up.",INFORMATION);
+    //endif;   
+    
+    
+    
+      
+    
+    // To Do:  Write script that will be executed when MyFunction is called.
+ 
+end;
+
+function CreateTlb(hMSI)
+   STRING szSupportDir, szDBDir;
+   NUMBER nBuff;
+begin   
+	nBuff = 256;
+ 	MsiGetProperty(ISMSI_HANDLE, "DATABASEDIR", szDBDir, nBuff);
+    LaunchAppAndWait(WindowsFolder^"Microsoft.NET\\Framework\\v2.0.50727\\RegAsm.exe","\"" + szDBDir^"SingleSignOnCom.dll\" /tlb:SingleSignOnCom.tlb /codebase",WAIT);
+    LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + INSTALLDIR^"webserver_source\\cfserver_scripts\\cowsUtils.dll\"",WAIT); 
+    LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + szDBDir ^"Informatics2008\\Common\\Dlls\\wddx_com.dll\"",WAIT); 
+    LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + INSTALLDIR^"webserver_source\\cfserveradmin\\AdminSource\\webadmin.dll\"",WAIT); 
+    nBuff = 256;
+ 	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff);  
+ 	LaunchAppAndWait(szSupportDir^"ScriptMaps.vbs"," -d .cdx", WAIT);                                                                      
+    //MessageBox("Regsvr32.exe -u \"" + INSTALLDIR^"webserver_source\\cfserver_scripts\\cowsUtils.dll\"", INFORMATION);
+end;       
+
+function RemoveVirtualDir(hMSI)
+STRING sVDName, sSiteNumber;
+NUMBER nvSize, nvType, nResult, nBuff;
+OBJECT objIIS_Root;
+begin    
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName, nBuff);
+MsiGetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber, nBuff);
+//MessageBox(sVDName + sSiteNumber + "RemoveVD", INFORMATION);
+set objIIS_Root = CoGetObject("IIS://localhost/W3SVC/"+sSiteNumber+"/Root", "");
+nResult=CheckVirtDirExists(sVDName);
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", sVDName);                
+endif;  
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "CFServerASP");                
+endif;
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "CFServerADSI");                
+endif;
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "CFServerAdmin");                
+endif;
+
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "CS_Security");                
+endif;
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "CFWTemp");                
+endif;  
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "Sample_Ora");                
+endif;
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", "Sample_SqlServer");                
+endif;
+end;  
+
+function number CheckVirtDirExists(VDName)
+number nTy,bSi,ret;
+string mRet,VDir;
+begin
+VDir = "/" + VDName; //VDName = the value u retrieve through ur dialog
+nTy=REGDB_STRING ;
+bSi=MAX_PATH;
+RegDBSetDefaultRoot ( HKEY_LOCAL_MACHINE );
+if(RegDBGetKeyValueEx("\\SYSTEM\\CurrentControlSet\\Services\\w3svc\\parameters\\Virtual Roots\\", VDir, nTy, mRet,bSi )<0) then
+ret = 0; // The VDirectory does not exists
+else
+ret = 1; // The Directory allready exists
+endif;
+return ret;
+end;  
+
+function CheckWebSite(hMSI)   
+    // To Do:  Declare local variables. 
+  string szSrcDir, szWSName, szVirtualName, szOSName, szOraService;                                    
+    number nBuff, nWSName;
+begin 
+nBuff=256;      
+	MsiGetProperty(ISMSI_HANDLE, "WEBSITE", szWSName, nBuff);   
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName, nBuff);
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "APPPOOL", szOSName, nBuff);   
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE", szOraService, nBuff);
+	/*MsiGetProperty(ISMSI_HANDLE,"SETUPEXEDIR", szSrcDir, nBuff);      
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "WebSite", szWSName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "VirtualDirectory", szVirtualName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "PortNo", szPortNo);
+    MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName);
+    MsiSetProperty(ISMSI_HANDLE, "WEBSITENAME", szWSName);
+    MsiSetProperty(ISMSI_HANDLE, "PORTNO", szPortNo);
+   */
+   // MessageBox(szWSName, INFORMATION);
+   if ((szWSName = "0") > 0 || (szOraService = "") > 0) then
+   SprintfBox(WARNING, "WebSite/Oracle Service Name" , "WebSite Name Or Oracle Service Name cannot be left blank", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "1");
+   //MessageBox("1", INFORMATION);      
+   
+   else
+   //MsiSetProperty(ISMSI_HANDLE, "WEBSITE", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "0") ;
+   //MessageBox("0", INFORMATION);
+   endif; 
+    
+   
+end;  
+
+function ReadRegValues(hMSI) 
+STRING sVDName, sSiteNumber;
+number nvType, nvSize;
+begin
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE);
+nvType = REGDB_STRING; 
+nvSize=256;
+RegDBGetKeyValueEx(RegisteryKey, RegisteryKeyValue, nvType, sVDName, nvSize);
+RegDBGetKeyValueEx(RegisteryKey, RegistryKeySN, nvType, sSiteNumber, nvSize); 
+//MessageBox(sVDName + sSiteNumber + "ReadRegVal" , INFORMATION);               
+MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName);
+MsiSetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber);
+
+end;    
+
+function LaunchUserSetup(hMSI)
+  STRING sUserName, sPwd, szSupportDir, sUDomain, sUDesc,sUFullName, strA, strB, strC  ;
+  NUMBER nBuff;
+begin    
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "APPUSERNAME", sUserName, nBuff);   
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff);
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "APPUSERPASSWORD", sPwd, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERDOMAIN", sUDomain, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERDESC", sUDesc, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERFULLNAME", sUFullName, nBuff); 
+	MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName); 
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", ".\\"+sUserName);
+	//MessageBox(sUserName + ";" + sPwd + ";" + sUDomain + ";" + sUDesc + ";" + sUFullName,INFORMATION);
+    LaunchAppAndWait(szSupportDir^"usersetup.exe ", sUserName + ";" + sPwd + ";" + sUDomain + ";" + sUDesc + ";" + sUFullName, WAIT);
+/*    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "PASSWORDMISMATCH", strA, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERBUILT", strB, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "BUILDAUSER", strC, nBuff); 
+	MessageBox("PwdMismaatch = " + strA + ", UserBuilt = " + strB + ", BuildAUser = " + strC,INFORMATION); */
+end;
+
+function GrantSvcRights(hMSI)
+  STRING sUserName, szSupportDir, szProgram, szCmdLine;
+  NUMBER nBuff, iRetVal;
+begin                                                      
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName, nBuff); 
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff); 
+	szProgram = szSupportDir ^ "NTRIGHTS.EXE";
+	szCmdLine = "-u " + sUserName + " +r SeServiceLogonRight";
+	iRetVal = LaunchAppAndWait (szProgram, szCmdLine, LAAW_OPTION_WAIT);
+	if (iRetVal != ISERR_SUCCESS) then
+		MessageBox("Log on as Service Right couldn't be granted to "  + sUserName, SEVERE);
+	//else
+	//	MessageBox("Log on as Service Right is granted to "  + sUserName, INFORMATION);;
+	endif;                
+	//LaunchAppAndWait(szSupportDir^ "logAsSvc.exe ", sUserName, LAAW_OPTION_WAIT);
+end;   
+
+function ValidateUser(hMSI)   
+    // To Do:  Declare local variables. 
+STRING szKey, sDomUser, sNewUser, szName, svValue, szSspLogonExe, szSupportDir, uStatus, svReturnLine, svTemp, szSspLogonLog, sDomainName, sUserName, sPassword, sCmdLine; 
+NUMBER nvSize, nvType, nvResult, nvLineNumber, nBuff;
+begin             
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+  //  SdShowMsg("Validating Windows Domain Account Credentials.....", TRUE);
+szKey = "System\\CurrentControlSet\\Control\\ComputerName\\ComputerName";
+szName = "ComputerName";
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+
+     // Set the default root
+RegDBGetKeyValueEx(szKey, szName, nvType, sDomainName, nvSize);
+szSspLogonExe = "ssplogon.exe";
+szSspLogonLog = "ssplogon.log";
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "DOMAINUSER",sDomUser,nBuff); 
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "CREATENEWUSER",sNewUser,nBuff);
+if((sNewUser = "True") > 0) then
+   nBuff=256;
+   MsiGetProperty(ISMSI_HANDLE, "APPUSERNAME",sUserName,nBuff);
+else
+   nBuff=256;
+   MsiGetProperty(ISMSI_HANDLE, "ADMINUSERNAME",sUserName,nBuff);
+endif;
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "APPUSERPASSWORD",sPassword,nBuff);
+    
+nBuff=256;
+MsiGetProperty(hMSI, "SUPPORTDIR", szSupportDir, nBuff);
+//CopyFile(szSupportDir^szSspLogonExe, WindowsVolume^szSspLogonExe);
+// Usage: ssplogon.exe <domain> <user> <password>    
+if((sDomUser = "Yes") > 0) then
+	nBuff=256;
+    MsiGetProperty(hMSI, "USERDOMAIN", sDomainName, nBuff); 
+  //  MessageBox("DomainUser", INFORMATION);
+endif;	
+sCmdLine = "/C " + szSspLogonExe + " " + sDomainName + " " + sUserName + " " + sPassword + " > " + WindowsVolume^szSspLogonLog;
+
+
+ChangeDirectory(szSupportDir);
+
+if( LaunchAppAndWait("CMD.EXE", sCmdLine, WAIT) < 0 ) then
+ 
+MessageBox("Unable to launch CMD.EXE & " + szSspLogonExe, SEVERE);
+abort;
+
+else
+
+// Find the search string in the log file.
+nvResult = FileGrep(WindowsVolume^szSspLogonLog, "Succeeded", svReturnLine, nvLineNumber, RESTART);
+NumToStr(svTemp, nvResult);
+switch(nvResult)
+
+case FILE_NOT_FOUND:
+MessageBox(WindowsVolume^szSspLogonLog + " file not found.", SEVERE);
+abort;
+
+case FILE_LINE_LENGTH:
+MessageBox(WindowsVolume^szSspLogonLog + " the lines are too long.", SEVERE);
+abort;
+
+case OTHER_FAILURE:
+NumToStr(svTemp, OTHER_FAILURE);
+MessageBox(FOLDER_TEMP^szSspLogonLog + " Failure " + svTemp + " when calling FileGrep().", SEVERE);
+abort;
+
+case END_OF_FILE: // Did NOT find "Succeeded" String
+MessageBox("Validation of User Credentials failed. Username and/or Password are not valid.", SEVERE);
+DeleteFile(WindowsVolume^szSspLogonLog);
+abort;
+
+case 0: // Found "Succeeded" String
+MessageBox("Validation of User Credentials is successful.", INFORMATION);
+MsiSetProperty(ISMSI_HANDLE, "USERSTATUS", "True"); 
+MsiSetProperty(ISMSI_HANDLE, "USERBUILT", "True"); 
+if((sDomUser = "Yes") > 0) then  
+//	if((sDomainName = "") > 0) then
+//	MessageBox("This machine is not connected to the Domain. Please select local User", INFORMATION);
+//	abort;
+//	else
+    MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sDomainName + "\\" +sUserName);
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", sDomainName + "\\"+sUserName);
+ //   endif;
+else
+    MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName); 
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", ".\\"+sUserName);
+endif;
+//MessageBox(sUserName, INFORMATION);        
+default: // Unknown Error
+NumToStr(svTemp, nvResult);
+MessageBox(WindowsVolume^szSspLogonLog + " Unknown failure " + svTemp + " when calling FileGrep().", SEVERE);
+DeleteFile(WindowsVolume^szSspLogonLog);
+abort;
+
+endswitch;
+
+endif;
+DeleteFile(WindowsVolume^szSspLogonLog);
+//SdShowMsg("", FALSE);   
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE,"USERSTATUS", uStatus, nBuff);
+
+end;
+function number EditUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin  
+ nBuff=256;
+      // open the file in Unicode mode.   
+    MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);        
+   //  MessageBox(szOraServiceName, INFORMATION);
+    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    // Open the file.
+    if (OpenFile(nvFileHandle, INSTALLDIR^"sample\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit sample.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"sample\\config\\sample.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Inetpub\wwwroot\chemoffice\sample\database\sample.mdb;Persist Security Info=False", "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + INSTALLDIR^"sample\\database\\sample.mdb;Persist Security Info=False", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"sample\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle); 
+   
+     if (OpenFile(nvFileHandle, INSTALLDIR^"cs_security\\config", "cs_security.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"cs_security\\config\\cs_security.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=dgb;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source="+ OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"cs_security\\config\\cs_security.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);    
+   
+  if (OpenFile(nvFileHandle, INSTALLDIR^"sample_ora\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit sample.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"sample_ora\\config\\sample.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=sample;Data Source=dgb", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=sample;Data Source="+ OraService, nStart) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"sample_ora\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);     
+   if (OpenFile(nvFileHandle, INSTALLDIR^"sample_sqlserver\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"sample_sqlserver\\config\\sample.udl", "Initial File Name",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=SQLOLEDB.1;Password=admin;Persist Security Info=True;User ID=sa;Initial Catalog=sample;Initial File Name=C:\Inetpub\wwwroot\ChemOffice\sample_sqlserver\database\sample_db.mdf", "Provider=SQLOLEDB.1;Password=admin;Persist Security Info=True;User ID=sa;Initial Catalog=sample;Initial File Name=" + INSTALLDIR^"sample_sqlserver\\database\\sample_db.mdf", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(INSTALLDIR^"sample_sqlserver\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Cose the File  
+   CloseFile (nvFileHandle);  
+   
+    if (OpenFile(nvFileHandle, INSTALLDIR^"webserver_source\\cfserverasp\\RPT", "REPORTS.DAT") < 0) then
+        MessageBox ("Unable to edit Reports.DAT. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(INSTALLDIR^"webserver_source\\cfserverasp\\RPT\\REPORTS.DAT", INSTALLDIR^"webserver_source\\cfserverasp\\RPT\\Reports",svReturnLine,nvLineNumber, RESTART);
+   CloseFile (nvFileHandle); 
+   FileInsertLine(INSTALLDIR^"webserver_source\\cfserverasp\\RPT\\REPORTS.DAT","\"" + INSTALLDIR^"webserver_source\\cfserverasp\\RPT\\Reports\"",nvLineNumber, REPLACE);  
+ end;     
+ 
+ function DeleteScriptMaps(hMSI)
+ STRING szSupportDir, svSiteNum;
+ NUMBER nBuff;
+ begin
+ nBuff = 256;
+ MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff);
+ nBuff=256;
+ MsiGetProperty(ISMSI_HANDLE, "SITENUMBER", svSiteNum, nBuff);  
+ LaunchAppAndWait(szSupportDir^"ScriptMaps.vbs"," W3SVC/" + svSiteNum + "/Root/ScriptMaps \".cdx\" \"\" /REMOVE /RECURSE /ALL /COMMIT", WAIT);
+ //LaunchAppAndWait(SystemFolder^"cmd.exe", " /c iisreset", WAIT);
+ end;   
+ 
+ function DeleteFolder(hMSI)
+     string svResult;
+ begin  
+
+	if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{63E3D215-1E62-44FE-A099-E834EE65493C}", "base64decode.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{63E3D215-1E62-44FE-A099-E834EE65493C}", ALLCONTENTS);
+    endif; 
+    
+    if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{3841EFD4-F589-48B7-8EB4-9525984BAC63}", "chemimp.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{3841EFD4-F589-48B7-8EB4-9525984BAC63}", ALLCONTENTS);
+    endif;
+    
+    if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{BC03E74C-1013-474E-A2F1-9A3910B7DFAA}", "singlesignoncom.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{BC03E74C-1013-474E-A2F1-9A3910B7DFAA}", ALLCONTENTS);
+    endif;
+    
+    if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{FC912C0E-7F60-4E69-8439-98DA12647953}", "csdo10.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{FC912C0E-7F60-4E69-8439-98DA12647953}", ALLCONTENTS);
+    endif;
+    
+    if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{0B06FB40-7C9B-49FB-ABDA-11A8F588D368}", "cssecurityldap.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{0B06FB40-7C9B-49FB-ABDA-11A8F588D368}", ALLCONTENTS);
+    endif;
+    
+    if (FindFile (ProgramFilesFolder^"ComPlus Applications\\{F36FB7A9-C1BD-4746-92DF-9C2770D5DCAE}", "reportq.dll", svResult) < 0) then  
+		//MessageBox(INSTALLDIR + "Find File Failed" + svResult, INFORMATION);
+    	//abort; 
+    else   
+    	DeleteDir(ProgramFilesFolder^"ComPlus Applications\\{F36FB7A9-C1BD-4746-92DF-9C2770D5DCAE}", ALLCONTENTS);
+    endif;
+  end;

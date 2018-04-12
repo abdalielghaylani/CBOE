@@ -1,0 +1,180 @@
+<html>
+
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Enterprise -- Preferences</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="54205" -->
+<h1>  Preferences</h1>
+<p>The Preferences dialog box allows you to specify the 
+searching preferences and how the search results are displayed. These settings 
+are global for a user&nbsp;throughout an application.&nbsp;The settings can be 
+different in different applications.</font></p>
+<p>To access the Preferences dialog box:</font> </p>
+
+<p>
+<ol>
+<li>Click <img src="../images/preferences_btn.gif" border="0" width="80" height="15"> Preferences.<br> The Preferences 
+  dialog box appears. <br>     
+<img height="591" src="../images/preferences.gif" width="401"> 
+<li>What would you like to do?
+<table border="0">
+    
+    <tr>
+      <td><a href="#1">Specify whether results 
+        are displayed in a form or a list </a>           
+        </td></tr>
+    <tr>
+      <td><a href="preferences.html#2">Specify the number of records displayed in List 
+      View</a>
+      </td></tr>
+    <tr>
+      <td><a href="preferences.html#4">Specify whether 
+        charges or radicals specified on atoms in the query must match those in 
+        the target</a></td></tr>
+    <tr>
+      <td><a href="preferences.html#5">Require that the reaction centers in the query must overlap the 
+        reaction centers in the target.</a></td></tr>
+    <tr>
+      <td><a href="#exact_options">Specify Exact Structure Searching 
+        Options</a></td></tr>
+    <tr>
+      <td><a href="preferences.html#6">Specify how similar structures need to be when performing a 
+        similarity search</a></td></tr>
+    <tr>
+      <td><a href="preferences.html#7">Reset all values to selected and the 
+        similarity search value to 90</a></td></tr>
+    <tr>
+      <td><a href="preferences.html#3">Specify whether or not you want a 
+        structure search to consider stereochemistry</a><a href="preferences.html#7"></a></td></tr>
+</table></li> 
+</ol>
+
+<p>
+<b><a name="1">Specify whether results are displayed in a form or a list</a></b>
+
+<br> Click one of the Display Preferences buttons. Choose:
+<ul>
+<li>Form to view one record at a time<span lang="en-us">.</span><li>List to display several records. The number displayed 
+  in list view is controlled by the ChemOffice Enterprise administrator. The 
+  default is 5 records.</li>               
+       
+</ul>
+<p></p>
+<p>
+<a name="2"><b>Specify the number of records displayed in List View</b></a><br>
+Do one of the following:
+<ul>
+<li>Enter the maximum number of records to be displayed in the Number box.
+<li>Select All Records to display all the records in the 
+  database in List view.</li>             
+</ul>
+<p></p>
+<p></p>
+<p>
+<a name="4"><b>Specify whether charges or radicals specified on atoms in the query must match those in the target</b></a><br>
+Select the desired options:
+<ul><li>Hit any Charge on Heteroatom - allow uncharged atoms 
+  in the query to match charged atoms in the target (<strong>Note:</strong> 
+  charged atoms in the query must always match charged atoms in the target regardless of this setting).
+<li>Hit any Charge on Carbon - allow uncharged carbon 
+  atoms in the query to match charged carbon atoms in the target 
+  (<strong>Note:</strong> charged carbon atoms in the query must always match 
+  charged carbon atoms in the target regardless of this setting).</li>    
+</ul>The valence of a 
+charged atom is taken to be the valence of the isoelectronic neutral atom 
+<p></p>
+<p>
+<a name="5"><b>Require that the reaction centers in the query must overlap the reaction centers in the target</b></a><br>
+Select Reaction Query Hit Reaction Center.
+</p>
+<p><a name="exact_options"><strong>Specify Exact Structure Searching Options</strong><br>Select the appropriate checkbox next to Permit Extraneous 
+Fragments in Full Structure or Reaction searches.<br>If Permit Extraneous 
+Fragments (for structure or reaction searching) is selected, the search will 
+allow hits 
+to contain molecular fragments in addition to that which was hit&nbsp;by 
+the query.&nbsp;</p>
+<p>
+<a name="6"><b>Specify how similar structures need to be when performing a similarity search</b></a><br>
+In the Similarity search box, type a value between 0 and 100. A lower value requires the target to be 
+less similar.
+</p>
+<p>
+<a name="7"><b>Reset all values to selected and the similarity search value to 90</b></a><br>
+Click <img src="../images/use_defaults_button.gif" border="0" width="61" height="21"> <b>Use Defaults</b>.
+</p>
+<p><a name="3"><b>Specify whether or not you want a structure search to consider 
+stereochemistry</b></a><br>Click one of the following: 
+<ul>
+  <li>Match Tetrahedral Stereo to recognize tetrahedral 
+  chirality. <br><strong>Note</strong>: Keeping this flag on 
+  greatly decreases the speed of searching the registry.&nbsp;If this type of 
+  duplicate checking is not important to you&nbsp;we recommend turning this option off. 
+  <li>Match Double Bond Stereo option to recognize cis/trans double-bond 
+  geometry </li></ul>
+<p>When either of these options are selected, the search includes 
+any stereo<span lang="en-us">-</span>chemistry indicated.<br></p><pre><i>NOTE:</i> Stereochemistry is perceived in the query from (a) hashed or wedged bonds at a tetrahedral 
+center, and (b) unsymmetrical substitution at a C=C double bond.</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <IMG height=31 src="../images/getacrobat.gif" width=88 border=0></a>
+</td><td>
+  <font size="2"><A href="../ChemOffice%20WebServer.pdf">Download ChemOffice Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><A onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;" href   ="../ChemOffice%20WebServer%20User's%20Guide.chm" >Download ChemOffice Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="41102" -->
+
+
+</body>
+</html>

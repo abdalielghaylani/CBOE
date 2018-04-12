@@ -1,0 +1,92 @@
+<html>
+
+<head><script language="javascript">
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+function setAction(theAction){
+
+		var theValue = eval('document.SubmitAction.DataType.options[document.SubmitAction.DataType.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.DataTypeVal.value = theValue		
+		document.SubmitAction.submit()
+		
+}
+
+
+
+
+</script>
+
+<title>ChemOffice Web Wizard - Data Type</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><table border="0" width="672">
+      <tr>
+        <td width="77"><img alt="cnco.gif (2252 bytes)" height="54"
+        src="/cfserveradmin/graphics/cnco.gif" width="75"></td>
+        <td width="583"><img alt="WebAdminbnr.gif (3575 bytes)" height="49"
+        src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500"></td>
+      </tr>
+    </table>
+    <form Name="SubmitAction"
+    ACTION="WebEditor.ASP?WCI=wizard_database_data_type&amp;WCE=SubmitAction&amp;WCU"
+    METHOD="post" border="1">
+      <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+      type="hidden" name="DataTypeVal" value><table border="1">
+        <tr>
+          <td><table bgcolor="#c0c0c0" width="400" height="300">
+            <tr>
+              <td valign="top"><table border="0" width="449" bgcolor="#000080">
+                <tr>
+                  <td width="443" valign="top"><font color="#ffffff"><strong>ChemOffice Web Wizard</strong></font></td>
+                </tr>
+              </table>
+              <table border="0" width="452">
+                <tr>
+                  <td width="132"><img alt="wpe56A.jpg (3678 bytes)" height="133" src="chemof1.jpg"
+                  width="132"><p><br>
+                  <br>
+                  <br>
+                  <br>
+                  </td>
+                  <td width="308" valign="center">Select the the type of data found in this ChemFinder
+                  database:<p><br>
+<WC@INPUT></WC@INPUT>                  <br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="440" colspan="2"><hr>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="440" colspan="2"><table border="0">
+                    <tr>
+                      <td><input type="button" value="Help" name="Help" onClick="getHelp('Data_Type')"></td>
+                      <td><input type="submit" value="Cancel" name="Cancel" onClick="setAction('Cancel')"></td>
+                      <td><input type="submit" value="&lt;Back" name="Back" onClick="setAction('Back')"></td>
+                      <td><input type="submit" value="Next&gt;" name="Next" onClick="setAction('Next')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+    </td>
+    <td width="583"></td>
+  </tr>
+</table>
+</body>
+</html>

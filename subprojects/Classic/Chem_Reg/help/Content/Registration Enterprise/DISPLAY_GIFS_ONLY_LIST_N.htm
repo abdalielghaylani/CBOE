@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|CFServer.ini Configuration File|Globals" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>DISPLAY_GIFS_ONLY_LIST_NS</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="CFServer_ini_Configurati.htm#Registration_Admin_4136631045_998459">CFServer.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">DISPLAY_GIFS_ONLY_LIST_NS</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_999216"></a>DISPLAY_GIFS_ONLY_LIST_NS</h5>
+        <div class="Body">Example:DISPLAY_GIFS_ONLY_LIST_NS = "0"</div>
+        <div class="Body">Description: Indiactes if GIFs should be used instead of CDX in list view in Netscape. 1 indiactes GIFs should be used.</div>
+        <div class="Body">Default: 0</div>
+        <div class="Body">Options: 1 | 0</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">DISPLAY_GIFS_ONLY_LIST_NS6</div>
+        <div class="Body">Example:DISPLAY_GIFS_ONLY_LIST_NS6 = "0"</div>
+        <div class="Body">Description: Indicates if GIFs should be used instead of CDX in list view in Netscape 6. 1 indicates GIFs should be used.</div>
+        <div class="Body">Default: 0</div>
+        <div class="Body">Options: 1 | 0</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">ENCRYPT_PWD</div>
+        <div class="Body">Example: ENCRYPT_PWD = FALSE</div>
+        <div class="Body">Description: When this setting is turned on for the first time, the user names and passwords (listed under the <span class="_Override" style="color: #0000ff;text-decoration: underline;">ENCRYPT_PWD_KEYS</span> setting) in this file should be entered in plain text ahead of time. When the application is accessed for the first time the passwords will be encrypted and inserted into this INI file as encrypted text. If a password is changed, change all passwords in this INI file back to plain text and restart the application. The passwords will again be encrypted and stored.</div>
+        <div class="Body">Default: FALSE </div>
+        <div class="Body">Options: TRUE | FALSE</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">ENCRYPT_PWD_KEYS</div>
+        <div class="Body">Example: ENCRYPT_PWD_KEYS = BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD</div>
+        <div class="Body">Description: A comma delimited list of password settings to be encrypted.</div>
+        <div class="Body">Default: BIOSAR_BROWSER_PWD,SEC_PWD,DBA_PWD</div>
+        <div class="Body">Options: The names of password settings in the cfserver.ini file to be encrypted.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">ENCRYPT_PWD_SECTION</div>
+        <div class="Body">Example: ENCRYPT_PWD_SECTION = GLOBALS</div>
+        <div class="Body">Description: This setting identifies the heading name that the password settings are found under in the cfserver.ini file.</div>
+        <div class="Body">Default: GLOBALS</div>
+        <div class="Body">Options: The name of a heading in the cfserver.ini file.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">EXPIRE_HITLIST_HISTORY_DAYS</div>
+        <div class="Body">Example: EXPIRE_HITLIST_HISTORY_DAYS = 30</div>
+        <div class="Body">Description: The value of this setting is in days. After the number of days specified, hitlist history entries are removed.</div>
+        <div class="Body">Default: 2</div>
+        <div class="Body">Options: An integer indicating a number of days.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <div class="Body">EXPIRE_QUERY_HISTORY_DAYS</div>
+        <div class="Body">Example: EXPIRE_QUERY_HISTORY_DAYS = 2</div>
+        <div class="Body">Description: The value of this setting is in days. After the number of days specified, queries in the history are removed.</div>
+        <div class="Body">Default: 2</div>
+        <div class="Body">Options: An integer indicating a number of days. </div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

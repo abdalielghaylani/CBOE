@@ -1,0 +1,78 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- getFormViewBtn</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="#"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="#"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="#"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>     ChemOffice 
+WebServer</STRONG>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  getFormViewBtn</h1>
+<P>This Javascript function/subroutine call appears in the following file:</P>
+<UL>
+  <LI>sample_result_list.asp</LI></UL>
+
+<TABLE style="WIDTH: 95%" cellSpacing=4 cellPadding=1 border=0>
+  <TBODY vAlign=top>
+  
+  <TR>
+    <TD>
+      <H4>Subroutine/Function</H4></TD>
+    <TD><PRE>getFormViewBtn file_path,form_name,index_value</PRE>
+         </TD></TR>
+  <TR>
+    <TD>
+      <H4>Description</H4></TD>
+    <TD>
+      <P>Link from one item in list view to the corresponding function in 
+      form view</P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Parameters</H4></TD>
+    <TD>
+      <p>file_path = <EM>&lt;path to 
+      GIF&gt;</EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relative 
+      to cfserverasp/source/graphics</p>
+      <p>form_name = &lt;name of form to link 
+      to&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relative 
+      to &lt;application&gt;/&lt;dataview&gt;/&lt;dataview&gt;</p>
+      <p>index_value =  &lt;index value 
+      of item 
+      to display&gt;&nbsp;&nbsp;<BR></p></TD></TR>
+  <TR>
+    <TD>
+      <H4>Example</H4></TD>
+    <TD><PRE><PRE>getFormViewBtn "show_details_btn.gif","sample_form.asp","&lt;%=BaseActualIndex&gt;"</PRE></PRE></TD></TR></TBODY></TABLE>
+
+</body>
+
+</html>

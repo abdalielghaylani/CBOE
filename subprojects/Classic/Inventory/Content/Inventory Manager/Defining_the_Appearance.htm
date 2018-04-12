@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide|Zebra Label Printing" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>Defining the Appearance of Label</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Adm.htm#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Zebra_Label_Printing.htm#Inventory_Manager_User_Guide_1879958712_1100874">Zebra Label Printing</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Defining the Appearance of Label</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1099434"></a>Defining the Appearance of Label</h3>
+        <p class="Body">The appearance of the actual label/barcode is defined by creating or editing text files on the middle tier web server that include the codes necessary to create a useful barcode. </p>
+        <p class="Body">The text files can be created/edited using the ZPL programming language, or any number of other text-based languages that your printer supports. </p>
+        <p class="Body">This document is not intended to be a reference for any of these third-party languages. You can consult the following Zebra Web site for further details on how to set up the text files for a particular printer configuration:</p>
+        <p class="Body">http://www.zebra.com/id/zebra/na/en/index/products/special_features/proglang.html</p>
+        <p class="Body">&#160;</p>
+        <p class="Body">The codes themselves reside in text files, and the Inventory application is capable of reading these files and inserting custom information where appropriate. </p>
+        <p class="Body">Each label type, such as containers, plates, or locations should have its own set of files that define how that particular label should look. These three types of labels are treated as just an “object”. The three files together constitute one record in the new “inv_lpr_definition” table, which is named “LPR Definitions” within the Manage Tables GUI. This GUI exposes the following fields:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">A header file [optional]</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">A label file [required]</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">A footer file [optional]</td>
+            </tr>
+        </table>
+        <p class="Body">The purpose of including header and footer files is to provide the ability to issue a banner label that will print immediately before (and after) the string of barcode labels. This may be useful in cases where the label itself is nothing more than a barcode that does not contain human-readable information. For instances where the label itself is sufficient to identify what object it belongs to, no banner may be desired.</p>
+        <p class="Body">When managing the LPR Definitions table, you must provide the full path to the three text files on the middle tier web server. This path must also be accessible to the anonymous account with which IIS can be run. To ensure that the files are accessible, put them at the following location:</p>
+        <p class="Body">&lt;webroot&gt;\ChemOffice\ChemInv\config\xml_templates\LPR</p>
+        <p class="Body">The files themselves must be ASCII text files, and should represent as templates for building a full print job that will be sent to the printer. In order to print object-specific data on the label itself, the application has been designed to look for and replace custom tags inside the text body of each file with the relevant object data. These tags are context-sensitive, with respect to the type of label. The tags depend on whether the label is for plates, containers, or locations.</p>
+        <p class="Body">The underlying mechanism for selecting object data from the database for printing a label is identical to that used for the object reports. A SQL statement is executed that returns a result set with a large number of columns to it. The names of the columns are same as the ones that will be used to search for matching tags. In order to provide some level of uniqueness to each tag, and to avoid potential conflicts, the tag itself is surrounded by dollar signs ($TAG$).</p>
+        <p class="Body">To give an example, the following text file with ZPL codes might be used to print a barcode:</p>
+        <p class="Body">^XA</p>
+        <p class="Body">^LH0,50</p>
+        <p class="Body">^BX10,10,100^FD$BARCODE$^FS</p>
+        <p class="Body">^LH200,50</p>
+        <p class="Body">^FO^AO,40^FD$BARCODE$^FS</p>
+        <p class="Body">^LH200,100</p>
+        <p class="Body">^FO^AO,40^FD$SUBSTANCE_NAME$^FS</p>
+        <p class="Body">^PQ$NUM_COPIES$</p>
+        <p class="Body">^XZ</p>
+        <p class="Body">&#160;</p>
+        <p class="Body">In this file, there are three custom tags that the application will replace:</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">$BARCODE$</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">$SUBSTANCE_NAME$</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">$NUM_COPIES$</td>
+            </tr>
+        </table>
+        <p class="Body">If the recordset had a barcode value of ‘abc’ and a substance name of ‘Acetone’, after processing the data being sent to the printer would look like the following:</p>
+        <p class="Body">^XA</p>
+        <p class="Body">^LH0,50</p>
+        <p class="Body">^BX10,10,100^FDabc^FS</p>
+        <p class="Body">^LH200,50</p>
+        <p class="Body">^FO^AO,40^FDabc^FS</p>
+        <p class="Body">^LH200,100</p>
+        <p class="Body">^FO^AO,40^FDAcetone^FS</p>
+        <p class="Body">^PQ1</p>
+        <p class="Body">^XZ</p>
+        <p class="Body">The only application-specific tag utilized by the system is the $NUM_COPIES$ tag, which is replaced by the value entered by the user during the printing process. In this sample ZPL, the ^PQ code is used to inform the printer how many copies to print. All other fields come from the result set columns. A full list of these columns for any given object can be viewed by opening the appropriate report in Access in Design View, and clicking on the “Field List” toolbar button. These reports are the following:</p>
+        <p class="Body">&#160;</p>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">rptContainerBarCodeLabels1 for containers</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-inner" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-inner" MadCap:autonum=" • " valign="top">rptLocationBarcodeLabels1 for locations</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">rptPlateBarcodeLabels1 for plates</td>
+            </tr>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:Garamond;
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">Displaying Registration Fields and Labels</span></h1>
+<p>After <span lang="en-us">creating views</span>, <span lang="en-us">you need 
+to define comment for each Registration field that is to made accessible from 
+Inventory Enterprise.</span> <span lang="en-us">This exposes the Registration 
+fields in the Inventory Enterprise interface. </span>Comments are
+<span lang="en-us">defined</span> in the following format<span lang="en-us">:</span></p>
+<p>&nbsp;[Interface Display Name]::[state]</p>
+<p><span lang="en-us">In this format, </span>Interface Display Name
+<span lang="en-us">refers to </span>the user friendly name for the field in the
+<span lang="en-us">Inventory Enterprise </span>interface<span lang="en-us"> and</span> 
+state <span lang="en-us">specifies whether or not the field is to be exposed. 
+The state</span> parameter<span lang="en-us"> can take two values, off and on, 
+and it </span>exposes the field in the interface<span lang="en-us"> when it is 
+set to on</span>.</p>
+<h3><span lang="en-us">Example</span></h3>
+<p><span lang="en-us">The following comments and display 
+settings expose the standard Registration fields to Inventory Enterprise:
+</span>&nbsp;</p>
+<pre><b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regnumber <b>IS</b> <font color="#0000FF">'Reg Number::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regid <b>IS</b> <font color="#0000FF">'Reg ID::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regcas <b>IS</b> <font color="#0000FF">'Reg CAS::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regname <b>IS</b> <font color="#0000FF">'Reg Name::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.batchnumber <b>IS</b> <font color="#0000FF">'RegBatch Number::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regbatchid <b>IS</b> <font color="#0000FF">'Reg Batch ID::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regpage <b>IS</b> <font color="#0000FF">'Reg Page::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regpurity <b>IS</b> <font color="#0000FF">'Reg Purity::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regscientist <b>IS</b> <font color="#0000FF">'Reg Scientist::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regamount <b>IS</b> <font color="#0000FF">'Reg Amount::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.cpdid <b>IS</b> <font color="#0000FF">'Reg Compound ID::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_batches.regnotebook <b>IS</b> <font color="#0000FF">'Reg Notebook::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_structures.regbase64 <b>IS</b> <font color="#0000FF">'Reg Structure::on'</font>
+<b>COMMENT ON COLUMN</b> inv_vw_reg_structures.regid <b>IS</b> <font color="#0000FF">'Reg Structure::on'</font></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

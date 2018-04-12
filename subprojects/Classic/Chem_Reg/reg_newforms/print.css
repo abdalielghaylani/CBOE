@@ -1,0 +1,15 @@
+UNKNOWN
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 12px;
+    FONT-FAMILY: arial
+}
+
+.hideWhenPrint
+{
+    DISPLAY: none
+}
+.insertPageBreak
+{
+    PAGE-BREAK-BEFORE:always
+}

@@ -1,0 +1,7 @@
+USERID=system/manager2@alchemy
+BUFFER=102400
+TABLES=SAMPLE.MOLTABLE,SAMPLE.SYNONYMS_R, SAMPLE.GRAPHICS
+COMPRESS=Y
+DIRECT=N
+FILE=sample_schemas.dmp
+LOG=sample_schemas_export.log

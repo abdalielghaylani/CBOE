@@ -1,0 +1,164 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Converting an Access or SQLServer Based ChemOffice WebServer for use with&nbsp;Oracle 8i/9i</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>Converting an Access or SQLServer Based ChemOffice WebServer for use with&nbsp;Oracle 8i</h1>
+<p>            
+              
+             
+Oracle 8&nbsp;offers a toll called&nbsp;Oracle Migration 
+Workbench that will make converting a legacy ChemOffice WebServer for use with 
+Oracle.&nbsp; Download the&nbsp;workbench application from: <br><a href="http://otn.oracle.com/tech/migration/focusareas/access.html">http://otn.oracle.com/tech/migration/focusareas/access.html</a>&nbsp;<br>Be 
+sure to download both the core and the appropriate plugin (Access or SQLServer). 
+<strong>Note:</strong> The download directory            
+              
+             
+for the following example will be assumed to be /ORA_WORKBENCH although it may differ depending on 
+how you choose to install.</p>
+<p>After unzipping the core download,&nbsp;browse&nbsp;to the 
+<strong>install/win32</strong> directory and click setup.exe. Do the same for 
+the plugin after the core is installed.</p>
+<p>The following instructions convert the Sample ChemOffice WebServer&nbsp; 
+application on a Windows2000 OS and WebServer2002 earlier version of WebServer 
+do not fully support Oracle conversions.</p>
+<h2>Creating the SAMPLE_ORA application directory</h2>
+<ol>
+  <li>Browse to <strong>&lt;webroot&gt;\ChemOffice\sample</strong>, right-click 
+  and select&nbsp;copy.
+  <li>Paste the copy in the same directory.&nbsp;
+  <li>Rename the copy sample_ora. 
+  <li>Open 
+  <strong>&lt;webroot&gt;\ChemOffice\sample_ora\config\cfserver.ini</strong> and 
+  change APP_NAME=sample to APP_NAME = sample_ora. 
+  <li>Right-click the directory 
+  <br><strong>&lt;webroot&gt;\ChemOffice\sample_ora\config\cfserver.ini</strong><br>and&nbsp;select 
+  properties. 
+  <li>Click the <strong>Web Sharing</strong> tab. 
+  <li>Select&nbsp;the <strong>Share This Folder</strong> radio 
+  button.&nbsp;Accept&nbsp;the defaults and click <strong>OK</strong>. 
+  <li>Open <strong>sample_ora/config/sample.ini</strong>. Search and replace 
+  &quot;ACCESS&quot; or &quot;SQLSERVER&quot; with ORACLE.
+  <li>Open <strong>sample_ora\global.asa</strong> and change 
+  <br>Application(&quot;appkey&quot;) = &quot;sample&quot; <br>to <br>Application(&quot;appkey&quot;) = 
+  &quot;sample_ora&quot; 
+  <li>In the [BASE_CFW_FORM] section 
+  change:<br>STRUC_DB_PATH=C:\Inetpub\wwwroot\ChemOffice\sample\database\sample.mst<br> 
+  to:<br>STRUC_DB_PATH=C:\Inetpub\wwwroot\ChemOffice\sample_ora\database\sample.mst 
+
+  <li>In the [BASE_CONNECTION] 
+  section&nbsp;change:<br>CONN_TYPE=DBQ<br>CONNECTION_STRING=C:\Inetpub\wwwroot\ChemOffice\sample\database\sample.mdb;Driver= 
+    {MicrosoftAccessDriver(*.mdb)};DriverId=25;FIL=MS Access 
+  <br>CONNECTION_USERNAME=&quot;&quot;<br>CONNECTION_PASSWORD=&quot;&quot;<br>to:<br>CONN_TYPE=DSN<br>CONNECTION_STRING=Sample_ORA<br>CONNECTION_USERNAME=uid=sample<br>CONNECTION_PASSWORD=pwd=oracle</li></ol>
+<h2>Converting the database to Oracle 8i</h2>
+<ol>
+  <li>Browse&nbsp;to 
+  <strong>\ORA_WORKBENCH\0mwb\msaccess_exporter</strong>   
+  <li>Double-click&nbsp;on mwb2000.mde 
+  <li>Enter <a href="file:///c:/inetpub/wwwroot/chemoffice/sample_ora/database/sample.mdb">c:\inetpub\wwwroot\chemoffice\sample_ora\database\sample.mdb</a> 
+  for the mdb file.c 
+  <li> Click OK. The xml field is saved to the same directory. 
+  <li>Next&nbsp;select <strong>Migration Workbench</strong> 
+  from <strong>Start/ORAHOME91/Configuration</strong> and <strong>Migration 
+  tools/Migration Workbench</strong>       
+    . 
+  <li>Select&nbsp;<strong>Action/Capture Source 
+  Database</strong>   . 
+  <li>Click <strong>Microsoft Access</strong>   from the list when presented. 
+  <li>Click <strong>Next</strong> in the <strong>Capture 
+  Wizard Welcome Screen</strong>       . 
+  <li>Click <strong>Add XML file</strong>    and locate the xml file<a href="file:///c:/inetpub/wwwroot/chemoffice/sample_ora/database/sample.mdb"> 
+  <br> 
+  \inetpub\wwwroot\chemoffice\sample_ora\database\sample.xml)</a> 
+  <li>Click <strong>Next</strong>. Use the System/Manager account or an account that has DBA privileges 
+  when prompted.&nbsp; For the remainder of the wizard screen(s) take all the 
+  defaults presented. Their are two wizards one that converts the database 
+  objects and one that creates the schema and imports the data.&nbsp; Follow the 
+  defaults for both. 
+  <li>For the Name of the schema and password enter &quot;Sample&quot; and &quot;Oracle&quot; without the quotes 
+  respectively. </li></ol>
+<a name="DSN"></a><h2>Create a DSN for the sample_ora</h2>
+<ol>
+  <li>Select&nbsp;<strong>Start/ORAHOME91/Configuration 
+  </strong>and <strong>Migration tools/Microsoft ODBC Adminstrator</strong>     
+   . 
+  <li>Click the <strong>System DSN</strong>   Tab. 
+  <li>Click <strong>ADD</strong> . 
+  <li>Select&nbsp;<strong>Microsoft ODBC for 
+  Oracle</strong>    . 
+  <li>In Datasource Name enter &quot;Sample_ORA&quot; without the quotes. 
+  <li>In User Name enter &quot;Sample&quot; without the quotes. 
+  <li>In Server enter the name of the service for the oracle instance you 
+  installed to. 
+  <li>Click <strong>OK</strong> . </li></ol>
+<h2>Edit the chemoffice.asp page</h2>
+<ol><li>Open the inetpub/wwwroot/chemoffice.asp page
+<li>Locate&nbsp; the following:
+  <p></p>
+<p>&lt;TR&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;TD&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&lt;Ahref=&quot;/sample/default.asp?formgroup=base_form_group&amp;amp;dbname=sample&quot;&gt;Sample&lt;/a&gt;&lt;/b&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/TD&gt;<br>&lt;/TR&gt;</p>
+  <li>
+  <p>Select copy, then paste below the text below.</p>
+  <li>
+  <p>Change the pasted text to the following:</p>
+<p>&lt;TR&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;TD&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&lt;Ahref=&quot;/sample_ora/default.asp?formgroup=base_form_group&amp;amp;dbname=sample&quot;&gt;Sample_ORA&lt;/a&gt;&lt;/b&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/TD&gt;<br>&lt;/TR&gt;</p></li></ol>
+<p>&nbsp;</p>
+<p>That should be it. You can click the link from the chemoffice.asp page and be 
+up and running with an Oracle back end database. To have this schema available 
+to BioSAR, grant&nbsp; select on all tables to the BIOSAR_BROWSER_ADMIN 
+ROLE&nbsp;</p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

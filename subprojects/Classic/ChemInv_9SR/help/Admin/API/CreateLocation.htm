@@ -1,0 +1,94 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<br>
+<br>
+<h1>CreateLocation</h1>
+<p>Creates a new location and returns its Location_ID</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/CreateLocation.asp?ParentID=adNumeric&amp;LocationName=adVarChar(128)[&amp;Barcode=adVarChar(4000)&amp;LocationDesc=adVarChar(255)&amp;LocationTypeID=adNumericGridFormatID=adNumeric&amp;PlateTypeList=adVarChar&amp;LocationOwnerID=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<h5 class="param">ParentID</h5>
+<p class="param">The Location_ID value of the parent location.</p>
+<h5 class="param">LocationName</h5> 
+<p class="param">The name of the location.</p>
+<h5 class="param">[Barcode]</h5>
+<p class="param">A unique alphanumerical identifier used to produce a location barcode.</p>
+<h5 class="param">[LocationDesc]</h5>
+<p class="param">A description of the location.</p>
+<h5 class="param">[LocationTypeID]</h5>
+<p class="param">A Type_ID value describing the type of 
+location.&nbsp; Use ShowLocationTypes to see valid Type_ID values.&nbsp; </p>
+<h5 class="param">[GridFormatID]</h5>
+<p class="param">The ID associated with the Grid Format for the location.&nbsp; 
+Grid Formats allow the user to create sublocations for the location during 
+creation.&nbsp;</p>
+<h5 class="param">[PlateTypeList]</h5>
+<p class="param">A list of the plate types allowed to reside in the new 
+location.&nbsp; Plate&nbsp;types are separated by a comma.&nbsp;</p>
+<h5 class="param">[LocationOwnerID]</h5>
+<p class="param">The ID, associated with a particular user or owner,&nbsp;for the 
+location being created.&nbsp;</p>
+<h3 class="param">Outputs</h3>
+<p class="param">&nbsp;</p>
+<h3 class="param">Example</h3>
+<p class="param">A user wants to create a location named 
+&quot;Fridge&quot; which is in Lab5 (ID=121).&nbsp;</p>
+<pre class="param">/cheminv/api/CreateLocation.asp?ParentID=121&amp;LocationName=Fridge</pre>
+<p class="param">       
+
+<h3><font size="3"></font>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

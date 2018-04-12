@@ -1,0 +1,3 @@
+This is the reg code for RPT report writer.  It should be entered via the Reports.exe program if not already there.
+
+RPT15126

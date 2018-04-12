@@ -1,0 +1,185 @@
+<ServerComputer>BASHFUL</ServerComputer>
+<UserID>t5_85</UserID>
+<Password>t5_85</Password>
+<DatabaseInput>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Documents and Settings\emanganelli.CAMSOFT\Desktop\SDF dbs\57_hits.mdb</DatabaseInput>
+<DatabaseOutput>BASHFUL</DatabaseOutput>
+<InputTables>
+<Items>
+<MolTable>0</MolTable>
+</Items>
+<CurSel>0</CurSel>
+</InputTables>
+<OutputTables>
+<Items>
+<TEMPORARY_STRUCTURES>0</TEMPORARY_STRUCTURES>
+</Items>
+<CurSel>0</CurSel>
+</OutputTables>
+<InputFields>
+<Items>
+<ALT_IDS_ALL>0</ALT_IDS_ALL>
+<BATCHES>1</BATCHES>
+<cpd_internal_id>2</cpd_internal_id>
+<Mol_ID>3</Mol_ID>
+<REG_ID>4</REG_ID>
+<Registration Number>5</Registration Number>
+<Sequence Number>6</Sequence Number>
+<Structure>7</Structure>
+</Items>
+<CurSel>6</CurSel>
+</InputFields>
+<OutputFields>
+<Items>
+<13CNMR>0</13CNMR>
+<1HNMR>1</1HNMR>
+<APPEARANCE>2</APPEARANCE>
+<BATCH COMMENT>3</BATCH COMMENT>
+<BP>4</BP>
+<CAS NO>5</CAS NO>
+<CHEMICAL NAME>6</CHEMICAL NAME>
+<CHEMIST>7</CHEMIST>
+<CHN>8</CHN>
+<COLOR>9</COLOR>
+<CREATION DATE>10</CREATION DATE>
+<EQUIVALENTS (SALT)>11</EQUIVALENTS (SALT)>
+<EQUIVALENTS (SOLVATE)>12</EQUIVALENTS (SOLVATE)>
+<FIA/MS>13</FIA/MS>
+<FLASH POINT>14</FLASH POINT>
+<GC>15</GC>
+<HPLC>16</HPLC>
+<IR>17</IR>
+<LC/UV/MS>18</LC/UV/MS>
+<LOGD>19</LOGD>
+<MF TEXT>20</MF TEXT>
+<MP>21</MP>
+<MW>22</MW>
+<NOTEBOOK>23</NOTEBOOK>
+<OPTICAL ROTATION>24</OPTICAL ROTATION>
+<PAGE>25</PAGE>
+<PHYSICAL FORM>26</PHYSICAL FORM>
+<PREFIX>27</PREFIX>
+<PREPARATION>28</PREPARATION>
+<PROJECT>29</PROJECT>
+<PURITY>30</PURITY>
+<REFERENCE AND VENDOR DATA>31</REFERENCE AND VENDOR DATA>
+<REFRACTIVE INDEX>32</REFRACTIVE INDEX>
+<SALT NAME>33</SALT NAME>
+<SOLUBILITY>34</SOLUBILITY>
+<SOLVATE NAME>35</SOLVATE NAME>
+<STORAGE REQUIREMENTS AND WARNINGS>36</STORAGE REQUIREMENTS AND WARNINGS>
+<STRUCTURE>37</STRUCTURE>
+<STRUCTURE/STEREOCHEMISTRY COMMENT>38</STRUCTURE/STEREOCHEMISTRY COMMENT>
+<SUBMITTED AMOUNT>39</SUBMITTED AMOUNT>
+<SYNONYM>40</SYNONYM>
+<UNITS>41</UNITS>
+<UV>42</UV>
+</Items>
+<CurSel>39</CurSel>
+</OutputFields>
+<Duplicate>
+<Items>
+<Add Duplicate to Temp Table>0</Add Duplicate to Temp Table>
+<Add New Batch to Registered Compound>1</Add New Batch to Registered Compound>
+<Add New Compound>2</Add New Compound>
+<Ignore Compound>3</Ignore Compound>
+</Items>
+<CurSel>0</CurSel>
+</Duplicate>
+<BatchProjects>
+<Items>
+<unspecified>0</unspecified>
+</Items>
+<CurSel>0</CurSel>
+</BatchProjects>
+<CompoundType>
+<Items>
+<no_comment>0</no_comment>
+<no_structure>1</no_structure>
+</Items>
+<CurSel>0</CurSel>
+</CompoundType>
+<NoteBook>
+<Items>
+<unspecified>0</unspecified>
+</Items>
+<CurSel>0</CurSel>
+</NoteBook>
+<Salt>
+<Items>
+<no_salt>0</no_salt>
+</Items>
+<CurSel>0</CurSel>
+</Salt>
+<Project>
+<Items>
+<unspecified>0</unspecified>
+</Items>
+<CurSel>0</CurSel>
+</Project>
+<Sequence>
+<Items>
+<AB>0</AB>
+</Items>
+<CurSel>0</CurSel>
+</Sequence>
+<Scientist>
+<Items>
+<login_disabled>0</login_disabled>
+<LJB>1</LJB>
+<INVBROWSER>2</INVBROWSER>
+<INVCHEMIST>3</INVCHEMIST>
+<INVRECEIVING>4</INVRECEIVING>
+<INVFINANCE>5</INVFINANCE>
+<INVREGISTRAR>6</INVREGISTRAR>
+<INVADMIN>7</INVADMIN>
+<EAM>8</EAM>
+<DAN>9</DAN>
+<MJS>10</MJS>
+<DJP>11</DJP>
+<SYAN>12</SYAN>
+<CULOT>13</CULOT>
+<CSSUSER>14</CSSUSER>
+<CSSADMIN>15</CSSADMIN>
+<T1_84>16</T1_84>
+<T2_84>17</T2_84>
+<T3_84>18</T3_84>
+<T4_84>19</T4_84>
+<T5_84>20</T5_84>
+<T6_84>21</T6_84>
+<T1_85>22</T1_85>
+<T2_85>23</T2_85>
+<T3_85>24</T3_85>
+<T4_85>25</T4_85>
+<T5_85>26</T5_85>
+<T6_85>27</T6_85>
+<BIOSAR_ADMIN>28</BIOSAR_ADMIN>
+<BIOSAR_USER_ADMIN>29</BIOSAR_USER_ADMIN>
+<BIOSAR_USER>30</BIOSAR_USER>
+<BIOSAR_USER_BROWSER>31</BIOSAR_USER_BROWSER>
+</Items>
+<CurSel>0</CurSel>
+</Scientist>
+<LookupPreferences>COMPOUND_TYPE:SHOW:Structure/Stereochemistry Comment,NOTEBOOKS:HIDE:,SALTS:HIDE:,SOLVATES:HIDE:,PROJECTS:SHOW:Project,BATCH_PROJECTS:HIDE:Project,SEQUENCE:SHOW:Prefix,SCIENTIST_ID:SHOW:Chemist</LookupPreferences>
+<TempTableOnly>0</TempTableOnly>
+<IndexPair>
+<ixinTable>0</ixinTable>
+<ixotTable>0</ixotTable>
+<ixinField>3</ixinField>
+<ixotField>37</ixotField>
+<inTable>MolTable</inTable>
+<otTable>TEMPORARY_STRUCTURES</otTable>
+<inField>Mol_ID</inField>
+<otField>STRUCTURE</otField>
+<otRealField>STRUCTURE</otRealField>
+</IndexPair>
+<IndexPair>
+<ixinTable>0</ixinTable>
+<ixotTable>0</ixotTable>
+<ixinField>6</ixinField>
+<ixotField>39</ixotField>
+<inTable>MolTable</inTable>
+<otTable>TEMPORARY_STRUCTURES</otTable>
+<inField>Sequence Number</inField>
+<otField>SUBMITTED AMOUNT</otField>
+<otRealField>AMOUNT</otRealField>
+</IndexPair>

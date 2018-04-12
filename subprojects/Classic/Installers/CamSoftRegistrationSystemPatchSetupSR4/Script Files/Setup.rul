@@ -1,0 +1,163 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+#define EXAMPLE1 "cfserver"    
+#define EXAMPLE2 "reg"        
+
+
+
+// Full names of Config files.
+
+#define EXAMPLE1_INI IISROOTFOLDER^"ChemOffice\\Chem_Reg\\Config\\" + EXAMPLE1 + ".ini" 
+#define EXAMPLE2_INI IISROOTFOLDER^"ChemOffice\\Chem_Reg\\Config\\" + EXAMPLE2 + ".ini"
+#define MOVEFILE_REPLACE_EXISTING 0x00000001
+#define MOVEFILE_COPY_ALLOWED 0x00000002
+#define MOVEFILE_DELAY_UNTIL_REBOOT 0x00000004
+#define MOVEFILE_WRITE_THROUGH 0x00000008
+
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+
+    // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND);   
+    export prototype LaunchReadMe(HWND);    
+    export prototype RenameFolder(HWND);    
+    export prototype MoveFolder(HWND);
+
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.
+begin   
+if (ConfigFileLoad (EXAMPLE1_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE1_INI + ".", SEVERE);
+
+        abort;
+
+ endif;        
+    
+    if (ConfigFileSave ("cfserver_ini_Pre_90SR3_back" + ".*") < 0) then
+
+       MessageBox ("Unable to backup " + EXAMPLE1_INI + ".", SEVERE);
+
+       // abort;
+
+   // else
+   //    MessageBox (EXAMPLE1_INI + " backed up.",INFORMATION);
+    endif;   
+    
+    if (ConfigFileLoad (EXAMPLE2_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE2_INI + ".", SEVERE);
+
+       // abort;
+
+    endif;        
+    
+    if (ConfigFileSave ("reg_ini_Pre_90SR3_back" + ".*") < 0) then
+
+       MessageBox ("Unable to backup " + EXAMPLE2_INI + ".", SEVERE);
+
+        //abort;
+
+    //else
+    //  MessageBox (EXAMPLE2_INI + " backed up.",INFORMATION);
+
+    endif;        
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+ 
+end;
+ function LaunchReadMe(hMSI)
+  string szSetUpDir;
+ number nBuffer;
+ begin
+   MsiGetProperty(ISMSI_HANDLE,"SETUPEXEDIR", szSetUpDir, nBuffer);
+   LaunchAppAndWait(SystemFolder^"NotePad.exe", szSetUpDir^"ReadMe.txt",WAIT);
+                
+end;  
+ 
+prototype BOOL Kernel32.MoveFile (BYVAL STRING, BYVAL STRING);  //Windows API prototype
+function RenameFolder(hMSI)
+  BOOL bResult;
+         STRING szFolderSearchCustom, szFolderSearch, szOldName, szNewNameCustom, szNewName, szOldNameCustom;                                  
+         number nBuff;
+
+    begin 
+	MsiGetProperty(ISMSI_HANDLE, "CHEMREGFOLDERSEARCH", szFolderSearch, nBuff);
+	//MsiGetProperty(ISMSI_HANDLE, "CUSTOMFOLDERSEARCH", szFolderSearchCustom, nBuff);
+	//MessageBox(szOldName, INFORMATION);
+    szOldName = IISROOTFOLDER^"ChemOffice\\Chem_Reg\\reg"; // This folder must already exist.
+    szNewName = IISROOTFOLDER^"ChemOffice\\Chem_Reg\\reg_backup"; // This folder must not already exist.
+   // szOldNameCustom = IISROOTFOLDER^"ChemOffice\\Chem_Reg\\Custom"; // This folder must already exist.
+   // szNewNameCustom = IISROOTFOLDER^"ChemOffice\\Chem_Reg\\Custom_9SR2";
+    if(szFolderSearch = "false") > 0 then
+    	//MessageBox("FolderNotFound",INFORMATION);
+    	bResult = MoveFile (szOldName, szNewName); 
+    endif;	
+   // if(szFolderSearchCustom = "false") > 0 then
+    //	MoveFile(szOldNameCustom, szNewNameCustom);
+   // endif;	
+    //if (bResult) then
+    //    MessageBox ("MoveFile successfully renamed the folder.", INFORMATION);
+         //else
+        //      MessageBox ("MoveFile failed to rename the folder.", SEVERE);
+   // endif;
+    end;                      
+    
+    //prototype BOOL kernel32.MoveFileEx(BYVAL STRING, BYVAL STRING, BYVAL NUMBER);
+    function MoveFolder (hMSI)
+    BOOL bResult ;  
+    string szTargetDir, szSrcDir;
+    begin                        
+    szTargetDir=IISROOTFOLDER;
+    szSrcDir=IISROOTFOLDER^"ChemOffice\\Chem_Reg\\PyEngine";
+    //CreateDir(
+    bResult=MoveFile(IISROOTFOLDER^"ChemOffice\\Chem_Reg\\PyEngine", IISROOTFOLDER^"PyEngine");
+   // MessageBox(IISROOTFOLDER^"ChemOffice\\Chem_Reg\\PyEngine" +  IISROOTFOLDER, INFORMATION);
+    end;

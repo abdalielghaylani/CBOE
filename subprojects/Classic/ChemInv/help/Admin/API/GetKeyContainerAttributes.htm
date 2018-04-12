@@ -1,0 +1,153 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;
+<h1>GetKeyContainerAttributes</h1><p>          
+               <span lang="en-us">Allows you to determine the key attributes of 
+				a particular </span>container<span lang="en-us">.</span></p><h3>Syntax</h3><pre>/cheminv/api/GetKeyContainerAttributes.asp?ContainerID=adV<span lang="en-us">Numeric</span>&amp;ContainerBarcode=adVarChar</pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="57"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="146"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="45"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Database 
+		Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the </span>ID&nbsp;<span lang="en-us">of 
+		the container, whose key attributes are to be determined</span>.&nbsp; </td>
+		<td width="57">&nbsp;</td>
+		<td width="146">Y<span lang="en-us">,</span> if ContainerBarcode is not 
+		provided.</td>
+		<td width="45"><span lang="en-us">INV_CONTAINERS</span></td>
+		<td>CONTAINER_ID</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerBarcode</td>
+		<td width="97">adVarChar</td>
+		<td width="298"><span lang="en-us">Specifies the barcode of the 
+		container, whose key attributes are to be determined. </span></td>
+		<td width="57">&nbsp;</td>
+		<td width="146">Y<span lang="en-us">, </span>if ContainerID is not 
+		provided.</td>
+		<td width="45"><span lang="en-us">INV_CONTAINERS</span></td>
+		<td>BARCODE</td>
+	</tr>
+</table>
+
+<h3>Outputs</h3>
+<table border="1" width="95%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="364"><b><span lang="en-us">
+		Description</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="97">adNumeric</td>
+		<td width="364">Specifies the unique <span lang="en-us">I</span>D&nbsp;of the container.</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerBarcode</td>
+		<td width="97">adVarChar</td>
+		<td width="364">Specifies the unique barcode of the container. </td>
+	</tr>
+	<tr>
+		<td width="117">CurrentUser</td>
+		<td width="97">adVarChar</td>
+		<td width="364">Specifies the current user of the container.</td>
+	</tr>
+	<tr>
+		<td width="117">UOM</td>
+		<td width="97">adVarChar</td>
+		<td width="364">Specifies the unit of measurement for the contents of 
+		the container.</td>
+	</tr>
+	<tr>
+		<td width="117">QtyRemaining</td>
+		<td width="97"><span lang="en-us">a</span>dNumeric</td>
+		<td width="364">Specifies the quantity of the container contents.</td>
+	</tr>
+	<tr>
+		<td width="117">Path</td>
+		<td width="97">adVarChar</td>
+		<td width="364">Specifies the location of the container.</td>
+	</tr>
+</table>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code allows you to view the key attributes 
+of a container with ID</span>&nbsp;<span lang="en-us">C111:</span></p><pre>/cheminv/api/GetKeyContainerAttributes.asp?ContainerID=C111</pre><p>
+<span lang="en-us">The following code allows you to view the key attributes of a 
+container with barcode</span>&nbsp;C8BGT17<span lang="en-us">:</span></p><pre>/cheminv/api/GetKeyContainerAttributes.asp?ContainerBarcode=C8BGT17</pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+
+csChFnd70/01090317142D
+
+  5  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4248    0.0001    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    2.0999    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    1.4000    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  1  0  0  0  0
+  2  4  1  0  0  0  0
+  2  5  1  0  0  0  0
+M  END
+>  <Compound_ID_FK> (1)
+2001
+ 
+>  <CONTAINER_ID> (1)
+438
+
+>  <CONTAINER_NAME> (1)
+Chloroform
+
+>  <LOCATION_ID_FK> (1)
+1003
+
+>  <BARCODE> (1)
+438
+
+>  <PURITY> (1)
+99.5
+
+>  <CONCENTRATION> (1)
+
+>  <GRADE> (1)
+ACS
+
+>  <SOLVENT> (1)
+
+>  <QTY_MAX> (1)
+4
+
+>  <QTY_REMAINING> (1)
+4
+
+>  <QTY_AVAILABLE> (1)
+4
+
+>  <CONTAINER_TYPE_ID_FK> (1)
+1
+
+>  <CONTAINER_STATUS_ID_FK> (1)
+9
+
+>  <OWNER_ID_FK> (1)
+System
+
+>  <CURRENT_USER_ID_FK> (1)
+INVADMIN
+
+>  <SUPPLIER_CATNUM> (1)
+C-384758
+
+>  <SUPPLIER_ID_FK> (1)
+131
+
+>  <LOT_NUM> (1)
+H398
+
+>  <CONTAINER_COST> (1)
+38
+
+>  <UNIT_OF_MEAS_ID_FK> (1)
+2
+
+>  <UNIT_OF_CONC_ID_FK> (1)
+14
+
+>  <UNIT_OF_PURITY_ID_FK> (1)
+12
+
+>  <CONTAINER_COMMENTS> (1)
+
+>  <ORDERED_BY_ID_FK> (1)
+
+>  <DATE_EXPIRES> (1)
+3/12/2004
+
+>  <DATE_ORDERED> (1)
+
+>  <DATE_RECEIVED> (1)
+3/12/2002
+
+>  <PO_NUMBER> (1)
+
+>  <REQ_NUMBER> (1)
+
+>  <FIELD_1> (1)
+
+>  <FIELD_2> (1)
+
+>  <FIELD_3> (1)
+
+>  <FIELD_4> (1)
+
+>  <FIELD_5> (1)
+
+>  <FIELD_6> (1)
+
+>  <FIELD_7> (1)
+
+>  <FIELD_8> (1)
+
+>  <FIELD_9> (1)
+
+>  <FIELD_10> (1)
+
+>  <DATE_1> (1)
+
+>  <DATE_2> (1)
+
+>  <DATE_3> (1)
+
+>  <DATE_4> (1)
+
+>  <DATE_5> (1)
+
+>  <PO_LINE_NUMBER> (1)
+
+>  <DENSITY> (1)
+
+>  <UNIT_OF_DENSITY_ID_FK> (1)
+
+>  <INV_LOCATIONS> (1)
+>  <INV_COMPOUNDS> (1)
+>  <INV_SYNONYMS> (1)
+ 
+ 
+$$$$

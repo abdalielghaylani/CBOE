@@ -1,0 +1,141 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference --</title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+-->
+</style>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">ExcludeContainerTypes</span></h1><p>Excludes certain 
+types of containers from a given location.</p><h3>Syntax</h3>
+<pre>/cheminv/api/<span lang="en-us">ExcludeContainerTypes</span>.asp?LocationID=adNumeric<span lang="en-us">[&amp;</span>ContainerTypeIDList<span lang="en-us">=</span>adVarChar<span lang="en-us">&amp;</span>AllowContainers<span lang="en-us">=</span>adVarChar<span lang="en-us">]</span></pre>
+<h3><span lang="en-us">In</span>puts<span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></h3>
+<table border="1" width="118%" height="88">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center" height="42"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center" height="42"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298" height="42"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92" height="42"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70" height="42"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" height="42"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center" height="42"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		LocationID</td>
+		<td width="97" height="38">
+		adNumeric</td>
+		<td width="298" height="38">
+		Specifies the ID of the location.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		Y</td>
+		<td height="38">
+		<span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92" height="38">LOCATION_ID</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		ContainerTypeIDList</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Specifies a comma delimited list of IDs of the container types to be 
+		excluded from the location.</td>
+		<td width="92" height="38">
+		&nbsp;</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_CONTAINERS</span></td>
+		<td width="92" height="38">CONTAINER_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117" height="38">
+		AllowContainers</td>
+		<td width="97" height="38">
+		adVarChar</td>
+		<td width="298" height="38">
+		Indicates whether the location can store only locations or containers 
+		can also be stored in it. The location can store containers if the 
+		Allo<span lang="en-us">w</span>Containers parameter is set to 1, otherwise the location can store 
+		only locations. </td>
+		<td width="92" height="38">
+		0 | 1</td>
+		<td width="70" align="center" height="38">
+		N</td>
+		<td height="38">
+		<span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92" height="38">ALLOWS_CONTAINERS</td>
+	</tr>
+	</table>
+<h3><span lang="en-us">O</span>utput</h3>
+<p>None.</p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code excludes container types with ID 6, 9, 
+and 12 from the location with ID 1013:</span></p>
+<pre>/cheminv/api/<span lang="en-us">ExcludeContainerTypes</span>.asp?LocationID=<span lang="en-us">1013[&amp;</span>ContainerTypeIDList<span lang="en-us">=6,9,12&amp;</span>AllowContainers<span lang="en-us">=1]</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

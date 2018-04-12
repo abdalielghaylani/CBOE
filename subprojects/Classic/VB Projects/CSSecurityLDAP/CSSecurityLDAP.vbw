@@ -1,0 +1,5 @@
+LDAPAuthenticator = 66, 66, 725, 448, 
+LDAPCOM = 154, 154, 701, 592, 
+LDAPQuery = 176, 176, 723, 614, 
+LDAPResults = 132, 132, 679, 570, 
+LDAPServer = 0, 0, 0, 0, C

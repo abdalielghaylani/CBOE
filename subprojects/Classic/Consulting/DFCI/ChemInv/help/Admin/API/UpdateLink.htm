@@ -1,0 +1,182 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>UpdateLink</h1><p>          
+                         
+            
+               
+                            
+                        
+           Updates 
+<span lang="en-us">the attributes of a</span> link<span lang="en-us">, such as 
+			URL, link text, or image source</span>.</p><h3>Syntax</h3> <pre>/cheminv/api/UpdateLink.asp?FK_Value=adVarChar&amp;FK_Name=adVarChar&amp;Table_name=adVarChar[&amp;URLID=Int&amp;URLHref=adVarChar&amp;ImageSource=adVarChar&amp;LinkText=adVarChar]<font>        </font></pre>
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Database 
+		Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">URLID</td>
+		<td width="97">adInteger</td>
+		<td width="298">Specifies the ID of the link<span lang="en-us"> to be 
+		updated</span>.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td>URL_ID</td>
+	</tr>
+	<tr>
+		<td width="117">FK_Name</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the
+		field that uniquely identifies the row with 
+		which the link is <span lang="en-us">to be </span>associated.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">FK_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">FK_Value</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the value 
+		of the <span lang="en-us">field specified in the </span>FK_Name
+		parameter.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">FK_VALUE</td>
+	</tr>
+	<tr>
+		<td width="117">Table_name</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the table 
+		name that contains the row with which the link is <span lang="en-us">to 
+		be </span>associated.
+		</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">TABLE_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">URLHref</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the
+		URL of the link. </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">URL</td>
+	</tr>
+	<tr>
+		<td width="117">URLType</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the type of the URL.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">
+		<span style="font-size: 11.0pt; font-family: Garamond">N</span></td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">URL_TYPE</td>
+	</tr>
+	<tr>
+		<td width="117">LinkText</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the text 
+		for the link. If no text is specified, the link text
+		is set to the URL of the
+		link.&nbsp;</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">LINK_TXT</td>
+	</tr>
+	<tr>
+		<td width="117">ImageSource</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the path of the GIF or JPEG image to be used 
+		for the link.&nbsp;</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV</span>_URL</td>
+		<td width="92">IMAGE_SRC</td>
+	</tr>
+	</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">The ID of the updated link. This ID is stored in the URLID parameter, the data type of which is 
+adNumeric.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code updates the LinkText parameter of an 
+already created link:</span></p><pre>/cheminv/api/UpdateLink.asp?FK_Value=<span lang="en-us" style="background-color: #FFFFFF">1500</span>&amp;FK_Name=<span lang="en-us">CONTAINER</span>_<span style="background-color: #FFFFFF" lang="en-us">ID</span>&amp;Table_name=INV_<span lang="en-us">CONTAINERS</span>[<span lang="en-us">&amp;</span>LinkText=<span lang="en-us">&quot;Search Engine&quot;</span>]</pre>  
+<pre></pre>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

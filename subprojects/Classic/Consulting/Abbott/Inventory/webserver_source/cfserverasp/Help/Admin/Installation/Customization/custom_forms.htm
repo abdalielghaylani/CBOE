@@ -1,0 +1,196 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Customizing WebServer Application Forms</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<h1>Customizing WebServer Application Forms</h1>
+<p>WebServer applications created using the Administrative Tools Wizard, use 
+the default options&nbsp;to display&nbsp;form fields.&nbsp; These 
+fields&nbsp;can appear in many different ways.&nbsp;The&nbsp;showinputfield and 
+ShowResult functions in the form ASP pages indicate how a field should be 
+displayed.&nbsp;</p>
+
+<p>This is not valid for&nbsp;Registration System&nbsp;or&nbsp;Inventory Manager,&nbsp;which 
+use alternate ways to format the forms.&nbsp; Please see the application's Admin Guide for 
+more details.</p>
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<h2>ShowInputField and ShowResult</h2>
+<p>ShowInputField (for search forms) and ShowResult (for result 
+forms)&nbsp;are used in each application form ASP pages to define how a field 
+should be displayed.&nbsp; To find the appropriate field entry:</p>
+<ol><li>Open the ASP page defining the form you want to 
+  change.
+  <li>Find the line&nbsp;starting with <a href="#ShowInputField">%ShowInputField</a> (for search forms)&nbsp;or <a href="#ShowResult">%ShowResult</a>       
+    (for result forms)&nbsp;and includes the field 
+  name as one of the inputs.</li></ol>
+<h3> Syntax </h3>
+<p>The syntax for any field entry 
+is:<br><strong>   
+ %ShowInputField dbkey,formgroup,TableName.&lt;FieldName&gt;,&lt;Input Field&gt;,&lt;Option&gt; [; &lt;Display Field&gt; : 
+&lt;Option&gt;]</strong><br>The Display Field option is optional.&nbsp; So, the syntax for 
+a field with no Display Field Option (defaults to TEXT)&nbsp;is:<br><strong>  
+  %ShowInputField dbkey,formgroup,TableName.&lt;FieldName&gt;,&lt;Input Field&gt;,&lt;Option&gt;</strong></p>
+<p>Each Input Field types have their own Display Field options.&nbsp; Please see 
+below for more details about each type of field.</p>
+<p>Please do not change the Fieldnames or add or remove any of the items in the 
+list. If you see NOT CONFIGURABLE next to the field this means&nbsp;the 
+field&nbsp;is not configurable.</p>
+<p>For more information about another parameter in this 
+statement, please see the documentation for <a href="functions/ShowInputField.htm">ShowInputField</a> or <a href="functions/ShowResult.htm">ShowResult</a>                
+            
+  .</p>
+<a name="ShowInputField"></a><h3>ShowInputField Options </h3>
+<p>The ShowInputFields function allows the following types of fields:</p>
+<ul><li><a href="#text">TEXT </a>
+  <li><a href="#checkbox">CHECKBOX </a>
+  <li>TEXTAREA
+  <li><a href="#picklist">PICKLIST</a></li></ul>
+<a name="ShowResult"></a><h3>ShowResult Options</h3>
+<p>The ShowResults function allows the following types of fields:</p>
+<ul>
+  <li><a href="#text">TEXT</a> 
+  <li><a href="#checkbox">CHECKBOX&nbsp;</a> 
+  <li><a href="#hyperlink">HYPERLINK</a>
+  <li><a href="#picklist">PICKLIST</a>&nbsp;(only seen this way in Edit mode) 
+  <li>FORMULA (formatted with subscripted numbers)</li></ul>
+<a name="text"></a><h2>TEXT Options</h2>
+<p>TEXT fields can have a validate option associated with it.&nbsp; Validate 
+options indicate that after a user enters something in the field, the 
+application checks to see if what was entered is in the correct format.&nbsp; 
+</p>
+<p>The following options are available:</p>
+<p>
+<table cellSpacing="2" cellPadding="2" width="75%" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Option</strong></td>
+    <td><strong>Description</strong></td></tr>
+  <tr>
+    <td>1</td>
+    <td>Valid Integer</td></tr>
+  <tr>
+    <td>2</td>
+    <td>Float</td></tr>
+  <tr>
+    <td>3</td>
+    <td>Positive Integer</td></tr>
+  <tr>
+    <td>5</td>
+    <td>Positive Float</td></tr>
+  <tr>
+    <td>8</td>
+    <td>Date in the form: mm/dd/yyyy</td></tr>
+  <tr>
+    <td>21</td>
+    <td>CAS Number</td></tr>
+  <tr>
+    <td>22</td>
+    <td>not empty</td></tr>
+  <tr>
+    <td>24</td>
+    <td>Formula</td></tr></table></p>
+<p>
+To make a default value appear in the textbox, add an 
+exclamation point (!) followed by the value to the field definition.&nbsp;</p>
+<a name="checkbox"></a><h2>CHECKBOX Options</h2>
+<p>The&nbsp;following are the&nbsp;two options for a 
+Checkbox field:</p>
+<p>
+<table cellSpacing="2" cellPadding="2" width="75%" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Option</strong></td>
+    <td><strong>Description</strong></td></tr>
+  <tr>
+    <td>0</td>
+    <td>Shows Raw Value</td></tr>
+  <tr>
+    <td>GIF</td>
+    <td>Shows a GIF with an X for values of &quot;&quot; or 0 and a CHECK for values of 
+    1</td></tr></table> </p>
+<a name="hyperlink"></a><h2>HYPERLINK Options</h2>
+<p>The format for Hyperlinks is HYPERLINK:Link_Type|Link_Name.&nbsp; </p>
+<ul>
+  <li>Link_Type is the type of the link (e.g. http, mailto, file, https, ftp) 
+  <li>Link_Name is the name that should be displayed for the link.&nbsp; If this 
+  is left blank, the full link is displayed.</li></ul>
+<p>The following shortcuts can also be used instead of the Link_Type|Link_Name 
+format:</p>
+<p>
+<table cellSpacing="2" cellPadding="2" width="75%" border="1">
+  
+  <tr style="COLOR: khaki" bgColor="darkblue">
+    <td><strong>Option</strong></td>
+    <td><strong>Description</strong></td></tr>
+  <tr>
+    <td>LINK</td>
+    <td>displays the working link as the link text. Adds http:// if 
+  missing</td></tr>
+  <tr>
+    <td>FULL</td>
+    <td>displays the full value in the field as link text. Add http:// if 
+      missing</td></tr></table> </p>
+<a name="picklist"></a><h2>PICKLIST Options</h2>
+<p> The picklist option consists of a list of items you want 
+in the listbox.&nbsp; Each item is separated by a pipe (|).&nbsp;&nbsp;The 
+default value (i.e. the value displayed in the listbox by default) is found at 
+the end of the list after an exclamation point (!).</p>
+<p>For example, if the picklist is a field called&nbsp;Names with the following 
+options: Jane, John, and Bill where John is the default value, the field 
+definition would look like this:</p>
+<p>&quot;Table.Names&quot;; &quot;Names&quot;; PICKLIST:Jane|Bill!John</p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

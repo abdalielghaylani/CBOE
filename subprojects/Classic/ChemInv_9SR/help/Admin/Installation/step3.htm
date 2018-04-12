@@ -1,0 +1,115 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Chemical Inventory User's Guide -- Installation</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><EM>ChemInventory</EM>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="step2.htm"><IMG height=16 alt=Previous src="../../../../webserver_source/cfserverasp/help/images/back.gif" width=16 border=0></A>
+<A href="installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../../webserver_source/cfserverasp/help/images/uplevel.gif" width=16 border=0 ></A>
+<A href="step4.htm"><IMG height=16 alt=Next src="../../../../webserver_source/cfserverasp/help/images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+<b> ChemInventory User's Guide</b>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>Creating the Chemical Inventory Database</h1>
+
+<p>
+<P><STRONG>Note</STRONG>: The sql scripts provided have been designed to be 
+executed with the command line version of SQL*Plus. This scripts contain 
+substitution variables which will not be proccessed correctly when run from 
+SQL*Plus Worksheet. The easiest way to&nbsp;execute the scripts with 
+SQL*Plus&nbsp;is to&nbsp;double click the provided command files. </P>
+<P><STRONG>Creating&nbsp;a Blank ChemInv Database</STRONG></P>
+<P>
+<OL>
+  <LI>Browse to 
+  &lt;webroot&gt;<STRONG>/cheminv/config/oracle_intall_scripts/create_blank_cheminv_db/ 
+  </STRONG>
+  <LI>Create&nbsp;the Database: 
+  <UL>
+    <LI><EM>If a previous version of ChemInv is installed </EM>
+    <OL>
+      <LI>Execute the <B>Drop_ChemInvDB.cmd </B>file. 
+      <LI>Execute the <B>Create_Blank_ChemInvDB.cmd </B>file. </LI></OL>
+    <LI><EM>If no previous version of ChemInv is installed </EM>
+    <OL>
+      <LI>Execute the <B>Create_Blank_ChemInvDB.cmd </B>file. </LI></OL></LI></UL>
+  <LI>Execute the <B>Import_ChemInvDB_PickLists.cmd </B>file. 
+  <LI>Use the ODBC Control Panel&nbsp;to&nbsp;create a 
+  system DSN 
+  <UL>
+    <LI>Open the ODBC&nbsp;Control Panel&nbsp; 
+    <UL>
+      <LI>NT4.0 Server: Located in control panel 
+      <LI>Windows 2000 Server:&nbsp;Start Menu &gt;Programs&gt;Administrative 
+      Tools&gt;Data Sources </LI></UL>
+    <LI>Select&nbsp; <B>System DSN</B> tab 
+    <LI>Click <B>Add</B> 
+    <LI>Double Click&nbsp;on <STRONG>Oracle ODBC Driver</STRONG> 
+    <LI>Fill in the following information:</FONT>
+    <UL>
+      <LI>Data Source Name: <B>Chem_Inv</B> 
+      <LI>Description: <B>Chem_Inv</B> 
+      <LI>Service Name: &lt;<B>Oracle Service Name&gt; </B>for your target 
+      database&nbsp;&nbsp;
+      <LI>User ID:&nbsp;cheminvdb2</LI></UL> </LI></UL>        </LI></OL>
+<P>&nbsp;<STRONG>Creating&nbsp;a&nbsp;Test ChemInv Database</STRONG></P>
+<P>A test ChemInv database is provided with the application to help users get 
+acquainted with the system without having to populate their own inventory 
+data.&nbsp;&nbsp;The procedure for importing the test&nbsp;ChemInv data 
+described below requires&nbsp;a preexisting ChemInv database schema.&nbsp; If no 
+ChemInv database exists on the sever follow&nbsp;the instructions above to 
+create a blank database before proceding.</P>
+<P>Note:&nbsp;Loading the test database will&nbsp;overwrite any 
+existing&nbsp;inventory data.&nbsp;&nbsp;Make&nbsp;sure to&nbsp;backup your 
+inventory database before proceding.&nbsp;</P>
+<OL>
+  <LI>Browse to 
+  <STRONG>/cheminv/config/oracle_intall_scripts/create_test_cheminv_db/ 
+</STRONG>
+  <UL>
+    <LI>execute the <STRONG>Create_Test_ChemInvDB.cmd </STRONG>file. 
+    <LI>execute the <STRONG>Import_Test_ChemInvDB.cmd </STRONG>file. </LI></UL>
+  <LI>Copy the mst and msi files from 
+  \chemInv\config\oracle_install_scripts\create_test_chemInv_db to 
+  the&nbsp;location specified by the STRUC_DB_PATH entry in the cheminv.ini file
+  <LI>Reset IIS.&nbsp; <EM>This should be done after importing a new 
+  database.</EM></LI></OL>
+<P><STRONG>Testing the ChemInv Database</STRONG></P>
+<OL>
+  <LI>Browse to <STRONG>/cheminv/config/.</STRONG> Open 
+  <STRONG>ChemInv.udl.&nbsp;&nbsp;</STRONG>Change the Data Source 
+  to match your&nbsp;Oracle service name. Set the password to "oracle". Click 
+  the Test Connection button 
+  <LI>Use the Oracle ODBC Test tool to verify connectivity to the database via 
+  the Chem_Inv DSN</LI></OL>
+<P>&nbsp;</P>
+<P><A href="step4.htm">Step 4: Setting up&nbsp;the Report 
+Writer&nbsp;</A></P>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+Global LockTime As Double
+
+
+
+
+
+Public Sub LockTheFile()
+Dim LockSemaphor As New WWWLock
+Dim starttime As Double
+Dim counted As Boolean
+
+counted = False
+Do While LockSemaphor.LockTheFile = False           'If cannot lock because already locked
+    If counted = False Then                         'If this is the first failure
+        If LockSemaphor.AddWaitCount = False Then   'Update dispaly to say you're waiting
+            TooBusy                                 'Give html message if at max locks
+        Else
+            counted = True                          'Mark variable that you've tried once
+        End If
+    End If
+    starttime = Timer                               'Mark "now"
+    Do Until Timer > (starttime + 1)                'Wait until one second has passed
+        DoEvents                                    'Let other apps do their stuff
+    Loop
+Loop
+LockTime = Timer                                    'Set *GLOBAL* variable for when started
+If counted = True Then LockSemaphor.SubWaitCount    'If you had been waiting, decrement
+                                                    '   display
+End Sub
+
+
+
+
+
+
+
+
+
+Public Sub UnlockTheFile()
+Dim LockSemaphor As New WWWLock
+
+If Timer < LockTime + 180 Then   'Check global variable; if too large than was probably stuck
+    LockSemaphor.UnlockTheFile
+End If
+
+End Sub
+
+
+
+
+
+
+
+
+Sub TooBusy()
+
+    Seek #CGI_OutputFN, 1    ' Rewind output file just in case
+    SendHeader
+    Send ("<HTML><HEAD>")
+    Send ("<TITLE>Too Busy</TITLE>")
+    Send ("</HEAD><BODY>")
+    Send ("<H2>Too Busy</H2>")
+    Send ("Sorry, there are too many people accessing the ChemFinder WebServer.")
+    Send ("Please try again in a few minutes.<p>")
+    Send ("If you had your own copy of ")
+    Send ("<a href=""http://www.camsoft.com/products/chemoffice/chemofficeultra.html"">ChemOffice ")
+    Send ("Ultra for Windows</a>, you would have your own copy of this ")
+    Send ("database and not have to worry about getting through.")
+    Send ("<p>")
+    Send (ResultsFooter)
+
+    Close #CGI_OutputFN
+
+    BusyLogFN = FreeFile
+    Open BusyLog For Append As BusyLogFN
+    Print #BusyLogFN, Date & " " & Time & Chr(9) & CGI_RemoteAddr
+    Close #BusyLogFN
+    '======
+     CleanAndEnd            ' Terminate the program
+    '======
+End Sub
+
+

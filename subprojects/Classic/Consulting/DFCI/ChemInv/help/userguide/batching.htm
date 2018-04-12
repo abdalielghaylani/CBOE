@@ -1,0 +1,197 @@
+<html>
+
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Batching</title>
+
+</head>
+
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>
+<span lang="en-us">Managing </span>Batching<span lang="en-us"> Fields</span></h1>
+<p>Batching is a feature in Inventory Enterprise that allows you to relate 
+containers based on <span lang="en-us">arbitrary </span>fields<span lang="en-us">, 
+including the custom fields</span>.<span lang="en-us"> The fields, based on which 
+containers are related, are called batching fields and a group of related 
+containers is called a batch.</span> All the containers in a particular batch 
+have the same batch id.</p>
+<p><span lang="en-us">Batching is controlled via a GUI interface, which facilitates searching, requesting, and reserving 
+of samples in batches. </span>After you have classified the containers into batches, you can search for containers 
+<span lang="en-us">in a particular batch</span>. For example, you can create batches based 
+on the status of the containers<span lang="en-us"> so that</span> the containers with status, 
+'available' will be in one batch while the containers with status, 'backordered 
+item' will be put in another batch. Therefore, later on you can easily search 
+for the <span lang="en-us">'</span>available<span lang="en-us">'</span> containers based on their status.</p>
+<p>Managing batching fields involves specifying the field/fields based on which the 
+containers are to be grouped in batches and updating the container details 
+thereafter.</p>
+<p>To manage batching fields:</p>
+<ol>
+	<li>Click the <b>Tasks</b> link within the <b>Inventory Enterprise</b> 
+	section in the home page of ChemOffice Enterprise. The <b>Administrative 
+	Menu</b> window appears:</li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_1.gif" width="477" height="364"></p>
+	<p><b>Note:</b> You can also access the Administrative Menu window by 
+	clicking the <b>Tasks</b> link in the menu bar of the Inventory Enterprise 
+	home page.</p>
+</blockquote>
+<ol start="2">
+	<li>Click the <b>Manage Batching Fields</b> link in the <b>Inventory 
+	Management</b> section. The <b>Manage Batching Fields</b> window appears:</li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_2.gif" width="590" height="260"></p>
+</blockquote>
+<ol start="3">
+	<li>Select <span lang="en-us"><b>CONTAINER_STATUS_ID_FK</b> </span>in the <b>Batching Field</b> 
+	<span lang="en-us"><b>1</b> </span>drop 
+	down list.</li>
+</ol>
+<blockquote>
+	<p><b>Note</b>: You can select up<span lang="en-us"> </span>to three columns 
+	as the batching fields.</p>
+</blockquote>
+<ol start="4">
+	<li>Type the display name of the selected batching fields in the <b>Display 
+	Name</b> text bo<span lang="en-us">x, as shown in the following figure:</span></li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/batching_2_2.gif" width="582" height="359"></p>
+</blockquote>
+<ol start="5">
+	<li><span lang="en-us">Click the <b>OK</b> button to display a window 
+	informing you that the batching fields have been updated.</span></li>
+	<li><span lang="en-us">Click the <b>OK</b> button to display the <b>
+	Administrative Menu</b> window.</span></li>
+	<li><span lang="en-us">Click the <b>Close</b> button to close the <b>
+	Administrative Menu</b> window.</span></li>
+	<li><span lang="en-us">Click the <b>Browse</b> link within the Inventory 
+	Enterprise section in the home page of ChemOffice Enterprise. The Inventory 
+	Enterprise home page appears:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_3.gif" width="603" height="375"></p>
+</blockquote>
+<ol start="9">
+	<li><span lang="en-us">Create a few containers, as shown in the following 
+	figure:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_4.gif" width="754" height="468"></p>
+	<p><span lang="en-us">For more information about creating containers, please 
+	see <a href="container_creating.htm">Creating a New Container</a>.</span></p>
+</blockquote>
+<ol start="10">
+	<li><span lang="en-us">Select the <b>Multi - Select</b> menu item from the
+	<b>View</b> menu in the menu bar of the Container List frame.</span></li>
+	<li><span lang="en-us">Select the first two containers, as shown in the 
+	following figure:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_5.gif" width="754" height="468"></p>
+</blockquote>
+<ol start="12">
+	<li><span lang="en-us">Select <b>Update Containers</b> from the <b>Update</b> 
+	menu in the Container Details frame. The <b>Update Inventory Container</b> 
+	window appears:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_6.gif" width="379" height="392"></p>
+</blockquote>
+<ol start="13">
+	<li><span lang="en-us">Select <b>Container Status</b> from the <b>Container 
+	Fields</b> list box.</span></li>
+	<li><span lang="en-us">Click the <b>OK</b> button. The following window 
+	appears:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_7.gif" width="542" height="400"></p>
+</blockquote>
+<ol start="15">
+	<li><span lang="en-us">Select <b>Backordered Item</b> in the <b>Container 
+	Status</b> drop down list.</span></li>
+	<li><span lang="en-us">Click the <b>OK</b> button to close the <b>Update 
+	Inventory Container</b> window.</span></li>
+	<li><span lang="en-us">Select <b>Column Chooser</b> from the <b>View</b> 
+	menu in the menu bar of the Container List frame. The following window 
+	appears:</span></li>
+</ol>
+<blockquote>
+	<p><img border="0" src="../images/batching_8.gif" width="421" height="360"></p>
+</blockquote>
+<ol start="18">
+	<li><span lang="en-us">Select <b>Status</b> in the <b>Available</b> list box 
+	and click the right arrow button to display it in the <b>Selected</b> list 
+	box.</span></li>
+	<li><span lang="en-us">Click the <b>Save</b> button to close the window and 
+	display the list of containers in the Inventory Enterprise home page.</span></li>
+	<li><span lang="en-us">Click all the containers one by one, and observe that 
+	the first two containers whose status is 'Backordered Item' are grouped into 
+	one batch (with the same batch id) whereas the remaining containers are 
+	grouped into a different batch because their status is 'Available'.<br>
+&nbsp;</span></li>
+</ol>
+<p>&nbsp;</p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->
+</body>
+
+</html>

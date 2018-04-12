@@ -1,0 +1,118 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>ChemOffice WebServer HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<p>
+<h1>Get_structure</h1>
+<p> Retrieves a       
+                 
+             
+        chemical structure 
+from a ChemOffice WebServer database and returns structure data in the requested format.</p>
+<p><strong><em>Note:</em></strong><font color="brown"> All 
+parameters can be passed either as Form (POST) or Querystring (GET) 
+data</font>.</p>
+<h3>Syntax</h3>
+<p class="syntax">&lt;ServerName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;_action.asp?<br>&nbsp;&nbsp;dbname=adVarChar&amp;dataaction=get_structure&amp;formgroup=adVarChar&amp;Table=adVarChar&amp;Field=adVarChar&amp;<br>&nbsp;&nbsp;&nbsp;DisplayType=adVarChar&amp;StrucID=adNumeric[&amp;width=adNumeric&amp;height=adNumeric]</p>
+<h3>Inputs</h3>
+
+<h5 class="param">dbName=<span class="paramvalues">&nbsp;&lt;DatabaseName&gt;</span></h5>
+<p class="param">            
+ The name of the dataview&nbsp;ini file for 
+the database being accessed.<br><em>Possible options</em> : reg (for Registration System), 
+cheminv (for Inventory Manager), chemacx, wdi, wda<br><em>Example</em>:<span style="mso-spacerun: yes">&nbsp; </span>dbname=            
+       chemacx</p>
+
+<h5 class="param">dataaction&nbsp;=<span class="paramvalues">&nbsp;get_structure</span></h5>
+<p class="param">Must be set equal to &quot;get_structure&quot;.</p>
+
+
+<h5 class="param">formgroup&nbsp;=<span class="paramvalues">&nbsp;&lt;formgroupName&gt;</span></h5>
+<p class="param">The name of a valid formgroup as defined in the applications ini 
+file, or dynamically defined via the metadata_directive options.</p>
+
+<h5 class="param"> Table=<span class="paramvalues">&nbsp;&nbsp;&lt;table_name&gt;&nbsp;</span></h5>
+<p class="param">The name of the table containing the unique 
+identifier associated with the structure to be fetched. <br><em>Note: </em>A valid ChemConnection to that table must exists 
+in the ini file<br><em>Example</em>: Table =             
+  Substance </p>
+
+<h5 class="param"> Field&nbsp;=<span class="paramvalues"> &nbsp;&lt;field_name&gt;</span></h5>
+<p class="param">The name of the structure field in the 
+associated ChemFinder form.<br>The fully qualified name of a structure 
+field&nbsp;(this field has a Base64cdx datatype).&nbsp;&nbsp;<br><em>Note</em>: The field name must 
+match the structure field name on the ChemFinder form.<br><em>Example</em>: Field =       
+   structure</p>
+<h5 class="param">DisplayType=<span class="paramvalues">&nbsp;cdx|gif|sizedgif</span></h5>
+<p class="param"> Determines the file type to be used when 
+saving the structure.&nbsp; When equal to sizedgif, a gif is 
+returned.&nbsp;<br><em>Example</em>:&nbsp;DisplayType =         
+         
+ cdx</p>
+<h5 class="param">StrucID=<span class="paramvalues">&nbsp;&lt;ID&gt;</span></h5>
+<p class="param"> The unique numerical identifier (MOL_ID) of 
+the chemical structure.&nbsp;<br><em>Example</em>:&nbsp;StrucID =        
+ 6</p>
+<h5 class="param">[width]=&lt;gif_width&gt;</h5>
+<p class="param"> The width of the gif being displayed.&nbsp; 
+This is an optional parameter used&nbsp;when DisplayType=     sizedgif.&nbsp; The default 
+is 200.&nbsp;</p>
+<h5 class="param">[height]=&lt;gif_height&gt;</h5>
+<p class="param"> The&nbsp;height of the gif being 
+displayed.&nbsp; This is an optional parameter used&nbsp;when DisplayType=        
+           sizedgif.&nbsp; The default 
+is 200.&nbsp;</p>
+<p class="param">&nbsp;</p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

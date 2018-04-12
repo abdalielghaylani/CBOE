@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|Reg.ini Configuration File" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Example</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Reg_ini_Configuration_Fi.htm#Registration_Admin_4136631045_1002673">Reg.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Example</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_1002729"></a>Example</h5>
+        <div class="Body">For example, the following is a copy of the required_fields entry in the REG_CTRBT_FORM_GROUP:</div>
+        <div class="Body"><span class="Code">REQUIRED_FIELDS=Temporary_Structures.Structure:Structure, Temporary_Structures.Salt_Equivalents;2:Salt Equivalents,Temporary_Structures.Solvate_Equivalents;2:Solvate Equivalents,Temporary_Structures.Compound_Type;1:Structure Comment,Temporary_Structures.Sequence_ID;1:Prefix, Temporary_Structures.Notebook_Number;1:Notebook, Temporary_Structures.Notebook_Page;0:Page,Temporary_Structures.Project_ID;1:Project, Temporary_Structures.Salt_Code;1:Salt Name,TEMPORARY_STRUCTURES.SOLVATE_NAME;0:Solvate Name,TEMPORARY_STRUCTURES.SALT_MW;2:Salt MW,TEMPORARY_STRUCTURES.SOLVATE_MW;2:Solvate MW</span>
+        </div>
+        <p class="GraphicAnchor"> &#160;</p>
+        <div class="Body">Each field is separated by a comma. So, the notebook page (by default a required field) is noted by 	Temporary_Structures.Notebook_Page;0:Page</div>
+        <div class="Body">The syntax of each entry is the same. That is:	<span class="_Override" style="font-weight: bold;">&lt;TableName&gt;.&lt;FieldName&gt;;&lt;DataType&gt;:&lt;Displayed Name&gt; </span></div>
+        <div class="Body">so in the notebook page example, the following values hold true:</div>
+        <p class="GraphicAnchor">
+        </p>
+        <table cellpadding="0" cellspacing="0" class="Default" height="209px" style="width: 274px;caption-side: none;">
+            <col width="130px" relativeWidth="0%" />
+            <col width="144px" relativeWidth="0%" />
+            <tbody>
+                <tr style="height: 27px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableHead">Syntax Variable</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableHead">Value</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;TableName&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Temporary_Structures</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;FieldName&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">Notebook_Page</p>
+                    </td>
+                </tr>
+                <tr style="height: 42px;">
+                    <td class="CellClass_1119458133">
+                        <p class="TableText">&lt;DataType&gt;</p>
+                    </td>
+                    <td class="CellClass_185389339">
+                        <p class="TableText">0 (an integer, see <span class="_Override" style="color: #0000ff;text-decoration: underline;">DataTypes</span>)</p>
+                    </td>
+                </tr>
+                <tr style="height: 25px;">
+                    <td class="CellClass_3142255085">
+                        <p class="TableText">&lt;Displayed Name&gt;</p>
+                    </td>
+                    <td class="CellClass_2933149424">
+                        <p class="TableText">Page</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="Body">where DataType is one of the <span class="_Override" style="color: #0000ff;text-decoration: underline;">Validate Options</span> (also found in the <span class="_Override" style="color: #0000ff;text-decoration: underline;">cfserver.ini</span> file) 	and Displayed Name is how the name of the field should be displayed to the user.</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

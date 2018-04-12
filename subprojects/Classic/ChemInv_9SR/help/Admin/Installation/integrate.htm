@@ -1,0 +1,128 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Installation</title>
+</head>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+<h1>Integrate With Other Applications</h1>
+<p class="Numbered-intro">Inventory Enterprise can be integrated 
+with Registration Enterprise, ChemACX, and/or DocManager Enterprise.&nbsp; The steps 
+below will perform the 
+integration:</p>
+<a name="reg"></a><h2 class="Numbered-intro">Integration with Registration Enterprise</h2>
+<ol>
+  <li>
+  <div class="Numbered-intro">Browse to <strong>&lt;webroot&gt;/ChemOffice/<em class="Strong">chem<span lang="en-us">inv</span>/config/</em></strong></div>
+  <li>
+  <div class="Numbered-intro">Double-Click <strong><em class="Strong">ChemReg.udl</em></strong></div>
+  <li>Change the <strong>Data Source</strong> to the name of your Oracle 
+  Service.<br>For information about your Oracle Service Name, please 
+  see your Oracle DBA or consultant. 
+  <div></div>
+  <li>Click <strong>OK</strong> . 
+  <li>Browse to and open 
+  <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong> 
+  <li>Change the <strong>REG_SERVER_NAME</strong> entry to point to the Server 
+  hosting Registration System.<br>This refers to the fully qualified domain name 
+  of the server, not the Oracle Service Name. 
+  <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/chem_reg/config/<em class="Strong"> </em></strong>
+  <li>Open <strong><em class="Strong">Cfserver.ini</em></strong> 
+  <li>Change <em class="Strong"><strong>POST_MARKED_SEND_TO_PAGE=NULL</strong></em> 
+  to:<br><strong><em class="Strong">POST_MARKED_SEND_TO_PAGE= 
+  </em><em>http://IIS_SERVER_NAME/cheminv/gui/ImportFromChemReg.asp</em></strong><br>(where 
+  IIS_SERVER_NAME is the name of the IIS server that is hosting Inventory 
+  Manager)</li></ol>
+<a name="acx"></a><h2 class="Numbered-intro">Integration with ChemACX</h2>
+<div class="Numbered-intro"> </div>
+<div class="Numbered-intro">
+<ol>
+  <li>Update <strong>chemacx.udl</strong>. 
+  <ol><li>Browse to <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/</strong>
+  <li>Double click <strong>ChemACX.udl</strong> 
+  <li>For <em>Microsoft Access</em> Installations of ChemACX: Make sure the 
+  location of the ChemACX database (ChemACX.mdb) is correct.<br>For 
+  <em>Oracle</em> Installations of ChemACX: Change the <strong>Data 
+  Source</strong> to the name of your Oracle Service
+  <li>Click <strong>OK</strong>.<br>&nbsp;</li></ol>
+    <li>Update <strong>invconfig.ini</strong>. 
+  <ol><li>Browse to and open 
+  <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong> 
+  <li>Change the <strong>ACX_SERVER_NAME</strong> to point to the Server hosting 
+  ChemACX<br>This refers to the fully qualified domain name of the server, not 
+  the Oracle Service Name.<br>If set to NULL ChemACX integration will be 
+  disabled. 
+  <li>Browse to and open 
+  <strong>&lt;webroot&gt;/ChemOffice/chemacx/config/acxconfig.ini</strong> 
+  <li>Set 
+  <strong>EXPORT_TO_CHEMINV</strong>=&quot;<strong><em>True</em></strong>&quot;<br>&nbsp;</li></ol>
+  <li><em>If ChemACX is working with an Oracle database</em>: update 
+  <strong>invacx.ini</strong>.
+  <ol><li>Browse to and open 
+    <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invacx.ini</strong><li>Replace all occurances of 
+    <strong><em>ACCESS</em></strong> with 
+  <strong><em>ORACLE</em></strong>.</li></ol></li></ol></div>
+<a name="doc"></a><h2 class="Numbered-intro">Integration with DocManager Enterprise</h2>
+<ol>
+  <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/</strong>
+  <li>Open invconfig.ini 
+  <li>Change the <strong>DOCMANAGER_SERVER_NAME</strong>&nbsp;to point to the 
+  Server hosting Document Manager.<br>This refers to the fully qualified domain 
+  name of the server, not the Oracle Service Name.<br>If set to NULL&nbsp;Document Manager&nbsp;integration 
+  with Inventory Enterprise will be disabled. 
+  <li>Set <strong>SHOW_DOCMANAGER_LINK</strong> to 1.</li></ol>
+<p>Give any user who requires use of this integration the&nbsp;INV_MANAGE_LINKS 
+privilege. </p>
+
+<p><a href="pdf_barcode.htm">Step 6: Setup Barcode and PDF 
+Support</a> &nbsp; </p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+
+</html>

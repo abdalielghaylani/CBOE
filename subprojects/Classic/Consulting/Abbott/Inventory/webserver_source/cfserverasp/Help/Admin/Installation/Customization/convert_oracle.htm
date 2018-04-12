@@ -1,0 +1,205 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Converting an Access Based ChemOffice WebServer for use with&nbsp;Oracle 8</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>Converting an Access Based ChemOffice WebServer for use with&nbsp;Oracle 8</h1>
+<p>            
+              
+             
+Oracle 8&nbsp;contains an&nbsp;Oracle Migration Assistant for MS Access tool that will make converting a legacy ChemOffice 
+WebServer for use with Oracle.</p>
+<p>This tool, when installed,&nbsp;is found 
+at:<br><strong>START&gt;Programs&gt;Oracle&gt;Migration Utilities&gt;Oracle Data 
+Migration Assistant</strong>&nbsp;<br>NOTE: If this option is not 
+available,&nbsp;you will need to install it using the Oracle Universal 
+installer.</p>
+<p>            To prepare Oracle:</p>
+<ol><li>Make sure your access table does not have OLE 
+  Objects.&nbsp; OLE Objects&nbsp;will cause the table conversion to fail.
+  <li>Make sure there is not a tablespace that has the same name as the access 
+  *.mdb file to be converted. Please <a href="http://docsite/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/convert_oracle_tablespace.htm">TableSpaces in 
+  Oracle</a>&nbsp;for more information.</li>                
+                
+ </ol>
+<h2>Running the Oracle Migration Assistant for MS Access</h2> 
+
+<p>          To start converting 
+your database:</p>
+<ol>
+  <li>Browse 
+  to:<br><strong>START&gt;Programs&gt;Oracle&gt;Migration Utilities&gt;Oracle 
+  Data Migration Assistant</strong>&nbsp;
+  <li>Select the mdb file in the first screen.
+  <li>Click <strong>Next</strong>          . 
+  <li>In the customize datatypes screen, click 
+  <strong>Customize</strong>. 
+  <li>Change the Length for the LONG datatype to 9. <br><strong>NOTE</strong>: 
+  If&nbsp;this step is not preformed,&nbsp;the MOL_ID field will not be 
+  recognized by ChemFinder. <br><strong>NOTE</strong>:&nbsp; Click within the 
+  box containing the number and type&nbsp;enter number rather then using the 
+  arrows (which will make it appear that the value cannot be changed). 
+  <li>Click <strong>OK</strong>           
+                   
+              
+                
+             . 
+  <li>Click <strong>Next</strong> through the next several 
+  screens until you reach the screen for entering the net8 string for your 
+  service. 
+  <li>             
+         Enter a valid service name for 
+  accessing the instance of Oracle. 
+  <li>Enter <strong>system</strong> and 
+  <strong>manager</strong>   for the username and password respectively. 
+  <li>Click <strong>Next</strong> through the remaining 
+  screens. <br><strong>NOTE:</strong> If an error occurs at the Move data stage, 
+  you have not removed the tablespace.&nbsp; Please see <a href="../../../../../../../ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/convert_oracle_tablespace.htm">TableSpaces 
+  in Oracle</a>                
+               
+               
+              &nbsp;for 
+  more information.&nbsp; 
+  <li>Upon a successful conversion, you will be brought to 
+  the last screen where you can generate reports. Click 
+  <strong>Done</strong>             
+          &nbsp;and exit the tool. </li></ol>
+<h2>Setting a Password for the new tablespace and user</h2>
+<p>The Migration Assistant creates a tablespace and user 
+based on the name of the mdb file. A password must be assigned to the user in 
+order to access&nbsp;the tables.</p>
+<ol>
+  <ol>
+    <li>Open the Oracle Security Manager using 
+    <strong>system</strong>, <strong>manager</strong>      as the user name and 
+    password. 
+    <li>Click the user that matches the name of the 
+    converted mdb file. 
+    <li>              
+      On the right, enter a password. 
+    <li>Select the tablespace matching the mdb file in the 
+    default and temporary tablespace list at the bottom right.</li></ol></ol>
+<h3>Opening the Schema (this is optional, but helps to test all went well)</h3>
+<ol>
+  <li>Open the Oracle Schema Manger using the User name 
+  (the name of the mdb) and the password you just created.
+  <p></p>
+  <li>In the schema manager, choose view by schema from the View 
+menu.
+  <li>
+  <p>Expand the Tables</p>
+  <li>
+  <p>All the tables should appear in the list. If not, hmmm. Possibly you had a 
+  OLE Object in the access table. This causes the whole table conversion to 
+  fail. </p></li>
+</ol>
+
+<h2>Create a DSN to access the database</b></i></h2>
+<p>You must create a DSN so that ChemFinder and ChemOffice WebServer can access 
+the tables in oracle:</p>
+<ol>
+  <li>Open the ODBC&nbsp;Control Panel&nbsp; 
+  <ul>
+    <li>NT4.0 Server: Located in control panel 
+    <li>Windows 2000 
+  Server:&nbsp;<strong>START&nbsp;&gt;Programs&gt;Administrative Tools&gt;Data 
+  Sources</strong></li> 
+  </ul>
+  <li>Select&nbsp; <b>System DSN</b> 
+  tab 
+  <li>Click <b>Add</b> 
+  <li>Double-click&nbsp; <b>Microsoft ODBC driver for Oracle</b> 
+  <li>Fill in the following information:</font>
+  <ul>
+    <li>Data Source Name: &lt;name&gt;
+    <li>Description: 
+    <li>Username: &lt;database name&gt; (the name of the mdb file you originally 
+    converted)
+    <li>Server: &lt;Oracle Service Name<strong>&gt;</strong>&nbsp;<br>The 
+    password is entered in the ChemOffice WebServer application&#146;s ini 
+  file.</li></ul> </li></ol>
+<h2>Connecting the ChemOffice WebServer Application </h2>
+<ol>
+    <li>Open the ini file in the application/config folder. 
+  <li>Search for &quot;ACCESS&quot; and replace with &quot;ORACLE&quot;. This will change all the 
+  SQL_SYNTAX entries to ORACLE. 
+  <li>Go to the &quot;BASE_CONNECTION&quot; section and change the 
+  following the settings so they appear like those below:          
+    <blockquote>
+      <dl>
+        <dd>[BASE_CONNECTION] 
+        <dd>CONN_TYPE=DSN 
+        <dd>CONNECTION_STRING= your_dsn_name 
+        <dd>CONNECTION_TIMEOUT=15 
+        <dd>COMMAND_TIMEOUT=30 
+        <dd>CONNECTION_USERNAME=uid=user_id (this is the name of the mdb file, 
+        remember?) 
+        <dd>CONNECTION_PASSWORD=pwd = your_password (the password you created) 
+        </dd></dl></blockquote>
+    <li>If you changed the name of the mdb file because of a tablespace 
+    conflict, you also need to change the STRUC_DB_PATH key in CFW_BASE FORM 
+    section.
+    <blockquote>
+    <dl>
+      <dd>[BASE_CFW_FORM] 
+      <dd>STRUC_ENGINE=MOLSERVER 
+      <dd>STRUC_FORM_NAME=SAMPLE 
+      <dd>STRUC_DB_PATH=the path to the mst file.(e.g. 
+      c:\databases\sampleOracle.mst) 
+      <dd>STRUC_TABLE_NAME=MolTable 
+      <dd>&nbsp;</dd></dl></blockquote></li></ol>
+
+<p>After performing all of the above steps, your ChemOffice 
+WebServer is ready to function with an Oracle database.&nbsp;</p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

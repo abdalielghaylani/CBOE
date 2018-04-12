@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="186" MadCap:lastWidth="1211" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="BioSAR Browser User Guide" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Changing the Font Size in List View</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <img src="../Resources/Images/BioSAR.png" />
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR Browser User's Guide.htm#BioSAR_Browser_User_s_Guide_834457683_1155135">BioSAR Browser User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Changing the Font Size in List View</span>
+        </div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_834457683_1155470"></a><a name="kanchor1446"></a><a name="kanchor1447"></a><a name="kanchor1448"></a><a name="kanchor1449"></a><a name="kanchor1450"></a><a name="kanchor1451"></a><a name="kanchor1452"></a><a name="kanchor1453"></a><a name="kanchor1454"></a><a name="kanchor1455"></a><a name="kanchor1456"></a>Changing the Font Size in List View</h2>
+        <div class="Body">To change the font in list view (for all forms):</div>
+        <div class="numlist1_1st" MadCap:autonum="1. "><span class="autonumber"><span>1. </span></span>Open: \Inetpub\wwwroot\ChemOffice\biosar_browser\source\biosar_ns.css for Netscape and \Inetpub\wwwroot\ChemOffice\biosar_browser\source\biosar_ie.css for Internet Explorer. </div>
+        <div class="numlist1_last" MadCap:autonum="2. "><span class="autonumber"><span>2. </span></span>Change the font attributes to reflect what you would like to see.</div>
+        <div class="Body">The css files are HTML style sheets. For more information about style sheets, please see your CHM documentation. In general, the following is true: </div>
+        <div class="Bullet1_1st">FONT-SIZE is the size of the font you desire </div>
+        <div class="Bullet1_last">FONT-FAMILY is the family of fonts you desire.</div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_834457683_1155477"></a><a name="kanchor1457"></a><a name="kanchor1458"></a><a name="kanchor1459"></a><a name="kanchor1460"></a><a name="kanchor1461"></a><a name="kanchor1462"></a><a name="kanchor1463"></a><a name="kanchor1464"></a><a name="kanchor1465"></a><a name="kanchor1466"></a><a name="kanchor1467"></a>Indexing Linking Fields</h2>
+        <div class="Body">Administrators can link fields in a table to other fields or tables in the same or a different schema. In such cases, the fields involved (both the field being linked and the field or table being linked to) are both indexed. If the case-insensitive option is selected, be sure to create a lCase functional index on both fields. </div>
+        <div class="Body">Example:</div>
+        <div class="Body" style="font-family: 'Times New Roman';font-style: italic;font-size: 11pt;">create index myindex on lcase(myfield) </div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_834457683_1155481"></a><a name="kanchor1468"></a><a name="kanchor1469"></a><a name="kanchor1470"></a><a name="kanchor1471"></a><a name="kanchor1472"></a><a name="kanchor1473"></a><a name="kanchor1474"></a><a name="kanchor1475"></a><a name="kanchor1476"></a><a name="kanchor1477"></a><a name="kanchor1478"></a>Cfserver.ini Configuration File</h2>
+        <div class="Body">The CFServer.ini file is found in the following location: <span class="_Override" style="font-style: italic;">&lt;webroot&gt;/ChemOffice/biosar_browser/config</span></div>
+        <div class="Body">It defines parameters that allow the BioSAR Enterprise application to find necessary information and how to react in certain situations. When editing fields in this file, it is important to be sure what is going to change because many of these settings are necessary for the application to function properly. </div>
+        <div class="Body">The Cfserver.ini file has two sections:</div>
+        <div class="Bullet1_1st">GLOBALS</div>
+        <div class="Bullet1_1st">CS_SECURITY</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;Note: &lt;/b&gt;"><span class="autonumber"><span class="Note"><b>Note: </b></span></span>It is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations.</blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <div class="MCMiniTocBox" style="">
+            <p class="MiniTOC1"><a class="MiniTOC1" href="GLOBALS.htm#BioSAR_Browser_User_s_Guide_834457683_1155488">GLOBALS</a>
+            </p>
+            <p class="MiniTOC1"><a class="MiniTOC1" href="CS_SECURITY.htm#BioSAR_Browser_User_s_Guide_834457683_1156076">CS_SECURITY</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

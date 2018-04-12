@@ -1,0 +1,5 @@
+29 Jul 2005
+
+   Fix Bug CSBR-57128 : Adding a salt does not cause the product grid update event to occur
+   Remedy: Add code to call the DataChanged and Validate methods of the ChemicalStructureControl
+	\Source\AddSaltGListener.cls

@@ -1,0 +1,247 @@
+<html>
+
+<head><script language="javascript">
+
+var theActionVal
+function getList(theName){
+	theRealField = eval('document.SubmitAction.' + theName)
+	theHiddenList = eval('document.SubmitAction.' + theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.theRealField.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a new value from the list:<br><form name="getit"><Select name="theList" size = 5>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+function getAddList(theAction,theName){
+	document.SubmitAction.FormAction.value = theAction
+	theHiddenList = eval('document.SubmitAction.' +  theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.document.SubmitAction.theVal.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;opener.document.SubmitAction.submit();self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a field to add from the list:<br><form name="getit"><Select name="theList" size = 10>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+	theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+function setAction(theAction){
+		var theValue = eval('document.SubmitAction.FormGroups.options[document.SubmitAction.FormGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.FormGroupName.value = theValue 
+		document.SubmitAction.submit()
+
+}
+</script>
+
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500" height="49"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Database:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td><table border="0" bgcolor="#C0C0C0">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_form_group_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="theVal" value><input type="hidden" name="FormGroupName" value><table
+          border="0">
+<TBODY>
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td width="274" valign="top"><input type="submit" value="    OK    " name="OK"
+                  onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                  onClick="setAction('Cancel')"></td>
+                </tr>
+                <tr>
+                  <td valign="top"><table border="0">
+                    <tr>
+                      <td valign="top"><strong>Global_Search Settings</strong><input name="Help1" type="button"
+                      value="Help" onClick="getHelp('form_groups')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top"><table border="1" width="567">
+                    <tr>
+                      <td width="253" height="20" valign="top"><small>Base database </small></td>
+                      <td width="304" height="20" valign="top"><WC@GLOBAL_SEARCH_BASEDB><WC@FGLOBAL_SEARCH_BASEDB></td>
+                      <td width="303" height="20"><input name="Change2" type="button" value="Change"
+                      onclick="getList('GLOBAL_SEARCH_BASEDB')"></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><strong><small>Field Mapping:</small></strong></td>
+                      <td width="304" height="20" valign="top"></td>
+                      <td width="303" height="20"></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Structure Field </small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@STRUCTURE_FIELD_MAP><WC@STRUC_FIELD_MAP></td>
+                      <td width="303" height="20"><small><input type="button" name="Add2" value="Add"
+                      onclick="getAddList('Add_STRUCTURE_FIELD_MAP', 'STRUCTURE_FIELD_MAP')"><input
+                      type="button" name="Change3" value="Change" onclick="getList('STRUCTURE_FIELD_MAP')"><input
+                      type="submit" name="Remove10" value="Remove "
+                      onClick="setAction('Remove_STRUCTURE_FIELD_MAP')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Formula Field </small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@FORMULA_FIELD_MAP><WC@FORMULA_FIELD_MAP></td>
+                      <td width="303" height="20"><small><input type="button" name="Add3" value="Add"
+                      onclick="getAddList('Add_FORMULA_FIELD_MAP', 'FORMULA_FIELD_MAP')"><input type="button"
+                      name="Change4" value="Change" onclick="getList('FORMULA_FIELD_MAP')"><input type="submit"
+                      name="Remove11" value="Remove " onClick="setAction('Remove_FORMULA_FIELD_MAP')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Molecular Weight </small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@MOLWEIGHT_FIELD_MAP><WC@MOLWEIGHT_FIELD_MAP></td>
+                      <td width="303" height="20"><small><input type="button" name="Add" value="Add"
+                      onclick="getAddList('Add_MOLWEIGHT_FIELD_MAP', 'MOLWEIGHT_FIELD_MAP')"><input
+                      type="button" name="Change5" value="Change" onclick="getList('MOLWEIGHT_FIELD_MAP')"><input
+                      type="submit" name="Remove12" value="Remove "
+                      onClick="setAction('Remove_MOLWEIGHT_FIELD_MAP')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 1</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP1></WC@OTHER_FIELD_MAP1></td>
+                      <td width="303" height="20"><small><input type="button" name="Add9" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP1', 'OTHER_FIELD_MAP1')"><input type="button"
+                      name="Change11" value="Change" onclick="getList('OTHER_FIELD_MAP1')"><input type="submit"
+                      name="Remove18" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP1')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 2</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP2></WC@OTHER_FIELD_MAP2></td>
+                      <td width="303" height="20"><small><input type="button" name="Add8" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP2', 'OTHER_FIELD_MAP2')"><input type="button"
+                      name="Change10" value="Change" onclick="getList('OTHER_FIELD_MAP2')"><input type="submit"
+                      name="Remove17" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP2')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 3</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP3></WC@OTHER_FIELD_MAP3></td>
+                      <td width="303" height="20"><small><input type="button" name="Add7" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP3', 'OTHER_FIELD_MAP3')"><input type="button"
+                      name="Change9" value="Change" onclick="getList('OTHER_FIELD_MAP3')"><input type="submit"
+                      name="Remove16" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP3')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 4</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP4></WC@OTHER_FIELD_MAP4></td>
+                      <td width="303" height="20"><small><input type="button" name="Add6" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP4', 'OTHER_FIELD_MAP4')"><input type="button"
+                      name="Change8" value="Change" onclick="getList('OTHER_FIELD_MAP4')"><input type="submit"
+                      name="Remove15" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP4')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 5</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP5></WC@OTHER_FIELD_MAP5></td>
+                      <td width="303" height="20"><small><input type="button" name="Add5" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP5', 'OTHER_FIELD_MAP5')"><input type="button"
+                      name="Change7" value="Change" onclick="getList('OTHER_FIELD_MAP5')"><input type="submit"
+                      name="Remove14" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP5')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="253" height="20" valign="top"><blockquote>
+                        <p><small>Other Field(s) 6</small></p>
+                      </blockquote>
+                      </td>
+                      <td width="304" height="20" valign="top"><WC@OTHER_FIELD_MAP6></WC@OTHER_FIELD_MAP6></td>
+                      <td width="303" height="20"><small><input type="button" name="Add4" value="Add"
+                      onclick="getAddList('Add_OTHER_FIELD_MAP6', 'OTHER_FIELD_MAP6')"><input type="button"
+                      name="Change6" value="Change" onclick="getList('OTHER_FIELD_MAP6')"><input type="submit"
+                      name="Remove13" value="Remove " onClick="setAction('Remove_OTHER_FIELD_MAP6')"></small></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+</TBODY>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+
+<p>&nbsp; </p>
+
+<table border="1">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

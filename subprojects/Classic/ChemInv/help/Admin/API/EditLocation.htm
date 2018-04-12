@@ -1,0 +1,179 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+<br>
+<br>
+
+<br>
+<a name="1970480"></a>
+<h1>EditLocation</h1>
+<p>   Updates attributes of a location<span lang="en-us">.</span></p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/EditLocation.asp?LocationID=adNumeric&amp;LocationName=adVarChar[&amp;Barcode=adVarChar&amp;LocationDesc=adVarChar&amp;LocationTypeID=adNumeric&amp;GridFormatID=adNumeric&amp;PlateTypeList=adVarChar&amp;LocationOwnerID=adVarChar&amp;PropagateAddress=adNumeric]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="126%" id="table1">
+	<tr>
+		<td bgcolor="#C0C0C0" width="114" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="68" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="310"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="57"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="141"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="114">LocationID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the ID of the location to be updated.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_LOCATIONS</td>
+		<td width="141"><span lang="en-us">LOCATION_ID</span></td>
+	</tr>
+	<tr>
+		<td width="114">LocationName</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the name of the location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_NAME</td>
+	</tr>
+	<tr>
+		<td width="114">Barcode</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the barcode for the location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">
+		N<td>INV_LOCATIONS</td>
+		<td>LOCATION_BARCODE</td>
+	</tr>
+	<tr>
+		<td width="114">LocationDesc</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies a description for the location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_DESCRIPTION</td>
+	</tr>
+	<tr>
+		<td width="114">LocationTypeID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the ID associated with the type of the 
+		location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>LOCATION_TYPE_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">GridFormatID</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Specifies the ID of the grid format associated with the 
+		location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_GRID_FORMAT</td>
+		<td><span lang="en-us">GRID_FORMAT_ID</span></td>
+	</tr>
+	<tr>
+		<td width="114">PlateTypeList</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the list of the plate types allowed to be 
+		stored at the location. </td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>N/A</td>
+		<td><span lang="en-us">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="114">LocationOwnerID</td>
+		<td width="68">adVarChar</td>
+		<td width="310">Specifies the ID for the owner of the location.</td>
+		<td width="57">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_LOCATIONS</td>
+		<td>OWNER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="114">PropagateAddress</td>
+		<td width="68">adNumeric</td>
+		<td width="310">Indicates whether to propagate the address of the parent 
+		location to its child locations, if no address is specified for the 
+		children locations explicitly. The address is propagated if the value of 
+		this parameter is 1.</td>
+		<td width="57">1|0</td>
+		<td width="70" align="center">N</td>
+		<td>N/A</td>
+		<td><span lang="en-us">N/A</span></td>
+	</tr>
+</table>
+
+<h3 class="param">Outputs</h3>
+<p>The ID of the updated location, which is stored in the LocationID parameter. 
+The data type of the LocationID parameter is adVarChar.</p>
+<h3 class="param">Example</h3>
+<p class="param"><span lang="en-us">The following code edits a location with ID 
+L1022 and name TestLocation:</span></p>
+<pre>/cheminv/api/EditLocation.asp?LocationID=<span lang="en-us">L1022</span>&amp;LocationName=<span lang="en-us">TestLocation</span></pre>
+<!--webbot bot="Include" u-include="../footer.htm" tag="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

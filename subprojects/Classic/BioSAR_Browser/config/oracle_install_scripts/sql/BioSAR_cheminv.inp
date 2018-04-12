@@ -1,0 +1,5 @@
+USERID=system/manager2
+FILE=BIOSAR_cheminv2.DMP
+FULL=Y
+IGNORE=Y
+LOG=BIOSAR_cheminv2.log

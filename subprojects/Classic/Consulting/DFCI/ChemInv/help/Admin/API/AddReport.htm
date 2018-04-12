@@ -1,0 +1,256 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1><span lang="en-us">AddReport</span></h1><p>Creates a report layout that can 
+be used to generate reports in the Inventory Enterprise interface. You can add 
+parameters to a report to allow users to filter the report information on the 
+basis of the parameters and view only specific information in the report. </p><h3>Syntax</h3><pre>/cheminv/api/AddReport.asp?ReportName=adVarChar&amp;ReportDisplayName=adVarChar&amp;QueryName=adVarChar&amp;ParamName=adVarChar&amp;ParamDisplayName=adVarChar&amp;ParamType=adVarChar[&amp;QuerySQL=adLongVarChar&amp;ReportDesc=adVarChar&amp;ReportTypeID=adNumeric&amp;NumParams=adNumeric&amp;IsRequired=adNumeric]</pre>
+<h3><span lang="en-us">In</span>puts</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">ReportName </td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the name of the MS Access report associated 
+		with the report</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td width="92">REPORTNAME</td>
+	</tr>
+	<tr>
+		<td width="117">ReportDisplayName</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the display name of the report. The report 
+		display name identifies the report in the Inventory interface.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td width="92">REPORTDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">QueryName</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the MS Access query associated with the 
+		report.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td width="92">QUERYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">QuerySQL</td>
+		<td width="97">adLongVarChar</td>
+		<td width="298">Specifies the generic SQL query, which does not have 
+		parameters associated with it, for the report. </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td width="92">REPORTSQL</td>
+	</tr>
+	<tr>
+		<td width="117">ReportDesc</td>
+		<td width="97">adVarChar</td>
+		<td width="298">Specifies the report description. The report description 
+		is displayed above the list of inputs for the report, in the Create 
+		Report interface.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td width="92">REPORT_DESC</td>
+	</tr>
+	<tr>
+		<td width="117">ReportTypeID</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the ID associated with the report type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>INV_REPORTS</td>
+		<td width="92">REPORTTYPE_ID</td>
+	</tr>
+	<tr>
+		<td width="117">NumParams</td>
+		<td width="97">adNumeric</td>
+		<td width="298">Specifies the number of the report parameters associated 
+		with the report.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td>N/A</td>
+		<td width="92">N/A</td>
+	</tr>
+</table>
+
+<p class="MsoNormal">The following table lists the inputs need to be provided 
+for each report parameter:</p>
+<p class="MsoNormal"><b>&nbsp;Note:</b> These inputs are not required if the 
+NumParams parameter is set to 0.</p>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="MsoNormal">ParamName </td>
+		<td width="97">
+		<p class="MsoNormal">adVarChar</td>
+		<td width="298">
+		<p class="MsoNormal">Specifies the database table field associated with 
+		the parameter. This field should be specified in the &lt;tablename&gt;.&lt;paramname&gt; 
+		format. Reason being, the ParamName field is used in the SQL statement.</td>
+		<td width="92">
+		<p class="MsoNormal">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="MsoNormal">Y</td>
+		<td>
+		<p class="MsoNormal">INV_REPORTPARAMS</td>
+		<td width="92">
+		<p class="MsoNormal">PARAMNAME</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="MsoNormal">ParamDisplayName</td>
+		<td width="97">
+		<p class="MsoNormal">adVarChar</td>
+		<td width="298">
+		<p class="MsoNormal">Specifies the display name of the parameter. The 
+		parameter display name identifies the parameter in the input interface 
+		of the report.</td>
+		<td width="92">
+		<p class="MsoNormal">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="MsoNormal">Y</td>
+		<td>
+		<p class="MsoNormal">INV_REPORTPARAMS</td>
+		<td width="92">
+		<p class="MsoNormal">PARAMDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="MsoNormal">ParamType</td>
+		<td width="97">
+		<p class="MsoNormal">adVarChar</td>
+		<td width="298">
+		<p class="MsoNormal">Specifies the type of parameter.</td>
+		<td width="92">
+		<p class="MsoNormal">Text | Num | Date</td>
+		<td width="70" align="center">
+		<p class="MsoNormal">Y</td>
+		<td>
+		<p class="MsoNormal">INV_REPORTPARAMS</td>
+		<td width="92">
+		<p class="MsoNormal">PARAMTYPE</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="MsoNormal">IsRequired</td>
+		<td width="97">
+		<p class="MsoNormal">adNumeric</td>
+		<td width="298">
+		<p class="MsoNormal">Indicates if the parameter is a required parameter. 
+		The IsRequired parameter is set to 1 if the parameter is required, 
+		otherwise 0.</td>
+		<td width="92">
+		<p class="MsoNormal">1 | 0</td>
+		<td width="70" align="center">
+		<p class="MsoNormal">N</td>
+		<td>
+		<p class="MsoNormal">INV_REPORTPARAMS</td>
+		<td width="92">
+		<p class="MsoNormal">ISREQUIRED</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p>The ID of the new report<span lang="en-us">, which is s</span>tored in the 
+ReportID parameter. The data type of the ReportID parameter is adNumeric. </p>
+<p>If <span lang="en-us">the report has some parameters associated with</span> 
+it, then the function also returns the name of the newly created report 
+parameters, which are stored in the ParamName<span lang="en-us"> parameter. The 
+data type of the </span>ParamName<span lang="en-us"> param</span>eter is 
+adVarChar<span lang="en-us">.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code creates a report with display name 
+TestLocationReport. The MS Access report and query associated with the report 
+are rptTestLocation and qryTestLocation, respectively.</span></p>
+<pre>/cheminv/api/AddReport.asp?ReportName=<span lang="en-us">rptTestLocation</span>&amp;ReportDisplayName=<span lang="en-us">TestLocationReport</span>&amp;QueryName=qryTestLocation&amp;NumParams=0</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+</body>
+</html>

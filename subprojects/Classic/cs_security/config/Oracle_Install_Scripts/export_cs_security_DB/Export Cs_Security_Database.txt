@@ -1,0 +1,5 @@
+Instructions to Export the Whole Contents of the CS_SECURITY Database
+
+1. Execute the ExpCS_SecurityDB.cmd file which uses the Oracle export utility to extract the entire contents of CS_SECURITY database using the exp file as a parameter file.
+
+The resulting CS_Securitydb.dmp file can be imported into an empty CS_Security database by using the Oracle import utilty as discussed in the instruction to import CS_Security database.

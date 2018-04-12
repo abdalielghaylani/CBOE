@@ -1,0 +1,144 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+
+<br>
+<a name="1970480"></a>
+<h1>UpdateReservation</h1>
+<p>        
+             Updates <span lang="en-us">a</span> <span lang="en-us">container
+				</span>reservation.</p>
+<h3>Syntax</h3>
+<pre>/cheminv/api/<span lang="en-us">Update</span>Reservation.asp?ReservationID=adNumeric&amp;ContainerID=adNumeric&amp;ReservationUserID=adVarChar&amp;QtyReserved=<span lang="en-us">Int</span>[&amp;ReservationTypeID=adNumeric]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center" height="43"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="97" align="center" height="43"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="298" height="43"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92" height="43"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70" height="43"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" height="43"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center" height="43"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117"><span lang="en-us">ReservationID</span></td>
+		<td width="97"><span lang="en-us">adNumeric</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the reservation 
+		to be updated.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV_RESERVATIONS</span></td>
+		<td width="92">RESERVATION_ID</td>
+	</tr>
+	<tr>
+		<td width="117">ContainerID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the ID of the container the 
+		contents of which are to be reserved. </span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV_RESERVATIONS</span></td>
+		<td width="92">CONTAINER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">ReservationUserID</td>
+		<td width="97">ad<span lang="en-us">VarChar</span></td>
+		<td width="298"><span lang="en-us">Specifies the ID of the user who 
+		wants to reserve the container contents. </span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV_RESERVATIONS</span></td>
+		<td width="92">USER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">QtyReserved</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the amount of the quantity 
+		to be reserved.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">Y</span></td>
+		<td><span lang="en-us">INV_RESERVATIONS</span></td>
+		<td width="92">QTY_RESERVED</td>
+	</tr>
+	<tr>
+		<td width="117">ReservationTypeID</td>
+		<td width="97">adNumeric</td>
+		<td width="298"><span lang="en-us">Specifies the ID of the 
+		type of reservation.</span></td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center"><span lang="en-us">N</span></td>
+		<td><span lang="en-us">INV_RESERVATIONS</span></td>
+		<td width="92">RESERVATION_TYPE_ID_FK</td>
+	</tr>
+</table>
+
+<h3 class="param"><span lang="en-us">Output</span></h3>
+<p><span lang="en-us">The ID of</span> the updated 
+reservation<span lang="en-us">, which is stored in the</span> ReservationID 
+parameter.</span></p>
+<h3 class="param">Example</h3>
+<p>The following code <span lang="en-us">updates a 
+reservation with ID 42:</span></p>
+<pre>/cheminv/api/<span lang="en-us">Update</span>Reservation.asp?ReservationID=<span lang="en-us">42</span>&amp;ContainerID=<span lang="en-us">1742</span>&amp;ReservationUserID=<span lang="en-us">INVADMIN</span>&amp;QtyReserved=<span lang="en-us">.5</span></pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

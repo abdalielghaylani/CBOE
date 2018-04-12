@@ -1,0 +1,188 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<h1>CreateLocationReport</h1>
+<p>       Causes the RPT report writer to generate a printable L<span lang="en-us">o</span>cation report 
+for the specified location. Location report contains information about all the 
+containers or plates stored in the location for which the report is generated. 
+It can be filtered on the basis of the containers, plates, or compounds IDs.</p>
+
+<h3>Syntax</h3>
+
+<pre>/cheminv/api/CreateLocationReport.asp?LocationID=adNumeric&amp;ReportName=adVarChar&amp;CompoundID=adNumeric&amp;ContainerID=adNumeric[&amp;ReportFormat=adVarChar]</pre>
+<h3 class="param">Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="77" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="250"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="160"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="92" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">L<span lang="en-us">o</span>cationID</td>
+		<td width="77">
+		<p class="param"><span lang="en-us">adNumeric</span></td>
+		<td width="250">
+		<p class="param"><span lang="en-us">Specifies the ID of the </span>
+		location for which the report is to be <span lang="en-us">generated</span>.</td>
+		<td width="160">
+		<p class="param">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td><span lang="en-us">INV_LOCATIONS</span></td>
+		<td width="92"><span lang="en-us">LOCATION_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">ReportName</td>
+		<td width="77">
+		<p class="param">adVarChar</td>
+		<td width="250">
+		<p class="param"><span lang="en-us">Specifies the </span>name of the 
+		report template<span lang="en-us"> that is to be used to generate the 
+		report.</span> <span lang="en-us">The template name is specified in the 
+		similar way </span>as <span lang="en-us">it is </span>defined in the MS 
+		Access reports database<span lang="en-us">.</span></td>
+		<td width="160">
+		<p class="param">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td><span lang="en-us">INV_REPORTS</span></td>
+		<td>REPORTDISPLAYNAME</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">CompoundID</td>
+		<td width="77">
+		<p class="param">adNumeric</td>
+		<td width="250">
+		<p class="param"><span lang="en-us">Specifies the compound IDs on the 
+		basis of which the containers listed in the Location report are to 
+		be filtered. </span></td>
+		<td width="160">
+		<p class="param">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td>
+		<p class="param"><span lang="en-us">INV_COMPOUNDS</span></td>
+		<td width="92">
+		<p class="param">COMPOUND_ID</td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param"><span lang="en-us">PlateID or </span>ContainerID</td>
+		<td width="77">
+		<p class="param">adNumeric</td>
+		<td width="250">
+		<p class="param"><span lang="en-us">Specifies the container or plate IDs on the 
+		basis of which the containers or plates listed in the Location report are to 
+		be filtered. </span></td>
+		<td width="160">
+		<p class="param">&nbsp;</td>
+		<td width="70" align="center">
+		<p class="param">Y</td>
+		<td>
+		<p class="param"><span lang="en-us">INV_CONTAINERS OR INV_PLATES</span></td>
+		<td width="92">
+		<p class="param"><span lang="en-us">CONTAINER_ID OR PLATE_ID</span></td>
+	</tr>
+	<tr>
+		<td width="117">
+		<p class="param">ReportFormat</td>
+		<td width="77">
+		<p class="param">adVarChar</td>
+		<td width="250">
+		<p class="param"><span lang="en-us">Specifies the format of the report.
+		A default value for the ReportFormat parameter is defined in 
+		the invconfig.ini file.</span></td>
+		<td width="160">
+		<p class="param">Access <span lang="en-us">Report </span>SnapShot<span lang="en-us"> 
+		(</span>SNP<span lang="en-us">)</span> 
+		| Adobe <span lang="en-us">Acrobat </span>Portable Document Forma<span lang="en-us">t 
+		(</span>PDF<span lang="en-us">)</span> | Rich Text Format<span lang="en-us"> 
+		(</span>RTF<span lang="en-us">)</span> | Microsoft Excel
+		<span lang="en-us">(</span>XLS<span lang="en-us">)</span></td>
+		<td width="70" align="center">
+		<p class="param">N</td>
+		<td><span lang="en-us">INV_REPORTFORMATS</span></td>
+		<td>FORMATDISPLAYNAME</td>
+	</tr>
+</table>
+
+<h3 class="param">Output</h3>
+<p>       <span lang="en-us">The file name of the Location report that is saved 
+in the </span>server's reports directory.<span lang="en-us"> The location of the </span>server's reports directory<span lang="en-us"> is
+</span>/cfserverasp/RPT/Reports/<span lang="en-us">.</span></p>
+<p>       <span lang="en-us"><b>Note:</b> To determine the location of the
+</span>server's reports directory<span lang="en-us"> on your server, please 
+check the </span>invconfig.ini&nbsp;file<span lang="en-us">.</span></p>
+<h3 class="param">Example</h3>
+<p>The following code creates </span>a 
+<span lang="en-us">Location </span>report <span lang="en-us">for location ID</span> 121<span lang="en-us">, template name </span>LReport121<span lang="en-us">, 
+container IDs C1002, C1004, C1025, C1026, compound IDs 11, 19, 182, 125, and 
+report format SNP:</p><pre class="param">/cheminv/api/CreateLocationReport.asp?LocationID=121&amp;ReportName=LReport121&amp;ContainerID=C1002,C1004,C1025,C1026&amp;CompoundID=111,19,182,125<span lang="en-us">[&amp;</span>ReportFormat=SNP</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

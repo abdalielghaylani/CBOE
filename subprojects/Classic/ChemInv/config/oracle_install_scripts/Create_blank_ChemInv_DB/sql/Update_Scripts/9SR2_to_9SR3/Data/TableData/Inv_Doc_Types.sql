@@ -1,0 +1,3 @@
+INSERT INTO INV_DOC_TYPES (DOC_TYPE_ID,TYPE_NAME) VALUES (1,'Batch Sample Request Receipt');
+INSERT INTO INV_DOC_TYPES (DOC_TYPE_ID,TYPE_NAME) VALUES (2,'Batch Sample Worksheet');
+commit;

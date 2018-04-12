@@ -1,0 +1,62 @@
+<ldapconfig>
+<ldapauthenticate>
+	<schemaOwner>CS_SECURITY</schemaOwner>
+	<exemptuser>cssadmin</exemptuser>
+	<exemptuser>invadmin</exemptuser>
+	<exemptuser>invbrowser</exemptuser>
+	
+	<exemptuser>dreheix</exemptuser>
+	<exemptuser>grotesx</exemptuser>
+	<exemptuser>willisx4</exemptuser>
+	<exemptuser>brockax </exemptuser>	
+	<exemptuser>fischmx1</exemptuser>
+	<exemptuser>mezlemx</exemptuser>
+	<exemptuser>loebbrx</exemptuser>
+	<exemptuser>holzzmtf</exemptuser>
+
+	
+	<exemptuser>swiftkm</exemptuser>
+	<exemptuser>saltamj</exemptuser>
+	<exemptuser>bushen</exemptuser>
+	<exemptuser>jacobpb</exemptuser>
+	<exemptuser>feyta</exemptuser>
+	<exemptuser>harlaje</exemptuser>
+	
+
+	<server ldapVersion="3" name="abtmadcn04" port="389"/>
+	<process>
+		<bind pwdRequired="True" error="failedToBind">
+                	<dn>%username%</dn>
+                </bind>
+		<unbind/>
+	</process>
+	<errors displayDetails="False">
+		<failedToBind>Failed to bind to LDAP as %username%.</failedToBind>
+	</errors>
+</ldapauthenticate>
+<getUserInfo>
+	<server ldapVersion="3" name="abtmadcn04" port="389"/>
+	<process>
+		<bind pwdRequired="True" error="failedToBind">
+                                          <dn>%svcaccount%</dn>
+                                </bind>
+		<query timeOut="2" scope="subtree" error="userNotFound">
+			<dn>ou=ppg,dc=northamerica,dc=intra,dc=abbott,dc=com</dn>
+			<filter>(sAMAccountName=%username%)</filter>
+			<attr>dn</attr>
+			<attr displayName="User code" mapTo="Usercode">foo</attr>
+			<attr displayName="First Name" mapTo="FirstName">givenName</attr>
+			<attr displayName="Middle Name" mapTo="MiddleName">initials</attr>
+			<attr displayName="Last Name" mapTo="LastName">sn</attr>
+			<attr displayName="Email" mapTo="Email">mail</attr>
+			<attr displayName="Phone Number" mapTo="Telephone">telephoneNumber</attr>
+		</query>
+		<unbind/>
+	</process>
+	<errors displayDetails="False">
+		<failedToBind>Failed to bind to LDAP as %svcaccount%.</failedToBind>
+		<userNotFound>The username %username% was not found in LDAP.</userNotFound>
+	</errors>
+</getUserInfo>
+</ldapconfig>
+

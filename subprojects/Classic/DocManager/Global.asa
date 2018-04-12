@@ -1,0 +1,1498 @@
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_login_utils_vbs.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_utils_vbs.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/server_const_vbs.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/manage_queries.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/manage_user_settings_vbs.asp" -->
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/app_startup_vbs.asp" -->
+
+<OBJECT RunAt="Server" Scope="Session" Id="PostRelay_dict" ProgID="Scripting.Dictionary"></OBJECT>
+
+<SCRIPT LANGUAGE="vbscript" RUNAT="server">
+'Copyright 1999-2003 CambridgeSoft Corporation. All rights reserved
+'declare globals for applicatiion functions
+Dim APP_INI_ERRORS
+Dim DB_INI_ERRORS
+vid_debug = false
+cowsFile = "cows"
+
+
+on error resume next
+Set INIVAR= Server.CreateObject("cowsUtils.cowsini") 
+if err.number > 0 then RaiseAppError "cowsUtils didn't initialize", err.number, err.description
+on error goto 0
+'**************************
+'Functions and Subs occuring when a user Application starts and ends
+'Main functions:
+'	Application_OnStart	Runs once when the first page of your application is run For the first time by any user
+'	Application_OnEnd		Runs once when the web server shuts down
+Sub Application_OnStart
+	Application("appkey") = "docmanager"
+
+	'set application values find in cows.ini file
+	Application("ServerDrive")= GetINIValue( "required", "GLOBALS", "SERVER_DRIVE", "cows", cowsFile)
+	Application("ServerRoot")= GetINIValue( "required", "GLOBALS", "SERVER_DIR", "cows", cowsFile)
+	Application("DocumentRoot")= GetINIValue( "required", "GLOBALS", "DOC_ROOT", "cows", cowsFile)
+	Application("COWSRoot")= GetINIValue( "required", "GLOBALS", "COWS_ROOT", "cows", cowsFile)
+	
+	'!DGB! debug change
+	if vid_debug then
+		Application("COWSRoot")=""
+	End if
+	
+	Application("COWSVersion") = GetINIValue( "required", "GLOBALS", "COWS_VERSION", "cows", "cows")
+	Application("NumberCurrentUsers") = 0
+	'exit application if errors where found in the above variables
+	'create global objects used for searching
+	CreateGlobalAppObjects()
+	'exit application if errors where found in the above variables
+	
+	'Get all inivalues for the web application
+	GetAppINIValues()
+	if Not APP_INI_ERRORS <> ""  then 
+	
+		'create application temp directory
+		CreateAppDir()
+
+		'get db information and set values to application objects
+		GetAllDBINIValues()
+	
+		if Not DB_INI_ERRORS <> ""  then 
+			SetINIDate("app")
+			'Initialize the hitlist tables. If they are not found they are created.
+			AppInitialize()
+			
+		else
+			'set app_ini_errors to db_ini errors so session_onstart will do the write thing and abandon the session.
+			APP_INI_ERRORS=DB_INI_ERRORS
+			'mark app for reload.The application on_start will not run again until the next user stasrts a session. Seeing that
+			'the cfserver.ini dates have changed from what is in Application("iniDate" & app) will call for running all the routines in app_onstart again.
+			'however error checking will continue and the app will not start if all the errors are not cleare.
+			MarkForReload("app")
+		end if
+	else
+		MarkForReload("app")
+	end if
+	
+	'====================variables needed by docmgr========================
+	
+	'Application("cnnStr") = "File Name=" & Server.MapPath("/docmanager/config/docmanager.udl") & ";User ID=docmgr;Password=oracle"
+	Application("cnnStr") = "File Name=" & Server.MapPath("/docmanager/config/docmanager.udl") & ";User ID=docmgr;Password=" & Application("DOCMANAGER_PWD")
+	tempdirinivalue = GetINIValue("required", "GLOBALS", "TEMP_DIR_PATH", "web_app", "cfserver") 
+	if Right(tempdirinivalue,1) <> "\" then
+		tempdirinivalue = tempdirinivalue & "\"
+	end if
+	Application("tempFolderPath") = tempdirinivalue & "docmanager\docmanagertemp"
+	Application("tempFolderHttp") = "/cfwtemp/docmanager/docmanagertemp"
+	Application("cfwMstPath") = GetINIValue("required",  UCase("base_cfw_form"), "STRUC_DB_PATH", "web_app", "docmanager")
+	Application("Struct_Engine") = GetINIValue( "required",  UCase("base_cfw_form"), "STRUC_ENGINE", "web_app", "docmanager")
+	
+	'stop
+	on error resume next
+	Set Application("wordApp") = CreateObject("Word.Application")
+	Application("wordApp").Application.Visible = true 
+
+	Set Application("xlApp") = CreateObject("Excel.Application")
+	Set Application("blobHandler") = CreateObject("Blob.Handler")
+	Application("blobHandler").UDL = Server.MapPath("/docmanager/config/docmanager.udl")
+	'======================================================================
+
+	' DGB 09/03 init the hitlists
+	'AppInitHitlistTables()
+	'CleanUp()
+	
+	'SYAN added on 2/22/2006 to fix CSBR-64263
+	'AppInitAllTables()
+	'End of SYAN modification
+
+	SubmitTokenJob()
+End Sub
+
+Sub AppInitialize()
+
+	AppInitAllTables()
+
+End Sub
+'get server globals from [GLOBALS] section in application cfserver.ini file 
+Sub GetAppINIValues()
+	Application("AppPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("COWSRoot") & "\" & Application("appkey")
+	Application("CODirPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("COWSRoot") & "\"
+	'jhs 10/31/2007 - Allows application tracing to work
+	Application("logPath") = Application("ServerDrive") & "\"&  Application("ServerRoot") & "\" &  Application("DocumentRoot") & "\" 
+	
+	'!DGB! debug change
+	if vid_debug then
+		Application("AppPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("appkey")
+		Application("CODirPath")= Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot")
+	End if
+	
+		Application("AppPathHTTP")= "/" & Application("appkey")
+	
+	Application("UserIDKeyword")=GetINIValue( "optional", "GLOBALS", "ADOCONN_UserIDKeyword", "web_app", "cfserver")
+	if Application("UserIDKeyword")= "INIEmpty" then Application("ADOCONN_UserIDKeyword")=UID
+
+	Application("PWDKeyword")=GetINIValue( "optional", "GLOBALS", "ADOCONN_PWDKeyword", "web_app", "cfserver")
+	if Application("PWDKeyword")= "INIEmpty" then Application("ADOCONN_PWDKeyword")=PWD
+	
+	Application("DIRECT_KEYWORD_SUPPORT")=GetINIValue( "optional", "GLOBALS", "DIRECT_KEYWORD_SUPPORT", "web_app", "cfserver")
+	if Application("DIRECT_KEYWORD_SUPPORT")= "INIEmpty" then Application("DIRECT_KEYWORD_SUPPORT")=1
+
+	Application("mainwindow")=GetINIValue("option", "GLOBALS", "MAIN_WINDOW", "web_app", "cfserver")
+	if Application("mainwindow") = "" then
+		Application("mainwindow") = "top.frames[""main""]"
+	end if
+	if Application("mainwindow") = "no_frames" then
+		Application("mainwindow") = "self"
+	end if
+	Application("nav_bar_window")=GetINIValue("optional", "GLOBALS", "NAV_BAR_WINDOW", "web_app", "cfserver")
+	if Application("nav_bar_window") = "" then
+		Application("nav_bar_window") = "top.frames[""navbar""]"
+	end if
+	if Application("nav_bar_window") = "no_frames" then
+		Application("nav_bar_window") = "self"
+	end if
+	Application("user_info_window")=GetINIValue("optional", "GLOBALS", "USER_INFO_WINDOW", "web_app", "cfserver")
+	if Application("user_info_window") = "" then
+		Application("user_info_window") = "top.frames[""userinfo""]"
+	end if
+	if Application("user_info_window") = "no_frames" then
+		Application("user_info_window") = "self"
+	end if
+	
+	Application("ORACLE_ON_SOLARIS")=GetINIValue( "required", "GLOBALS", "ORACLE_ON_SOLARIS", "web_app", "cfserver")
+	Application("TempDirName") = GetINIValue( "required", "GLOBALS", "TEMP_DIR_NAME", "web_app", "cfserver")
+	Application("TempDirFullPath") = GetINIValue( "required", "GLOBALS", "TEMP_DIR_PATH", "web_app", "cfserver")
+	Application("ServerSource") =Application("ServerDrive") & "\" & Application("ServerRoot") & "\" & Application("COWSRoot") & "\cows_source\cfserverasp\source"
+	Application("AppTempDirPath")= Application("TempDirFullPath")& "\" & Application("appkey")
+	Application("AppTempDirPathHTTP") = "/" & Application("TempDirName") & "/" & Application("appkey")
+	Application("DBNames") = GetINIValue( "required", "GLOBALS", "DB_Names", "web_app", "cfserver")
+	Application("NavButtonGifPath") = GetINIValue( "required", "GLOBALS", "NAV_BUTTONS_GIF_PATH", "web_app", "cfserver")
+	Application("GlobalSearchDBs") = GetINIValue( "optional", "GLOBALS", "GLOBAL_SEARCH_DBS", "web_app", "cfserver")
+	Application("GlobalBaseDB")=GetINIValue( "optional", "GLOBALS", "GLOBAL_SEARCH_BASE_DB", "web_app", "cfserver")
+	Application("CDX_CACHING")=GetINIValue( "optional", "GLOBALS", "CDX_CACHING", "web_app", "cfserver")
+
+	'jhs 10/4/2007 - add date/time format
+	Application("DATE_FORMAT") = GetINIValue( "optional",  "GLOBALS", "DATE_FORMAT", "web_app", "cfserver")
+
+	Application("DATE_FORMAT_DISPLAY") = "mm/dd/yyyy"
+	if Application("DATE_FORMAT") = "9" then
+		Application("DATE_FORMAT_DISPLAY") = "dd/mm/yyyy"
+	elseif Application("DATE_FORMAT") = "10" then
+		Application("DATE_FORMAT_DISPLAY") = "yyyy/mm/dd"
+	end if
+	
+	if Application("CDX_CACHING")= "INIEmpty" then Application("CDX_CACHING")="true"
+
+	Application("RLS")=GetINIValue( "required", "GLOBALS", "RLS", "web_app", "cfserver")
+
+	' Get the list of applications with which the current one is integrated _for this installation_.
+	Application( "IntegratedWith" ) = GetINIValue( "optional", "GLOBALS", "INTEGRATED_WITH", "web_app", "cfserver")
+	if Application( "IntegratedWith" ) = "INIEmpty" then
+		Application( "IntegratedWith" ) = ""
+	end if
+
+	' note this disables prefernces for all other form_groups
+	'at this time you can set preferences globally for the entire application, when preferences are shown in other places, the ini files values
+	'get blown away. Having preference set for each formgroup causes session timeouts, since there are too many cookies created.
+	Application("CHEMACXCOM_CODE")=GetINIValue( "optional", "GLOBALS", "CHEMACXCOM_CODE", "web_app", "cfserver")
+	'set to default if the entry is not in the ini file
+	if Application("CHEMACXCOM_CODE")= "INIEmpty" then Application("CHEMACXCOM_CODE")=0
+	
+	Application("UserWindowBackground")=GetINIValue( "optional", "GLOBALS", "UserWindowBackground", "web_app", "cfserver")
+	'set to default if the entry is not in the ini file
+	if Application("UserWindowBackground")= "INIEmpty" then Application("UserWindowBackground")="/CFServerAsp/Source/graphics/Fine_Speckled.gif="
+
+	Application("Prefs_FormGroups") =  GetINIValue( "optional", "GLOBALS", "CDX_CACHING", "web_app", "cfserver")
+	'set to default if the entry is not in the ini file
+	if Application("Prefs_FormGroups")= "INIEmpty" then Application("CHEMACXCOM_CODE")="base_form_group"
+	
+	Application("APP_TYPE")=GetINIValue( "optional", "GLOBALS", "APP_TYPE", "web_app", "cfserver")
+	'set to default if the entry is not in the ini file
+	if Application("APP_TYPE")= "INIEmpty" then Application("APP_TYPE")=""
+	
+	Application("BATCH_LOAD_USERNAME") =GetINIValue( "required", "DOCUMENT_MANAGER", "BATCH_LOAD_USERNAME", "web_app", "cfserver")
+	Application("BATCH_LOAD_PWD")=GetINIValue( "required", "DOCUMENT_MANAGER", "BATCH_LOAD_PWD", "web_app", "cfserver")
+	
+	If UCase(Application("APP_TYPE")) = "REGISTRATION" then
+		Application("REG_USERNAME") =GetINIValue( "required", "REGISTRATION", "REG_USERNAME", "web_app", "cfserver")
+		Application("REG_PWD")=GetINIValue( "required", "REGISTRATION", "REG_PWD", "web_app", "cfserver")
+		'Application("DBA_USERNAME")=GetINIValue( "required", "REGISTRATION", "DBA_USERNAME", "web_app", "cfserver")
+		'Application("DBA_PWD")=GetINIValue( "required", "REGISTRATION", "DBA_PWD", "web_app", "cfserver")
+		Application("SEC_USERNAME")=GetINIValue( "required", "REGISTRATION", "SEC_USERNAME", "web_app", "cfserver")
+		Application("SEC_PWD")=GetINIValue( "required", "REGISTRATION", "SEC_PWD", "web_app", "cfserver")
+		Application("ORA_SQLLDRPATH") = GetINIValue( "required", "REGISTRATION", "ORA_SQLLDRPATH", "web_app", "cfserver")
+		'Application("ORA_SERVICENAME")=GetINIValue( "required", "REGISTRATION", "ORA_SERVICENAME", "web_app", "cfserver")
+		Application("PRIV_TABLE_NAME")=GetINIValue( "required", "REGISTRATION", "PRIV_TABLE_NAME", "web_app", "cfserver")
+
+		Application("DISPLAY_APPKEY") = GetINIValue( "required", "REGISTRATION", "DISPLAY_APPKEY", "web_app", "cfserver")
+		Application("BUILDSITEID") = GetINIValue( "required", "REGISTRATION", "BUILD_SITE_ID", "web_app", "cfserver")
+		Application("NO_STRUCTURE_TEXT") = GetINIValue( "required", "REGISTRATION", "NO_STRUCTURE_TEXT", "web_app", "cfserver")
+
+		Application("BATCH_LEVEL") = GetINIValue( "required", "REGISTRATION", "BATCH_LEVEL", "web_app", "cfserver")
+		Application("PRIMARY_STRWHERE") = GetINIValue( "required", "REGISTRATION", "PRIMARY_STRWHERE", "web_app", "cfserver")
+		Application("NOTEBOOK_LOOKUP") = GetINIValue( "required", "REGISTRATION", "NOTEBOOK_LOOKUP", "web_app", "cfserver")
+		Application("SHOW_NOTEBOOK_USER") = GetINIValue( "required", "REGISTRATION", "SHOW_NOTEBOOK_USER", "web_app", "cfserver")
+		Application("IDENTIFIERS_TO_TEMP") = GetINIValue( "required", "REGISTRATION", "IDENTIFIERS_TO_TEMP", "web_app", "cfserver")
+		Application("REAGENTS_TO_TEMP") = GetINIValue( "required", "REGISTRATION", "REAGENTS_TO_TEMP", "web_app", "cfserver")
+		Application("REAGENT_SEQUENCE") = GetINIValue( "required", "REGISTRATION", "REAGENT_SEQUENCE", "web_app", "cfserver")
+		Application("TABLES_WITH_MOLIDS") = GetINIValue( "required", "REGISTRATION", "TABLES_WITH_MOLIDS", "web_app", "cfserver")
+		If Application("TABLES_WITH_MOLIDS") = "NULL" then
+			Application("TABLES_WITH_MOLIDS") = ""
+		end if
+		Application("OUTPUT_AS_GIF_ON_REG") = GetINIValue( "required", "REGISTRATION", "OUTPUT_AS_GIF_ON_REG", "web_app", "cfserver")
+		Application("DISPLAY_APPKEY") = GetINIValue( "required", "REGISTRATION", "DISPLAY_APPKEY", "web_app", "cfserver")
+		Application("BUILD_SITE_ID") = GetINIValue( "required", "REGISTRATION", "BUILD_SITE_ID", "web_app", "cfserver")
+		If Application("BUILD_SITE_ID") = "NULL" then
+			Application("BUILD_SITE_ID") = ""
+		end if		
+		Application("PREFS_FORMGROUPS") = GetINIValue( "required", "REGISTRATION", "PREFS_FORM_GROUPS", "web_app", "cfserver")
+		Application("FULL_COMMIT_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "FULL_COMMIT_TABLE_ORDER", "web_app", "cfserver")
+		Application("NEW_BATCH_COMMIT_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "NEW_BATCH_COMMIT_TABLE_ORDER", "web_app", "cfserver")
+		Application("ADD_IDENTIFIERS_COMMIT_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "ADD_IDENTIFIERS_COMMIT_TABLE_ORDER", "web_app", "cfserver")
+		Application("DELETE_SALT_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "DELETE_SALT_TABLE_ORDER", "web_app", "cfserver")
+		Application("ADD_SALT_COMMIT_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "ADD_SALT_COMMIT_TABLE_ORDER", "web_app", "cfserver")
+
+		Application("DELETE_BATCH_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "DELETE_BATCH_TABLE_ORDER", "web_app", "cfserver")
+		Application("DELETE_COMPOUND_TABLE_ORDER") = GetINIValue( "required", "REGISTRATION", "DELETE_COMPOUND_TABLE_ORDER", "web_app", "cfserver")
+		Application("COMPOUND_TYPES_USED") = GetINIValue( "required", "REGISTRATION", "COMPOUND_TYPES_USED", "web_app", "cfserver")
+		Application("SITES_USED") =  GetINIValue( "required", "REGISTRATION", "SITES_USED", "web_app", "cfserver")
+		Application("PROJECTS_USED") =  GetINIValue( "required", "REGISTRATION", "PROJECTS_USED", "web_app", "cfserver")
+		Application("REAGENTS_USED") =  GetINIValue( "required", "REGISTRATION", "REAGENTS_USED", "web_app", "cfserver")
+		Application("ANALYTICS_USED") = GetINIValue( "required", "REGISTRATION", "ANALYTICS_USED", "web_app", "cfserver")
+		Application("WORKGROUPS_USED") = GetINIValue( "required", "REGISTRATION", "WORKGROUPS_USED", "web_app", "cfserver")
+		
+		Application("NOTEBOOK_USED") = GetINIValue( "required", "REGISTRATION", "NOTEBOOK_USED", "web_app", "cfserver")
+		Application("SALTS_USED") = GetINIValue( "required", "REGISTRATION", "SALTS_USED", "web_app", "cfserver")
+		Application("ShowSecTabinUsrMgr")=GetINIValue( "required", "REGISTRATION", "SHOW_SEC_TBLES_IN_USR_MGR", "web_app", "cfserver")
+
+		Application("REG_DELIMITER") = GetINIValue( "required", "REGISTRATION", "REG_DELIMITER", "web_app", "cfserver")
+		if Application("REG_DELIMITER") = NULL or Application("REG_DELIMITER") = "NULL" then
+			Application("REG_DELIMITER") = ""
+		end if
+		Application("PREFIX_DELIMITER") = GetINIValue( "required", "REGISTRATION", "PREFIX_DELIMITER", "web_app", "cfserver")
+		if Application("PREFIX_DELIMITER") = NULL or Application("PREFIX_DELIMITER") = "NULL" then
+			Application("PREFIX_DELIMITER") = ""
+		end if
+		Application("ROOT_NUMBER_LENGTH") = GetINIValue( "required", "REGISTRATION", "ROOT_NUMBER_LENGTH", "web_app", "cfserver")
+		if Application("ROOT_NUMBER_LENGTH") = NULL or Application("ROOT_NUMBER_LENGTH") = "NULL" then
+			Application("ROOT_NUMBER_LENGTH") = ""
+		end if
+		Application("START_BATCH_NUMBER") = GetINIValue( "required", "REGISTRATION", "START_BATCH_NUMBER", "web_app", "cfserver")
+		if Application("START_BATCH_NUMBER") = NULL or Application("START_BATCH_NUMBER") = "NULL" then
+			Application("START_BATCH_NUMBER") = "1"
+		end if
+		
+		
+	end if
+	
+	If UCase(Application("APP_TYPE")) = "DOCUMENT_MANAGER" then
+		Application("DOCMANAGER_USERNAME") =GetINIValue( "required", "DOCUMENT_MANAGER", "DOCMANAGER_USERNAME", "web_app", "cfserver")
+		Application("DOCMANAGER_PWD")=GetINIValue( "required", "DOCUMENT_MANAGER", "DOCMANAGER_PWD", "web_app", "cfserver")
+		'Application("DBA_USERNAME")=GetINIValue( "required", "DOCUMENT_MANAGER", "DBA_USERNAME", "web_app", "cfserver")
+		'Application("DBA_PWD")=GetINIValue( "required", "DOCUMENT_MANAGER", "DBA_PWD", "web_app", "cfserver")
+		Application("SEC_USERNAME")=GetINIValue( "required", "DOCUMENT_MANAGER", "SEC_USERNAME", "web_app", "cfserver")
+		Application("SEC_PWD")=GetINIValue( "required", "DOCUMENT_MANAGER", "SEC_PWD", "web_app", "cfserver")
+		Application("ORA_SQLLDRPATH") = GetINIValue( "required", "DOCUMENT_MANAGER", "ORA_SQLLDRPATH", "web_app", "cfserver")
+		'Application("ORA_SERVICENAME")=GetINIValue( "required", "DOCUMENT_MANAGER", "ORA_SERVICENAME", "web_app", "cfserver")
+		Application("PRIV_TABLE_NAME")=GetINIValue( "required", "DOCUMENT_MANAGER", "PRIV_TABLE_NAME", "web_app", "cfserver")
+		Application("ShowSecTabinUsrMgr")=GetINIValue( "required", "DOCUMENT_MANAGER", "SHOW_SEC_TBLES_IN_USR_MGR", "web_app", "cfserver")
+		Application("INDEX_FIELD") =GetINIValue( "required", "DOCUMENT_MANAGER", "INDEX_FIELD", "web_app", "cfserver")
+		Application("TABLES_WITH_MOLIDS") = GetINIValue( "required", "DOCUMENT_MANAGER", "TABLES_WITH_MOLIDS", "web_app", "cfserver")
+		If Application("TABLES_WITH_MOLIDS") = "NULL" then
+			Application("TABLES_WITH_MOLIDS") = ""
+		end if
+		Application("DISPLAY_APPKEY") = GetINIValue( "required", "DOCUMENT_MANAGER", "DISPLAY_APPKEY", "web_app", "cfserver")
+		Application("BUILD_SITE_ID") = GetINIValue( "required", "DOCUMENT_MANAGER", "BUILD_SITE_ID", "web_app", "cfserver")
+		If Application("BUILD_SITE_ID") = "NULL" then
+			Application("BUILD_SITE_ID") = ""
+		end if
+
+		Application("PREFS_FORMGROUPS") = GetINIValue( "required", "DOCUMENT_MANAGER", "PREFS_FORM_GROUPS", "web_app", "cfserver")
+		Application("SITES_USED") =  GetINIValue( "required", "DOCUMENT_MANAGER", "SITES_USED", "web_app", "cfserver")
+		
+		
+		
+		'JHS 07/24/2007
+		Application("OPTIONAL_FIELDS") = GetINIValue("required", "DOCUMENT_MANAGER", "OPTIONAL_FIELDS", "web_app", "cfserver")
+		
+		
+			arrLinkTypeList = split(Application("OPTIONAL_FIELDS"),",")
+			totalCount = UBound(arrLinkTypeList)
+			For i = 0 to totalcount
+				optional_field = UCASE(arrLinkTypeList(i))	
+				Application("optional_field" & optional_field) = true			
+			Next
+			
+		'JHS 07/24/2007
+		Application("STATUS_LIST") = GetINIValue("required", "DOCUMENT_MANAGER", "STATUS_LIST", "web_app", "cfserver")
+		
+		'JHS 12/4/2007
+		Application("DOCUMENT_CLASS_LIST") = GetINIValue("required", "DOCUMENT_MANAGER", "DOCUMENT_CLASS_LIST", "web_app", "cfserver")
+
+		'JHS 12/10/2007
+		Application("SEC_DOC_CAT_LIST") = GetINIValue("required", "DOCUMENT_MANAGER", "SEC_DOC_CAT_LIST", "web_app", "cfserver")
+				
+		'JHS 12/10/2007
+		Application("HIDE_BATCH_LOADER") = GetINIValue("optional", "DOCUMENT_MANAGER", "HIDE_BATCH_LOADER", "web_app", "cfserver")
+		If Application("HIDE_BATCH_LOADER") = 1 or Application("HIDE_BATCH_LOADER") = "1" then
+			Application("HIDE_BATCH_LOADER") = true
+		else
+			Application("HIDE_BATCH_LOADER") = false
+		end if	
+									
+	
+		'JHS added 4/4/03
+		checkShowExternalLinks = GetINIValue( "required", "DOCUMENT_MANAGER", "SHOW_EXTERNAL_LINKS", "web_app", "cfserver")
+		if checkShowExternalLinks = "INIEmpty" or  checkShowExternalLinks = "" then checkShowExternalLinks="0"
+		'Application("SHOW_EXTERNAL_LINKS") = checkShowExternalLinks
+		if checkShowExternalLinks = "1" then
+			Application("SHOW_EXTERNAL_LINKS") = true
+		else
+			Application("SHOW_EXTERNAL_LINKS") = false
+		end if
+
+		if Application("SHOW_EXTERNAL_LINKS") then
+			Application("test")=1
+			Application("SHOW_LINKS_LIST") = GetINIValue( "optional", "EXTERNAL_LINKS", "LINK_TYPES", "web_app", "cfserver")
+			LinkTypeList = Application("SHOW_LINKS_LIST")
+			
+			arrLinkTypeList = split(LinkTypeList,",")
+			totalCount = UBound(arrLinkTypeList)
+			For i = 0 to totalcount
+				currLinkType = UCASE(arrLinkTypeList(i))
+				
+				Application(currLinkType) = true
+				
+				linksrcstr = currLinkType & "_LINK_SRC"
+				linktext = currLinkType & "_LINK_TEXT"
+				linktitle = currLinkType & "_LINK_TITLE"
+				linkimage = currLinkType & "_LINK_IMAGE"
+				linkminprivilige = currLinkType & "_MINPRIV"
+				linkapp = currLinkType & "_LINK_APP"
+				
+				'Jordan is adding a new flag specific only to regnumber lookups
+				'to make applicable to all, just get rid of outer if statement
+				'however the gui doesn't have code to handle the external data lookup
+				linklookupinsource = currLinkType & "_SOURCE_LOOKUP"
+				if currLinkType = "CHEMREGREGNUMBER" then
+					Application(linklookupinsource) = GetINIValue( "optional", currLinkType, "LOOKUPINSOURCE", "web_app", "cfserver")
+					if Application(linklookupinsource) = "FALSE" then
+						Application(linklookupinsource) = false
+					else
+						Application(linklookupinsource) = true
+					end if
+				end if
+				
+				
+				Application(linksrcstr) = GetINIValue( "optional", currLinkType, "LINK_SRC", "web_app", "cfserver")
+				Application(linktext) = GetINIValue( "optional", currLinkType, "LINK_TEXT", "web_app", "cfserver")
+				Application(linktitle) = GetINIValue( "optional", currLinkType, "LINK_TITLE", "web_app", "cfserver")
+				Application(linkimage) = GetINIValue( "optional", currLinkType, "LINK_IMAGE", "web_app", "cfserver")
+				Application(linkminprivilige) = GetINIValue( "optional", currLinkType, "MINPRIVILEGE", "web_app", "cfserver")
+				Application(linkapp) = GetINIValue( "optional", currLinkType, "LINK_APP", "web_app", "cfserver")
+				
+				Next
+			
+		end if
+		
+		'JHS added 4/4/03 end  
+        
+        'JHS added 12/17/2010
+        Application("ENABLE_REGNUMBER_ENTRY") = false
+		checkRegEntry = GetINIValue( "optional", "DOCUMENT_MANAGER", "ENABLE_REGNUMBER_ENTRY", "web_app", "cfserver")
+		if checkRegEntry <> "INIEmpty" and  checkRegEntry <> "" and lcase(checkRegEntry) <> "false" then Application("ENABLE_REGNUMBER_ENTRY") = true
+        'JHS added 12/17/2010 end
+        
+	End if
+	' cs_security change
+	GetSecurityINIValues()
+End Sub
+
+
+
+
+'close global objects
+Sub CleanUp()
+	'close cowsutil global object
+	if isObject(INIVAR) then
+		Set INIVAR = Nothing
+	end if
+End Sub
+
+'create chemfinder, lockit and base64 objects
+Sub CreateGlobalAppObjects()
+	if APP_INI_ERRORS <> "" then exit sub
+	on error resume next
+	'create the object that decodes cdx fiels encoded in base64 that are submitted from a form
+	Set Application("myDecoder") = Server.CreateObject("Base64Decode.Decode")
+	'exit application if errors where found in the above variables
+	if err.number > 0 then RaiseAppError "Base64Decode Error", err.number, err.description
+	on error goto 0
+End Sub
+
+
+Sub CreateAppDir()
+	if APP_INI_ERRORS <> "" then exit sub
+	on error resume next
+	Set apptempdir = Server.CreateObject("Scripting.FileSystemObject")
+	'check to see if the application temporary directory exists, if not, create it and add appropriate files.
+	
+	if Application("CDX_CACHING") = "false" then
+		If  apptempdir.FolderExists(Application("AppTempDirPath")) then
+		apptempdir.DeleteFolder(Application("AppTempDirPath"))
+		end if
+	end if
+	If not apptempdir.FolderExists(Application("AppTempDirPath")) then
+		apptempdir.CreateFolder(Application("AppTempDirPath"))
+	end if
+	if err.number > 0 then RaiseAppError "App dir not created", err.number, err.description
+		apptempdir = ""
+	Set apptempdir = Nothing
+End Sub
+'get datbase specific values and create necessary Application variables
+
+Sub GetAllDBINIValues()
+	Dim dbnamestring 
+	Dim DBNames 
+	Dim currentDB
+	'get web form directories from ini file to establish the Application("dbcount")
+	DBNames = Application("DBNames")
+	dbnamestring = Split(DBNames, ",", -1)
+	'start getting the information from the inifile based on the number of database in the web appliciaton
+	for i = 0 to UBound(dbnamestring)
+		currentDB = dbnamestring(i)
+		'start getting values from ini file
+		'on error resume next
+		GetSingleDB(currentDB)
+	next 'i for a db
+	'set dates for ini files
+	End Sub
+	
+	
+Sub GetSingleDB(currentDB)
+	GetGlobalInfoValues(currentDB)
+	GetTableGroupInfo(currentDB)
+	GetFieldMapGroupInfo(currentDB)
+	GetChemConnGroupInfo(currentDB)
+	GetADOConnGroupInfo(currentDB)
+		
+	'open objects and test connections
+	if NOT DB_INI_ERRORS <> "" then CheckADOConnectInfo(currentDB)
+	if NOT DB_INI_ERRORS <> "" then GetTableRecordCounts(currentDB)
+	if NOT DB_INI_ERRORS <> "" then  CreateDBTempDir(currentDB)
+	
+	if NOT DB_INI_ERRORS <> "" then
+		Application("DBLoaded" & currentDB) = True
+		 SetINIDate(currentDB)
+	else
+		Application("DBLoaded" & currentDB) = False
+		MarkForReload(currentDB) 'set stored ini date to nothing so next reload will be forced
+		CreateLog(currentDB)
+	end if
+
+
+End Sub
+
+Function GetLiveConnection (ByVal connection_name, ByVal currentDB)
+		conn_info_array = Application(connection_name & currentDB)
+		conn_type=conn_info_array(0)
+		conn_string=conn_info_array(1)
+		conn_conn_timeout=conn_info_array(2)
+		conn_command_timeout=conn_info_array(3)
+		conn_username=conn_info_array(4)
+		conn_password=conn_info_array(5)
+		if conn_type = "NULL" or conn_type = "" or conn_type= "OLEDB" then
+			full_conn_string = conn_string & "; " & conn_username & "; " & conn_password		
+		else
+			full_conn_string = conn_type & "=" & conn_string & "; " & conn_username & "; " & conn_password		
+		end if				
+		Set DataConn=Server.CreateObject("ADODB.Connection")
+		DataConn.ConnectionTimeout = conn_conn_timeout
+		DataConn.CommandTimeout = conn_command_timeout
+		on error resume next
+		DataConn.Open full_conn_string
+		Set GetLiveConnection = DataConn	
+End Function
+
+
+
+Sub GetTableRecordCounts(currentDB)
+	if Application("LoginRequired" & currentDB) = 0 then
+		Table_groups_str=Application("TableGroups" & currentDB)
+		table_groups_array = split(Table_groups_str, ",", -1)
+		for i = 0 to UBound(table_groups_array)
+			myCount=0
+			theCount=0
+			table_group_name = Trim(table_groups_array(i))
+			TableGroupArray=Application(table_group_name & currentDB)
+			basetable = TableGroupArray(0)
+			
+			TableArray = Application(basetable & currentDB)
+			ADOConnName = TableArray(9)
+			on error resume next
+			'Set DataConn = GetLiveConnection(ADOConnName,currentDB)
+			Set DataConn = GetNewConnection(currentDB, "base_form_group", ADOConnName)
+			'Set RS = Server.CreateObject("ADODB.Recordset")
+			sql = "Select Count(*) From " & basetable
+			Set RS = DataConn.Execute(sql)
+			if err.number > 0 then
+				theCount = 0
+				Set DataConn = Nothing
+				DataConn.Close
+				Set RS = Nothing
+				
+			else
+				if Not (RS.BOF AND RS.EOF)then
+					RS.MoveFirst
+					theCount=RS.Fields(0)
+					RS.Close
+				else
+					theCount = 0
+				end if
+				Set RS = Nothing
+				DataConn.Close
+				Set DataConn = Nothing
+			End if
+			Application(basetable & "RecordCount" & currentDB) = theCount
+			if i = 0 then 
+				Application("DBRecordCount" & currentDB) = theCount
+			end if
+		next 'i
+	else
+		Application("DBRecordCount" & currentDB) = ""
+	end if
+End sub
+
+Sub GetADOConnGroupInfo(ByVal currentDB)
+		ADOconnections_str = GetINIValue( "required", "GLOBALS", "ADO_CONNECTION_NAMES", "web_app", currentDB)
+		Application("ADOconnections_str") = ADOconnections_str
+		ADOconnection_array = split(ADOconnections_str, ",", -1)
+		for i = 0 to UBound(ADOconnection_array)
+			conn_name = Trim(ADOconnection_array(i))
+			Application(conn_name & currentDB) = BuildConnInfo(conn_name, currentDB)
+		next 'i
+End Sub
+
+Sub CheckADOConnectInfo(currentDB)
+		ADOconnections_str = Application("ADOconnections_str")
+		ADOconnection_array = split(ADOconnections_str, ",", -1)
+		for i = 0 to UBound(ADOconnection_array)
+			conn_name = Trim(ADOconnection_array(i))
+			GetConnection conn_name, currentDB
+		next	
+End Sub
+Sub GetTableGroupInfo(ByVal currentDB)
+		table_groups_str = GetINIValue( "required", "GLOBALS", "TABLE_GROUPS", "web_app", currentDB)
+		Application("TableGroups" & currentDB) = table_groups_str
+		table_groups_array = split(Table_groups_str, ",", -1)
+		for i = 0 to UBound(table_groups_array)
+			table_group_name = Trim(table_groups_array(i))
+			Application(table_group_name & currentDB) = BuildTableGroup(table_group_name, currentDB)					
+		next 'i
+End Sub
+
+Function BuildTableGroup(ByVal table_group_name, ByVal currentDB)
+
+		BaseTable=GetINIValue( "required",  UCase(table_group_name), "BASE_TABLE", "web_app", currentDB)
+		MolTable=GetINIValue( "required", UCase(table_group_name), "MOLECULE_TABLE", "web_app", currentDB)
+		SQLOrder=GetINIValue( "required",  UCase(table_group_name), "TABLE_SQL_ORDER", "web_app", currentDB)
+		Dim TableGroupArray
+		ReDim TableGroupArray(2)
+		TableGroupArray(0) = BaseTable
+		TableGroupArray(1) = MolTable
+		TableGroupArray(2) = SQLOrder
+		BuildTableGroup= TableGroupArray
+End Function
+
+Sub GetFieldMapGroupInfo(ByVal currentDB)
+		field_map_groups_str = GetINIValue( "required", "GLOBALS", "FIELD_MAP_GROUPS", "web_app", currentDB)
+		if field_map_groups_str = "NULL" then field_map_groups_str = ""
+		Application("FieldMapGroups" & currentDB) = field_map_groups_str
+		field_map_groups_array = split(field_map_groups_str, ",", -1)
+		for i = 0 to UBound(field_map_groups_array)
+			field_map_group_name = Trim(field_map_groups_array(i))
+			Application(field_map_group_name & currentDB) = BuildFieldMapGroup(field_map_group_name, currentDB)					
+		next 'i
+End Sub
+
+Function BuildFieldMapGroup(ByVal field_map_group_name, ByVal currentDB)
+
+		StructureMap=GetINIValue( "required",  UCase(field_map_group_name), "STRUC_FIELD_MAP", "web_app", currentDB)
+		MWMap=GetINIValue( "required", UCase(field_map_group_name), "MW_FIELD_MAP", "web_app", currentDB)
+		FormulaMap=GetINIValue( "required",  UCase(field_map_group_name), "FORMULA_FIELD_MAP", "web_app", currentDB)
+		
+		for j = 1 to 100
+		on error resume next
+			Map = GetINIValue( "optional",  UCase(field_map_group_name), "OTHER_FIELD_MAP" & j, "web_app", currentDB)
+			if j>8 AND  Map = "NULL" then
+				exit for
+			else
+				if Map = "NULL" then Map = ""
+				if Map_Comb <> "" then
+					Map_Comb= Map_Comb & ":" & Map
+				else
+					Map_Comb= Map
+				end if
+			end if
+		err.clear()
+		next
+		OtherFieldMap = Map_Comb
+		
+		Dim FieldMapGroupArray
+		ReDim FieldMapGroupArray(3)
+		FieldMapGroupArray(0) = StructureMap
+		FieldMapGroupArray(1) = FormulaMap
+		FieldMapGroupArray(2) = MWMap
+		FieldMapGroupArray(3) = OtherFieldMap
+		
+		
+		BuildFieldMapGroup= FieldMapGroupArray		
+		
+End Function
+
+
+Sub GetChemConnGroupInfo(ByVal currentDB)
+		CHEMconnections_str = GetINIValue( "required", "GLOBALS", "CHEM_CONNECTION_NAMES", "web_app", currentDB)
+		Application("CHEMconnections_str")=CHEMconnections_str
+		CHEMconnection_array = split(CHEMconnections_str, ",", -1)
+		for i = 0 to UBound(CHEMconnection_array)
+			conn_name = Trim(CHEMconnection_array(i))
+			Application(conn_name & currentDB) = BuildChemInfo(conn_name, currentDB)	
+		next 'i
+End Sub
+
+
+
+Function checkPath(thepath)
+	Set theFile = Server.CreateObject("Scripting.FileSystemObject")
+	if theFile.FileExists(thepath) = True then
+		checkPath = True
+	else
+		checkPath = false
+	end if
+	Set theFile = Nothing
+	theFile = ""
+End function
+
+
+Function GetTimeStamp()
+	MyTime = Now()
+	MyDay = Date()
+	date_stamp=Month(MyDate) & Day(MyDate) & Year(MyDate) & Hour(MyTime) & Minute(MyTime)
+	GetTimeStamp = date_stamp
+End Function
+
+
+
+Sub GetGlobalInfoValues(currentDB)
+		'Standard DB Variables
+		Application("AboutWindow" & currentDB)=GetINIValue( "required", "GLOBALS", "ABOUT_WINDOW", "web_app", currentDB)
+		Application("DisplayName" & currentDB)=GetINIValue( "required", "GLOBALS", "DISPLAY_NAME", "web_app", currentDB)
+		' IRL Application("CFW_Instance" & currentDB) =GetINIValue( "required", "GLOBALS", "CFW_INSTANCE", "web_app", currentDB)
+		Application("MaxHits" & currentDB) =  GetINIValue( "required", "GLOBALS", "MAXHITS", "web_app", currentDB)
+		Application("RegVersion" & currentDB) =  GetINIValue( "required", "GLOBALS", "REG_VERSION", "web_app", currentDB)
+		Application("IniVersion" & currentDB) =  GetINIValue( "required", "GLOBALS", "INI_VERSION", "web_app", currentDB)
+		Application("DataBaseType" & currentDB) =  GetINIValue( "required", "GLOBALS", "DB_TYPE", "web_app", currentDB)
+		Application("DBRecordCount" & currentDB) = GetINIValue( "required", "GLOBALS", "DB_RECORD_COUNT", "web_app", currentDB)
+		Application("Prefs")=Application("AppPathHTTP") & "/prefs.asp"
+		Application("About")=Application("AppPathHTTP") & "/about.asp"
+		Application("HelpFile")= "/CBOEHelp/CBOEContextHelp/Doc Manager Webhelp/Default.htm"
+		Application("NavBar")= Application("AppPathHTTP") & "/navbar.asp"
+		
+
+		'DEFAULT FORM PATHS 
+		Application("DBPathHTTP" & currentDB) =Application("AppPathHTTP") & "/" & currentDB 
+		Application("ActionForm" & currentDB)= Application("DBPathHTTP" & currentDB) & "/" &  currentDB &  "_action.asp"
+
+		
+		'get values for input and result forms for form groups - this includes reg system flags
+		formgroups_str =  GetINIValue( "required", "GLOBALS", "FORM_GROUPS", "web_app", currentDB)
+		form_group_array = split(formgroups_str, ",", -1)
+		'DGB remember the formgroup list
+		Application("form_group_array" & currentDB) = form_group_array
+		for i = 0 to UBound(form_group_array)
+			form_group_name = Trim(form_group_array(i))
+			GetFormGroupValues form_group_name, currentDB
+		next 'i
+		
+	
+		
+		'get table values
+		tables_str= GetINIValue( "required", "GLOBALS", "TABLE_ALIASES", "web_app", currentDB)
+		if Instr(UCase(tables_str), "ADD_LINES")>0 then
+			tables_str=AppendToINIStr("GLOBALS", currentDB, tables_str,"TABLE_ALIASES" )
+		end if
+		Application("TableNames" & currentDB) = tables_str
+		table_names_array = split(tables_str, ",", -1)
+
+		for i = 0 to UBound(table_names_array)
+			table_name = Trim(table_names_array(i))
+			Application(table_name & currentDB) = GetTableValues(table_name, currentDB)	
+		next 'i
+
+
+		'get predefined subform lookups
+
+		subform_view_str= GetINIValue( "optional", "GLOBALS", "SUBFORM_VIEW_NAMES", "web_app", currentDB)
+		subform_view_names_array = split(subform_view_str, ",", -1)
+		for i = 0 to UBound(subform_view_names_array)
+			subform_view = Trim(subform_view_names_array(i))
+			Application("SubFormView" & subform_view & currentDB) = GetSubFormViewValues(subform_view, currentDB)	
+		next 'i
+		
+		'EXPORT HITS values that can be output using the export file feature
+		Application("ExportHits" & currentDB)= Application("AppPathHTTP") & "/export_hits.asp"
+
+		
+		'TEMP FILE DIRECTORIES set paths to form tempdirectories
+		Application("TempFileDirectory" & currentDB) =   Application("AppTempDirPath") & "\" & currentDB & "Temp\"
+		Application("TempFileDirectoryHTTP" & currentDB) =  Application("AppTempDirPathHTTP") & "/" & currentDB & "Temp/"	
+End Sub
+
+Function BuildChemInfo(ByVal chem_conn_name, ByVal currentDB)
+
+		StrucEngine=GetINIValue( "required",  UCase(chem_conn_name), "STRUC_ENGINE", "web_app", currentDB)
+		StrucFormName=GetINIValue( "required", UCase(chem_conn_name), "STRUC_FORM_NAME", "web_app", currentDB)
+		StrucFormPath= Application("AppPath") & "\" & currentDB & "\cfwforms\"  & StrucFormName
+		BaseFromPath=StrucFormPath
+		StrucDBpath=GetINIValue( "required",  UCase(chem_conn_name), "STRUC_DB_PATH", "web_app", currentDB)
+		StrucTableName=GetINIValue( "required", UCase(chem_conn_name), "STRUC_TABLE_NAME", "web_app", currentDB)
+		Application("StrucDBPath") = StrucDBpath
+		'make sure forms can be opened and db is connected
+		Dim ChemConnArray
+		ReDim ChemConnArray(6)
+		ChemConnArray(0) = StrucEngine
+		ChemConnArray(1) = StrucFormName
+		ChemConnArray(2) = StrucFormPath
+		ChemConnArray(3) = StrucDBpath
+		ChemConnArray(4) = StrucTableName
+		ChemConnArray(5) = BaseFromPath
+		'return array
+		BuildChemInfo= ChemConnArray
+End Function
+
+
+Function BuildConnInfo(ByVal ado_conn_name, ByVal currentDB)
+	Application("UserIDKeyword") = GetINIValue("optional", UCase(ado_conn_name), "USERID_KEYWORD", "web_app", currentDB)
+	Application("PWDKeyword") = GetINIValue("optional", UCase(ado_conn_name), "PWD_KEYWORD", "web_app", currentDB)
+	conntype = GetINIValue( "required", UCase(ado_conn_name), "CONN_TYPE", "web_app", currentDB)
+	Application("UDLPath") = GetINIValue( "required", UCase(ado_conn_name), "CONNECTION_STRING", "web_app", currentDB)
+	conn_string = GetINIValue( "required", UCase(ado_conn_name), "CONNECTION_STRING", "web_app", currentDB)
+	conn_conn_timeout = GetINIValue( "required", UCase(ado_conn_name), "CONNECTION_TIMEOUT", "web_app", currentDB)
+	conn_command_timout = GetINIValue( "required", UCase(ado_conn_name), "COMMAND_TIMEOUT", "web_app", currentDB)
+	conn_username = GetINIValue( "optional", UCase(ado_conn_name), "CONNECTION_USERNAME", "web_app", currentDB)
+	conn_password = GetINIValue( "optional", UCase(ado_conn_name), "CONNECTION_PASSWORD", "web_app", currentDB)
+	conn_dbms = GetINIValue( "optional", UCase(ado_conn_name), "DBMS", "web_app", currentDB)
+	if conn_dbms = "INIEmpty" then conn_dbms = "ACCESS"
+	'create array
+	Dim ConnArray
+	ReDim ConnArray(7)
+	ConnArray(0) = conntype
+	ConnArray(1) = conn_string
+	ConnArray(2) = conn_conn_timeout
+	ConnArray(3) = conn_command_timeout
+	ConnArray(4) = conn_username
+	ConnArray(5) = conn_password
+	ConnArray(6) = conn_dbms
+	'return array
+	BuildConnInfo= ConnArray
+End Function
+
+Function AppendToINIStr(ByVal section_name,ByVal currentDB, ByVal inputStr,ByVal key_name)
+	Dim finalRelFields, NewEntry,AppendedStr,tempArray,tempArray2,theCount,lineIdent,tempINIEntry,NumAdditional
+	if key_name = "OTHER_FIELD_MAP" then
+		StrSeparator = ":"
+		ItemSeparator = ","
+	else
+		StrSeparator = ","
+		ItemSeparator = ";"
+	end if
+	tempArray = Split(inputStr, StrSeparator, -1)
+	theCount = UBound(tempArray)
+	lineIdent = tempArray(theCount)
+	newArray = Split(lineIdent, ItemSeparator, -1)
+	NumAdditional = newArray(1)
+	if Not NumAdditional <> "" then 
+		NumAdditional = 0
+		finalRelfields = Replace(inputStr, StrSeparator & lineIdent, " ")
+	end if
+	if NumAdditional > 0 then
+		For i = 1 to NumAdditional
+			NewEntry =GetINIValue("optional",  UCase(section_name), UCase(key_name) & i, "web_app", currentDB)
+			if AppendedStr <> "" then
+				AppendedStr = AppendedStr & "," & NewEntry
+			Else
+				AppendedStr = NewEntry
+			End if
+		Next 'i
+	finalRelfields = Replace(inputStr, lineIdent, AppendedStr)
+	End if
+	
+	AppendToINIStr = finalRelFields
+
+End Function
+
+'set file paths for currentDB
+Sub GetFormGroupValues(form_group_name, currentDB)
+
+	InputFormPath =GetINIValue("required", UCase(form_group_name), "INPUT_FORM_PATH", "web_app", currentDB)
+	InputFormMode =GetINIValue("required",  UCase(form_group_name), "INPUT_FORM_MODE", "web_app", currentDB)
+	ResultFormPath =GetINIValue("required",  UCase(form_group_name), "RESULT_FORM_PATH", "web_app", currentDB)
+	ResultFormMode =GetINIValue("required",  UCase(form_group_name), "RESULT_FORM_MODE", "web_app", currentDB)
+	RelFields =GetINIValue("required",  UCase(form_group_name), "SEARCHABLE_ADO_FIELDS", "web_app", currentDB)
+	if Instr(UCase(RelFields), "ADD_LINES")>0 then
+		RelFields=AppendToINIStr(form_group_name, currentDB, RelFields,"SEARCHABLE_ADO_FIELDS" )
+	end if
+	if RelFields = "NULL" then RelFields = ""
+		PluginValue =GetINIValue("required",  UCase(form_group_name), "PLUGIN_VALUE", "web_app", currentDB)
+	if PluginValue = "NULL" then PluginValue = "False"
+		FormGroupFlag=GetINIValue("required",  UCase(form_group_name), "FORM_GROUP_FLAG", "web_app", currentDB)
+	if FormGroupFlag = "NULL" then FormGroupFlag = "NULL"
+		StructureFields = GetINIValue("required",  UCase(form_group_name), "STRUCTURE_FIELDS", "web_app", currentDB)
+	if StructureFields = "NULL" then StructureFields = ""
+		MWFields = GetINIValue("required", UCase(form_group_name), "MW_FIELDS", "web_app", currentDB)
+	if MWFields = "NULL" then MWFields = ""
+		FormulaFields = GetINIValue("required",  UCase(form_group_name), "FORMULA_FIELDS", "web_app", currentDB)
+	if FormulaFields = "NULL" then FormulaFields = ""
+		SDFileFields = GetINIValue("required",  UCase(form_group_name), "SDFILE_FIELDS", "web_app", currentDB)
+	if SDFileFields = "NULL" then SDFileFields = ""
+		TableGroup=GetINIValue("required",  UCase(form_group_name), "TABLE_GROUP", "web_app", currentDB)
+	if TableGroup = "NULL" then TableGroup = "base_table_group"
+		RequiredFields=GetINIValue("required",  UCase(form_group_name), "REQUIRED_FIELDS", "web_app", currentDB)
+	if RequiredFields = "NULL" then RequiredFields = ""
+			NumListView=GetINIValue("required",  UCase(form_group_name), "NUM_LIST_VIEW", "web_app", currentDB)
+	if NumListView = "NULL" then NumListView = 5
+	
+	Dim formgrouparray(15)
+	formgrouparray(0)=RelFields
+	formgrouparray(1)=InputFormPath
+	formgrouparray(2)=ResultFormPath
+	formgrouparray(3)=InputFormMode
+	formgrouparray(4)=ResultFormMode
+	formgrouparray(5)=PluginValue
+	formgrouparray(6)=FormGroupFlag
+	formgrouparray(7)=StructureFields
+	formgrouparray(8)=MWFields
+	formgrouparray(9)=FormulaFields
+	formgrouparray(10)=SDFileFields
+	formgrouparray(11)="NULL"
+	formgrouparray(12)=TableGroup
+	formgrouparray(13)=RequiredFields
+	formgrouparray(14)=NumListView
+	
+	Application(form_group_name & currentDB) = formgrouparray
+	
+	Select Case formgroupflag
+	Case "GLOBAL_SEARCH"
+		Application(form_group_name & currentDB & "FieldMapGroup")=GetINIValue("required",  UCase(form_group_name), "FIELD_MAP_GROUP", "web_app", currentDB)
+	Case "REG_COMMIT"
+		Application(form_group_name & currentDB & "FieldMapGroup")=GetINIValue("required",  UCase(form_group_name), "FIELD_MAP_GROUP", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegCommitBaseTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_BASETABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegCommitMolTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_MOLTABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegTempBaseTable") =  GetINIValue( "required", UCase(form_group_name), "REG_TEMP_BASETABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegTempMolTable") =  GetINIValue( "required", UCase(form_group_name), "REG_TEMP_MOLTABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegBatchTable") =  GetINIValue( "required", UCase(form_group_name), "REG_BATCH_TABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegDuplicatesTable") =  GetINIValue( "required", UCase(form_group_name), "REG_DUPLICATES_TABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderFullCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_FULL_COMMIT", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderPartialCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_PARTIAL_COMMIT", "web_app", currentDB)	
+	Case "REG_TEMP"
+		Application(form_group_name & currentDB & "RegTempBaseTable") =  GetINIValue( "required", UCase(form_group_name), "REG_TEMP_BASETABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegTempMolTable") =  GetINIValue( "required", UCase(form_group_name), "REG_TEMP_MOLTABLE", "web_app", currentDB)
+	Case "COMMIT"
+		Application(form_group_name & currentDB & "FieldMapGroup")=GetINIValue("required",  UCase(form_group_name), "FIELD_MAP_GROUP", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegCommitBaseTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_BASETABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegCommitMolTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_MOLTABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegBatchTable") =  GetINIValue( "required", UCase(form_group_name), "REG_BATCH_TABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegDuplicatesTable") =  GetINIValue( "required", UCase(form_group_name), "REG_DUPLICATES_TABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderFullCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_FULL_COMMIT", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderPartialCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_PARTIAL_COMMIT", "web_app", currentDB)
+	Case "ADD_RECORD"
+		Application(form_group_name & currentDB & "RegCommitBaseTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_BASETABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "RegCommitMolTable") =  GetINIValue( "required", UCase(form_group_name), "REG_COMMIT_MOLTABLE", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderFullCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_FULL_COMMIT", "web_app", currentDB)
+		Application(form_group_name & currentDB & "TableOrderPartialCommit") =  GetINIValue( "required", UCase(form_group_name), "TABLE_ORDER_PARTIAL_COMMIT", "web_app", currentDB)
+
+	Case "INDEX_SEARCH"
+		Application(form_group_name & currentDB & "IndexDB") =  GetINIValue( "required", UCase(form_group_name), "INDEX_DB", "web_app", currentDB)
+
+	Case "SINGLE_SEARCH"
+
+	End Select
+	
+End Sub
+
+
+'get the values for each table for the currentDB and set the HIGHESTPRIORITY variable for creating priority list
+Function GetTableValues(ByVal table_name, ByVal currentDB)
+		'actual table name
+		TableRealName = GetINIValue( "required", UCase(table_name), "TABLE_NAME", "web_app", currentDB)
+		'ado related values
+		RelFields=GetINIValue( "required",  UCase(table_name), "RELATIONAL_FIELDS", "web_app", currentDB)
+		if Instr(UCase(RelFields), "ADD_LINES")>0 then
+			RelFields=AppendToINIStr(form_group_name, currentDB, RelFields,"RELATIONAL_FIELDS" )
+		end if
+		PrimaryKey=GetINIValue( "required",  UCase(table_name), "PRIMARY_KEY", "web_app", currentDB)
+		SQLSyntax=GetINIValue( "required", UCase(table_name), "SQL_SYNTAX", "web_app", currentDB)
+		SelectKeyWord=GetINIValue( "required",  UCase(table_name), "SELECT_KEYWORD", "web_app", currentDB)
+		SelectAdditional=GetINIValue( "required",  UCase(table_name), "SELECT_ADDITIONAL", "web_app", currentDB)
+		SelectJoin=GetINIValue( "required",  UCase(table_name), "SELECT_JOIN", "web_app", currentDB)
+		SelectLinks=GetINIValue( "required", UCase(table_name), "SELECT_LINKS", "web_app", currentDB)
+		InterTables=GetINIValue( "required",  UCase(table_name), "INTER_TABLES", "web_app", currentDB)
+		'chemfinder related values
+		ChemConnection = GetINIValue( "required", UCase(table_name), "CHEM_CONNECTION", "web_app", currentDB)
+		StrucFieldID=GetINIValue( "required",  UCase(table_name), "STRUC_FIELD_ID", "web_app", currentDB)
+
+		ADOConnection =GetINIValue( "required", UCase(table_name), "ADO_CONNECTION", "web_app", currentDB)
+		'create array.  
+		
+		Dim TableArray
+		ReDim TableArray(15)
+	
+		
+		TableArray(0) = TableRealName 
+		TableArray(1) = RelFields
+		TableArray(2) = PrimaryKey
+		TableArray(3) = SQLSyntax
+		TableArray(4) = SelectKeyWord
+		TableArray(5) = SelectJoin
+		TableArray(6) = SelectLinks
+		TableArray(7) = SelectAdditional
+		TableArray(8) = InterTables
+		TableArray(9) = ADOConnection
+		TableArray(10) = ChemConnection
+		TableArray(11) = StrucFieldID
+
+		
+		GetTableValues = TableArray
+		if Application("RelationalFields" & currentDB) <> "" then
+			Application("RelationalFields" & currentDB) = Application("RelationalFields" & currentDB) & "," & RelFields
+		else
+			Application("RelationalFields" & currentDB) = RelFields
+		end if
+
+
+End Function
+
+Function GetSubFormViewValues(ByVal subform_view_name, ByVal currentDB)
+		if subform_view_name = "NULL" or subform_view_name = "" then exit function
+		SelectStatement = GetINIValue( "required", UCase(subform_view_name), "SELECT_STATEMENT", "web_app", currentDB)
+		ADOConnection=GetINIValue( "required", UCase(subform_view_name), "ADO_CONNECTION", "web_app", currentDB)
+		
+		'create array
+		Dim SubFormViewArray
+		ReDim SubFormViewArray(1)
+		SubFormViewArray(0) =SelectStatement 
+		SubFormViewArray(1) = ADOConnection
+		
+		'return array
+		GetSubFormViewValues = SubFormViewArray
+End Function
+
+
+
+
+'create temporary directories for each dbase  in web applicaiton
+Sub CreateDBTempDir(ByVal currentDB)
+
+	Dim tempdir
+	Set dbtempdir= Server.CreateObject("Scripting.FileSystemObject")
+	tempdir = Application("TempFileDirectory" & currentDB)
+	'on error resume next
+	If Not dbtempdir.FolderExists(tempdir) then
+		dbtempdir.CreateFolder(tempdir)
+		dbtempdir.CopyFile Application("AppPath")& "\graphics\nostructure.cdx", tempdir
+		dbtempdir.CopyFile Application("AppPath")& "\graphics\nostructure.gif", tempdir
+		dbtempdir.CopyFile Application("AppPath")& "\graphics\0.gif", tempdir
+		dbtempdir.CopyFile Application("AppPath")& "\graphics\mt.cdx", tempdir
+	end if
+	if err.number > 0 then RaiseDBError "DB Temp dir not created ",err.number, err.description
+	on error goto 0
+	on error resume next
+	If Not dbtempdir.FolderExists(tempdir & "Sessiondir") then
+		dbtempdir.CreateFolder(tempdir & "Sessiondir")
+	end if
+		if err.number > 0 then RaiseDBError "The SessionDir directory for " & currentDB & " was not created ",err.number, err.description
+	dbtempdir = ""
+	Set dbtempdir = Nothing
+End Sub
+
+
+
+
+Function GetINIValue(ByVal allowempty, ByVal theSection, ByVal theKeyname, ByVal INIType, ByVal ININame )
+	on error resume next
+	Select Case INIType
+		Case "cows"
+				inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), ININame & ".ini")
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file: winnt/" & ININame & ".ini. <br>"
+			End if
+		Case "web_app"
+			Application("inipath") = Application("AppPath")  & "\config\" & ININame &".ini"
+			inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), Application("inipath"))
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file:  /config/" & ININame & ".ini. <br>" 
+			End if
+	End Select
+	if inivalue = "INIEmpty" then
+		Select case allowempty
+			case "required"
+				RaiseDBError "A required entry in the ini file is missing. ", emptyval , " SECTION:  " & theSection & "<br> KEY:  "& theKeyname
+			case "optional"
+				inivalue = ""
+		End select
+	end if
+	'if err.number > 0 then
+			'RaiseDBError "ini problem "& err.number & " " & err.description, "" , "SECTION:  " & theSection & "<br> KEY:  "& theKeyname		
+	'Exit Function
+	'end if
+	
+	GetINIValue = Trim(inivalue)
+	
+End Function
+
+Sub MarkForReload(ByVal currentDB)
+	Application("iniDate" & currentDB)= ""
+End Sub
+
+
+Sub SetINIDate(ByVal currentDB)
+	if currentDB = "app" then
+		Application("inipath") = Application("AppPath")  & "\config\" & "cfserver.ini"
+	else
+		Application("inipath") = Application("AppPath")  & "\config\" & currentDB &".ini"
+	end if
+	Set fileobject = Server.CreateObject("Scripting.FileSystemObject")
+	Set inifile =fileobject.GetFile(Application("inipath"))
+	'Set inifile =fileobject.GetFile("c:\inetpub\wwwroot\chemoffice\docmanager\config\docmanager.ini")
+	Application("iniDate" & currentdb) = inifile.DateLastModified
+	fileobject = ""
+	inifile = ""
+	Set fileobject = Nothing
+End Sub
+
+
+Function GetINIDate(ByVal currentDB)
+	if currentDB = "app" then
+		Application("inipath") = Application("AppPath")  & "\config\" & "cfserver.ini"
+	else
+		Application("inipath") = Application("AppPath")  & "\config\" & currentDB &".ini"
+	end if
+	Set fileobject = Server.CreateObject("Scripting.FileSystemObject")
+	Set inifile =fileobject.GetFile(Application("inipath"))
+	GetINIDate = inifile.DateLastModified
+	fileobject = ""
+	inifile = ""
+	Set fileobject = Nothing
+End Function
+
+Sub CheckINIDates(currentDB)
+	currentINIDate = GetINIDate(currentDB)
+	storedINIDate = Application("iniDate" & currentDB)
+	if Not(currentINIDate = storedINIdate) then
+		Application.Lock
+			' CloseCFWObjects(currentDB)
+			' CloseLockitObjects(currentDB)
+			GetSingleDB(currentDB)
+		Application.UnLock
+	end if
+End Sub
+
+
+Sub CheckAppDates()
+	currentINIDate = GetINIDate("app")
+	storedINIDate = Application("iniDate" & "app")
+	if Not(currentINIDate = storedINIdate) then
+	Application.Lock
+			'Get all inivalues for the web application
+			
+			GetAppINIValues()
+			'exit application if errors where found in the above variables
+			if APP_INI_ERRORS <> ""  then exit sub
+	
+			'create application temp directory
+			CreateAppDir()
+			'exit application if errors where found in the above variables
+			if APP_INI_ERRORS <> ""  then exit sub
+
+			'get db information and set values to application objects
+			GetAllDBINIValues()
+			SetINIDate("app")
+		Application.UnLock
+	end if
+End Sub
+
+'add table specific information to an array accessed within sessions of the application
+
+'add errors to Applicaiton("Errors") object for later output
+Sub RaiseAPPError(info1, info2, info3)
+	fullerror = "<table  cellpadding = ""4"" cellspacing = ""4"" border = ""0"" align = ""top""><tr><td valign = ""top"" width = ""250"">" & info1 & "</td><td width = ""500"" valign = ""top"">" & info2  & " " & info3 & "</td></tr></table>"
+	if APP_INI_ERRORS <> ""  then
+		APP_INI_ERRORS = APP_INI_ERRORS & fullerror
+	else
+		APP_INI_ERRORS= "<table border = ""0"" align ""top""><tr><td width = ""800""><h3>The web Application was unable to Load due to the following errors</h3></td></tr><tr><td width = ""150""><strong>Error Message</strong></td></tr></table>" & fullerror
+	end if
+	fullerror = "<table  cellpadding = ""4"" cellspacing = ""4"" border = ""0"" align = ""top""><tr><td valign = ""top"" width = ""250"">" & errname & "</td><td width = ""250"" valign = ""top"">" & errnumber  & " " & errdescription & "</td></tr></table>"
+	err.clear()
+end Sub
+
+Sub RaiseDBError(info1, info2, info3)
+	
+	fullerror = "<table  cellpadding = ""4"" cellspacing = ""4"" border = ""0"" align = ""top""><tr><td valign = ""top"" width = ""250"">" & info1 & "</td><td width = ""500"" valign = ""top"">" & info2  & " " & info3 & "</td></tr></table>"
+	if DB_INI_ERRORS <> ""  then
+		DB_INI_ERRORS = DB_INI_ERRORS & fullerror
+	else
+		DB_INI_ERRORS= "<table border = ""0"" align ""top""><tr><td width = ""800""><h3>The web Application was unable to Load due to the following errors</h3></td></tr><tr><td width = ""150""><strong>Error Message</strong></td></tr></table>" & fullerror
+	end if
+	err.clear()
+	
+end Sub
+
+'put double quotes around an input string
+Function QuotedString(varTemp)
+	If IsNull(varTemp) Then
+		QuotedString = Chr(34) & Chr(34)
+	Else
+		QuotedString = Chr(34) & CStr(varTemp) & Chr(34)
+	End If
+End Function
+
+
+
+
+
+'close application objects when app is unloaded
+Sub Application_OnEnd
+	
+	'==============clean up variables needed by docmgr==============
+	Application("wordApp").Quit
+	Set Application("wordApp") = Nothing
+	Application("xlApp").Quit
+	Set Application("xlApp") = Nothing
+	Set Application("propertyReader") = Nothing
+	Set Application("blobHandler") = Nothing
+	'===============================================================
+	
+	'make sure that chemfinder quits and object disappears
+	on error resume next
+	dbnamestring = Split(Application("DBNames"), ",", -1)
+	For i = 0 to UBound(dbnamestring)
+		dbkey = dbnamestring(i)	
+		' IRL CloseCFWObjects(dbkey)
+		' IRL CloseLockitObjects(dbkey)
+	next
+	'end get rid of chemfinder
+	Set inivar= Nothing
+	Set Application("myDecoder") = Nothing
+	Application("NumberCurrentUsers") = 0
+
+End Sub
+
+
+'**************************
+'Functions and Subs occuring when a user Session starts and ends
+'Main functions:
+ '	Session_OnStart	Runs once when a new user accesses a page in the webserver
+'	Session_OnEnd		Runs once the user logs off or the session timesout
+'**************************
+
+'create session directories and necessary variables for a user
+Sub Session_OnStart
+
+	'===============variables needed by docmgr======================
+	on error resume next
+	Session("previewHtmlStr") = ""
+	on error resume next
+	Session("sessionTempFolder") = Application("tempFolderPath") & "\sessiondir\" & CStr(Session.SessionID)
+	on error resume next
+	Session("sessionTempHttp") = Application("tempFolderHttp") & "/sessiondir/" & CStr(Session.SessionID)
+	'===============================================================
+	
+	if APP_INI_ERRORS <> ""  then
+		DB_INI_ERRORS = APP_INI_ERRORS
+		dbStr = Split(Application("DBNames"), ",", -1)
+		' IRL firstDB = dbStr(0)
+		' IRL added 1 line:
+		firstDB = dbStr
+		CreateLog(firstDB)
+		Session.Abandon
+		Application("DBLoaded" & currentDB) = False
+		MarkForReload("app")
+		
+		Application_OnEnd
+		exit sub
+	else
+		if NOT DB_INI_ERRORS <> "" then
+			Application.Lock
+				Application("NumberCurrentUsers") = Application("NumberCurrentUsers") + 1
+			Application.Unlock
+			dbnamestring = Split(Application("DBNames"), ",", -1)
+			'start getting the information based on the number of database in the web appliciaton
+			For i = 0 to UBound(dbnamestring)
+				dbkey = dbnamestring(i)
+				CheckAppDates()
+				CheckINIDates(dbkey)
+				'get each set of values for db's 
+				'create session directories based on session.sessionid	
+				CreateUserDir dbkey 
+				'if errors have occured in the temp dir creating exit the application since it is a problem in the ini file
+				if DB_INI_ERRORS <> ""  then exit sub
+			next 'i get next database entry 
+			CleanUP()
+		else
+			session.abandon
+		end if
+	end if
+	' cs_Security includes
+	'stop
+	Call AuthenticateUserFromRequest("DocManager")
+	
+	'!DGB! 09/03 Initialize hitlist session variables w/o reading ini
+	form_group_array = Application("form_group_array" & "docmanager")
+	for j = 0 to UBound(form_group_array)
+		Session("BaseRShitlistID" & dbkey & form_group_array(j))=0
+		Session("RefinehitlistID" & dbkey & form_group_array(j)) = 0
+	next
+	
+	if Application("HIDE_BATCH_LOADER") then
+		Session("BatchLoad_Docs" & dbkey) = false
+		session("BATCHLOAD_DOCS") = false
+	end if
+	
+End Sub
+
+
+
+
+'create user sessiondirectory in the application dbtemp directory
+Sub CreateUserDir(ByVal currentDB)
+	if APP_INI_ERRORS <> "" then exit sub
+
+	Dim sessdir
+	Set sessiontemp_dir = Server.CreateObject("Scripting.FileSystemObject")
+	on error resume next
+
+	sessdir = Application("TempFileDirectory" & currentDB) & "Sessiondir"  & "\" & Session.sessionid
+	If Not sessiontemp_dir.FolderExists(sessdir) then
+		sessiontemp_dir.CreateFolder(sessdir)
+	End if
+	if err.number > 0 then
+			RaiseDBError "User Session Dir not created", err.number, err.description
+	end if
+	sessiontemp_dir = ""
+	Set sessiontemp_dir = Nothing
+End Sub
+
+'delect user sessiondirectory in the application dbtemp directory
+Sub DeleteUserDir(ByVal currentDB)
+	if DB_INI_ERRORS <> "" then exit sub
+
+	Dim sessdir
+	Set sessiontemp_dir = Server.CreateObject("Scripting.FileSystemObject")
+	on error resume next
+	sessdir = Application("TempFileDirectory" & currentDB) & "Sessiondir"  & "\" & Session.sessionid
+	If  sessiontemp_dir.FolderExists(sessdir) then
+		sessiontemp_dir.DeleteFolder(sessdir)
+	End if
+	if err.number > 0 then
+			RaiseError "User Session Dir not deleted", "", ""
+	end if
+	sessiontemp_dir = ""
+	Set sessiontemp_dir = Nothing
+End Sub
+
+'clean up when session ends by timeout or user hitting log off button
+Sub Session_OnEnd
+	'stop
+	'==============clean up variables needed by docmgr================
+	'Session("htmlConverter") = Nothing
+	Set fso = Server.CreateObject("Scripting.FileSystemObject")
+	'Delete the file in temp dir
+	on error resume next
+	fso.DeleteFolder Session("sessionTempFolder"), true
+	Set fso = nothing
+	session.abandon
+	'=================================================================
+		
+	Application.Lock
+		Application("NumberCurrentUsers") = Application("NumberCurrentUsers") - 1
+	Application.Unlock
+	Dim dbkey
+	on error resume next
+	dbnamestring = Split(Application("DBNames"), ",", -1)
+	'start getting the information based on the number of database in the web appliciaton
+	For i = 0 to UBound(dbnamestring) 
+		dbkey = dbnamestring(i)
+		DeleteUserDir dbkey
+	Next 'next database name
+	'DGB 09/03
+	SessInitHitlistTables()
+	CleanUP()
+End Sub
+
+
+
+' get an ado connection
+Sub GetConnection_old (ByVal connection_name, ByVal currentDB)
+		conn_info_array = Application(connection_name & currentDB)
+		conn_type=conn_info_array(0)
+		conn_string=conn_info_array(1)
+		conn_conn_timeout=conn_info_array(2)
+		conn_command_timeout=conn_info_array(3)
+		conn_username=conn_info_array(4)
+		conn_password=conn_info_array(5)
+		if NOT (UCASE(conn_username) = "LOGIN_REQUIRED" OR UCASE(conn_password) = "LOGIN_REQUIRED")then
+			if conn_type = "NULL" or conn_type = "" or conn_type= "OLEDB" then
+				full_conn_string = conn_string & "; " & conn_username & "; " & conn_password		
+			else
+				full_conn_string = conn_type & "=" & conn_string & "; " & conn_username & "; " & conn_password		
+			end if				
+			Set DataConn=Server.CreateObject("ADODB.Connection")
+			DataConn.ConnectionTimeout = conn_conn_timeout
+			DataConn.CommandTimeout = conn_command_timeout
+			on error resume next
+			DataConn.Open full_conn_string
+			returnedError = checkADOErrors(DataConn)
+			if returnedError > 0 then
+			Application("inipath") = Application("AppPath")  & "\config\" & currentDB &".ini"
+				Select Case returnedError
+					Case 1
+						RaiseDBError "Error Description: ","A connection to the datasource could not be established." , ""
+						RaiseDBError "Likely Cause: ", "The DSN Name specified in the ini file does not exist: ", "<br>Current DSN name :" & conn_string
+						RaiseDBError "Possible Solution 1: ", "Correct the DSN name in the " & UCase(connection_name) & " section of the ini file.", ""
+						RaiseDBError "Possible Solution 2: ", "Check that the DSN exists in the ODBC control panel." , ""
+						RaiseDBError "The INI file path is: ", Application("inipath") , ""
+
+					Case 2
+						RaiseDBError "Error Description: ","A connection to the datasource could not be established." , ""
+						RaiseDBError "Possible Cause 1: ","The file path specified in the ini file does not exist:" , "<br>Current path/driver :" & conn_string
+						RaiseDBError "Solution 1: ", "Correct the file path in the " & UCase(connection_name) & " section of the ini file." , ""
+						RaiseDBError "The INI file path is: ", Application("inipath") , ""
+						RaiseDBError "Possible Cause 2: ","The access permissions on the directory containing the database or the database are too restrictive.", ""
+						RaiseDBError "Solution 2: ", "Within NT Explorer change the security permissions of the directory and contained database files to Everyone having Read Access" , ""
+
+					Case 3
+						RaiseDBError "Error Description: ","A connection to the datasource could not be established." , ""		
+						RaiseDBError "Likely Cause: ", "The username and/or password are incorrect: " ,  " <br> Current username string: " & conn_username  & "<br>  Current Password String:" & conn_password
+						RaiseDBError "Solution: ", "Correct the username and password in the " & UCase(connection_name) & " section of the ini file." , ""
+						RaiseDBError "The INI file path is: ", Application("inipath") , ""
+
+
+					End Select
+				
+				Set DataConn = Nothing
+				DataConn = ""
+			Else
+				DataConn.Close
+				Set DataConn = Nothing
+				DataConn = ""
+			end if
+			Application("LoginRequired" & currentdb) = 0
+		else
+			Application("LoginRequired" & currentdb) = 1
+			DataConn = ""
+		end if
+end Sub
+
+Function checkADOErrors(ByRef DataConn)
+fatalError= 0
+if DataConn.Errors.Count > 0 then
+	for i = 0 to DataConn.Errors.Count -1
+		test = DataConn.Errors.Item(i).Description
+		LogAction(test)
+		test = LCase(test)
+		if InStr(test, "data source name")> 0 then
+			fatalError = 1
+		end if
+		if InStr(test, "is not a valid path")> 0 then
+			fatalError = 2
+		end if
+		if InStr(test, "login failed")> 0 then
+			fatalError = 3
+		end if
+	next
+end if
+checkADOErrors = fatalError
+
+End Function		
+
+'output information for logging purposes and debuggin
+Sub LogAction(ByVal inputstr)
+	on error resume next
+		filepath = Application("AppPath")  & "\logfiles\" & Application("appkey") & "Applog.html"
+		Set fs = Server.CreateObject("Scripting.FileSystemObject")
+		Set a = fs.OpenTextFile(filepath, 8, True)  
+		a.WriteLine Now & ": " & inputstr & "<br>"
+		a.WriteLine " "
+		a.close
+End Sub
+
+Sub CreateLog(currentDB)
+returnpage ="/chemoffice.asp"
+
+	Session.abandon
+	on error resume next
+		filepath = Application("AppPath")  & "\logfiles\" & currentdb & "log.html"
+		Set fs = Server.CreateObject("Scripting.FileSystemObject")
+		Set a = fs.CreateTextFile(filepath,True)  
+		a.WriteLine Now & ": "& DB_INI_ERRORS & "<br>"
+		a.WriteLine "<a href=" & quotedstring(returnpage) & ">" & "return to Chemoffice Webserver main page" & "</a>"
+		a.close
+		Set fs = Nothing
+		Set a = Nothing
+		a = ""
+		fs = ""
+End Sub
+
+Sub SubmitTokenJob()
+	Dim cnn, cnn2, cmd, sql, rst
+	
+	'Set cnn = Server.CreateObject("ADODB.Connection")
+	'cnnstr = Replace(Application("cnnStr"), "docmgr", Application("SEC_USERNAME"))
+	'cnnstr = Replace(cnnstr, "oracle", Application("SEC_PWD"))
+	'cnn.ConnectionString = cnnstr
+	'cnn.Open
+	
+	'Set rst = Server.CreateObject("ADODB.Recordset")
+	
+	'sql = "SELECT * FROM REGDB.SEQUENCE"
+	
+	'rst.Open sql, cnn
+	
+	
+	Set cnn2 = Server.CreateObject("ADODB.Connection")
+	cnn2.ConnectionString = Application("cnnStr")
+	cnn2.Open
+
+	Set cmd = Server.CreateObject("ADODB.Command")
+	cmd.ActiveConnection = cnn2
+	cmd.CommandType = adCmdStoredProc
+	
+
+	'If not (rst.BOF and rst.EOF) then 
+		'stop
+		sql = "DOCMGR.CLEARTOKENJOBS()"
+		cmd.CommandText = sql
+		cmd.Execute
+		'rst.MoveFirst
+		'While Not rst.EOF
+			'sql = "DOCMGR.SUBMITTOKENJOB('" & rst("PREFIX") & "')"
+			sql = "DOCMGR.SUBMITTOKENJOB()"
+			cmd.CommandText = sql
+			cmd.Execute
+			'rst.MoveNext
+		'wend
+		
+	'end if
+	
+
+	rst.Close
+	'cnn.Close
+	cnn2.close
+	
+	Set rst = nothing
+	'Set cnn = nothing
+	Set cnn2 = nothing
+	
+End Sub
+</script>

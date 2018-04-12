@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<home>
+<section name="Registration" caption="Registration Enterprise" privilege="SEARCH_REG">
+	<line caption="Search: " privilege="CSS_LOGIN">
+		<link	display="Registry" 
+				tip="Search for registered compounds" 
+				url="/chem_reg/default.asp?formgroup=base_form_group&amp;dbname=reg"/>
+		<link	display="Temp" 
+				tip="Search for temporary compounds" 
+				privilege="SEARCH_TEMP"
+				url="/chem_reg/default.asp?formgroup=reg_ctrbt_commit_form_group&amp;dbname=reg"/>				
+	</line>
+	<line>
+		<link	display="Main Menu" 
+				tip="Access all other Registration System functionality" 
+				url="/chem_reg/default.asp?formgroup=base_form_group&amp;dbname=reg&amp;dataaction=mainpage"/>				
+	</line>
+	<line caption="Enter new: " privilege="ADD_COMPOUND_TEMP:ADD_BATCH_TEMP">
+		<link	display="Compound" 
+				tip="Register a new compound" 
+				privilege="ADD_COMPOUND_TEMP"
+				url="/chem_reg/default.asp?formgroup=reg_ctrbt_form_group&amp;dbname=reg&amp;dataaction=full_commit&amp;record_added=false&amp;PostRelay=1"/>
+		<link	display="Batch" 
+				tip="Add a batch to a registered compound" 
+				privilege="ADD_BATCH_TEMP"
+				url="/chem_reg/default.asp?formgroup=batch_ctrbt_form_group&amp;dbname=reg&amp;dataaction=batch_commit&amp;record_added=false&amp;PostRelay=1"/>				
+	</line>
+</section>
+<section name="CSSecurity" caption="Manage Security" privilege="CSS_LOGIN">
+	<line>
+		<link	display="Change Password" 
+				tip="Change your user password"
+				privilege="CSS_CHANGE_PASSWORD" 
+				url="/cs_security/cs_security/Password.asp?dbkey=cs_security"
+				popup="dialog"/>				
+	</line>
+	<line>
+		<link	display="Manage Users" 
+				tip="Administer user accounts"
+				privilege="CSS_EDIT_USER:CSS_CREATE_USER:CSS_DELETE_USER" 
+				url="/cs_security/cs_security/manageUsers.asp?dbkey=cs_security"
+				popup="dialog"/>				
+	</line>
+	<line>
+		<link	display="Manage Roles" 
+				tip="Administer application roles"
+				privilege="CSS_EDIT_ROLE:CSS_CREATE_ROLE:CSS_DELETE_ROLE" 
+				url="/cs_security/cs_security/manageRoles.asp?dbkey=cs_security"
+				popup="dialog"/>				
+	</line>
+	<line>
+		<link	display="Add Users to E-Notebook" 
+				tip="Add existing Cs_Security Users to E-Notebook"
+				privilege="ELN_ADMIN" 
+				url="/cs_security/cs_security/AddUsersToELN.asp?dbkey=cs_security"
+				popup="dialog"/>				
+	</line>
+	<line>
+		<link	display="Application Tracing" 
+				tip="Manage Application Tracing and Troubleshooting"
+				privilege="CSS_EDIT_USER:CSS_CREATE_USER:CSS_DELETE_USER" 
+				url="/cs_security/tracing.asp?dbkey=cs_security"
+				popup="dialog"/>				
+	</line>
+</section>
+<section name="Inventory" caption="Inventory Enterprise" privilege="INV_BROWSE_ALL">
+	<line>
+		<link	display="Browse" 
+				tip="Browse over Inventory locations" 
+				url="/cheminv/cheminv/BrowseInventory_frset.asp?PostRelay=1"/>
+		<link	display="Search" 
+				tip="Search over Inventory containers" 
+				url="/cheminv/inputtoggle.asp?dataaction=db&amp;dbname=cheminv"/>
+		<link	display="Scan" 
+				tip="Use barcode scanner to build a list of containers to modify" 
+				privilege="INV_DELETE_CONTAINER:INV_MOVE_CONTAINER:INV_CHECKOUT_CONTAINER:INV_CHECKIN_CONTAINER:INV_RETIRE_CONTAINER"
+				url="/cheminv/gui/multiScan_frset.asp"/>
+    <link	display="New Container"
+				tip="Create a new container at default location"
+				privilege="INV_CREATE_CONTAINER"
+				url="/cheminv/cheminv/BrowseInventory_frset.asp?PostRelay=1&amp;FormPopup=NewContainer"/>
+		<link	display="Manage Substances" 
+				tip="Manage Inventory compounds" 
+				privilege="INV_MANAGE_SUBSTANCES"
+				url="/cheminv/inputtoggle.asp?formgroup=substances_form_group&amp;dataaction=db&amp;dbname=cheminv"/>
+		<link	display="Global Search" 
+				tip="Search over Inventory containers" 
+				privilege="SEARCH_REG"
+				url="/ChemInv/default.asp?TB=Global&amp;formgroup=gs_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;Showbanner=True"/>													
+		<link	display="Tasks" 
+				tip="Inventory Tasks" 
+				privilege="INV_CREATE_LOCATION"
+				url="/cheminv/gui/menu.asp"
+				popup="dialog"/>													
+	</line>
+</section>
+<section name="Databases" caption="Chemical Databases">
+	<chemofficeiniApps apptype="CO_WEBSERVER_STANDARD" useDropdownThreshold="4" caption="Standard: "/>
+	<chemofficeiniApps apptype="WIZARD" useDropdownThreshold="2" caption="Custom: "/>
+</section>
+<section name="BioSARBrowser" caption="BioSAR Enterprise">
+	<line>
+		<link	display="Open Form" 
+				tip="Open a BioSAR Browser form" 
+				url="/biosar_browser/default.asp?dataaction=open_form&amp;formgroup=base_form_group&amp;dbname=BIOSAR_BROWSER"
+				privilege="SEARCH_USING_FORMGROUP"/>
+	</line>
+	<line>			
+		<link	display="Manage your forms" 
+				tip="Manage your BioSAR Browser forms" 
+				url="/biosar_browser/default.asp?dataaction=form_management&amp;formgroup=base_form_group&amp;dbname=BIOSAR_BROWSER"
+				privilege="ADD_USER_FORMGROUP:EDIT_USER_FORMGROUP:DELETE_USER_FORMGROUP"/>
+	</line>
+	<line>			
+		<link	display="Schema Management" 
+				tip="Manage Oracle schemas available to BioSAR Browsers" 
+				privilege="ADD_ADMIN_SCHEMA:EDIT_ADMIN_SCHEMA:DELETE_ADMIN_SCHEMA"
+				url="/biosar_browser/default.asp?dataaction=schema_management&amp;formgroup=base_form_group&amp;dbname=BIOSAR_BROWSER"/>
+	</line>
+</section>
+<section name="ENotebook" caption="E-Notebook Enterprise">
+	<line>			
+		<link	display="E-Notebook 9" 
+				tip="Link to E-Notebook 9 is not configured." 
+				url="#" />
+	</line>
+</section>
+<section name="DocManager" caption="DocManager Enterprise">
+	<line>			
+		<link	display="Main Page" 
+				tip="DocManager main page" 
+				url="/docmanager/docmanager/mainpage.asp"
+				privilege="SEARCH_DOCS"/>
+	</line>
+	<line>			
+		<link	display="Search documents" 
+				tip="Search DocManager documents" 
+				url="/docmanager/default.asp?formgroup=base_form_group&amp;dbname=docmanager&amp;dataaction=db"
+				privilege="SEARCH_DOCS"/>
+	</line>
+	<line>			
+		<link	display="Submit documents" 
+				tip="Submit a document to DocManager" 
+				url="/docmanager/docmanager/src/locatedocs.asp"
+				privilege="SUBMIT_DOCS"/>
+	</line>
+	<line>			
+		<link	display="Batch Submission" 
+				tip="Submit a bath of documents to DocManager" 
+				url="/docmanager/docmanager/BatchLoadConfigForm.asp"
+				privilege="BATCHLOAD_DOCS"/>
+	</line>
+	<line>			
+		<link	display="Recent Activities" 
+				tip="Recent history of DocManager activities" 
+				url="/docmanager/docmanager/RecentActivitiesFrameset.asp"
+				privilege="VIEW_HISTORY"/>
+	</line>
+</section>
+<section name="DrugDeg" caption="Drug Degradation">
+	<line>			
+		<link	display="Main Page" 
+				tip="Drug Degradation main page" 
+				url="/drugdeg/DRUGDEG/mainpage.asp?formgroup=base_form_group&amp;dbname=DRUGDEG&amp;MadeIn=DDDefault"
+				privilege="DD_SEARCH"/>
+	</line>
+	<line>			
+		<link	display="Search" 
+				tip="Search Drug Degradation" 
+				url="/drugdeg/default.asp?formgroup=base_form_group&amp;dbname=DRUGDEG&amp;dataaction=db"
+				privilege="DD_SEARCH"/>
+	</line>
+	<line>			
+		<link	display="Add Parent compound" 
+				tip="Add parent compound to Drug Degradation" 
+				url="/drugdeg/default.asp?formgroup=AddParent_form_group&amp;dbname=DRUGDEG&amp;dataaction=parent_full_commit&amp;record_added=false"
+				privilege="DD_ADD_RECORDS:DD_EDIT_RECORDS:DD_DELETE_RECORDS"/>
+	</line>
+	<line>			
+		<link	display="Add/Edit conditions" 
+				tip="Add/Edit degradation conditions" 
+				url="/drugdeg/default.asp?formgroup=Condition_form_group&amp;dbname=DRUGDEG&amp;dataaction=condition_list_admin&amp;record_added=false"
+				privilege="DD_ADD_RECORDS:DD_EDIT_RECORDS:DD_DELETE_RECORDS"/>
+	</line>
+	<line>			
+		<link	display="Add/Edit Salts" 
+				tip="Add/Edit Salts to Drug Degradation" 
+				url="/drugdeg/default.asp?formgroup=Salt_form_group&amp;dbname=DRUGDEG&amp;dataaction=salt_list_admin&amp;record_added=false"
+				privilege="DD_ADD_RECORDS:DD_EDIT_RECORDS:DD_DELETE_RECORDS"/>
+	</line>
+</section>
+</home>

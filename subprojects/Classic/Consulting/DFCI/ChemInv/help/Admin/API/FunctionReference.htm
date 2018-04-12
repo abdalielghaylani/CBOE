@@ -1,0 +1,351 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+<style>
+<!--
+span.MsoCommentReference
+	{}
+-->
+</style>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan --><br>
+<br>
+ <h1>Inventory Manager&nbsp;HTTP API Functions<div> 
+<table border="0" cellpadding="3" cellspacing="0">
+<caption></caption>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="AddReport.htm">AddReport</a></td>
+    <td vAlign="top" width="209"><a href="DeleteSynonym.htm">DeleteSynonym</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="AllotContainer.htm">AllotContainer</a></td>
+    <td vAlign="top" width="209"><a href="DeleteTableRow.htm">DeleteTableRow</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="ApproveContainer.htm">ApproveContainer</a></td>
+    <td vAlign="top" width="209"><a href="DeleteWellContentType.htm">DeleteWellContentType</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="ApproveSampleRequest.htm">ApproveSampleRequest</a></td>
+    <td vAlign="top" width="209"><a href="DeliverRequest.htm">DeliverRequest</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="CalcMolarConc.htm">CalcMolarConc</a></td>
+    <td vAlign="top" width="209"><a href="EditOrder.htm">EditOrder</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="CancelOrder.htm">CancelOrder</a></td>
+	<td valign="top" width="209"><a href="EditLocation.htm">EditLocation</a></a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CancelRequest.htm">CancelRequest</a></td>
+    <td vAlign="top">
+	<a href="EditReport.htm">EditReport</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="CertifyContainer.htm">CertifyContainer</a></td>
+    <td vAlign="top">
+	<a href="EmptyTrash.htm">EmptyTrash</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CheckDuplicateBarcode.htm">
+	CheckDuplicateBarcode</a></td>
+    <td vAlign="top">
+	<a href="ExcludeContainerTypes.htm">ExcludeContainerTypes</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="CheckOutContainer.htm">CheckOutContainer</a></td>
+    <td vAlign="top">
+	<a href="EditDataMap.htm">EditDataMap</a></td>
+    </tr>
+  
+  <tr>
+    <td vAlign="top" width="209"><a href="CheckSufficientSourcePlateQty.htm">CheckSufficientSourcePlateQty</a></td>
+    <td vAlign="top" width="209">
+	<a href="GetLocationAddress.htm">GetLocationAddress</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CloseRequestSample.htm">CloseRequestSample</a></td>
+    <td vAlign="top" width="209"><a href="GetBatchInfo.htm">GetBatchInfo</a></td>
+</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CopyContainer.htm">CopyContainer</a> </td>
+    <td vAlign="top" width="209"><a href="GetKeyContainerAttributes.htm">GetKeyContainerAttributes</a></td>
+    </tr>
+  <tr>
+	<td valign="top" width="209">
+		<a href="CopyDataMap.htm">
+		CopyDataMap</a></td>
+    <td vAlign="top" width="209"><a href="GetLocationFromBarcode.htm">GetLocationFromBarcode</a></td>
+    </tr>
+<tr valign="top">
+    <td vAlign="top" width="209">
+	<a href="CopyPlate.htm">CopyPlate</a></td>
+    <td vAlign="top" width="209"><a href="GetLocationFromID.htm">GetLocationFromID</a></td>
+</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateContainerReport.htm">CreateContainerReport</a></td>
+	<td valign="top" width="209">
+		<a href="MoveContainer.htm">MoveContainer</a>
+	</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateCustomReport.htm">CreateCustomReport</a></td>
+	<td valign="top" width="209">
+		<a href="MoveLocation.htm">MoveLocation</a>
+	</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateContainer.htm">CreateContainer</a>
+	</td>
+    <td vAlign="top" width="209"><a href="MovePlate.htm">MovePlate</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CreateDataMap.htm">CreateDataMap</a></td>
+    <td vAlign="top" width="209"><a href="OrderContainer.htm">OrderContainer</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CreateGridFormat.htm">CreateGridFormat</a></td>
+    <td vAlign="top" width="209"><a href="ReceiveOrder.htm">ReceiveOrder</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateLink.htm">CreateLink</a></td>
+    <td vAlign="top" width="209"><a href="ReconcileContainer.htm">
+	ReconcileContainer</a></td>
+    </tr>
+  <tr>
+	<td valign="top" width="209"><a href="CreateLocation.htm">CreateLocation</a></td>
+    <td vAlign="top" width="209"><span lang="en-us"><a href="ReconcilePlate.htm">ReconcilePlate</a></span></td>
+    </tr>
+<tr valign="top">
+    <td vAlign="top" width="209"><a href="CreateLocationReport.htm">CreateLocationReport</a></td>
+    <td vAlign="top" width="209"><a href="ReformatPlate.htm">ReformatPlate</a></td>
+</tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CreateOrder.htm">CreateOrder</a></td>
+    <td vAlign="top" width="209"><a href="ReorderContainer.htm">ReorderContainer</a></td>
+	</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreatePhysPlateType.htm">CreatePhysPlateType</a></td>
+    <td vAlign="top" width="209"><a href="RetireContainer.htm">RetireContainer</a></td>
+	</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreatePlateFormat.htm">CreatePlateFormat</a></td>
+    <td vAlign="top" width="209"><a href="RetirePlate.htm">RetirePlate</a></td>
+	</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreatePlateType.htm">CreatePlateType</a></td>
+    <td vAlign="top" width="209"><a href="SolvatePlate.htm">SolvatePlate</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top">
+	<a href="CreatePlateFromMap.htm">CreatePlateFromMap</a></td>
+    <td vAlign="top" width="209"><span lang="en-us"><a href="ShipOrder.htm">ShipOrder</a></span></td>
+    </tr>
+  <tr>
+    <td vAlign="top">
+	<a href="CreatePlateMap.htm">CreatePlateMap</a></td>
+    <td vAlign="top" width="209"><a href="UndoDelivery.htm">UndoDelivery</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top">
+	<a href="CreatePlateReport.htm">CreatePlateReport</a></td>
+    <td vAlign="top" width="209"><a href="UpdateAllContainerFields.htm">
+	UpdateAllContainerFields</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CreateReformatMap.htm">CreateReformatMap</a></a></td>
+    <td vAlign="top" width="209"><span lang="en-us"><a href="UpdateAddress.htm">UpdateAddress</a></span></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateRequest.htm">CreateRequest</a></td>
+    <td vAlign="top" width="209"><a href="UpdateContainer2.htm">UpdateContainer2</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateReservation.htm">CreateReservation</a></td>
+    <td vAlign="top" width="209"><a href="UpdateContainerQtyRemaining.htm">
+	UpdateContainerQtyRemaining</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateSearchResultsReport.htm">CreateSearchResultsReport</a></td>
+    <td vAlign="top" width="209"><a href="UpdateGridFormat.htm">UpdateGridFormat</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateSubstance.htm">CreateSubstance</a></td>
+    <td vAlign="top" width="209"><a href="UpdateLink.htm">UpdateLink</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateSynonym.htm">CreateSynonym</a></td>
+    <td vAlign="top" width="209"><a href="UpdatePhysPlateType.htm">
+	UpdatePhysPlateType</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateTableRow.htm">CreateTableRow</a></td>
+    <td vAlign="top" width="209"><a href="UpdatePlate.htm">UpdatePlate</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="CalcVolume.htm">CalcVolume</a></td>
+    <td vAlign="top" width="209"><a href="UpdatePlateFormat.htm">
+	UpdatePlateFormat</a></td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="CreateWellContentType.htm">CreateWellContentType</a></td>
+    <td vAlign="top" width="209"><a href="UpdatePlateType.htm">UpdatePlateType</a></td>
+	</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteCompound.htm">DeleteCompound</a></td>
+    <td vAlign="top" width="209"><a href="UpdateRequest.htm">UpdateRequest</a></td>
+    </tr>
+  <tr>
+	<td valign="top" width="209">
+		<a href="DeleteContainer.htm">DeleteContainer</a>
+	</td>
+    <td vAlign="top" width="209"><a href="UpdateReservation.htm">
+	UpdateReservation </a></td>
+    </tr>
+<tr valign="top">
+    <td vAlign="top" width="209">
+	<a href="DeleteDataMap.htm">DeleteDataMap</a></td>
+    <td vAlign="top" width="209"><a href="UpdateSubstance.htm">UpdateSubstance</a></td>
+</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteGridFormat.htm">DeleteGridFormat</a></td>
+    <td vAlign="top" width="209"><a href="UpdateSynonym.htm">UpdateSynonym</a> </td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteLink.htm">DeleteLink</a></td>
+    <td vAlign="top" width="209"><a href="UpdateTable.htm">UpdateTable</a></td>
+	</tr>
+  <tr>
+	<td valign="top" width="209">
+		<a href="DeleteLocation.htm">DeleteLocation</a>
+	</td>
+    <td vAlign="top" width="209"><a href="UpdateWell.htm">UpdateWell</a></td>
+    </tr>
+  <tr>
+	<td valign="top" width="209">
+		<a href="DeleteLocations.htm">DeleteLocations</a></td>
+	<td valign="top" width="209"><a href="UpdateWellContentType.htm">
+	UpdateWellContentType</a>
+		
+	</td>
+    </tr>
+<tr valign="top">
+    <td vAlign="top" width="209"><a href="DeletePhysPlateType.htm">DeletePhysPlateType</a></td>
+	<td valign="top" width="209">&nbsp;</td>
+</tr>
+<tr valign="top">
+    <td vAlign="top" width="209"><a href="DeletePlate.htm">DeletePlate</a></td>
+	<td valign="top" width="209">&nbsp;</td>
+</tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeletePlateFormat.htm">DeletePlateFormat</a></td>
+	<td valign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeletePlateType.htm">DeletePlateType</a></td>
+    <td vAlign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="DeleteReport.htm">DeleteReport</a></td>
+    <td vAlign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteRequest.htm">DeleteRequest</a></td>
+    <td vAlign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteReservation.htm">DeleteReservation</a></td>
+    <td vAlign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209">
+	<a href="DeleteReformatMap.htm">DeleteReformatMap</a></td>
+    <td vAlign="top" width="209">&nbsp;</td>
+    </tr>
+  <tr>
+    <td vAlign="top" width="209"><a href="DeleteSubstance.htm">DeleteSubstance</a></td>
+	<td valign="top" width="209">&nbsp;</td>
+	</tr>
+  </table>
+</div>
+</h1>
+
+
+
+
+<br>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Location Management</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="32296" -->
+<h1>Location Management</h1>
+<p>A location is defined as any &quot;place&quot; that a container can be stored. This includes a 
+shelf, a refrigerator, or even a particular laboratory. 
+Different facilities can decide how best to organize 
+locations. For more information about locations, please see 
+the section on <a href="#location_tree_frame">Location Tree Frame</a> (below). </p>
+<a name="current_location_frame"><h3>Current Location Frame</h3></a>
+<p>The location text box indicates the currently selected inventory location. 
+Actions performed via the links on this frame apply to the currently 
+selected location. In addition, you may enter a location id value 
+into the location box to rapidly access&nbsp;a location on the 
+tree. A barcode reader may be used to enter a location 
+id value into this box further expediting navigation to a given 
+location.</p>
+<p align="center"><img src="../images/current_location_frame.gif" border="1" width="999" height="103"></p>
+<p>The following controls and functions are available within the current
+location frame:</p>
+<p><strong>Available to all users</strong>:</p>
+<a class="MenuLink" href="searching.htm">New Search</a>
+<p>Returns to <em>Search Mode</em> screen. The last search form selected
+by the user will be automatically pre<span lang="en-us">-</span>selected.</p>
+<a class="MenuLink" href="searching.htm">Search Results</a>
+<p>Returns to last hit list viewed while on <em>Search Mode</em>. If no
+search has been performed the link brings up the default search form.</p>
+<p class="MenuLink"><u>Help</u> </p>
+<p>Opens the Inventory Enterprise User's Guide.</p>
+<p class="MenuLink"><u>Home</u> </p>
+<p>Brings the user back to the global login homepage.</p>
+<p class="MenuLink"><u>Log Off </u> </p>
+<p>Logs the current user off. </p>
+<p><strong>Available to only some users</strong>:</p>
+
+<a class="MenuLink" href="multi_scan.htm">Multi Scan</a>
+<p>Allows the user to scan more than one container to perform operation on scanned container(s).</p>
+
+
+<a class="MenuLink" href="location_new.htm">New Location</a>
+<p>Creates a new inventory <em>Location</em> at the currently selected location.</p>
+
+<a class="MenuLink" href="location_edit.htm">Edit Location</a>
+<p>Allows setting of the following <em>Location</em> attributes: location name,
+location type, location barcode and location description.</p>
+
+<a class="MenuLink" href="location_move.htm">Move Location</a>
+<p>Allows moving a location to a different node on the location tree. 
+Enter a location Id value or use the browse link to select the destination
+locations. All containers and sub locations will follow with the
+moved location. </p>
+
+<a class="MenuLink" href="location_delete.htm">Delete Location</a>
+<p>Deletes the currently selected location. A location must be empty
+before it can be deleted.</p>
+
+<a class="MenuLink" href="container_new.htm">New Container</a>
+<p>Creates a new container in the currently selected 
+location. There are five required parameters to create a new container: <a href="fields/location_id.htm">Location ID</a>, <a href="fields/container_type.htm">Container Type</a>, <a href="fields/unit_measure.htm">Unit of Measure</a>, <a href="fields/container_size.htm">Container Size</a>, and <a href="fields/qty_available.htm">Initial Amount</a>.&nbsp;The container name
+and barcode fields will default to an auto generated container id value. Other container attributes can be completed by populating additional
+tabs on this dialog. In particular, a chemical structure can be assigned
+to the container by following the <em>New Substance</em> or <em>Select
+Substance</em> links from the Substance tab.</p>
+
+<a class="MenuLink" href="order.htm">Order Container</a>
+<p>Allows the user to enter an order for a container not currently in the 
+Inventory system.</p>
+
+<a class="MenuLink" href="admin_tasks_order_receive.htm">Receive Order </a>
+<p>Allows the user to receive an order and move the containers in the order to their destination 
+location and update the container status.</p>
+
+<a class="MenuLink" href="http://misty/COWS/ChemOffice/ChemInv/help/userguide/admin_tasks.htm">Tasks</a>
+<p>Opens a new window listing administrative tasks 
+available.</p>
+
+<h3><a name="location_tree_frame">Location Tree Frame</a></h3>
+<p align="center"><img src="../images/location_tree_frame.gif" border="1" width="250" height="312"></p>
+<p>The location tree control allows navigation of the <em>Location</em>
+hierarchy. Click on the +/- symbols to expand/contract location folders. 
+Click on the location name to display its contents on the container list frame. 
+The refresh link at the top right of the page repopulates the tree from the
+latest available location data and returns it to its fully contracted
+position.</p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="34507" -->       
+</body>
+</html>

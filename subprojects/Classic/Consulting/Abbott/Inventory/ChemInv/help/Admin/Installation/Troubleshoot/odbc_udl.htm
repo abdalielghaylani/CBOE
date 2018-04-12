@@ -1,0 +1,114 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Registration System Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+<h1>Check the Data Source and UDL</h1>
+<p>           
+           
+       The ODBC Data Source 
+and UDL give the application information about the Oracle Database.&nbsp;</p>
+<p>           
+           
+          If 
+you are having difficulties, be sure to check the following:</p>
+<h3>ODBC Data Source</h3>
+<ol>
+  <li class="Numbered-substep"><a name="pgfId-1068137"></a>Open the ODBC Control 
+  Panel by going to <br>START &gt;Programs&gt;Administrative Tools&gt;Data 
+  Sources 
+  <li class="Numbered-substep"><a name="pgfId-1068139"></a>Select <strong>System 
+  DSN</strong> tab 
+  <li class="Numbered-substep">If there is a listing for 
+  Chem_Inv, highlight it and click 
+  <strong>Configure</strong>.&nbsp; Skip to step 7.<a name="pgfId-1068140"></a>  
+  <li class="Numbered-substep">If there is no listing for 
+  Chem_Inv, click 
+  <strong>Add</strong> 
+  <li class="Numbered-substep"><a name="pgfId-1068093"></a>Highlight <em class="Strong"><strong> Oracle ODBC Driver&nbsp;</strong> </em>driver. 
+  <li class="Numbered-substep"><a name="pgfId-1068375"></a>Click 
+  <strong>Finish</strong> . 
+  <li class="Numbered-substep"><a name="pgfId-1068094"></a>Fill in the following information:</li>    
+   
+  <ul><a name="pgfId-1068095"></a>
+    <li class="Bulleted-indent-sub"><a name="pgfId-1066308"></a><strong>Data Source 
+    Name :</strong> Chem_Inv 
+    <li class="Bulleted-indent-sub"><a name="pgfId-1066309"></a><strong>Description:</strong> Chem_Inv 
+    <li class="Bulleted-indent-sub"><a name="pgfId-1066310"></a><strong>Service Name 
+    :</strong> &lt;Oracle Service Name&gt; <br>for your target database. <br>For 
+    information about your Oracle Service Name, please see your Oracle DBA or 
+    consultant. 
+    <li class="Bulleted-indent-sub"><a name="pgfId-1066311"></a><strong>User ID 
+    :</strong> cheminvdb2 </li>  
+     </ul>
+  <li class="Numbered-substep"><a name="pgfId-1068174"></a>Click <strong>Ok</strong>.</li></ol>
+<h3 class="Numbered-substep">        
+         
+                 Inventory Enterprise&nbsp;UDLs</h3>
+<ol>
+  <li>
+<div class="Numbered-substep">        
+         
+                Browse to 
+  <strong>&lt;webroot&gt;/ChemOffice</strong> <em class="Strong"><strong>/cheminv/config/</strong> .</em></div>
+  <li>Open <strong><em>cheminv.udl</em></strong> by double-clicking on 
+  it<em>.</em> 
+  <div></div>
+  <li class="Numbered"><a name="pgfId-1068226"></a>Change the <strong>Data 
+  Source</strong> to match your Oracle service name. 
+  <li class="Numbered"><a name="pgfId-1068227"></a>Set the password to 
+  <strong><em>oracle</em></strong> . 
+  <li class="Numbered"><a name="pgfId-1068229"></a>Click the <strong>Test 
+  Connection</strong> button. 
+  <li class="Numbered-no-number"><a name="pgfId-1068236"></a>If the connection 
+  succeeds, click <strong>Ok</strong> . </li></ol><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" --></body>
+
+</html>

@@ -1,0 +1,109 @@
+<%
+schemaName = Application("ORASCHEMANAME")
+dateFormatString = Application("DATE_FORMAT_STRING")
+strBatchFields = ""
+For each Key in reg_fields_dict
+	if cStr(lcase(Key)) <> "base64_cdx" then
+		strBatchFields = strBatchFields & ", INV_VW_REG_BATCHES." & cStr(uCase(Key)) & " " & vbcrlf
+	end if
+Next	
+
+
+if Application("DEFAULT_SAMPLE_REQUEST_CONC") <> "" then
+	tmpConc = split(Application("DEFAULT_SAMPLE_REQUEST_CONC"),"=")
+	strConcAbbrv = "'" & tmpConc(1) & "'"
+else
+	strConcAbbrv = "(select unit_abreviation FROM CHEMINVDB2.inv_containers c, inv_units u where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) AND c.unit_of_meas_id_fk = u.unit_id(+) And rownum = 1)"	
+end if
+
+SQL=" SELECT /*+ ORDERED */ Distinct BATCH_ID AS BATCHID , INV_CONTAINER_BATCHES.Batch_Status_ID_FK as BatchStatus ,unit_of_meas_id_fk, (select unit_abreviation FROM inv_units u where unit_of_meas_id_fk = u.unit_id ) as UOMAbbrv " & vbcrlf & _    
+    "   , Decode((Select count(Qty_Available) From CHEMINVDB2.inv_containers Where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) AND container_status_id_fk not in (6,7)),0,0,SUM(CHEMINVDB2.GUIUTILS.GETQTYAVAILABLE(container_id))) || ' ' || (select unit_abreviation FROM inv_units u where unit_of_meas_id_fk = u.unit_id ) as AmountRemaining " & vbcrlf & _    
+    "   , Decode((Select count(Qty_Available) From CHEMINVDB2.inv_containers Where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) AND container_status_id_fk not in (6,7)),0,0,(SUM(CHEMINVDB2.GUIUTILS.GETQTYAVAILABLE(container_id))-(select decode(sum(qty_required),null,0,sum(qty_required)) from inv_requests where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) and request_status_id_fk=9 and required_unit_id_fk = unit_of_meas_id_fk))) || ' ' || (select unit_abreviation FROM inv_units u where unit_of_meas_id_fk = u.unit_id ) as AmountAvailable "& vbcrlf & _    
+    "   , Decode((Select count(Qty_Available) From CHEMINVDB2.inv_containers Where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) AND container_status_id_fk not in (6,7)),0,0, SUM(CHEMINVDB2.GUIUTILS.GETQTYAVAILABLE(container_id))-(select decode(sum(qty_required),null,0,sum(qty_required)) from inv_requests where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) and request_status_id_fk=9 and required_unit_id_fk = unit_of_meas_id_fk)) as AmountAvailableNumber"& vbcrlf & _
+    "   , (select decode(sum(qty_required),null,0,sum(qty_required)) from inv_requests where (batch_id_fk=batch_id or batch_id2_fk=batch_id or batch_id3_fk=batch_id) and request_status_id_fk=9 and required_unit_id_fk = unit_of_meas_id_fk) as AmountReserved "& vbcrlf & _
+    "   , (select count(distinct Org_Unit_ID) from inv_org_unit orgunit, inv_org_users orguser where orgunit.org_unit_id = orguser.org_unit_id_fk and orguser.user_id_fk='" & uCase(Session("UserName" & "cheminv")) & "') as NumberOfOrganizations" & vbcrlf & _    
+    "   , inv_container_batches.batch_field_1" & _
+	"   , inv_container_batches.batch_field_2" & _
+	"   , inv_container_batches.batch_field_3" & _
+	"   , inv_container_batches.field_1" & _
+	"   , inv_container_batches.field_2" & _
+	"   , inv_container_batches.field_3" & _
+	"   , inv_container_batches.field_4" & _
+	"   , inv_container_batches.field_5" & _
+	"   , inv_container_batches.date_1" & _
+	"   , inv_container_batches.date_2" & _
+    "   , inv_container_batches.date_2" & _
+    "   , inv_container_batches.date_2"
+            if len(strBatchFields) > 0 then
+                SQL = SQL & strBatchFields & vbcrlf
+            end if
+    SQL = SQL & " FROM CHEMINVDB2.CSDOHitList , CHEMINVDB2.INV_CONTAINER_BATCHES , CHEMINVDB2.INV_CONTAINERS"
+    if len(strBatchFields) > 0 then
+        SQL = SQL & ", CHEMINVDB2.INV_VW_REG_BATCHES " & vbcrlf
+    else 
+        SQL = SQL & vbcrlf
+    end if
+     SQL = SQL &" WHERE " & vbcrlf 
+	    if len(strBatchFields) > 0 then
+            SQL = SQL & " inv_containers.reg_id_fk = inv_vw_reg_batches.RegID(+) " & vbcrlf & _
+	                " AND inv_containers.batch_number_fk = inv_vw_reg_batches.BatchNumber(+) AND" & vbcrlf
+        end if  	
+       SQL = SQL & " (batch_id = inv_containers.batch_id_fk or batch_id = inv_containers.batch_id2_fk or batch_id = inv_containers.batch_id3_fk) " & vbcrlf
+	
+	
+SQL_old1 = "SELECT /*+ ORDERED */ distinct BATCH_ID AS BATCHID" & vbcrlf & _
+	"	, INV_CONTAINER_BATCHES.Batch_Status_ID_FK as BatchStatus" & vbcrlf & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) end ||' ' || " & strConcAbbrv & " as AmountRemaining 	" & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7))-(case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end) end ||' ' || " & strConcAbbrv & " as AmountAvailable 	" & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7))-(case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end) end as AmountAvailableNumber 	" & _
+	"   , case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end ||' ' || " & strConcAbbrv & " as AmountReserved" & _
+	"   , (select count(distinct Org_Unit_ID) from inv_org_unit orgunit, inv_org_users orguser where orgunit.org_unit_id = orguser.org_unit_id_fk and orguser.user_id_fk='" & uCase(Session("UserName" & "cheminv")) & "') as NumberOfOrganizations" & _
+	"   , (select unit_abreviation FROM CHEMINVDB2.inv_containers c, inv_units u where batch_id_fk=batch_id AND c.unit_of_meas_id_fk = u.unit_id(+) And rownum = 1) as UOMAbbrv " & _
+	"	, (select unit_abreviation FROM CHEMINVDB2.inv_containers c, inv_units u where batch_id_fk=batch_id AND c.unit_of_meas_id_fk = u.unit_id(+) And rownum = 1) as UOMAbbrv " & _
+	"   , inv_container_batches.batch_field_1" & _
+	"   , inv_container_batches.batch_field_2" & _
+	"   , inv_container_batches.batch_field_3" & _
+	"   , inv_container_batches.field_1" & _
+	"   , inv_container_batches.field_2" & _
+	"   , inv_container_batches.field_3" & _
+	"   , inv_container_batches.field_4" & _
+	"   , inv_container_batches.field_5" & _
+	"   , inv_container_batches.date_1" & _
+	"   , inv_container_batches.date_2" & _
+	" FROM CHEMINVDB2.CSDOHitList " & vbcrlf & _
+	"	, CHEMINVDB2.INV_CONTAINER_BATCHES " & vbcrlf & _
+	"	, CHEMINVDB2.INV_CONTAINERS " & vbcrlf & _
+	"WHERE " & vbcrlf & _
+	"batch_id = inv_containers.batch_id_fk " & vbcrlf
+
+
+SQL_old = "SELECT /*+ ORDERED */ distinct BATCH_ID AS BATCHID" & vbcrlf & _
+	"	, RegName as Substance" & vbcrlf & _
+	"	, INV_CONTAINER_BATCHES.Batch_Status_ID_FK as BatchStatus" & vbcrlf & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) end ||' ' || " & strConcAbbrv & " as AmountRemaining 	" & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7))-(case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end) end ||' ' || " & strConcAbbrv & " as AmountAvailable 	" & _
+	"	, case when (Select count(Qty_Available) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7)) = 0 then 0 else (Select Sum(Qty_Available*concentration) From CHEMINVDB2.inv_containers Where batch_id_fk = batch_id AND container_status_id_fk not in (6,7))-(case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end) end as AmountAvailableNumber 	" & _
+	"   , case when (select Count(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) = 0 then 0 else (select sum(qty_required) from inv_requests where batch_id_fk=batch_id and request_status_id_fk=9) end ||' ' || " & strConcAbbrv & " as AmountReserved" & _
+	"   , (select count(distinct Org_Unit_ID) from inv_org_unit orgunit, inv_org_users orguser where orgunit.org_unit_id = orguser.org_unit_id_fk and orguser.user_id_fk='" & uCase(Session("UserName" & "cheminv")) & "') as NumberOfOrganizations" & _
+	"   , (select unit_abreviation FROM CHEMINVDB2.inv_containers c, inv_units u where batch_id_fk=batch_id AND c.unit_of_meas_id_fk = u.unit_id(+) And rownum = 1) as UOMAbbrv " & _
+	"	, (select unit_abreviation FROM CHEMINVDB2.inv_containers c, inv_units u where batch_id_fk=batch_id AND c.unit_of_meas_id_fk = u.unit_id(+) And rownum = 1) as UOMAbbrv " & _
+	"   , inv_container_batches.field_1" & _
+	"   , inv_container_batches.field_2" & _
+	"   , inv_container_batches.field_3" & _
+	"   , inv_container_batches.field_4" & _
+	"   , inv_container_batches.field_5" & _
+	"   , inv_container_batches.date_1" & _
+	"   , inv_container_batches.date_2" & _
+	strBatchFields & _
+	"   , INV_CONTAINER_BATCHES.batch_field_1, INV_CONTAINER_BATCHES.batch_field_2, INV_CONTAINER_BATCHES.batch_field_3 " & vbcrlf & _
+	"FROM CHEMINVDB2.CSDOHitList " & vbcrlf & _
+	"	, CHEMINVDB2.INV_CONTAINER_BATCHES " & vbcrlf & _
+	"	, CHEMINVDB2.INV_CONTAINERS " & vbcrlf & _
+	"	, CHEMINVDB2.INV_VW_REG_BATCHES " & vbcrlf & _
+	"WHERE " & vbcrlf & _
+	"batch_id = inv_containers.batch_id_fk " & vbcrlf & _
+	"AND inv_containers.reg_id_fk = inv_vw_reg_batches.RegID(+) " & vbcrlf & _
+	"AND inv_containers.batch_number_fk = inv_vw_reg_batches.BatchNumber(+) "
+
+%>
+

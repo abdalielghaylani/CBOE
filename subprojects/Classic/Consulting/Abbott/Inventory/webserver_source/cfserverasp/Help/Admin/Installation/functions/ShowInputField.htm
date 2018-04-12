@@ -1,0 +1,96 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowInputField</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="#"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="#"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="#"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>     ChemOffice 
+WebServer</STRONG>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  ShowInputField</h1>
+<P>This subroutine call appears in the following file:</P>
+<UL><li>sample_input_form.asp<li>sample_input_formnp.asp</li></UL>
+
+<TABLE style="WIDTH: 95%" cellSpacing=4 cellPadding=1 border=0>
+  <TBODY vAlign=top>
+  
+  <TR>
+    <TD width="500">
+      <H4>Subroutine</H4></TD>
+    <TD><PRE>ShowStrucInputField 
+      dbkey,formgroup,table.field,fieldtype,width</PRE></TD></TR>
+  <TR>
+    <TD>
+      <H4>Description</H4></TD>
+    <TD>
+      <P>          Shows 
+      input box</P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Parameters</H4></TD>
+    <TD>
+      <p>dbkey =<EM></FONT> 
+      &lt;dataview name&gt;</EM>  &nbsp;
+      <p>formgroup =</FONT><EM> &lt;formgroup name&gt;</EM>
+      <H5></H5> 
+      <p>table.field =</FONT><EM> &lt;table and field name 
+      using dot syntax&gt;</EM>      
+      &nbsp;
+      <p>fieldtype =</FONT><EM> 
+      0|1|2|3|5|7|8|21<BR></EM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;:&nbsp;text; 
+      no validation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 : 
+      integer 
+      validation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;: 
+      long 
+      validation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;: 
+      positive integer 
+      validation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;: 
+      Molecular Weight (positive float 
+      validation)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;:&nbsp;memo; 
+      no 
+      validation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;: 
+      date; validation 
+      dd/mm/yyyy<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21 
+      :&nbsp;CAS number; validation</p>      
+      
+      <p>width = <EM>&lt;width of text box to display, or 
+      rows of textarea&gt;</EM> 
+       &nbsp;&nbsp;<BR></p></TD></TR>
+  <TR>
+    <TD>
+      <H4>Example</H4></TD>
+    <TD><PRE><PRE>ShowInputField 
+      dbkey,formgroup,"Synonyms_r.Synonym_r",0,"30"</PRE></PRE></TD></TR></TBODY></TABLE>
+
+</body>
+
+</html>

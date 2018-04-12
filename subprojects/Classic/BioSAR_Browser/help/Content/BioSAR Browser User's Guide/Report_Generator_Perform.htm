@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="BioSAR Enterprise 10 User Guide|Tips for the Report Writer" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Report Generator Performance</title>
+        <link href="../Resources/Stylesheets/BioSAR Browser User's Guide.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapBody.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapHighlighter.js">/*<![CDATA[*/ /*]]>*/</script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/BioSAR.png" />
+        </p>
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR_Enterprise_10_Use.htm#BioSAR_Browser_User_s_Guide_2882306399_1155135">BioSAR Enterprise 10 User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Tips_for_the_Report_Writ.htm#BioSAR_Browser_User_s_Guide_2882306399_1155439">Tips for the Report Writer</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Report Generator Performance</span>
+        </div>
+        <h3 class="Heading3"><a name="BioSAR_Browser_User_s_Guide_2882306399_1155455"></a><a name="kanchor1413"></a><a name="kanchor1414"></a><a name="kanchor1415"></a><a name="kanchor1416"></a><a name="kanchor1417"></a><a name="kanchor1418"></a><a name="kanchor1419"></a><a name="kanchor1420"></a><a name="kanchor1421"></a><a name="kanchor1422"></a><a name="kanchor1423"></a>Report Generator Performance</h3>
+        <p class="Body">If performance of the report generator is very slow you can do one of the following: a) restart the application. This will truncate the csdohitlist table which has likely grown quite large. and b) perform an analyze on the cs_security schema, in particular the csdohitlist table. You can run the analyze wizard in DBA Studio. In DBA Studio, simply right-click over a schema, table or index and choose Analyze. A 10% estimate is usually sufficient. Re-analysis should be done periodically to update statistics.</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,282 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Application INI settings (cfserver.ini)</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1> Menubar.ini Configuration File</h1>
+<p>The menubar.ini configuration file (found in the config folder of each 
+application's folder) controls how the menubar is displayed in the 
+application.&nbsp; By default, the following menus are available to the 
+user:</p>
+<ul><li>File
+  <li>History
+  <li>Queries
+  <li>Hitlists
+  <li>Marked Hits
+  <li>Help
+  <li>Logoff
+  <li>Home</li></ul>
+<p>Menubar items are characterized as a menu, submenu, or button (an item with 
+no menu items). System administrators are able to add new menus to&nbsp;the 
+above&nbsp;list of defaults.&nbsp; Each menu is allowed to contain up to 3 menu 
+items, and one of those 3 can contain a submenu.&nbsp; There is a maximum of 2 
+items in each submenu.&nbsp; </p>           
+              
+     
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<p>The following is a list of entries that are usually found in the cfserver.ini 
+files for ChemOffice WebServer applications.&nbsp; Click on an item in the list 
+for more information.&nbsp;&nbsp; </p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="400" border="0" style="WIDTH: 400px">
+  
+  <tr>
+    <td style="WIDTH: 200px" width="200"><strong>[GLOBALS]</strong></td>
+    <td style="WIDTH: 200px" width="200"><strong><em><a name="menu_def_settings"></a><a href="#menu_def">Menu 
+      Definitions</a> 
+      </em></strong></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a></td>
+    <td><a href="menubar_ini_settings/MENU_TYPE.htm">MENU_TYPE</a></td></tr>
+  <tr>
+    <td></td>
+    <td><a href="menubar_ini_settings/MENU_HIDE.htm">MENU_HIDE</a></td></tr>
+  <tr>
+    <td><strong>[MENU_BAR_DISPLAY_SETTINGS]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></td>
+    <td><a href="menubar_ini_settings/MENU_FORMGROUPS.htm">MENU_FORMGROUPS</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ABSOLUTE_LEFT.htm">ABSOLUTE_LEFT</a></td>
+    <td><a href="menubar_ini_settings/MENU_NAME.htm">MENU_NAME</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ABSOLUTE_TOP.htm">ABSOLUTE_TOP</a></td>
+    <td><a href="menubar_ini_settings/NUM_MENU_ITEMS.htm">NUM_MENU_ITEMS</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/BACKGROUND_COLOR.htm">BACKGROUND_COLOR</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/CLEAR_PIXEL_IMAGE.htm">CLEAR_PIXEL_IMAGE</a></td>
+    <td><strong><em><a href="#item_def">Item 
+    Definitions</a> </em></strong></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/DISABLED_TEXT_COLOR.htm">DISABLED_TEXT_COLOR</a></td>
+    <td><a href="menubar_ini_settings/NAME_ITEM.htm">NAME_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/HOVER_COLOR.htm">HOVER_COLOR</a></td>
+    <td><a href="menubar_ini_settings/NAME_ADD_INFO_ITEM.htm">NAME_ADD_INFO_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/HOVER_HIGHLIGHT_COLOR.htm">HOVER_HIGHLIGHT_COLOR</a></td>
+    <td><a href="menubar_ini_settings/URL_ITEM.htm">URL_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/HOVER_SHADOW_COLOR.htm">HOVER_SHADOW_COLOR</a></td>
+    <td><a href="menubar_ini_settings/ONCLICK_ITEM.htm">ONCLICK_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/HOVER_TEXT_COLOR.htm">HOVER_TEXT_COLOR</a></td>
+    <td><a href="menubar_ini_settings/DIM_ITEM.htm">DIM_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/INNER_HIGHLIGHT_COLOR.htm">INNER_HIGHLIGHT_COLOR</a></td>
+    <td><a href="menubar_ini_settings/HIDE_ITEM.htm">HIDE_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/INNER_SHADOW_COLOR.htm">INNER_SHADOW_COLOR</a></td>
+    <td><a href="menubar_ini_settings/ICON_IMAGE_ITEM.htm">ICON_IMAGE_ITEM_#</a></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_COLOR.htm">ITEM_FONT_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_FAMILY.htm">ITEM_FONT_FAMILY</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_PADDING_BOTTOM.htm">ITEM_FONT_PADDING_BOTTOM</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_PADDING_LEFT.htm">ITEM_FONT_PADDING_LEFT</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_PADDING_RIGHT.htm">ITEM_FONT_PADDING_RIGHT</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_PADDING_TOP.htm">ITEM_FONT_PADDING_TOP</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_SIZE.htm">ITEM_FONT_SIZE</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_STYLE.htm">ITEM_FONT_STYLE</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_TEXT_DECORATION.htm">ITEM_FONT_TEXT_DECORATION</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/ITEM_FONT_WEIGHT.htm">ITEM_FONT_WEIGHT</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_COLOR.htm">MENU_FONT_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_FAMILY.htm">MENU_FONT_FAMILY</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_PADDING_BOTTOM.htm">MENU_FONT_PADDING_BOTTOM</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_PADDING_LEFT.htm">MENU_FONT_PADDING_LEFT</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_PADDING_RIGHT.htm">MENU_FONT_PADDING_RIGHT</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_PADDING_TOP.htm">MENU_FONT_PADDING_TOP</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_SIZE.htm">MENU_FONT_SIZE</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_STYLE.htm">MENU_FONT_STYLE</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_TEXT_DECORATION.htm">MENU_FONT_TEXT_DECORATION</a></td>
+    <td></td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/MENU_FONT_WEIGHT.htm">MENU_FONT_WEIGHT</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/OUTER_HIGHLIGHT_COLOR.htm">OUTER_HIGHLIGHT_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/OUTER_SHADOW_COLOR.htm">OUTER_SHADOW_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/POPUP_ICON.htm">POPUP_ICON</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SELECTED_COLOR.htm">SELECTED_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SELECTED_HIGHLIGHT_COLOR.htm">SELECTED_HIGHLIGHT_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SELECTED_POPUP_ICON.htm">SELECTED_POPUP_ICON</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SELECTED_SHADOW_COLOR.htm">SELECTED_SHADOW_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SELECTED_TEXT_COLOR.htm">SELECTED_TEXT_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHADOW_COLOR.htm">SHADOW_COLOR</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHADOW_ENABLED.htm">SHADOW_ENABLED</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHOW_ON_MOUSEOVER.htm">SHOW_ON_MOUSEOVER</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHADOW_STRENGTH.htm">SHADOW_STRENGTH</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHADOW_X_OFFSET.htm">SHADOW_X_OFFSET</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td><a href="menubar_ini_settings/SHADOW_Y_OFFSET.htm">SHADOW_Y_OFFSET</a></td>
+    <td>&nbsp;</td></tr>
+  <tr>
+    <td></td>
+    <td>&nbsp;</td></tr></table></p>
+<h2>
+Menu Definitions</h2>
+<p>There should be a menu definition in the menubar.ini file 
+for each menu listed in&nbsp;&nbsp;<a href="menubar_ini_settings/MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a>. If 
+there is no definition, please see your system administrator.</p>
+<p>Menu definitions consist of a number of settings 
+describing the menu as well as item definitions for each item in the menu 
+(including items which happen to be submenus.&nbsp; Menu definitions always 
+begin with a section heading which is the name of the menu (as listed in<a href="menubar_ini_settings/MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a>)&nbsp;in 
+brackets.&nbsp; For example, the following is the beginning of a menu definition 
+for the FILE menu:<br>
+<table style="WIDTH: 530px; HEIGHT: 141px" cellSpacing="1" cellPadding="1" width="530" border="1">
+  
+  <tr>
+    <td>[FILE] <br>MENU_TYPE = Menu <br>MENU_HIDE= <br>MENU_FORMGROUPS= 
+      <br>MENU_NAME =     File <br><br>NUM_MENU_ITEMS=3</td></tr></table>
+ </p>
+<p>Each Menu definition must contain one and only 
+one&nbsp;entry for each of the&nbsp;settings listed&nbsp;<a href="#menu_def_settings">above</a>
+ .&nbsp;</p>
+<h2><a name="item_def"></a>Item 
+Definitions</h2>
+<p>Each item in a menu must have an item&nbsp;definition listed under the 
+appropriate menu section heading in the menubar.ini file.&nbsp; If there is no 
+definition, please see your system administrator.</p>
+<p>Item definitions consist of a number of settings listed as the settings name, 
+followed by an underscore (_), and finally followed by a number.&nbsp; All of 
+the settings for a particular item end with the same number.&nbsp; For example, 
+the following is a definition for the Preferences Item under the File Menu:</p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="530" border="1">
+  
+  <tr>
+    <td>NAME_ITEM_1=Preferences... 
+      <br>NAME_ADD_INFO_ITEM_1= <br>URL_ITEM_1= 
+      <br> 
+      ONCLICK_ITEM_1=MainWindow.getAction('preferences') <br>DIM_ITEM_1= 
+      <br>HIDE_ITEM_1= <br>FORMGROUPS_ITEM_1= <br>HELP_ITEM_1=open preferences 
+      window to set search and display options <br>ICON_IMAGE_ITEM_1=</td></tr></table></p>
+<p>Item definitions must contian one and only one&nbsp;entry for each of 
+the&nbsp;settings listed&nbsp;<a href="#item_def_settings">above</a> .<a name="display_types"></a></p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

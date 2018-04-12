@@ -1,0 +1,256 @@
+<html>
+
+<head><script language="javascript">
+
+var theActionVal
+function getList(theName){
+	theRealField = eval('document.SubmitAction.' + theName)
+	theHiddenList = eval('document.SubmitAction.' + theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.theRealField.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a new value from the list:<br><form name="getit"><Select name="theList" size = 5>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+function getAddList(theAction,theName){
+	document.SubmitAction.FormAction.value = theAction
+	theHiddenList = eval('document.SubmitAction.' +  theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.document.SubmitAction.theVal.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;opener.document.SubmitAction.submit();self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a field to add from the list:<br><form name="getit"><Select name="theList" size = 10>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+	theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+function setAction(theAction){
+		if ((theAction == "FORM_GROUP_FLAG_SETTINGS") && (document.SubmitAction.FORM_GROUP_FLAG == "SINGLE_SEARCH")){ 		
+			alert ("There are no additional setting for the Single_SEARCH form group flag")}
+		else{
+		var theValue = eval('document.SubmitAction.FormGroups.options[document.SubmitAction.FormGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.FormGroupName.value = theValue 
+		document.SubmitAction.submit()}
+
+}
+</script>
+
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500" height="49"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Data View:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="0" bgcolor="#C0C0C0">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_form_group_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="theVal" value><input type="hidden" name="FormGroupName" value><table
+          border="0">
+<TBODY>
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td width="274" height="27" valign="top"><input type="submit" value="    OK    " name="OK"
+                  onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                  onClick="setAction('Cancel')"></td>
+                </tr>
+                <tr>
+                  <td><table border="0">
+                    <tr>
+                      <td><strong>Form Group</strong><WC@FORM_GROUPS></WC@FORM_GROUPS><input type="submit" name="New" value="New"
+                      onClick="getDialog('AddTableGroup')"><small><small><input type="submit" name="Delete"
+                      value="Delete" onClick="setAction('RemoveTableGroup')"></small></small><input name="Help1"
+                      type="button" value="Help" onClick="getHelp('form_groups')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><table border="1">
+                    <tr>
+                      <td width="230" height="20"><small><strong>Input Form Settting</strong></small></td>
+                      <td height="20"></td>
+                      <td width="156" height="20"></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25" background><blockquote>
+                        <p><small>Form Path</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@INPUT_FORM_PATH></WC@INPUT_FORM_PATH></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Change2" value="Change"
+                      onclick="getList('INPUT_FORM_PATH')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><blockquote>
+                        <p><small>Form Mode</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@INPUT_FORM_MODE></WC@INPUT_FORM_MODE></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Change" value="Change"
+                      onclick="getList('INPUT_FORM_MODE')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="19"><blockquote>
+                        <p><small>ChemDraw Plugin Enabled</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="19"><small><WC@PLUGIN_VALUE></WC@PLUGIN_VALUE></small></td>
+                      <td width="156" height="19"><small><input type="button" name="Change6" value="Change"
+                      onclick="getList('INPUT_FORM_MODE')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="38"><blockquote>
+                        <p><small>Searchable Structure Fields</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="38"><small><WC@STRUCTURE_FIELDS></WC@STRUCTURE_FIELDS></small></td>
+                      <td width="156" height="38"></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="19"><blockquote>
+                        <p><small>Searchable MW Fields</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="19"><small><WC@MW_FIELDS></WC@MW_FIELDS></small></td>
+                      <td width="156" height="19"></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="38"><blockquote>
+                        <p><small>Searchable Formula Fields</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="38"><small><WC@FORMULA_FIELDS></WC@FORMULA_FIELDS></small></td>
+                      <td width="156" height="38"></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><blockquote>
+                        <p><small>Other Searchable Fields</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@SEARCHABLE_ADO_FIELDS></WC@SEARCHABLE_ADO_FIELDS></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Add" value="Add"
+                      onclick="getAddList('Add_SEARCHABLE_ADO_FIELDS', 'SEARCHABLE_ADO_FIELDS')"><input
+                      type="submit" name="Remove10" value="Remove "
+                      onClick="setAction('Remove_SEARCHABLE_ADO_FIELDS')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><blockquote>
+                        <p><small>Required Fields</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@REQUIRED_FIELDS></WC@REQUIRED_FIELDS></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Add" value="Add"
+                      onclick="getAddList('Add_REQUIRED_FIELDS', 'REQUIRED_FIELDS')"><input type="submit"
+                      name="Remove10" value="Remove " onClick="setAction('Remove_REQUIRED_FIELDS')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="19"><small><strong>Result Form Settings</strong></small></td>
+                      <td height="19"></td>
+                      <td width="156" height="19"></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><blockquote>
+                        <p><small>Form Path</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@RESULT_FORM_PATH></WC@RESULT_FORM_PATH></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Change3" value="Change"
+                      onclick="getList('RESULT_FORM_PATH')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><blockquote>
+                        <p><small>Form Mode</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="25"><small><WC@RESULT_FORM_MODE></WC@RESULT_FORM_MODE></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Change1" value="Change"
+                      onclick="getList('RESULT_FORM_MODE')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="38"><blockquote>
+                        <p><small>Number of Results in List View</small></p>
+                      </blockquote>
+                      </td>
+                      <td height="38"><small><WC@NUM_LIST_VIEW></WC@NUM_LIST_VIEW></small></td>
+                      <td width="156" height="38"><small><input type="button" name="Change5" value="Change"
+                      onclick="getList('NUM_LIST_VIEW')"></small></td>
+                    </tr>
+                    <tr>
+                      <td width="230" height="25"><strong><small>Form Group Flag</small></strong></td>
+                      <td height="25"><small><WC@FORM_GROUP_FLAG></WC@FORM_GROUP_FLAG></small></td>
+                      <td width="156" height="25"><small><input type="button" name="Change4" value="Change"
+                      onclick="getList('FORM_GROUP_FLAG')"><input type="submit" value="Settings" name="Settings"
+                      onClick="setAction('FORM_GROUP_FLAG_SETTINGS')"></small></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+</TBODY>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+
+<p>&nbsp; </p>
+
+<table border="1">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

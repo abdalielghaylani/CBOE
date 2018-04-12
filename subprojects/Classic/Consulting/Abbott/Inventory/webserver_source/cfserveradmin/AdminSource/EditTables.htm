@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+var theActionVal
+function getList(theName){
+	theRealField = eval('document.SubmitAction.' + theName)
+	theHiddenList = eval('document.SubmitAction.' + theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.theRealField.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a new value from the list:<br><form name="getit"><Select name="theList" size = 5>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+function getAddList(theAction,theName){
+	document.SubmitAction.FormAction.value = theAction
+	theHiddenList = eval('document.SubmitAction.' +  theName + 'list')
+	theListVal = theHiddenList.value
+	theArray = theListVal.split(',')
+	var w = window.open("", "Help", "width=300,height=200,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+		w.document.write('<input type = "button" name="get" value="OK" onClick="opener.document.SubmitAction.theVal.value= document.getit.theList.options[document.getit.theList.selectedIndex].text;opener.document.SubmitAction.submit();self.close()">')
+		w.document.write('<input type = "button" name="get" value="Cancel" onClick="window.close()">')
+		w.document.write ('<br><br>')
+		w.document.write('Select a field to add from the list:<br><form name="getit"><Select name="theList" size = 10>')
+		for(i=0;i<theArray.length;i++){
+			w.document.write('<option value=' + theArray[i] +'>' + theArray[i] + '</option>')
+		}
+		w.document.write('</select></form>')
+	}
+
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "Connection", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+
+function setAction(theAction){
+			var theValue = eval('document.SubmitAction.TableAliasGroup.options[document.SubmitAction.TableAliasGroup.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.TableAliasName.value = theValue 
+		document.SubmitAction.submit()
+}
+
+
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif" width="500" height="49"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0">
+<TBODY>
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Data View:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="0" bgcolor="#c0c0c0">
+<TBODY>
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_tables_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+          type="hidden" name="TableAliasName" value><table border="0">
+<TBODY>
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td width="274" height="27" valign="top"><input type="submit" value="    OK    " name="OK"
+                  onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                  onclick="setAction('Cancel')"> </td>
+                </tr>
+                <tr>
+                  <td><table border="0">
+                    <tr>
+                      <td><strong>Table</strong><WC@TABLE_ALIASES DESIGNTIMESP="19612"></WC@TABLE_ALIASES><input type="submit" name="New" value="New"
+                      onClick="getDialog('AddTableGroup')"><small><small><input type="submit" name="Delete"
+                      value="Delete" onClick="setAction('RemoveTableGroup')"></small></small><input name="Help1"
+                      type="button" value="Help" onClick="getHelp('TABLE_ALIASES')"> </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><table border="0">
+                    <tr>
+                      <td designtimesp="19619"><table border="1" designtimesp="19620" width="553">
+<TBODY>
+                        <tr designtimesp="19621">
+                        <td height="32" width="204" designtimesp="19622">Real Table Name</td>
+                        <td height="32" width="156" designtimesp="19623"><WC@TABLE_NAME DESIGNTIMESP="19624"></WC@TABLE_NAME></td>
+                        <td height="32" width="175" designtimesp="19625"></td>
+                        </tr>
+                        <tr designtimesp="19626">
+                        <td height="31" width="204" designtimesp="19627">Relational Fields</td>
+                        <td height="31" width="156" designtimesp="19628"><WC@RELATIONAL_FIELDS DESIGNTIMESP="19629"></WC@RELATIONAL_FIELDS></td>
+                        <td height="31" width="175" designtimesp="19630"><input name="Add2"
+                        onclick="getDialog('AddTableAlias')" type="button" value="   Add    " designtimesp="19616"><small
+                        designtimesp="19613"><small designtimesp="19614"><input name="Remove2"
+                        onclick="setAction('RemoveTableAlias')" type="submit" value="Remove " designtimesp="19615"></small></small></td>
+                        </tr>
+                        <tr designtimesp="19631">
+                        <td height="23" width="204" designtimesp="19632">Primary Key</td>
+                        <td height="23" width="156" designtimesp="19633"><WC@PRIMARY_KEY DESIGNTIMESP="19634"></WC@PRIMARY_KEY></td>
+                        <td height="23" width="175" designtimesp="19635"><input type="button" name="Change3"
+                        value="Change" onclick="getList('INPUT_FORM_MODE')"></td>
+                        </tr>
+                        <tr designtimesp="19636">
+                        <td height="19" width="204" designtimesp="19637">SQL_Syntax</td>
+                        <td height="19" width="156" designtimesp="19638"><WC@SQL_SYNTAX DESIGNTIMESP="19639"></WC@SQL_SYNTAX></td>
+                        <td height="19" width="175" designtimesp="19640"><input type="button" name="Change4"
+                        value="Change" onclick="getList('INPUT_FORM_MODE')"></td>
+                        </tr>
+                        <tr designtimesp="19641">
+                        <td height="16" width="204" designtimesp="19642">Select Keyword</td>
+                        <td height="16" width="156" designtimesp="19643"><WC@SELECT_KEYWORD DESIGNTIMESP="19644"></WC@SELECT_KEYWORD></td>
+                        <td height="16" width="175" designtimesp="19645"></td>
+                        </tr>
+                        <tr designtimesp="19646">
+                        <td height="19" width="204" designtimesp="19647">Select Additional</td>
+                        <td height="19" width="156" designtimesp="19648"><WC@SELECT_ADDITIONAL DESIGNTIMESP="19649"></WC@SELECT_ADDITIONAL></td>
+                        <td height="19" width="175" designtimesp="19650"></td>
+                        </tr>
+                        <tr designtimesp="19651">
+                        <td height="19" width="204" designtimesp="19652">Select Join</td>
+                        <td height="19" width="156" designtimesp="19653"><WC@SELECT_JOIN DESIGNTIMESP="19654"></WC@SELECT_JOIN></td>
+                        <td height="19" width="175" designtimesp="19655"></td>
+                        </tr>
+                        <tr designtimesp="19656">
+                        <td height="19" width="204" designtimesp="19657">Select Links</td>
+                        <td height="19" width="156" designtimesp="19658"><WC@SELECT_LINKS DESIGNTIMESP="19659"></WC@SELECT_LINKS></td>
+                        <td height="19" width="175" designtimesp="19660"></td>
+                        </tr>
+                        <tr designtimesp="19661">
+                        <td height="19" width="204" designtimesp="19662">Intermediate Tables</td>
+                        <td height="19" width="156" designtimesp="19663"><WC@INTER_TABLES DESIGNTIMESP="19664"></WC@INTER_TABLES></td>
+                        <td height="19" width="175" designtimesp="19665"></td>
+                        </tr>
+                        <tr designtimesp="19666">
+                        <td height="19" width="204" designtimesp="19667">Relation Field Connection group</td>
+                        <td height="19" width="156" designtimesp="19668"><WC@ADO_CONNECTION DESIGNTIMESP="19669"></WC@ADO_CONNECTION></td>
+                        <td height="19" width="175" designtimesp="19670"><input type="button" name="Change"
+                        value="Change" onclick="getList('INPUT_FORM_MODE')"></td>
+                        </tr>
+                        <tr designtimesp="19671">
+                        <td height="19" width="204" designtimesp="19672">Chemical Connection group</td>
+                        <td height="19" width="156" designtimesp="19673"><WC@CHEM_CONNECTION DESIGNTIMESP="19674"></WC@CHEM_CONNECTION></td>
+                        <td height="19" width="175" designtimesp="19675"><input type="button" name="Change1"
+                        value="Change" onclick="getList('INPUT_FORM_MODE')"></td>
+                        </tr>
+                        <tr designtimesp="19676">
+                        <td height="19" width="204" designtimesp="19677">Structure Field ID</td>
+                        <td height="19" width="156" designtimesp="19678"><WC@STRUC_FIELD_ID DESIGNTIMESP="19679"></WC@STRUC_FIELD_ID></td>
+                        <td height="19" width="175" designtimesp="19680"><input type="button" name="Change2"
+                        value="Change" onclick="getList('INPUT_FORM_MODE')"></td>
+                        </tr>
+</TBODY>
+                      </table>
+                      </td>
+                      <td></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+</TBODY>
+          </table>
+        </form>
+        </td>
+      </tr>
+</TBODY>
+    </table>
+    </td>
+  </tr>
+</TBODY>
+</table>
+
+<p designtimesp="19681">&nbsp; </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

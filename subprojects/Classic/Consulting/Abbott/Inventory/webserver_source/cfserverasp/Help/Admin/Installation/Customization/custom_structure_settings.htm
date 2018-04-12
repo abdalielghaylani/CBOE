@@ -1,0 +1,101 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Structure Settings</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>  Configuring  Structure Settings</h1>
+
+<p>  Settings for structures are defined in a file called 
+MT.CDX.&nbsp; This file is found in the graphics folder in an application's 
+folder.&nbsp; For example, the MT.CDX file that defines the settings for the 
+Sample application is found in 
+<strong>&lt;webroot&gt;/chemoffice/sample/graphics</strong>   .</p>
+
+<p>  The process for editing structure settings is the same 
+for each application.&nbsp; These&nbsp;settings will take effect&nbsp;for all 
+users of an application.&nbsp;The following describes how to change structure 
+settings for the sample application.&nbsp; To implement these instructions for 
+another application, substitute the sample directory with the application 
+directory you wish  to change&nbsp;</p>
+
+<p>  To edit structure settings for the  sample application:</p>
+<ol>
+  <li>
+Browse to 
+  <strong>&lt;webroot&gt;/chemoffice/sample/graphics</strong>.
+  <li>Double-click on the <strong>MT.CDX</strong> file.<br>The file 
+  opens in ChemDraw.&nbsp; The file appears to be empty. 
+  <li>Under the File menu, there are 3 types of settings 
+  that can be changed: 
+  <ul>
+    <li>
+  Drawing Settings
+    <li>Caption Text Settings
+    <li>Label Text Settings</li></ul>
+    <br>Select the appropriate menu option.&nbsp; For more 
+  information about these menu options,&nbsp;please see Customizing ChemDraw in the ChemDraw Manual.<br>A dialog 
+    box appears.    
+  <li>Make the changes desired.
+  <li>Click OK.
+  <li>Save and close the file (<strong>MT.CDX</strong>).
+  <li>Browse to <strong>&lt;webroot&gt;/chemoffice/cfwtemp</strong>.
+  <li>If there is a directory named sample (or the name of the application you 
+  are configuring settings for), delete the directory (i.e. delete 
+  <strong>&lt;webroot&gt;/chemoffice/cfwtemp/sample</strong>).<br>The next time 
+  that application is accessed, the settings will take 
+effect.</li></ol>   
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

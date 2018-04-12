@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="BioSAR Enterprise 10 User Guide" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Adding Roles</title>
+        <link href="../Resources/Stylesheets/BioSAR Browser User's Guide.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapBody.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapHighlighter.js">/*<![CDATA[*/ /*]]>*/</script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/BioSAR.png" />
+        </p>
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR_Enterprise_10_Use.htm#BioSAR_Browser_User_s_Guide_2882306399_1155135">BioSAR Enterprise 10 User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Adding Roles</span>
+        </div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_2882306399_1155459"></a><a name="kanchor1435"></a><a name="kanchor1436"></a><a name="kanchor1437"></a><a name="kanchor1438"></a><a name="kanchor1439"></a><a name="kanchor1440"></a><a name="kanchor1441"></a><a name="kanchor1442"></a><a name="kanchor1443"></a><a name="kanchor1444"></a><a name="kanchor1445"></a>Adding Roles</h2>
+        <p class="Body">If you are intending to use a schema with BioSAR Enterprise which is not configured for BioSAR Enterprise, you will need to grant select privileges to the biosar administrator role. </p>
+        <p class="Body">For example, if the custom schema is called MyNewSchema and has tables Moltable and Synonyms, first create a role which has select privileges on the two tables: Grant select on Moltable, Synonyms to MyNewSchemaRole.</p>
+        <p class="Body">Now, grant this new role to the BioSAR Enterprise administrator user or role.</p>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">To grant the role to a user: The user that should be granted this role is the user performing the schema management tasks (biosar_admin by default). Grant myNewSchemaRole to Biosar_admin.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">To grant the role to the administrator role: Grant myNewSchemaRole to Biosar_browser_admin </td>
+            </tr>
+        </table>
+        <p class="Body">Now that the roles have been granted to the administrator, this user granted the role, or a user with the biosar_browser_admin role can now login.</p>
+        <p class="Body">To start using the schema in BioSAR Enterprise:</p>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum="1. " valign="top">From the ChemOffice Enterprise home page, click Schema Management. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum="2. " valign="top">Click on MyNewSchema. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1_last" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum="3. " valign="top">Enter a password for the schema. </td>
+            </tr>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

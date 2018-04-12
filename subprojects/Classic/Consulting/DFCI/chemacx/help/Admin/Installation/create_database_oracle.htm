@@ -1,0 +1,103 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemACX Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemACX</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>Admin Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="41524" endspan -->
+
+<h1>Create an Oracle Database</h1>
+<p>The files necessary to set up the ChemACX database can 
+be installed directly from the ChemACX installer. If you choose not to set 
+up the ChemACX schema at that time, follow the following 
+instructions. If you have already set up the ChemACX schema, move on to <a href="config_oracle.htm">Step 4: Additional Configuration</a>.&nbsp;</p>
+<p>If you have not yet set up the ChemACX schema:</p>
+<ol>
+  <li class="Numbered-step1"><a name="pgfId-1066292"></a>Browse to 
+  <strong>&lt;webroot&gt;</strong><em class="Strong"><strong> 
+  /chemacx/config/oracle_intall_scripts/</strong> </em>
+  <li class="Numbered-step1">Double click the file 
+  <strong>OracleSetup.exe</strong> <br>This file will lead you through setting 
+  up the ChemACX schema. If you have a previous installation of ChemACX, 
+  be sure to <strong>Upgrade</strong> instead of Creating a new schema.</li></ol>
+<h2>Required Database Configuration</h2>
+<ol>
+  <li>Replace Access files with Oracle files. 
+  <ol>
+    <li>Browse to 
+    <strong>&lt;webroot&gt;/ChemOffice/ChemACX/Config/oraini</strong> 
+    <li>Copy the following files: chemacx.ini, cfserver.ini, chemacx.udl
+    <li>Paste the copies of the files into 
+    <strong>&lt;webroot&gt;/ChemOffice/ChemACX/Config/</strong> overwriting the 
+    files with the same name in that directory. <br>  </li></ol>
+  <li>Define the Data Source in the cs_security UDL 
+  <ol>
+    <li>Browse to <strong><em class="Strong">&lt;webroot&gt;/Chemoffice/</em> 
+    cs_security/config/</strong> 
+    <li>Double-click <strong>cs_security.udl</strong> (to open it).
+    <li>Change the <strong>Data Source</strong> to the name of your Oracle 
+    service. For information about your Oracle Service Name, please see your 
+    Oracle DBA or consultant.
+    <li>Enter <strong>oracle</strong> as the password and click <strong>Test 
+    Connection</strong>.
+    <li>Click <strong>OK</strong>.
+    <li>Click <strong>OK</strong>.<br>&nbsp; </li></ol>
+  <li>Define the Data Source in the ChemACX UDLs.        
+  <ol>
+    <li>Browse to <strong>&lt;webroot&gt;/ChemOffice</strong> <em class="Strong"><strong>/chemacx/config/</strong></em> 
+    <li>Double-click <strong><em>chemacx.udl</em></strong> (to open it).
+    <li>Change the <strong>Data Source</strong> to the name of your Oracle 
+    service. For information about your Oracle Service Name, please see your 
+    Oracle DBA or consultant.
+    <li>Enter <strong>oracle</strong> as the password and click <strong>Test 
+    Connection</strong>.
+    <li>Click <strong>OK</strong>.
+    <li>Click <strong>OK</strong>.<br></li></ol>        </li></ol>
+<p><a href="config_oracle.htm">Step 4: Additional 
+Configuration</a></p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.camsoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.camsoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="26967" endspan -->
+</body>
+
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="acx number">
+		<param name="Local" value="userguide/fields/acx_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="cas number">
+		<param name="Local" value="userguide/fields/cas_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="catalog number">
+		<param name="Local" value="userguide/fields/catalog_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="change quantity">
+		<param name="Local" value="userguide/container_viewing_qty.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="check in">
+		<param name="Local" value="userguide/container_viewing_cin.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="check out">
+		<param name="Local" value="userguide/container_viewing_cout.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemDraw Plug-in">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/searching_query.html#chemdraw">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="combination searching">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_combination.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="comments">
+		<param name="Local" value="userguide/fields/comments.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="comments tab">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new container">
+			<param name="Local" value="userguide/container_new_comments.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="view container">
+			<param name="Local" value="userguide/container_viewing_comments.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container">
+		<param name="Local" value="userguide/default.htm#container">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="copy">
+			<param name="Local" value="userguide/container_viewing_copy.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="delete">
+			<param name="Local" value="userguide/container_viewing_delete.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="edit">
+			<param name="Local" value="userguide/container_viewing_edit.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="management">
+			<param name="Local" value="userguide/container_management.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="move">
+			<param name="Local" value="userguide/container_viewing_move.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new">
+			<param name="Local" value="userguide/container_new.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="search">
+			<param name="See Also" value="container">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="retire">
+			<param name="Local" value="userguide/container_viewing_retire.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="viewing contents">
+			<param name="Local" value="userguide/container_viewing.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container cost">
+		<param name="Local" value="userguide/fields/container_cost.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Container Details Frame">
+		<param name="Local" value="userguide/container_viewing.htm#container_contents_frame">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container id">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="barcode">
+			<param name="Local" value="userguide/fields/container_barcode.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="internal">
+			<param name="Local" value="userguide/fields/container_internal.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Container List Frame">
+		<param name="Local" value="userguide/container_viewing.htm#container_list_frame">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container name">
+		<param name="Local" value="userguide/fields/container_name.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container size">
+		<param name="Local" value="userguide/fields/container_size.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container status">
+		<param name="Local" value="userguide/fields/container_status.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="container type">
+		<param name="Local" value="userguide/fields/container_type.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="contents tab">
+		<param name="Local" value="userguide/container_new_contents.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="compound id">
+		<param name="Local" value="userguide/fields/compound_ID.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="concentration">
+		<param name="Local" value="userguide/fields/concentration.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="copy container">
+		<param name="Local" value="userguide/container_viewing_copy.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Current Location Frame">
+		<param name="Local" value="userguide/location_management.htm#current_location_frame">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="current user id">
+		<param name="Local" value="userguide/fields/user_ID.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="date ordered">
+		<param name="Local" value="userguide/fields/date_ordered.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="date produced">
+		<param name="Local" value="userguide/fields/date_produced.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="date received">
+		<param name="Local" value="userguide/fields/date_received.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="delete container">
+		<param name="Local" value="userguide/container_viewing_delete.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="destination">
+		<param name="Local" value="userguide/fields/destination.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="edit container">
+		<param name="Local" value="userguide/container_viewing_edit.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="expiration date">
+		<param name="Local" value="userguide/fields/expiration_date.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="formula searching">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_formula.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="grade">
+		<param name="Local" value="userguide/fields/grade.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="location">
+		<param name="Local" value="userguide/default.htm#location">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="delete">
+			<param name="Local" value="userguide/location_delete.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="default">
+			<param name="Local" value="userguide/location_default.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="edit">
+			<param name="Local" value="userguide/location_edit.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="management">
+			<param name="Local" value="userguide/location_management.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="move">
+			<param name="Local" value="userguide/location_move.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new">
+			<param name="Local" value="userguide/location_new.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="location description">
+		<param name="Local" value="userguide/fields/location_description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="location id">
+		<param name="Local" value="userguide/fields/location_ID.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="location name">
+		<param name="Local" value="userguide/fields/location_name.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Location Tree Frame">
+		<param name="Local" value="userguide/location_management.htm#location_tree_frame">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="location type">
+		<param name="Local" value="userguide/fields/location_type.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="lot number">
+		<param name="Local" value="userguide/fields/lot_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="marking records">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_viewing_marking.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="maximum stock threshold">
+		<param name="Local" value="userguide/fields/max_stock.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="minimum stock threshold">
+		<param name="Local" value="userguide/fields/min_stock.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="molecular formula">
+		<param name="Local" value="userguide/fields/molecular_formula.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="molweight range">
+		<param name="Local" value="userguide/fields/molweight_range.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="move container">
+		<param name="Local" value="userguide/container_viewing_move.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="new">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="location">
+			<param name="Local" value="userguide/location_new.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="container">
+			<param name="Local" value="userguide/container_new.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="substance">
+			<param name="Local" value="userguide/substance_new.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="number of copies">
+		<param name="Local" value="userguide/fields/number_copies.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="numerical searching">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_numerical.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="optional tab">
+		<param name="Local" value="userguide/container_new_optional.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="owner id">
+		<param name="Local" value="userguide/fields/owner_ID.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="owner tab">
+		<param name="Local" value="userguide/container_new_owner.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="po number">
+		<param name="Local" value="userguide/fields/po_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Preferences box">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/preferences.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="print label/report">
+		<param name="Local" value="userguide/container_viewing_print.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="privileges">
+		<param name="Local" value="userguide/privileges.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="purity">
+		<param name="Local" value="userguide/fields/purity.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="quantities tab">
+		<param name="Local" value="userguide/container_viewing_quantities.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="queries">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="refine">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_refining.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="search">
+			<param name="See Also" value="Query Input Form">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="qty available">
+		<param name="Local" value="userguide/fields/qty_available.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="qty remaining">
+		<param name="Local" value="userguide/fields/qty_remain.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Query Input Form">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/searching_query.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="registry batch id">
+		<param name="Local" value="userguide/fields/registry_batch.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="required tab">
+		<param name="Local" value="userguide/container_new_required.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="requisition number">
+		<param name="Local" value="userguide/fields/req_number.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservation date">
+		<param name="Local" value="userguide/fields/reservation_date.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservation id">
+		<param name="Local" value="userguide/fields/reservation_ID.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservation quantity">
+		<param name="Local" value="userguide/fields/reservation_qty.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservation status">
+		<param name="Local" value="userguide/fields/reservation_status.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservations tab">
+		<param name="Local" value="userguide/container_viewing_reservations.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reservation type">
+		<param name="Local" value="userguide/fields/reservation_type.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="results">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="export">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_exporting.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="form view">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_viewing_form.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="list view">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_viewing_list.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="viewing additional hits">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results_viewing_hits.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="retire container">
+		<param name="Local" value="userguide/container_viewing_retire.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="roles">
+		<param name="Local" value="userguide/roles.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="search">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/searching.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="advanced">
+			<param name="Local" value="userguide/advanced_search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="for substance">
+			<param name="Local" value="userguide/simple_search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="for container">
+			<param name="Local" value="userguide/container_searching.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="performing">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/searching.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="preferences">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/preferences.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="results">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_results.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="simple">
+			<param name="Local" value="userguide/simple_search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="substructure">
+			<param name="Local" value="userguide/substructure_search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="types">
+			<param name="See Also" value="search types">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="search types">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="combination">
+			<param name="See Also" value="combination searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="formulas">
+			<param name="See Also" value="formula searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="numerical">
+			<param name="See Also" value="numerical searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="structure">
+			<param name="See Also" value="structure searching">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="text">
+			<param name="See Also" value="text searching">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Search Type Listbox">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/searching_query.html#search_type">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="solvent">
+		<param name="Local" value="userguide/fields/solvent.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="structure searching">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_structure.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="exact">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_structure_exact.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="similarity">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_structure_similar.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="substructure">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_structure_sub.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tanimoto">
+			<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_structure_similar.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="substance">
+		<param name="Local" value="userguide/default.htm#substance">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="management">
+			<param name="Local" value="userguide/substance_management.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new">
+			<param name="Local" value="userguide/substance_new.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="search">
+			<param name="See Also" value="substance">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="synonym">
+			<param name="Local" value="userguide/synonym_management.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="substance name">
+		<param name="Local" value="userguide/fields/substance_name.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="substance tab">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new container">
+			<param name="Local" value="userguide/container_new_substance.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="view contianer">
+			<param name="Local" value="userguide/container_viewing_substance.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="substructure">
+		<param name="Local" value="userguide/fields/substructure.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="summary tab">
+		<param name="Local" value="userguide/container_viewing_summary.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="supplier">
+		<param name="Local" value="userguide/fields/supplier.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="supplier tab">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="new container">
+			<param name="Local" value="userguide/container_new_supplier.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="view container">
+			<param name="Local" value="userguide/container_viewing_supplier.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="text searching">
+		<param name="Local" value="../../webserver_source/cfserverasp/help/global/search_types_text.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="unit of measure">
+		<param name="Local" value="userguide/fields/unit_measure.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

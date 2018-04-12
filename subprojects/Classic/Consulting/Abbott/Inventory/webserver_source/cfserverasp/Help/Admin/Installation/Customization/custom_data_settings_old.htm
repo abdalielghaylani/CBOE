@@ -1,0 +1,443 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- DataView&nbsp;INI settings (sample.ini)</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>DataView&nbsp;INI settings (e.g. sample.ini)</h1>
+<p>Each ChemOffice WebServer Application can have more than 
+one dataview. The config folder contains an ini file for the Application 
+(cfserver.ini) and one ini file for each dataview. The dataviews that will load 
+is determined by the list of DB_NAMES stored in the cfserver.ini. This allows 
+enabling and disabling of data view loading. For information about the 
+Application INI file see <a href="custom_app_settings.htm">Application INI 
+settings</a>           
+              
+               
+           
+      .</p>
+<p>The Dataview files&nbsp;for each application are located in: 
+<strong>&lt;webroot&gt;/ChemOffice/&lt;app_name&gt;/config</strong> <br>where 
+&lt;webroot&gt; is your server's webroot and &lt;app_name&gt; in the application 
+name.</p>
+
+<p>          This document discusses the
+sections and keys contained in a typical dataview ini file, the sample.ini file,
+for the Sample application. Settings for different applications may vary.&nbsp; Please see an application's
+individual Admin guide for details.</p>
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<p>When editing fileds in this file, it is important to be 
+sure what is going to change because many of these settings are necessary for 
+the application to function properly. 
+<p>            
+       Descriptions are 
+written in <font color="crimson" style="COLOR: crimson">red </font>while the text of the actual file is 
+in black.&nbsp; Fields shown in <strong>bold</strong> should 
+not be edited.</p>
+<p>
+<table cellSpacing="2" cellPadding="2" width="300" border="1">
+  <tbody>
+  <tr>
+    <td>
+      <p><a name="globals"></a>[GLOBALS] 
+      <br>ABOUT_WINDOW=sample
+      <br><font color="crimson" style="COLOR: crimson">the text that 
+      appears in the about window describing the name of the data view. Up to 
+      one line of text can be displayed.</font> 
+      <br>DISPLAY_NAME=sample 
+      <br><font color="crimson" style="COLOR: crimson">the name used in global 
+      search screens to identify thedataview.</font> 
+      <br>MAXHITS=100 
+      <br><font color="crimson" style="COLOR: crimson">the number of hits returned before a Get More button will 
+      appear.</font> 
+      <br>CFW_INSTANCE=new 
+      <br><font color="crimson" style="COLOR: crimson">Values are 
+      &quot;first&quot; or 
+      &quot;new&quot;; first specifies that this dataview should share an instance of 
+      ChemFinder with first dataview specified as the GlobalBaseDB key in the 
+      cfserver.ini file. If this key is empty then the first database in the 
+      DB_NAMES list isused. </font>
+      <br>DB_RECORD_COUNT=288 
+      <br><font color="crimson" style="COLOR: crimson">number of records in database. This appears in all 
+      input and result windows in the upper left corner next to TotalRecords.</font> 
+      <br>DB_TYPE=STRUC 
+      <br>TABLE_ALIASES=MolTable,Synonyms_r 
+      <br><font color="crimson" style="COLOR: crimson">Names of all table definition sections in the ini 
+      file. This list must be comma delimited with no spaces. If the table name 
+      is not here, it will not be loaded by the application. Table definition 
+      sections describe all the information needed by ChemOffice WebServer for 
+      searchingtables. See the <a href="#moltable">MOLTABLE</a> and <a href="#synonyms_r">SYNONYMS_R</a>                
+                    
+                  
+               
+       Definitions below.</font> 
+      <br><strong>SUBFORM_VIEW_NAMES=NULL</strong> 
+      <br>ADO_CONNECTION_NAMES=base_connection 
+      <br><font color="crimson" style="COLOR: crimson">Names of all ado connection definition sections in 
+      the ini file. This list must be comma delimited with no spaces. If the 
+      connection name is not here, it will not be loaded by the application. An 
+      ADO definition section describes variables for connecting to data source 
+      via ADO. In general there is only the default definition &quot;<a href="#ado">base_connection_group</a>  
+                   
+                   
+                  
+                   
+         &quot;, since most dataviews 
+      access the same database. However, this is flexible and allows more 
+      definitions then just the default. ADO_Connection_Names are reference by 
+      individualtables. </font>
+      <br>CHEM_CONNECTION_NAMES=base_cfw_form 
+      <br><font color="crimson" style="COLOR: crimson">Names of all ChemFinder connection definition 
+      sections in the ini file. This list must be comma delimited with no 
+      spaces. If the connection name is not here, it will not be loaded by the 
+      application. A ChemFinder connection definition section describes 
+      variables for connecting to ChemFinder for searching of chemical 
+      information. In default definition &quot;<a href="#base_cfw_form">base_cfw_form</a>      
+                    
+                    
+             
+               
+              
+                 
+         &quot; is normally present (unless there is no chemical 
+      information). In dataviews that deal with reaction databases,&nbsp;there may&nbsp;be three (or more) definitions, one 
+      for the reaction, one for the solvent and one for the 
+      catalyst. (e.g.config/chemprep.ini file in the chemrxn application). </font>
+      <br>TABLE_GROUPS=base_table_group
+      <br><font color="crimson" style="COLOR: crimson">Name of table group definition sections in the ini 
+      file. This must be comma delimited, with no spaces. If the table group 
+      names&nbsp;are not here,&nbsp;they will not be loaded by the application. 
+      A table group specifies information about the order of searching tables, 
+      what the base table (searched via ADO) is and what the molecule table 
+      (searched via ChemFinder). The majority of applications use the default 
+      table group named &quot;<a href="#base_table_group">base_table_group</a>   
+                  
+                      
+                 
+                   
+                
+            &quot;. Table_groups 
+      are referenced by Form_Groups </font>
+      <br>FORM_GROUPS=base_form_group,basenp_form_group,gs_form_group,add_record_form_group,drill_down_form_group 
+      <br><font color="crimson" style="COLOR: crimson">Names of form group definition sections in the ini 
+      file. This must be comma delimited, with no spaces. If the form group 
+      names are not here,&nbsp;they will not be loaded by the application. 
+      Form_groups specify a sub set of information including the input and 
+      result forms to use, the fields that can be searched, the table group to 
+      use for searching as well as additional information that will be described 
+      in later sections. The default formgroup is &quot;<a href="#base_form_group">base_form_group</a>&quot; this group is used most 
+      commonly. There may also be &quot;<a href="#basenp_form_group">basenp_form_group</a>&quot; which is used for input 
+      forms that do not have a plugin, &quot;gs_form_group&quot; used for performing 
+      global searches over many data views in the application; &quot;<a href="#add_record_form_group">add_record_form_group</a>        
+                     
+                  
+                 
+                     
+                 
+                
+                 
+                  
+                
+      &quot; which is reserved for future use but is not 
+      currently implemented and &quot;drill_down_form_group&quot; for displaying results 
+      for a drill down link contained in another form groups such as 
+      &quot;base_form_group&quot;. Form_groups are reference by hyperlinks from the 
+      main.asp page and carried throughout all functions and subroutines within 
+      ChemOfficeWebServer. </font>
+      <br>FIELD_MAP_GROUPS=gs_field_map_group 
+      <br><font color="crimson" style="COLOR: crimson">  Names of field map group definition sections 
+      in the ini file. This must be comma delimited, wiht no spaces. If the field 
+      group names are not here,&nbsp;they will not be loaded by the application. Field 
+      Map groups specify field mapping used by global search. If global 
+      searching is not used, the FIELD_MAP_GROUPS can be set to NULL. The 
+      default group created by the wizard. FIELD_MAP_GROUPS are reference by 
+      formgroups </font></p>
+      <p style="COLOR: crimson">####################<br>Ado connections specified in the ado_connections 
+      section of the globals section reference connection sections else where in 
+      the ini file. An ADO_Connection group is referenced by each table alias 
+      definition. The keys specify data necessary to create the connection to 
+      the database via ado. </font></p>
+      <p><a name="ado"></a>[BASE_CONNECTION] 
+      <br>CONN_TYPE=DBQ
+      <br><font color="crimson" style="COLOR: crimson"> Specifies 
+      the type of connection string. Valid entries are &quot;DBQ&quot;, &quot;DSN&quot; 
+      and &quot;OLEDB&quot;.&nbsp; See <a href="http://docsite/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/custom_data_settings_conn.htm#type"> Connection Types</a>     
+                
+         for more information about your 
+      options.</font>
+      <br>CONNECTION_STRING=C:\Inetpub\wwwroot\ChemOffice\sample\database\sample.mdb;Driver= 
+        {MicrosoftAccessDriver(*.mdb)};DriverId=25;FIL=MS Access; 
+      <br><font color="crimson" style="COLOR: crimson">The connection 
+      string for the CONN_TYPE specified.</font>
+      <br>CONNECTION_TIMEOUT=30 
+      <br><font color="crimson" style="COLOR: crimson">The 
+      amount of time in minutes before a connection will automatically close 
+      upon no activity. We suggest 15 to 30 minutes.</font>
+      <br>COMMAND_TIMEOUT=30 
+      <br><font color="crimson" style="COLOR: crimson">The amount of time in minutes before a command object will 
+      automatically close upon no activity. We suggest 15 to 30 
+      minutes.</font>
+      <br>CONNECTION_USERNAME=&quot;&quot; 
+      <br>CONNECTION_PASSWORD=&quot;&quot; 
+      <br><font color="crimson" style="COLOR: crimson">Contains the 
+      username and password.&nbsp; If there is a password and you are using a 
+      DBQ or DSN then see the <a href="http://docsite/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/custom_data_settings_conn.htm#password">Connection Password 
+      Table</a>  
+               .&nbsp; The way the password is 
+      entered is different for different datasources.&nbsp; Otherwise, these entries are probably 
+      left empty.</font></p>
+      <p style="COLOR: crimson">####################<br>ChemFinder connection names specified in the 
+      chem_connections section of the globals section reference connection 
+      sections elsewhere in the ini file. If a table contains chemical 
+      information stored by ChemFinder then CHEM_CONNECTION name is referenced 
+      by the table definition. The keys specify data necessary to create the 
+      ChemFinder connection. </font></p>
+      <p><a name="base_cfw_form"></a>[BASE_CFW_FORM] 
+      <br>STRUC_ENGINE=MOLSERVER
+      <br><font color="crimson" style="COLOR: crimson">   
+          Specifies what 
+      chemical search engine is used.&nbsp;The only current option is MOLSERVER,   
+          soon to be expanded to include the Oracle 
+      Cartridge. </font>
+      <br>STRUC_FORM_NAME=sample
+      <br><font color="crimson" style="COLOR: crimson">The unique 
+      portion of the ChemFinder form found in the 
+      <strong>app/dataview/cfwforms</strong> directory. There is both a short 
+      and long form. The long form is used for searches the short form is used 
+      for retrieving chemicals for 
+      display.<br>      
+                 
+                     
+                 
+                 
+        </font>STRUC_DB_PATH=C:\Inetpub\wwwroot\ChemOffice\sample\database\sample.mst 
+      <br><font color="crimson" style="COLOR: crimson">The path to the mdb file that ChemFinder uses. Even if you are storing 
+      all data in Oracle or SQLServer, ChemFinder still uses an MDB file to link 
+      tables.</font>
+      <br>STRUC_TABLE_NAME=MolTable 
+      <br><font color="crimson" style="COLOR: crimson"> The name of the table that 
+      the STRUC_FORM_NAME opens. This is often MOLTABLE, but may differ depending 
+      on how the original database structure was&nbsp;created.</font></p>
+      
+      <p style="COLOR: crimson">####################<br>As with other items in the globals section the 
+      TABLE_GROUP key specifies individual table groups else where in the ini 
+      file. Table Groups specify information about what table is the base table 
+      for searching, what table holds the structures.</font></p>
+      <p><a name="base_table_group"></a>[BASE_TABLE_GROUP] 
+      <br>BASE_TABLE=MolTable 
+      <br><font color="crimson" style="COLOR: crimson">The name of the&nbsp;table whose ids are returned in a search. This is 
+      the base table for the dataview. </font>
+      <br>MOLECULE_TABLE=MolTable
+      <br><font color="crimson" style="COLOR: crimson">The name of the table that is searched for chemical data. This 
+      may be the same or different then the basetable.</font> 
+      <br>TABLE_SQL_ORDER=MolTable,Synonyms_r 
+      <br><font color="crimson" style="COLOR: crimson">The order 
+      in which the tables are added to a JOINclause. </font></p>
+      
+      <p><a name="moltable"></a>[MOLTABLE] 
+      <br>TABLE_NAME=MolTable 
+      <br>RELATIONAL_FIELDS=ID;1,MOL_ID;1,Molname;0 <br>PRIMARY_KEY=ID 
+      <br>SQL_SYNTAX=ACCESS 
+      <br>SELECT_KEYWORD=DISTINCT 
+      <br>SELECT_ADDITIONAL=NULL 
+      <br>SELECT_JOIN=MolTable.ID 
+      <br>SELECT_LINKS=MolTable.ID;1,MolTable.ID;1 
+      <br>INTER_TABLES=NULL 
+      <br>ADO_CONNECTION=base_connection 
+      <br>CHEM_CONNECTION=base_cfw_form 
+      <br>STRUC_FIELD_ID=MOL_ID </p>
+      <p><a name="synonyms_r"></a>[SYNONYMS_R] 
+      <br>TABLE_NAME=Synonyms_r 
+      <br>RELATIONAL_FIELDS=ID;1,SYN_ID;1,Synonym_r;0 <br>PRIMARY_KEY=ID 
+      <br>SQL_SYNTAX=ACCESS 
+      <br>SELECT_KEYWORD=NULL 
+      <br>SELECT_ADDITIONAL=NULL 
+      <br>SELECT_JOIN=Synonyms_r.SYN_ID=MolTable.MOL_ID 
+      <br>SELECT_LINKS=Synonyms_r.SYN_ID;1,MolTable.MOL_ID;1 
+      <br>INTER_TABLES=MolTable 
+      <br>ADO_CONNECTION=base_connection 
+      <br>CHEM_CONNECTION=base_cfw_form 
+      <br>STRUC_FIELD_ID=SYN_ID </p>
+      
+      <p style="COLOR: crimson">####################<br>The form groups specified in the key, references 
+      individual form group sections elsewhere in the ini file. Form groups are 
+      a way for ChemOffice WebServer to specify different input and result forms 
+      and functionality via Form_group_flags. For instance the <a href="#base_form_group">Base_form_group</a> definition is the default 
+      definition for standard ChemOffice searching using the ChemDraw plugin, 
+      the <a href="http://docsite/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/custom_data_settings.htm#basenp_form_group">basenp_form_group</a>    
+                
+                  
+                  
+              
+               
+            definition defines forms 
+      and functionality for non_plugin containing input forms. The gs_form_group 
+      is defined for global search functionality. </p>
+      <p><a name="base_form_group"></a>[BASE_FORM_GROUP] 
+      <br>INPUT_FORM_PATH=sample_input_form.asp 
+      <br><font color="crimson" style="COLOR: crimson">Name of search input form</font>
+      <br>INPUT_FORM_MODE=search 
+      <br><font color="crimson" style="COLOR: crimson">      
+           Mode that is set for the input 
+      form.</font>
+      <br>RESULT_FORM_PATH=sample_result_list.asp 
+      <br><font color="crimson" style="COLOR: crimson"> Path to 
+      the result form. If you use standard ChemOffice WebServer 
+      terminology dataview_name &amp; &quot;_result_list.asp&quot;, the single record view is 
+      automatically determined as dataview_name &amp; &quot;_form.asp&quot;.</font>
+      <br>RESULT_FORM_MODE=list 
+      <br><font color="crimson" style="COLOR: crimson">The view that defaults when returning results. Options are list or 
+      edit. Edit is a historical name and means the single record 
+      view.</font>
+      <br>PLUGIN_VALUE=True 
+      <br><font color="crimson" style="COLOR: crimson">If there are structure, molecular weight or 
+      formula fields then this must be TRUE indicating that the ChemDraw applet 
+      should be written into the html output for the form. If specifying FALSE 
+      this means no applet code will be written in the 
+      file.</font>
+      <br>STRUCTURE_FIELDS=MolTable.Structure 
+      <br><font color="crimson" style="COLOR: crimson"> Name of the table 
+      and field for the structure field in ChemFinder. For example, this is 
+      often MolTable.Structure. This is case sensitive relative to what is put 
+      into the input and result form. If no structure&nbsp;is present then enter 
+      NULL.</font>
+      <br>FORM_GROUP_FLAG=SINGLE_SEARCH
+      <br><font color="crimson" style="COLOR: crimson">Options are &quot;SINGLE_SEARCH&quot; and 
+      &quot;GLOBAL_SEARCH&quot;.</font>
+      <br><font color="crimson" style="COLOR: crimson">Use SINGLE_SEARCH for standard searching form 
+      groups; use &quot;GLOBAL_SEARCH&quot; when the form group is involved in global 
+      search functionality.</font>
+      <br>MW_FIELDS=MolTable.MolWeight 
+      <br><font color="crimson" style="COLOR: crimson">   
+      Name of the table and field for the molecular weight field in 
+      ChemFinder. This is often MolTable.MolWeight. This is case sensitive relative to 
+      what is put into the input and result form. If no structure&nbsp;is present then 
+      enter NULL</font>
+      <br>FORMULA_FIELDS=MolTable.Formula 
+      <br><font color="crimson" style="COLOR: crimson">   Name of 
+      the table and field for the formula field in ChemFinder. This is 
+      often MolTable.FORMULA. This is case sensitive relative to what is put into 
+      the input and result form. If no structure&nbsp;is present then enter 
+      NULL</font>
+      <br>SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms_r.SYN_ID;1,Synonyms_r.Synonym_r;0 
+      <br><font color="crimson" style="COLOR: crimson">List of fields and their datatypes that are in the 
+      input form. This list is used by JavaScript to determine what fields are 
+      populated before the submit occurs. If there is no&nbsp;field listed here 
+      it will not be searchable. Syntax if tablename.fieldname;datatype with 
+      each full item separated by a comma. These items are case sensitive 
+      relative to what is in the input and result forms.&nbsp; For a list of 
+      valid datatypes, please see the <a href="http://docsite/COWS/ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/custom_data_settings_datatypes.htm">ADO_Fields Datatypes 
+      Table</a>             
+                  
+                      
+              
+                   
+                   
+           .</font>
+      <br><strong>REQUIRED_FIELDS=NULL</strong> 
+      <br><strong>SDFILE_FIELDS=TABLES:MOLTABLE,SYNONYMS_R</strong> 
+      <br>TABLE_GROUP=base_table_group 
+      <br><font color="crimson" style="COLOR: crimson">Name of the table group that 
+      this form_group references</font>
+      <br>NUM_LIST_VIEW=5 
+      <br><font color="crimson" style="COLOR: crimson">Number of records 
+      displayed in list view by default. Making this value higher then 20 makes 
+      output in list view that has structure, mw or formula fields very 
+slow.</font></p>
+
+      <p><a name="basenp_form_group"></a>[BASENP_FORM_GROUP] 
+      <br>INPUT_FORM_PATH=sample_input_formnp.asp 
+      <br>INPUT_FORM_MODE=search 
+      <br>RESULT_FORM_PATH=sample_result_list.asp 
+      <br>RESULT_FORM_MODE=list 
+      <br>PLUGIN_VALUE=False 
+      <br>STRUCTURE_FIELDS=NULL 
+      <br>FORM_GROUP_FLAG=SINGLE_SEARCH 
+      <br>MW_FIELDS=MolTable.MolWeight 
+      <br>FORMULA_FIELDS=MolTable.Formula 
+      SEARCHABLE_ADO_FIELDS=Moltable.ROW_IDS;2,Synonyms_r.ROW_IDS;2,MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms_r.SYN_ID;1,Synonyms_r.Synonym_r;0<br>REQUIRED_FIELDS=NULL 
+      <br>SDFILE_FIELDS=NULL 
+      <br>TABLE_GROUP=base_table_group 
+      <br>NUM_LIST_VIEW=5 </p>
+      <p><a name="add_record_form_group"></a>[ADD_RECORD_FORM_GROUP]
+      <br>INPUT_FORM_PATH=sample_add_form.asp 
+      <br>INPUT_FORM_MODE=add_record 
+      <br>RESULT_FORM_PATH=sample_add_form.asp 
+      <br>RESULT_FORM_MODE=add_record 
+      <br>PLUGIN_VALUE=True 
+      <br>STRUCTURE_FIELDS=MolTable.Structure 
+      <br>FORM_GROUP_FLAG=ADD_COMPOUND 
+      <br>MW_FIELDS=MolTable.MolWeight 
+      <br>FORMULA_FIELDS=MolTable.Formula 
+      <br>SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms_r.SYN_ID;1,Synonyms_r.Synonym_r;0 
+      <br>REQUIRED_FIELDS=MolTable.Structure:Structure,MolTable.Molname;0:Molecule 
+      Name 
+      <br>SDFILE_FIELDS=NULL 
+      <br>TABLE_GROUP=base_table_group 
+      <br>NUM_LIST_VIEW=5</p></td></tr></tbody></table></p>
+<h3>
+Helpful References</h3>
+<ul>
+  <li><a href="../../../../../../../ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/custom_data_settings_conn.htm">Connection 
+  Options</a>
+  <li><a href="../../../../../../../ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/custom_data_settings_datatypes.htm">ADO_Fields 
+Datatypes</a></li>
+</ul>
+<!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

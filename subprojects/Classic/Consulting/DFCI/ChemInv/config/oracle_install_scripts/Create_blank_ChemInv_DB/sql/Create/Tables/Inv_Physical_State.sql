@@ -1,0 +1,20 @@
+CREATE TABLE "INV_PHYSICAL_STATE"(
+	"PHYSICAL_STATE_ID" NUMBER(4) NOT NULL,
+  "PHYSICAL_STATE_NAME" VARCHAR2(50), 
+  CONSTRAINT "INV_PHYSICAL_STATE_PK" 
+		PRIMARY KEY("PHYSICAL_STATE_ID") USING INDEX TABLESPACE &&indexTableSpaceName 
+	)
+; 
+
+create sequence SEQ_INV_PHYSICAL_STATE INCREMENT BY 1 START WITH 1000;
+
+CREATE OR REPLACE TRIGGER "TRG_INV_PHYSICAL_STATE" 
+    BEFORE INSERT 
+    ON "INV_PHYSICAL_STATE" 
+    FOR EACH ROW 
+    begin
+		if :new.Physical_state_ID is null then
+			select seq_Inv_Physical_State.nextval into :new.Physical_State_id from dual;
+		end if;
+end;
+/

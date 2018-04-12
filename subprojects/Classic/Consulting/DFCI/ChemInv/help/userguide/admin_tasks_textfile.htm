@@ -1,0 +1,187 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User Guide -- Creating New Plates</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="0,0,1300,80" HREF="location_management.htm#current_location_frame">
+<area SHAPE="RECT" COORDS="0,80,255,687" HREF="location_management.htm#location_tree_frame">
+<area SHAPE="RECT" COORDS="255,80,1300,350" HREF="container_viewing.htm#conatiner_list_frame">
+<area SHAPE="RECT" COORDS="255,350,1300,687" HREF="container_viewing.htm#container_contents_frame">
+</map>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>Creating 
+<span lang="en-us">a </span>Plate<span lang="en-us"> 
+from Text File</span></h1>
+<p><span lang="en-us">Inventory Enterprise allows you to </span>create plates from the data contained 
+in a text file. <span lang="en-us">The following figure displays a</span> sample 
+text file that can be used to create plate<span lang="en-us">s in Inventory 
+Enterprise</span>:</p>
+<p>
+<img border="1" src="../images/plate_inventory_new_textfile1.gif"></p>
+<p>The preceding text file consists of one header line and four columns. The 
+four columns of the text file are <span lang="en-us">as follows</span>:</p>
+<ul>
+	<li>Target plate barcode: Specifies barcode of the target plate.</li>
+	<li>Target well coordinates: Specifies coordinates of the wells of the target 
+	plate.</li>
+	<li>Source plate barcode: Specifies barcode of the source plate.</li>
+	<li>Source well coordinates: Specifies coordinates of the wells of the source 
+	plate.</li>
+</ul>
+<p>To create a plate from a text file, you should have a Plate Import template 
+for the text file. <span lang="en-us">
+For information about already existing Plate Import templates, please see <a href="plate_inventory_textfile_formats.htm">Plate Import 
+Templates</a>.</span></p>
+<p><span lang="en-us">H</span>owever, if the template is not available<span lang="en-us"> already, </span>
+you can create a new Plate Import template<span lang="en-us"> for the text file.</span> </p>
+<h2><span lang="en-us"><a name="create_plate_import_template">Creating New Plate Import Template</a></span></h2>
+<p><span lang="en-us">To</span> create a Plate Import template for the preceding 
+text file:</p>
+<ol>
+	<li>Click the <b>Tasks</b> link <span lang="en-us">within the <b>Inventory 
+	Enterprise</b> section in the home page of ChemOffice Enterprise. </span>The <b>Administrative 
+	Menu</b> <span lang="en-us">window </span>appears<span lang="en-us">.</span></li>
+	<li>Click the <b>Plate Settings</b> link. The following <span lang="en-us">
+	page </span>appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/plate_inventory_new_textfile2.gif" width="534" height="233"></p>
+</blockquote>
+<ol>
+	<li value="3">Click the <b>New</b> link next to the <b>Plate Import Templates</b> 
+	<span lang="en-us">drop down list</span>. The 
+	following page appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/plate_inventory_new_textfile3.gif" width="406" height="292"></p>
+</blockquote>
+<ol>
+	<li value="4">Perform the following tasks in the preceding page:</li>
+</ol>
+<blockquote>
+	<ul>
+		<li>Enter <span lang="en-us">the </span>name of the template in the <b>Template Name</b> text box.</li>
+		<li>Enter remarks in the <b>Remarks</b> text box.</li>
+		<li>Enter <b>1</b> in the <b>File Header Lines</b> text box<span lang="en-us">, 
+	as</span> the text file contains 
+	one header line.</li>
+		<li>Enter <b>4</b> in the <b>Data Columns</b> text box<span lang="en-us">, as</span> the text file contains four 
+	columns.</li>
+		<li>Enter <b>tab</b> in the <b>Data Column Delimiter</b> text box<span lang="en-us">, 
+	as </span>the text file is 
+	tab delimited.</li>
+		<li>Select the <b>Well Coordinates</b> check box<span lang="en-us">, as
+		</span>the text file contains well 
+	coordinates and not the well numbers.</li>
+	</ul>
+</blockquote>
+<ol>
+	<li value="5">Click the <b>Next</b> button. The preceding page is populated with some 
+	additional fields, as shown in the following figure:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/plate_inventory_new_textfile4.gif" ></p>
+</blockquote>
+<ol>
+	<li value="6"><span lang="en-us">Perform the following tasks </span>in this page:</li>
+</ol>
+<blockquote>
+	<ul>
+		<li>Select <b>Target Plate Barcode</b> from the <b>Column 1 Mapping</b> 
+		<span lang="en-us">drop down list</span>.</li>
+		<li>Select <b>Target Well</b> from the <b>Column 2 Mapping</b> 
+		<span lang="en-us">drop down list</span>.</li>
+		<li>Select <b>Source Plate Barcode</b> from the <b>Column 3 Mapping</b> 
+		<span lang="en-us">drop down list</span>.</li>
+		<li>Select <b>Source Well</b> from the <b>Column 4 Mapping</b> 
+		<span lang="en-us">drop down list</span>.</li>
+	</ul>
+</blockquote>
+<ol>
+	<li value=7>Click the <b>OK</b> button. A page informing you that the template is created 
+	successfully appears. </li>
+	<li>Click the <b>OK</b> button<span lang="en-us">.</span></li>
+	<li><span lang="en-us">C</span>lick the <b>Close</b> button.</li>
+</ol>
+<p>After creating the Plate Import template for a text file, you can create two 
+types of plates<span lang="en-us">, which are as follows</span>:</p>
+<ul>
+	<li>Target plates: Are the plates that are created from the plates existing 
+	already in Inventory Enterprise.</li>
+	<li>Source plates: Are the new plates that are created with the new 
+	<span lang="en-us">compounds</span>, <span lang="en-us">which </span>d<span lang="en-us">o 
+	not exist </span>in Inventory Enterprise already. While creating a source 
+	plate, you cannot insert compounds in it.</li>
+</ul>
+
+<p><span lang="en-us">For information about creating target and source plates, 
+please see <a href="target_plate_using_textfile.htm">Creating a Target Plate</a> and <a href="source_plate_using_textfile.htm"C>Creating 
+a Source 
+Plate</a>.</span></p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->  
+          
+</body>
+</html>

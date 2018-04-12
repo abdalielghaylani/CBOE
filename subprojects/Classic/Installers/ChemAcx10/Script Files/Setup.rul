@@ -1,0 +1,223 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  IIIIIII SSSSSS                                                            
+//    II    SS                          InstallShield (R)                     
+//    II    SSSSSS      (c) 1996-2002, InstallShield Software Corporation     
+//    II        SS                     All rights reserved.             
+//  IIIIIII SSSSSS                  
+//                                                                            
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+#define EXAMPLE1 "cfserver"    
+#define EXAMPLE2 "chemacx"
+#define RegisteryKey "SOFTWARE\\CambridgeSoft\\Chemoffice\\10.0\\ChemAcx10.0"
+#define RegisteryKeyValue "VIRTUAL_DIRECTORY"  
+#define RegistryKeySN "SITENUMBER" 
+
+// Full names of Config files.
+
+#define EXAMPLE1_INI INSTALLDIR^"ChemAcx\\Config\\" + EXAMPLE1 + ".ini" 
+#define EXAMPLE2_INI INSTALLDIR^"ChemAcx\\Config\\" + EXAMPLE2 + ".ini"
+
+
+    // The keyword export identifies MyFunction() as an entry-point function.
+    // The argument it accepts must be a handle to the Installer database.
+    export prototype MyFunction(HWND); 
+    export prototype RemoveVirtualDir(HWND);
+    export prototype CheckVirtDirExists(string);     
+    export prototype CheckWebSite(HWND);   
+    export prototype ReadRegValues(HWND); 
+    export prototype SetDIR(HWND); 
+    export prototype AddAppName(HWND);
+ 	export prototype RemoveAppName(HWND);
+    
+
+    // To Do:  Declare global variables, define constants, and prototype user-
+    //         defined and DLL functions here.
+ 
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source. 
+// 5.  Click Next, accepting the default selections until the wizard 
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by 
+// inserting it into a sequence or making it the result of a dialog's 
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when 
+//            Windows(TM) Installer executes your custom action (see the "To 
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)   
+    // To Do:  Declare local variables.
+begin             
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+     if (ConfigFileLoad (EXAMPLE1_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE1_INI + ".", SEVERE);
+
+       // abort;
+
+ endif;        
+    
+    if (ConfigFileSave (EXAMPLE1 + ".*") < 0) then
+
+       MessageBox ("Unable to backup " + EXAMPLE1_INI + ".", SEVERE);
+
+      //  abort;
+
+    else
+      // MessageBox (EXAMPLE1_INI + " backed up.",INFORMATION);
+    endif;   
+    
+    if (ConfigFileLoad (EXAMPLE2_INI) < 0) then
+
+        MessageBox ("Unable to load " + EXAMPLE2_INI + ".", SEVERE);
+
+      //  abort;
+
+    endif;        
+    
+    if (ConfigFileSave (EXAMPLE2 + ".*") < 0) then
+
+       MessageBox ("Unable to backup " + EXAMPLE2_INI + ".", SEVERE);
+
+       // abort;
+
+    else
+      //MessageBox (EXAMPLE2_INI + " backed up.",INFORMATION);
+
+    endif;  
+end; 
+
+function RemoveVirtualDir(hMSI)
+STRING sVDName, sSiteNumber;
+NUMBER nvSize, nvType, nResult, nBuff;
+OBJECT objIIS_Root;
+begin    
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName, nBuff);
+MsiGetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber, nBuff);
+//MessageBox(sVDName + sSiteNumber + "RemoveVD", INFORMATION);
+set objIIS_Root = CoGetObject("IIS://localhost/W3SVC/"+sSiteNumber+"/Root", "");
+nResult=CheckVirtDirExists(sVDName);
+if (nResult != 0) then
+objIIS_Root.Delete("IISWebVirtualDir", sVDName);                
+endif;
+end;  
+
+function number CheckVirtDirExists(VDName)
+number nTy,bSi,ret;
+string mRet,VDir;
+begin
+VDir = "/" + VDName; //VDName = the value u retrieve through ur dialog
+nTy=REGDB_STRING ;
+bSi=MAX_PATH;
+RegDBSetDefaultRoot ( HKEY_LOCAL_MACHINE );
+if(RegDBGetKeyValueEx("\\SYSTEM\\CurrentControlSet\\Services\\w3svc\\parameters\\Virtual Roots\\", VDir, nTy, mRet,bSi )<0) then
+ret = 0; // The VDirectory does not exists
+else
+ret = 1; // The Directory allready exists
+endif;
+return ret;
+end;  
+
+function CheckWebSite(hMSI)   
+    // To Do:  Declare local variables. 
+  string szSrcDir, szWSName, szVirtualName, szOSName;                                    
+    number nBuff, nWSName;
+begin       
+	MsiGetProperty(ISMSI_HANDLE, "WEBSITE", szWSName, nBuff);
+	MsiGetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName, nBuff);
+	MsiGetProperty(ISMSI_HANDLE, "APPPOOL", szOSName, nBuff);
+	/*MsiGetProperty(ISMSI_HANDLE,"SETUPEXEDIR", szSrcDir, nBuff);      
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "WebSite", szWSName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "VirtualDirectory", szVirtualName);
+    GetProfString(szSrcDir^"cowswebservice.ini","Info", "PortNo", szPortNo);
+    MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", szVirtualName);
+    MsiSetProperty(ISMSI_HANDLE, "WEBSITENAME", szWSName);
+    MsiSetProperty(ISMSI_HANDLE, "PORTNO", szPortNo);
+   */
+   // MessageBox(szWSName, INFORMATION);
+   if ((szWSName = "0") > 0) then
+   SprintfBox(WARNING, "WebSite Name" , "WebSite Name cannot be left blank", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "1");
+   //MessageBox("1", INFORMATION);      
+   
+   else
+   //MsiSetProperty(ISMSI_HANDLE, "WEBSITE", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "0") ;
+   //MessageBox("0", INFORMATION);
+   endif; 
+    
+   
+end;  
+
+function ReadRegValues(hMSI) 
+STRING sVDName, sSiteNumber;
+number nvType, nvSize;
+begin
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE);
+nvType = REGDB_STRING; 
+nvSize=256;
+RegDBGetKeyValueEx(RegisteryKey, RegisteryKeyValue, nvType, sVDName, nvSize);
+RegDBGetKeyValueEx(RegisteryKey, RegistryKeySN, nvType, sSiteNumber, nvSize); 
+//MessageBox(sVDName + sSiteNumber + "ReadRegVal" , INFORMATION);               
+MsiSetProperty(ISMSI_HANDLE, "VIRTUALNAME", sVDName);
+MsiSetProperty(ISMSI_HANDLE, "SITENUMBER", sSiteNumber);
+
+end; 
+function SetDIR(hMSI)
+     STRING svDir;
+ begin
+     GetProfString(WindowsFolder^"Cows.ini", "GLOBALS", "COWS_DIR", svDir); 
+     MsiSetProperty(ISMSI_HANDLE, "COWSDIR", svDir);   
+     INSTALLDIR = svDir;  
+     MsiSetProperty(ISMSI_HANDLE,"COWSDIRECTORY", svDir);
+     //MessageBox(INSTALLDIR, INFORMATION);
+ end;
+ 
+ function AddAppName(hMSI)
+    STRING szCowsDir,szKey;                                                
+    NUMBER nBuff;
+ begin           
+ 	 nBuff=256;
+     MsiGetProperty(ISMSI_HANDLE, "COWSDIRECTORY", szCowsDir, nBuff);
+     GetProfString(szCowsDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName",szKey);
+     ReplaceProfString(szCowsDir^"Config\\ChemOffice.ini","GLOBALS","AppName",szKey,szKey + ",ChemACX");
+ end;  
+ 
+ function RemoveAppName(hMSI)
+     STRING svDir, szKey, svValue;
+ begin
+     GetProfString(WindowsFolder^"Cows.ini", "GLOBALS", "COWS_DIR", svDir);
+     GetProfString(svDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName",szKey);
+     svValue = szKey;
+     StrReplace(szKey,",ChemACX", "", 0);
+     ReplaceProfString(svDir^"Config\\ChemOffice.ini", "GLOBALS", "AppName", svValue, szKey);
+ end;

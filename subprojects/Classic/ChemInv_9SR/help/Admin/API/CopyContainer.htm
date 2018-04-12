@@ -1,0 +1,86 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+&nbsp;
+<h1>CopyContainer</h1><p>          
+  Makes the specified number of copies of the entered container 
+(creating new containers for each copy).&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CopyContainer.asp?ContainerID=adNumeric&amp;NumContainers=Int&amp;Action= adVarChar</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">ContainerID</h5>
+<p>The ID of the&nbsp;conatiner (the parent container) to be split 
+or sampled.&nbsp; </p>
+<h5 class="param">NumContainers</h5>
+<p>The number of &nbsp;conatiners the parent container is split or 
+sampled into. </p>
+<h5 class="param">Action = split|sample</h5>
+<p>This is the action taking place to necessitate a Copy 
+Container.&nbsp; The only two options are split and sample.&nbsp;When a container 
+is split, the container contents if dispersed among new containers, the original 
+conatiner being removed.&nbsp; On the other hand, when a container is sampled 
+some quantity of the entire quantity of the container is moved into new 
+containers, the original container&nbsp;left in tact, with less 
+contents.&nbsp;</p>
+
+<h3>Outputs</h3>
+<p class="param">Pipe (|) delimited list of new container IDs.&nbsp;For example: 
+100|101</p>
+
+<h3>Example</h3>
+<p>A&nbsp;conatiner (ID=111) is&nbsp;sampled (therefore creating multiple copies of itself),&nbsp;into 4 new 
+containers.</p><pre>/cheminv/api/CopyContainer.asp?ContainerID=111&amp;NumContainers=4&amp;Action= sample</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

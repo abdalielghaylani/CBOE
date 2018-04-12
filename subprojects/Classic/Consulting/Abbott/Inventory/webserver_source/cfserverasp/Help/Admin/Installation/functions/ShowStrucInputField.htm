@@ -1,0 +1,97 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowStrucInputField</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Webserver</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="#"><IMG height=16 alt=Previous src="../../../images/back.gif" width=16 border=0></A>
+<A href="#"><IMG height=16 alt  ="Up One Level" src="../../../images/uplevel.gif" width=16 border=0 ></A>
+<A href="#"><IMG height=16 alt=Next src="../../../images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>     ChemOffice 
+WebServer</STRONG>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>  ShowStrucInputField</h1>
+<P>This subroutine call appears in the following file:</P>
+<UL><li>sample_input_form.asp</li></UL>
+
+<TABLE style="WIDTH: 95%" cellSpacing=4 cellPadding=1 border=0>
+  <TBODY vAlign=top>
+  
+  <TR>
+    <TD width="500">
+      <H4>Subroutine</H4></TD>
+    <TD><PRE>ShowStrucInputField 
+      dbkey,formgroup,table.field,fieldtype,width,height,search_options,display_options</PRE></TD></TR>
+  <TR>
+    <TD>
+      <H4>Description</H4></TD>
+    <TD>
+      <P>Shows the ChemDraw plugin box for structure input and displays options 
+      for search</P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Parameters</H4></TD>
+    <TD>
+      <p>dbkey =<EM></FONT> 
+      &lt;dataview name&gt;</EM>  &nbsp;
+      <p>formgroup =</FONT><EM> &lt;formgroup name&gt;</EM>
+      <H5></H5> 
+      <p>table.field =</FONT><EM> &lt;table and field name 
+      using dot syntax&gt;</EM>      
+      &nbsp;
+      <p>fieldtype =</FONT><EM> &lt;indicates chemical 
+      information&gt;</EM>  
+      &nbsp;
+      <p>width =</FONT><EM> &lt;width of plugin 
+      box&nbsp;&gt;</EM>   &nbsp;
+      <p>height =</FONT><EM> &lt;height of plugin box&gt; 
+      </EM>
+      <H5></H5>   
+      <p>search_options = 
+      <EM>All_Options|SubStructure|Exact|Tanimoto</EM>&nbsp; 
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All_Options: 
+      show drop down list with options<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Substructure:&nbsp;always 
+      substructure search<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact: 
+      always exact search<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanimoto: 
+      always similarity search
+      </p>
+      <P>display_options = 
+      <EM>None|Select_List|Select_List_Edit<BR></EM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None: 
+      no display type needed<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select_list: 
+      shows chocies - substructure, exact, similarity<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select_List_Edit: 
+      structure button<BR></P></TD></TR>
+  <TR>
+    <TD>
+      <H4>Example</H4></TD>
+    <TD><PRE><PRE>ShowStrucInputField 
+      dbkey,formgroup,"MolTable.Structure","5","340","AllOptions","Select_List"</PRE></PRE></TD></TR></TBODY></TABLE>
+
+</body>
+
+</html>

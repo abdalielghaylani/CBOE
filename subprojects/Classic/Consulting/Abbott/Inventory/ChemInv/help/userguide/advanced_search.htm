@@ -1,0 +1,144 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Advanced Search</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="60,45,304,85" HREF="fields/cas_number.htm">
+<area SHAPE="RECT" COORDS="304,45,522,85" HREF="fields/container_barcode.htm">
+<area SHAPE="RECT" COORDS="522,45,730,85" HREF="fields/catalog_number.htm">
+
+<area SHAPE="RECT" COORDS="60,85,304,125" HREF="fields/acx_number.htm">
+<area SHAPE="RECT" COORDS="304,85,522,125" HREF="fields/container_internal.htm">
+<area SHAPE="RECT" COORDS="522,85,730,125" HREF="fields/supplier.htm">
+
+<area SHAPE="RECT" COORDS="60,125,304,165" HREF="fields/purity.htm">
+<area SHAPE="RECT" COORDS="304,125,522,165" HREF="fields/container_name.htm">
+<area SHAPE="RECT" COORDS="522,125,730,165" HREF="fields/lot_number.htm">
+
+<area SHAPE="RECT" COORDS="60,165,304,205" HREF="fields/concentration.htm">
+<area SHAPE="RECT" COORDS="304,165,522,205" HREF="fields/container_type.htm">
+<area SHAPE="RECT" COORDS="522,165,730,205" HREF="fields/expiration_date.htm">
+
+<area SHAPE="RECT" COORDS="60,205,304,242" HREF="fields/density.htm">
+<area SHAPE="RECT" COORDS="304,205,522,242" HREF="fields/container_status.htm">
+<area SHAPE="RECT" COORDS="522,205,730,242" HREF="fields/date_ordered.htm">
+
+<area SHAPE="RECT" COORDS="60,242,304,282" HREF="fields/grade.htm">
+<area SHAPE="RECT" COORDS="304,242,522,282" HREF="fields/unit_measure.htm">
+<area SHAPE="RECT" COORDS="522,242,730,282" HREF="fields/date_received.htm">
+
+<area SHAPE="RECT" COORDS="60,282,304,322" HREF="fields/container_size.htm">
+<area SHAPE="RECT" COORDS="304,282,522,322" HREF="fields/qty_remain.htm">
+<area SHAPE="RECT" COORDS="522,282,730,322" HREF="fields/po_number.htm">
+
+<area SHAPE="RECT" COORDS="60,322,304,362" HREF="fields/container_cost.htm">
+<area SHAPE="RECT" COORDS="304,322,522,362" HREF="fields/qty_available.htm">
+<area SHAPE="RECT" COORDS="522,322,730,362" HREF="fields/owner_id.htm">
+
+<area SHAPE="RECT" COORDS="60,362,304,402" HREF="fields/location_id.htm">
+<area SHAPE="RECT" COORDS="304,362,522,402" HREF="fields/location_barcode.htm">
+<area SHAPE="RECT" COORDS="522,362,730,402" HREF="fields/user_id.htm">
+
+<area SHAPE="RECT" COORDS="522,402,730,442" HREF="fields/compound_type.htm">
+</map> 
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <strong>User's Guide</strong>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" endspan i-checksum="42952" -->
+<h1>Advanced Search</h1>
+<p> 
+The advanced search option allows searching through the 
+use of <a href="fields/cas_number.htm">CAS number</a>, <a href="fields/acx_number.htm">ACX number</a>,&nbsp; <a href="fields/purity.htm">Purity</a>, <a href="fields/concentration.htm">Concentration</a>, 
+<a href="fields/density.htm">Density</a>,&nbsp; <a href="fields/grade.htm">Grade</a>, <a href="fields/container_size.htm">Size</a>, <a href="fields/container_cost.htm">Container Cost</a>, <a href="fields/location_id.htm">Location ID</a>   
+           , <a href="fields/container_barcode.htm">Container ID (barcode)</a>, <a href="fields/container_internal.htm">Container ID (internal)</a>, <a href="fields/container_name.htm">Container Name</a>, <a href="fields/container_type.htm">Container Type</a>, <a href="fields/container_status.htm">Container Status</a>, <a href="fields/unit_measure.htm">Unit of Measure</a>, <a href="fields/qty_remain.htm">Qty Remain</a>, <a href="fields/qty_available.htm">Qty Available</a>, <a href="http://misty/COWS/ChemOffice/ChemInv/help/userguide/fields/location_barcode.htm">Location Barcode</a>, <a href="fields/catalog_number.htm">Catalog number</a>, <a href="fields/supplier.htm">Supplier</a>, <a href="fields/lot_number.htm">Lot 
+Number</a>, <a href="fields/expiration_date.htm">Expiration Date</a>, <a href="fields/date_ordered.htm">Date Ordered</a>, <a href="fields/date_received.htm">Date Received</a>, <a href="fields/PO_number.htm">PO Number</a>, <a href="fields/owner_ID.htm">Owner 
+ID</a> , <a href="fields/user_ID.htm">Current User ID</a>, and 
+<a href="fields/compound_type.htm">Compound Type</a>. </p>
+<p>This search concentrates more on container properties as opposed to substance 
+properties. </p>
+<p> 
+<img src="../images/advanced_search.gif" useMap="#screenshot" border="0" width="729" height="556"> </p>
+<p> 
+How to search: </p>
+<ol>
+  <li>Enter the desired information to search for. For 
+  more information about entering search criteria, see Searching ChemOffice 
+  Enterprise Applications in the 
+  <a href="../../../WebServer_source/cfserverasp/help/global/searching.html">ChemOffice Enterprise Users Guide</a>. <br>Additional 
+  fields may appear on this search form. Any additional fields have been 
+  defined for your site. Please see you system administrator for more 
+  details.
+  <li>Select the <strong>Search Sublocations</strong> checkbox if you want to 
+  search all sublocations of the chosen location. 
+  <li>Select the <strong>Exclude Special Locations</strong> checkbox if you want 
+  to exclude <a href="searching_special_locations.htm">special 
+  locations</a>.          
+                 
+     
+  <li>Click <img src="../images/search_btn.gif" border="0" width="80" height="21"> <b>Search</b> in the toolbar. </li>
+</ol>
+<p>A list of containers matching your search parameters is returned.&nbsp;Clicking on one of the containers will allow you to view, the <a href="location_management.htm">location
+of the container</a> (left frame), <a href="container_viewing.htm#container_list_frame">container
+information</a> (upper right frame), and the <a href="container_viewing.htm#container_contents_frame">contents
+of the container</a> (lower right frame).</p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="35659" -->
+</body>
+</html>

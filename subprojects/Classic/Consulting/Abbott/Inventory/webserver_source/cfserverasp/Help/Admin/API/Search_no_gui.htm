@@ -1,0 +1,121 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>ChemOffice WebServer HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<p>
+
+<h1>Search_no_gui</h1>
+<p>Using search_no_gui any application capable of reaching 
+the ChemOffice WebServer via HTTP can request a search.         
+           The server 
+will return a comma delimited hit list of values from 
+a single, non-chemical, field in the base table specified by the return_fields parameter.</p>
+<p><strong><em>Note:</em></strong> <font color="#a52a2a">All parameters can be 
+passed either as Form (POST) or Querystring (GET) data.</font></p>
+
+<h3>Syntax</h3><pre>&lt;ServerName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;_action.asp?dbName=adVarChar&amp;dataaction=search_no_gui&amp;struct_search_type=adVarChar[&amp;return_fields=adVarChar&amp;&lt;Structure Field&gt;= Base64cdxstring&amp;&lt;SearchField&gt;=adVarChar&amp;return_format=adVarChar]&nbsp;</pre>
+<h3 class="param">Inputs</h3>
+<h5 class="param">dbName=<span class="paramvalues">&nbsp;&lt;DatabaseName&gt;</span></h5>
+<p class="param">            
+ The name of the dataview&nbsp;ini file for the database 
+being accessed.<br><em>Possible options</em> : reg (for Registration System), 
+cheminv            
+  (for Inventory Manager), chemacx, wdi, 
+wda<br><em>Example</em>:<span style="mso-spacerun: yes">&nbsp; 
+</span>dbname=            
+       chemacx</p>
+
+<h5 class="param">dataaction&nbsp;=<span class="paramvalues">&nbsp;search_no_gui</span></h5>
+<p class="param">Must be set equal to &quot;search_no_gui&quot;.</p>
+
+<h5 class="param">[Struc_search_type]&nbsp;=<span class="paramvalues"> 
+&nbsp;Empty|Exact|Substructure</span></h5>
+<p class="param">The type of structure search.&nbsp; This 
+parameter is equal to either <em>exact</em> or <em>substructure</em> .&nbsp; The parameter defaults to 
+exact.<br><em>Example</em>: struc_search_type =            
+    exact</p>
+
+<h5 class="param">[return_fields]&nbsp;=<span class="paramvalues">&nbsp;&lt;field name&gt;</span></h5>
+<p class="param">The fully qualified name of a non-chemical 
+field from the base table.<br>By default the&nbsp;function returns the primary 
+key of the base table.<br><em>Example</em>: 
+return_fields=           Substance.ACXID</p>
+
+<h5 class="param">[&lt;structure field&gt;]&nbsp;=<span class="paramvalues">    &nbsp;&lt;structure 
+field value&gt;</span></h5>
+<p class="param">Where &lt;structure field&gt; is the fully 
+qualified name of a structure field and &lt;structure field value&gt; is&nbsp;a 
+Base64cdx string to search for.&nbsp;&nbsp; <br><em>Note</em>: The field name must match the structure field name on the 
+ChemFinder form.<br><em>Note</em>: Due to limitations on the 
+maximum allowable length of the URL payload, lengthy data, such as base64cdx 
+strings, must be posted as FORM payload.<br><em>Example: 
+</em>Substance.Structure= a lengthy base64cdx string. </p>
+<h5 class="param">[&lt;search field&gt;]&nbsp;=<span class="paramvalues">&nbsp;&lt;search value&gt;</span></h5>
+<p class="param">Where &lt;search field&gt; is the fully 
+qualified name of the search field to search on and &lt;search value&gt; is the 
+value to search for.<br><em>Note</em>:&nbsp;The field 
+name&nbsp;must be declared in the ini file.<br><em>Example</em>: Synonym.Name=       
+   benzene</p>
+<h5 class="param">[return_format]&nbsp;=<span class="paramvalues">&nbsp;Empty|server_rs</span></h5>
+<p class="param">             
+              
+The default value is server_rs which is a 
+comma separated list of values.&nbsp;<br>ChemACX supports a second return format.  Namely ACXXML. See <a href="http://www.chemacx.com/chemacx/chemacx/chemacx_postrequest.asp">http://www.chemacx.com/chemacx/chemacx/chemacx_postrequest.asp 
+</a>             
+              
+ to see how xml formatted data can be retrieved from 
+the server.</p>
+<p class="param">&nbsp;</p><br><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

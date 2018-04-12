@@ -1,0 +1,114 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Installation</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>&nbsp;
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<a href="integrate.htm"><img height="16" alt="Previous" src="../../../../WebServer_source/cfserverasp/help/images/back.gif" width="16" border="0"></a>
+<a href="installation.htm"><img height="16" alt="Up One Level" src="../../../../WebServer_source/cfserverasp/help/images/uplevel.gif" width="16" border="0"></a>
+<a href="test.htm"><img height="16" alt="Next" src="../../../../WebServer_source/cfserverasp/help/images/next.gif" width="16" border="0"></a>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+<b> Inventory Enterprise&nbsp;User's Guide</b>
+</td>
+</tr>
+</table>
+</div>
+
+<h1> Enable&nbsp;PDF and Barcode Support</h1>
+<h3 class="Head3"><a name="pgfId-1068629"></a>PDF Support</h3>
+<div>
+<p class="Body"><a name="pgfId-1068666"></a>   The RPT report writer 
+installed with the Inventory Enterprise is capable of producing reports in four 
+different formats: SNP (MS Access Report Viewer), RTF (Rich Text Format), XLS 
+(Excel Workbook), PDF. Support for the PDF format is optional and requires a 
+PDF printer driver to be installed on the server. Following are the optional 
+instructions required to enable PDF support: </p>
+<ol>
+  <li class="Numbered"><a name="pgfId-1068667"></a>Browse to 
+  <strong>&lt;webroot&gt;\ChemOffice\ 
+  ChemInv\Installation\win2pdf</strong> . 
+  <li class="Numbered"><a name="pgfId-1068668"></a>Install the 
+  <strong>win2pdf</strong> driver by double-clicking on 
+  <strong>w2pdf151.exe</strong>. 
+  <li class="Numbered"><a name="pgfId-1068669"></a>Go to 
+  <strong>START&gt;Settings&gt;</strong><em class="Strong"><strong> Control 
+  Panel&gt;Printers</strong> </em>and check that the win2pdf printer is the 
+  default Windows Printer. <ol>
+  <li class="Numbered-substep"><a name="pgfId-1068747"></a>Right-click on the 
+  printer. 
+  <li class="Numbered-substep"><a name="pgfId-1068751"></a>Select Set As Default 
+  Printer. 
+  <li class="Numbered"><a name="pgfId-1068670"></a>Purchase a license and 
+  registration code from: http://www.daneprairie.com/ 
+  <li class="Numbered"><a name="pgfId-1068671"></a>Right click on the win2pdf printer (in 
+    <strong>START&gt; Control Panel&gt;Printers</strong> )and select 
+    <strong>Properties</strong>  
+   . 
+  <li class="Numbered"><a name="pgfId-1068722"></a>Enter the regcode you purchased.</li>     </ol>
+  <li class="Numbered"><a name="pgfId-1068672"></a>Browse to 
+  <strong>&lt;webroot&gt;/ChemOffice/WebServer_source/cfserverasp/RPT</strong> 
+  <li class="Numbered">Stop the Reports Service 
+  (RPTService).<a name="pgfId-1068755"></a> 
+  <li class="Numbered"><a name="pgfId-1068673"></a>Open the 
+  <strong>ChemInv_reports.mdb</strong> file (found in your 
+  <strong>ChemOffice_data/Cheminv folder</strong>). 
+  <li class="Numbered"><a name="pgfId-1068674"></a>Open the 
+  <strong>ReportFormats</strong> table and check the <strong>Available</strong> 
+  checkbox for the <strong>PDF</strong> format. 
+  <li class="Numbered"><a name="pgfId-1068675"></a>Close Microsoft Access. 
+  <li class="Numbered">Restart the Reports Service. 
+</li></ol></div>
+<h3 class="Head3"><a name="pgfId-1068631"></a>Barcode Support</h3>
+<ol>
+  <li class="Numbered"><a name="pgfId-1068641"></a>Browse to <strong>  
+  &lt;webroot&gt;\ChemOffice\<em class="Strong"> 
+  ChemInv\Installation\Tbarcode</em></strong> . 
+  <li class="Numbered"><a name="pgfId-1068632"></a>Run the <strong>Tbarcode.ocx</strong>   installer. 
+  <li class="Numbered"><a name="pgfId-1068785"></a>Perform an IIRSRESET after 
+  finishing the Inventory Enterprise installation.</li></ol>
+
+<p><a href="test.htm">Step&nbsp;7: Test the 
+Installation</a>   &nbsp; </p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" --> 
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="add to cart">
+		<param name="See Also" value="adding to">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="catalog details">
+		<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm#details">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="catalog view">
+		<param name="See Also" value="shopping">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="compact view">
+		<param name="See Also" value="shopping">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Export to Excel">
+		<param name="See Also" value="ordering">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ordering">
+		<param name="Local" value="chemoffice/chemacx/help/userguide/ordering.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Query Input Form">
+		<param name="See Also" value="search">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Requisitioner Information Form">
+		<param name="See Also" value="ordering">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="search">
+		<param name="Local" value="chemoffice/chemacx/help/userguide/searching.htm">
+		</OBJECT>
+	<UL>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="over all vendors">
+			<param name="See Also" value="search">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="over favorite vendors">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/searching_vendors.htm">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="with the plug-in">
+			<param name="See Also" value="search">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="without the plug-in">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/searching_noplugin.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="shopping">
+		<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm">
+		</OBJECT>
+	<UL>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="in catalog view">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm#catalog">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="in compact view">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm#compact">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="using the shopping cart">
+			<param name="See Also" value="shopping cart">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="viewing vendor information">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm#vendor">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="shopping cart">
+		<param name="Local" value="chemoffice/chemacx/help/userguide/shopping.htm#shopping_cart">
+		</OBJECT>
+	<UL>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="adding to">
+			<param name="See Also" value="shopping cart">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="removing items from">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/shopping_removing.htm">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="viewing contents of">
+			<param name="Local" value="chemoffice/chemacx/help/userguide/shopping_viewing.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="view">
+		<param name="Local" value="#">
+		</OBJECT>
+	<UL>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="results">
+			<param name="See Also" value="shopping">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="shopping cart">
+			<param name="See Also" value="shopping cart">
+			</OBJECT>
+	  	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="vendor information">
+			<param name="See Also" value="viewing vendor information">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

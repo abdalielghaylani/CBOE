@@ -1,0 +1,425 @@
+<%' Copyright 1998, CambridgeSoft Corp., All Rights Reserved%>
+<%if  Session("AuthStatus")<> "Authorized" then
+
+	if Request.Form("frmLogin") = "" then
+	
+		Session("URL") ="/CFServerAdmin/AdminSource/WebEditor.asp" 
+%>
+<!--***********Begin Login Screen*************-->
+<html>
+
+<head>
+<title><%=SITE_NAME%> Login</title>
+
+<script language="JavaScript" src="/cs_security/lib/javascript.js"></script>
+<link rel="stylesheet" type="text/css" href="/cs_security/style.css">
+<link type='text/xml' rel='alternate' href='/Default.vsdisco'/>
+
+<script LANGUAGE="javascript" src="/cs_security/Choosecss.js"></script>
+
+
+    <script language="javascript" type="text/javascript">
+        function doHome()
+        {
+			var homePath="/COEManager/Forms/Public/ContentArea/Home.aspx";
+        
+            if(typeof(window.opener) != 'undefined')
+             {
+                if(window.opener.location != null)
+                {
+                    if (window.name != "")
+                    {
+						window.opener.location = homePath;
+                        //self.opener = this;
+                        self.close();
+                     }
+                }
+            }
+            else if (typeof(top.opener) != 'undefined')
+           		{
+                if(top.opener.location != null)
+                {
+                    if (top.name != "")
+                    {
+						top.opener.location = homePath;
+                        //top.opener = this;
+                        top.close();
+                     }
+                }
+            }
+            else
+            {
+            		
+                window.location = homePath;
+            }
+        }
+     </script>
+
+
+
+
+
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table1">
+	<tr>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_coent.gif" width="370" height="51"></td>
+		<td background="/cs_security/graphics/header_000099_m.gif" width="100%" align="right" valign="middle">
+			<table border="0" cellpadding="0" height="30" ID="Table2"><tr><td valign="top">
+			<a href="#" onclick="doHome();return false"><b>Home</b></a>		
+			</td><td width="15">&nbsp;</td></tr></table>
+		</td>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_r.gif" width="4" height="51"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table3">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/tl_000099.gif" width="4" height="5"></td>
+		<td background="/cs_security/graphics/tm.gif" width="100%"><img border="0" src="/cs_security/graphics/tm.gif" width="11" height="5"></td>
+		<td><img border="0" src="/cs_security/graphics/tr_000099.gif" width="4" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table4">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/ml.gif" width="24" height="20"></td>
+		<td background="/cs_security/graphics/mm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/mm.gif" width="10" height="20"></td>
+		<td><img border="0" src="/cs_security/graphics/mr.gif" width="24" height="20"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" table="100%" ID="Table5">
+	<tr>
+		<td background="/cs_security/graphics/cl.gif">
+		<img border="0" src="/cs_security/graphics/cl.gif" width="24" height="5"></td>
+		<td width="100%" bgcolor="#FFFFFF">
+
+
+
+
+
+<div align="center">
+<table width="50%"><tr><td>
+
+
+<table border="0" cellpadding="0" style="border-collapse: collapse">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/box/hl.gif" width="15" height="22"></td>
+		<td bgcolor="#E1E1E1" width="100%"><strong>WebAdmin Login</strong>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td><img border="0" src="/cs_security/graphics/box/hr.gif" width="15" height="22"></td>
+	</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/box/tl.gif" width="15" height="15"></td>
+		<td width="100%"><img border="0" src="/cs_security/graphics/pixel.gif" width="15" height="15"></td>
+		<td><img border="0" src="/cs_security/graphics/box/tr.gif" width="15" height="15"></td>
+	</tr>
+</table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tr>
+		<td background="/cs_security/graphics/box/ml.gif"><img border="0" src="/cs_security/graphics/box/ml.gif" width="15" height="15"></td>
+		<td width="100%" valign="top">
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+<table border="0" width="583" height = "150">
+	<form action="<%=Session("URL")%>" method="POST">
+    <input type="hidden" name="frmLogin" value="true">
+
+        
+        <tr>
+            <td><center>Please enter your username and password<br><table border="0">
+                <tr>
+                    <td align="right"><font size="2"
+                    face="Tahoma">User ID:</font></td>
+                    <td><input type="text" size="20"
+                    name="frmUserID" length="10"></td>
+                </tr>
+                <tr>
+                    <td align="right"><font size="2"
+                    face="Tahoma">Password:</font></td>
+                    <td><input type="password"
+                    size="20" name="frmUserPass"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="Submit"
+                    value="Login"></td>
+                </tr>
+            </table>
+            </center></td>
+        </tr>
+        
+		
+                
+            
+    </form>
+	</table>
+    </center>
+
+
+</td>
+		<td background="/cs_security/graphics/box/mr.gif"><img border="0" src="/cs_security/graphics/box/mr.gif" width="15" height="15"></td>
+	</tr>
+</table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/box/bl.gif" width="15" height="15"></td>
+		<td background="/cs_security/graphics/box/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/box/bm.gif" width="5" height="15"></td>
+		<td><img border="0" src="/cs_security/graphics/box/br.gif" width="15" height="15"></td>
+	</tr>
+</table>
+
+</td></tr></table>
+</div>
+
+</td>
+		<td background="/cs_security/graphics/cr.gif"><img border="0" src="/cs_security/graphics/cr.gif" width="24" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" ID="Table6">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/bl.gif" width="24" height="24"></td>
+		<td background="/cs_security/graphics/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/bm.gif" width="10" height="24"></td>
+		<td><img border="0" src="/cs_security/graphics/br.gif" width="24" height="24"></td>
+	</tr>
+</table>
+
+<br /><br />
+</body>
+</html>
+
+
+<!--***********End Login Screen*************-->
+<%	response.end
+	
+
+
+	else if Request.Form("frmLogin") = "true" then 
+	Set INIVar = Server.CreateObject("cowsUtils.cowsini")
+    theDrive = INIVar.VBGetPrivateProfileString("GLOBALS", "SERVER_DRIVE", "cows.ini")
+    theServerRoot = INIVar.VBGetPrivateProfileString("GLOBALS", "SERVER_DIR", "cows.ini")
+    theDocumentRoot = INIVar.VBGetPrivateProfileString("GLOBALS", "DOC_ROOT", "cows.ini")
+    theCowsRoot = INIVar.VBGetPrivateProfileString("GLOBALS", "COWS_ROOT", "cows.ini")
+    theCOWSPath = theDrive & "\" & theServerRoot & "\" & theDocumentRoot & "\" & theCowsRoot
+    Set INIVar = Nothing
+	drivername = ";Driver={Microsoft Access Driver (*.mdb)};DriverId=25;FIL=MS Access;"
+	login = "DBQ=" & theCOWSPath & "\webserver_source\cfserverasp\logindb\admin.mdb" & drivername
+	Set authConn=server.createobject("ADODB.connection")
+	authConn.open login 
+
+	sqlString = "SELECT * FROM ASPLoginUserTbl WHERE UserID = '" & request.form("frmUserID") & "'"
+
+	Set authRs=authConn.execute(sqlString)
+	if authRs.BOF then %>
+<!--***********Begin User Failure Screen*************-->
+<html>
+
+<head>
+<title><%=SITE_NAME%> Login Failure</title>
+
+<script language="JavaScript" src="/cs_security/lib/javascript.js"></script>
+<link rel="stylesheet" type="text/css" href="/cs_security/style.css">
+<link type='text/xml' rel='alternate' href='/Default.vsdisco'/>
+
+<script LANGUAGE="javascript" src="/cs_security/Choosecss.js"></script>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table1">
+	<tr>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_coent.gif" width="370" height="51"></td>
+		<td background="/cs_security/graphics/header_000099_m.gif" width="100%" align="right" valign="middle">
+			<table border="0" cellpadding="0" height="30" ID="Table2"><tr><td valign="top">
+		
+			</td><td width="15">&nbsp;</td></tr></table>
+		</td>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_r.gif" width="4" height="51"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table3">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/tl_000099.gif" width="4" height="5"></td>
+		<td background="/cs_security/graphics/tm.gif" width="100%"><img border="0" src="/cs_security/graphics/tm.gif" width="11" height="5"></td>
+		<td><img border="0" src="/cs_security/graphics/tr_000099.gif" width="4" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table4">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/ml.gif" width="24" height="20"></td>
+		<td background="/cs_security/graphics/mm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/mm.gif" width="10" height="20"></td>
+		<td><img border="0" src="/cs_security/graphics/mr.gif" width="24" height="20"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" table="100%" ID="Table5">
+	<tr>
+		<td background="/cs_security/graphics/cl.gif">
+		<img border="0" src="/cs_security/graphics/cl.gif" width="24" height="5"></td>
+		<td width="100%" bgcolor="#FFFFFF">
+
+
+<center>
+	<table border="0" cellpadding="6" width="560">
+        
+        <tr>
+            <td><center>
+			<font size="2" face="Tahoma">UserID <%=request.form("frmUserID")%> is not valid. <br>
+			<a href="<%=Session("URL")%>"> Click here to retry...</center></td>
+        </tr>
+        <tr>
+            <td>
+		
+            </td>
+        </tr>
+    </table>
+    </center>
+
+</td>
+		<td background="/cs_security/graphics/cr.gif"><img border="0" src="/cs_security/graphics/cr.gif" width="24" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" ID="Table6">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/bl.gif" width="24" height="24"></td>
+		<td background="/cs_security/graphics/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/bm.gif" width="10" height="24"></td>
+		<td><img border="0" src="/cs_security/graphics/br.gif" width="24" height="24"></td>
+	</tr>
+</table>
+
+<br /><br />
+</body>
+</html>
+
+<!--***********End User Failure Screen*************-->
+<%	response.end
+	else
+		if request.form("frmUserPass") = authRs("Password") then
+			Session("AuthStatus")="Authorized"
+	'response.redirect Session("URL")
+	'response.end
+		else%>
+<!--***********Begin Pass Failure Screen*************-->
+<html>
+
+<head>
+
+<title><%=SITE_NAME%> Login Failure</title>
+
+<script language="JavaScript" src="/cs_security/lib/javascript.js"></script>
+<link rel="stylesheet" type="text/css" href="/cs_security/style.css">
+<link type='text/xml' rel='alternate' href='/Default.vsdisco'/>
+
+<script LANGUAGE="javascript" src="/cs_security/Choosecss.js"></script>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table1">
+	<tr>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_coent.gif" width="370" height="51"></td>
+		<td background="/cs_security/graphics/header_000099_m.gif" width="100%" align="right" valign="middle">
+			<table border="0" cellpadding="0" height="30" ID="Table2"><tr><td valign="top">
+		
+			</td><td width="15">&nbsp;</td></tr></table>
+		</td>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_r.gif" width="4" height="51"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table3">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/tl_000099.gif" width="4" height="5"></td>
+		<td background="/cs_security/graphics/tm.gif" width="100%"><img border="0" src="/cs_security/graphics/tm.gif" width="11" height="5"></td>
+		<td><img border="0" src="/cs_security/graphics/tr_000099.gif" width="4" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table4">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/ml.gif" width="24" height="20"></td>
+		<td background="/cs_security/graphics/mm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/mm.gif" width="10" height="20"></td>
+		<td><img border="0" src="/cs_security/graphics/mr.gif" width="24" height="20"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" table="100%" ID="Table5">
+	<tr>
+		<td background="/cs_security/graphics/cl.gif">
+		<img border="0" src="/cs_security/graphics/cl.gif" width="24" height="5"></td>
+		<td width="100%" bgcolor="#FFFFFF">
+
+
+<center>
+	<table border="2" cellpadding="6" width="560">
+       
+        <tr>
+            <td><center>
+			<font size="2" face="Tahoma">Password incorrect. <br>
+			<a href="<%=Session("URL")%>"> Click here to retry...</center></td>
+        </tr>
+        <tr>
+            <td>
+			
+            </td>
+        </tr>
+    </table>
+    </center>
+
+</td>
+		<td background="/cs_security/graphics/cr.gif"><img border="0" src="/cs_security/graphics/cr.gif" width="24" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" ID="Table6">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/bl.gif" width="24" height="24"></td>
+		<td background="/cs_security/graphics/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/bm.gif" width="10" height="24"></td>
+		<td><img border="0" src="/cs_security/graphics/br.gif" width="24" height="24"></td>
+	</tr>
+</table>
+
+<br /><br />
+</body>
+</html>
+
+<!--***********End Pass Failure Screen*************-->
+<% response.end
+		end if
+	end if
+
+	else
+		response.redirect Session("URL")
+		response.end
+	end if%>
+<% end if
+end if %>
+
+

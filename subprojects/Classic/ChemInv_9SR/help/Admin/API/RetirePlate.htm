@@ -1,0 +1,99 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<h1>RetirePlate</h1><p>          
+                         
+            
+     Moves          
+                the identified plate          
+              to          
+           the 
+Retired location.</p><h3>Syntax</h3> <pre>/cheminv/api/RetirePlate.asp?Plate_ID=adVarChar&amp;Location_ID_FK=adDouble&amp;Status_ID_FK=adNUmeric&amp;Qty_Remaining= adDouble</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">Plate_ID</h5>
+<p class="param"><font size="2">  The ID for the plate that 
+is being retired.</font> </p>
+<h5 class="param">Location_ID_FK</h5>
+<p class="param"><font size="2">          The 
+ID of the location where the plate is retired to.</font> </p>
+<h5 class="param">Status_ID_FK</h5>
+<p class="param"><font size="2">  The ID for the plate status 
+(most likely retired).</font></p>
+<h5 class="param">Qty_Remaining</h5>
+<p class="param"><font size="2">        
+The quantity remaining in the plate.</font> 
+ </p>
+
+<h3>Outputs</h3>
+<p class="param">1 if successful</p>
+
+<h3>Example</h3>
+<p>       
+            
+             
+  A user retires a plate of ID P888 to the retired 
+location (ID=1212) changing the status of the plate to retired (ID=5) with       
+            
+             
+  a remaining quantity of .001 micro        
+                      
+liters.&nbsp;</p><pre>/cheminv/api/RetirePlate.asp?Plate_ID=P888&amp;Location_ID_FK=1212&amp;Status_ID_FK=5&amp;Qty_Remaining=0.001&nbsp;</pre>  
+<pre></pre>
+
+<h3>    &nbsp;</h3><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

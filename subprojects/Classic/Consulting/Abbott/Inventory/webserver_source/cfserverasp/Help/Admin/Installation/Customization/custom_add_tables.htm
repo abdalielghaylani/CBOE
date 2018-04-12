@@ -1,0 +1,223 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Adding Tables</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>  Adding Tables</h1>
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<p>To add a new table to a pre-exiting data view:
+
+<ol>
+  <li>Open the ini file for the data view.&nbsp; For example 
+  to add a table to the sample application, sample dataview, open the config 
+  file at: 
+
+
+  <blockquote>
+    <p>chemoffice/sample/config/sample.ini</p>
+  </blockquote>
+
+  <li>In the GLOBALS section add the table name to the list 
+  for the key shown below, for example, i've added Products 
+
+  <blockquote>
+    <p>TABLE_ALIASES=MolTable,Synonyms,Products</p>
+  </blockquote>
+
+  <li>In the Base_table_group section, add the table to the 
+  appropriate place in the TABLE_SQL_ORDER. If tables are nested the join 
+  statements need to be defined in an order to allows defining tables above in 
+  the nesting first.&nbsp; In this instance the Products table can simply be put 
+  last.&nbsp; The base table always should go first. 
+  <blockquote>
+    <p>[BASE_TABLE_GROUP]<br>
+    BASE_TABLE=MolTable<br>
+    MOLECULE_TABLE=MolTable<br>
+    TABLE_SQL_ORDER=MolTable,Synonyms, Products</p>
+  </blockquote>
+
+  <li>Copy an existing table definition, such as SYNONYMS 
+  and paste the copy.&nbsp; Rename the group name in brackets with the name of 
+  the table you entered above. Below is an example of the SYNONYMS table copies 
+  and renamed. 
+
+  <blockquote>
+    <p>
+    [PRODUCTS]<br>
+    TABLE_NAME=Synonyms<br>
+    RELATIONAL_FIELDS=SYN_ID;1,Synonym_r;0<br>
+    PRIMARY_KEY=SYN_ID<br>
+    SQL_SYNTAX=ORACLE<br>
+    SELECT_KEYWORD=NULL<br>
+    SELECT_ADDITIONAL=NULL<br>
+    SELECT_JOIN=Synonyms.SYN_ID=MolTable.MOL_ID<br>
+    SELECT_LINKS=Synonyms.SYN_ID;1,MolTable.MOL_ID;1<br>
+    INTER_TABLES=MolTable<br>
+    ADO_CONNECTION=base_connection<br>
+    CHEM_CONNECTION=NULL<br>
+    STRUC_FIELD_ID=NULL</p>
+  </blockquote>
+<li>Change the <strong>TABLE_NAME</strong> to the exact 
+  name that the sql will use.&nbsp; This is the name used to build the sql 
+  statement and may differ from the group name.&nbsp; This would be the case 
+  when you have the same table defined within different relations. 
+  <p></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABLE_NAME=Products</p>
+  <li>
+  <p>Add the <strong>Relational_Fields</strong>   that will be in the input form.&nbsp; The format 
+  is fieldname;datatype.</p>
+  <blockquote>
+    <p> RELATIONAL_FIELDS=PROD_ID;1,NAME;0<br>
+    </p>
+  </blockquote>
+  <li>Add the <strong>Primary_Key</strong>    for this table as related 
+  to the current table view. &nbsp; This is not necessarily the real primary 
+key.
+  <p></p>
+  <p>&nbsp;&nbsp;&nbsp; PRIMARY_KEY=PROD_ID<br>
+  </p>
+  <li>Enter&nbsp;the type of sql syntax to use, this should 
+  match the type of database you are searching the options are ACCESS, ORACLE 
+  and SQLSERVER
+  <p></p>
+  <blockquote>
+    <p>SQL_SYNTAX=ACCESS<br>
+    </p>
+  </blockquote>
+  <li>If this table is the base table add a 
+  <strong>SELECT_KEYWORD</strong> like DISTINCT.&nbsp; In this case it is not so 
+  it is NULL
+  <blockquote>
+    <p>SELECT_KEYWORD=NULL</p>
+  </blockquote>
+  <li>
+  
+   If there&nbsp;is any modifying sql you want added to the end of the select 
+    string LIKE &quot;NAME is not NULL&quot; add it here, otherwise leave it null.
+    <blockquote>
+    SELECT_ADDITIONAL=NULL
+    <p></p></blockquote>
+  <li>Add the Join statement as it relates to the table it 
+  is linking.
+
+  <blockquote>
+    <p>SELECT_JOIN=Products.Prod_ID=MolTable.MOL_ID</p>
+  </blockquote>
+  <li>Add the same information in a slightly different 
+  format, which includes the datatypes of the linking fields.
+  <p></p>
+  <blockquote>
+    <p>SELECT_LINKS=Products.Prod_ID;1,MolTable.MOL_ID;1
+    </p>
+  </blockquote>
+  <li>If this table is not the base table, add all the 
+  tables that are required in a select statement to perform a search.&nbsp; For 
+  instance if this table where nested, then you would add additional tables 
+  separated by a comma.
+  <p></p>
+  <blockquote></blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  INTER_TABLES= MolTable</p>
+
+  <li>Enter the name of the <strong>ADO_CONNECTION</strong> group       name to use when getting information from this
+    table if it is used in a select statement on it's own.&nbsp; If this were the base table,
+    this would be the connection that is always used to get the base recordset. The
+    group names are defined in the globals section<br>
+
+  <blockquote>
+    <p>ADO_CONNECTION=base_connection</p>
+  </blockquote>
+  <li>If this table contains structures that you want to 
+  display, add the <strong>CHEM_CONNECTION</strong> group name that is 
+  used.&nbsp; These names are found in the globals section, otherwise enter 
+  NULL.&nbsp; If not NULL then enter the field name that ChemFinder uses to 
+  identify the structure in the <strong>STRUC_FIELD_ID</strong>            
+                 
+                  
+         field.<br>
+
+  <blockquote>
+    <p>CHEM_CONNECTION=NULL<br>
+    STRUC_FIELD_ID=NULL</p>
+  </blockquote>
+
+  <li>In the <strong>SEARCHABLE_ADO_FIELDS</strong> key   for each form_group that has an input form that you will
+    put the fields of this table (non-chemical), add them to the list. Be sure to use
+    tablename.fieldname;fieldtype syntax and separate entries by a comma. 
+    <blockquote>
+    <p>SEARCHABLE_ADO_FIELDS=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms.SYN_ID;1,Synonyms.Synonym_r;0</p>
+    </blockquote>
+  <li>If the table has a chemical connection, then add the chemical 
+  field names to the following key entries.&nbsp; Separate entries by a 
+  comma. In the example, the Product table DOESN'T contain structures so no 
+  changes where made.: 
+
+  <blockquote>
+    <p>STRUCTURE_FIELDS=MolTable.Structure<br>
+    MW_FIELDS=MolTable.MolWeight <br>
+    FORMULA_FIELDS=MolTable.Formula</p>
+  </blockquote>
+
+  <li>Save the ini file.&nbsp; Log off the application and 
+  then log in, the ini file will be reloaded. 
+  <li>You can now add the fields to your input and result forms.</li></ol>
+  <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

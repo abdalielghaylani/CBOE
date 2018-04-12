@@ -1,0 +1,1022 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice Enterprise Installation">
+		<param name="Local" value="Installation/Instructions/installation.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Minimum Requirements">
+			<param name="Local" value="Installation/Instructions/minimum_requirements.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Install ChemOffice Enterprise">
+			<param name="Local" value="Installation/Instructions/install_webserver.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tips for Installing on Windows 2003 Server">
+			<param name="Local" value="Installation/Instructions/win2003.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configure the Report Writer">
+			<param name="Local" value="Installation/Instructions/report_writer.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Test the Installation">
+			<param name="Local" value="Installation/Instructions/testing.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setup Global Security">
+			<param name="Local" value="Installation/Instructions/global_security.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Troubleshooting">
+		</OBJECT>
+		<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Unable to Login">
+			<param name="Local" value="Installation/Troubleshoot/f_control.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Unable to Login (Class Not Registered)">
+			<param name="Local" value="Installation/Troubleshoot/class_not_registered.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setting CS Security Password Restrictions">
+			<param name="Local" value="Installation/Troubleshoot/expirepassword.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IIS Errors">
+			<param name="Local" value="Installation/Troubleshoot/cfserveradmin.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MSXML Errors">
+			<param name="Local" value="Installation/Troubleshoot/msxml.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Problems Searching">
+			<param name="Local" value="Installation/Troubleshoot/csdo.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Errors due to CFWTemp Directory">
+			<param name="Local" value="Installation/Troubleshoot/cfwtemp.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Application Created with the Wizard Has no Link">
+			<param name="Local" value="Installation/Troubleshoot/wizard_app_names.htm">
+			</OBJECT>
+		</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Customization and Administration">
+		<param name="Local" value="Installation/Customization/admin.htm">
+		</OBJECT>
+	  <UL>	
+	    <LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Using the Administrative Tools">
+			<param name="Local" value="Installation/Customization/admin_tools.htm">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Adding a Dataview">
+					<param name="Local" value="Installation/Customization/admin_tools_data.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Creating a New ChemOffice Enterprise Application">
+					<param name="Local" value="Installation/Customization/admin_tools_app.htm">
+					</OBJECT>			
+			</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Upgrading version 7.2 Wizard Applications for use with version 9.0">
+			<param name="Local" value="Installation/Customization/upgrade_wizard.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Customizing WebServer Applications">
+			<param name="Local" value="Installation/Customization/custom.htm">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INI Configuration Files">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="ChemOffice.ini Configuration File">
+						<param name="Local" value="Installation/Customization/chemofficeini.htm">
+						</OBJECT>
+						<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="GLOBALS">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALERT_CDAX_VERSION">
+									<param name="Local" value="Installation/Customization/chemofficeini/ALERT_CDAX_VERSION.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CD_PLUGIN_THRESHOLD">
+									<param name="Local" value="Installation/Customization/chemofficeini/CD_PLUGIN_THRESHOLD.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CD_PLUGIN_DOWNLOAD_PATH">
+									<param name="Local" value="Installation/Customization/chemofficeini/CD_PLUGIN_DOWNLOAD_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="AppName">
+									<param name="Local" value="Installation/Customization/chemofficeini/AppName.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="WIZARD_APPNAMES">
+									<param name="Local" value="Installation/Customization/chemofficeini/WIZARD_APPNAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CS_SECURITY">
+									<param name="Local" value="Installation/Customization/chemofficeini/CS_SECURITY.htm">
+									</OBJECT>			
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FORCE_ORACLE_SESSION_CURSOR_SHARING">
+									<param name="Local" value="Installation/Customization/chemofficeini/FORCE_ORACLE_SESSION_CURSOR_SHARING.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Application Definitions">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SECTION">
+									<param name="Local" value="Installation/Customization/chemofficeini/SECTION.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DBNAMES">
+									<param name="Local" value="Installation/Customization/chemofficeini/DBNAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="GLOBAL_SEARCH">
+									<param name="Local" value="Installation/Customization/chemofficeini/GLOBAL_SEARCH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="GLOBAL_SEARCH_DISPLAY_NAME">
+									<param name="Local" value="Installation/Customization/chemofficeini/GLOBAL_SEARCH_DISPLAY_NAME.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="GLOBAL_SEARCH_START_PATH">
+									<param name="Local" value="Installation/Customization/chemofficeini/GLOBAL_SEARCH_START_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SAMPLE_START_PATH">
+									<param name="Local" value="Installation/Customization/chemofficeini/SAMPLE_START_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SAMPLE_DISPLAY_NAME">
+									<param name="Local" value="Installation/Customization/chemofficeini/SAMPLE_DISPLAY_NAME.htm">
+									</OBJECT>
+							</UL>
+						</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Application INI Settings">
+						<param name="Local" value="Installation/Customization/custom_app_settings.htm">
+						</OBJECT>
+						<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="GLOBALS">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ADJUST_NETSCAPE_WIDTHS">
+									<param name="Local" value="Installation/Customization/ini_settings/ADJUST_NETSCAPE_WIDTHS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALLOW_HITLIST_MANAGEMENT">
+									<param name="Local" value="Installation/Customization/ini_settings/ALLOW_HITLIST_MANAGEMENT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALLOW_HITLIST_MNGMNT_FG_SELECTOR">
+									<param name="Local" value="Installation/Customization/ini_settings/ALLOW_HITLIST_MNGMNT_FG_SELECTOR.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALLOW_PUBLIC_HITLISTS">
+									<param name="Local" value="Installation/Customization/ini_settings/ALLOW_PUBLIC_HITLISTS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALLOW_PUBLIC_QUERIES">
+									<param name="Local" value="Installation/Customization/ini_settings/ALLOW_PUBLIC_QUERIES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALLOW_QUERY_MANAGEMENT">
+									<param name="Local" value="Installation/Customization/ini_settings/ALLOW_QUERY_MANAGEMENT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ALWAYS_DISPLAY_ALERTS">
+									<param name="Local" value="Installation/Customization/ini_settings/ALWAYS_DISPLAY_ALERTS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ANIMATED_GIF_PATH">
+									<param name="Local" value="Installation/Customization/ini_settings/ANIMATED_GIF_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="APP_NAME">
+									<param name="Local" value="Installation/Customization/ini_settings/app_name.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="BODY_BACKGROUND">
+									<param name="Local" value="Installation/Customization/ini_settings/BODY_BACKGROUND.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="BRACKET_IN_STRUC_HANDLING">
+									<param name="Local" value="Installation/Customization/ini_settings/BRACKET_IN_STRUC_HANDLING.htm">
+									</OBJECT>													
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CDX_CACHING">
+									<param name="Local" value="Installation/Customization/ini_settings/CDX_CACHING.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DATE_FORMAT">
+									<param name="Local" value="Installation/Customization/ini_settings/DATE_FORMAT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DB_NAMES">
+									<param name="Local" value="Installation/Customization/ini_settings/DB_NAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_FORM_IE">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_FORM_IE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_FORM_NS">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_FORM_NS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_FORM_NS6">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_FORM_NS6.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_LIST_IE">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_LIST_IE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_LIST_NS">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_LIST_NS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_GIFS_ONLY_LIST_NS6">
+									<param name="Local" value="Installation/Customization/ini_settings/DISPLAY_GIFS_ONLY_LIST_NS6.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ENABLE_DETAIL_VIEW">
+									<param name="Local" value="Installation/Customization/ini_settings/ENABLE_DETAIL_VIEW.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="EXPIRE_HITLIST_HISTORY_DAYS">
+									<param name="Local" value="Installation/Customization/ini_settings/EXPIRE_HITLIST_HISTORY_DAYS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="EXPIRE_QUERY_HISTORY_DAYS">
+									<param name="Local" value="Installation/Customization/ini_settings/EXPIRE_QUERY_HISTORY_DAYS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="EXPIRE_USER_SETTINGS_DAYS">
+									<param name="Local" value="Installation/Customization/ini_settings/EXPIRE_USER_SETTINGS_DAYS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FIELD_SPLIT_CHARACTER">
+									<param name="Local" value="Installation/Customization/ini_settings/FIELD_SPLIT_CHARACTER.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FORMULA_FORMAT">
+									<param name="Local" value="Installation/Customization/ini_settings/FORMULA_FORMAT.htm">
+									</OBJECT>																																										
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="GLOBAL_SEARCH_BASE_DB">
+									<param name="Local" value="Installation/Customization/ini_settings/GLOBAL_SEARCH_BASE_DB.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="GLOBAL_SEARCH_DBS">
+									<param name="Local" value="Installation/Customization/ini_settings/GLOBAL_SEARCH_DBS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="HIGHLIGHT_BACKGROUND">
+									<param name="Local" value="Installation/Customization/ini_settings/HIGHLIGHT_BACKGROUND.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="HIGHLIGHT_REQUIRED_FIELDS">
+									<param name="Local" value="Installation/Customization/ini_settings/HIGHLIGHT_REQUIRED_FIELDS.htm">
+									</OBJECT>							
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MAIN_WINDOW">
+									<param name="Local" value="Installation/Customization/ini_settings/MAIN_WINDOW.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MARKED_HITS_MAX">
+									<param name="Local" value="Installation/Customization/ini_settings/MARKED_HITS_MAX.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NAV_BAR_WINDOW">
+									<param name="Local" value="Installation/Customization/ini_settings/NAV_BAR_WINDOW.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NAV_BUTTONS_GIF_PATH">
+									<param name="Local" value="Installation/Customization/ini_settings/NAV_BUTTONS_GIF_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NON_CHEMICAL_SUBMIT">
+									<param name="Local" value="Installation/Customization/ini_settings/NON_CHEMICAL_SUBMIT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="RESIZE_GIFS">
+									<param name="Local" value="Installation/Customization/ini_settings/RESIZE_GIFS.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_CANNOT_MATCH_USERNAME">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_CANNOT_MATCH_USERNAME.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_ILLEGAL_CHARS">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_ILLEGAL_CHARS.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_ILLEGAL_FIRSTCHAR">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_ILLEGAL_FIRSTCHAR.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_ILLEGALWORD_LIST">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_ILLEGALWORD_LIST.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_MAX_LENGTH">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_MAX_LENGTH.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_MIN_LENGTH">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_MIN_LENGTH.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PWD_MUSTHAVE_CHARS">
+									<param name="Local" value="Installation/Customization/ini_settings/PWD_MUSTHAVE_CHARS.htm">
+									</OBJECT>		
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SEARCH_DEFAULT_PREFS">
+									<param name="Local" value="Installation/Customization/ini_settings/SEARCH_DEFAULT_PREFS.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SHOW_RETRIEVE_ALL_BTN">
+									<param name="Local" value="Installation/Customization/ini_settings/SHOW_RETRIEVE_ALL_BTN.htm">
+									</OBJECT>																																		
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TEMP_DIR_NAME">
+									<param name="Local" value="Installation/Customization/ini_settings/TEMP_DIR_NAME.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TEMP_DIR_PATH">
+									<param name="Local" value="Installation/Customization/ini_settings/TEMP_DIR_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="USE_SESSION_RECORD_COUNTS">
+									<param name="Local" value="Installation/Customization/ini_settings/USE_SESSION_RECORD_COUNTS.htm">
+									</OBJECT>														
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="USER_INFO_WINDOW">
+									<param name="Local" value="Installation/Customization/ini_settings/USER_INFO_WINDOW.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="USERWINDOWBACKGROUND">
+									<param name="Local" value="Installation/Customization/ini_settings/USERWINDOWBACKGROUND.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="DUPLICATE CHECKING">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ABSOLUTE_HITS_REL">
+									<param name="Local" value="Installation/Customization/ini_settings/ABSOLUTE_HITS_REL.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="EXTRA_FRAGS_OK">
+									<param name="Local" value="Installation/Customization/ini_settings/EXTRA_FRAGS_OK.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="EXTRA_FRAGS_OK_IF_RXN">
+									<param name="Local" value="Installation/Customization/ini_settings/EXTRA_FRAGS_OK_IF_RXN.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FRAGS_CAN_OVERLAP">
+									<param name="Local" value="Installation/Customization/ini_settings/FRAGS_CAN_OVERLAP.htm">
+									</OBJECT>	
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="HIT_ANY_CHARGE_CARBON">
+									<param name="Local" value="Installation/Customization/ini_settings/HIT_ANY_CHARGE_CARBON.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="HIT_ANY_CHARGE_HETERO">
+									<param name="Local" value="Installation/Customization/ini_settings/HIT_ANY_CHARGE_HETERO.htm">
+									</OBJECT>													
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="IDENTITY">
+									<param name="Local" value="Installation/Customization/ini_settings/IDENTITY.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MATCH_DB_STEREO">
+									<param name="Local" value="Installation/Customization/ini_settings/MATCH_DB_STEREO.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="RELATIVE_TET_STEREO">
+									<param name="Local" value="Installation/Customization/ini_settings/RELATIVE_TET_STEREO.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="RXN_HIT_RXN_CENTER">
+									<param name="Local" value="Installation/Customization/ini_settings/RXN_HIT_RXN_CENTER.htm">
+									</OBJECT>
+							</UL>
+						</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="DataView INI Settings">
+						<param name="Local" value="Installation/Customization/custom_data_settings.htm">
+						</OBJECT>
+						<UL>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="Adding Alternate Input/Result Forms">
+								<param name="Local" value="Installation/Customization/custom_alt_forms.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="Adding Tables">
+								<param name="Local" value="Installation/Customization/custom_add_tables.htm">
+								</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="GLOBALS">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ABOUT_WINDOW">
+									<param name="Local" value="Installation/Customization/data_ini_settings/ABOUT_WINDOW.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DISPLAY_NAME">
+									<param name="Local" value="Installation/Customization/data_ini_settings/DISPLAY_NAME.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MAXHITS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/MAXHITS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DB_RECORD_COUNT">
+									<param name="Local" value="Installation/Customization/data_ini_settings/DB_RECORD_COUNT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DB_TYPE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/DB_TYPE.htm">
+									</OBJECT>													
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CDX_CACHING">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CDX_CACHING.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="DB_NAMES">
+									<param name="Local" value="Installation/Customization/data_ini_settings/DB_NAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MAIN_PAGE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/MAIN_PAGE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TABLE_ALIASES">
+									<param name="Local" value="Installation/Customization/data_ini_settings/TABLE_ALIASES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SUBFORM_VIEW_NAMES">
+									<param name="Local" value="Installation/Customization/data_ini_settings/SUBFORM_VIEW_NAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="ADO_CONNECTION_NAMES">
+									<param name="Local" value="Installation/Customization/data_ini_settings/ADO_CONNECTION_NAMES.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CHEM_CONNECTION_NAMES">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CHEM_CONNECTION_NAMES   .htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TABLE_GROUPS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/TABLE_GROUPS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FORM_GROUPS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/FORM_GROUPS.htm">
+									</OBJECT>																																										
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FIELD_MAP_GROUPS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/FIELD_MAP_GROUPS.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="BASE_CONNECTION">
+							<param name="Local" value="Installation/Customization/data_ini_settings/BASE_CONNECTION.htm">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CONN_TYPE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CONN_TYPE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CONNECTION_STRING">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CONNECTION_STRING.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CONNECTION_TIMEOUT">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CONNECTION_TIMEOUT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="COMMAND_TIMEOUT">
+									<param name="Local" value="Installation/Customization/data_ini_settings/COMMAND_TIMEOUT.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CONNECTION_USERNAME">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CONNECTION_USERNAME.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CONNECTION_PASSWORD">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CONNECTION_PASSWORD.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="BASE_CFW_FORM">
+							<param name="Local" value="Installation/Customization/data_ini_settings/BASE_CFW_FORM.htm">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="STRUC_ENGINE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/STRUC_ENGINE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="STRUC_FORM_NAME">
+									<param name="Local" value="Installation/Customization/data_ini_settings/STRUC_FORM_NAME.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="STRUC_DB_PATH">
+									<param name="Local" value="Installation/Customization/data_ini_settings/STRUC_DB_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="STRUC_TABLE_NAME">
+									<param name="Local" value="Installation/Customization/data_ini_settings/STRUC_TABLE_NAME.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="BASE_TABLE_GROUP">
+							<param name="Local" value="Installation/Customization/data_ini_settings/BASE_TABLE_GROUP.htm">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="BASE_TABLE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/BASE_TABLE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MOLECULE_TABLE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/MOLECULE_TABLE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TABLE_SQL_ORDER">
+									<param name="Local" value="Installation/Customization/data_ini_settings/TABLE_SQL_ORDER.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="MOLTABLE">
+							<param name="Local" value="Installation/Customization/data_ini_settings/MOLTABLE.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="SYNONYMS_R">
+							<param name="Local" value="Installation/Customization/data_ini_settings/SYNONYMS_R.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="BASE_FORM_GROUP">
+							<param name="Local" value="Installation/Customization/data_ini_settings/BASE_FORM_GROUP.htm">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="INPUT_FORM_PATH">
+									<param name="Local" value="Installation/Customization/data_ini_settings/INPUT_FORM_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="INPUT_FORM_MODE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/INPUT_FORM_MODE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="RESULT_FORM_PATH">
+									<param name="Local" value="Installation/Customization/data_ini_settings/RESULT_FORM_PATH.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="RESULT_FORM_MODE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/RESULT_FORM_MODE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="PLUGIN_VALUE">
+									<param name="Local" value="Installation/Customization/data_ini_settings/PLUGIN_VALUE.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="STRUCTURE_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/STRUCTURE_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FORM_GROUP_FLAG">
+									<param name="Local" value="Installation/Customization/data_ini_settings/FORM_GROUP_FLAG.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="MW_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/MW_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="FORMULA_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/FORMULA_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SEARCHABLE_ADO_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/SEARCHABLE_ADO_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="REQUIRED_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/REQUIRED_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="SDFILE_FIELDS">
+									<param name="Local" value="Installation/Customization/data_ini_settings/SDFILE_FIELDS.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="TABLE_GROUP">
+									<param name="Local" value="Installation/Customization/data_ini_settings/TABLE_GROUP.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NUM_LIST_VIEW">
+									<param name="Local" value="Installation/Customization/data_ini_settings/NUM_LIST_VIEW.htm">
+									</OBJECT>
+							</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="BASENP_FORM_GROUP">
+							<param name="Local" value="Installation/Customization/data_ini_settings/BASENP_FORM_GROUP.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="ADD_RECORD_FORM_GROUP">
+							<param name="Local" value="Installation/Customization/data_ini_settings/ADD_RECORD_FORM_GROUP.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="SHOWBUTTONS (for ChemIndex.ini)">
+							</OBJECT>
+							<UL>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CHEMACX_BUTTON">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CHEMACX_BUTTON.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CHEMACX_LINK">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CHEMACX_LINK.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="CHEMACX_SERVER">
+									<param name="Local" value="Installation/Customization/data_ini_settings/CHEMACX_SERVER.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NCI_BUTTON">
+									<param name="Local" value="Installation/Customization/data_ini_settings/NCI_BUTTON.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NCI_LINK">
+									<param name="Local" value="Installation/Customization/data_ini_settings/NCI_LINK.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="NCI_SERVER">
+									<param name="Local" value="Installation/Customization/data_ini_settings/NCI_SERVER.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="THEMERCKINDEX_BUTTON">
+									<param name="Local" value="Installation/Customization/data_ini_settings/THEMERCKINDEX_BUTTON.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="THEMERCKINDEX_LINK">
+									<param name="Local" value="Installation/Customization/data_ini_settings/THEMERCKINDEX_LINK.htm">
+									</OBJECT>
+								<LI> <OBJECT type="text/sitemap">
+									<param name="Name" value="THEMERCKINDEX_SERVER">
+									<param name="Local" value="Installation/Customization/data_ini_settings/THEMERCKINDEX_SERVER.htm">
+									</OBJECT>
+							</UL>							
+						</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Menubar.ini Configuration File">
+					<param name="Local" value="Installation/Customization/menubarini.htm">
+					</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="GLOBALS">
+							</OBJECT>
+						<UL>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENUBAR_ITEMS">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENUBAR_ITEMS.htm">
+								</OBJECT>
+						</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="MENU_BAR_DISPLAY_SETTINGS">
+							</OBJECT>
+						<UL>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ABSOLUTE_LEFT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ABSOLUTE_LEFT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ABSOLUTE_TOP">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ABSOLUTE_TOP.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="BACKGROUND_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/BACKGROUND_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="CLEAR_PIXEL_IMAGE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/CLEAR_PIXEL_IMAGE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="DISABLED_TEXT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/DISABLED_TEXT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="HOVER_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/HOVER_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="HOVER_HIGHLIGHT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/HOVER_HIGHLIGHT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="HOVER_SHADOW_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/HOVER_SHADOW_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="HOVER_TEXT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/HOVER_TEXT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="INNER_HIGHLIGHT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/INNER_HIGHLIGHT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="INNER_SHADOW_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/INNER_SHADOW_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_FAMILY">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_FAMILY.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_PADDING_BOTTOM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_PADDING_BOTTOM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_PADDING_LEFT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_PADDING_LEFT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_PADDING_RIGHT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_PADDING_RIGHT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_PADDING_TOP">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_PADDING_TOP.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_SIZE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_SIZE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_STYLE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_STYLE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_TEXT_DECORATION">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_TEXT_DECORATION.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ITEM_FONT_WEIGHT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ITEM_FONT_WEIGHT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_FAMILY">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_FAMILY.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_PADDING_BOTTOM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_PADDING_BOTTOM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_PADDING_LEFT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_PADDING_LEFT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_PADDING_RIGHT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_PADDING_RIGHT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_PADDING_TOP">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_PADDING_TOP.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_SIZE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_SIZE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_STYLE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_STYLE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_TEXT_DECORATION">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_TEXT_DECORATION.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FONT_WEIGHT">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FONT_WEIGHT.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="OUTER_HIGHLIGHT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/OUTER_HIGHLIGHT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="OUTER_SHADOW_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/OUTER_SHADOW_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="POPUP_ICON">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/POPUP_ICON.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SELECTED_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SELECTED_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SELECTED_HIGHLIGHT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SELECTED_HIGHLIGHT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SELECTED_POPUP_ICON">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SELECTED_POPUP_ICON.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SELECTED_SHADOW_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SELECTED_SHADOW_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SELECTED_TEXT_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SELECTED_TEXT_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHADOW_COLOR">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHADOW_COLOR.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHADOW_ENABLED">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHADOW_ENABLED.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHOW_ON_MOUSEOVER">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHOW_ON_MOUSEOVER.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHADOW_STRENGTH">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHADOW_STRENGTH.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHADOW_X_OFFSET">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHADOW_X_OFFSET.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="SHADOW_Y_OFFSET">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/SHADOW_Y_OFFSET.htm">
+								</OBJECT>
+						</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Menu Definitions">
+							</OBJECT>
+						<UL>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_TYPE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_TYPE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_HIDE">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_HIDE.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_FORMGROUPS">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_FORMGROUPS.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="MENU_NAME">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/MENU_NAME.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="NUM_MENU_ITEMS">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/NUM_MENU_ITEMS.htm">
+								</OBJECT>
+						</UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Item Definitions">
+							</OBJECT>
+						<UL>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="NAME_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/NAME_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="NAME_ADD_INFO_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/NAME_ADD_INFO_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="URL_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/URL_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ONCLICK_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ONCLICK_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="DIM_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/DIM_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="HIDE_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/HIDE_ITEM.htm">
+								</OBJECT>
+							<LI> <OBJECT type="text/sitemap">
+								<param name="Name" value="ICON_IMAGE_ITEM">
+								<param name="Local" value="Installation/Customization/menubar_ini_settings/ICON_IMAGE_ITEM.htm">
+								</OBJECT>
+						</UL>
+					</UL>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Changing The User Interface">
+					<param name="Local" value="Installation/Customization/custom_gui.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Configuring Structure Settings">
+					<param name="Local" value="Installation/Customization/custom_structure_settings.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Customizing Form Fields">
+					<param name="Local" value="Installation/Customization/custom_forms.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Common Functions">
+					<param name="Local" value="Installation/Customization/functions.htm">
+					</OBJECT>
+			</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Converting an Access based ChemOffice Enterprise">
+			<param name="Local" value="Installation/Customization/convert.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Converting an Access based ChemOffice Enterprise for use with SQL Server">
+				<param name="Local" value="Installation/Customization/convert_sqlserver.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Converting an Access based ChemOffice Enterprise for use with Oracle 8i">
+				<param name="Local" value="Installation/Customization/convert_oracle8i.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Converting an Access based ChemOffice Enterprise for use with Oracle 9i">
+				<param name="Local" value="Installation/Customization/convert_oracle9i.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HTTP API Help">
+		<param name="Local" value="API/default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search">
+			<param name="Local" value="API/Search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Get_structure">
+			<param name="Local" value="API/get_structure.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Query_string">
+			<param name="Local" value="API/query_string.htm">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

@@ -1,0 +1,5 @@
+Instructions to Export the Contents of Picklists in Chemical Inventory Database
+
+1. Execute the ExpChemInvDB_PickLists.cmd file which uses the Oracle export utility to extract data from the ChemInv database using the exp file as a parameter file.
+
+The resulting cheminvdb_PickLists.dmp file can be imported into an empty ChemInv database by using the Oracle import utilty as discussed in the instructions to create an empty ChemInv database.

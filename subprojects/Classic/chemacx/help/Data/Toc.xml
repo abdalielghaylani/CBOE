@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="D:\Projects\Documentation\CBOE Enterprise 11.0\ChemACX\ChemACX.book" DescendantCount="28">
+    <!-- saved from url=(0014)about:internet -->
+    <TocEntry Title="ChemACX" Link="/Content/MyImport/ChemACX1.htm#chemacx_170858107_1161850" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="27">
+        <TocEntry Title="About this guide" Link="/Content/MyImport/ChemACX1.htm#chemacx_170858107_1163971" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+        <TocEntry Title="About ChemACX" Link="/Content/MyImport/About_ChemACX.htm#chemacx_170858107_1163992" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="ChemACX database" Link="/Content/MyImport/ChemACX_database.htm#chemacx_170858107_1160115" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="How Is It Useful?" Link="/Content/MyImport/ChemACX_database.htm#chemacx_170858107_1160139" ComputedFirstTopic="false" DescendantCount="23">
+            <TocEntry Title="Opening ChemACX" Link="/Content/MyImport/Opening_ChemACX.htm#chemacx_170858107_1167703" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Searching the database" Link="/Content/MyImport/Searching_the_database.htm#chemacx_170858107_1167693" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+                <TocEntry Title="Non-plugin searches" Link="/Content/MyImport/Searching_the_database.htm#chemacx_170858107_1158874" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Favorite vendors list" Link="/Content/MyImport/Searching_the_database.htm#chemacx_170858107_1158922" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Viewing search results" Link="/Content/MyImport/Viewing_search_results.htm#chemacx_170858107_1158981" depth="0" ComputedFirstTopic="false" DescendantCount="4">
+                <TocEntry Title="List view" Link="/Content/MyImport/Viewing_search_results.htm#chemacx_170858107_1158998" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Details view" Link="/Content/MyImport/Viewing_search_results.htm#chemacx_170858107_1159092" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Browsing vendor information" Link="/Content/MyImport/Viewing_search_results.htm#chemacx_170858107_1166023" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Accessing MSDX data" Link="/Content/MyImport/Viewing_search_results.htm#chemacx_170858107_1159295" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Using the shopping cart" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1159381" depth="0" ComputedFirstTopic="false" DescendantCount="6">
+                <TocEntry Title="Adding Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1166274" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Removing Items" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1164134" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Ordering chemicals" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1159562" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Exporting the chemicals to Excel" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1159597" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Exporting to a Word template" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1159660" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Printing the shopping cart" Link="/Content/MyImport/Using_the_shopping_cart.htm#chemacx_170858107_1159722" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="ChemACX integration" Link="/Content/MyImport/ChemACX_integration.htm#chemacx_170858107_1159770" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+                <TocEntry Title="Registering ChemACX chemicals" Link="/Content/MyImport/ChemACX_integration.htm#chemacx_170858107_1159780" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Creating inventory containers" Link="/Content/MyImport/ChemACX_integration.htm#chemacx_170858107_1159833" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Vendor participation" Link="/Content/MyImport/Vendor_participation.htm#chemacx_170858107_1159927" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="ChemACX form fields" Link="/Content/MyImport/ChemACX_form_fields.htm#chemacx_170858107_1159946" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+                <TocEntry Title="Compound attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#chemacx_170858107_1164564" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Batch attributes:" Link="/Content/MyImport/ChemACX_form_fields.htm#chemacx_170858107_1159975" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+        </TocEntry>
+    </TocEntry>
+</CatapultToc>

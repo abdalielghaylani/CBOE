@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Location Based Security</title>
+</head>
+
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>
+<span lang="en-us">Manage Role Locations</span></h1>
+<p><span lang="en-us">The Manage Role Locations link in the Administrative Menu 
+window allows you to secure locations by excluding them from specific roles so 
+that users with the specified roles are not able to access the excluded 
+locations. This feature is known as Location Based Security.</span></p>
+<p><span lang="en-us">To secure locations based on roles:</span></p>
+<ol>
+	<li>Run the <b>AddRLS.cmd</b> file located at:<br>
+	Inetpub/wwwroot/ChemOffice/ChemInv/config/oracle_install_scripts/Create_blank_ChemInv_DB</li>
+	<li>Reset IIS on your machine.</li>
+	<li><span lang="en-us">Lo</span>g on to the ChemOffice Enterprise application. The following window 
+appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/security_location_1.gif" ></p>
+</blockquote>
+<ol start="4">
+	<li>Click the <b>Tasks</b> link within the Inventory Enterprise section. The 
+	<b>Administrative Menu</b> window appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/security_location_2.gif" width="617" height="439"></p>
+</blockquote>
+<ol start="5">
+	<li>Click the <b>Manage Role Locations</b> link within the <b>Security Management</b> section. 
+The <b>Manage Role Locations</b> window appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/security_location_3.gif" width="455" height="215"></p>
+</blockquote>
+<ol start="6">
+	<li>Select a <span lang="en-us">r</span>ole from the <b>Role</b> drop down list.</li>
+	<li>Click the <b>Next </b>button. The following window appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/security_location_4.gif" width="533" height="329"></p>
+</blockquote>
+<ol start="8">
+	<li>Select the locations, which will be excluded for the selected role.</li>
+	<li>Click the <b>OK</b> button. The following window appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/security_location_5.gif" width="370" height="239"></p>
+</blockquote>
+<ol start="10">
+	<li>Click the <b>OK</b> button to close the preceding window.</li>
+	<li>Close the <b>Administrative Menu</b> window and log off from the ChemOffice 
+Enterprise application.</li>
+	<li>Log on to the <span lang="en-us">Inventory </span>Enterprise application<span lang="en-us"> as an 
+	user with the selected role</span>. <span lang="en-us">Observe that the 
+	excluded location is not visible in the Location Tree pane.</span></li>
+</ol>
+<p>&nbsp;</p>
+
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->        
+</body>
+
+</html>

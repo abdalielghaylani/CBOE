@@ -1,0 +1,203 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemACX Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemACX</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>Admin Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="41524" endspan -->
+
+<h1>Configuration File Settings</h1>
+<p>ChemACX.ini and acxconfig.ini files are located in 
+<webroot><strong>/ChemOffice/ChemACX/Config</strong>    </p>
+<p><strong>In ChemACX.ini</strong></p>
+<p>
+<ol><li>Make sure STRUC_DB_PATH under [index_CFW_FORM] points 
+  to the location of the mst file&nbsp;
+  <li>Make sure the connection string on the base connection points to the the 
+  ChemACX.udl file</li></ol>
+<p><strong>acxConfig.ini:</strong> </p>
+<p>The following is a list of 
+parameters found in the acxConfig.ini file which can be used to adjust 
+configuration settings. The parameter is shown in <strong>black</strong>,
+the useage is shown in <font color="darkblue">blue</font>, and an explanation 
+about the parameter is shown in <font color="firebrick">red</font>.</p>
+<p><strong>[APPLICATION]</strong></p>
+<p><font color="darkblue">NP_SEARCH =    &#147;True|False&#148; 
+<em>Default: &#147;True&#148;</em></font>   </p>
+<p><font color="firebrick">Controls non-plugin search 
+support. By default the application supports searching without a plugin. When 
+set to True, a new link appears on the search form page pointing to a plain text 
+search page. Non-plugin searches return chemical structures as GIF images rather 
+than as cdx files.</font></p>
+<p><strong>[TABS]</strong></p>
+<p><font color="darkblue">FIELD_IN_SUPPLIER_TABLE = &#147;Field 
+Name&#148; <em>Default: &#147;SupplierType&#148;</em></font>    </p>
+<p><font color="firebrick">Defines the field in the Supplier table 
+that is used to segregate suppliers into the tabbed supplier lists.Must be a 
+valid field name from the Supplier table. The field type is expected to be 
+integer.</font></p>
+<p><font color="firebrick">By default the ChemACX application looks 
+for a field named SupplierType in the Supplier table of the ChemACX database. 
+You can add an integer field to the Supplier table, give it any name, 
+and use it to distinguish suppliers from one another. In this way, a single 
+ChemACX database can support multiple ChemACX applications in which different 
+suppliers appear in different tabs.</font></p>
+<p><font color="darkblue">TAB1_VALUES = &#147;An integer or coma 
+delimited list of integers&#148; <em>Default: &#147;1,2,3,4&#148;</em></font></p>
+<p><font color="firebrick">Determines which supplier(s) 
+appear on the first tab. Value(s) are checked against the field of the Supplier 
+table specified above.</font></p>
+<p><font color="darkblue">TAB3_VALUES = &#147;An integer or coma 
+delimited list of integers&#148; <em>Default: &#147;1&#148;</em></font></p>
+<p><font color="firebrick">Determines which supplier(s) 
+appear on the third tab. Value(s) are checked against the field of the Supplier 
+table specified above.</font></p>
+<p><font color="darkblue">TAB1__GIF_ROOTNAME = &#147;File Name 
+Root&#148; <em>Default: &#147;all_vendors&#148;</em></font>     </p>
+<p><font color="darkblue">TAB2__GIF_ROOTNAME = &#147;File Name 
+Root&#148; <em>Default: &#147;your_favorites&#148;</em></font>     </p>
+<p><font color="darkblue">TAB3__GIF_ROOTNAME = &#147;File Name 
+Root&#148; <em>Default: &#147;online_vendors&#148;</em></font>     </p>
+<p><font color="firebrick">These entries can be used to 
+change the text that appears on the vendor selection tabs. Each tab uses two GIF 
+image files; one with red background and white letters for the selected or &#147;on&#148; 
+state, and another with white background and red letters for the not-selected or 
+&#147;off&#148; state. The GIF files are named as rootname_on.gif and rootname_off.gif. To 
+change the text that appears on a given tab two new GIF files must be produced 
+and named following the above convention. Place the new .gif files in 
+/chemoffice/chemacx/graphics directory. Then simply enter the new root name 
+associated with each tab in the appropriate ini file entry.</font></p>
+<p><font color="darkblue">TAB1_OPTION_TEXT= &#147;String of max 20 
+Characters&#148; <em>Default: &#147;ALL VENDORS:&#148;</em></font></p>
+<p><font color="darkblue">TAB2_OPTION_TEXT= &#147;String of max 20 
+Characters&#148; <em>Default: &#147;YOUR PREFFERED VENDORS:&#148;</em> </font></font></p>
+<p><font color="darkblue">TAB3_OPTION_TEXT= &#147;String of max 20 
+Characters&#148; <em>Default: &#147;ONLINE VENDORS:&#148;</em></font></p>
+<p><font color="firebrick">Text appears at the top of the 
+selection list when a given tab is selected. Keep it short. All upper case looks 
+best.</font></p>
+<p><strong>[ROBOT]</strong></p>
+<p><font color="darkblue">USE_PRICE_ROBOT = &#147;True|False&#148; 
+<em>Default: &#147;False&#148;</em></font></p>
+<p><font color="firebrick">This opens up the possibility of 
+using a remote server to get latest pricing. This feature is not available in 
+the current release. Must be set to false.</font></p>
+<p><strong>[DB]</strong></p>
+<p><font color="darkblue">ACX_DB_VERSION =  &#147;version number&#148; 
+<em>Default: &#147;&#148;</em></font></p>
+<p><font color="darkblue">FAVORITES_DB =    &#147;Database file path&#148; 
+<em>Default: &#147;&#148;</em></font></p>
+<p><font color="firebrick">This fields are for currently 
+unimplemented features and should be left unchanged.</font></p>
+<p><strong>[PRICING]</strong></p>
+<p><font color="darkblue">PRICE_FIELD_IN_PACKAGE_TABLE= 
+&#147;Filed Name&#148; <em>Default: &#147;PRICE&#148;</em></font></p>
+<p><font color="darkblue">DISCPRICE_FIELD_IN_PACKAGE_TABLE= 
+&#147;Filed Name&#148; <em>Default: &#147;PRICE&#148;</em></font></p>
+<p><font color="darkblue">CSYMBOL_FIELD_IN_PACKAGE_TABLE= 
+&#147;Filed Name&#148; <em>Default: &#147;CSYMBOL&#148;</em></font></p>
+<p><font color="firebrick">Determines which fields in the 
+package table are used to look up prices. Use any valid field name from the 
+ChemACX package table. The application can display up to two prices per product 
+on the product grid. The DISC_PRICE field is only seen in the product grid. 
+PRICE_FIELD is assumed to be the sale price and it is used in the shopping 
+cart.</font></p>
+<p><strong>[SHOPPINGCART]</strong></p>
+<p><font color="darkblue">ORDER_AT_ACXCOM = &#147;True|False&#148; 
+<em>Default: &#147;False&#148;</em></font></p>
+<p><font color="firebrick">If True, a &#147;Create Order&#148; button 
+appears in the shopping cart which will forward the order to the ChemStore order 
+processing system at </font>
+ <a href="http://www.chemacx.com/"><font color="firebrick">chemacx.cambridgesoft.com</font></a><font color="firebrick"> where a purchase order is created. DO NOT SET TO TRUE 
+UNLESS ADD_WITHOUT_PRICE = False.&lt;/FONT&gt;</p>
+<p><font color="darkblue">REQUEST_QUOTE =  &quot;True|False&quot; <i>Default: &#147;False&#148;</i></font></p>
+<p><font color="firebrick">If true a &#147;Request Quote&#148; button 
+appears which emails the shopping cart data to CambridgeSoft. CambridgeSoft will 
+contact the user with a quote to procure the products via 
+www.chemacx.com</font></p>
+<p><font color="darkblue">EXPORT_TO_EXCEL = &#147;True|False&#148; 
+<em>Default: &#147;False&#148;</em></font></p>
+<p><font color="firebrick">Allows contents of shopping cart 
+to be exported to an excel template. The excel template will contain one 
+worksheet per vendor in the shopping cart. Note Excel must be installed and 
+properly configured on the server for this feature to work.</font></p>
+<p><font color="darkblue">EXPORT_TO_WORD= &#147;True|False&#148; 
+<em>Default: &#147;False&#148;</em></font>   </p>
+<p><font color="firebrick">Allows contents of shopping cart 
+to be exported to an MS-Word template. Note MS-Word must be installed and 
+properly configured on the server for this feature to work.</font></p>
+<p><font color="darkblue">ADD_WITHOUT_PRICE= &quot;True|False&quot; 
+<em>Default: True</em></font>   </p>
+<p><font color="firebrick">Allows all 
+products to be added to shopping cart independent of price 
+availability.&nbsp;Before setting to True, ensure that</span> ORDER_AT_ACXCOM is set to false. The ChemStore order processing 
+system cannot deal with orders that do not have a valid price 
+included!</font></p>
+<p><font color="darkblue">SHOW_LISTPRICE= &quot;True|False&quot; 
+<em>Default: False</em></font>   </p>
+<p><font color="firebrick">Determines whether the list price 
+appears in the product grid.</font>         </p>
+<p><strong><font color="black">[SEARCHLOG]</font></strong></p>
+<p><font color="darkblue">LOG_SEARCHES= &quot;True|False&quot; 
+</font>  </p>
+<p><font color="darkblue">SEARCH_LOG_DB_CONNSTR= &quot;Provider= 
+SQLOLEDB; Data Source=; Initial Catalog= ; User Id= ; 
+Password=  &quot;&lt; /FONT&gt;</p>
+<p><font color="firebrick">This feature allows for searches 
+to be logged to an ODBC database. It is not currently supported and should be 
+left unchanged</font>.</p>
+<p><strong><font color="black">[ALTFILES]</font></strong></p>
+<p><font color="darkblue">NP_INPUTFORM= index.asp</font> </p>
+<p><font color="darkblue">ACXPROD_DISPLAY= 
+acxprod_display.js</font> </p>
+<p><font color="darkblue">SUPPLIER_SELECTOR= 
+supplier_select_cb.asp</font> </p>
+<p><font color="firebrick">Alternate code files to be used 
+for customizing applications. Should be left unchanged.</font>            
+</p></font></font>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.camsoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.camsoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="26967" endspan -->
+</body>
+
+</html>

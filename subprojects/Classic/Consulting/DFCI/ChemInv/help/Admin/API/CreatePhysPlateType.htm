@@ -1,0 +1,245 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->
+&nbsp;
+<h1>CreatePhysPlateType</h1><p>          
+        Creates a physical plate type and returns the ID of the newly created 
+		physical plate type<span lang="en-us">.</span></p><h3>Syntax</h3><pre>/cheminv/api/CreatePhysPlateType.asp?PhysPlateName=adVarChar&amp;RowCount=adNumeric&amp;ColCount=adNumeric&amp;WellCapacity=Int&amp;CapacityUnitID=adNumeric<span lang="en-us">&amp;ZeroPaddingCount=</span>adNumeric[&amp;RowPrefix=adVarChar&amp;ColPrefix=adVarChar&amp;RowUseLetters=adNumeric&amp;ColUseLetters=adNumeric&amp;NameSeparator=adVarChar&amp;NumberStartCorner=<span lang="en-us">ad</span>Numeric&amp;NumberDirection=adNumeric&amp;IsPreBarcoded=adVarChar&amp;SupplierID=adN<span lang="en-us">u</span>meric]</pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="73" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="233"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="92"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="127" align="center"><b><span lang="en-us">
+		Database Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">PhysPlateName</td>
+		<td width="73">adVarChar</td>
+		<td width="233">Specifies the name of the physical plate type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">PHYS_PLATE_NAME</td>
+	</tr>
+	<tr>
+		<td width="117">RowCount</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the number of rows in the physical plate.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">ColCount</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the number of columns in the physical plate.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_COUNT</td>
+	</tr>
+	<tr>
+		<td width="117">RowPrefix</td>
+		<td width="73">adVarChar</td>
+		<td width="233">Specifies the prefix to be used for physical plate rows.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">ColPrefix</td>
+		<td width="73">adVarChar</td>
+		<td width="233">Specifies the prefix to be used for physical plate 
+		columns.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_PREFIX</td>
+	</tr>
+	<tr>
+		<td width="117">RowUseLetters</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies whether to label rows with letters or with 
+		numbers. The rows are identified with letters if RowlUseLetters is set 
+		to 1.</td>
+		<td width="92">1 | 0</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ROW_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">ColUseLetters</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies whether to label columns with letters or with 
+		numbers. The columns are identified with letters if ColUseLetters is set 
+		to 1. </td>
+		<td width="92">1 | 0&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">COL_USE_LETTERS</td>
+	</tr>
+	<tr>
+		<td width="117">NameSeparator</td>
+		<td width="73">adVarChar</td>
+		<td width="233">Specifies the character that 
+		separates the row and column IDs. For example, '-' is the name separator 
+		for the following column and row IDs: A-1 and B-1.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NAME_SEPARATOR</td>
+	</tr>
+	<tr>
+		<td width="117">NumberStartCorner</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the value with which the 
+		plate numbering is to be started.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NUMBER_START_CORNER</td>
+	</tr>
+	<tr>
+		<td width="117">NumberDirection</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies whether to fill the rows first or to fill the 
+		columns first.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">NUMBER_DIRECTION</td>
+	</tr>
+	<tr>
+		<td width="117">IsPreBarcoded</td>
+		<td width="73">adVarChar</td>
+		<td width="233">Specifies whether 
+		the barcodes should be already defined for the plates created using the 
+		new physical plate type. The barcodes are already defined for the plates 
+		if IsPreBarcoded is set to Y.</td>
+		<td width="92">Y | N</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">IS_PRE_BARCODED</td>
+	</tr>
+	<tr>
+		<td width="117">SupplierID</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the ID of the suppliers of the 
+		plates created using the new physical plate type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">N</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">SUPPLIER_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">CapacityUnitID</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the ID associated with the 
+		unit in which the well contents are to be measured.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">CAPACITY_UNIT_ID_FK</td>
+	</tr>
+	<tr>
+		<td width="117">WellCapacity</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the capacity of the wells 
+		of the plates created using the new physical plate type.</td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">PHYSICAL</span>_<span lang="ja">PLATE</span></td>
+		<td width="127">WELL_CAPACITY</td>
+	</tr>
+	<tr>
+		<td width="117">ZeroPaddingCount</td>
+		<td width="73">adNumeric</td>
+		<td width="233">Specifies the number of digits with 
+		which the column and row numbers are to be padded. Usually, this 
+		parameter is set to 2. </td>
+		<td width="92">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">INV</span>_<span lang="ja">GRID</span>_<span lang="ja">FORMAT</span></td>
+		<td width="127">ZERO_PADDING_COUNT</td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">The ID of the newly created physical plate type. This ID 
+is stored in the NewPhysicalPlateID parameter, the data type of which is adNumeric.</span></p>
+
+<h3>Example</h3>
+<p><span lang="en-us">The following code creates a new physical plate type with 
+name</span> NewPlateType<span lang="en-us">, r</span>ow<span lang="en-us"> c</span>ount<span lang="en-us">
+</span>8<span lang="en-us">,</span> <span lang="en-us">column count 1</span>2<span lang="en-us">,</span> well capacity 
+<span lang="en-us">1</span> m<span lang="en-us">l, well capacity unit ID</span>        
+             9<span lang="en-us">, and supplier</span> ID 
+1123<span lang="en-us">:</span>&nbsp;</p><pre>/cheminv/api/CreatePhysPlateType.asp?PhysPlateName=NewPlateType&amp;RowCount=8&amp;ColCount=12&amp;WellCapacity=1&amp;CapacityUnitID=9[&amp;SupplierID=1123]</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

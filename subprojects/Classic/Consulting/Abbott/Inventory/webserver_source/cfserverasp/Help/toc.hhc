@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice Enterprise Help">
+		<param name="Local" value="global/default.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Global Login">
+			<param name="Local" value="global/global.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Logging In">
+				<param name="Local" value="global/logging_in.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Managing Users and Roles">
+				<param name="Local" value="global/users.html">
+				</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Users">
+						<param name="Local" value="global/users_users.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Roles">
+						<param name="Local" value="global/users_roles.html">
+						</OBJECT>
+				</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Performing Searches">
+			<param name="Local" value="global/searching.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Accessing a ChemOffice Enterprise Application">
+				<param name="Local" value="global/searching_access.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The Query Input Form User Interface">
+				<param name="Local" value="global/searching_query.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Performing a Simple Search">
+				<param name="Local" value="global/searching_searching.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search Results">
+			<param name="Local" value="global/search_results.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Viewing Results">
+				<param name="Local" value="global/search_results_viewing.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Results in List View">
+					<param name="Local" value="global/search_results_viewing_list.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Details in Form View">
+					<param name="Local" value="global/search_results_viewing_form.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Viewing Additional Hits">
+					<param name="Local" value="global/search_results_viewing_hits.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Marking Records">
+					<param name="Local" value="global/search_results_viewing_marking.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manipulating Queries">
+				<param name="Local" value="global/search_results_manip.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Restoring Queries">
+					<param name="Local" value="global/search_results_manip_restore.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Saving Queries">
+					<param name="Local" value="global/search_results_manip_save.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Managing Queries">
+					<param name="Local" value="global/search_results_manip_manage.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manipulating Hit Lists">
+				<param name="Local" value="global/search_results_hitlist.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Restoring Hit Lists">
+					<param name="Local" value="global/search_results_hitlist_restore.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Saving Hit Lists">
+					<param name="Local" value="global/search_results_hitlist_save.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Managing Hit Lists">
+					<param name="Local" value="global/search_results_hitlist_manage.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Refining Search Results">
+				<param name="Local" value="global/search_results_refining.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Refining Over Current Records Found">
+					<param name="Local" value="global/search_results_refining_current.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Undoing a Refined Search">
+					<param name="Local" value="global/search_results_refining_undoing.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Exporting Results">
+				<param name="Local" value="global/search_results_exporting.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Histories">
+				<param name="Local" value="global/search_results_history.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Types of Searches">
+			<param name="Local" value="global/search_types.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Text Searching">
+				<param name="Local" value="global/search_types_text.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Structure Searching">
+				<param name="Local" value="global/search_types_structure.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Exact Structure Searching">
+					<param name="Local" value="global/search_types_structure_exact.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Substructure Searching">
+					<param name="Local" value="global/search_types_structure_sub.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Identity Searching ">
+					<param name="Local" value="global/search_types_structure_identity.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Similarity (Tanimoto) Searching ">
+					<param name="Local" value="global/search_types_structure_similar.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Formula Searching">
+				<param name="Local" value="global/search_types_formula.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Numerical Searching">
+				<param name="Local" value="global/search_types_numerical.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Combination Searching">
+				<param name="Local" value="global/search_types_combination.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setting User Preferences">
+			<param name="Local" value="global/preferences.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Retrieving Server Information">
+			<param name="Local" value="global/server.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Logging Off">
+			<param name="Local" value="global/logging_off.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemDraw Quick Reference Guide">
+		<param name="Local" value="quick_reference/chemdraw_toolbar/default.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ChemDraw Structure Box and Toolbar">
+			<param name="Local" value="quick_reference/chemdraw_toolbar/toolbar.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Menu Functions">
+			<param name="Local" value="quick_reference/chemdraw_toolbar/menu.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Shortcuts and HotKeys">
+			<param name="Local" value="quick_reference/chemdraw_toolbar/hot_keys.html">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

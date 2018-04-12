@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|Reg.ini Configuration File|Globals" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>CHEM_CONNECTION_NAMES</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Reg_ini_Configuration_Fi.htm#Registration_Admin_4136631045_1002673">Reg.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">CHEM_CONNECTION_NAMES</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_1002853"></a>CHEM_CONNECTION_NAMES</h5>
+        <div class="Body">Example: CHEM_CONNECTION_NAMES = base_cfw_form</div>
+        <div class="Body">Description: Names of all ChemFinder connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. A ChemFinder connection definition section describes variables for connecting to ChemFinder for searching of chemical information. The default definition "<span class="_Override" style="color: #0000ff;text-decoration: underline;">reg_cfw_form</span>" is normally present (unless there is no chemical information). In dataviews that deal with reaction databases, there may be three (or more) definitions, one for the reaction, one for the solvent and one for the catalyst. (e.g.config/chemprep.ini file in the chemrxn application).</div>
+        <div class="Body">Default: regreg_cfw_form,reg_struc_cfw_form,regtemp_cfw_form,reg_cfw_form</div>
+        <div class="Body">Options: Comma delimited list of ChemFinder connection definitions found in the ini file.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations. </blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

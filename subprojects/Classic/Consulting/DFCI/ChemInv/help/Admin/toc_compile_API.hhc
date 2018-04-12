@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice WebServer API">
+		<param name="Local" value="/Chemoffice/webserver_source/cfserverasp/help/Admin/API/default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search">
+			<param name="Local" value="/Chemoffice/webserver_source/cfserverasp/help/Admin/API/Search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search_no_gui">
+			<param name="Local" value="/Chemoffice/webserver_source/cfserverasp/help/Admin/API/Search_no_gui.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Get_structure">
+			<param name="Local" value="/Chemoffice/webserver_source/cfserverasp/help/Admin/API/get_structure.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Query_string">
+			<param name="Local" value="/Chemoffice/webserver_source/cfserverasp/help/Admin/API/query_string.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemReg HTTP API">
+		<param name="Local" value="/Chemoffice/chem_reg/help/Admin/API/default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search">
+			<param name="Local" value="/Chemoffice/chem_reg/help/Admin/API/Search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Reg_temp">
+			<param name="Local" value="/Chemoffice/chem_reg/help/Admin/API/reg_temp.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Reg_perm">
+			<param name="Local" value="/ChemOffice/chem_reg/help/Admin/API/reg_perm.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Db_info">
+			<param name="Local" value="/Chemoffice/chem_reg/help/Admin/API/db_info.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemInventory HTTP API">
+		<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="HTTP API Function Reference">
+			<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/FunctionReference.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CheckOutContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CheckOutContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateContainerReport">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateContainerReport.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateLocation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateLocation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateLocationReport">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateLocationReport.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateReservation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateReservation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateSearchResultsReport">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateSearchResultsReport.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateSubstance">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/CreateSubstance.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CreateSynonym">
+				<param name="Local" value="chemoffice/cheminv/help/Admin/API/CreateSynonym.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/DeleteContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteContainers">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/DeleteContainers.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteLocation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/DeleteLocation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteLocations">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/DeleteLocations.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteReservation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/DeleteReservation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DeleteSynonym">
+				<param name="Local" value="chemoffice/cheminv/help/Admin/API/DeleteSynonym.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="EditLocation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/EditLocation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="MoveContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/MoveContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="MoveContainers">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/MoveContainers.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="MoveLocation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/MoveLocation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="RetireContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/RetireContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateAllContainerFields">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/UpdateAllContainerFields.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateContainer">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/UpdateContainer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateContainerQtyRemaining">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/UpdateContainerQtyRemaining.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateLocation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/UpdateLocation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateReservation">
+				<param name="Local" value="/Chemoffice/cheminv/help/Admin/API/UpdateReservation.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="UpdateSynonym">
+				<param name="Local" value="chemoffice/cheminv/help/Admin/API/UpdateSynonym.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+</UL>
+</BODY></HTML>

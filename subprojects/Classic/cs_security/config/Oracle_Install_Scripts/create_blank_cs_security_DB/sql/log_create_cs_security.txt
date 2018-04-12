@@ -1,0 +1,515 @@
+Enter the target Oracle service name:solaris2
+Enter the Oracle major version number (9):
+Enter the name of an Oracle account with system privileges (system):
+Enter the above oracle account password (manager2):manager
+Connected.
+'dropping public synonyms'
+
+PL/SQL procedure successfully completed.
+
+'dropping user...'
+
+PL/SQL procedure successfully completed.
+
+'dropping tablespaces...'
+
+PL/SQL procedure successfully completed.
+
+'dropping test users...'
+
+PL/SQL procedure successfully completed.
+
+'dropping test roles...'
+
+PL/SQL procedure successfully completed.
+
+'Dropping csuserprofile...'
+
+PL/SQL procedure successfully completed.
+
+'Finished dropping cs_security.'
+'creating tablespaces.sql...'
+
+PL/SQL procedure successfully completed.
+
+
+Tablespace created.
+
+starting users.sql
+
+PL/SQL procedure successfully completed.
+
+
+User created.
+
+
+Grant succeeded.
+
+Connected.
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Commit complete.
+
+'Creating Audit Tables...'
+'------------------------'
+
+Sequence created.
+
+
+Sequence created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Package created.
+
+
+Package body created.
+
+No errors.
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Role created.
+
+
+Revoke succeeded.
+
+
+Grant succeeded.
+
+
+Role created.
+
+
+Revoke succeeded.
+
+
+Grant succeeded.
+
+Connected.
+
+Table altered.
+
+
+0 rows updated.
+
+
+0 rows updated.
+
+
+0 rows updated.
+
+
+Table created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Trigger created.
+
+
+Table created.
+
+
+Table altered.
+
+
+0 rows deleted.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+
+Package body created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Procedure created.
+
+
+Function created.
+
+
+Procedure created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+User altered.
+
+
+0 rows deleted.
+
+
+1 row created.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+User altered.
+
+
+0 rows deleted.
+
+
+1 row created.
+
+
+Commit complete.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Profile created.
+
+
+User altered.
+
+Connected.
+
+Table altered.
+
+
+Grant succeeded.
+
+
+1 row updated.
+
+
+Commit complete.
+
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+
+Package body created.
+
+
+Package created.
+
+
+Package body created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+
+Procedure created.
+
+
+Function created.
+
+
+Procedure created.
+
+'Inserting Data...'
+'------------------------'
+
+1 row created.
+
+
+1 row created.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Commit complete.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+logged session to: sql/log_create_cs_security_ora.txt

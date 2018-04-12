@@ -1,0 +1,42 @@
+
+Connected to: Oracle9i Enterprise Edition Release 9.2.0.5.0 - Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.5.0 - Production
+
+Export file created by EXPORT:V08.01.07 via conventional path
+import done in WE8MSWIN1252 character set and AL16UTF16 NCHAR character set
+export client uses WE8ISO8859P1 character set (possible charset conversion)
+export server uses UTF8 NCHAR character set (possible ncharset conversion)
+. importing CHEMINVDB2's objects into CHEMINVDB2
+. . importing table           "INV_LOCATION_TYPES"         38 rows imported
+. . importing table          "INV_CONTAINER_TYPES"         14 rows imported
+. . importing table                  "INV_COUNTRY"          1 rows imported
+. . importing table                   "INV_STATES"         59 rows imported
+. . importing table               "INV_UNIT_TYPES"          6 rows imported
+. . importing table                    "INV_UNITS"         91 rows imported
+. . importing table                "INV_SUPPLIERS"        361 rows imported
+. . importing table                   "INV_OWNERS"          1 rows imported
+. . importing table             "INV_ORDER_STATUS"          4 rows imported
+. . importing table            "INV_REQUEST_TYPES"          2 rows imported
+. . importing table           "INV_REQUEST_STATUS"          7 rows imported
+. . importing table         "INV_CONTAINER_STATUS"         23 rows imported
+. . importing table        "INV_RESERVATION_TYPES"          5 rows imported
+. . importing table               "INV_API_ERRORS"         25 rows imported
+. . importing table                "INV_ESET_TYPE"          2 rows imported
+. . importing table          "INV_ENUMERATION_SET"          7 rows imported
+. . importing table              "INV_ENUMERATION"         18 rows imported
+. . importing table              "INV_ENUM_VALUES"          0 rows imported
+. . importing table            "INV_PLATE_ACTIONS"          4 rows imported
+. . importing table             "INV_BARCODE_DESC"          3 rows imported
+. . importing table              "INV_PLATE_TYPES"          5 rows imported
+. . importing table         "INV_PROJECT_JOB_INFO"          4 rows imported
+. . importing table   "INV_CONTAINER_ORDER_REASON"          3 rows imported
+. . importing table            "INV_REPORTFORMATS"          4 rows imported
+. . importing table              "INV_REPORTTYPES"          7 rows imported
+. . importing table                  "INV_REPORTS"         12 rows imported
+. . importing table          "INV_UNIT_CONVERSION"         25 rows imported
+. . importing table             "INV_XMLDOC_TYPES"          1 rows imported
+. . importing table                  "INV_XMLDOCS"          8 rows imported
+. . importing table                    "INV_XSLTS"          4 rows imported
+About to enable constraints...
+Import terminated successfully without warnings.

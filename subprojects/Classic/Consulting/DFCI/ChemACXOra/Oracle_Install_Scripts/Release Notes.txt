@@ -1,0 +1,51 @@
+Release 9.2.3
+   
+Prompts.sql – added question to set QUERY_REWRITE_ENABLED = TRUE.
+Alter_systemy.sql – to alter system set QUERY_REWRITE_ENABLED = TRUE
+Alter_systemn.sql – do nothing
+Users.sql – added “Grant query rewrite to ‘CHEMACXDB’ “
+Tables.sql – Changed Varchar to NVarchar to avoid character set mismatch during import from *dmp file:
+ create table SUPPLIERADDR (
+	ADDR1 NVARCHAR2(50) null,
+	ADDR2 NVARCHAR2(50) n ….
+
+create table PROPERTYALPHA (
+		"VALUE" NVARCHAR2(250) not null…
+
+create table PRODUCT (
+	PRODDESCRIP NVARCHAR2(255)…
+
+
+Create_chemacx.sql – changed to spool all information into one file.
+
+Check_import_chemacx.sql – added to verify import, creation of indexes and result of CSCartridge indexes.
+
+OracleSetup.hta – updated to reflect all changes.
+
+create_blank_cs_security_DB folder copied into the same folder to allow customer to run all necessary scripts from one place.
+
+
+Release 9.2.4
+Fixed bugs:
+57872- added message 
+PROMPT =========================================================
+PROMPT = Next three statements will create Cartridge Index.    =
+PROMPT = It can take up to several hours depending on a server = 
+PROMPT = Do not close this window.                             =  
+PROMPT =========================================================
+
+57871:
+Removed Drop Index statement
+Dump file shouldn’t have cartridge index statement
+
+57870:
+
+MyTableType type and STR2TBL function are created as part of the dump file.
+Removed them from table script.
+
+57873:
+Could not reproduce on any other server.
+
+NEW FEATURE:
+- Added prompt asking if user would like to create/update cs_security schema.
+If user does not want, script will create ACX_ roles and users, but will not update sc_security schema.

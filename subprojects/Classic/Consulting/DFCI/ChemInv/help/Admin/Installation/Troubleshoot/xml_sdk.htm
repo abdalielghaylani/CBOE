@@ -1,0 +1,99 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Registration System Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="11022" -->
+<h1>  Tips for Installing XML XDK</h1>
+<p>    XML XDK 9.2.0.5 is a required component for the propoer 
+function of Inventory Enterprise.&nbsp; This component is not installed by default in 
+Oracle 8i installations.&nbsp; After installing Oracle 8i, users should 
+install the XML XDK.&nbsp;For more information about Oracle and XML, please see 
+<a href="http://otn.oracle.com/tech/xml/index.html">http://otn.oracle.com/tech/xml/index.html</a>             
+            </p>
+  <a name="windows"></a><h2>
+  Installing on a Windows server</h2>
+<p>The following is some guidelines for installing XML XDK 9.2.0.5 on a Windows 
+server.&nbsp; For more information, please see your Oracle DBA:&nbsp; </p>
+<ol type="1">
+  <li>
+       
+  Download XDK 9.2.0.5 and copy the 3 folders (bin, xdk and lib) to the 
+  C: drive of the server.
+  <li>
+  Open SQL Plus Worksheet.
+  <li>Execute the following:<br>
+  <pre>grant javasyspriv to cheminvdb2; 
+  grant javauserpriv to cheminvdb2;</pre> 
+  <li>
+  Close SQL Plus Worksheet
+  <li>Go to START&gt;Run.
+  <li>Enter&nbsp;cmd into the Open textbox.
+  <li>Change Directories to C:\bin</span></font> by entering the following:<br><pre>cd C:\bin</pre> 
+  <li>
+  Enter the&nbsp;following into the prompt:<br>
+   <ul><li>For Oracle 8.16 installations:<br><pre>xdkload &#150;u cheminvdb2/oracle &#150;s &#150;dbver 816</pre>
+   <li>For Oracle 8.17 installations:<br><pre>xdkload &#150;u cheminvdb2/oracle &#150;s &#150;dbver 817</pre>  
+    <li>For Oracle 9i installations:<br><pre>xdkload &#150;u cheminvdb2/oracle &#150;s</pre></li></ul>
+  <li> 
+    
+          
+      Hit any key to run. 
+<br><strong>NOTE:</strong> This installs the data in the cheminvdb2 
+  schema.&nbsp;&nbsp;You&nbsp;can install in any appropriate tablespace.&nbsp; 
+  <br><strong>NOTE</strong>: If the schema containing the XDK is 
+  dropped, XML XDK must be reinstalled. <br>       
+      &nbsp;<br></span></font></li></ol>            
+
+  <p>
+<br></p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

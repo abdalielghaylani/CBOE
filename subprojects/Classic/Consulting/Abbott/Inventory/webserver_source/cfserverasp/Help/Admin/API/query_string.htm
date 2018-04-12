@@ -1,0 +1,94 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>ChemOffice WebServer HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+
+<p><h1>Query_string</h1>
+<p>Allows for a text based query to be initiated via an HTTP GET request from a 
+page or application external to the ChemOffice WebServer.<span style="mso-spacerun: yes">&nbsp; </span>The results are returned in HTML as if 
+the search had been initiated from the standard query page.</p>
+<p>Note:&nbsp;<font color="brown">In this instance the page being requested is 
+default.asp rather than apname_action.asp.&nbsp; All parameters can be passed 
+either as Form (POST) or Querystring (GET) data.</font></p>
+<h3>Syntax</h3><p class="syntax">&lt;ServerName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;/default.asp?<br>&nbsp;dbname=adVarChar&amp;dataaction=query_string&amp;formgroup=adVarChar&amp;field_type=adVarChar&amp;<br> 
+&nbsp;&nbsp;&nbsp;full_field_name=adVarChar&amp;field_value=adVarChar|adNumeric</p>
+<h3 class="param">Inputs</h3>
+<h5 class="param">dbName=<span class="paramvalues">&nbsp;&lt;DatabaseName&gt;</span></h5>
+<p class="param">The name of the dataview&nbsp;ini file for the database being 
+accessed.<br><em>Possible options</em> : reg (for Registration System), cheminv 
+(for Inventory Manager), chemacx, wdi, wda<br><em>Example</em>:<span style="mso-spacerun: yes">&nbsp; </span>dbname= chemacx</p>
+<h5 class="param">dataaction&nbsp;=<span class="paramvalues">&nbsp;query_string</span></h5>
+<p class="param">Must be set equal to &quot;query_string&quot;.</p>
+<h5 class="param">formgroup&nbsp;=<span class="paramvalues">&nbsp;&lt;formgroupName&gt;</span></h5>
+<p class="param">The name of a valid formgroup as defined in the applications ini 
+file, or dynamically defined via the metadata_directive options.</p>
+<h5 class="param">field_type=<span class="paramvalues">&nbsp;&nbsp;TEXT|INTEGER</span></h5>
+<p class="param"> Defines the data type of the text field being 
+used to query the database. <br><em>Example</em>: 
+field_type=          
+     TEXT </p>
+<h5 class="param">full_field_name&nbsp;=<span class="paramvalues">&nbsp;&lt;field 
+name&gt;</span></h5>
+<p class="param">The fully qualified name of the field to be 
+used in the query.<br><em>Note: </em>The table and must 
+field must be properly declared in the ini file for the application<br><em>Example</em>: full_field_name=            
+Substance.CAS</p>
+<h5 class="param">field_value=<span class="paramvalues">&nbsp;&lt;value&gt;</span></h5>
+<p class="param">   The value of the field to search 
+on.&nbsp;<br><em>Example</em>:&nbsp;field_value =          
+50-50-0</p>
+<p class="param">&nbsp;</p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 6.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="11022" endspan -->&nbsp;
+<h1>CreateTableRow</h1><p>          
+           Creates a new row in a table          
+           <span lang="en-us">with</span>in 
+the cheminvdb schema.&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/CreateTableRow.asp?TableName=adVarChar&amp;ValuePairs=adVarChar</pre>
+
+<h3>Inputs</h3>
+<table border="1" width="118%">
+	<tr>
+		<td bgcolor="#C0C0C0" width="117" align="center"><b><span lang="en-us">
+		Parameter Name</span></b></td>
+		<td bgcolor="#C0C0C0" width="122" align="center"><b><span lang="en-us">
+		Data Type</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="310"><b><span lang="en-us">
+		Description</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="63"><b><span lang="en-us">
+		Options</span></b></td>
+		<td bgcolor="#C0C0C0" align="center" width="70"><b><span lang="en-us">
+		Required?</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Table Name</span></b></td>
+		<td bgcolor="#C0C0C0" align="center"><b><span lang="en-us">Database 
+		Field Name</span></b></td>
+	</tr>
+	<tr>
+		<td width="117">TableName</td>
+		<td width="122">adVarChar</td>
+		<td width="310"><span lang="en-us">Specifies the </span>name of the 
+		table in the schema<span lang="en-us">, for which the row is to be 
+		created</span>.</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">N/A</span></td>
+		<td><span lang="ja">N/A</span></td>
+	</tr>
+	<tr>
+		<td width="117">ValuePair<span lang="en-us">s</span></td>
+		<td width="122">adVarChar</td>
+		<td width="310">Specifies a “::” delimited list of the pairs of the 
+		column name and value, for the new row. For example: 
+		colnam1=val1<span lang="en-us">::</span>colnam2=val2<span lang="ja">.</span>&nbsp;</td>
+		<td width="63">&nbsp;</td>
+		<td width="70" align="center">Y</td>
+		<td><span lang="ja">N/A</span></td>
+		<td><span lang="ja">N/A</span></td>
+	</tr>
+</table>
+
+<h3>Output</h3>
+<p><span lang="en-us">None.</span></p>
+
+<h3>Example</h3>
+<p>       
+<span lang="en-us">The following code allows you to </span>create a new row in the table<span lang="en-us">,</span> Inv_Suppliers<span lang="en-us">:</span></p><pre>/cheminv/api/CreateTableRow.asp?TableName=Inv_Suppliers&amp;ValuePairs=Supplier_Name=Wyeth<span lang="en-us">::</span>Supplier_Short_Name=WYT<span lang="en-us">::</span>Supplier_Code=WH1432</pre>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="15984" endspan -->
+
+</body>
+</html>

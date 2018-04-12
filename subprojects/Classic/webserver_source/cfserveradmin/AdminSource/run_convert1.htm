@@ -1,0 +1,131 @@
+<html>
+
+<head><script language="javascript">
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+function setAction(theAction){
+
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.submit()
+		
+}
+
+
+
+
+</script>
+
+<title>ChemOffice Web Wizard - Finish</title>
+<script language="JavaScript" src="/cs_security/lib/javascript.js"></script>
+<link rel="stylesheet" type="text/css" href="/cs_security/style.css">
+<link type='text/xml' rel='alternate' href='/Default.vsdisco'/>
+<script LANGUAGE="javascript" src="/cs_security/Choosecss.js"></script>
+</head>
+
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table1">
+	<tr>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_coent.gif" width="370" height="51"></td>
+		<td background="/cs_security/graphics/header_000099_m.gif" width="100%" align="right" valign="middle">
+			<table border="0" cellpadding="0" height="30" ID="Table2"><tr><td valign="top">
+		
+			</td><td width="15">&nbsp;</td></tr></table>
+		</td>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_r.gif" width="4" height="51"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table3">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/tl_000099.gif" width="4" height="5"></td>
+		<td background="/cs_security/graphics/tm.gif" width="100%"><img border="0" src="/cs_security/graphics/tm.gif" width="11" height="5"></td>
+		<td><img border="0" src="/cs_security/graphics/tr_000099.gif" width="4" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table4">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/ml.gif" width="24" height="20"></td>
+		<td background="/cs_security/graphics/mm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/mm.gif" width="10" height="20"></td>
+		<td><img border="0" src="/cs_security/graphics/mr.gif" width="24" height="20"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" table="100%" ID="Table5">
+	<tr>
+		<td background="/cs_security/graphics/cl.gif">
+		<img border="0" src="/cs_security/graphics/cl.gif" width="24" height="5"></td>
+		<td width="100%" bgcolor="#FFFFFF">
+
+
+<form Name="SubmitAction"
+ACTION="WebEditor.ASP?WCI=wizard_run_convert&amp;WCE=SubmitAction&amp;WCU" METHOD="post">
+  <input type="hidden" name="FormAction" value><input type="hidden" name="dialogVal" value><input
+  type="hidden" name="SubmitVal" value><table border="0">
+    <tr>
+      <td><table bgcolor="#c0c0c0" width="400" height="300">
+        <tr>
+          <td valign="top"><table border="0" width="449" bgcolor="#000080">
+            <tr>
+              <td width="443" valign="top"><font color="#ffffff"><strong>ChemOffice Web Wizard</strong></font></td>
+            </tr>
+          </table>
+          <table border="0" width="452">
+            <tr>
+              <td width="132"><img alt="wpe56A.jpg (3678 bytes)" height="133" src="chemof1.jpg"
+              width="132"><p><br>
+              <br>
+              <br>
+              <br>
+              </td>
+              <td width="308" valign="center">That's all the information needed.&nbsp; Click Finish to
+              run the conversion:<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="440" colspan="2"><hr>
+              </td>
+            </tr>
+            <tr>
+              <td width="440" colspan="2"><table border="0">
+                <tr>
+                  <td><input type="button" value="Help" name="Help" onClick="getHelp('Run_Convert')"></td>
+                  <td><input type="submit" value="Cancel" name="Cancel" onClick="setAction('Cancel')"></td>
+                  <td><input type="submit" value="Finish" name="Finish" onClick="setAction('Finish')"></td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</td>
+		<td background="/cs_security/graphics/cr.gif"><img border="0" src="/cs_security/graphics/cr.gif" width="24" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" ID="Table6">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/bl.gif" width="24" height="24"></td>
+		<td background="/cs_security/graphics/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/bm.gif" width="10" height="24"></td>
+		<td><img border="0" src="/cs_security/graphics/br.gif" width="24" height="24"></td>
+	</tr>
+</table>
+
+<br /><br />
+</body>
+</html>
+
+

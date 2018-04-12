@@ -1,0 +1,118 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemACX Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemACX</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>Admin Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="41524" endspan -->
+<h1>Create a Microsoft Access Database</h1>
+<p>Please follow the following steps:</p>
+<p>
+<ol><li>
+  Run the ChemACX installer found on the CD at 
+  <strong>\ChemACX_9.0\ChemACX_9.0 Application</strong>
+           
+    
+  <li>Create a ChemACX Database. 
+  <br>The database is contained in a self extracting ZIP file. 
+  <ol>   
+           
+    <li class="Numbered-substep"><a name="pgfId-1071312"></a>Browse to your <strong>ChemOffice_data</strong>    folder. Usually, the 
+    ChemOffice_data folder is located at:<br><strong>C:\Chemoffice_data</strong><br>and create a new directory called 
+    <strong>ChemACX</strong>    
+       in that folder. 
+    <li class="Numbered-substep"><a name="pgfId-1071316"></a>Double-click on the exe 
+    file found in this directory. 
+    <li class="Numbered-substep"><a name="pgfId-1071317"></a>Browse to the <strong>ChemACX</strong>    
+    folder you created in step (1). 
+    <li class="Numbered-substep"><a name="pgfId-1071318"></a>Click <strong>OK</strong> .</li>  </ol>
+  <li class="Numbered-substep">Make sure the database files 
+  are NOT read only 
+  <ol>
+    <li class="Bulleted-indent-sub"><a name="pgfId-1071320"></a>Right-click on the files (.mdb, .msi, .mst) and 
+    Select <strong>Properties</strong>. 
+    <li class="Bulleted-indent-sub"><a name="pgfId-1071332"></a>Make sure the <strong>Read-only</strong>    checkbox is not selected.</li>        </ol>
+  <li class="Bulleted-indent-sub">Make sure that everyone has 
+  full access to the folder where the database is located.    
+ <ol>
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068278"></a>Browse to <strong>C:\</strong> and right-click on 
+    the <strong>ChemOffice_Data</strong>    
+        folder. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068279"></a>Select <strong>Properties</strong> . 
+
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068280"></a>Click the <strong>Security</strong>   
+    Tab. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068281"></a>Scroll Down and Highlight <strong>Everyone</strong> 
+    in the <strong>Name</strong>   
+         box. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068282"></a>Select the checkbox to the right of <strong>Full 
+    Control</strong> in the <strong>Allow</strong>  
+              column. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068283"></a>Click the <strong>Advanced</strong>   
+    Button. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068284"></a>Select the checkbox on the bottom which says 
+    <strong>&quot;Reset permissions on all child objects and enable propagation of 
+    inheritable permissions&quot;</strong>. 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068285"></a>Click <strong>OK</strong> . 
+    <li class="Numbered-indent-sub-i"><a name="pgfId-1068286"></a>Click <strong>Yes</strong>.</li>  </ol>
+    <li class="Numbered"><a name="pgfId-1068287"></a>Browse to 
+  <strong>&lt;webroot&gt;/ChemOffice/ChemACX/Config </strong>  
+     
+    <li class="Numbered"><a name="pgfId-1068288"></a>Double click on the <strong>ChemACX.udl</strong>     
+    file. 
+    <li class="Numbered"><a name="pgfId-1068289"></a>Make sure the Database the UDL is pointing to is the 
+  ChemACX database you just moved (by default C:/ChemOffice_Data/ChemACX.mdb). 
+  <br>The path to the mdb file is found in the Database name textbox. <br>Click 
+  <strong>Browse</strong> and browse to the location of your mdb file if the 
+  default location is incorrect.</li></ol>     
+     
+    <p class="Numbered"><a href="config_access.htm">Step 
+4: Additional Configuration</a>&nbsp;
+<br>            
+     </p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.camsoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.camsoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="26967" endspan -->
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="BioSAR Enterprise 10 User Guide|Tips for the Report Writer" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Report Generator Configuration Issues</title>
+        <link href="../Resources/Stylesheets/BioSAR Browser User's Guide.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapBody.js">/*<![CDATA[*/ /*]]>*/</script>
+        <script src="../SkinSupport/MadCapHighlighter.js">/*<![CDATA[*/ /*]]>*/</script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/BioSAR.png" />
+        </p>
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="BioSAR_Enterprise_10_Use.htm#BioSAR_Browser_User_s_Guide_2882306399_1155135">BioSAR Enterprise 10 User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="#BioSAR_Browser_User_s_Guide_2882306399_1155439">Tips for the Report Writer</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Report Generator Configuration Issues</span>
+        </div>
+        <h2 class="Heading2"><a name="BioSAR_Browser_User_s_Guide_2882306399_1155439"></a><a name="kanchor1365"></a><a name="kanchor1366"></a><a name="kanchor1367"></a><a name="kanchor1368"></a><a name="kanchor1369"></a><a name="kanchor1370"></a><a name="kanchor1371"></a><a name="kanchor1372"></a><a name="kanchor1373"></a><a name="kanchor1374"></a><a name="kanchor1375"></a><a name="kanchor1376"></a><a name="kanchor1377"></a><a name="kanchor1378"></a><a name="kanchor1379"></a>Tips for the Report Writer</h2>
+        <h3 class="Heading3"><a name="BioSAR_Browser_User_s_Guide_2882306399_1159013"></a>Report Generator Configuration Issues</h3>
+        <table class="AutoNumber_div_Bullet1_1st" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">Before installing this patch, be sure to quit Reports.exe or shut down the reports service if you are running this as a service. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">Open /biosar_browser/reports and check that there is no biosar_reports.ldb file. Delete the file if it is present. If it still exists after doing this, please reboot your server and delete the lock file manually. </td>
+            </tr>
+        </table>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>Failure to follow this procedure will lead to corruption of the new biosar_browser.mdb file installed from this patch. </div>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">If you are using Terminal Services or PC Anywhere for remote administration and you are running reports.exe as a service then be sure to use user that the service is running under for any configuration tasks related to the report generator </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1_inner" style="width: 100%;margin-left: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+                <col style="width: 0px;" />
+                <col style="width: 19.2px;" />
+                <col style="width: auto;" />
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1_1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1_1st" MadCap:autonum=" • " valign="top">If you have reports.exe in a startup folder and you are using Terminal Services or PC Anywhere, when you log-in via these modes a second reports.exe will be started. You must end this using task manager. Having two reports.exe will prevent the report generator from working. </td>
+            </tr>
+        </table>
+        <h4 class="Heading4" style="margin-top: 5pt;"><span class="_Override" style="font-family: 'Times New Roman';font-weight: normal;"><a name="kanchor1380"></a><a name="kanchor1381"></a><a name="kanchor1382"></a><a name="kanchor1383"></a></span><a name="kanchor1384"></a><a name="kanchor1385"></a><a name="kanchor1386"></a><a name="kanchor1387"></a><a name="kanchor1388"></a><a name="kanchor1389"></a><a name="kanchor1390"></a>Default Printer Setup</h4>
+        <p class="Body">When using the report generator, you must have a default printer set otherwise reports will not be generated. </p>
+        <p class="Body">If you are running reports.exe as a service then you must set the default printer while logged in as the same user that reports.exe is running under. </p>
+        <h4 class="Heading4"><a name="kanchor1391"></a><a name="kanchor1392"></a><a name="kanchor1393"></a><a name="kanchor1394"></a><a name="kanchor1395"></a><a name="kanchor1396"></a><a name="kanchor1397"></a><a name="kanchor1398"></a><a name="kanchor1399"></a><a name="kanchor1400"></a><a name="kanchor1401"></a>Launching MS Access</h4>
+        <p class="Body">If you are running reports.exe as a service you should launch MS Access one time before starting the service while logged in as the user the service is running under. This will allow you to answer any start-up dialogs question presented.</p>
+        <p class="Body">Some installations have difficulty starting MS Access from the Report Writer (when running the report writer as a service). This is not always an issue, but it can be resolved by following the directions found at this link:</p>
+        <p class="Body">http://support.microsoft.com/?id=288367 </p>
+        <h4 class="Heading4"><a name="kanchor1402"></a><a name="kanchor1403"></a><a name="kanchor1404"></a><a name="kanchor1405"></a><a name="kanchor1406"></a><a name="kanchor1407"></a><a name="kanchor1408"></a><a name="kanchor1409"></a><a name="kanchor1410"></a><a name="kanchor1411"></a><a name="kanchor1412"></a>Compacting Biosar_Browser.mdb </h4>
+        <p class="Body">As reports are generated biosar_browser.mdb will grow in size even though all report objects are deleted after a report is generated. To reduce the size of the file, it is advised to stop and start the reports service or reports.exe so that the biosar_browser.mdb file will automatically compact.</p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

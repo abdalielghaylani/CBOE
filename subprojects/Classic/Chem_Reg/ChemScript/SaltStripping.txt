@@ -1,0 +1,9 @@
+from ChemScript import *
+m = Mol.loadData(base64, 'cdx')
+fragments = m.splitSalt()
+if fragments != None:
+	mainMol = fragments[0]
+	salt = fragments[1]
+else:
+	mainMol = m
+	salt = None

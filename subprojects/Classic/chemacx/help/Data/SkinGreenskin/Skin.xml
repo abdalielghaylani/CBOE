@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultSkin Version="1" Comment="Green theme skin" Anchors="Width,Height" Width="703px" Height="879px" Top="33px" Left="2702px" Bottom="288px" Right="115px" Tabs="TOC,Index,Search,Favorites" DefaultTab="TOC" UseBrowserDefaultSize="false" UseDefaultBrowserSetup="True">
+    <Index BinaryStorage="True" />
+    <HtmlHelpOptions ShowMenuBar="False" TopmostWindowStyle="False" Buttons="Hide,Locate,Back,Forward,Stop,Refresh,Home,Font,Print" EnableButtonCaptions="True" />
+    <Stylesheet Link="Stylesheet.xml">
+    </Stylesheet>
+</CatapultSkin>

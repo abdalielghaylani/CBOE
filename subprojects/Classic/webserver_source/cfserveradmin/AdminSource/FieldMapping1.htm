@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+var theActionVal
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+
+function getDialog(theAction){
+theActionVal= theAction
+	document.SubmitAction.FormAction.value = theAction
+	var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=add&topic=" + theAction, "FieldMap", "width=200,height=200,scrollbars=no,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+
+function setAction(theAction){
+		var theValue = eval('document.SubmitAction.FieldMapGroups.options[document.SubmitAction.FieldMapGroups.selectedIndex].text')
+		document.SubmitAction.FormAction.value = theAction
+		document.SubmitAction.FieldMapGroupName.value = theValue 
+		document.SubmitAction.submit()
+}
+
+
+</script>
+</head>
+
+<body>
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><IMG alt="cnco.gif (2252 bytes)"
+    height=54 src ="/cfserveradmin/graphics/cnco.gif" width=75 ></td>
+    <td width="583"><IMG alt="WebAdminbnr.gif (3575 bytes)"
+    height=49 src ="/cfserveradmin/graphics/WebAdminbnr.gif" width=500 ></td>
+  </tr>
+</table>
+
+<table border="0" height="272">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; <WC@APP_NAME></WC@APP_NAME>&nbsp; Database:&nbsp; <WC@DB_NAME></WC@DB_NAME></strong></td>
+  </tr>
+  <tr>
+    <td height="245"><table border="0" bgcolor="#c0c0c0">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_field_map_group_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" ><input type="hidden" name="dialogVal" ><input
+          type="hidden" name="FieldMapGroupName" ><table border="0">
+            <tr>
+              <td><table border="0">
+                <tr>
+                  <td valign="center"><table border="0" width="687">
+                    <tr>
+                      <td width="274" height="27" valign="top"><input type="submit" value="    OK    " name="OK"
+                      onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+                      onClick="setAction('Cancel')"></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><table border="1">
+                    <tr>
+                      <td width="620"><strong>Field Mapping Group</strong><WC@FIELD_MAP_GROUP></WC@FIELD_MAP_GROUP><input type="submit" name="New"
+                      value="New" onClick="getDialog('AddFieldMapGroup')"><small><small><input type="submit"
+                      name="Delete" value="Delete" onClick="setAction('RemoveFieldMapGroup')"></small></small><input
+                      type="button" value="Help" name="Help1" onClick="getHelp('field_map_groups')"></td>
+                    </tr>
+                    <tr>
+                      <td width="620"><table border="0">
+                        <tr>
+                        <td><table border="1" width="548">
+                        <tr>
+                        <td width="194" height="26">Structure Field Map</td>
+                        <td width="104" height="26"><WC@STRUC_FIELD_MAP></WC@STRUC_FIELD_MAP></td>
+                        <td width="232" height="26"><small><small 
+                                ><input name=Remove2 onclick="setAction('RemoveFieldMapGroup')" type=submit value="Remove "></SMALL></SMALL><input name=Add2 onclick="getDialog('AddFieldMapAlias')" type=button value="   Add    "></td>
+                        </tr>
+                        <tr>
+                        <td width="194" height="25">MW Field Map</td>
+                        <td width="104" height="25"><WC@MW_FIELD_MAP></WC@MW_FIELD_MAP></td>
+                        <td width="232" height="25"><small><small 
+                                ><input name=Remove3 onclick="setAction('RemoveTableAlias')" type=submit value="Remove "></SMALL></SMALL><input name=Add3 onclick="getDialog('AddTableAlias')" type=button value="   Add    "></td>
+                        </tr>
+                        <tr>
+                        <td width="194" height="19">Formula Field Map</td>
+                        <td width="104" height="19"><WC@FORMULA_FIELD></WC@FORMULA_FIELD></td>
+                        <td width="232" height="19"><small><small 
+                                ><input name=Remove4 onclick="setAction('RemoveTableAlias')" type=submit value="Remove "></SMALL></SMALL><input name=Add4 onclick="getDialog('AddTableAlias')" type=button value="   Add    "></td>
+                        </tr>
+                        <tr>
+                        <td width="194" height="19">Other Field Map</td>
+                        <td width="104" height="19"><WC@OTHER_FIELD_MAP></WC@OTHER_FIELD_MAP></td>
+                        <td width="232" height="19"><small><small 
+                                ><input name=Remove5 onclick="setAction('RemoveTableAlias')" type=submit value="Remove "></SMALL></SMALL><input name=Add5 onclick="getDialog('AddTableAlias')" type=button value="   Add    "></td>
+                        </tr>
+                        </table>
+                        </td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp; </p>
+</body>
+</html>
+<script language="javascript">
+
+function removeApp(){
+	var theValue = eval('document.RemoveDB.theList.options[document.RemoveDB.theList.selectedIndex].text')
+	document.RemoveDB.RemoveDB.value = theValue}
+function SetEditType(theName){
+document.EditType.EditType.value = theName}
+
+
+
+</script>

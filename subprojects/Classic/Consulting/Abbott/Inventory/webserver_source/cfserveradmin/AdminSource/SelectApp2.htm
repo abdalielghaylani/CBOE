@@ -1,0 +1,201 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()
+}
+
+
+function setAction(theAction){
+	if(theAction.toLowerCase() =='new'){
+		document.forms["SubmitAction"].FormAction.value = theAction
+		document.forms["SubmitAction"].AppName.value = theValue 
+		document.forms["SubmitAction"].submit()
+	}
+	else{
+	
+		if(theAction.toLowerCase() =='exit'){
+				document.forms["SubmitAction"].action = "/chemoffice.asp"
+				document.forms["SubmitAction"].submit()
+		}
+		else{
+			if(theAction.toLowerCase() =='remove'){
+				action="/cfserveradmin/AdminSource/WebEditor.ASP"
+				if(document.forms["SubmitAction"].elements["theList"].length>0){
+					var theValue = document.forms["SubmitAction"].elements["theList"].options[document.forms["SubmitAction"].elements["theList"].selectedIndex].text
+						if (confirm("The web application " +  theValue + " will be permanently deleted.  Continue?")){
+								
+								document.forms["SubmitAction"].FormAction.value = theAction
+								document.forms["SubmitAction"].AppName.value = theValue 
+								document.forms["SubmitAction"].submit()
+						}else{
+							action="/cfserveradmin/AdminSource/WebEditor.ASP"
+							document.forms["SubmitAction"].action=action
+							document.forms["SubmitAction"].FormAction.value = ""
+							document.forms["SubmitAction"].AppName.value = "" 
+							document.forms["SubmitAction"].submit()
+						}
+				}
+				else
+				{
+				
+				alert("please select a web application")
+				action="/cfserveradmin/AdminSource/WebEditor.ASP"
+				document.forms["SubmitAction"].action=action
+				document.forms["SubmitAction"].FormAction.value = ""
+				document.forms["SubmitAction"].AppName.value = "" 
+				document.forms["SubmitAction"].submit()
+				
+				}
+			}else{
+				if(theAction.toLowerCase() =='add'){
+					if(document.forms["SubmitAction"].elements["theList"].length>0){
+						var theValue = document.forms["SubmitAction"].elements["theList"].options[document.forms["SubmitAction"].elements["theList"].selectedIndex].text
+
+						document.forms["SubmitAction"].FormAction.value = theAction
+						document.forms["SubmitAction"].AppName.value = theValue 
+						document.forms["SubmitAction"].submit()
+					}else{
+						alert("please select a web application")
+						action="/cfserveradmin/AdminSource/WebEditor.ASP"
+						document.forms["SubmitAction"].action=action
+						document.forms["SubmitAction"].FormAction.value = ""
+						document.forms["SubmitAction"].AppName.value = "" 
+						document.forms["SubmitAction"].submit()
+					}
+				
+				}
+			}
+		}
+	}
+}
+
+function SetEditType(theName){
+	document.EditType.EditType.value = theName
+}
+
+
+</script>
+<script language="JavaScript" src="/cs_security/lib/javascript.js"></script>
+<link rel="stylesheet" type="text/css" href="/cs_security/style.css">
+<link type='text/xml' rel='alternate' href='/Default.vsdisco'/>
+<script LANGUAGE="javascript" src="/cs_security/Choosecss.js"></script>
+</head>
+
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table1">
+	<tr>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_coent.gif" width="370" height="51"></td>
+		<td background="/cs_security/graphics/header_000099_m.gif" width="100%" align="right" valign="middle">
+			<table border="0" cellpadding="0" height="30" ID="Table2"><tr><td valign="top">
+		
+			</td><td width="15">&nbsp;</td></tr></table>
+		</td>
+		<td>
+		<img border="0" src="/cs_security/graphics/header_000099_r.gif" width="4" height="51"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table3">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/tl_000099.gif" width="4" height="5"></td>
+		<td background="/cs_security/graphics/tm.gif" width="100%"><img border="0" src="/cs_security/graphics/tm.gif" width="11" height="5"></td>
+		<td><img border="0" src="/cs_security/graphics/tr_000099.gif" width="4" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" ID="Table4">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/ml.gif" width="24" height="20"></td>
+		<td background="/cs_security/graphics/mm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/mm.gif" width="10" height="20"></td>
+		<td><img border="0" src="/cs_security/graphics/mr.gif" width="24" height="20"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" table="100%" ID="Table5">
+	<tr>
+		<td background="/cs_security/graphics/cl.gif">
+		<img border="0" src="/cs_security/graphics/cl.gif" width="24" height="5"></td>
+		<td width="100%" bgcolor="#FFFFFF">
+
+<form name="SubmitAction" method="post"
+    action="WebEditor.ASP?WCI=make_choice&amp;WCE=SubmitAction&amp;WCU">
+
+<table border="0" bgcolor="#c0c0c0" width="650">
+  <tr>
+    <td>
+       <input type="hidden" name="FormAction" ><input type="hidden" name="AppName" ><table
+      border="0">
+        <tr>
+          <td><table border="0">
+            <tr>
+              <td><table border="0" bgcolor="#c0c0c0">
+                <tr>
+                  <td valign="top"><table border="0">
+                    <tr>
+                      <td width="316"><strong>ChemOffice Web Administration Options</strong></td>
+                      <td width="221"><div align="right"><p>&nbsp;</p>
+                      </div></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="center"><table border="1" cellspacing="1" cellpadding="4" width="626">
+                    <tr>
+                      <td width="300" valign="bottom" nowrap><table><tr><td><div align="left">Select a web application: <WC@WEB_APPS></WC@WEB_APPS></div>
+                     </td></tr><tr><center><td>
+                        <input type="submit" value="Add Data View" name="Add"
+                      onClick="setAction('Add')" id=Submit1></td></tr><tr><td><input type="submit" value="Delete Web Application" name="Remove"
+                      onClick="setAction('Remove')"></td></tr></table></CENTER></td>
+
+                      <td width="300" valign="bottom" nowrap><div align="center"><center><p><input type="submit"
+                      value="Create New Web Application" name="New" onClick="setAction('New')"></p></center></div></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="center" align="right"><input name="Exit" type="button" value="Exit"
+                  onClick="setAction('Exit')"><input name="Help1" type="button" value="Help"
+                  onClick="getHelp('admin_options')"></td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+ 
+    </td>
+  </tr>
+</table></FORM>
+</td>
+		<td background="/cs_security/graphics/cr.gif"><img border="0" src="/cs_security/graphics/cr.gif" width="24" height="5"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" ID="Table6">
+	<tr>
+		<td><img border="0" src="/cs_security/graphics/bl.gif" width="24" height="24"></td>
+		<td background="/cs_security/graphics/bm.gif" width="100%">
+		<img border="0" src="/cs_security/graphics/bm.gif" width="10" height="24"></td>
+		<td><img border="0" src="/cs_security/graphics/br.gif" width="24" height="24"></td>
+	</tr>
+</table>
+
+<br /><br />
+</body>
+</html>

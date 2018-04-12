@@ -1,0 +1,71 @@
+<%@ Language=VBScript %>
+<html>
+<head>
+<!-- TConnector ActiveX (invisible)-->
+<object id=tc classid=clsid:52359ACE-0952-11D4-988C-0000B4AA4B61 Width=20 Height=20></object>
+
+<script language="JavaScript" For=tc Event="ondata(data)"> 
+	alert('Event');
+</Script>
+<Script language="JavaScript">
+var OpenActive;
+OpenActive = false;
+ 
+function btnOpenDevice(){    
+    tc.Device = "COM1";
+    tc.Open();
+    alert("Device Opened")
+    OpenActive = true;
+}
+
+function btnStartListen(){
+    var dummy;
+    if (!OpenActive){
+        alert("No device has been opened."); 
+    }
+    else{
+        //clear buffer by reading 65000 bytes (we suppose that the buffer won't hold more data)
+        //On Error Resume Next
+        //dummy = tc.Read(65000, 100)     //read 65000 Bytes within 100 msec
+        //start listen (async mode)
+        tc.StartListen()
+        alert("Now listening");
+    }
+}
+
+function btnStopListen(){
+    tc.StopListen()
+    alert("Stopped Listening");
+}
+
+function tc_ondataavailable(Data){
+    alert(Data);
+    document.form1.databox.value = Data;
+}
+
+function btnCloseDevice(){
+    tc.Close()
+    OpenActive = False;
+}
+
+function btnReadBuffer(){
+	var Data
+	Data = tc.Read(20,3000);
+	alert(Data);
+	document.form1.databox.value = Data;
+}
+</Script>
+</head>
+<body>
+
+<form name=form1>
+	<input type=text name=databox size=30>
+	<p>
+	<input type=button value="Open Device" onclick="btnOpenDevice()">
+	<input type=button value="Close Device" onclick="btnCloseDevice()">	
+	<input type=button value="Start Listen" onclick="btnStartListen()">
+	<input type=button value="Stop Listen" onclick="btnStopListen()">
+	<input type=button value="Read Buffer" onclick="btnReadBuffer()">
+</form>
+</body>
+</html>

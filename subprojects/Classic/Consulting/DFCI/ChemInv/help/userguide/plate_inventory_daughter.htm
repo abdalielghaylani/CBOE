@@ -1,0 +1,289 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User Guide -- Create Daughter Plates</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="0,75,500,97" HREF="well_capacity.htm">
+<area SHAPE="RECT" COORDS="0,97,500,123" HREF="solvent.htm">
+<area SHAPE="RECT" COORDS="0,123,500,147" HREF="plate_type.htm">
+<area SHAPE="RECT" COORDS="0,147,500,172" HREF="source_volume.htm">
+<area SHAPE="RECT" COORDS="0,172,500,197" HREF="solvent_amount.htm">
+<area SHAPE="RECT" COORDS="0,215,500,245" HREF="concentration.htm">
+<area SHAPE="RECT" COORDS="0,245,500,270" HREF="number_plates.htm">
+</map><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>Create Daughter Plates</h1>
+<p>You can create daughter plates from a plate, <span lang="en-us">only if the 
+parent</span> plate contains 
+enough content. <span lang="en-us">When creating daughter plates, reformatting 
+plates, or creating plates from text file, you need to take care of two values:
+</span></p>
+<ul>
+	<li><span lang="en-us">The quantity of the compound </span></li>
+	<li><span lang="en-us">The volume/concentration of the solution.</span></li>
+</ul>
+<p><span lang="en-us">If you are tracking the quantity of compound and solution 
+volume/concentration then you should have values for qty_remaining and 
+solvent_volume fields . solution_volume will be calculated from these values. 
+However, concentration will have to be entered by the user. The system will 
+calculate the Molar concentration by default, but that is stored in a separate 
+field. <br>
+<br>
+If you are tracking solution volume/concentration then you can simply enter the 
+solution volume and qty_remaining will be null. You can still add solvent_volume 
+to dilute the plate. <br>
+<br>
+When daughtering/reformatting/creating plates from text file or any time you are 
+creating a new plate from an existing plate, the system should automatically 
+decrement the quantity values appropriately. </span></p>
+<p><span lang="en-us"><b>Examples</b>: </span></p>
+<ul>
+	<li><span lang="en-us">Dry compound, solvated <br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	10umol&nbsp;&nbsp;&nbsp;&nbsp; 10ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	10ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+	<br>
+	Daughter: Take 1 umol, qty values in the new plate should be:<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	1umol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+	<br>
+	Daughter: Take 1 ul, qty values in the new plate should be:<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	1umol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+&nbsp;</span></li>
+	<li><span lang="en-us">Wet compound, solvated (rare for a wet compound)<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	10ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	20ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+	Daughter: Take 1 ul, qty values in the new plate should be:<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	.5 ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .5ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+&nbsp;</span></li>
+	<li><span lang="en-us">Solution tracking only<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	10ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+	<br>
+	Daughter: Take 1 ul, qty values in the new plate should be:<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+&nbsp;</span></li>
+</ul>
+<blockquote>
+	<p><span lang="en-us">Daughter (with wrong units): Take 1 ug, qty values in 
+	the new plate should be:<br>
+	<br>
+	qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solvent vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	solution vol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conc<br>
+	<br>
+	null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	0ul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	1M<br>
+&nbsp;</span></p>
+</blockquote>
+<p>To see if you have the appropriate privileges to create daughter plates, 
+<span lang="en-us">please </span>see <a href="roles.htm">Roles </a>and <a href="privileges.htm">
+Privileges</a>.</p>
+<p>To create daughter plates:</p>
+<ol>
+	<li><span lang="en-us">Navigate through the </span> <a href="location_management.htm#location_tree_frame">
+	Location Tree frame</a><span lang="en-us"> 
+	to reach to the location that contains the desired plate.</span></li>
+	<li><span lang="en-us">Click the appropriate plate in the 
+<a href="plate_inventory_view.htm#plate_list_frame">Plate List frame</a></span>.<span lang="en-us"> 
+	The details of the plate are displayed in the 
+<a href="plate_inventory_view.htm#plate_details_frame">Plate Details frame</a>.</span></li>
+	<li><span lang="en-us">Select </span><b>Create Daughter Plates</b> 
+	<span lang="en-us">from the <b>Create</b> menu </span>in the <span lang="en-us">
+	Plate</span> Details frame. The following page appears:</li>
+</ol>
+<blockquote>
+	<p><img border="1" src="../images/plate_daughter.gif"></p>
+</blockquote>
+<ol>
+	<li value=4>Specify <span lang="en-us">the </span>number of daughter plates 
+	that are to be created in the
+	<b># of Daughter Plates</b> text box.</li>
+	<li>Click the <b>Next</b> button. The following page appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/plate_daughter_source.gif" width="512" height="130"></p>
+	<p>In the preceding page, select the <b>Yes</b> radio button if you want to 
+	add a solvent to the <span lang="en-us">parent </span>plate. When you select 
+	the 
+	<b>Yes</b> radio button, <span lang="en-us">the preceding page gets 
+	populated with 
+	</span>some additional fields<span lang="en-us">, as shown in the following 
+	figure</span>:</p>
+	<p>
+	<img border="1" src="../images/plate_daughter_source_yes.gif" ></p>
+	<p><span lang="en-us">You need to perform the following tasks to </span>set 
+	the<span lang="en-us">se</span> fields<span lang="en-us">:</span>
+	</p>
+	<ul>
+		<li>Specify the volume of solvent in the <b>Solvent Volume Added</b> 
+		text box.</li>
+		<li>Select the appropriate unit <span lang="en-us">for the solvent 
+		</span>from the list box next to the 
+	<b><span lang="en-us">Solvent </span>Volume Added</b> 
+		text box. Observe that the target concentration gets calculated 
+		automatically and is displayed in the <b>Target Concentration</b> text 
+		box.</li>
+	</ul>
+</blockquote>
+<ol>
+	<li value=6>Click the <b>Next</b> button. The following page appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="1" src="../images/plate_daughter_target.gif" ></p>
+</blockquote>
+<ol>
+	<li value=7><span lang="en-us">Perform the following tasks t</span>o set the 
+	fields contained in the preceding page:</li>
+</ol>
+<ul>
+	<li>Specify barcodes for the daughter plates by performing one of the 
+	following tasks:<ul type="circle">
+		<li>Type the barcode<span lang="en-us"> of the daughter plates</span> in 
+		the respective
+		<b>Plate Barcode</b> text boxes. </li>
+		<li>Select the <b>Auto-generate barcode from barcode description</b> 
+		radio button. This displays the <b>Barcode Description</b> <span lang="en-us">
+		drop down list</span>. Select the appropriate option from the <b>Barcode 
+		Description</b> <span lang="en-us">drop down list</span>.</li>
+		<li>Select the <b>Auto-generate barcode from custom sequence</b> radio 
+		button. This displays the <b>Prefix</b> and <b>Sequence Start</b> text 
+		boxes. Type appropriate values in both the text boxes.</li>
+	</ul>
+	</li>
+	<li>Specify the ID of the location where the daughter plates are to be kept 
+	in the <b>Location ID</b> text box.</li>
+	<li>Select the type of the daughter plates from the <b>Select Plate Type</b> 
+		<span lang="en-us">drop down list</span>.</li>
+	<li>Specify the amount that is to be taken from the parent plate in the 
+		<b>Source Amount </b><span lang="en-us"><b>Taken</b> </span>text box.</li>
+	<li>Specify the type of the solvent for the target plates in the <b>Select 
+	Solvent</b> <span lang="en-us">drop down list</span>.</li>
+	<li>Specify the volume of the solvent in the <b>Solvent Volume</b> text box.</li>
+	<li>Select the appropriate unit for the solvent from the list box next to 
+	the <b>Solvent Volume</b> <span lang="en-us">drop down list</span>.</li>
+</ul>
+<blockquote>
+	<p><span lang="en-us"><b>Note:</b> </span>Select the Dry source plates after 
+	reformat check box if you want to dry the source plate and set the volume of 
+	solvent and solution to zero, after the daughter plates are created.</p>
+	<p><span lang="en-us"><b>Note:</b> </span>While creating daughter plates, 
+	make sure that the units specified for 
+	<span lang="en-us">parent</span> 
+	and <span lang="en-us">target</span> plates are in sink with each other. For 
+	example, if the unit f<span lang="en-us">or</span> <span lang="en-us">the 
+	parent </span>plate is microliter and the unit f<span lang="en-us">or</span> 
+	the 
+	<span lang="en-us">target</span> plate is cubic feet, then no amount of the <span lang="en-us">
+	parent</span> plate <span lang="en-us">content are</span> added to the 
+	<span lang="en-us">target</span> plates.</p>
+</blockquote>
+<ol>
+	<li value=8>Click the <b>OK</b> button. Observe that the daughter plates are 
+	created at the specified location.</li>
+</ol>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->  
+          
+</body>
+</html>

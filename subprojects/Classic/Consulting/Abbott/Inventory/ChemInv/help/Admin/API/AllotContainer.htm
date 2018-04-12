@@ -1,0 +1,96 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>Inventory Manager HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>Inventory Manager</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <strong>Admin&nbsp;Guide</strong>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="45357" -->
+&nbsp;
+<h1>AllotContainer</h1><p>Used to calculate the amount of substance that should be 
+alloted to new (or existing) containers which are being sampled or split.&nbsp; 
+Which action is specified by a&nbsp;parameter.&nbsp;&nbsp;&nbsp;</p><h3>Syntax</h3><pre>/cheminv/api/AllotContainer.asp?ContainerID=adNumeric&amp;NumContainers=Int&amp;Action=adVarChar&amp;ContainerSize=adNumeric[&amp;QtyRemaining= adNumeric]</pre>
+
+<h3>Inputs</h3>
+
+<h5 class="param">ContainerID</h5>
+<p class="param">The ID of the&nbsp;conatiner (the parent 
+container) to be split or sampled.&nbsp;          </p>
+
+<h5 class="param">NumContainers</h5>
+<p class="param">The number of &nbsp;conatiners the parent 
+container is split or sampled into.          </p>
+<h5 class="param">Action = split|sample</h5>
+<p class="param">The only two options are split and sample.&nbsp;When a container 
+is split, the container contents if dispersed among new containers, the original 
+conatiner being removed.&nbsp; On the other hand, when a container is sampled 
+some quantity of the entire quantity of the container is moved into new 
+containers, the original container&nbsp;left in tact, with less contents.</p>
+<h5 class="param">ConatinerSize</h5>
+<p class="param">&nbsp;The size of the newly created containers.</p>
+<h5 class="param">[QtyRemaining]</h5>
+<p class="param">The quantity left in the original container - <em>this field is required if&nbsp;Action =   
+   sample.&nbsp;</em></p>
+<h5 class="param">[Split#]</h5>
+<p class="param">The quantity in the new container - <em>this field is required 
+if&nbsp;Action = split.&nbsp;<br></em>There is a split parameter required for 
+each new container.&nbsp; For example, if there are 3 container being made, a 
+split1, split2, and split3 are required.</p>
+
+<h3>Outputs</h3>
+<p class="param">Pipe (|) delimited list of new container IDs.&nbsp;For example: 
+100|101</p>
+
+<h3>Example</h3>
+<p>A container (ID=111) is split into4 container (each having a size of 100 and quantity of 
+50)</p>
+
+<pre>/cheminv/api/AllotContainer.asp?ContainerID=111&amp;NumContainers=4&amp;Action=split&amp;ContainerSize=100&amp;split1=50&amp;split2=50&amp;split3=50andsplit4= 50</pre><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="17040" -->
+</body>
+</html>

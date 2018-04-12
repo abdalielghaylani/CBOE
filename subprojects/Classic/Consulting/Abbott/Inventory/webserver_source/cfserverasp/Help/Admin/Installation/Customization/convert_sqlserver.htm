@@ -1,0 +1,125 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice WebServer Admin Guide -- Converting an Access Based ChemOffice WebServer for use with&nbsp;SQLServer</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>Converting an Access Based ChemOffice WebServer for use with&nbsp;SQLServer</h1>
+<p>SQL Server is supported with CORE ChemOfficeWebServer 
+2001a d62 or later. Please see <a href="../../../../../../../ChemOffice/WebServer_source/cfserverasp/Help/Admin/Installation/Customization/convert_sqlserver_comp.htm">Checking 
+Compatibility</a>         
+             
+         for more 
+information.</p>
+<h2>Importing the Data Tables&nbsp;</h2>
+<p>SQL Server provides a tool, <strong>SQL Server Enterprise 
+Manager</strong>, in which it is possible to&nbsp;use 
+an&nbsp;<strong>Import/Export Wizard</strong>           
+            
+          to move&nbsp;data tables 
+from Access to SQL Server:</p>
+<p>As an example, we will convert the Sample database installed by ChemOffice 
+WebServer to use SQL Server as the RDBMS for the non structural data.&nbsp;</p>
+<p>1.&nbsp; Using SQL Server Enterprise Manager create a new database called 
+Sample.</p>
+<p>2. Create a SQL Server user/password with sufficient permissions to Select, 
+Update, Insert, Create, and Drop tables within the new database.&nbsp; For this 
+example I created a user called &quot;cows2001&quot; with password &quot;sample&quot;.&nbsp;</p>
+<p>3. Right click the new DB name and select &quot;All Tasks/Import Data...&quot;</p>
+<p>4. For the Data Source select &quot;Microsoft Access&quot; from the drop down, and for 
+the file name browse to the location of the sample access file usually located 
+in inetpub/wwwroot/chemoffice/sample/database/sample.mdb</p>
+<p>5. For the Destination choose &quot;OLEDB Provider for SQL Server&quot;, then&nbsp; 
+select the name of your sever, and the name of the newly created database 
+(Sample).</p>
+<p>6. Next select the option to copy tables fro the database and choose the 
+MolTable and the Synonym_r tables.&nbsp; These are the only two tables used by 
+the sample application.&nbsp; If you are importing your own application, make 
+sure to copy all tables accessed by the WebServer application.</p>
+<p>7. After the import process is completed, take a quick look at the tables in 
+SQL Server to make sure all the data was imported properly.&nbsp;&nbsp; When 
+looking at these tables be sure to look at any fields that were &quot;Autonumber&quot; 
+fields in Access.&nbsp; If you need to maintain these as &quot;Autonumber&quot; fields 
+they should have a field type of &quot;int&quot; and the &quot;Identity&quot; property should be 
+changed to &quot;Yes&quot;.</p>
+<h2>Connecting the ChemOffice WebServer Application </h2>
+<ol>
+  <li>Open the ini file in the application/config folder. 
+  In our case this will be 
+  <strong>inetpub/wwwroot/chemoffice/sample/config/sample.ini</strong> 
+  <li>Search for &quot;ACCESS&quot; and replace with &quot;SQLSERVER&quot;. This will change all the 
+  SQL_SYNTAX entries to &quot;SQLSERVER&quot;. 
+  <li> Go to the &quot;BASE_CONNECTION&quot; section
+
+<br>Change the 
+  following the settings so they appear like those below. </li></ol>       
+     
+
+    <blockquote>
+      <dl>
+        <dd>[BASE_CONNECTION] 
+        <dd>CONN_TYPE=Provider 
+        <dd>CONNECTION_STRING=SQLOLEDB; Data Source=&lt;YOURSERVERNAME&gt;; 
+        Initial Catalog=Sample; User Id=cows2001; Password=sample&nbsp; 
+        <dd>CONNECTION_TIMEOUT=30 
+        <dd>COMMAND_TIMEOUT=30 
+        <dd>CONNECTION_USERNAME= 
+        <dd>CONNECTION_PASSWORD= 
+        <dt> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DBMS=SQLSERVER </dt></dl></blockquote>
+<p>
+    <br>NOTE: The last line, which defines SQLSERVER as the 
+DBMS is new.&nbsp; Additionally,&nbsp;the user name and the password are now 
+included in the connection string rather than using the separate ini 
+entries.&nbsp; </p><!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

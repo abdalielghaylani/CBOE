@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<title>Web Editor</title>
+<script Language="JavaScript" SRC="/cfserveradmin/AdminSource/JSBrowser/JSBrowser.js">
+</script>
+<script
+language="javascript">
+
+function getGlobalsInfo(){
+	conn_type = document.SubmitAction.DB_TYPE_Hidden.value
+	
+	for(i=0;i<document.SubmitAction.DB_TYPE.length;i++){
+		if (document.SubmitAction.DB_TYPE[i].value == "STRUC"){
+			document.SubmitAction.DB_TYPE[i].checked = true
+		}
+		if (document.SubmitAction.DB_TYPE[i].value == "RXN"){
+			document.SubmitAction.DB_TYPE[i].checked = true
+		}
+
+}	
+
+}
+
+
+function getHelp(helpTopic){
+		var w = window.open("/Cfserveradmin/adminsource/webadminutil.asp?type=help&topic=" + helpTopic, "Help", "width=400,height=400,scrollbars=yes,status=no,resizable=no");
+		w.opener = window
+		w.focus()}
+function setAction(theAction){
+				document.SubmitAction.FormAction.value = theAction
+				document.SubmitAction.submit()
+}
+
+
+
+
+</script>
+</head>
+
+<body onload="getGlobalsInfo()">
+
+<table border="0" width="672">
+  <tr>
+    <td width="77"><img src="/cfserveradmin/graphics/cnco.gif" width="75" height="54"
+    alt="cnco.gif (2252 bytes)"></td>
+    <td width="583"><img src="/cfserveradmin/graphics/WebAdminbnr.gif"
+    alt="WebAdminbnr.gif (3575 bytes)"></td>
+  </tr>
+</table>
+
+<table border="0">
+  <tr>
+    <td height="15" bgcolor="#ffffff"><strong>Application: &nbsp; </strong><WC@APP_NAME></WC@APP_NAME><strong>&nbsp; Data
+    View:&nbsp; </strong><WC@DB_NAME></WC@DB_NAME></td>
+  </tr>
+  <tr>
+    <td height="245" valign="top"><table border="1" bgcolor="#C0C0C0" width="650">
+      <tr>
+        <td><form name="SubmitAction" method="post"
+        action="WebEditor.ASP?WCI=edit_global_vars&amp;WCE=SubmitAction&amp;WCU">
+          <input type="hidden" name="FormAction" value><input type="hidden" name="DBName" value><table
+          border="0" width="637">
+            <tr>
+              <td width="633"><table border="0">
+                <tr>
+                  <td valign="center"><table border="0">
+                    <tr>
+                      <td><table border="0">
+                        <tr>
+                        <td width="186" nowrap>About Window Text:</td>
+                        <td width="415" height="32"><WC@ABOUT_WINDOW></WC@ABOUT_WINDOW></td>
+                        </tr>
+                        <tr>
+                        <td width="186" nowrap>Display Name:</td>
+                        <td width="174" height="23"><WC@DISPLAY_NAME></WC@DISPLAY_NAME></td>
+                        </tr>
+                        <tr>
+                        <td width="186" nowrap>Maximum Hits Returned:</td>
+                        <td width="174" height="23"><WC@MAXHITS></WC@MAXHITS></td>
+                        </tr>
+                        <tr>
+                        <td width="186" nowrap>Number of Database Records:</td>
+                        <td width="174" height="19"><WC@DB_RECORD_COUNT></WC@DB_RECORD_COUNT></td>
+                        </tr>
+                        <tr>
+                        <td width="186" nowrap>Database Type:</td>
+                        <td width="174" height="19"><WC@DB_TYPE></WC@DB_TYPE><input type="radio" value="STRUC" name="DB_TYPE">Structure<input
+                        type="radio" name="DB_TYPE" value="RXN">Reaction</td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+            <tr>
+              <td width="633" align="right"><input type="submit" value="    OK    " name="OK"
+              onClick="setAction('Done')"><input type="submit" value="Cancel" name="Cancel"
+              onClick="setAction('Cancel')"><input type="button" value="Help" name="Help"
+              onClick="getHelp('app_settings')"></td>
+            </tr>
+          </table>
+        </form>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp; </p>
+</body>
+</html>
+<script language="javascript">
+
+function removeApp(){
+	var theValue = eval('document.RemoveDB.theList.options[document.RemoveDB.theList.selectedIndex].text')
+	document.RemoveDB.RemoveDB.value = theValue}
+function SetEditType(theName){
+document.EditType.EditType.value = theName}
+
+
+
+</script>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Optional Feature" MadCap:InPreviewMode="false" MadCap:previewFolder="file:///D:/help/Registration Enterprise/Output/Administrator/Temporary/MyWebHelp/Preview/" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="default.xml" MadCap:SearchType="Stem">
+    <head><title>Row Level Security</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Registration.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Registration.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Optional_Feature.htm#Appendix_3549196451_999175">Optional Feature</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Row Level Security</span>
+        </div>
+        <h2 class="Heading2"><a name="Appendix_3549196451_999247"></a><a name="kanchor47"></a>Row Level Security</h2>
+        <p class="Body">Row Level Security (RLS) is implemented over the standard Oracle roles in Registration Enterprise. The purpose of using roles in Registration Enterprise is to restrict access to the elements of the interface and data. For example, User A has access to one set of user interface elements, such as buttons and menus, while User B is limited to a subset of those available to A. In addition, roles limit what a user can do with the data. For example, User A can register data and edit that data but User B can only register.</p>
+        <p class="Body">RLS implements an additional layer of security to Registration Enterprise, which is project based. Each compound, when registered, is assigned to a project. If RLS is implemented, users can only see and manipulate data associated with the projects they are a part of. For example, in a system without RLS implemented, User A can see all compounds in the registry, as does User B. However, in a system with RLS implemented, User A is associated with a particular project, and is only able to see compounds that are linked to that project. </p>
+        <p class="Body">The implementation of RLS in Registration Enterprise affects the following:</p>
+        <table class="AutoNumber_div_Bullet1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">User interface</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Linkage of the projects with people</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Unspecified projects</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Duplication of the compounds</td>
+            </tr>
+        </table>
+        <h4 class="Heading4"><a name="kanchor48"></a>User Interface</h4>
+        <p class="Body">The home page of Registration Enterprise displays the total number of registered records available in Registration Enterprise. With RLS implemented, this value reflects only the records a user can see, not the total records in Registration Enterprise. </p>
+        <p class="Body">Similarly, with RLS implemented, the Project drop-down list shows only those projects that the user is linked to. Therefore, user can only access the compounds associated with the projects for which the user has rights.</p>
+        <h4 class="Heading4"><a name="kanchor49"></a>Linkage of Projects With People</h4>
+        <p class="Body">When a project is created in Registration Enterprise all the Registration Enterprise users are given permissions to access that project. However, when RLS is implemented some of the users are denied access to the project. In this case, the project information is not modified or deleted, only the restricted users are not allowed to access the compounds in the project.</p>
+        <h4 class="Heading4"><a name="kanchor50"></a>Unspecified Project</h4>
+        <p class="Body">Unspecified project is assigned to the records that do not have a valid Project ID associated with them. The records associated with the unspecified project are stored in the Temporary table and the unspecified project is assigned to the administrator. This allows administrator to check the Temporary table for these types of records and assign them a valid Project ID. </p>
+        <h4 class="Heading4"><a name="kanchor51"></a>Duplicate Checking</h4>
+        <p class="Body">If RLS is enabled, you can register a compound even if the compound exists already in Registration Enterprise, but not in the project associated with the compound. The Duplicate window does not appear in this case, however, being a duplicate the compound is stored in the Duplicates table. On the other hand, you cannot register the compound if the compound is duplicated in the project associated with it. In this case the Duplicate window appears.</p>
+        <h5 class="Heading5"><a name="kanchor52"></a>Viewing System Duplicates</h5>
+        <p class="Body">To view the list of the duplicates in Registration Enterprise, click the View Duplicates button, which is displayed in the Registration Enterprise home page if the user has sufficient privileges. The list of the duplicates is displayed in the standard ChemOffice Enterprise List/Display View and the Registration numbers of the duplicated records are highlighted in Red, in the list.</p>
+        <p class="Body">Every time a duplicate is added to Registration Enterprise, two entries are made for it in the Duplicate table. That is, if Compound A is registered as the duplicate of Compound B, then following entries are made in the Duplicates Table:</p>
+        <table class="AutoNumber_div_Bullet1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Compound A -&gt; Compound B </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_Bullet1-last" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 19.2px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_Bullet1-1st" valign="top"><span> • </span>
+                </td>
+                <td class="AutoNumber_div_Bullet1-1st" MadCap:autonum=" • " valign="top">Compound B -&gt; Compound A </td>
+            </tr>
+        </table>
+        <p class="Body">Therefore, when duplicates are checked users see both sides of the picture: A is a duplicate of B and conversely B is a duplicate of A. </p>
+        <h4 class="Heading4"><a name="kanchor53"></a>Deleting a Duplicate</h4>
+        <p class="Body">If a duplicate record is deleted, it is removed from the Duplicates Table.</p>
+        <div class="Note" MadCap:autonum="NOTE:"><span class="autonumber"><span class="Note">NOTE:</span></span>For details regarding activation of RLS, see the Registration System Administrator Guide or your system administrator.</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

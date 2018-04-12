@@ -1,0 +1,155 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Substructure Search</title>
+</head>
+<body>
+
+<map NAME="screenshot">
+<area SHAPE="RECT" COORDS="0,35,380,440" HREF="fields/substructure.htm">
+
+<area SHAPE="RECT" COORDS="380,45,630,85" HREF="fields/substance_name.htm">
+<area SHAPE="RECT" COORDS="630,45,855,85" HREF="fields/container_barcode.htm">
+<area SHAPE="RECT" COORDS="855,45,1057,85" HREF="fields/catalog_number.htm">
+
+<area SHAPE="RECT" COORDS="380,85,630,125" HREF="fields/cas_number.htm">
+<area SHAPE="RECT" COORDS="630,85,855,125" HREF="fields/container_internal.htm">
+<area SHAPE="RECT" COORDS="855,85,1057,125" HREF="fields/supplier.htm">
+
+<area SHAPE="RECT" COORDS="380,125,630,165" HREF="fields/acx_number.htm">
+<area SHAPE="RECT" COORDS="630,125,855,165" HREF="fields/container_name.htm">
+<area SHAPE="RECT" COORDS="855,125,1057,165" HREF="fields/expiration_date.htm">
+
+<area SHAPE="RECT" COORDS="380,165,630,205" HREF="fields/molecular_formula.htm">
+<area SHAPE="RECT" COORDS="630,165,855,205" HREF="fields/container_type.htm">
+<area SHAPE="RECT" COORDS="855,165,1057,205" HREF="fields/date_ordered.htm">
+
+<area SHAPE="RECT" COORDS="380,205,630,245" HREF="fields/molweight_range.htm">
+<area SHAPE="RECT" COORDS="630,205,855,245" HREF="fields/container_status.htm">
+<area SHAPE="RECT" COORDS="855,205,1057,245" HREF="fields/date_received.htm">
+
+<area SHAPE="RECT" COORDS="380,245,630,285" HREF="fields/purity.htm">
+<area SHAPE="RECT" COORDS="630,245,855,285" HREF="fields/unit_measure.htm">
+<area SHAPE="RECT" COORDS="855,245,1057,285" HREF="fields/po_number.htm">
+
+<area SHAPE="RECT" COORDS="380,285,630,325" HREF="fields/concentration.htm">
+<area SHAPE="RECT" COORDS="630,285,855,325" HREF="fields/container_size.htm">
+<area SHAPE="RECT" COORDS="855,285,1057,325" HREF="fields/lot_number.htm">
+
+<area SHAPE="RECT" COORDS="380,325,630,365" HREF="fields/grade.htm">
+<area SHAPE="RECT" COORDS="630,325,855,365" HREF="fields/qty_remain.htm">
+<area SHAPE="RECT" COORDS="855,325,1057,365" HREF="fields/container_cost.htm">
+
+<area SHAPE="RECT" COORDS="380,365,630,405" HREF="fields/location_id.htm">
+<area SHAPE="RECT" COORDS="630,365,855,405" HREF="fields/qty_available.htm">
+<area SHAPE="RECT" COORDS="855,365,1057,405" HREF="fields/owner_id.htm">
+
+<area SHAPE="RECT" COORDS="630,405,855,445" HREF="fields/location_barcode.htm">
+<area SHAPE="RECT" COORDS="855,405,1057,445" HREF="fields/user_id.htm">
+</map> 
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan -->  
+<h1>Substructure Search</h1>
+<p> 
+The substructure search option allows searching through 
+the use of all of the attributes in the <a href="advanced_search.htm">Advanced 
+Search </a>in addition to <a href="fields/substance_name.htm">Substance 
+Name</a>, <a href="fields/molecular_formula.htm">Molecular Formula</a>, <a href="fields/molweight_range.htm">MolWeight Range</a>, and of course, <a href="fields/substructure.htm">Substructure</a>. </p>
+<p>To allow you to draw your substructure, a ChemDraw Plugin will open along with
+this search tab. For more information about using the ChemDraw Plugin, see
+Drawing Chemical Structures in the ChemDraw User's Guide. </p>
+<p> 
+Additionally, the structure drawn can be searched for 
+assuming it to be a
+<a href="/cfserverasp/help/global/search_types_structure_sub.html">Substructure</a> ,the 
+<a href="/cfserverasp/Help/global/search_types_structure_fullstruct.html">Full Structure</a>,  the
+<a href="../../../../ChemOffice/webserver_source/cfserverasp/Help/global/search_types_structure_exact_old.html">Exact 
+Structure</a>, or with
+<a href="/cfserverasp/help/global/search_types_structure_similar.html">Tanimoto 
+Similarity</a>. Select the
+correct type under Search Type. </p>
+<p>
+<img border ="1" src="../images/substructure_search.gif" useMap="#screenshot" border="0" width="1002" height="492"> </p>
+<p>How to search: </p>
+<ol>
+  <li>Enter the desired information to search for. For more information about entering search criteria, see Searching ChemOffice 
+  Enterprise Applications in the 
+  <a href="/cfserverasp/help/global/searching.html">ChemOffice Enterprise Users Guide</a>.  
+  <li>Select the <strong>Search Sublocations</strong> checkbox if you want to 
+  search all sublocations of the chosen location. 
+  <li>Select the <strong>Exclude Special Locations</strong> checkbox if you want 
+  to exclude <a href="searching_special_locations.htm">special locations</a>. 
+  <li>Select the <strong>Group results by chemical structure </strong>checkbox if you want results grouped by 
+  chemical structure.             
+           
+     
+  <li>Click <img src="../images/search_btn.gif" border="0" width="80" height="21">
+  <b>Search</b> in the toolbar. </li>
+</ol>
+<p>A list of substances matching your search
+parameters is returned. Clicking on the details button of one of the substances will allow
+you to view, all of the inventory containers that contain that substance. For information
+about Searching for substances and their properties, see &quot;<a href="substance_searching.htm">Searching
+for a Substance</a>&quot;.</p>
+<p>Deselecting the &quot;Group results by chemical structure 
+search box&quot; will lead directly to a list of containers matching the search 
+criteria (bypassing the substance grouping).</p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="34507" endspan -->               
+</body>
+</html>

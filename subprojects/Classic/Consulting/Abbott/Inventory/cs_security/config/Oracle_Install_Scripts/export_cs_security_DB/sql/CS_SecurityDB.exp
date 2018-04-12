@@ -1,0 +1,6 @@
+USERID=system/manager
+BUFFER=102400
+OWNER=CS_SECURITY
+COMPRESS=Y
+FILE=CS_SecurityDB.dmp
+LOG=CS_SecurityDB.log

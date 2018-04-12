@@ -1,0 +1,121 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- APP_NAME</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>   [BASE_FORM_GROUP] <br>   </h1>
+<p>    
+              
+     Description:&nbsp;The form groups specified in the key, 
+references individual form group sections elsewhere in the ini file. Form groups 
+are a way for ChemOffice Webserver to specify different input and result forms 
+and functionality via    
+              
+         
+    
+              
+              
+            
+            
+          
+Form_group_flags.     
+               
+       
+        
+   
+                           
+              
+           </p>
+<p>    
+              
+     The Base_form_group definition is the default 
+definition for standard ChemOffice searching using the ChemDraw    
+              
+         
+    
+              
+              
+            
+            
+          
+plugin.&nbsp;&nbsp;&nbsp;     
+               
+       
+        
+   
+                           
+              
+           </p>
+<p>   The sample.ini definition is as follows:</p>
+<p>
+<table cellSpacing="1" cellPadding="1" width="50%" border="1" style="WIDTH: 50%">
+  
+  <tr>
+    <td><a name="moltable"></a>
+      <p><a name="synonyms_r"></a>[BASE_FORM_GROUP] <br><a href="INPUT_FORM_PATH.htm">INPUT_FORM_PATH</a>=sample_input_form.asp <br><a href="INPUT_FORM_MODE.htm">INPUT_FORM_MODE</a>=search <br><a href="RESULT_FORM_PATH.htm">RESULT_FORM_PATH</a>=sample_result_list.asp 
+      <br><a href="RESULT_FORM_MODE.htm">RESULT_FORM_MODE</a>=list&nbsp; <br><a href="PLUGIN_VALUE.htm">PLUGIN_VALUE</a>=True <br><a href="STRUCTURE_FIELDS.htm">STRUCTURE_FIELDS</a>=MolTable.Structure <br><a href="FORM_GROUP_FLAG.htm">FORM_GROUP_FLAG</a>=SINGLE_SEARCH <br><a href="MW_FIELDS.htm">MW_FIELDS</a>=MolTable.MolWeight <br><a href="FORMULA_FIELDS.htm">FORMULA_FIELDS</a>=MolTable.Formula <br><a href="SEARCHABLE_ADO_FIELDS.htm">SEARCHABLE_ADO_FIELDS</a>=MolTable.MOL_ID;1,MolTable.Molname;0,Synonyms_r.SYN_ID;1,Synonyms_r.Synonym_r;0 
+      <a href="REQUIRED_FIELDS.htm">REQUIRED_FIELDS</a>=NULL <br><a href="SDFILE_FIELDS.htm">SDFILE_FIELDS</a>=TABLES:MOLTABLE,SYNONYMS_R <br><a href="TABLE_GROUP.htm">TABLE_GROUP</a>=base_table_group <br><a href="NUM_LIST_VIEW.htm">NUM_LIST_VIEW</a>=5 
+  </p> 
+</td></tr></table>        </p>           
+              
+     
+<p style="COLOR: firebrick"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&nbsp; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em></p>
+<!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+CREATE TABLE INV_PICKLISTS (
+	PickList_ID NUMBER(8,0),
+	PickList_Display VARCHAR2(50) NOT NULL,
+	PickList_Domain NUMBER(4) NOT NULL,
+	PICKLIST_CODE VARCHAR2(8),
+	CONSTRAINT PickList_PK 
+		primary key (PickList_ID) USING INDEX TABLESPACE &&indexTableSpaceName,	
+	CONSTRAINT Inv_Picklists_FK FOREIGN KEY(PICKLIST_DOMAIN) REFERENCES &&schemaName..INV_PICKLIST_TYPES(PICKLIST_TYPE_ID),
+	CONSTRAINT Inv_Picklist_U1 UNIQUE (PICKLIST_DOMAIN, PICKLIST_DISPLAY),
+	CONSTRAINT Inv_Picklist_U2 UNIQUE (PICKLIST_DOMAIN, PICKLIST_CODE)
+)
+;
+
+-- Allow for test data that is explicitly inserted later
+CREATE SEQUENCE SEQ_INV_PICKLISTS INCREMENT BY 1 START WITH 1100 MAXVALUE 1.0E28 MINVALUE 1 NOCYCLE;
+
+CREATE OR REPLACE TRIGGER "TRG_INV_PICKLISTS"
+    BEFORE INSERT
+    ON "INV_PICKLISTS"
+    FOR EACH ROW
+    begin
+        if :new.Picklist_ID is null then
+            select seq_INV_PICKLISTS.nextval into :new.Picklist_ID from dual;
+        end if;
+    end;
+/

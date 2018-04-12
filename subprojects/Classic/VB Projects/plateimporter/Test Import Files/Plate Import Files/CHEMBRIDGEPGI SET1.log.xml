@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Log_file>
+<Section
+v="#1 Summary"
+><n v="Database upgrade of C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1.mst"/>
+<n v="From version 7 to 9.0"/>
+<n v="Conversion cancelled"/>
+<n v="2 Error(s) (1 distinct)"/>
+<n v="0 Warning(s) (0 distinct)"/>
+<n v="0 Note(s) (0 distinct)"/>
+<n v="Begun Thu, December 15, 2005, 14:31"/>
+<n v="Time taken: 3/3 seconds (CPU/real)"/>
+</Section>
+<Section
+v="#2 Main"
+><Sorted_by_message
+><Error
+><Msg
+v="Failed to rename file * to *"
+><n v="Failed to rename file C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1.mst to C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1_previous_7.mst"/>
+<n v="Failed to rename file C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1.mst to C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1_previous_7.mst"/>
+</Msg>
+</Error>
+<Warning
+></Warning>
+<Note
+></Note>
+</Sorted_by_message>
+<Sorted_chronologically
+><n v="Failed to rename file C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1.mst to C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1_previous_7.mst"/>
+<n v="Operation incomplete; old files unchanged"/>
+<n v="Failed to rename file C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1.mst to C:\PlateImporter\Test Import Files\Plate Import Files\CHEMBRIDGEPGI SET1_previous_7.mst"/>
+</Sorted_chronologically>
+</Section>
+</Log_file>

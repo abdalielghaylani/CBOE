@@ -1,0 +1,31 @@
+<html>
+
+<head><script language="javascript">
+OpenerWindow = opener
+theTarget = opener.theBoxName
+function setValue(){
+		theForm=OpenerWindow.document.SubmitAction
+		theForm.dialogVal.value = document.dialog.addValue.value
+		theForm.submit()
+		window.close}
+</script>
+
+<title>Add Dialog</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body>
+
+<p>&nbsp;</p>
+
+<form name="dialog" method="POST">
+<WC@ADD>
+</WC@ADD>
+  <p><input type="button" value="   OK   " name="OK" onClick="setValue()"><input
+  type="button" value="Cancel" name="Cancel" onClick="window.close()"></p>
+  <p><WC@ADD_TEXT> </WC@ADD_TEXT></p>
+  <p>Enter a name to add:</p>
+  <p><input type="text" name="addValue" size="20"></p>
+</form>
+</body>
+</html>

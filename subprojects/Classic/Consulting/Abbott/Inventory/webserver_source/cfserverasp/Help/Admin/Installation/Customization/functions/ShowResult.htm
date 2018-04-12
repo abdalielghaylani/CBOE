@@ -1,0 +1,121 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowInputField</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>  ShowResult</h1>
+<p>This subroutine call appears in the following file:</p>
+<ul>
+  <li>sample_result_list.asp</li></ul>
+
+
+      <h4>Subroutine</h4>
+<pre> 
+      ShowResult 
+      dbkey,formgroup,rsname,table.field,style,width,height</pre>
+
+      <h4>Description</h4>
+
+      <p>     Shows results from a recordset in 
+      table format</p>
+
+      <h4>Parameters</h4>
+
+      <p>dbkey =<em></font> 
+      &lt;dataview name&gt;</em>  &nbsp;
+      <p>formgroup =</font><em> &lt;formgroup name&gt;</em>
+      <h5></h5> 
+      <p>rsname&nbsp;=</font><em> 
+      &lt;name of recordset object crested at 
+      start of tile&gt;</em>      
+      &nbsp;
+      <p>table.field =<em> &lt;table and field name using 
+      dot syntax&gt;</em></p>      
+      
+      <p>style = 
+      <em>RAW|PLAIN|TEXT|HIDDEN|TEXTAREA|PICTURE<br></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raw 
+      :&nbsp;raw HTML output and a non-breaking 
+      space<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plain 
+      :&nbsp;raw HTML 
+      output<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text : 
+      output in a text 
+      box<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hidden : 
+      output in a hidden 
+      field<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textarea : 
+      output in textarea
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picture 
+:&nbsp;output in a structure window&nbsp;(indicates that the field is a LOB 
+containing an image)&nbsp;</p>
+<blockquote dir="ltr" style="MARGIN-RIGHT: 0px">The PICTURE style should be in the following 
+format:<br><pre>PICTURE:MIME_TYPE:LOB_DISPLAY</pre><br>where:
+
+<ul>
+  <li>MIME_TYPE 
+  &#150; the mimetype of the image e.g. image/gif; image/jpeg, etc&#133;
+  <li>
+  LOB_DISPLAY &#150; is either IN_LINE (the 
+  default) or NEW_WINDOW. IN_LINE 
+  displays the image in the calling window, NEW_WINDOW displays a link that when 
+  clicked displays the image in a new window</li></ul>For Example: <pre>PICTURE:image/gif:IN_LINE</pre>  
+</blockquote>
+<p>width = &lt;width of text box or rows of textarea, 0 if not 
+applicable&gt;</p>
+<p>height = &lt;height of textarea, 0 if not applicable&gt;</p></span>
+
+      <h4>Example</h4>
+<ul>
+  <li>Display MolTable.Molname in raw HTML output and a non-breaking space<br><pre>ShowResult dbkey,formgroup,BaseRS,&quot;MolTable.Molname&quot;,&quot;raw&quot;,0,0<br> </pre><br>&nbsp;
+  <li> Display Graphics.Graphic as a gif in the calling window<br><pre>ShowResult dbkey,formgroup,GraphicsRS,&quot;Graphics.Graphic&quot;,&quot;PICTURE:image/gif:IN_LINE&quot;, &quot;80&quot;, &quot;80&quot;</pre></li></ul><pre>&nbsp;</pre>
+  <!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

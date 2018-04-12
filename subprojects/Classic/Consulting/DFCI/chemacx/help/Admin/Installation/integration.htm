@@ -1,0 +1,105 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../WebServer_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemACX Admin Guide -- Installation</title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemACX</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>Admin Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="41524" endspan -->
+<h1>Integration with Other Applications</h1>
+<p class="Numbered-intro">     
+ ChemACX can be integrated with <a href="#inv">Inventory Enterprise</a> and/or <a href="#reg">
+ Registration Enterprise</a>.&nbsp;</p>
+<a name="inv"></a><h2 class="Numbered-intro">Inventory Enterprise</h2>
+<ol>
+  <li>Update <strong>chemacx.udl</strong>. 
+  <ol>
+    <li>Browse to <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/</strong> 
+    <li>Double click <strong>ChemACX.udl</strong> 
+    <ul><li>For <em>Microsoft Access</em> Installations of ChemACX: Make sure the location of the 
+      ChemACX database (ChemACX.mdb) is correct.
+      <li>For 
+    <em>Oracle</em> Installations of ChemACX: Change the <strong>Data 
+    Source</strong> to the name 
+      of your Oracle Service </li></ul>
+    <li>Click <strong>OK</strong>.<br> </li></ol>
+  <li>Update <strong>invconfig.ini</strong>. 
+  <ol>
+    <li>Browse to and open 
+    <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invconfig.ini</strong> 
+    <li>Change the <strong>ACX_SERVER_NAME</strong> to point to the Server 
+    hosting ChemACX<br>This refers to the fully qualified domain name of the 
+    server, not the Oracle Service Name.<br>If set to NULL ChemACX integration 
+    will be disabled. 
+    <li>Browse to and open 
+    <strong>&lt;webroot&gt;/ChemOffice/chemacx/config/acxconfig.ini</strong> 
+    <li>Set 
+    <strong>EXPORT_TO_CHEMINV</strong>=&quot;<strong><em>True</em></strong>&quot;<br>&nbsp;</li></ol>
+  <li><em>If ChemACX is working with an Oracle database</em>: update 
+  <strong>invacx.ini</strong>. 
+  <ol>
+    <li>Browse to and open 
+    <strong>&lt;webroot&gt;/ChemOffice/cheminv/config/invacx.ini</strong> 
+    <li>Replace all occurrences of <strong><em>ACCESS</em></strong> with 
+    <strong><em>ORACLE</em></strong>.</li></ol></li></ol>
+<a name="reg"></a><h2>Registration Enterprise</h2>
+<ol>
+  <li>
+Browse to 
+  <strong>&lt;webroot&gt;/ChemOffice/chemacx/config/</strong>
+  <li>
+Open acxconfig.ini
+  <div></div>
+  <li>
+Set REG_SERVER_NAME to the name of the server 
+  where the Registration Enterprise is installed. 
+  <li>
+Set REGISTER_FROM_ACX to 1. 
+  <li>
+Save the changes.</li></ol>
+<p class="Numbered-intro"></p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.camsoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.camsoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="26967" endspan -->
+</body>
+
+</html>

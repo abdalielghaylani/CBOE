@@ -1,0 +1,181 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Substructure Search</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>Substructure Search</h1>
+<p><span lang="en-us">I</span>n addition to the
+<a href="advanced_search.htm">Advanced Search</a> fields<span lang="en-us">, y</span>ou can use the substructure search 
+to search Inventory Enterprise on the basis of the
+<a href="fields/substructure.htm">Substructure</a>,
+<a href="http://pebbles/COWS/ChemOffice/cheminv/help/userguide/fields/substance_name.htm">Substance Name</a>,
+<a href="http://pebbles/COWS/ChemOffice/cheminv/help/userguide/fields/molecular_formula.htm">Molecular Formula</a>, and
+<a href="http://pebbles/COWS/ChemOffice/cheminv/help/userguide/fields/molweight_range.htm">MolWeight Range</a> 
+fields.</p>
+<p>To perform substructure search on Inventory Enterprise:</p>
+<ol>
+	<li>Click the <b>Search</b> link within the <b>Inventory Enterprise</b> section in the 
+home page of ChemOffice Enterprise. A page containing various search tabs, such 
+as Simple Search, Advanced Search, Substructure Search, <span lang="en-us">Batch 
+	Search, </span>Global Search, and Plate 
+Search, <span lang="en-us">is displayed</span>.</li>
+</ol>
+<blockquote>
+	<p><b>Note:</b> The page containing the search tabs can also be accessed by clicking 
+the Search link within the  
+	<a href="location_management.htm#current_location_frame">Current Location frame</a> in 
+the <a href="container_management.htm">Container Management</a> area.</p>
+</blockquote>
+<ol>
+	<li value="2">Click the <b>Substructure Search</b> tab. The <b>Substructure Search</b> tab page 
+appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/substructure_search.gif" ></p>
+	<b>Note</b>: The number of tabs visible in the preceding page depends on the configuration settings.
+</blockquote>
+<ol>
+	<li value="3"><span lang="en-us">Draw the substructure of a substance in 
+	the available drawing area in the <b>Substructure Search</b> tab page and specify 
+	the appropriate substructure search type in the <b>SearchType</b> drop down 
+	list, if you want to search Inventory Enterprise on the basis of the 
+	substructure of the substance stored in a container. The <b>SearchType</b> 
+	drop down list can take the following values:</span></li>
+</ol>
+<blockquote>
+	<ul>
+		<li><a href="/cfserverasp/help/global/search_types_structure_sub.html">Substructure</a></li>
+		<li>
+		<a href="/cfserverasp/Help/global/search_types_structure_fullstruct.html">Full Structure</a></li>
+		<li>
+		<a href="../../../../ChemOffice/webserver_source/cfserverasp/Help/global/search_types_structure_exact_old.html">Exact 
+Structure</a></li>
+		<li>
+		<a href="/cfserverasp/help/global/search_types_structure_similar.html">Tanimoto 
+Similarity</a></li>
+	</ul>
+	<p><span lang="en-us"><b>Note:</b> </span>You can draw substructure of 
+	<span lang="en-us">the</span> substance using the ChemDraw 
+	plug-in. 
+For information about using the ChemDraw plug-in, please see
+	<a href="http://pebbles/cfserverasp/Help/quick_reference/chemdraw_toolbar/default.html">ChemDraw Quick 
+Reference</a>.</p>
+</blockquote>
+<ol>
+	<li value="4"><span lang="en-us">Enter the additional</span> information<span lang="en-us"> 
+	on the basis of which you want to search the container.</span></li>
+	<li>Select the <b>Search Sublocations</b> check<span lang="en-us"> </span>box if you want to 
+	<span lang="en-us">perform </span>search <span lang="en-us">on </span>the 
+location specified in the <b>Location ID </b>field as well as <span lang="en-us">on 
+	</span>the child locations of 
+the location.</li>
+	<li>Select the <strong>Exclude Special Locations</strong> check<span lang="en-us">
+	</span>box 
+	<span lang="en-us">if </span>you want 
+  to exclude<span lang="en-us"> the</span> <span lang="en-us">special locations, 
+	such as Trash Can, Disposed, and On Order, from the search. For information 
+	about specifying which special location is to be excluded from the search, 
+	please see</span> 
+	<a href="searching_special_locations.htm"><span lang="en-us">Excluding S</span>pecial 
+	Locations</a><span lang="en-us">.</span></li>
+	<li>Select the <b>Group results by chemical structure</b> check<span lang="en-us">
+	</span>box if you want 
+the search results to be grouped on the basis of the chemical structure of the 
+substances.</li>
+	<li>Click the <b>Search</b> button. A list of substances matching the search 
+criteria specified in the <b>Substructure Search</b> tab page appears. For information 
+about viewing the results of the substructure search, please see <a href="#viewing_substructure_search_results">Viewing 
+Substructure Search Results.</a></li>
+</ol>
+<h2><a name="viewing_substructure_search_results">Viewing Substructure Search Results</a></h2>
+<p>If the substructure search is performed with the Group results by chemical 
+structure check<span lang="en-us"> </span>box selected, the result of the search is a list of substances. 
+You can view details of a particular substance in the search result list using
+<span lang="en-us">various </span>tabs<span lang="en-us">, which are as follows</span>:</p>
+<ul>
+	<li>Zoom In: Allows you to zoom in on the structure of the substance.<span lang="en-us"> 
+	The Zoom In tab is represented by a magnifying glass icon.</span></li>
+	<li>Names: Allows you to gather information about the various synonyms 
+of the substance.</li>
+	<li>Details: Allows you gather information about the container 
+associated with the substance.</li>
+	<li>Mark: Allows you to mark the substance so that you can easily 
+locate the substance in Inventory Enterprise later, without creating a search 
+query for it again.<span lang="en-us"> </span>For more information about mark<span lang="en-us">ing substances</span> records, please see
+	<a href="/cfserverasp/Help/global/search_results_viewing_marking.html">Marking 
+  Records</a>.</li>
+</ul>
+<p><span lang="en-us"><b>Note:</b> You can view or unmark the marked records by 
+selecting Show Marked or Clear Marked menu item from the Marked Hits menu 
+displayed in the window containing the search results. </span></p>
+<p>However, if the Group results by chemical structure check<span lang="en-us">
+</span>box is not selected 
+when the substructure search is performed, the result of the search is a list of 
+containers. You <span lang="en-us">can </span>view details of a container displayed in the result list of 
+substructure search in the similar manner as the details of a container in the 
+<a href="simple_search.htm">simple search</a> results <span lang="en-us">are</span> viewed. For information about viewing 
+<span lang="en-us">the </span>details of a 
+container in the simple search results, please see <a href="simple_search.htm#viewing_simple_search_results">Viewing Simple Search 
+Results</a>.</p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->               
+</body>
+</html>

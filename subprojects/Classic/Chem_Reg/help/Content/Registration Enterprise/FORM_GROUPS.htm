@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:tocPath="Administrator Guide|Configuration|Reg.ini Configuration File|Globals" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>FORM_GROUPS</title>
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapUtilities.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapBody.js"> <![CDATA[ ]]></script>
+        <script src="../SkinSupport/MadCapHighlighter.js"> <![CDATA[ ]]></script>
+    </head>
+    <body>
+        <img src="../Resources/Images/Registration.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <div class="MCBreadcrumbsBox"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_998406">Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Configuration.htm#Registration_Admin_4136631045_1003748">Configuration</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Reg_ini_Configuration_Fi.htm#Registration_Admin_4136631045_1002673">Reg.ini Configuration File</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">FORM_GROUPS</span>
+        </div>
+        <h5 class="Heading5"><a name="Registration_Admin_4136631045_1002919"></a>FORM_GROUPS</h5>
+        <div class="Body">Example: FORM_GROUPS = base_form_group,basenp_form_group,gs_form_group,add_record_form_group, drill_down_form_group</div>
+        <div class="Body">Description: Names of form group definition sections in the ini file. This must be comma delimited, with no spaces. If the form group names are not here, they will not be loaded by the application. Form_groups specify a sub set of information including the input and result forms to use, the fields that can be searched, the table group to use for searching as well as additional information that will be described in later sections. The default formgroup is "<span class="_Override" style="color: #0000ff;text-decoration: underline;">base_form_group</span> " this group is used most commonly. There may also be "basenp_form_group" which is used for input forms that do not have a plugin, "gs_form_group" used for performing global searches over many data views in the application; "add_record_form_group" which is reserved for future use but is not currently implemented and "drill_down_form_group" for displaying results for a drill down link contained in another form groups such as "base_form_group". Form_groups are referenced by hyperlinks from the main.asp page and carried throughout all functions and subroutines within ChemOffice Enterprise.</div>
+        <div class="Body">Default: approve_form_group,review_register_form_group,add_reagent_ctrbt_form_group, manage_users_form_group,manage_roles_form_group,manage_tables_form_group, manage_reg_tables_form_group,base_form_group,reg_ctrbt_form_group,reg_ctrbt_commit_form_group, reg_ctrbt_commit_user_form_group,batch_ctrbt_form_group,identifier_ctrbt_form_group, salt_ctrbt_form_group,analytics_form_group,add_analytics_form_group,manage_analytics_tables_form_group, sartable_form_group,EDIT_ANALYTICS_FORM_GROUP</div>
+        <div class="Body">Options: Comma delimited list of form group definitions found in the ini file.</div>
+        <blockquote class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is important to note that it is the responsibility of a site's administrator to propagate any changes made to ChemOffice Enterprise application files to future versions of the application. New versions of the ChemOffice Enterprise use default configurations. </blockquote>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

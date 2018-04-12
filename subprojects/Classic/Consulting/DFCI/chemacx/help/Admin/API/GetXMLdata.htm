@@ -1,0 +1,97 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemACX HTTP API --Function Reference</title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>ChemACX</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>Admin Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="41524" endspan -->
+<h1>GetXMLdata</h1>
+<p>Given a list of CsNums, Product IDs, Package IDs, CAS numbers, or ACX IDs, returns 
+supplier information in XML format. </p><h3>Syntax</h3><pre>/chemacx/api/GetXMLdata.asp?fieldName=adVarChar&amp;valueList=CSV&amp;sStructType=adVarChar[&amp;synonym=adBoolean&amp;product=adBoolean&amp;prodProperty=adBoolean&amp;package=adBoolean&amp;supplier=adBoolean&amp;supplierAddress=adBoolean&amp;supplierEmail=adBoolean&amp;supplierURL=adBoolean&amp;supplierPhone=adBoolean]</pre>
+
+<h5 class="param">fieldName=CsNum|ProductID|PackageID|CAS|ACX_ID</h5>
+<p class="param">The Oracle field's name&nbsp;for which a 
+list of values is being supplied. This field is the only search field 
+available with the use of this page.
+<h5 class="param">valueList=&lt;listof values&gt;</h5>
+<p class="param">A list of values for the field name entered 
+in fieldName. The list should be comma separated. 
+<h5 class="param">sStructType=cdx|gif|base64cdx|mol|Empty</h5>
+<p class="param">The format of the structure data used in the 
+datagram.</p>
+<h5 class="param">[synonym]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like synonyms 
+returned. Defaults to 0 (no synonyms returned).</p>
+<h5 class="param">[product]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like product names 
+returned. Defaults to 0 (no product names returned).</p>
+<h5 class="param">[prodProperty]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like product 
+properties returned. Defaults to 0 (no product properties returned).</p>
+<h5 class="param">[package]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like packages 
+returned. Defaults to 0 (no packages returned).</p>
+<h5 class="param">[supplier]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like supplier names 
+returned. Defaults to 0 (no supplier names returned).</p>
+<h5 class="param">[supplierAddress]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like supplier 
+addresses returned. Defaults to 0 (no supplier addresses returned).</p>
+<h5 class="param">[supplierEmail]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like supplier 
+email addresses returned. Defaults to 0 (no supplier 
+email addresses returned).</p>
+<h5 class="param">[supplierURL]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like supplier URLs 
+returned. Defaults to 0 (no supplier URLs returned).</p>
+<h5 class="param">[supplierPhone]=1|Empty</h5>
+<p class="param">Equal to 1 if you would like supplier phone 
+numbers returned. Defaults to 0 (no supplier phone numbers 
+returned).</p>
+  <!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.camsoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.camsoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <a href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</a><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="26967" endspan -->
+
+</body>
+</html>

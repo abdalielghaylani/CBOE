@@ -1,0 +1,177 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Reformat Plates</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+  <div class="navigation">
+	<table style="WIDTH: 100%" width="100%">
+	  <tr valign="bottom">
+	    <td width="95%" align="left" valign="bottom" nowrap><em>Inventory Enterprise</em>
+	    </td>
+	  </tr>
+	  <tr align="left" valign="top">
+	    <td>
+	      <hr>
+	      <STRONG>User's Guide</STRONG>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+<!--webbot bot="Include" i-checksum="32296" endspan --><h1>Reformat Plates</h1>
+
+<p>The <span lang="en-us">Reformat Plates link</span> allows you to create a 
+plate that contains compounds of multiple plates. Reformatting plates is similar 
+to daughtering plates except that unlike daughtered plates, reformatted plates 
+can have multiple parents. </p>
+<p>You can reformat either one, four, or five plates to create a new plate. Reformatting one plate is exactly 
+similar to creating a daughter plate. This is because, like a daughtered plate, 
+the plate that is created after reformatting a plate <span lang="en-us">also
+</span>has <span lang="en-us">single</span> parent.<span lang="en-us"> </span>The plates are reformatted into a new plate with the help of the reformat 
+map, which specifies the format of the plate created after reformatting. Various default reformat maps that can be used to reformat the plates are<span lang="en-us"> 
+as follows</span>:</p>
+<ul>
+	<li>Daughter: Allows you to reformat one plate.</li>
+	<li>4 96 Well To 1 384 Well Map: Allows you to reformat four plates.</li>
+	<li>Mix Plate Map: Allows you to reformat five plates. </li>
+</ul>
+<p>Instead of using default reformat map, you can also create your own reformat 
+map for reformatting plates. <span lang="en-us">However, you can use the custom 
+reformat maps for reformatting only four plates. </span>You can create two types of reformat maps for 
+reformatting four plates, <span lang="en-us">which are as follows:</span></p>
+<ul>
+	<li><a href="plate_mselect_reformat_stamped.htm">Stamped reformat map</a></li>
+	<li><a href="plate_mselect_reformat_dithered.htm">Dithered reformat map</a></li>
+</ul>
+
+<p><span lang="en-us"><b>Note:</b> The Reformat Plates link is visible in the 
+Plate Details frame only when the Plate List frame is in the multi select mode. 
+To view the Plate List frame in multi select mode, you need to click the <a href="plate_viewing_mselect.htm">Multi 
+Select</a> link in the Plate List frame and select a plate.</span></p>
+<p>To reformat plates:</p>
+<ol>
+	<li>Navigate through the <a href="location_management.htm#location_tree_frame">Location Tree frame</a> to reach to the location, which 
+	contains the desired plates.</li>
+	<li><span lang="en-us">Select </span><b>Multi<span lang="en-us">-</span>Select</b> 
+	<span lang="en-us">from the <b>View</b> menu </span>in the <span lang="en-us"> 
+<a href="plate_inventory_view.htm#plate_list_frame">Plate List frame</a></span>.</li>
+	<li>Select the check box next to the desired plate(s).</li>
+</ol>
+<blockquote>
+	<p><span lang="en-us"><b>Note:</b> </span>While reformatting plates, ensure that the plates are not empty. In addition, 
+if you are reformatting four or five plates, ensure that all the plates are of 
+similar type and format. </p>
+</blockquote>
+<ol>
+	<li value=4><span lang="en-us">Select </span><b>Reformat Plates</b> 
+	<span lang="en-us">from the <b>Create</b> menu in the 
+	<a href="plate_inventory_view.htm#plate_details_frame">Plate Details frame</a></span>. The <b>Reformat Plates</b> 
+	<span lang="en-us">window</span> appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/plate_reformat_select.gif" ></p>
+</blockquote>
+<ol>
+	<li value=5>Select the appropriate reformat map from the <b>Select a Reformat Map</b> 
+	<span lang="en-us">drop down list</span>.</li>
+</ol>
+<blockquote>
+	<p><span lang="en-us"><b>Note:</b> </span>The names of the reformat maps displayed in the 
+	<b>Select a Reformat Map</b> <span lang="en-us">drop down list</span> vary with the number of plates selected <span lang="en-us">in the multi 
+select view of the Plate List frame.</span></p>
+</blockquote>
+<ol>
+	<li value=6>Click the <b>Next</b> button. The following <span lang="en-us">
+	window</span> appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/plate_reformat_order.gif" ></p>
+</blockquote>
+<ol>
+	<li value=7>Select the order in which the compounds of the
+	<span lang="en-us">source </span>plate<span lang="en-us">s</span>
+	<span lang="en-us">should be </span>distributed to the different wells of the reformatted plate<span lang="en-us">.</span></li>
+</ol>
+<blockquote>
+	<p><span lang="en-us"><b>Note:</b> </span>You are not asked to select the order for the source plates if you are 
+reformatting only one plate<span lang="en-us">, as is the case here</span>.</p>
+</blockquote>
+<ol>
+	<li value=8>Click the <b>Next</b> button. The following <span lang="en-us">
+	window</span> appears:</li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/plate_reformat_solvate.gif" ></p>
+</blockquote>
+<ol>
+	<li value=9>Select the <b>Yes</b> <span lang="en-us">radio button </span>corresponding to a source plate, if you want to 
+	add a solvent to the plate. After this, provide the required information in 
+	the fields that are displayed when the <b>Yes</b> <span lang="en-us">radio button</span> is selected.</li>
+	<li value=10>Click the <b>Next</b> button. <span lang="en-us">The following 
+	window 
+	appears:</span></li>
+</ol>
+<blockquote>
+	<p>
+	<img border="0" src="../images/plate_reformat_target.gif" ></p>
+</blockquote>
+<ol>
+	<li value=11>Provide the <span lang="en-us">appropriate </span>information 
+	<span lang="en-us">in the respective fields </span>and click the <b>OK</b> 
+	button.</li>
+</ol>
+
+
+  
+  
+  
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+<table>
+<tr><td>
+  <a href="http://www.adobe.com/products/acrobat/readstep.html">
+  <img src="../images/getacrobat.gif" border="0" WIDTH="88" HEIGHT="31"></a>
+</td><td>
+  <font size="2"><a href="../cheminvchapter.pdf">Download Inventory Enterprise User's Guide (PDF)</a></font>
+</td></tr>
+<tr><td>
+  &nbsp;
+</td><td>
+  <font size="2"><a href="../Inventory%20Manager%20User's%20Guide.chm" onclick="javascript:alert('Please right click on this link and choose Save Target As to download this file.');return false;">Download Inventory Enterprise User's Guide (CHM)</a></font>
+</td></tr>
+</table>
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" i-checksum="31920" endspan -->  
+          
+</body>
+</html>

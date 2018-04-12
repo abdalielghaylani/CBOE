@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+<param name="Font" value="Verdana,10,0">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemACX Installation">
+		<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\installation.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MS Access Installation with NO CS_Security">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\installation_access.htm">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Minimum Requirements">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\minimum_requirements.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Install ChemACX">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\install_chemacx.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Create the Database">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\create_database_access.htm">
+					</OBJECT>
+			</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MS Access Installation with CS_Security">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\installation_access_cs.htm">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Minimum Requirements">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\minimum_requirements_access.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Install ChemACX">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\install_chemacx_access.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Create the Database">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\create_database_access_access.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Additional Configuration">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\config_access.htm">
+					</OBJECT>
+			</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Oracle Installation with CS_Security">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\installation_oracle.htm">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Minimum Requirements">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\minimum_requirements_oracle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Install ChemACX">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\install_chemacx_oracle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Create the Database">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\create_database_oracle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Additional Configuration">
+					<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\config_oracle.htm">
+					</OBJECT>
+			</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Testing the Installation">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\testing.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Configuration">
+		<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\config.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configuration File Settings">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\chemacx_ini.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setting up the Server to allow Export from Excel function">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\export_to_excel.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Integration">
+		<param name="Local" value="chemoffice\chemacx\help\Admin\Installation\integration.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemOffice Enterprise API">
+		<param name="Local" value="chemoffice\webserver_source\cfserverasp\help\Admin\API\default.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Search">
+			<param name="Local" value="chemoffice\webserver_source\cfserverasp\help\Admin\API\Search.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Get_structure">
+			<param name="Local" value="chemoffice\webserver_source\cfserverasp\help\Admin\API\get_structure.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Query_string">
+			<param name="Local" value="chemoffice\webserver_source\cfserverasp\help\Admin\API\query_string.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChemACX API Reference">
+		<param name="Local" value="chemoffice\chemacx\help\Admin\API\FunctionReference.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GetXMLdata">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\API\GetXMLdata.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DisplayACXStruc">
+			<param name="Local" value="chemoffice\chemacx\help\Admin\API\DisplayACXStruc.htm">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

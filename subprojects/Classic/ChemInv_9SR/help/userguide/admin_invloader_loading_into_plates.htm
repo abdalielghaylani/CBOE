@@ -1,0 +1,175 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Inventory Enterprise User's Guide -- Tasks</title>
+</head>
+<body>
+<!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan --><p><em>[../header.htm]</em></p><!--webbot bot="Include" endspan i-checksum="6879" --><h1>
+<span lang="en-us">Loading Compounds into Plates</span></h1>
+<p><span lang="en-us">When yo</span>u use Inventory Loader to load compounds 
+into plates, new plates are created in Inventory Enterprise and they are then 
+loaded with the compounds imported from the ChemFinder database. To load 
+compounds into plates using Inventory Loader:</p>
+<ol>
+	<li>Start the Inventory Loader application. The Introduction screen of the 
+	Import ChemFinder Database wizard appears:</li>
+	<li>Click the <b>Next</b> button to begin the wizard. The <b>Login to
+	<span lang="en-us">the </span>Plate 
+	Inventory </b><span lang="en-us"><b>Database</b> </span>page appears<span lang="en-us">.</span></li>
+	<li>Enter the name of the ChemOffice server and your user name and password 
+	in the <b>Server</b>, <b>User ID</b>, and <b>Password</b> text boxes, 
+	respectively.</li>
+</ol>
+<p><span lang="en-us"><b>Note:</b> </span>Ensure that the user name that you have entered in the preceding page has 
+sufficient permissions to create plates and load compounds in it. Also, ensure 
+that the user name has sufficient permissions to access Registration Enterprise 
+if you want to register the compounds into the Registration Enterprise database.</p>
+<ol>
+	<li value=4>Click the <b>Next</b> button. The <b>Select ChemFinder Database</b> page 
+	appears<span lang="en-us">.</span></li>
+</ol>
+<p><span lang="en-us"><b>Note:</b> </span>If an error message <span lang="en-us">
+appears, stating that no plate locations or formats are configured in Inventory 
+Enterprise, then you 
+need to create a</span> location <span lang="en-us">that can hold plates</span> 
+and/or create 
+<span lang="en-us">a</span> valid plate 
+format<span lang="en-us">, </span>in Inventory Enterprise. </p>
+<ol>
+	<li value=5><span lang="en-us">Browse and locate the ChemFinder database 
+	from which the compounds are to be imported. </span></li>
+	<li><span lang="en-us">Ensure that the <b>Load Structures into Plates
+	</b>radio button is selected and click the <b>Next</b> button. </span>The <b>Select Fields</b> page appears<span lang="en-us">.</span></li>
+</ol>
+<p><span lang="en-us"><b>Note:</b> If an error message appears, stating that the database 
+cannot be opened, then you need to upgrade the database to the current 
+version of ChemFinder. To do so, open the database using the ChemFinder and 
+follow the prompts.</span></p>
+<p><span lang="en-us"><b>Note:</b> </span>If the ChemFinder database contains more than one table, you are provided 
+with a drop-down list of table names. You need to select the table with which 
+you want to map the fields<span lang="en-us">,</span> from the drop-down list.<span lang="en-us"> 
+Typically, the name of the table with which the fields are mapped is MolTable. </span></p>
+<p>In the <b>Select Fields</b> page:</p>
+<ul>
+	<li>The Value column displays the <span lang="en-us">plate </span>field<span lang="en-us">s</span>.</li>
+	<li>The Field Name column allows you to set the value of the fields. You can 
+	set a field either by mapping it with a column of a table of the ChemFinder 
+	database or by specifying a value for it in the Default Column<span lang="en-us">.</span></li>
+</ul>
+<p><span lang="en-us">While setting the plate fields, keep the 
+following points in consideration:</span></p>
+<ul>
+	<li>It is not necessary to set Row and Column fields a<span lang="en-us">s 
+	well as the</span> Well Coordinate 
+field. However, if you set the Row field, it is necessary to set the Column 
+field.</li>
+<li><span lang="en-us">If some columns of the table with which you are mapping the 
+fields contain plate identifiers, then map those columns with the </span>Barcode<span lang="en-us"> 
+and </span>Supplier Barcode<span lang="en-us"> 
+fields. Map the column that contains numeric plate identifiers with the</span> Supplier Plate Number<span lang="en-us"> 
+field.</span></li>
+	<li><span lang="en-us">It is necessary to set one of the </span>Supplier 
+	Barcode, Supplier Plate Number, or Barcode<span lang="en-us"> fields and one 
+	of the </span>Well Coordinate or 
+Row <span lang="en-us">and</span> Column<span lang="en-us"> fields, otherwise,
+	</span>the compounds may not load into the plates correctly.</span></li>
+</ul>
+<ol>
+	<li value=7>Set the fields<span lang="en-us"> in the </span> <b>Select Fields</b> 
+	page, as required, and click the  <b>Next</b> button. The 
+	<b>Setup New Plates </b>page appears<span lang="en-us">. This page provides 
+	information about the total number of the compounds that will be imported and 
+	the total number of plates that will be created in Inventory Enterprise 
+	after the completion of the import process. This information allows you to 
+	determine, in advance, whether or not the import process will provide 
+	expected results.&nbsp; </span></li>
+	<li><span lang="en-us">Perform the following tasks</span> in<span lang="en-us"> 
+	the</span> 
+	<b>Setup New Plates </b>page:</li>
+</ol>
+<ul>
+	<li>Select the location at which you want to store the new plates from the
+	<b>Put new plates in</b> list box.</li>
+	<li>Select the format for the plates from the <b>Plate Format</b> list 
+	box.</li>
+</ul>
+<p><span lang="en-us"><b>Note:</b> The plate format describes the size and 
+layout of a plate. The layout of the plate specifies where to store the 
+compounds in the plate and which wells are to be kept empty.</span></p>
+<ul>
+	<li>Select plate type from the <b>Plate Type</b> list box.</li>
+</ul>
+<ol>
+	<li value=4>Click the <b>Next</b> button. Another screen of the <b>Setup New Plates</b> 
+	page appears:</li>
+	<li><span lang="en-us">Perform the following tasks</span> in<span lang="en-us"> 
+	t</span>his page:</li>
+	</ol>
+<ul>
+	<li>Select the library to which the plates are to be assigned from the 
+		<b>Assign to Library l</b>ist box.</li>
+	<li>Assign barcodes to the plates, as required, in the <b>Barcodes</b> 
+	section.</li>
+</ul>
+<p><span lang="en-us"><b>Note:</b> The Barcodes section appears in the 
+non-editable mode</span> if <span lang="en-us">the </span>Barcode field
+<span lang="en-us">is already set </span>in the Select Fields page. </p>
+<ul>
+	<li>Assign group numbers to the plates, if required, in the <b>Grouping</b> 
+	section.</li>
+</ul>
+<ol>
+	<li value=6>Click the <b>Next</b> button. The <b>Registration Info</b> page 
+	appears<span lang="en-us">.</span></li>
+	<li>Select the <b>Register the new compounds in the CambridgeSoft Chemical 
+	Registration System</b> check box if you want to register the compounds into 
+	the Registration Enterprise database<span lang="en-us">. When you select 
+	this checkbox, Inventory Loader verifies whether or not you have sufficient 
+	permissions to register compounds into Registration Enterprise. A</span> grid containing the Registration Enterprise fields is displayed in the 
+	<b>Registration Info</b> page<span lang="en-us">, if Inventory Loader finds 
+	your authentication information valid. Otherwise, an error message is 
+	displayed.</span></li>
+	<li>Set the values of the Registration Enterprise fields in the <b>Value</b> 
+	column.</li>
+	<li>Click the <b>Registration Options</b> button if you want to set other 
+	Registration Enterprise fields also, in addition to the fields displayed in 
+	the grid. The <b>Registration Options</b> dialog box appears<span lang="en-us">.</span></li>
+</ol>
+<p><span lang="en-us"><b>Note:</b> </span>In the Registration Options dialog box, the fields are named as they are in 
+the database, not as they are in the Registration Enterprise interface.</p>
+<ol>
+	<li value=10><span lang="en-us">In the </span> <b>Registration Options</b> 
+	dialog box<span lang="en-us">,</span> <span lang="en-us">s</span>et the 
+	Registration Enterprise fields in the similar manner, as the
+	<span lang="en-us">plate </span>fields were set<span lang="en-us"> in the
+	</span> <b>Select Fields</b> 
+	page.</li>
+	<li>Click the <b>OK</b> button.</li>
+	<li>Click the <b>Next</b> button. The <b>Log Plate XML</b> page appears:</li>
+	<li>Select the <b>Log data to the following location</b> check box if you 
+	want to log the plate xmls for the future reference.</li>
+<li>Specify the location at which you want to log the data in the text box 
+	<span lang="en-us">displayed </span>below the <b>Log data to the following location</b> check box.</li>
+	<li>Click the <b>Next</b> button. The <b>Ready to Import</b> page appears.</li>
+	<li>Click the <b>Finish</b> button to begin to import the compounds. 
+	<span lang="en-us">A </span>page, displaying the progress of the import 
+	process, appears<span lang="en-us">.</span></li>
+	<li>Click the <b>Finish</b> button when the import process finishes. Observe 
+	<span lang="en-us">that </span>the plates are created at the specified location.</li>
+</ol>
+<p><span lang="en-us">For information about loading compounds directly </span>
+into the Inventory Enterprise and Registration Enterprise databases<span lang="en-us">, 
+please see <a href="admin_invloader_loading_directly.htm">Loading Compounds Directly</a></span></p>
+<!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan --><p><em>[../footer.htm]</em></p><!--webbot bot="Include" endspan i-checksum="8495" -->
+</body>
+</html>

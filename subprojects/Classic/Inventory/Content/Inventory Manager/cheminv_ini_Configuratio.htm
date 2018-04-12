@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="231" MadCap:lastWidth="1664" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise Administrator Guide|INI Configuration Files" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <head><title>cheminv.ini Configuration File</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>
+            <img src="../Resources/Images/Inventory.png" />
+        </p>
+        <div class="MCBreadcrumbsBox" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory_Enterprise_Adm.htm#Inventory_Manager_User_Guide_1879958712_1081228">Inventory Enterprise Administrator Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="INI_Configuration_Files.htm#Inventory_Manager_User_Guide_1879958712_1084761">INI Configuration Files</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">cheminv.ini Configuration File</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1879958712_1085191"></a><a name="kanchor367"></a><a name="kanchor368"></a>cheminv.ini Configuration File</h3>
+        <p class="Body">The ChemInv.ini file is found at the following location: &lt;webroot&gt;/ChemOffice/cheminv/config </p>
+        <p class="Body">This file defines many parameters that allow Inventory Enterprise to function properly, including the definitions of formgroups (which define all forms) in the application. Most of this file should not be edited since editing this file in the wrong place could cause major problems when running the Reg System application.</p>
+        <div class="Note" MadCap:autonum="&lt;b&gt;NOTE: &#160;&#160;&lt;/b&gt;"><span class="autonumber"><span class="Note"><b>NOTE: &#160;&#160;</b></span></span>It is the responsibility of a site's administrator to propagate any changes made to ChemBioOffice Enterprise application files to future versions of the application. New versions of the ChemBioOffice Enterprise use default configurations.</div>
+        <h4 class="Heading4"><a name="kanchor369"></a><a name="kanchor370"></a>GLOBALS</h4>
+        <h5 class="Heading5"><a name="kanchor371"></a>ABOUT_WINDOW</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ABOUT_WINDOW = Inventory Enterprise 9.0.0.37</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The text that appears in the about window describing the name of the data view. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Up to one line of text.</p>
+        <h5 class="Heading5"><a name="kanchor372"></a>ADO_CONNECTION_NAMES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> ADO_CONNECTION_NAMES = base_connection</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Names of all ado connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. An ADO definition section describes variables for connecting to data source via ADO. In general there is only the default definition "base_connection_group", since most dataviews access the same database. However, this is flexible and allows more definitions then just the default. ADO_Connection_Names are referenced by individual tables. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> base_connection</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of connection definitions found in the ini file. </p>
+        <h5 class="Heading5"><a name="kanchor373"></a>CFW_INSTANCE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CFW_INSTANCE = cheminv</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> If equal to first, specifies that this dataview should share an instance of ChemBioFinder with first dataview specified as the GlobalBaseDB key in the cfserver.ini file. If this key is empty (or set to new) then the first database in the DB_NAMES list is used.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv (first name in db_names is used)</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> first | new</p>
+        <h5 class="Heading5"><a name="kanchor374"></a>CHEM_CONNECTION_NAMES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CHEM_CONNECTION_NAMES = cheminv_cfw_form</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Names of all ChemBioFinder connection definition sections in the ini file. This list must be comma delimited with no spaces. If the connection name is not here, it will not be loaded by the application. A ChemBioFinder connection definition section describes variables for connecting to ChemBioFinder for searching of chemical information. The default definition "base_cfw_form" is normally present (unless there is no chemical information). In dataviews that deal with reaction databases, there may be three (or more) definitions, one for the reaction, one for the solvent and one for the catalyst. (e.g.config/chemprep.ini file in the chemrxn application). </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> cheminv_cfw_form</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of ChemBioFinder connection definitions found in the ini file.</p>
+        <h5 class="Heading5"><a name="kanchor375"></a>DB_RECORD_COUNT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DB_RECORD_COUNT = 2000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The number of records in the database. This appears in all input and result windows in the upper left corner next to TotalRecords.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 2000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any integer (equal to the number of records in the database).</p>
+        <h5 class="Heading5"><a name="kanchor376"></a>DB_TYPE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DB_TYPE = STRUC</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> States the type of database.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> STRUC</p>
+        <p class="Body" style="font-family: 'Times New Roman';font-style: italic;">Options:</p>
+        <h5 class="Heading5"><a name="kanchor377"></a>DISPLAY_NAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DISPLAY_NAME = ChemInventory</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The name used in global search screens to identify the dataview. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ChemInventory </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any text</p>
+        <h5 class="Heading5"><a name="kanchor378"></a>FIELD_MAP_GROUPS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> FIELD_MAP_GROUPS = gs_field_map_group,global_substanceselect_field_map_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Names of field map group definition sections in the ini file. This must be comma delimited, with no spaces. If the field group names are not here, they will not be loaded by the application. Field Map groups specify field mapping used by global search. If global searching is not used, the FIELD_MAP_GROUPS (default group created by the wizard) can be set to NULL. FIELD_MAP_GROUPS are reference by formgroups.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> gs_field_map_group,global_substanceselect_field_map_group </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of field map group definitions found in the ini file.</p>
+        <h5 class="Heading5"><a name="kanchor379"></a>FORM_GROUPS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> FORM_GROUPS = base_form_group,containers_form_group,containers_np_form_group, substances_form_group,add_record_form_group,gs_form_group,global_substanceselect_form_group </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Names of form group definition sections in the ini file. This must be comma delimited, with no spaces. If the form group names are not here, they will not be loaded by the application. Form_groups specify a sub set of information including the input and result forms to use, the fields that can be searched, the table group to use for searching as well as additional information that will be described in later sections. Form_groups are referenced by hyperlinks from the main.asp page and carried throughout all functions and subroutines within ChemBioOffice Enterprise. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> base_form_group,containers_form_group,containers_np_form_group, substances_form_group,add_record_form_group,gs_form_group,global_substanceselect_form_group </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of form group definitions found in the ini file.</p>
+        <h5 class="Heading5"><a name="kanchor380"></a>MAXHITS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> MAXHITS = 1000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The number of hits returned before a Get More button will appear.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 1000</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Any integer</p>
+        <h5 class="Heading5"><a name="kanchor381"></a>SUBFORM_VIEW_NAMES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> SUBFORM_VIEW_NAMES = NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Internal Setting.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> NULL</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor382"></a>TABLE_ALIASES</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> TABLE_ALIASES = inv_compounds,inv_containers,inv_locations,inv_synonyms,synonym, inv_plates,inv_wells,well_compounds_alias,inv_wells_alias,reg_numbers,reg_numbers_alias</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Names of all table definition sections in the ini file. This list must be comma delimited with no spaces. If the table name is not here, it will not be loaded by the application. Table definition sections describe all the information needed by ChemBioOffice Enterprise for searching tables. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> inv_compounds,inv_containers,inv_locations,inv_synonyms,synonym, inv_plates,inv_wells,well_compounds_alias,inv_wells_alias,reg_numbers,reg_numbers_alias</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of tables </p>
+        <h5 class="Heading5"><a name="kanchor383"></a>TABLE_GROUPS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> TABLE_GROUPS = base_table_group,containers_table_group,substances_table_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Name of table group definition sections in the ini file. This must be comma delimited, with no spaces. If the table group names are not here, they will not be loaded by the application. A table group specifies information about the order of searching tables, what the base table (searched via ADO) is and what the molecule table (searched via ChemBioFinder) is. The majority of applications use the default table group named "base_table_group". Table_groups are referenced by Form_Groups. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> base_table_group,containers_table_group,substances_table_group</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Comma delimited list of table group definitions found in the ini file.</p>
+        <h4 class="Heading4"><a name="kanchor384"></a><a name="kanchor385"></a>ADO Connection Definitions</h4>
+        <h5 class="Heading5"><a name="kanchor386"></a>CONN_TYPE</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CONN_TYPE = "FILE NAME"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Specifies the type of connection string.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> FILE NAME</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> DBQ | DSN | OLEDB </p>
+        <h5 class="Heading5"><a name="kanchor387"></a>CONNECTION_PASSWORD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CONNECTION_PASSWORD = "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Contains the password for the connection. The way the password is entered is different for different data sources. Otherwise, this entry are probably left empty.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> N/A </p>
+        <h5 class="Heading5"><a name="kanchor388"></a>CONNECTION_STRING</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example: </span>CONNECTION_STRING = C:\Inetpub\wwwroot\ChemOffice\ChemInv\Config\ChemInv.udl</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The connection string for the CONN_TYPE specified.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> C:\Inetpub\wwwroot\ChemOffice\ChemInv\Config\ChemInv.udl</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> A Connection String</p>
+        <h5 class="Heading5"><a name="kanchor389"></a>CONNECTION_TIMEOUT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CONNECTION_TIMEOUT = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The amount of time in minutes before a connection will automatically close upon no activity. We suggest 15 to 30 minutes.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> An integer indicating a number of minutes.</p>
+        <h5 class="Heading5"><a name="kanchor390"></a>CONNECTION_USERNAME</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> CONNECTION_USERNAME = "login_required" </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> Contains the user name for the connection.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> "login_required"</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> N/A</p>
+        <h5 class="Heading5"><a name="kanchor391"></a>COMMAND_TIMEOUT</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> COMMAND_TIMEOUT = 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The amount of time in minutes before a command object will automatically close upon no activity. We suggest 15 to 30 minutes. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> 30</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> An integer indicating a number of minutes.</p>
+        <h5 class="Heading5"><a name="kanchor392"></a>DBMS</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> DBMS = ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> The database server type. </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> ORACLE</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited.</p>
+        <h5 class="Heading5"><a name="kanchor393"></a>PWD_KEYWORD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> PWD_KEYWORD = password</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This a password descriptor used to build the connection string.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> password</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited</p>
+        <h5 class="Heading5"><a name="kanchor394"></a>USERID_KEYWORD</h5>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Example:</span> USERID_KEYWORD = uid</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Description:</span> This a user ID descriptor used to build the connection string.</p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Default:</span> uid </p>
+        <p class="Body"><span class="_Override" style="font-style: italic;">Options:</span> Should not be edited</p>
+        <h4 class="Heading4"><a name="kanchor395"></a><a name="kanchor396"></a>Table Group Definitions </h4>
+        <p class="Body">[BASE_TABLE_GROUP] </p>
+        <p class="Body">[CONTAINERS_TABLE_GROUP] </p>
+        <p class="Body">[SUBSTANCES_TABLE_GROUP] </p>
+        <p class="Body">[PLATES_TABLE_GROUP] </p>
+        <h4 class="Heading4"><a name="kanchor397"></a><a name="kanchor398"></a>ChemBioFinder Connection Definitions </h4>
+        <p class="Body">[cheminv_CFW_FORM] </p>
+        <h4 class="Heading4"><a name="kanchor399"></a><a name="kanchor400"></a>Form Group Definitions </h4>
+        <p class="Body">[BASE_FORM_GROUP] </p>
+        <p class="Body">[CONTAINERS_FORM_GROUP] </p>
+        <p class="Body">[CONTAINERS_NP_FORM_GROUP] </p>
+        <p class="Body">[SUBSTANCES_FORM_GROUP] </p>
+        <p class="Body">[ADD_RECORD_FORM_GROUP] </p>
+        <p class="Body">[GS_FORM_GROUP] </p>
+        <p class="Body">[GS_FIELD_MAP_GROUP] </p>
+        <p class="Body">[GLOBAL_SUBSTANCESELECT_FORM_GROUP] </p>
+        <p class="Body">[PLATES_FORM_GROUP] </p>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

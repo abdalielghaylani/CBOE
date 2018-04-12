@@ -1,0 +1,7 @@
+from ChemScript import *
+m=Mol.loadData(base64, 'cdx')
+a = m.createAtom('N')
+b = m.createBond(m.atoms[2], a)
+m.normalizeStructure()
+out_m=m
+

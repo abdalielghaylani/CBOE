@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="110" MadCap:lastWidth="624" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:disableMasterStylesheet="true" MadCap:tocPath="Inventory Enterprise User Guide|Container management" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Managing batching fields</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox_breadcrumbsProxy"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Inventory Manager User Guide.htm#Inventory_Manager_User_Guide_1619290017_1096394">Inventory Enterprise User Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Container_management.htm#Inventory_Manager_User_Guide_1619290017_999483">Container management</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Managing batching fields</span>
+        </div>
+        <h3 class="Heading3"><a name="Inventory_Manager_User_Guide_1619290017_1000497"></a><a name="Inventory_Manager_User_Guide_1619290017_62051"></a><a name="kanchor154"></a><a name="kanchor155"></a>Managing batching fields</h3>
+        <div class="Body">Batching is a feature in Inventory Enterprise 11.0 that lets you relate containers based on arbitrary fields, including the custom fields. The fields, based on which containers are related, are called batching fields and a group of related containers is called a batch. All the containers in a particular batch have the same batch id.</div>
+        <div class="Body">Batching is controlled via a GUI interface, which facilitates searching, requesting, and reserving of samples in batches. After you have classified the containers into batches, you can search for containers in a particular batch. For example, you can create batches based on the status of the containers so that the containers with status, 'available' will be in one batch while the containers with status, 'backordered item' will be put in another batch. Therefore, later on you can easily search for the 'available' containers based on their status.</div>
+        <div class="Body">Managing batching fields involves specifying the field/fields based on which the containers are to be grouped in batches and updating the container details thereafter.</div>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>You can also create batches of containers to which no structure has been assigned.</div>
+        <div class="Body">To manage batching fields:</div>
+        <table class="AutoNumber_div_numlist1-1st" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>1. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="1. " valign="top">Click the <span class="Action_Object">Tasks</span> link within the <span class="Action_Object">Inventory Enterprise</span> section in the home page of ChemBioOffice Enterprise. The <span class="Action_Object">Administrative Menu</span> window appears.</td>
+            </tr>
+        </table>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>You can also access the Administrative Menu window by clicking the Tasks link in the menu bar of the Inventory Enterprise 11.0 home page.</div>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>2. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="2. " valign="top">Click the <span class="Action_Object">Manage Batching Fields</span> link in the <span class="Action_Object">Inventory Management </span>section. The <span class="Action_Object">Manage Batching Fields</span> window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="batching.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.9799157px;margin-bottom: 0.9799157px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>3. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="3. " valign="top">Select<span class="Action_Object"> CONTAINER_STATUS_ID_FK </span>in the <span class="Action_Object">Batching Field 1</span> drop down list.</td>
+            </tr>
+        </table>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; "><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>You can select up to three columns as the batching fields.</div>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>4. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="4. " valign="top">Type the display name of the selected batching fields in the <span class="Action_Object">Display Name</span> text box.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>5. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="5. " valign="top">Click <span class="Action_Object">OK</span> to display a window informing you that the batching fields have been updated.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>6. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="6. " valign="top">Click <span class="Action_Object">OK</span> to display the <span class="Action_Object">Administrative Menu</span> window.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>7. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="7. " valign="top">Click the <span class="Action_Object">Close</span> button to close the <span class="Action_Object">Administrative Menu</span> window.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>8. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="8. " valign="top">Click the <span class="Action_Object">Browse</span> link within the <span class="Action_Object">Inventory Enterprise</span> section in the home page of ChemBioOffice Enterprise. The Inventory Enterprise 11.0 home page appears.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>9. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="9. " valign="top">Create a few containers.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>10. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="10. " valign="top">Select the <span class="Action_Object">Multi - Select</span> menu item from the <span class="Action_Object">View</span> menu in the menu bar of the Container List frame.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>11. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="11. " valign="top">Select the first two containers.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>12. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="12. " valign="top">Select <span class="Action_Object">Update Containers</span> from the <span class="Action_Object">Update</span> menu in the Container Details frame. The <span class="Action_Object">Update Inventory Container</span> window.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>13. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="13. " valign="top">Select <span class="Action_Object">Container Status</span> from the <span class="Action_Object">Container Fields</span> list box, as shown in this figure:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="batching_6.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.9799157px;margin-bottom: 1.033917px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>14. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="14. " valign="top">Click <span class="Action_Object">OK</span>. The following window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="batching_7.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 0.2361718px;margin-bottom: 0.9979211px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>15. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="15. " valign="top">Select <span class="Action_Object">Backordered Item</span> in the <span class="Action_Object">Container Status</span> drop down list.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>16. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="16. " valign="top">Click <span class="Action_Object">OK</span> to close the <span class="Action_Object">Update Inventory Container</span> window.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>17. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="17. " valign="top">Select <span class="Action_Object">Column Chooser</span> from the <span class="Action_Object">View</span> menu in the menu bar of the Container List frame. The following window appears as:</td>
+            </tr>
+        </table>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="batching_8.gif" style="margin-left: 1.00008px;margin-top: 1.00008px;margin-right: 1.004391px;margin-bottom: 0.9863931px;" />
+        </p>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>18. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="18. " valign="top">Select <span class="Action_Object">Status</span> in the <span class="Action_Object">Available</span> list box and click the right arrow button to display it in the <span class="Action_Object">Selected</span> list box.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>19. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="19. " valign="top">Click the <span class="Action_Object">Save </span>button to close the window and display the list of containers in the Inventory Enterprise 11.0 home page.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_div_numlist1-inner" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: -25px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_div_numlist1-1st" valign="top"><span>20. </span>
+                </td>
+                <td class="AutoNumber_div_numlist1-1st" MadCap:autonum="20. " valign="top">Click all the containers one by one, and observe that the first two containers whose status is 'Backordered Item' are grouped into one batch (with the same batch id) whereas the remaining containers are grouped into a different batch because their status is 'Available'.</td>
+            </tr>
+        </table>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

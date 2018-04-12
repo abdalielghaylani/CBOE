@@ -1,0 +1,99 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>ChemOffice Webserver Admin Guide -- ShowInputField</title>
+</head>
+<body>
+
+<!--webbot bot="Include" U-Include="../../../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+
+<h1>  ShowInputField</h1>
+<p>This subroutine call appears in the following file(s):</p>
+<ul><li>sample_input_form.asp<li>sample_input_formnp.asp</li></ul>
+<h4>Subroutine</h4></td>
+<pre>ShowInputField 
+      dbkey,formgroup,table.field,fieldtype,width</pre></td></tr>
+<h4>Description</h4></td>
+<p>          Shows 
+      input box</p>
+<h4>Parameters</h4>
+      <p>dbkey =<em></font> 
+      &lt;dataview name&gt;</em>  &nbsp;
+      <p>formgroup =</font><em> &lt;formgroup name&gt;</em>
+      <h5></h5> 
+      <p>table.field =</font><em> &lt;table and field name 
+      using dot syntax&gt;</em>      
+      &nbsp;
+      <p>fieldtype =</font><em> 
+      0|1|2|3|5|7|8|21<br></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;:&nbsp;text; 
+      no validation<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 : 
+      integer 
+      validation<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;: 
+      long 
+      validation<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;: 
+      positive integer 
+      validation<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;: 
+      Molecular Weight (positive float 
+      validation)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;:&nbsp;memo; 
+      no 
+      validation<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;: 
+      date; validation 
+      dd/mm/yyyy<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21 
+      :&nbsp;CAS number; validation</p>      
+      
+      <p>width = <em>&lt;width of text box to display, or 
+      rows of textarea&gt;</em> 
+<h4>Example</h4>
+<pre>ShowInputField 
+      dbkey,formgroup,&quot;Synonyms_r.Synonym_r&quot;,0,&quot;30&quot;</pre>
+<!--webbot bot="Include" U-Include="../../../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<meta NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<title>ChemOffice WebServer HTTP API Reference -- </title>
+</head>
+<body><!--webbot bot="Include" U-Include="../header.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<table style="WIDTH: 100%" width="100%">
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><em>ChemOffice Enterprise</em>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+&nbsp;
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+      <STRONG>Admin&nbsp;Guide</STRONG>
+</td>
+</tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="44959" -->
+<p>
+
+<h1>Search</h1>
+<p>The Search dataaction initiates a search over the application's database/s. 
+The results of the search are stored in the CSDOHitList table within the 
+application's database. The hitlist table will contain ID values corresponding 
+to the primary key of the base table as defined in the formgroup.</p>
+<p><strong><em>Note:</em></strong><font color="brown"> All parameters can be 
+passed either as Form (POST) or Querystring (GET) data</font>.</p>
+<h3>Syntax</h3>
+<p class="syntax">&lt;ServerName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;_action.asp?<br>&nbsp;formgroup=Text&amp;dbname=Text&amp;DataAction=Search[&amp;return_location=Text&amp;return_data=Text&amp;<br>&nbsp;&nbsp;&nbsp;store_request=Boolean&amp;metadata_directive=Text&amp;reload_basers=Boolean]</p>
+<h3 class="param">Inputs</h3>
+<h5 class="param">formgroup&nbsp;=<span class="paramvalues">&nbsp;&lt;formgroupName&gt;</span></h5>
+<p class="param">The name of a valid formgroup as defined in the applications ini 
+file, or dynamically defined via the metadata_directive options.</p>
+<h5 class="param">dbname&nbsp;=<span class="paramvalues">&nbsp;&lt;DatabaseName&gt;</span></h5>
+<p class="param">The name of the dataview&nbsp;ini file for 
+the database being accessed.<br><em>Possible options</em> : reg (for Registration System), 
+cheminv (for Inventory Manager), chemacx, wdi, wda<br><em>Example</em>:<span style="mso-spacerun: yes">&nbsp; </span>dbname= chemacx</p>
+<h5 class="param">[return_location]&nbsp;=<span class="paramvalues">&nbsp;Empty|&lt;ReturnURL&gt;</span></h5>
+<p class="param"> The URL where the server will redirect or transfer the request 
+after the search is completed.</p>
+<p class="param">By default the return location is determined by the formgroup 
+settings in the application ini file. This parameter can be filled with a URL on 
+the applications server specified relative to the location of the action 
+page.</p>
+<h5 class="param">[return_data]&nbsp;=<span class="paramvalues">&nbsp;Empty|Redirect|Transfer|CSV|HitlistID</span></h5>
+<p class="param">Specifies how or what data should be returned by the server.</p>
+<p class="param">By default the data is returned by causing a 
+client side redirection to the results page defined in the formgroup. The 
+Redirect option forces a server side redirect (HTTP 302) to the URL specified by 
+the return location. The Transfer option forces a server process transfer to the 
+URL specified in the return location. The transfer process preserves the initial 
+asp request object for post <span style="COLOR: black">processing</span>           
+            
+              
+            
+            
+     in the results page.</p>
+<p class="param">The CSV option causes the server to respond 
+with the hitlist in a comma separated values list. The HitlistID option causes 
+the server to return a single HitlistId value which can be used to retrieve the 
+hitlist from the database table during p<span style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">ost</span><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">-<span style="COLOR: black">processing</span></span>             
+             
+             
+   .</p>
+<h5 class="param">[store_request]&nbsp;=<span class="paramvalues">&nbsp;Empty|True</span></h5>
+<p class="param">     If set to true,&nbsp;the server&nbsp;stores the initial 
+query request as a data dictionary in session memory. Query parameters can be 
+accessed from the results page by interrogating one of two scripting dictionary 
+objects stored in Session(&quot;Request_FormObject&quot; &amp; dbkey) 
+and Session(&quot;Request_QueryObject&quot; &amp; dbkey).</p>
+<p class="param">Note that setting return_data=transfer is a more efficient way to 
+pass the request object to the results page. However, the transfer option is only 
+available in Win2k/IIS5.0 server configurations.</p>
+<h5 class="param">[metadata_directive]&nbsp;=<span class="paramvalues">&nbsp;Empty|bypass_ini|blind</span></h5>
+<p class="param">Controls where the server obtains the meta 
+data it requires to dynamically build ChemSQL commands from the posted query 
+fields. If <span style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">omitted</span>           
+          , the 
+server uses a combination of the meta data posted by the form and meta data from 
+the application ini file. The bypass_ini file is not fully implemented at this 
+point, but it will allow the query page to dynamically provide all required meta 
+data. The blind option forces the server to use ini data exclusively thus 
+simplifying the query specification.</p>
+<h5 class="param">[reload_basers]&nbsp;=<span class="paramvalues">&nbsp;Empty|True</span></h5>
+<p class="param">If set to true, causes the server to discard 
+the first section of the hitlist returned by the CSDO search, and to reload it 
+from the CSDOHitlist table. This allows for p<span style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">ost</span><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">-<span style="COLOR: black">processing</span></span> of the CSDOhitlist values before 
+results are displayed. 
+<p class="param">             
+              
+           
+ 
+<p class="param">
+
+</p><!--webbot bot="Include" U-Include="../footer.htm" TAG="BODY" startspan -->
+<div class="navigation">
+<p>&nbsp;
+<br>
+
+<hr>
+
+<table align="right" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><font size="1"><a href="http://www.cambridgesoft.com">CambridgeSoft
+    Corporation</a><br>
+    http://www.cambridgesoft.com<br>
+    Voice: (617) 588-9100<br>
+    Fax: (617) 588-9360<br>
+      <A href="mailto:support@cambridgesoft.com">support@cambridgesoft.com</A><br>
+    </font></td>
+  </tr>
+</table>
+</div>
+<!--webbot bot="Include" endspan i-checksum="15984" -->
+
+</body>
+</html>

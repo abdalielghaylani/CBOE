@@ -1,0 +1,108 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--Hide JavaScript
+
+   if (navigator.appName == "Netscape"){
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ns.css" TYPE="text/css">');
+      }
+   else{
+      document.write('<LINK REL=STYLESHEET HREF="../../../../webserver_source/cfserverasp/help/help_ie.css" TYPE="text/css">');
+   }
+//-->
+</script>
+<title>Chemical Inventory User's Guide -- Installation</title>
+</head>
+<body>
+
+<div class="navigation">
+<table>
+<tr valign="bottom">
+<td width="95%" align="left" valign="bottom" nowrap><EM>ChemInventory</EM>
+</td>
+<td align="right" width="10%" valign="bottom" nowrap>
+<A href="step1.htm"><IMG height=16 alt=Previous src="../../../../webserver_source/cfserverasp/help/images/back.gif" width=16 border=0></A>
+<A href="installation.htm"><IMG height=16 alt  ="Up One Level" src="../../../../webserver_source/cfserverasp/help/images/uplevel.gif" width=16 border=0 ></A>
+<A href="../../../../../ChemOffice/ChemInv/help/Admin/Installation/step3.htm"><IMG height=16 alt=Next src="../../../../webserver_source/cfserverasp/help/images/next.gif" width=16 border=0></A>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2">
+<hr>
+<b> ChemInventory User's Guide</b>
+</td>
+</tr>
+</table>
+</div>
+
+<h1>Installing&nbsp;the Chemical Inventory Application</h1>
+
+<p>
+<OL>
+<li>
+Run setup.exe from the ChemInv installer 
+  <UL>
+    <LI>Read and accept the License Terms and Conditions
+    <LI>Select the&nbsp;installation path for the application and database file. 
+    &nbsp;(Note: it is recommended to keep&nbsp;the default paths when 
+    possible)&nbsp;</LI></UL>
+   
+  <LI>chemInv.ini settings 
+  <UL>
+    <LI>Verify that the STRUC_DB_PATH&nbsp;entry&nbsp;agrees with&nbsp;the 
+    database&nbsp;path chosen in step&nbsp;1 above.
+    <LI>Verify that the CONNECTION_STRING entry&nbsp;agrees 
+    with the application&nbsp;path&nbsp;chosen in step 1.
+    <LI>The INV_SERVER_NAME should point to Server hosting ChemInvs 
+  databse</LI></UL> 
+  <LI>cfserver.ini settings 
+  <UL>
+    <LI>Set the ORA_SERVICENAME entry to&nbsp;the Oracle service name of your 
+    target server&nbsp;</LI></UL>
+  <LI>invconfig.ini settings 
+  <UL>
+    <LI>Verify that the RPT_PATH entry agrees with the ChemOffice WebServer 
+    installation path
+    <LI>Verify that the REPORT_DB_PATH entry agrees with the database path 
+    chosen in step 1 above.</LI></UL>
+  <LI>cheminv.udl 
+  <UL>
+    <LI>the file cheminv/config/ChemInv.udl should point to the Oracle service 
+    hosting the CHEMINVDB2 schema&nbsp;</LI></UL></LI></OL>
+<P>To enable ChemACX Integration:</P>
+<UL><li>cheminv/config/ChemACX.udl should point to the 
+  location of the ChemACX.mdb file 
+  <LI>The ACX_SERVER_NAME entry in cheminv/config/invconfig.ini should point to 
+  the Server hosting ChemACX <BR><STRONG>Note:</STRONG> If set to NULL ChemACX 
+  integration will be disabled.&nbsp;
+  <LI>In chemacx/config/acxconfig.ini set EXPORT_TO_CHEMINV="True" </LI></UL>
+<P>To enable ChemReg Integration:</P>
+<ul><li><STRONG>cheminv/config/ChemReg.udl</STRONG> should 
+  point to the Oracle service hosting the REGDB schema&nbsp;
+  <LI>The REG_SERVER_NAME entry in cheminv/config/invconfig.ini should point to 
+  the Server hosting ChemReg <BR><STRONG>Note:</STRONG> If set to NULL ChemReg 
+  integration will be disabled.&nbsp;
+  <LI>In <STRONG>cheminv/config/cfserver.ini</STRONG> add CHEMREG_PRIVILEGES to 
+  the PRIVILEGE_TABLE_LIST entry. 
+  <ol><li>Open <STRONG>chem_reg/config/Cfserver.ini</STRONG> 
+    <LI>Change <STRONG>POST_MARKED_SEND_TO_PAGE=NULL</STRONG> to: 
+    <BR><STRONG>POST_MARKED_SEND_TO_PAGE= <A 
+    href="http://YOUR_SERVER/cheminv/gui/ImportFromChemReg.asp">http://YOUR_SERVER/cheminv/gui/ImportFromChemReg.asp</A></STRONG><BR>(where 
+    YOUR_SERVER is the server name that is hosting Chemical Inventory2) <BR>You 
+    will now see an additional button appear when you 
+  mark hitsfor registered 
+  compounds.<    
+            
+          
+          
+       
+    /LI>  
+</ol></LI> 
+            
+             
+</ul>
+<p><A href="step3.htm">Step 3: Creating the Chemical Inventory 
+Database</A></p>
+</body>
+
+</html>
