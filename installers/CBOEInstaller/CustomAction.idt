@@ -1,0 +1,26 @@
+Action	Type	Source	Target	ExtendedType	ISComments
+s72	i2	S64	S0	I4	S255
+CustomAction	Action
+ISChainPackageCommit	1537	IsChainPackages.dll	ISChainPackagesCleanup		
+ISChainPackagePrepare	1	IsChainPackages.dll	ISChainPackages		
+ISChainPackageRollback	1281	IsChainPackages.dll	ISChainPackagesCleanup		
+ISIISCleanup	1	binIISHelper	ISIISCleanup		
+ISIISCosting	1	binIISHelper	ISIISCosting		
+ISIISInstall	3073	binIISHelper	ISIISInstall		
+ISIISRollback	3329	binIISHelper	ISIISRollback		
+ISIISUninstall	3073	binIISHelper	ISIISUninstall		
+ISLockPermissionsCost	1	ISLockPermissions.dll	ISLockPermissionsCostAction		
+ISLockPermissionsInstall	3073	ISLockPermissions.dll	ISLockPermissionsInstallAction		
+ISPreventDowngrade	19		[IS_PREVENT_DOWNGRADE_EXIT]		Exits install when a newer version of this product is found
+ISPrint	1	SetAllUsers.dll	PrintScrollableText		Prints the contents of a ScrollableText control on a dialog.
+ISSelfRegisterCosting	1	ISSELFREG.DLL	ISSelfRegisterCosting		
+ISSelfRegisterFiles	3073	ISSELFREG.DLL	ISSelfRegisterFiles		
+ISSelfRegisterFinalize	1	ISSELFREG.DLL	ISSelfRegisterFinalize		
+ISSetupFilesCleanup	257	ISSetupFilesHelper	SFCleanupEx		
+ISSetupFilesExtract	257	ISSetupFilesHelper	SFStartupEx		
+ISUnSelfRegisterFiles	3073	ISSELFREG.DLL	ISUnSelfRegisterFiles		
+SetARPINSTALLLOCATION	51	ARPINSTALLLOCATION	[INSTALLDIR]		
+SetAllUsersProfileNT	51	ALLUSERSPROFILE	[%SystemRoot]\Profiles\All Users		
+ShowMsiLog	226	SystemFolder	[SystemFolder]notepad.exe "[MsiLogFileLocation]"		Shows Property-driven MSI Log
+setAllUsersProfile2K	51	ALLUSERSPROFILE	[%ALLUSERSPROFILE]		
+setUserProfileNT	51	USERPROFILE	[%USERPROFILE]		

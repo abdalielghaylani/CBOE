@@ -1,0 +1,9 @@
+option confirm:yes-to-all
+# Turn logging on
+log normal "D:\Scripts\Synclog.txt"
+# Set comparison criteria
+criteria binary
+load %1 %2
+expand all
+select lt.newer.files lt.orphan.files lt.diff.files
+copyto left path:base %3
