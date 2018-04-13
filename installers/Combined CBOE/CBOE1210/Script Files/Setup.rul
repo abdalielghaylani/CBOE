@@ -1,0 +1,883 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+
+// The keyword export identifies MyFunction() as an entry-point function.
+// The argument it accepts must be a handle to the Installer database.
+
+export prototype DelayMessageStart(HWND);
+export prototype DelayMessageStop(HWND);
+export prototype MyFunction(HWND);
+export prototype InstallAbsent(HWND);
+export prototype ValidateUser(HWND);
+export prototype GrantSvcRights(HWND);
+export prototype LaunchUserSetup(HWND);
+export prototype CreateTlb(HWND);
+export prototype CheckWebSite(HWND);
+export prototype EditCBVNMageBatchFile(HWND);
+export prototype EditDataLoaderMageBatchFile(HWND);
+export prototype CreateRegKey(HWND);
+
+export prototype EditDThreeUDL(HWND);
+export prototype EditDrugDegUDL(HWND);
+export prototype EditCoreUDL(HWND);
+export prototype EditInvUDL(HWND);
+export prototype EditAppVBS(HWND);
+export prototype SetScriptMaps(HWND);
+export prototype InstallPatch(HWND);
+// To Do:  Declare global variables, define constants, and prototype user-
+//         defined and DLL functions here.
+
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source.
+// 5.  Click Next, accepting the default selections until the wizard
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by
+// inserting it into a sequence or making it the result of a dialog's
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when
+//            Windows(TM) Installer executes your custom action (see the "To
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)
+    // To Do:  Declare local variables.
+begin
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+
+end;
+
+
+function GrantSvcRights(hMSI)
+  STRING sUserName, szSupportDir, szProgram, szCmdLine;
+  NUMBER nBuff, iRetVal;
+begin                                                      
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName, nBuff); 
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff); 
+	szProgram = szSupportDir ^ "NTRIGHTS.EXE";
+	szCmdLine = "-u " + sUserName + " +r SeServiceLogonRight";
+	iRetVal = LaunchAppAndWait (szProgram, szCmdLine, LAAW_OPTION_WAIT);
+	if (iRetVal != ISERR_SUCCESS) then
+		MessageBox("Log on as Service Right couldn't be granted to "  + sUserName, SEVERE);
+	//else
+	//	MessageBox("Log on as Service Right is granted to "  + sUserName, INFORMATION);;
+	endif;                
+	//LaunchAppAndWait(szSupportDir^ "logAsSvc.exe ", sUserName, LAAW_OPTION_WAIT);
+end;   
+
+function ValidateUser(hMSI)   
+    // To Do:  Declare local variables. 
+STRING szInstallVal,szKey, sDomUser, sNewUser, szName, svValue, szSspLogonExe, szSupportDir, uStatus, svReturnLine, svTemp, szSspLogonLog, sDomainName, sUserName, sPassword, sCmdLine; 
+NUMBER nvSize, nvType, nvResult, nvLineNumber, nBuff;
+begin             
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+  //  SdShowMsg("Validating Windows Domain Account Credentials.....", TRUE);
+MsiSetProperty(ISMSI_HANDLE, "USERSTATUS", "False"); 
+MsiSetProperty(ISMSI_HANDLE, "USERBUILT", "False"); 
+
+
+szKey = "System\\CurrentControlSet\\Control\\ComputerName\\ComputerName";
+szName = "ComputerName";
+RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+
+     // Set the default root
+RegDBGetKeyValueEx(szKey, szName, nvType, sDomainName, nvSize);
+szSspLogonExe = "ssplogon.exe";
+szSspLogonLog = "ssplogon.log";
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "DOMAINUSER",sDomUser,nBuff); 
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "CREATENEWUSER",sNewUser,nBuff);
+if((sNewUser = "True") > 0) then
+   nBuff=256;
+   MsiGetProperty(ISMSI_HANDLE, "APPUSERNAME",sUserName,nBuff);
+else
+   nBuff=256;
+   MsiGetProperty(ISMSI_HANDLE, "ADMINUSERNAME",sUserName,nBuff);
+endif;
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE, "APPUSERPASSWORD",sPassword,nBuff);
+    
+nBuff=256;
+MsiGetProperty(hMSI, "SUPPORTDIR", szSupportDir, nBuff);
+//CopyFile(szSupportDir^szSspLogonExe, WindowsVolume^szSspLogonExe);
+// Usage: ssplogon.exe <domain> <user> <password>    
+if((sDomUser = "Yes") > 0) then
+	nBuff=256;
+    MsiGetProperty(hMSI, "USERDOMAIN", sDomainName, nBuff); 
+  //  MessageBox("DomainUser", INFORMATION);
+endif;
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE,"INSTALLUI", szInstallVal,nBuff);	
+sCmdLine = "/C " + szSspLogonExe + " " + sDomainName + " " + sUserName + " " + sPassword + " > " + WindowsVolume^szSspLogonLog;
+
+
+ChangeDirectory(szSupportDir);
+
+if( LaunchAppAndWait("CMD.EXE", sCmdLine, WAIT) < 0 ) then
+ 
+MessageBox("Unable to launch CMD.EXE & " + szSspLogonExe, SEVERE);
+abort;
+
+else
+
+// Find the search string in the log file.
+nvResult = FileGrep(WindowsVolume^szSspLogonLog, "Succeeded", svReturnLine, nvLineNumber, RESTART);
+NumToStr(svTemp, nvResult);
+switch(nvResult)
+
+case FILE_NOT_FOUND:
+MessageBox(WindowsVolume^szSspLogonLog + " file not found.", SEVERE);
+abort;
+
+case FILE_LINE_LENGTH:
+MessageBox(WindowsVolume^szSspLogonLog + " the lines are too long.", SEVERE);
+abort;
+
+case OTHER_FAILURE:
+NumToStr(svTemp, OTHER_FAILURE);
+MessageBox(WindowsVolume^szSspLogonLog + " Failure " + svTemp + " when calling FileGrep().", SEVERE);
+abort;
+
+case END_OF_FILE: // Did NOT find "Succeeded" String
+MessageBox("Validation of User Credentials failed. Username and/or Password are not valid.", SEVERE);
+DeleteFile(WindowsVolume^szSspLogonLog);
+MsiSetProperty(ISMSI_HANDLE, "USERSTATUS", "False"); 
+MsiSetProperty(ISMSI_HANDLE, "USERBUILT", "False"); 
+//if((szInstallVal = "Yes") > 0) then
+	//abort;
+//endif;
+
+case 0: // Found "Succeeded" String
+MsiSetProperty(ISMSI_HANDLE, "USERSTATUS", "True"); 
+MsiSetProperty(ISMSI_HANDLE, "USERBUILT", "True"); 
+if((sDomUser = "Yes") > 0) then  
+//	if((sDomainName = "") > 0) then
+//	MessageBox("This machine is not connected to the Domain. Please select local User", INFORMATION);
+//	abort;
+//	else
+    MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sDomainName + "\\" +sUserName);
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", sDomainName + "\\"+sUserName);
+ //   endif;
+else
+    MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName); 
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", ".\\"+sUserName);
+endif;
+//MessageBox(sUserName, INFORMATION);        
+default: // Unknown Error
+NumToStr(svTemp, nvResult);
+MessageBox(WindowsVolume^szSspLogonLog + " Unknown failure " + svTemp + " when calling FileGrep().", SEVERE);
+DeleteFile(WindowsVolume^szSspLogonLog);
+abort;
+
+endswitch;
+
+endif;
+DeleteFile(WindowsVolume^szSspLogonLog);
+//SdShowMsg("", FALSE);   
+nBuff=256;
+MsiGetProperty(ISMSI_HANDLE,"USERSTATUS", uStatus, nBuff);
+
+
+//Session.Property("CBOEDIR")=Session.Property("INSTALLDIR")
+
+
+//Changed 
+
+
+
+MsiSetProperty(ISMSI_HANDLE,"CBOEDIR",INSTALLDIR);
+//MessageBox(uStatus,INFORMATION);
+//MsiGetProperty(ISMSI_HANDLE,"USERSTATUS", uStatus, nBuff);
+
+end;
+function LaunchUserSetup(hMSI)
+  STRING sUserName, sPwd, szSupportDir, sUDomain, sUDesc,sUFullName, strA, strB, strC  ;
+  NUMBER nBuff;
+begin    
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "APPUSERNAME", sUserName, nBuff);   
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff);
+	nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "APPUSERPASSWORD", sPwd, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERDOMAIN", sUDomain, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERDESC", sUDesc, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERFULLNAME", sUFullName, nBuff); 
+	MsiSetProperty(ISMSI_HANDLE, "COMUSERNAME", sUserName); 
+    MsiSetProperty(ISMSI_HANDLE, "SERVICEUSERNAME", ".\\"+sUserName);
+	//MessageBox(sUserName + ";" + sPwd + ";" + sUDomain + ";" + sUDesc + ";" + sUFullName,INFORMATION);
+    LaunchAppAndWait(szSupportDir^"usersetup.exe ", sUserName + ";" + sPwd + ";" + sUDomain + ";" + sUDesc + ";" + sUFullName, WAIT);
+/*    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "PASSWORDMISMATCH", strA, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "USERBUILT", strB, nBuff);
+    nBuff = 256;
+	MsiGetProperty(ISMSI_HANDLE, "BUILDAUSER", strC, nBuff); 
+	MessageBox("PwdMismaatch = " + strA + ", UserBuilt = " + strB + ", BuildAUser = " + strC,INFORMATION); */
+end;
+
+function CreateTlb(hMSI)
+   STRING szSupportDir, szDBDir;
+   NUMBER nBuff;
+begin   
+	nBuff = 256;
+ 	MsiGetProperty(ISMSI_HANDLE, "DATABASEDIR", szDBDir, nBuff);
+    LaunchAppAndWait(WindowsFolder^"Microsoft.NET\\Framework\\v2.0.50727\\RegAsm.exe","\"" + szDBDir^"SingleSignOnCom.dll\" /tlb:SingleSignOnCom.tlb /codebase",WAIT);
+   /* LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + INSTALLDIR^"webserver_source\\cfserver_scripts\\cowsUtils.dll\"",WAIT); 
+    LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + szDBDir ^"Informatics2008\\Common\\Dlls\\wddx_com.dll\"",WAIT); 
+    LaunchAppAndWait("Regsvr32.exe"," -i -s \"" + INSTALLDIR^"webserver_source\\cfserveradmin\\AdminSource\\webadmin.dll\"",WAIT); 
+    */ nBuff = 256;
+ 	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSupportDir, nBuff);  
+ 	LaunchAppAndWait(szSupportDir^"ScriptMaps.vbs"," -d .cdx", WAIT);                                                                      
+    //MessageBox("Regsvr32.exe -u \"" + INSTALLDIR^"webserver_source\\cfserver_scripts\\cowsUtils.dll\"", INFORMATION);
+end;       
+function CheckWebSite(hMSI)   
+    // To Do:  Declare local variables. 
+  string szSrcDir, szWSName, szVirtualName, szOSName, szOraService;                                    
+    number nBuff, nWSName;
+begin 
+nBuff=256;      
+	MsiGetProperty(ISMSI_HANDLE, "WEBSITE", szWSName, nBuff);   
+	nBuff=256;
+	
+   if ((szWSName = "0") > 0) then
+   SprintfBox(WARNING, "WebSite Name" , "WebSite Name cannot be left blank", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "0");
+   //MessageBox("1", INFORMATION);      
+   
+   else
+   //MsiSetProperty(ISMSI_HANDLE, "WEBSITE", szWSName);
+   MsiSetProperty(ISMSI_HANDLE, "WEBPROPERTY", "1") ;
+   //MessageBox("0", INFORMATION);
+   endif; 
+    
+   
+end;  
+function EditCBVNMageBatchFile(hMSI)
+    STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,svReturnLineC,svReturnLineD,szVersion, szVer, svResult;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvLineNumberC,nvLineNumberD,nvFileHandle;
+begin             
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "SADDRESS" , szSAdd, nBuff); 
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNBUILDNUMBER" , szVersion, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNFOLDERVERSION" , szVer, nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+  	if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "mage_cbvn.bat") < 0) then
+   	  MessageBox ("Unable to edit mage_cbvn.bat. Please contact the administrator.", SEVERE);
+     // abort;
+  	else     
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "ChemBioViz.NET.exe.manifest\" -cf MyPFX.pfx -pwd mykey",svReturnLineB,nvLineNumberB, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_11_0_2_0028",svReturnLineC,nvLineNumberC, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_11_0_2_0030",svReturnLineC,nvLineNumberD, RESTART);
+  	
+  	
+  	// Close the File  
+  	CloseFile (nvFileHandle);
+  	endif;
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -u ChemBioViz.NET.application -appm \"Application Files\\ChemBioViz.NET_"+szVer+"\\ChemBioViz.NET.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu http://" + szSAdd + "/CBVNClickOnce/ChemBioViz.NET.application", nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -u \"Application Files\\ChemBioViz.NET_" + szVer + "\\ChemBioViz.NET.exe.manifest\" -fd \"Application Files\\ChemBioViz.NET_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -s \"Application Files\\ChemBioViz.NET_"  + szVer+"\\ChemBioViz.NET.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_"  + szVer, nvLineNumberC, REPLACE); 
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_"  + szVer, nvLineNumberD, REPLACE); 
+  	
+  	
+        
+end;  
+function EditDataLoaderMageBatchFile(hMSI)
+    STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,svReturnLineC,svReturnLineD,szVersion, szVer, svResult;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvLineNumberC,nvLineNumberD,nvFileHandle;
+begin             
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "SADDRESS" , szSAdd, nBuff); 
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNBUILDNUMBER" , szVersion, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNFOLDERVERSION" , szVer, nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+  	if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "mage_DataLoader.bat") < 0) then
+   	  MessageBox ("Unable to edit mage_DataLoader.bat. Please contact the administrator.", SEVERE);
+     // abort;                    
+  	else     
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "DataLoader.exe.manifest\" -cf",svReturnLineB,nvLineNumberB, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_0",svReturnLineC,nvLineNumberC, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_10",svReturnLineD,nvLineNumberD, RESTART);
+  	// Close the File  
+  	CloseFile (nvFileHandle);
+  	endif;
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u DataLoader.application -appm \"DataLoader_"+szVer+"\\DataLoader.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu http://" + szSAdd + "/DataLoader/DataLoader.application", nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u \"DataLoader_" + szVer + "\\DataLoader.exe.manifest\" -fd \"DataLoader_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -s \"DataLoader_"  + szVer+"\\DataLoader.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_"  + szVer, nvLineNumberC, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_"  + szVer, nvLineNumberD, REPLACE);
+  	
+  	
+        
+end; 
+function CreateRegKey(hMSI)
+     STRING szKey;
+  begin
+    szKey="\\SYSTEM\\CurrentControlSet\\Services\\RPTService\\Parameters\\";
+    RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE);
+    RegDBCreateKeyEx(szKey,"");  
+    RegDBSetKeyValueEx(szKey,"Application",REGDB_STRING,IISROOTFOLDER^"ChemOffice\\Webserver_Source\\cfserverasp\\RPT\\reports.exe",-1);
+  end;
+  
+   //
+ 
+
+ //
+ //// Drug Deg UDLs Editing Section
+ //                               
+function EditDrugDegUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin 
+ nBuff=256;
+ 
+      // open the file in Unicode mode.   
+    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);
+     if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\DrugDeg\\config", "DrugDeg.udl") < 0) then
+        MessageBox ("Unable to edit DrugDeg.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\DrugDeg\\config\\DrugDeg.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  // Close the File           
+  CloseFile (nvFileHandle); 
+  FileInsertLine(IISROOTFOLDER^"ChemOffice\\DrugDeg\\Config\\DrugDeg.udl","Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=DRUGDEG;Data Source=" + OraService ,nvLineNumber,REPLACE);
+end;
+
+ //
+ //// D3 UDLs Editing Section
+ //                        
+ 
+function EditDThreeUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin 
+ nBuff=256;
+      // open the file in Unicode mode.   
+   OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);
+    if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\D3\\config", "D3.udl") < 0) then
+        MessageBox ("Unable to edit D3.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\D3\\Config\\D3.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  //if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Password=Oracle;Persist Security Info=True;User ID=d3data;Data Source=orcl", "Provider=OraOLEDB.Oracle.1;Password=Oracle;Persist Security Info=True;User ID=d3data;Data Source=" + OraService, 0) < 0) then
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	//else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	//if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\D3\\config\\D3.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	//MessageBox("Delete Line Failed", INFORMATION);
+  	//endif;
+   	//WriteLine(nvFileHandle, svReturnLine);
+   //	//MessageBox(svReturnLine, INFORMATION);
+   //	nFlag = 2  ; 
+   	//endif;
+   // Close the File  
+   CloseFile (nvFileHandle);      
+   FileInsertLine(IISROOTFOLDER^"ChemOffice\\D3\\Config\\D3.udl","Provider=OraOLEDB.Oracle.1;Password=;Persist Security Info=False;User ID=d3data;Data Source=" + OraService,nvLineNumber,REPLACE);
+end;   
+
+function EditCoreUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin  
+ nBuff=256;
+ 
+ 
+      // open the file in Unicode mode.   
+    MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);        
+   //  MessageBox(szOraServiceName, INFORMATION);
+    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    // Open the file.
+    if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\sample\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit sample.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\sample\\config\\sample.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Inetpub\wwwroot\chemoffice\sample\database\sample.mdb;Persist Security Info=False", "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + IISROOTFOLDER^"ChemOffice\\sample\\database\\sample.mdb;Persist Security Info=False", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\sample\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle); 
+   
+     if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\cs_security\\config", "cs_security.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\cs_security\\config\\cs_security.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=dgb;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source="+ OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\cs_security\\config\\cs_security.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle);    
+   
+  if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\sample_ora\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit sample.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\sample_ora\\config\\sample.udl", "Data Source",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=sample;Data Source=dgb", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=sample;Data Source="+ OraService, nStart) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\sample_ora\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle);     
+   if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\sample_sqlserver\\config", "sample.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\sample_sqlserver\\config\\sample.udl", "Initial File Name",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=SQLOLEDB.1;Password=admin;Persist Security Info=True;User ID=sa;Initial Catalog=sample;Initial File Name=C:\Inetpub\wwwroot\ChemOffice\sample_sqlserver\database\sample_db.mdf", "Provider=SQLOLEDB.1;Password=admin;Persist Security Info=True;User ID=sa;Initial Catalog=sample;Initial File Name=" + IISROOTFOLDER^"ChemOffice\\sample_sqlserver\\database\\sample_db.mdf", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\sample_sqlserver\\config\\sample.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle);  
+   
+    if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\webserver_source\\cfserverasp\\RPT", "REPORTS.DAT") < 0) then
+        MessageBox ("Unable to edit Reports.DAT. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\webserver_source\\cfserverasp\\RPT\\REPORTS.DAT", IISROOTFOLDER^"ChemOffice\\webserver_source\\cfserverasp\\RPT\\Reports",svReturnLine,nvLineNumber, RESTART);
+   CloseFile (nvFileHandle); 
+   FileInsertLine(IISROOTFOLDER^"ChemOffice\\webserver_source\\cfserverasp\\RPT\\REPORTS.DAT","\"" + IISROOTFOLDER^"ChemOffice\\webserver_source\\cfserverasp\\RPT\\Reports\"",nvLineNumber, REPLACE);  
+end;
+
+//
+////ChemInventory UDLs Editing
+//
+function EditInvUDL(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin 
+ nBuff=256;
+      // open the file in Unicode mode.   
+   OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    MsiGetProperty(ISMSI_HANDLE, "ORACLESERVICE" , OraService, nBuff);
+
+	//OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    // Open the file.
+    if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\ChemInv\\config", "ChemInv.udl") < 0) then
+        MessageBox ("Unable to edit ChemInv.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\ChemInv\\config\\ChemInv.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\ChemInv\\config\\ChemInv.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle);      
+   
+    if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\ChemInv\\config", "ChemReg.udl") < 0) then
+        MessageBox ("Unable to edit ChemReg.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\ChemInv\\config\\ChemReg.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cheminvdb2;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\ChemInv\\Config\\ChemReg.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;
+   // Close the File  
+   CloseFile (nvFileHandle);    
+   
+   if (OpenFile(nvFileHandle, IISROOTFOLDER^"ChemOffice\\ChemInv\\config", "cs_security.udl") < 0) then
+        MessageBox ("Unable to edit cs_security.udl. Please contact the administrator.", SEVERE);
+       // abort;
+    endif;     
+   FileGrep(IISROOTFOLDER^"ChemOffice\\config\\cs_security.udl", "orcl",svReturnLine,nvLineNumber, RESTART);
+   //MessageBox(svReturnLine, INFORMATION); 
+  //MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  //MessageBox(szOraServiceName, INFORMATION);
+  if(StrReplace(svReturnLine,"Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=orcl;Extended Properties=\"PwdChgDlg=0\"", "Provider=OraOLEDB.Oracle.1;Persist Security Info=False;User ID=cs_security;Data Source=" + OraService + ";Extended Properties=\"PwdChgDlg=0\"", 0) < 0) then
+   	MessageBox(svReturnLine, INFORMATION); 
+   	else  
+   	//MessageBox(svReturnLine, INFORMATION); 
+   	if(FileDeleteLine(IISROOTFOLDER^"ChemOffice\\ChemInv\\config\\cs_security.udl", nvLineNumber, nvLineNumber) < 0) && ((nFlag = 2) < 0) then
+  	MessageBox("Delete Line Failed", INFORMATION);
+  	endif;
+   	WriteLine(nvFileHandle, svReturnLine);
+   	//MessageBox(svReturnLine, INFORMATION);
+   	nFlag = 2  ; 
+   	endif;    
+   	
+   // Close the File  
+   CloseFile (nvFileHandle);
+end;
+function EditAppVBS(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin 
+ nBuff=256;
+      // open the file in Unicode mode.   
+   /* OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs", "D:\\CBVN110X_Deployment\\ChemBioViz.Net.application\"",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs", "D:\CBVN110X_Deployment\ChemBioViz.Net.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	*/
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit DataLoader APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit DataLoader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  endif;	
+  	//DataUploader
+ /* OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs", "D:\\DataUploader110X_Deployment\\COEDataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\Data Loader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  
+  	
+  	endif;
+  	*/
+  	
+  	
+end;
+
+function SetScriptMaps(hMSI)
+    // To Do:  Declare local variables.
+    STRING regAspnet,com,com1,svSiteNum,szSupportDir, szVirtualName;
+    NUMBER nBuff;
+ begin            
+     nBuff=256;
+     MsiGetProperty(ISMSI_HANDLE,"SITENUMBER",svSiteNum,nBuff);
+     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v2.0.50727\\aspnet_regiis.exe";
+     com = "-s W3SVC/" + svSiteNum + "/ROOT";
+     com1= "-s W3SVC";
+     if (LaunchAppAndWait(regAspnet, com, WAIT) < 0) then
+         MessageBox ("Unable to launch "+ regAspnet +".",SEVERE);
+     endif;
+     if (LaunchAppAndWait(regAspnet, com1, WAIT) < 0) then
+         MessageBox ("Unable to launch "+ regAspnet +".",SEVERE);
+     endif;
+end;
+
+function InstallPatch(hMSI)
+    // To Do:  Declare local variables.
+    STRING  szVirtualName,strProgram,strInstallDir,strMSI,strWebSite,strCBOE,strComuser,strAppPass;
+    NUMBER nBuf;
+ begin            
+   
+   nBuf=256;
+        // Launch Notepad; the value of nWait determines
+
+        // when execution of the installation continues.
+        
+        //s2v1x86=Session.Property("SUPPORTDIR") & "\VPDInstaller.x86.msi"
+  //s2v1x64=Session.Property("SUPPORTDIR") & "\VPDInstaller.x64.msi"
+  
+        MsiGetProperty(hMSI,"SUPPORTDIR",strMSI,nBuf);
+        MsiGetProperty(hMSI,"INSTALLDIR",strInstallDir,nBuf);
+       
+        MsiGetProperty(hMSI,"WEBSITENAME",strWebSite,nBuf);
+        
+        MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
+         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
+         
+          MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);
+
+        strMSI=strMSI + "\\CBOE 17.1.1.msi";
+   
+
+        
+       // strMSI=strMSI + "\\VPDInstaller.x64.msi";
+        //strInstallDir=strInstallDir + "bin";
+        
+        
+        LongPathFromShortPath(strMSI);
+        LongPathToQuote(strMSI,TRUE);
+        LongPathToQuote(strInstallDir,TRUE);
+         
+         
+        
+       
+      //  if (strWebSite="Default Web Site") then
+        
+        //LongPathToQuote(strWebSite,TRUE);
+        //strProgram=  "/quiet " + "TARGETDIR="  + strInstallDir + " /i " +strMSI;
+        
+        //Change
+        
+       if (strCBOE="yes") then
+			strProgram=  " /i " +strMSI+" /qb" + " INSTALLDIR="+strInstallDir;
+	else
+		 strProgram=  " /i " +strMSI+" /qb" + " INSTALLDIR="+strInstallDir +" APPUSERNAME="+strComuser+" APPUSERPASSWORD="+strAppPass;
+		
+		
+		
+		endif;  
+		
+		
+		
+		
+		//Change
+		
+		
+	  /*if (strCBOE="yes") then
+			strProgram=  " /i " +strMSI+" " + " INSTALLDIR="+strInstallDir;
+	else
+		 strProgram=  " /i " +strMSI+" " + " INSTALLDIR="+strInstallDir +" APPUSERNAME="+strComuser+" APPUSERPASSWORD="+strAppPass;
+		
+		
+		
+		endif;  */
+        
+       // MessageBox(strProgram,MB_OK);
+        
+        
+        //MessageBox (strProgram,MB_OK);
+        //else
+        
+        //LongPathToQuote(strWebSite,TRUE);
+        
+         //strProgram=  " /i " +strMSI+" /qb" + " INSTALLDIR="+strInstallDir +" WEBSITENAME="+strWebSite;
+        
+        //MessageBox (strProgram,MB_OK);
+        //endif;
+        
+        
+
+      //MessageBox (strMSI,MB_OK);
+     //  MessageBox(strInstallDir,MB_OK);
+     //    MessageBox(strSystemType,MB_OK);
+        
+       LaunchAppAndWait ("msiexec", strProgram, WAIT);
+
+   
+end;
+
+  
+function InstallAbsent(hMSI)
+    // To Do:  Declare local variables.
+    STRING  szVirtualName,strProgram,strInstallDir,strMSI;
+    NUMBER nBuf;
+ begin            
+   
+        MsiSetFeatureState(hMSI,"COE",INSTALLSTATE_ABSENT);
+        MsiSetFeatureState(hMSI,"Classic",INSTALLSTATE_ABSENT);
+       
+end;
+
+function DelayMessageStart(hMSI)
+    // To Do:  Declare local variables.
+    
+    STRING szTitle,szDlg;
+begin
+
+   
+SdShowMsg("The process is taking time to complete,Please wait until the next window pop-up ...", TRUE);
+
+Delay(15);
+
+SdShowMsg("", FALSE);
+
+end;
+
+function DelayMessageStop(hMSI)
+    // To Do:  Declare local variables.
+    
+    STRING szTitle,szDlg;
+begin
+
+
+SdShowMsg("", FALSE);
+
+end;
+
+
+
+
