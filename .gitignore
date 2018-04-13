@@ -2,9 +2,12 @@ obj/
 *.suo
 *proj.user
 **/PresentationTier/packages/
+**/bin/*
 !**/CommonRuntimeLibraries/*.dll
 !**/CommonRuntimeLibraries/*.pdb
-**/bin
+!**/Framework/**/bin/*.dll
+!**/Framework/**/bin/*.refresh
+
 
 .gradle
 /build/
