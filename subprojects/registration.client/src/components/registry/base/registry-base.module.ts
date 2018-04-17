@@ -62,6 +62,7 @@ export * from './batch-editor';
 export * from './batch-mover';
 export * from './batch-selector';
 export * from './search-export';
+export * from './search-form-view';
 export * from './structure-query-form-item';
 export * from './url-form-item';
 

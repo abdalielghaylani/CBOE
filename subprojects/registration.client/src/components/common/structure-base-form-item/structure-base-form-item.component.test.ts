@@ -11,8 +11,8 @@ describe('Component : Structure Base Form Item', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule ],
-        declarations : [ RegStructureBaseFormItem ],
+        imports: [TestModule],
+        declarations: [RegStructureBaseFormItem],
       });
     };
 
@@ -35,7 +35,7 @@ describe('Component : Structure Base Form Item', () => {
       fixture.autoDetectChanges();
       let testVal1 = 'Test Value';
       let expectedVal1 = 'Test Value';
-      let testVal2 = { 'viewModel' : {'Attribute' : 'TestValue'} };
+      let testVal2 = { 'viewModel': { 'Attribute': 'TestValue' } };
       expect(fixture.componentInstance.deserializeValue(testVal1)).toEqual(expectedVal1);
       expect(fixture.componentInstance.deserializeValue(testVal2)).toEqual(testVal2.toString());
     });
@@ -44,8 +44,8 @@ describe('Component : Structure Base Form Item', () => {
   it('should serialise value', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      let testVal = {'data' : 'testdata'};
-      let expectedVal = {'data' : 'testdata'};
+      let testVal = { 'data': 'testdata' };
+      let expectedVal = { 'data': 'testdata' };
       expect(fixture.componentInstance.serializeValue(testVal)).toEqual(expectedVal);
     });
   })));
@@ -53,8 +53,8 @@ describe('Component : Structure Base Form Item', () => {
   it('should check value on Initialize Validator', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      let event = { 'component' : { 'peer' : '' } };
-      let data = 'Test Data';
+      const event = { component: { peer: null } };
+      const data = { viewModel: { editorOptions: { customRules: {} } } };
       fixture.componentInstance.onValidatorInitialized(event, data);
       expect(fixture.componentInstance.serializeValue(event.component.peer)).toEqual(data);
     });
@@ -63,7 +63,7 @@ describe('Component : Structure Base Form Item', () => {
   it('should Validate', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      let options = { 'options' : { 'allowEditing' : false } };
+      let options = { 'options': { 'allowEditing': false } };
       fixture.componentInstance.validate(options);
       expect(fixture.componentInstance.validate(options)).toBeTruthy();
     });

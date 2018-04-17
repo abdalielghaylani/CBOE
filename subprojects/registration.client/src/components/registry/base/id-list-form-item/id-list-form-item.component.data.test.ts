@@ -15,25 +15,43 @@ let testSessionData = {
 };
 
 let testViewModel = {
-  'editorOptions': {
-    'value': {
-      'Identifier': [{
-        'IdentifierID': {
+  editorOptions: {
+    value: {
+      Identifier: [{
+        IdentifierID: {
           '_Name': 'Alias',
           '_Active': 'T',
           '__text': '3'
         },
-        'InputText': 'Test Identifier',
-        'OrderIndex': '1'
+        InputText: 'Test Identifier',
+        OrderIndex: '1'
       }]
     },
-    'idListType': 'R',
-    'dataField': 'Mix_IdentifiersUltraGrid',
-    'readOnly': false,
-    'inputAttr': {
-      'id': 'dx_dx-a2fe26d8-d3f8-6765-397b-239794cba2cf_Mix_IdentifiersUltraGrid'
+    idListType: 'R',
+    dataField: 'Mix_IdentifiersUltraGrid',
+    readOnly: false,
+    inputAttr: {
+      id: 'dx_dx-a2fe26d8-d3f8-6765-397b-239794cba2cf_Mix_IdentifiersUltraGrid'
     },
-    'name': 'Mix_IdentifiersUltraGrid'
+    name: 'Mix_IdentifiersUltraGrid',
+    fieldConfig: {
+      tables: {
+        table: [
+          {
+            Columns: {
+              Column: [{
+                _name: 'Value',
+                formElement: {
+                  configInfo: {
+                    MaxLength: 10
+                  }
+                }
+              }]
+            }
+          }
+        ]
+      }
+    }
   }
 };
 

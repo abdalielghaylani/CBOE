@@ -1,38 +1,37 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TestModule } from '../../../../test/test.module';
+import { TestModule } from '../../../../test';
+import { RegBaseComponentModule } from '../..';
 import { DevExtremeModule } from 'devextreme-angular';
 import { RegStructureFormItem } from './structure-form-item.component';
-// import { StructFormTestData } from './structure-form-item.testdata.test';
 
 describe('Component : Structure Form Item', () => {
 
   let fixture;
-  let StructData;
+  let structureData;
   let testSerializeInputData;
-  let TestStructureText;
+  let testStructureText;
 
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [TestModule, DevExtremeModule],
-        declarations: [RegStructureFormItem],
+        imports: [TestModule, DevExtremeModule, RegBaseComponentModule]
       });
     };
 
     TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegStructureFormItem);
       fixture.detectChanges();
-      StructData = {
+      structureData = {
         'Structure': { '__text': 'Test CDXML Data here' },
         'NormalizedStructure': 'Test CDXML Data here', 'DrawingType': '0'
       };
-      testSerializeInputData = { 'mode': 0, 'structureData': {}, };
-      TestStructureText = 'Test CDXML Data here';
+      testSerializeInputData = { 'mode': 0, 'structureData': {} };
+      testStructureText = 'Test CDXML Data here';
       done();
     });
   });
 
-  it('should create Form Group View Component', async(inject([], () => {
+  it('should create', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       expect(fixture.componentInstance).toBeDefined();
@@ -42,8 +41,8 @@ describe('Component : Structure Form Item', () => {
   it('should check extract mode', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      let testNode = StructData.DrawingType;
-      let expectedVal = parseInt(StructData.DrawingType, 10);
+      let testNode = structureData.DrawingType;
+      let expectedVal = parseInt(structureData.DrawingType, 10);
       expect(fixture.componentInstance.extractMode(testNode)).toEqual(expectedVal);
     });
   })));
@@ -54,10 +53,10 @@ describe('Component : Structure Form Item', () => {
       spyOn(fixture.componentInstance, 'updateMode');
       spyOn(fixture.componentInstance, 'extractMode');
       fixture.autoDetectChanges();
-      let returnDeserializedVal = fixture.componentInstance.deserializeValue(StructData);
-      expect(fixture.componentInstance.structureData).toEqual(StructData);
+      let returnDeserializedVal = fixture.componentInstance.deserializeValue(structureData);
+      expect(fixture.componentInstance.structureData).toEqual(structureData);
       expect(typeof returnDeserializedVal).toEqual('string');
-      expect(returnDeserializedVal).toEqual(TestStructureText);
+      expect(returnDeserializedVal).toEqual(testStructureText);
       expect(fixture.componentInstance.updateMode).toHaveBeenCalled();
       expect(fixture.componentInstance.extractMode).toHaveBeenCalled();
     });
@@ -65,7 +64,7 @@ describe('Component : Structure Form Item', () => {
 
   it('should serialize value', async(inject([], () => {
     fixture.whenStable().then(() => {
-      fixture.componentInstance.structureData = StructData;
+      fixture.componentInstance.structureData = structureData;
       fixture.autoDetectChanges();
       fixture.componentInstance.serializeValue(testSerializeInputData);
       expect(fixture.componentInstance.structureData.Structure.__text).toEqual(testSerializeInputData);

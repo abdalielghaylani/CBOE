@@ -19,16 +19,15 @@ describe('registry action creators', () => {
     actions = new RegistrySearchActions(mockRedux);
   });
 
-  it('search should dispatch SEARCH_RECORDS action', () => {
-    const searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria"></searchCriteria>`;
-    const data: IQueryData = { temporary: true, searchCriteria };
+  it('search should dispatch RETRIEVE_QUERY_FORM action', () => {
+    const data = { temporary: true, id: 1 };
     const expectedAction = {
-      // type: RegistrySearchActions.SEARCH_RECORDS,
+      type: RegistrySearchActions.RETRIEVE_QUERY_FORM,
       payload: data
     };
 
     spyOn(mockRedux, 'dispatch');
-    // actions.searchRecords(data);
+    actions.retrieveQueryForm(true, 1);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

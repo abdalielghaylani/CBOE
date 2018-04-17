@@ -2,14 +2,7 @@ import { NgRedux } from '@angular-redux/store/lib';
 import { IAppState, RecordDetailActions } from '../../../../redux/index';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
-import {
-  RegFormGroupView, RegFormView, RegBatchSelector, RegProjectsFormItem,
-  RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem, RegBatchCreator, RegBatchMover
-} from '../registry-base.module';
-import {
-  RegDateFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownFormItem,
-  RegDropDownColumnItem, RegStructureColumnItem
-} from '../../../index';
+import { RegistryModule } from '../../..';
 import { RegRecordDetailBase } from './record-detail-base.component';
 import { recordDetailBaseTestData } from './record-detail-base.component.data.test';
 import { RegFormGroupItemView } from '../form-group-item-view/form-group-item-view.component';
@@ -41,11 +34,7 @@ describe('Component : Record Detail Base', () => {
     mockActions = new RecordDetailActions(mockRedux);
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [TestModule, DevExtremeModule],
-        declarations: [RegRecordDetailBase, RegFormGroupView, RegBatchSelector, RegFormView, RegFormGroupItemView,
-          CommandButton, RegDateFormItem, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegDropDownFormItem,
-          RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem, RegBatchCreator, RegBatchMover],
+        imports: [TestModule, DevExtremeModule, RegistryModule],
         providers: [
           { provide: NgRedux, useValue: mockRedux },
           { provide: RecordDetailActions, useValue: mockActions }

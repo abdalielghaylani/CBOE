@@ -2,7 +2,7 @@ import { RegFormView } from './form-view.component';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem } from '../registry-base.module';
+import { RegistryModule } from '../..';
 import {
   RegDropDownFormItem, RegDateFormItem, RegStructureImageFormItem, RegTextFormItem, 
   RegDropDownColumnItem, RegStructureColumnItem
@@ -15,10 +15,7 @@ describe('Component : Form View Component', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [TestModule, DevExtremeModule ],
-        declarations: [RegFormView, RegDateFormItem, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, 
-          RegDropDownFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem ],
+        imports: [TestModule, DevExtremeModule, RegistryModule],
       });
     };
 

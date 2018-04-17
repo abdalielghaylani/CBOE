@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { NgReduxModule } from '@angular-redux/store';
 import {
   DxCheckBoxModule,
@@ -42,6 +42,7 @@ export { IResponseData, ITemplateData, CTemplateData };
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     NgReduxModule,
     DxCheckBoxModule,
@@ -70,7 +71,8 @@ export { IResponseData, ITemplateData, CTemplateData };
     RegTemplates,
     RegDuplicateRecord,
     RegBulkRegisterRecord,
-    RegRecordPrint
+    RegRecordPrint,
+    RegDuplicatePopup
   ],
   exports: [
     RegQueryManagement,
@@ -81,8 +83,12 @@ export { IResponseData, ITemplateData, CTemplateData };
     RegDuplicateRecord,
     RegBulkRegisterRecord,
     RegRecordPrint,
+    RegDuplicatePopup,
     RegBaseComponentModule,
     RegLayoutComponentModule
+  ],
+  providers: [
+    FormBuilder
   ]
 })
 export class RegistryModule { }

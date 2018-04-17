@@ -52,8 +52,8 @@ describe('Component : Command Button', () => {
   it('should display assigned title', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      queryByCss = fixture.debugElement.query(By.css('button:last-child'));
-      expect(queryByCss.nativeElement.innerText).toEqual('Test Title');
+      queryByCss = fixture.debugElement.query(By.css('button div:last-child'));
+      expect(queryByCss.nativeElement.innerText.trim()).toEqual('Test Title');
     });
   });
 
@@ -70,10 +70,10 @@ describe('Component : Command Button', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       expect(queryByDir.componentInstance.color).toEqual('blue');
-      queryByCss = fixture.debugElement.query(By.css('button:first-child'));
+      queryByCss = fixture.debugElement.query(By.css('button div:first-child'));
       expect(queryByCss.nativeElement.className).toContain('background-blue border-blue');
-      queryByCss = fixture.debugElement.query(By.css('button:last-child'));
-      expect(queryByCss.nativeElement.className).toContain('border-blue blue');
+      queryByCss = fixture.debugElement.query(By.css('button div:last-child'));
+      expect(queryByCss.nativeElement.className).toContain('background-white');
     });
   });
 

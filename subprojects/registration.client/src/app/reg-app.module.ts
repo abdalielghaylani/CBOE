@@ -17,15 +17,11 @@ import {
   RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
   RegSettingsPageHeader
 } from '../components';
-import {
-  RegRecords, RegRecordDetail, RegRecordSearch, RegQueryManagement, RegTemplates,
-  RegDuplicateRecord, RegDuplicatePopup, RegBulkRegisterRecord, RegRecordPrint
-} from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { RegConfigurationComponentModule } from '../components';
-import { RegBaseComponentModule } from '../components/registry/base/';
+import { RegistryModule } from '../components/registry';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -54,7 +50,7 @@ import {
     RegConfigurationComponentModule,
     RegLoginModule,
     RegNavigatorModule,
-    RegBaseComponentModule,
+    RegistryModule,
     NgReduxModule,
     DxCheckBoxModule,
     DxRadioGroupModule,
@@ -78,21 +74,12 @@ import {
     RegBulkRecordsPage,
     RegRecordSearchPage,
     RegRecordDetailPage,
-    RegRecords,
-    RegQueryManagement,
-    RegTemplates,
-    RegDuplicateRecord,
-    RegBulkRegisterRecord,
-    RegDuplicatePopup,
-    RegRecordSearch,
-    RegRecordDetail,
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
     RegLoginPage,
     RegAboutPage,
     UnAuthorizedPage,
     ConfigurationPage,
-    RegRecordPrintPage,
-    RegRecordPrint
+    RegRecordPrintPage
   ],
   bootstrap: [
     RegApp

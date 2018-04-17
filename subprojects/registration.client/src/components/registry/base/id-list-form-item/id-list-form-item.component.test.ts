@@ -21,18 +21,18 @@ describe('Component : ID List Form Item', () => {
 
   let fixture;
   let mockRedux: NgRedux<IAppState>;
-  let mockState : IAppState = {
-    session : idListTestData.sessionData
+  let mockState: IAppState = {
+    session: idListTestData.sessionData
   };
 
   beforeEach(done => {
     mockRedux = new MockRedux(mockState);
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule ],
-        declarations : [ RegIdListFormItem, RegDropDownColumnItem, RegStructureColumnItem ],
+        imports: [TestModule, DevExtremeModule],
+        declarations: [RegIdListFormItem, RegDropDownColumnItem, RegStructureColumnItem],
         providers: [
-          { provide: NgRedux, useValue : mockRedux }
+          { provide: NgRedux, useValue: mockRedux }
         ]
       });
     };
@@ -58,7 +58,7 @@ describe('Component : ID List Form Item', () => {
       let expectedOutputVal = idListTestData.deSerializedOutputVal;
       fixture.autoDetectChanges();
       expect(fixture.componentInstance.deserializeValue(testInputVal)).toEqual(expectedOutputVal);
-      let testInput2 = ''; 
+      let testInput2 = '';
       let expectedOutput2 = [];
       expect(fixture.componentInstance.deserializeValue(testInput2)).toEqual(expectedOutput2);
     });

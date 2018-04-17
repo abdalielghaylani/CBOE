@@ -2,14 +2,14 @@ import { RegFormGroupView } from './form-group-view.component';
 import { TestModule } from '../../../../test/test.module';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { RegFormGroupItemView } from '../form-group-item-view/form-group-item-view.component';
-import { RegFormView, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem, RegBatchSelector, RegBatchCreator, RegBatchMover } from '../registry-base.module';
+import { RegistryModule } from '../..';
 import { DevExtremeModule } from 'devextreme-angular';
 import {
   RegDateFormItem, RegDropDownFormItem, RegStructureImageFormItem, RegTextFormItem,
   RegDropDownColumnItem, RegStructureColumnItem
 } from '../../../index';
 import { NgReduxModule } from '@angular-redux/store/lib';
-import { CommandButton } from '../../../../common/tool/command-button.component';
+import { RegToolModule } from '../../../../common/tool';
 
 describe('Component : Form Group View', () => {
 
@@ -18,11 +18,7 @@ describe('Component : Form Group View', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [TestModule, DevExtremeModule, NgReduxModule],
-        declarations: [RegFormGroupView, RegFormGroupItemView, RegFormView, RegDateFormItem,
-          RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegDropDownFormItem,
-          RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem, CommandButton, RegBatchSelector, RegBatchCreator, RegBatchMover],
+        imports: [TestModule, DevExtremeModule, NgReduxModule, RegistryModule, RegToolModule],
       });
     };
 

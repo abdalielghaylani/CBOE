@@ -1,14 +1,7 @@
-import { RegSearchFormView } from './search-form-view.component';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegDateFormItem, RegDropDownFormItem, RegTextFormItem, RegDropDownColumnItem, RegStructureColumnItem } from '../../../index';
-import { RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem } from '../registry-base.module';
-import { RegStructureQueryFormItem } from '../structure-query-form-item/structure-query-form-item.component';
-import { CommandDropdown } from '../../../../common/tool/command-dropdown.component';
-import { RegStructureQueryOptions } from '../structure-query-form-item/structure-query-form-options.component';
-import { CommandButton } from '../../../../common/tool/command-button.component';
-import { RegCommonComponentModule } from '../../../common';
+import { RegBaseComponentModule, RegSearchFormView } from '..';
 
 describe('Component : Search Form View', () => {
 
@@ -17,12 +10,7 @@ describe('Component : Search Form View', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule, RegCommonComponentModule ],
-        declarations : [ RegSearchFormView, RegDateFormItem, 
-          RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem,
-          RegDropDownFormItem, RegStructureQueryFormItem, RegTextFormItem,
-          RegDropDownColumnItem, CommandDropdown, RegStructureQueryOptions, 
-          CommandButton, RegStructureColumnItem ],
+        imports: [ TestModule, DevExtremeModule, RegBaseComponentModule ]
       });
     };
 
@@ -44,7 +32,22 @@ describe('Component : Search Form View', () => {
     fixture.whenStable().then(() => {
       spyOn(fixture.componentInstance, 'onValueUpdated');
       fixture.autoDetectChanges();
-      let testEvent = { 'data' : 'Test Data', 'value' : { 'structureCriteriaOptions' : { 'option' : 'TestOption 1' } } };
+      const value1 = {
+        structureCriteriaOptions: {
+          option: 'TestOption 1'
+        }
+      };
+      const value2 = {
+        structureCriteriaOptions: {
+          option: 'TestOption 2'
+        }
+      };
+      fixture.componentInstance.viewModelCopy = { value: value1 };
+      const testEvent = {
+        data: 'Test Data',
+        dataField: 'value',
+        value: value2
+      };
       fixture.componentInstance.onFieldDataChanged(testEvent);
       expect(fixture.componentInstance.onValueUpdated).toHaveBeenCalled();
     });

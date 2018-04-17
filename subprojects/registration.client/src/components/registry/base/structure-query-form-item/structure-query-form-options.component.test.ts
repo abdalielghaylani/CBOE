@@ -10,8 +10,8 @@ describe('Component : Structure Query Form Otions', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule ],
-        declarations : [ RegStructureQueryOptions ],
+        imports: [TestModule, DevExtremeModule],
+        declarations: [RegStructureQueryOptions],
       });
     };
 
@@ -32,9 +32,9 @@ describe('Component : Structure Query Form Otions', () => {
   it('should emit event on feild data changed', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      let testEvent = { 'data' : 'Test Data' };
+      let testEvent = { data: 'Test Data' };
       fixture.componentInstance.onFieldDataChanged(testEvent);
-      fixture.componentInstance.valueUpdated.subscribe(e => expect(e).toEqual(testEvent));
+      fixture.componentInstance.optionUpdated.subscribe(e => expect(e).toEqual(testEvent));
     });
   })));
 
