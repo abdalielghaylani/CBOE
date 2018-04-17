@@ -8,6 +8,8 @@ obj/
 !**/Framework/**/bin/*.dll
 !**/Framework/**/bin/*.refresh
 !**/PyEngine/bin/*.dll
+!**/SDKDocumentation/Bin/*
+!**/RegistrationWebApp/Bin/*
 
 .gradle
 /build/
