@@ -7,7 +7,7 @@ obj/
 !**/CommonRuntimeLibraries/*.pdb
 !**/Framework/**/bin/*.dll
 !**/Framework/**/bin/*.refresh
-
+!**/PyEngine/bin/*.dll
 
 .gradle
 /build/
