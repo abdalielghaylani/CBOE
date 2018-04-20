@@ -770,7 +770,7 @@ function InstallPatch(hMSI)
          
           MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);
 
-        strMSI=strMSI + "\\CBOE 17.1.1.msi";
+        strMSI=strMSI + "\\CBOE 18.1.0.msi";
    
 
         

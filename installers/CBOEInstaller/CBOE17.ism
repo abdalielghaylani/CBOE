@@ -418,8 +418,6 @@
 		<row><td>AppPoolComponent1</td><td>{78280B3F-4B30-48F4-B52D-EF17865883B4}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppPoolComponent2</td><td>{E9FE7957-7B87-45D2-A594-1179239C0814}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppPoolComponent3</td><td>{080417B6-6E6D-4769-AEC2-A8B316AD7AC2}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Binary.dll</td><td>{8081CD86-09B5-4A39-8519-37D41E44ED54}</td><td>DLLS</td><td>0</td><td/><td>binary.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Blob.dll</td><td>{4D801907-C1E4-4841-AC0E-BBC90D9A659D}</td><td>DLLS</td><td>0</td><td/><td>blob.dll1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo17.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17_Server</td><td>{A87714E9-122B-4197-BBBE-7CBF51218429}</td><td>_F2042E99_9D3A_4685_9386_69AF368B7525_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17_Server_File</td><td>{1108557E-BC27-4949-B533-97CD3074B23B}</td><td>NEW_DIRECTORY15</td><td>8</td><td/><td>csdo17.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -435,15 +433,12 @@
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>{E6BC6472-3D2E-4A6A-9885-41D1AD200210}</td><td>BIN10</td><td>0</td><td/><td>cambridgesoft.coe.registrati2</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td>{56E1393D-93DF-4823-94C6-AFDC44126BE4}</td><td>BIN2</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Csla.Compression.dll</td><td>{75FAC602-A0AF-4AED-98B2-35E8688ABEF4}</td><td>BIN10</td><td>0</td><td/><td>csla.compression.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>FileBatchLoad.exe</td><td>{87AC576D-8A8D-4A63-ADE8-F61E12168332}</td><td>DLLS</td><td>0</td><td/><td>filebatchload.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td>{6D0B1B64-969F-41A6-A080-A7422655D36C}</td><td>BIN10</td><td>0</td><td/><td>icsharpcode.sharpziplib.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISRegistryComponent</td><td>{14E10E08-8B3B-438E-B4EC-DC5E713E8854}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>InvLoaderSetup.exe</td><td>{F989FE9F-7BC6-40AD-B500-138E051F8F63}</td><td>INVLOADER</td><td>8</td><td/><td>invloadersetup.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>{44723C57-19FE-42FD-A756-7C30E1A6066A}</td><td>BIN4</td><td>0</td><td/><td>microsoft.practices.enterpri</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.d</td><td>{9AF4E5D1-731C-4E9B-B44F-2F1B30579457}</td><td>BIN10</td><td>8</td><td/><td>microsoft.practices.enterpri2</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>{E3D3EFF8-7080-4A8A-A1EF-08C6BB2D0204}</td><td>BIN4</td><td>0</td><td/><td>microsoft.practices.enterpri1</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>MolParser.dll</td><td>{8AC95B72-6969-4858-AC03-C9B0049C3312}</td><td>DLLS</td><td>0</td><td/><td>molparser.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>MolServer85.dll</td><td>{4D2AEFB4-482F-4276-9F4B-F722656FEEDC}</td><td>DLLS</td><td>0</td><td/><td>molserver85.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Msvcp</td><td>{AE62BAA3-F51C-4250-AADE-D1237F615D9D}</td><td>System64Folder</td><td>8</td><td/><td>msvcp71.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Msvcp71</td><td>{0E4C2760-EF6F-470E-8BCB-CC7269492CE3}</td><td>SystemFolder</td><td>8</td><td/><td>msvcp71.dll1</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NewComponent1</td><td>{C49D6EC3-FCA1-42DF-AA27-C5F05FC8C1FE}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -461,9 +456,6 @@
 		<row><td>WebServiceExtensionComponent</td><td>{709A5C9C-A67F-4772-82EC-8220368C3154}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{EF6E2318-0894-44B6-9772-396FDB6C56E5}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent1</td><td>{269570E7-9C7E-43F5-B031-180277522BCA}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>dcomperm.exe</td><td>{0879E12C-F26F-4859-B97E-B4BE18CBDF10}</td><td>DLLS</td><td>0</td><td/><td>dcomperm.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>dcomperm.exe1</td><td>{91F1B7CC-C255-4D59-815B-D2A3B3634B31}</td><td>DLLS</td><td>0</td><td/><td>dcomperm.exe1</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>dsofile.dll</td><td>{5905DD94-C773-495C-855B-FD833BDE2BE7}</td><td>DLLS</td><td>0</td><td/><td>dsofile.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mage.exe</td><td>{F4705868-0A25-4FA5-ADC2-16A6056C6175}</td><td>DATALOADER_CLICKONCE</td><td>0</td><td/><td>mage.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mswcrun.dll</td><td>{915840AA-58CF-4D91-A37E-3B0FB1C61D1C}</td><td>ADMINSOURCE</td><td>8</td><td/><td>mswcrun.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -3451,21 +3443,13 @@ End If
 		<row><td>Classic</td><td>AllOtherFiles74</td></row>
 		<row><td>Classic</td><td>AllOtherFiles76</td></row>
 		<row><td>Classic</td><td>AllOtherFiles79</td></row>
-		<row><td>Classic</td><td>Binary.dll</td></row>
-		<row><td>Classic</td><td>Blob.dll</td></row>
 		<row><td>Classic</td><td>CSDO17</td></row>
 		<row><td>Classic</td><td>CSWebMenu5.dll</td></row>
-		<row><td>Classic</td><td>FileBatchLoad.exe</td></row>
-		<row><td>Classic</td><td>MolParser.dll</td></row>
-		<row><td>Classic</td><td>MolServer85.dll</td></row>
 		<row><td>Classic</td><td>REPORTQ.dll</td></row>
 		<row><td>Classic</td><td>REPORTQ_Server</td></row>
 		<row><td>Classic</td><td>REPORTQ_Server_File</td></row>
 		<row><td>Classic</td><td>SingleSignOnCom.dll</td></row>
 		<row><td>Classic</td><td>SingleSignOnCom.tlb</td></row>
-		<row><td>Classic</td><td>dcomperm.exe</td></row>
-		<row><td>Classic</td><td>dcomperm.exe1</td></row>
-		<row><td>Classic</td><td>dsofile.dll</td></row>
 		<row><td>DataLoader</td><td>AllOtherFiles48</td></row>
 		<row><td>DataLoader</td><td>AllOtherFiles50</td></row>
 		<row><td>DataLoader</td><td>mage.exe</td></row>
@@ -3528,48 +3512,37 @@ End If
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>appl.vbs1</td><td>AllOtherFiles50</td><td>Appl.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>21</td><td/></row>
 		<row><td>appl1.vbs1</td><td>AllOtherFiles50</td><td>Appl1.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>21</td><td/></row>
-		<row><td>binary.dll</td><td>Binary.dll</td><td>Binary.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\Binary.dll</td><td>1</td><td/></row>
-		<row><td>blob.dll1</td><td>Blob.dll</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.framework.1</td><td>CambridgeSoft.COE.Framework.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\CambridgeSoft.COE.Framework.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati</td><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati1</td><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.Registration.Services.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati2</td><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>1</td><td/></row>
-		<row><td>chembiooffice.html1</td><td>AllOtherFiles79</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
-		<row><td>cheminv_reports_11.0.2.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_11.0.2.mdb</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_11.0.2.mdb</td><td>17</td><td/></row>
-		<row><td>cheminv_reports_12.5.0.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_12.5.0.mdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_12.5.0.mdb</td><td>1</td><td/></row>
-		<row><td>chemoffice.asp1</td><td>AllOtherFiles79</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
-		<row><td>coeexceptionhandling.xml</td><td>AllOtherFiles33</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>5</td><td/></row>
-		<row><td>coeframeworkconfig.xml</td><td>AllOtherFiles33</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>5</td><td/></row>
-		<row><td>coeframeworkservices.asmx</td><td>AllOtherFiles59</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
-		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>5</td><td/></row>
+		<row><td>chembiooffice.html1</td><td>AllOtherFiles79</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
+		<row><td>cheminv_reports_11.0.2.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_11.0.2.mdb</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_11.0.2.mdb</td><td>17</td><td/></row>
+		<row><td>cheminv_reports_12.5.0.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_12.5.0.mdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_12.5.0.mdb</td><td>1</td><td/></row>
+		<row><td>chemoffice.asp1</td><td>AllOtherFiles79</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
+		<row><td>coeexceptionhandling.xml</td><td>AllOtherFiles33</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>5</td><td/></row>
+		<row><td>coeframeworkconfig.xml</td><td>AllOtherFiles33</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>5</td><td/></row>
+		<row><td>coeframeworkservices.asmx</td><td>AllOtherFiles59</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
+		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>5</td><td/></row>
 		<row><td>csdo17.dll</td><td>CSDO17_Server_File</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
 		<row><td>csdo17.dll1</td><td>CSDO17</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
 		<row><td>csla.compression.dll</td><td>Csla.Compression.dll</td><td>CSLACO~1.DLL|Csla.Compression.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Csla.Compression.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu5.dll</td><td>CSWebMenu5.dll</td><td>CSWEBM~1.DLL|CSWebMenu5.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu5.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu6.dll</td><td>CSWebMenu6.dll</td><td>CSWEBM~1.DLL|CSWebMenu6.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu6.dll</td><td>1</td><td/></row>
-		<row><td>dcomcnfg.cmd</td><td>AllOtherFiles73</td><td>DCOMCNFG.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\DCOMCNFG.cmd</td><td>1</td><td/></row>
-		<row><td>dcomperm.exe</td><td>dcomperm.exe</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
-		<row><td>dcomperm.exe1</td><td>dcomperm.exe1</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
 		<row><td>default.aspx</td><td>AllOtherFiles4</td><td>DEFAUL~1.ASP|Default.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Default.aspx</td><td>1</td><td/></row>
 		<row><td>default.htm</td><td>AllOtherFiles78</td><td>default.htm</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_FORMS_FILES1&gt;\DataViewManager\ContentArea\Help\default.htm</td><td>1</td><td/></row>
-		<row><td>deletefiles.bat</td><td>AllOtherFiles74</td><td>DELETE~1.BAT|DeleteFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\DeleteFiles.bat</td><td>1</td><td/></row>
-		<row><td>dsofile.dll</td><td>dsofile.dll</td><td>dsofile.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\dsofile.dll</td><td>1</td><td/></row>
-		<row><td>exceptionshandling.xml</td><td>AllOtherFiles33</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>5</td><td/></row>
-		<row><td>filebatchload.exe</td><td>FileBatchLoad.exe</td><td>FILEBA~1.EXE|FileBatchLoad.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\FileBatchLoad.exe</td><td>1</td><td/></row>
+		<row><td>exceptionshandling.xml</td><td>AllOtherFiles33</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>5</td><td/></row>
 		<row><td>global.asax</td><td>AllOtherFiles4</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax1</td><td>AllOtherFiles1</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax2</td><td>AllOtherFiles21</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>icsharpcode.sharpziplib.dll</td><td>ICSharpCode.SharpZipLib.dll</td><td>ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\ICSharpCode.SharpZipLib.dll</td><td>1</td><td/></row>
 		<row><td>invloadersetup.exe</td><td>InvLoaderSetup.exe</td><td>INVLOA~1.EXE|InvLoaderSetup.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\Installation\InvLoader\InvLoaderSetup.exe</td><td>17</td><td/></row>
-		<row><td>loadfiles.bat</td><td>AllOtherFiles71</td><td>LOADFI~1.BAT|LoadFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\LoadFiles.bat</td><td>1</td><td/></row>
 		<row><td>logoff.aspx</td><td>AllOtherFiles4</td><td>LOGOFF~1.ASP|Logoff.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Logoff.aspx</td><td>1</td><td/></row>
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\mage.exe</td><td>17</td><td/></row>
 		<row><td>mage_dataloader.bat</td><td>AllOtherFiles50</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>21</td><td/></row>
 		<row><td>microsoft.practices.enterpri</td><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri1</td><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri2</td><td>Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.d</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>1</td><td/></row>
-		<row><td>molparser.dll</td><td>MolParser.dll</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
-		<row><td>molserver85.dll</td><td>MolServer85.dll</td><td>MOLSER~1.DLL|MolServer85.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\MolServer85.dll</td><td>1</td><td/></row>
 		<row><td>msvcp71.dll</td><td>Msvcp</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>msvcp71.dll1</td><td>Msvcp71</td><td>msvcp71.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\msvcp71.dll</td><td>1</td><td/></row>
 		<row><td>mswcrun.dll</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
@@ -3580,15 +3553,14 @@ End If
 		<row><td>registration.core.dll</td><td>Registration.Core.dll</td><td>REGIST~1.DLL|Registration.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\Registration.Core.dll</td><td>1</td><td/></row>
 		<row><td>reportq.dll</td><td>REPORTQ.dll</td><td>REPORTQ.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\REPORTQ.dll</td><td>1</td><td/></row>
 		<row><td>reportq.dll1</td><td>REPORTQ_Server_File</td><td>REPORTQ.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\Common\dlls\REPORTQ.dll</td><td>1</td><td/></row>
-		<row><td>setdcompermission.cmd</td><td>AllOtherFiles73</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
 		<row><td>singlesignon.asmx</td><td>AllOtherFiles6</td><td>SINGLE~1.ASM|SingleSignOn.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\SingleSignOn.asmx</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>web.config</td><td>AllOtherFiles4</td><td>WEB~1.CON|Web.Config</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Web.Config</td><td>17</td><td/></row>
 		<row><td>web.config1</td><td>AllOtherFiles1</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config2</td><td>AllOtherFiles21</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config3</td><td>AllOtherFiles6</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Web.config</td><td>1</td><td/></row>
-		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
+		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4361,8 +4333,6 @@ End If
 		<row><td>AppPoolComponent1</td><td/><td/><td>_62AA4535_9D29_45FD_B87C_1D8A4B212D64_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppPoolComponent2</td><td/><td/><td>_7C6C0C33_EA27_4BD5_85FE_0BF945E21381_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppPoolComponent3</td><td/><td/><td>_7A91C60E_BFFD_4EC7_9F38_0C88E1B58FCE_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Binary.dll</td><td/><td/><td>_2D77281E_EEDB_4ADC_913A_AEC3FCF73D0F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Blob.dll</td><td/><td/><td>_383D049B_F556_4E5F_8B21_71F16A7277E0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17</td><td/><td/><td>_55F39456_A4D8_4107_9522_8D0123C65F7E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17_Server</td><td/><td/><td>_92B65B8D_5A15_4E52_9DB3_567593CF7B4F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17_Server_File</td><td/><td/><td>_8833D279_CEAE_45CB_B2CD_BEB4241BA2C1_FILTER</td><td/><td/><td/><td/></row>
@@ -4378,15 +4348,12 @@ End If
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td/><td/><td>_70F4F1AC_28E4_47AA_BD4A_ACF9F1D6DB48_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td/><td/><td>_B3D602E2_EFB2_4313_ABF9_3E3D0165DD89_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Csla.Compression.dll</td><td/><td/><td>_A12CF1AB_1087_4BB9_82F7_8B3E86903F12_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>FileBatchLoad.exe</td><td/><td/><td>_4844FC02_8FF1_4D6D_B3C8_277AB617CAEC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td/><td/><td>_497B8F00_270C_49E2_A03D_595B5B61336C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISRegistryComponent</td><td/><td/><td>_57E1FC69_6208_458B_B643_7FA5DF91A72A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>InvLoaderSetup.exe</td><td/><td/><td>_008D7BF2_738E_4FA8_BEAB_CF4A0739EE54_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td/><td/><td>_AB5FD0FF_8EF1_4E23_9A24_A4A1140835B9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.d</td><td/><td/><td>_F3CA3F1C_0023_46A1_9B3A_B7632B9F308B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td/><td/><td>_F678F082_ADE3_4C77_843A_4157E7E88C01_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>MolParser.dll</td><td/><td/><td>_4E362E50_1ACB_4BCC_8B12_7775D252D234_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>MolServer85.dll</td><td/><td/><td>_4F14ED39_F64D_477B_ACEB_B35ADD306753_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Msvcp</td><td/><td/><td>_AB9EDB3A_E9F7_4BA6_9626_A9C8A68F9857_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Msvcp71</td><td/><td/><td>_4AAD5F79_A658_4EF8_BDFC_8E64B1C4E294_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NewComponent1</td><td/><td/><td>_F11C71E6_C10A_4FFA_8420_E635CD2351A2_FILTER</td><td/><td/><td/><td/></row>
@@ -4404,9 +4371,6 @@ End If
 		<row><td>WebServiceExtensionComponent</td><td/><td/><td>_80CA2C46_50DA_4DFD_BF0E_5F08D4CE2482_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_78397AD3_C9F2_4418_9568_8B7084F6A600_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent1</td><td/><td/><td>_8C23AB70_D503_4858_B497_F658D10DF99B_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>dcomperm.exe</td><td/><td/><td>_2761B7FF_5D03_45D4_B805_B6C6D02F0CCA_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>dcomperm.exe1</td><td/><td/><td>_C2331056_C668_4B9A_8567_717C67EFFBD7_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>dsofile.dll</td><td/><td/><td>_F346C609_96D5_460F_A18B_0DF5E3B500CD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mage.exe</td><td/><td/><td>_9B5F206E_3CC9_4E9E_B9F6_A80E4AC85ACD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mswcrun.dll</td><td/><td/><td>_979B34F0_99D6_4F2F_83E0_0BD3025D2BA1_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -4944,7 +4908,7 @@ End If
 		<col def="S255">Value</col>
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
-		<row><td>BUILDPROJECTROOT</td><td>&lt;IsProjectFolder&gt;\..\..\ChemOfficeEnterprise</td><td/><td>2</td></row>
+		<row><td>BUILDPROJECTROOT</td><td>&lt;IsProjectFolder&gt;\..\..\subprojects</td><td/><td>2</td></row>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
@@ -4970,7 +4934,7 @@ End If
 		<row><td>PATH_TO_SINGLESIGNON_FILES</td><td>&lt;BUILDPROJECTROOT&gt;\Security\SingleSignOn\SingleSignOn</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
-		<row><td>WORKSPACEPATH</td><td>C:\builds\workspace\TBR-CBOE17.1.1</td><td/><td>2</td></row>
+		<row><td>WORKSPACEPATH</td><td>C:\builds\workspace\TBR-CBOE18.1</td><td/><td>2</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
 	</table>
 
@@ -4999,8 +4963,8 @@ End If
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
 		<row><td>Product Configuration 1</td><td>IncludeActionHelp</td><td>1</td></row>
-		<row><td>Product Configuration 1</td><td>MSIPackageFileName</td><td>CBOE 17.1.1</td></row>
-		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 17.1.1</td></row>
+		<row><td>Product Configuration 1</td><td>MSIPackageFileName</td><td>CBOE 18.1.0</td></row>
+		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1.0</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -7791,11 +7755,11 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{FBFBA9E7-2FDA-473A-80AE-2E7BAA2B8D71}</td><td/></row>
+		<row><td>ProductCode</td><td>{C30C3AC2-9394-4909-82D6-75F908DB8A51}</td><td/></row>
 		<row><td>ProductID</td><td>none</td><td/></row>
 		<row><td>ProductLanguage</td><td>1033</td><td/></row>
-		<row><td>ProductName</td><td>ChemOffice Enterprise 17.1.1</td><td/></row>
-		<row><td>ProductVersion</td><td>17.1.0</td><td/></row>
+		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1</td><td/></row>
+		<row><td>ProductVersion</td><td>18.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -7814,7 +7778,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>
 		<row><td>USERFULLNAME</td><td>CambridgeSoft Administrator</td><td/></row>
-		<row><td>UpgradeCode</td><td>{8262D253-C701-4858-9486-E0081C704696}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{69439D1A-BD3A-4E8B-A921-CF37D1DBE9BF}</td><td/></row>
 		<row><td>WEBPROPERTY</td><td/><td/></row>
 		<row><td>WEBSITE</td><td>1#80#Default Web Site</td><td/></row>
 		<row><td>WEBSITEN</td><td>ChemBioOfficeEnterprise12.0.1</td><td/></row>

@@ -1405,6 +1405,10 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                      Session.Property("CBOE")="yes"
                      
                  End If  
+                  If strValue1="ChemOffice Enterprise 17.1.1" then
+                     Session.Property("CBOE")="yes"
+                     
+                 End If 
                            
     Next 
 
@@ -1425,11 +1429,14 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                    If strValue1="ChemBioOffice Enterprise 17.1" then
                      Session.Property("CBOE")="yes"
                      
-                 End If     
+                 End If  
+                 If strValue1="ChemOffice Enterprise 17.1.1" then
+                     Session.Property("CBOE")="yes"
+                     
+                 End If    
                      
     Next 
-
-
+   
 
     
 </td><td/><td/></row>
@@ -5418,7 +5425,7 @@ Set shell = Nothing
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
 		<row><td>Pkg2</td><td>_F61611648B31E1A7656831D9555A6F05</td><td>PerkinElmer_ChemOffice_Professional_2017.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemOffice\PerkinElmer_ChemOffice_Professional_2017.msi</td></row>
 		<row><td>Pkg3</td><td>_13E0581122813A8F510F9604A3082AA2</td><td>PerkinElmer_ChemScript_17.1.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemScript\PerkinElmer_ChemScript_17.1.msi</td></row>
-		<row><td>Pkg4</td><td>_64819BF9CEFBBC528ED70326188ACA39</td><td>Registration.Server.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\Registration.Server.msi</td></row>
+		<row><td>Pkg4</td><td>_64819BF9CEFBBC528ED70326188ACA39</td><td>Registration.Server.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Registration.Server.msi</td></row>
 	</table>
 
 	<table name="ISClrWrap">
@@ -7900,7 +7907,7 @@ Set shell = Nothing
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
 		<row><td>Product Configuration 1</td><td>IncludeActionHelp</td><td>1</td></row>
-		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 17.1.1</td></row>
+		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -8179,16 +8186,16 @@ Set shell = Nothing
 		<col def="I2">Splash</col>
 		<col def="S0">Path</col>
 		<row><td>SetupFile1</td><td>ntrights.exe</td><td/><td>1033</td><td>0</td><td>&lt;ProgramFilesFolder&gt;\Windows Resource Kits\Tools\ntrights.exe</td></row>
-		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\Data1.cab</td></row>
-		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\Setup.ini</td></row>
+		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Data1.cab</td></row>
+		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Setup.ini</td></row>
 		<row><td>SetupFile2</td><td>ScriptMaps.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ScriptMaps.vbs</td></row>
 		<row><td>SetupFile3</td><td>ssplogon.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ssplogon.exe</td></row>
 		<row><td>SetupFile4</td><td>usersetup.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\usersetup\usersetup.exe</td></row>
 		<row><td>SetupFile5</td><td>logAsSvc.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\LogasSvc\logAsSvc.exe</td></row>
 		<row><td>SetupFile6</td><td>RegSvr32AS.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\Scripts\RegSvr32AS.vbs</td></row>
-		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\0x0409.ini</td></row>
-		<row><td>SetupFile8</td><td>CBOE 17.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\CBOE 17.1.1.exe</td></row>
-		<row><td>SetupFile9</td><td>CBOE 17.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_17.1.1\CBOE 17.1.1.msi</td></row>
+		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\0x0409.ini</td></row>
+		<row><td>SetupFile8</td><td>CBOE 17.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.0.exe</td></row>
+		<row><td>SetupFile9</td><td>CBOE 17.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.0.msi</td></row>
 	</table>
 
 	<table name="ISSetupPrerequisites">
@@ -8389,7 +8396,7 @@ Set shell = Nothing
 		<row><td>IDS_DIFX_AMD64</td><td>1033</td><td>[ProductName] requires an X64 processor. Click OK to exit the wizard.</td><td>0</td><td/><td>337537312</td></row>
 		<row><td>IDS_DIFX_IA64</td><td>1033</td><td>[ProductName] requires an IA64 processor. Click OK to exit the wizard.</td><td>0</td><td/><td>337537312</td></row>
 		<row><td>IDS_DIFX_X86</td><td>1033</td><td>[ProductName] requires an X86 processor. Click OK to exit the wizard.</td><td>0</td><td/><td>337537312</td></row>
-		<row><td>IDS_DatabaseFolder_InstallDatabaseTo</td><td>1033</td><td>Do you need to install new Registration 17.1.1</td><td>0</td><td/><td>-1448703966</td></row>
+		<row><td>IDS_DatabaseFolder_InstallDatabaseTo</td><td>1033</td><td>Do you need to install new Registration 18.1</td><td>0</td><td/><td>-1977211580</td></row>
 		<row><td>IDS_ERROR_0</td><td>1033</td><td>{{Fatal error: }}</td><td>0</td><td/><td>337537312</td></row>
 		<row><td>IDS_ERROR_1</td><td>1033</td><td>Error [1]. </td><td>0</td><td/><td>337537312</td></row>
 		<row><td>IDS_ERROR_10</td><td>1033</td><td>=== Logging started: [Date]  [Time] ===</td><td>0</td><td/><td>337537312</td></row>
@@ -10687,11 +10694,11 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{2EB937D7-F4BD-4734-BDCF-2477CC597B77}</td><td/></row>
+		<row><td>ProductCode</td><td>{65BC3D6D-E448-4586-9C2C-F45E8A322A48}</td><td/></row>
 		<row><td>ProductID</td><td>none</td><td/></row>
 		<row><td>ProductLanguage</td><td>1033</td><td/></row>
-		<row><td>ProductName</td><td>ChemOffice Enterprise 17.1.1</td><td/></row>
-		<row><td>ProductVersion</td><td>17.1.1</td><td/></row>
+		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1</td><td/></row>
+		<row><td>ProductVersion</td><td>18.1.0</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -10710,7 +10717,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>
 		<row><td>USERFULLNAME</td><td>CambridgeSoft Administrator</td><td/></row>
-		<row><td>UpgradeCode</td><td>{25319235-A561-40F0-8AA6-244DA0C5BE28}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{B460D80E-DF46-4AA3-A0E6-AC4215F1C5A5}</td><td/></row>
 		<row><td>WEBPROPERTY</td><td/><td/></row>
 		<row><td>WEBSITE</td><td>1#80#Default Web Site</td><td/></row>
 		<row><td>WEBSITEN</td><td>ChemOfficeEnterprise</td><td/></row>
