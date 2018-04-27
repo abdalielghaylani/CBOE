@@ -173,7 +173,7 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 	{
 		//alert(locationID + ":" + imgActive + ":" + imgInActive);
 		var ename = "e" +  locationID;
-		var elm = document.anchors(ename);
+		var elm = document.getElementById(ename);
 		elm.style.color = "black"
 		elm.style.fontWeight = "bold"
 		CurrFolderImage = elm.firstChild
@@ -437,17 +437,17 @@ End if
 response.Write chr(13)
 if bRefresh then
 	response.write "<script language=""javascript"">"
-	Response.Write "var Aelm = document.anchors(""refresh""); "
+	Response.Write "var Aelm = document.getElementById(""refresh""); "
 	Response.Write "if (Aelm){"
 	Response.Write "Aelm.click();}</script>"
 elseif bGotoNode AND TreeID = 1 then
 	response.write "<script language=""javascript"">"
-	Response.Write "var Aelm = document.anchors(""e" & Gotonode & """); "
+	Response.Write "var Aelm = document.getElementById(""e" & Gotonode & """); "
 	Response.Write "if (Aelm){"
 	Response.Write "document.all.e" & Gotonode & ".href = document.all.e" & Gotonode & ".href" & "+ '&SelectContainer=" & SelectContainer & "';"
 	Response.Write "Aelm.click();}</script>"
 Else
-	if TreeID = 1 then response.write "<script language=""javascript""> var Aelm = document.anchors(""e0""); if (Aelm) {Aelm.click();}</script>"
+	if TreeID = 1 then response.write "<script language=""javascript""> var Aelm = document.getElementById(""e0""); if (Aelm) {Aelm.click();}</script>"
 End if
 %>
 </form>

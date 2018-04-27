@@ -2058,22 +2058,25 @@ end function
 sub ShowMenuLinks(byref arrLinks, byref arrCategories)
 
 %>
-<script type="text/javascript"><!--//--><![CDATA[//><!--
-
-sfHover = function() {
-	var sfEls = document.getElementById("nav").getElementsByTagName("LI");
-	for (var i=0; i<sfEls.length; i++) {
-		sfEls[i].onmouseover=function() {
-			this.className+=" sfhover";
-		}
-		sfEls[i].onmouseout=function() {
-			this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+<script type="text/javascript">
+	sfHover = function () {
+		var sfEls = document.getElementById("nav").getElementsByTagName("LI");
+		for (var i = 0; i < sfEls.length; i++) {
+			sfEls[i].onmouseover = function () {
+				this.className += " sfhover";
+			}
+			sfEls[i].onmouseout = function () {
+				this.className = this.className.replace(new RegExp(" sfhover\\b"), "");
+			}
 		}
 	}
-}
-if (window.attachEvent) window.attachEvent("onload", sfHover);
-
-//--><!]]></script>
+	if (navigator.userAgent.toLowerCase().indexOf('msie') != -1) {
+		if (window.attachEvent) window.attachEvent("onload", sfHover);
+	}
+	else {
+		window.addEventListener("load", sfHover);
+	}
+</script>
 
 <%
     WritePullDownMenu arrLinks, arrCategories
