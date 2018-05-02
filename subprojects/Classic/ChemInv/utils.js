@@ -11,7 +11,9 @@ serverType = serverType.substring(0, serverType.indexOf(serverName));
 // added an onunload handler
 var DialogWindow
 
-window.onunload = function () { CloseDialog(); }
+window.onunload = function () {
+	CloseDialog();
+}
 
 function CloseDialog() {
 	if (DialogWindow == "object") DialogWindow.close();
@@ -42,7 +44,7 @@ function OpenDialog(url, name, type) {
 // Generic Cookie Reader Function
 // Returns empty string if cookie not found
 function ReadCookie(cookiename) {
-	var allcookies = unescape(document.cookie);      //JHS picking up fix from which was in app_js CSBR 148189 SJ Resolving the location id issue in the search page
+	var allcookies = unescape(document.cookie); //JHS picking up fix from which was in app_js CSBR 148189 SJ Resolving the location id issue in the search page
 	var pos = allcookies.indexOf(cookiename + "=");
 	if (pos != -1) {
 		var start = pos + cookiename.length + 1;
@@ -54,8 +56,7 @@ function ReadCookie(cookiename) {
 		var out = cookiestr;
 		//alert(out);
 		return out;
-	}
-	else {
+	} else {
 		var out = "";
 		return out;
 	}
@@ -145,7 +146,9 @@ function DoSelectSubstance(NewCompoundID, NewCompoundName) {
 		if (top.opener.document.form1.iBatchNumber) top.opener.document.form1.iBatchNumber.value = "";
 		if (top.opener.document.form1.icompound_id_fk) top.opener.document.form1.icompound_id_fk.value = NewCompoundID;
 	}
-	if (top.opener.document.form1.isSubstanceTab) { top.opener.location.href = top.opener.location.pathname + "?newCompoundID=" + NewCompoundID };
+	if (top.opener.document.form1.isSubstanceTab) {
+		top.opener.location.href = top.opener.location.pathname + "?newCompoundID=" + NewCompoundID
+	};
 	top.opener.focus();
 	top.close();
 }
@@ -171,8 +174,7 @@ function AssignRegCompound(RegID, BatchNumber, RegNumber) {
 		var httpResponse = JsHTTPGet(strURL);
 		if (httpResponse.length == 0) {
 			REGBATCHID = RegNumber + "-" + BatchNumber;
-		}
-		else {
+		} else {
 			REGBATCHID = httpResponse;
 		}
 
@@ -184,7 +186,9 @@ function AssignRegCompound(RegID, BatchNumber, RegNumber) {
 		top.opener.GetRegIDFromRegNum(REGBATCHID)
 	}
 
-	if (top.opener.document.form1.isSubstanceTab) { top.opener.location.href = top.opener.location.pathname + "?newRegID=" + RegID + "&newBatchNumber=" + BatchNumber };
+	if (top.opener.document.form1.isSubstanceTab) {
+		top.opener.location.href = top.opener.location.pathname + "?newRegID=" + RegID + "&newBatchNumber=" + BatchNumber
+	};
 	top.opener.focus();
 	top.close();
 }
@@ -203,8 +207,7 @@ function UpdateLocationPickerFromBarCode(barCode, formelm, elm1, elm2, elm3) {
 		formelm[elm3].value = "";
 		formelm["isRack"].value = "0";
 		alert("Could not a find a location for barcode= " + barCode);
-	}
-	else {
+	} else {
 		var temp = httpResponse.split(",");
 		formelm[elm1].value = temp[0];
 		formelm[elm2].value = temp[1];
@@ -230,8 +233,7 @@ function UpdateLocationPickerFromID(LocationID, formelm, elm1, elm2, elm3) {
 	if (LocationID == "") return;
 	if (String(LocationID).indexOf(',') > 0) {
 		UpdateLocationPickerFromIDs(LocationID, formelm, elm1, elm2, elm3);
-	}
-	else {
+	} else {
 		var randomnumber = Math.floor(Math.random() * 11);
 		var strURL = serverType + serverName + "/cheminv/api/GetLocationFromID.asp?LocationID=" + LocationID + "&randomnumber=" + randomnumber;
 		var httpResponse = JsHTTPGet(strURL)
@@ -241,8 +243,7 @@ function UpdateLocationPickerFromID(LocationID, formelm, elm1, elm2, elm3) {
 			formelm[elm3].value = "";
 			formelm["isRack"].value = "0";
 			alert("Invalid location id= " + LocationID);
-		}
-		else {
+		} else {
 			var temp = httpResponse.split(",");
 			if (formelm[elm1]) {
 				formelm[elm1].value = temp[0];
@@ -296,8 +297,7 @@ function UpdateLocationPickerFromIDs(pLocationIDs, formelm, elm1, elm2, elm3) {
 		formelm[elm2].value = "";
 		formelm[elm3].value = "";
 		alert("Invalid location ids: " + invalidIds);
-	}
-	else {
+	} else {
 		if (formelm[elm1]) {
 			formelm[elm1].value = LocationIDs;
 		}
@@ -328,8 +328,7 @@ function ValidateLocationIDType(LocationID) {
 	//alert(httpResponse)
 	if (httpResponse.length == 0) {
 		alert("Invalid location id= " + LocationID);
-	}
-	else {
+	} else {
 		var temp = httpResponse.split(",");
 		var isRack = temp[3];
 		if (parseInt(isRack) == 1) {
@@ -348,8 +347,7 @@ function GetFirstOpenRackPosition(LocationID) {
 	//alert(httpResponse)
 	if (httpResponse.length == 0) {
 		alert("Invalid location id= " + LocationID);
-	}
-	else {
+	} else {
 		return httpResponse;
 	}
 }
@@ -361,8 +359,7 @@ function IsKnownContainerBarcode(ContainerBarcode) {
 	//alert("JSHTTP= " + httpResponse)
 	if (httpResponse.length == 0) {
 		return 0;
-	}
-	else {
+	} else {
 		return 1;
 	}
 }
@@ -373,8 +370,7 @@ function CheckDuplicateBarcode(barcodes, barcodeType) {
 	//alert("JSHTTP= " + httpResponse);
 	if (httpResponse.length == 0) {
 		return 0;
-	}
-	else {
+	} else {
 		return 1;
 	}
 }
@@ -385,8 +381,7 @@ function IsValidCompoundID(compoundID, bAlert) {
 	//alert("JSHTTP= " + httpResponse);
 	if (httpResponse == 1) {
 		return 1;
-	}
-	else {
+	} else {
 		if (bAlert == true) {
 			alert("Invalid Compound ID.");
 		}
@@ -399,8 +394,7 @@ function IsChildGridLocation(locationId) {
 	var httpResponse = JsHTTPGet(strURL);
 	if (httpResponse == 1) {
 		return 1;
-	}
-	else {
+	} else {
 		return 0;
 	}
 }
@@ -411,8 +405,7 @@ function IsPlateTypeAllowed(PlateId, LocationID, PlateTypeID, IsPlateMap) {
 		var httpResponse = JsHTTPGet(strURL);
 		if (httpResponse == 1) {
 			return 1;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -425,11 +418,11 @@ function AreEnoughRackPositions(numAssets, locationIds) {
 
 	if (parseInt(numAssets) > parseInt(numOpen)) {
 		return false;
-	}
-	else {
+	} else {
 		return true;
 	}
 }
+
 function GetRegIDFromRegNum(RegBatchID) {
 	if (RegBatchID.length > 0) {
 		var CsUserName = document.form1.tempCsUserName.value;
@@ -443,8 +436,7 @@ function GetRegIDFromRegNum(RegBatchID) {
 			document.form1.NewRegID.value = ""
 			document.form1.NewBatchNumber.value = ""
 			alert("Unable to retrieve batch data for RegBatchID= " + RegBatchID);
-		}
-		else {
+		} else {
 			var temp = httpResponse.split(",");
 			document.form1.RegBatchID.value = RegBatchID;
 			document.form1.iRegID.value = temp[6];
@@ -475,8 +467,7 @@ function IsValidCompoundID(compoundID, bAlert) {
 	//alert("JSHTTP= " + httpResponse);
 	if (httpResponse == 1) {
 		return 1;
-	}
-	else {
+	} else {
 		if (bAlert == true) {
 			alert("Invalid Compound ID.");
 		}
@@ -524,8 +515,7 @@ function UpdateBatchInfo(RegID, BatchNum) {
 		document.form1["ContainerSize_" + RegID].value = ""
 		document.form1["InitialAmount_" + RegID].value = ""
 		alert("Unable to retrieve batch data for " + RegID + "-" + BatchNum);
-	}
-	else {
+	} else {
 		var temp = httpResponse.split(",");
 		var tempAmount = temp[5].split(" ");
 		document.all["RegNum_" + RegID].innerHTML = Cnv2nbs(temp[0]);
@@ -553,8 +543,7 @@ function UpdateBatchInfo2(RegID, BatchNum) {
 		document.form1["ContainerSize_" + RegID + "_" + BatchNum].value = ""
 		document.form1["InitialAmount_" + RegID + "_" + BatchNum].value = ""
 		alert("Unable to retrieve batch data for " + RegID + "-" + BatchNum);
-	}
-	else {
+	} else {
 		var temp = httpResponse.split(",");
 		document.all["RegNum_" + RegID + "_" + BatchNum].innerHTML = Cnv2nbs(temp[0]);
 		document.all["NoteBookName_" + RegID + "_" + BatchNum].innerHTML = Cnv2nbs(temp[1]);
@@ -565,6 +554,7 @@ function UpdateBatchInfo2(RegID, BatchNum) {
 		document.form1["InitialAmount_" + RegID + "_" + BatchNum].value = document.form1["ContainerSize_" + RegID + "_" + BatchNum].value;
 	}
 }
+
 function ConvertToNum(val) {
 	val = parseInt(val);
 	if (isNaN(val)) return "";
@@ -575,11 +565,11 @@ function ConvertToNum(val) {
 function Cnv2nbs(val) {
 	if (val == "") {
 		return "&nbsp;";
-	}
-	else {
+	} else {
 		return val;
 	}
 }
+
 function trim(str) {
 	return str.replace(/^\s*|\s*$/g, "");
 }
@@ -603,8 +593,7 @@ function JsHTTPGet(strURL) {
 	if (window.XMLHttpRequest) {
 		//IE7+ and all other browsers
 		objXML = new window.XMLHttpRequest();
-	}
-	else {
+	} else {
 		//IE6-
 		objXML = new ActiveXObject("Msxml2.XMLHTTP");
 	}
@@ -644,8 +633,7 @@ function AlterCSS(theClass, element, value) {
 	var cssRules;
 	if (document.all) {
 		cssRules = 'rules';
-	}
-	else if (document.getElementById) {
+	} else if (document.getElementById) {
 		cssRules = 'cssRules';
 	}
 	for (var i = 0; i < document.styleSheets.length; i++) {
@@ -763,10 +751,18 @@ function removeFromList(listField) {
 			var replaceValueArray = new Array(listField.length - 1);
 			for (var i = 0; i < listField.length; i++) {
 				// Put everything except the selected one into the array
-				if (i < selected) { replaceTextArray[i] = listField.options[i].text; }
-				if (i > selected) { replaceTextArray[i - 1] = listField.options[i].text; }
-				if (i < selected) { replaceValueArray[i] = listField.options[i].value; }
-				if (i > selected) { replaceValueArray[i - 1] = listField.options[i].value; }
+				if (i < selected) {
+					replaceTextArray[i] = listField.options[i].text;
+				}
+				if (i > selected) {
+					replaceTextArray[i - 1] = listField.options[i].text;
+				}
+				if (i < selected) {
+					replaceValueArray[i] = listField.options[i].value;
+				}
+				if (i > selected) {
+					replaceValueArray[i - 1] = listField.options[i].value;
+				}
 			}
 			listField.length = replaceTextArray.length;
 			for (i = 0; i < replaceTextArray.length; i++) {
@@ -792,8 +788,7 @@ function SetToFirstControl() {
 						//set the focus to it
 						document.forms[iForm][iElement].focus();
 						bFound = true;
-					}
-					catch (er) { }
+					} catch (er) {}
 				}
 			}
 			// If found in this element, stop looking
@@ -805,6 +800,7 @@ function SetToFirstControl() {
 			break;
 	}
 }
+
 function GetSumofValues(ValueList) {
 	var strURL = serverType + serverName + "/cheminv/gui/GetSumofValues.asp?valuelist=" + ValueList;
 	var httpResponse = JsHTTPGet(strURL)
@@ -816,8 +812,7 @@ function isUniqueBarcode(Barcode) {
 	var httpResponse = JsHTTPGet(strURL);
 	if (httpResponse == 0) {
 		return true;
-	}
-	else {
+	} else {
 		return false;
 	}
 }
@@ -828,8 +823,7 @@ function isaRackLocation(LocationID) {
 	var httpResponse = JsHTTPGet(strURL)
 	if (httpResponse.length == 0) {
 		alert("Invalid location id= " + LocationID);
-	}
-	else {
+	} else {
 		var temp = httpResponse.split(",");
 		var isRack = temp[3];
 
@@ -885,8 +879,7 @@ function GetAuthorizedLocation(LocationID, tempCsUserName, tempCsUserID) {
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == 0) return httpResponse;
 		}
-	}
-	else {
+	} else {
 		var strURL = "http://" + serverName + "/cheminv/api/GetAuthorizedLocation.asp?LocationID=" + LocationID + "&tempCsUserName=" + tempCsUserName + "&tempCsUserID=" + tempCsUserID;
 		var httpResponse = JsHTTPGet(strURL)
 	}
@@ -913,17 +906,13 @@ function SetOwnerInfo(objectType) {
 	//get the Location id value
 	if (document.form1.iDeliveryLocationID) {
 		locationIDVal = document.form1.iDeliveryLocationID.value;
-	}
-	else if (document.form1.iLocationID) {
+	} else if (document.form1.iLocationID) {
 		locationIDVal = document.form1.iLocationID.value;
-	}
-	else if (document.form1.LocationID) {
+	} else if (document.form1.LocationID) {
 		locationIDVal = document.form1.LocationID.value;
-	}
-	else if (document.form1.ParentID) {
+	} else if (document.form1.ParentID) {
 		locationIDVal = document.form1.ParentID.value;
-	}
-	else {
+	} else {
 		locationIDVal = document.form1.iLocation_ID_FK.value;
 	}
 
@@ -931,8 +920,7 @@ function SetOwnerInfo(objectType) {
 	if (principalID != 0) {
 
 		document.form1.LocationAdmin.value = principalID;
-	}
-	else {
+	} else {
 		document.form1.LocationAdmin.value = '';
 	}
 
@@ -949,16 +937,14 @@ function SetOwnerInfo(objectType) {
 	//get theuser id value
 	if (document.form1.tempCsUserName) {
 		tempuserID = document.form1.tempCsUserName.value;
-	}
-	else {
+	} else {
 		tempuserID = document.getElementById("tempCsUserName").value;
 	}
 
 	if (objectType == 'location' || objectType == 'container' || objectType == 'plate') {
 		if (principalID != 0 && principalID.indexOf(",") < 0) {
 			FillOwnerDropDown(principalID, objectType);
-		}
-		else {
+		} else {
 			if (document.getElementById("Group_cb")) {
 				document.getElementById("Group_cb").checked = false;
 			}
@@ -970,22 +956,18 @@ function SetOwnerInfo(objectType) {
 			}
 			document.form1.LocationAdmin.value = '';
 		}
-	}
-	else if (objectType == 'user') {
+	} else if (objectType == 'user') {
 		var tempString = "|" + document.getElementById("OwnerShipUserList").value;
 		if (tempString.indexOf("|" + principalID + ",") >= 0) { // user is owner
 			FillOwnerDropDown(principalID, 'location');
-		}
-		else {
+		} else {
 			FillOwnerDropDown(GetPrincipalID(tempuserID, 'user'), 'user');
 		}
-	}
-	else {
+	} else {
 		tempString = "|" + document.getElementById("OwnerShipGroupList").value;
 		if (tempString.indexOf("|" + principalID + ",") >= 0) { // Group is owner
 			FillOwnerDropDown(principalID, 'group');
-		}
-		else {
+		} else {
 			FillOwnerDropDown(0, 'group');
 		}
 	}
@@ -1003,19 +985,16 @@ function FillOwnerDropDown(principalID, objectType) {
 			getList(document.getElementById("OwnerShipUserList").value, type);
 			if (document.getElementById("User_cb"))
 				document.getElementById("User_cb").checked = true;
-		}
-		else {
+		} else {
 			getList(document.getElementById("OwnerShipGroupList").value, type);
 			if (document.getElementById("Group_cb"))
 				document.getElementById("Group_cb").checked = true;
 		}
-	}
-	else {
+	} else {
 		if (objectType == 'user') {
 
 			getList(document.getElementById("OwnerShipUserList").value, null);
-		}
-		else {
+		} else {
 			getList(document.getElementById("OwnerShipGroupList").value, null);
 		}
 	}
@@ -1036,8 +1015,7 @@ function GetPrincipalID(objectID, objectType) {
 				returnStr += ',' + httpResponse;
 		}
 		return returnStr;
-	}
-	else {
+	} else {
 		var strURL = serverType + serverName + "/cheminv/api/GetPrincipalID.asp?objectID=" + objectID + "&objectType=" + objectType;
 		var httpResponse = JsHTTPGet(strURL);
 		return httpResponse;
@@ -1064,8 +1042,7 @@ function GetParentOrChildLocations(LocationID, Direction) {
 	var httpResponse = JsHTTPGet(strURL);
 	if (httpResponse.length == 0) {
 		return '';
-	}
-	else {
+	} else {
 		return httpResponse;
 	}
 }
@@ -1080,8 +1057,12 @@ function SetRLSSessions(locationList, roleID) {
 function onkeydown_handler(event) {
 	switch (event.keyCode) {
 		case 112: // 'F1'
-			document.onhelp = function () { return (false); }
-			window.onhelp = function () { return (false); }
+			document.onhelp = function () {
+				return (false);
+			}
+			window.onhelp = function () {
+				return (false);
+			}
 			event.returnValue = false;
 			event.keyCode = 0;
 			window.open('/cheminv/help/default.htm');
@@ -1091,7 +1072,6 @@ function onkeydown_handler(event) {
 }
 if (navigator.userAgent.toLowerCase().indexOf('msie') != -1) {
 	document.attachEvent("onkeydown", onkeydown_handler);
-}
-else {
+} else {
 	document.addEventListener("keydown", onkeydown_handler);
 }
