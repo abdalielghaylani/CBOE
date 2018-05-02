@@ -20,11 +20,15 @@ Session("bManageMode") = false
 PageSource = Request("Source")
 if lcase(PageSource) = "eln" and Session("isCDP") = "" then
     if ucase(Request.Cookies("isCDP")) = "" Then%>
+        <SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
         <SCRIPT LANGUAGE="javascript" src="/cfserverasp/source/chemdraw.js"></SCRIPT>
         <script language="javascript" type="text/javascript" >
             var isPluginInstalled = false;
             if (cd_currentUsing == 2 || cd_currentUsing == 3) {
                 isPluginInstalled = cd_isCDPluginInstalled();
+            }
+            else if (cd_currentUsing == 4) {
+                isPluginInstalled = true;
             }
             else if (cd_currentUsing == 1) {
                 isPluginInstalled = cd_isCDActiveXInstalled();
@@ -804,6 +808,7 @@ function setOwnership()
 <!--                     The additional onload in the body attribute caused the window.onload not to fire. So this change was required-->
  
 <%if Session("isCDP") = "TRUE" then%>
+<SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
 <script language="javascript">

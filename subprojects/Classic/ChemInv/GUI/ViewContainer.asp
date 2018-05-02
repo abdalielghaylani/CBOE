@@ -21,6 +21,7 @@ dbkey = "ChemInv"%>
 <script language="javascript" type="text/javascript" src="/cheminv/gui/refreshGUI.js"></script>
 <% Session("isCDP") = ucase(Request.Cookies("isCDP"))%>
 <% if Session("isCDP") = "TRUE" then %>
+<SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
 <script language="javascript" type="text/javascript" src= "/cfserverasp/source/chemdraw.js"></script>
 <script language="javascript" type="text/javascript">cd_includeWrapperFile("/cfserverasp/source/")</script>
 <% end if %>

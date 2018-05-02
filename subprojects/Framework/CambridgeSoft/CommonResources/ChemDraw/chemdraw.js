@@ -392,7 +392,7 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
 	}
 	else
 	{
-		buf = "<P><font color=red>\"ALERT: The ChemDraw Plugin is not available for Internet Explorer on the Macintosh!\"</font></P>";
+	    buf = "<P><font color=red>\"ALERT: The ChemDraw Plugin is not available for Internet Explorer on the Macintosh!\"</font></P>";
 	}
 	
 	//alert(buf);

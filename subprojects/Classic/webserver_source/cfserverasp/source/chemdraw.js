@@ -57,9 +57,9 @@ var CD_PLUGIN_CAB2	= "camsoft2.cab";
 
 
 // MOST IMPORTANT!!! To indicate which Plugin/ActiveX to use
-// 1 - Control/ActiveX;  2 - old Plugin;  3 - new Plugin.
-
+// 1 - Control/ActiveX;  2 - old Plugin;  3 - new Plugin.; 4 - CDJS instance
 var cd_currentUsing = 0;
+
 var js_canUseTry = false;
 
 // Default threshold can be overridden by declaring it previously in page
@@ -108,7 +108,8 @@ function cd_figureOutUsing() {
 	// CURRENT SETTING:
 	//    ActiveX Control (1) - IE 5.5 or higher versions
 	//    old Plugin      (2) - IE 5.0 or lower versions, Netscape 4.x or lower versions
-	//    new Plugin      (3) - Netscape 6.0 or higher versions
+    //    new Plugin      (3) - Netscape 6.0 or higher versions
+    //    CDJS            (4) - Modern browsers like Chrome or Firefox  
 	if (cd_testBrowserType("Microsoft Internet Explorer")) {
 		if (version < cd_plugin_threshold)
 			cd_currentUsing = 2;
@@ -117,24 +118,27 @@ function cd_figureOutUsing() {
 		if (version >= 5.5)
 			js_canUseTry = true;
 	}
+	else if (cd_testBrowserType("Chrome") || cd_testBrowserType("Mozilla")) {
+	    cd_currentUsing = 4;
+	}
 	else if (cd_testBrowserType("Netscape")) {
-		if (version < 5.0)
-			cd_currentUsing = 2;
-		else if (version >= 5.0)
-			cd_currentUsing = 3;
-		if (version >= 5.0)
-			js_canUseTry = true;
+	    if (version < 5.0)
+	        cd_currentUsing = 2;
+	    else if (version >= 5.0)
+	        cd_currentUsing = 3;
+	    if (version >= 5.0)
+	        js_canUseTry = true;
 	}
 
 
-	// TODO: add code to support other browsers beside IE and Netscape
-	// else if (...)
-	//		cd_currentUsing = 1 or 2 or 3;
+	    // TODO: add code to support other browsers beside IE and Netscape
+	    // else if (...)
+	    //		cd_currentUsing = 1 or 2 or 3;
 
 
-	// Unknown browser type.
+	    // Unknown browser type.
 	else
-		cd_currentUsing = 0;
+	    cd_currentUsing = 0;
 }
 
 
@@ -152,6 +156,7 @@ function cd_figureOutUsing() {
 
 //SYAN modified on 2/6/2006 to enable ISIS Draw Editing
 function cd_insertObjectStr(tagStr) {
+    
 	var paraArray = {"type" : "", "width" : "", "height" : "", "name" : "", "src" : "", "viewonly" : "", "shrinktofit" : "", "dataurl" : "", "dontcache" : "", "isisdraw" : ""};
 	cd_parsePara(tagStr, paraArray);
 	cd_insertObject(paraArray["type"], paraArray["width"], paraArray["height"], paraArray["name"],
@@ -166,7 +171,8 @@ function cd_insertObjectStr(tagStr) {
 
 //SYAN modified on 2/6/2006 to enable ISIS Draw Editing
 function cd_insertObject(mimeType, objWidth, objHeight, objName, srcFile, viewOnly, shrinkToFit, dataURL, dontcache, ISISDraw) {
-	if (cd_currentUsing >= 1 && cd_currentUsing <= 3)
+    
+    if (cd_currentUsing >= 1 && cd_currentUsing <= 4)
 		//!DGB! 12/01 Add a call to cd_AddToObjectArray
 		cd_AddToObjectArray(objName);
 		document.write( cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile, viewOnly, shrinkToFit, dataURL, dontcache, ISISDraw) );
@@ -196,15 +202,18 @@ function cd_includeWrapperFile(basePath, checkInstall) {
 	}
 
 
-	if (cd_currentUsing >= 1 && cd_currentUsing <=3) {
+	if (cd_currentUsing >= 1 && cd_currentUsing <= 4) {
 		var wrapperfile = "<script language=JavaScript src=\"";
-	
+		
 		if (cd_currentUsing == 2 || cd_currentUsing == 3)
 			// Plugin uses cdlib_ns.js wrapper file
 			wrapperfile += basePath + "cdlib_ns.js";
 		else if (cd_currentUsing ==  1)
 			// ActiveX Control uses cdlib_ie.js wrapper file
-			wrapperfile += basePath + "cdlib_ie.js";
+		    wrapperfile += basePath + "cdlib_ie.js";
+		else if (cd_currentUsing == 4)
+		    // CDJS uses cdlib_cddweb.js wrapper file
+		    wrapperfile += basePath + "cdlib_cddweb.js";
 			
 		wrapperfile += "\"></script>";
 
@@ -215,7 +224,7 @@ function cd_includeWrapperFile(basePath, checkInstall) {
 	// auto-download Plugin/ActiveX
 	// If you don't like the auto-download feature, remove the following 4 lines
 	if (checkInstall) {
-		if (cd_currentUsing == 2 || cd_currentUsing == 3) {
+	    if (cd_currentUsing == 2 || cd_currentUsing == 3) {
 			if (cd_isCDPluginInstalled() == false)
 				cd_installNetPlugin();
 		}
@@ -280,7 +289,6 @@ var cd_pluginID = 1000;
 function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile, viewOnly, shrinkToFit, dataURL, dontcache, ISISDraw) {
 	mimeType = "chemical/x-cdx";
 	var buf = "";
-	
 	if (dataURL != null) {
 		//!DGB! 12/01 add a conditional call to unescape(dataURL)
 		//LJB 1/13/2004 add support for other escaped mimetypes
@@ -339,8 +347,7 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
 
 		buf += "</OBJECT>\n";
 	}
-	else if (cd_currentUsing == 2 || cd_currentUsing == 3) { // Plugin
-
+    else if (cd_currentUsing == 2 || cd_currentUsing == 3) {
 		var pluginID = ++cd_pluginID;
 
 		if (objName == null)
@@ -389,12 +396,21 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
 				"<PARAM NAME=cabbase value=\"" + CD_PLUGIN_CAB + "\"></APPLET>\n";
 		}
 	}
+    else if (cd_currentUsing == 4) {
+        buf += "<style>.cdd.cddroot .cdd-workspace-container { max-height: " + String(parseInt(objHeight) - 70) + "px !important; }";
+        buf += ".cdd.cddroot .cdd-toolbar-container { max-height: 70px !important; } .cdd.cddroot .cdd-toolbar { min-height: 70px !important; } </style>";
+	    buf += "<div style=\"min-height: 0px; min-width: 0px;\"><div id=\"chemdrawjs-container\" style=\"width: " + objWidth + "px; height: " + objHeight + "px; MARGIN-LEFT: 0px !important;\"></div></div>";
+	    buf += "<SCRIPT LANGUAGE=\"JavaScript\">";
+	    buf += "var chemdrawjs;";
+	    buf += "var chemdrawjsAttached = function (chemdraw) { chemdrawjs = chemdraw; };";
+	    buf += "var chemdrawjsFailed = function (error) { };";
+	    buf += "perkinelmer.ChemdrawWebManager.attach({ id: 'chemdrawjs-container', viewonly: " + viewOnly.toLowerCase() + ", callback: chemdrawjsAttached, errorCallback: chemdrawjsFailed, licenseUrl: '/cfserverasp/source/license.xml', configUrl: '/cfserverasp/source/cddconfiguration.json', preservePageInfo: true });";
+	    buf += "</SCRIPT>";
+	}
 	else
 	{
 		buf = "<P><font color=red>\"ALERT: The ChemDraw Plugin is not available for Internet Explorer on the Macintosh!\"</font></P>";
 	}
-	
-	//alert(buf);
 	return buf;	
 }
 
@@ -406,11 +422,13 @@ function cd_getSpecificObject(nm) {
 	var r = null;
 
 	if (cd_currentUsing == 1) // ActiveX Control
-		r = document.all(nm);
+	    r = document.all(nm);
 	else if (cd_currentUsing == 2) // old Plugin + CDPHelper
-		r = document.applets[nm];
+	    r = document.applets[nm];
 	else if (cd_currentUsing == 3) // new Plugin (XPCOM, scriptable old Plugin)
-		r = document.embeds[nm];
+	    r = document.embeds[nm];
+	else if (cd_currentUsing == 4) // CDJS
+	    r = chemdrawjs; // TODO
 
 	if (r == null)
 		alert("ERROR: You have the wrong name [" + nm + "] to refer to the Plugin/ActiveX !!!");
@@ -463,6 +481,8 @@ function cd_testBrowserType(brwType) {
 		}
 
 		return false;
+	} else if (brwType === "Chrome" || brwType === "Mozilla") {
+	    return (navigator.userAgent.indexOf(brwType) != -1);
 	}
 	return (navigator.appName.indexOf(brwType) != -1);
 }
