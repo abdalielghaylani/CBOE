@@ -101,7 +101,7 @@ function cd_figureOutUsing() {
 
 
 	// Only 1, 2, 3 are used. Other codes make no sense.
-	// 1 - Control/ActiveX;  2 - old Plugin;  3 - new Plugin.
+	// 1 - Control/ActiveX;  2 - old Plugin;  3 - new Plugin; 4 - CDJS
 	
 	var version = cd_getBrowserVersion();
 	
@@ -120,6 +120,11 @@ function cd_figureOutUsing() {
 	}
 	else if (cd_testBrowserType("Chrome") || cd_testBrowserType("Mozilla")) {
 	    cd_currentUsing = 4;
+	    try {
+	        eval(perkinelmer);
+	    } catch(e) {
+	        document.write("<SCRIPT LANGUAGE=\"javascript\" src=\"https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js\"></SCRIPT>");
+	    }
 	}
 	else if (cd_testBrowserType("Netscape")) {
 	    if (version < 5.0)

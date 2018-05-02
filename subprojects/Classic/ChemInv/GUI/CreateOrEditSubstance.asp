@@ -185,7 +185,6 @@ end if
 //-->
 </script>
 <% if Session("isCDP") = "TRUE" then %>
-<script language="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></script>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
 <% end if %>

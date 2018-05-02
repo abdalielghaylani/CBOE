@@ -59,7 +59,6 @@ if Application("DBLoaded" & dbkey) = True then
 <html>
 <head>
 <title><%=Application("appTitle")%></title>
-<SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
 <SCRIPT LANGUAGE="javascript" src="/cfserverasp/source/chemdraw.js"></SCRIPT>
 <script language="javascript" type="text/javascript" >
 

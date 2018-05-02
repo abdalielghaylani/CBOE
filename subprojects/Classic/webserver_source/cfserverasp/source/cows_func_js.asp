@@ -346,7 +346,6 @@ location.reload(true)
 
 
 <%end if%>
-<SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
 <%if UCase(strTrueFalse(GetFormGroupVal(dbkey, formgroup, kPluginValue))) = "TRUE" then
 	if detectNS4 = true then%>
 	<script language="JavaScript" src= "/cfserverasp/source/chemdraw_ns4.js"></script>
