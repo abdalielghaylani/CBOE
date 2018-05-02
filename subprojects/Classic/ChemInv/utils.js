@@ -599,7 +599,15 @@ function readCookie2(name) {
 //	GetHTTP Content using msxml
 //	
 function JsHTTPGet(strURL) {
-	var objXML = new ActiveXObject("Msxml2.XMLHTTP");
+	var objXML;
+	if (window.XMLHttpRequest) {
+		//IE7+ and all other browsers
+		objXML = new window.XMLHttpRequest();
+	}
+	else {
+		//IE6-
+		objXML = new ActiveXObject("Msxml2.XMLHTTP");
+	}
 	var separator = strURL.indexOf('?') < 0 ? '?' : '&';
 	objXML.open("GET", strURL + separator + "Ticket=" + readCookie2("COESSO"), false);
 	objXML.send();
@@ -1069,7 +1077,7 @@ function SetRLSSessions(locationList, roleID) {
 	var httpResponse = JsHTTPGet(strURL);
 }
 
-function onkeydown_handler() {
+function onkeydown_handler(event) {
 	switch (event.keyCode) {
 		case 112: // 'F1'
 			document.onhelp = function () { return (false); }

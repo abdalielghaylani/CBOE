@@ -10,7 +10,15 @@ serverType=serverType.substring(0,serverType.indexOf(serverName));
 //	GetHTTP Content using msxml
 //	
 function RefreshJsHTTPGet(strURL){
-	var objXML = new ActiveXObject("Msxml2.XMLHTTP"); 
+	var objXML;
+	if (window.XMLHttpRequest) {
+		//IE7+ and all other browsers
+		objXML = new window.XMLHttpRequest();
+	}	
+	else {
+		//IE6-
+		objXML = new ActiveXObject("Msxml2.XMLHTTP");
+	}	
 	objXML.open("GET", strURL, false);
 	objXML.send(); 
 	strResponse = objXML.responseText;
