@@ -16,10 +16,8 @@ dbkey = "ChemInv"
 const TreeLevel="<=4" 'CSBR ID 141785 : To resolve the issue when editing a location name. Changed the level from 2 to 4. This can be considered a temporary fix.
 '-- store the aspID so core can kill the session
 'StoreASPSessionID()
-
 '-- Prevent page from being cached
 Response.ExpiresAbsolute = Now()
-
 '-- set the return action so that the cancel button will go to the home page
 Session("returnaction") = ""
 '-- Set the isBatchSearch session variable so that it will show DHTML menu in the Container details page
@@ -33,11 +31,9 @@ if Request.QueryString("killsession")= 1 then
 	Response.Write "Session Abandoned"
 	Response.End
 End if
-
 'for each val in request.QueryString
     'response.Write val & "<BR/>"
 'next
-
 '-- Read QueryString parameters
 TreeID = Request.QueryString("TreeID")
 CompoundID = Request.QueryString("CompoundID")
@@ -58,7 +54,6 @@ elm3= Request("elm3")
 bRefresh = false
 multiSelect = Request("multiSelect")
 clearMS = Request("clearMS")
-
 if Request("isMultiSelectRacks")="false" or Request("isMultiSelectRacks")="0" then
     isMultiSelectRacks = "0"
     multiSelect="0"
@@ -71,22 +66,18 @@ if isEmpty(multiSelect) or multiSelect = "" then
 else
     Session("locationMS") = multiselect    
 end if
-
 if not isObject(Session("rackDict")) then
     SET Session("rackDict") = server.CreateObject("Scripting.Dictionary")
 end if
 set rackDict = Session("rackDict")
-
 '-- clear the multiselect dictionary
 if clearMS = "1" then
     rackDict.RemoveAll
     Set Session("rackDict") = rackDict
 end if
-
 lStyle = Request.QueryString("style")
 NodeTarget = Request.QueryString("NodeTarget")
 NodeURL = Request.QueryString("NodeURL")
-
 If lStyle = "" Then lStyle = 7
 If  GotoNode= "" OR (GotoNode = "0" and NodeURL = "") then  'Add  NodeURL =""to check its a pop up or Tree Frame
 	Session("CurrentLocationID")= 0
@@ -95,16 +86,13 @@ If  GotoNode= "" OR (GotoNode = "0" and NodeURL = "") then  'Add  NodeURL =""to 
 Else
 	bGotoNode = True
 End if
-
 '-- Build list of tree icons for JS icon refreshing
 GetInvConnection()
     Set Cmd = nothing
     Call GetInvCommand(Application("CHEMINV_USERNAME") & ".Racks.isRack", adCmdStoredProc)
-
     Cmd.Parameters.Append Cmd.CreateParameter("RETURN_VALUE",131, adparamreturnvalue, 0, NULL)
     Cmd.Parameters.Append Cmd.CreateParameter("PLOCATIONID",131, 1, 0, sNode)
 	Call ExecuteCmd(Application("CHEMINV_USERNAME") & ".Racks.isRack")
-
     checkRack = cbool(Cmd.Parameters("RETURN_VALUE"))
     if checkRack =true then
         checkRack =1
@@ -120,7 +108,6 @@ While NOT RS_tree_icons.EOF
     RS_tree_icons.MoveNext
 Wend
 RS_tree_icons.Close()
-
 QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL=" & NodeURL & "&NodeTarget=" & NodeTarget & "&TreeID=" & TreeID & "&formelm=" & formelm & "&elm1=" & elm1 & "&elm2=" & elm2 & "&elm3=" & elm3 & "&MaybeLocSearch=" & Request.QueryString("MaybeLocSearch") & "&multiSelect=" & multiSelect
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"lang="en">
@@ -135,7 +122,6 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 	.textmenu{
 		top:20px
 	}
-
     .divBorder{
         border-bottom-color:#fff; 
         border-left-color:#fff; 
@@ -147,7 +133,6 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
         border-right-width: 0px; 
         border-top-width: 2px;
     }
-
 	.rackDetail{
         display:none;
 	}
@@ -162,7 +147,6 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 	slide();
 </script>
 <script type="text/javascript" language="javascript">
-
 	window.focus()
 	var PrevFolderImage
 	var PrevLink
@@ -177,15 +161,12 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 		elm.style.color = "black"
 		elm.style.fontWeight = "bold"
 		CurrFolderImage = elm.firstChild
-
 		// Set the active image
 		elm.firstChild.src = "/ChemInv/images/treeview/" + imgActive;
-
 		// Set the closed image of the previous tree location
 		// starting on second time through tree is rendered and only if images are different
 		if ((typeof(PrevFolderImage)== "object") && (PrevFolderImage!=CurrFolderImage))
 		{
-
 			var treeIconList = "<%=treeIconList%>";
 			var arrTreeIconList = treeIconList.split(",");
 			var bShowDefault = true;
@@ -205,12 +186,10 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 			PrevLink.style.color = "#4682b4";
 			PrevLink.style.fontWeight = ""
 		}
-
 		// Sets current image for active location
 		PrevLink = elm;
 		PrevFolderImage = elm.firstChild;
 	}
-
 	function clickLocation(value, locationText) {
 		//alert(serverName);
 		var strURL = serverType + serverName + "/cheminv/cheminv/BrowseTreeDict.asp?action=click&locationID=" + value + "&locationText=" + locationText;
@@ -240,7 +219,6 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
             rackOrder = rackOrder + 1;
         }
         text = text + "<br/>Racks will be filled in this order."
-
 		document.all("selectedRacks").innerHTML = text;
         AlterCSS('.selectedRacks','display','block');        
          // select the first rack
@@ -279,21 +257,18 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
         return list;
 	}
 	
-
     function slide() {
 	    with(document.body){
 		    header.style.left=0;
 		    header.style.top=scrollTop;
 	    }
     }
-
 	// When viewing browse tree as a dialog box hide the drop down menu
 	<%if TreeID <> 1 then %>
 	AlterCSS('.dropDownMenuControl','display','none')
 	<%end if %>
     //AlterCSS('.textmenu','top','0')
    	//AlterCSS('.treeitems','top','25')
-
 </script>
 </head>
 <body>
@@ -302,7 +277,6 @@ QS =  "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL="
 <!--#INCLUDE VIRTUAL = "/cheminv/cheminv/tree_frame_links.asp"-->
 </div>
 <%end if 
-
 '-- create tabs for all other trees except the main browser tree
 if TreeID <> 1 then
 %>
@@ -311,10 +285,9 @@ if TreeID <> 1 then
 </div>
 <%
 end if
-
 if Session("treeTab") = "Browse" or TreeID = 1 then
 %>
-<div id="textmenu" style="POSITION:Absolute;top:25;left:20;visibility:visible;z-index:-1;background-color=#ffffff;">
+<div id="textmenu" style="POSITION:Absolute;top:25;left:20;visibility:visible;z-index:0;background-color=#ffffff;">
 <table border="0" width="100%">
 	<tr>
 	    <td align="left" valign="top">
@@ -350,7 +323,6 @@ if Session("treeTab") = "Browse" or TreeID = 1 then
 <form name="locationTree" id="locationTree">
 <% 
 Set TreeView = Server.CreateObject("VASPTV.ASPTreeView")
-
 TreeView.Class = "TreeView"
 TreeView.Style = clng(lStyle)
 TreeView.LineStyle = 1
@@ -361,14 +333,11 @@ TreeView.QueryString = ""
 TreeView.LicenseKey = "8712-0DFC-5CEB"
 TreeView.QueryString = "isMultiSelectRacks=" & isMultiSelectRacks & "&ClearNodes=0" & "&NodeURL=" & NodeURL & "&NodeTarget=" & NodeTarget & "&TreeID=" & TreeID & "&formelm=" & formelm & "&elm1=" & elm1 & "&elm2=" & elm2 & "&elm3=" & elm3 & "&MaybeLocSearch=" & Request.QueryString("MaybeLocSearch")
 'QS = "ClearNodes=0" & "&NodeURL=" & NodeURL & "&NodeTarget=" & NodeTarget & "&TreeID=" & TreeID & "&formelm=" & formelm & "&elm1=" & elm1 & "&elm2=" & elm2 & "&elm3=" & elm3 & "&MaybeLocSearch=" & Request.QueryString("MaybeLocSearch") & "&multiSelect=" & multiSelect
-
 If (IsEmpty(Session("TVNodes" & TreeID)) OR ClearNodes = 1) Then
-
 	'-- Start with an empty tree
 	Set Session("TVNodes" & TreeID)= Nothing
 	Session("TreeViewOpenNodes" & TreeID) = ""
 	Session("PrevExpandedNodesList" & TreeID) = ":"
-
 	'-- Read the default inventory location
 	if  bGotoNode then
 		Call PopulateNodeLayer("NULL",TreeLevel)
@@ -380,7 +349,6 @@ If (IsEmpty(Session("TVNodes" & TreeID)) OR ClearNodes = 1) Then
 	'-- Save the current nodes collection in session var for reuse
 	Set Session("TVNodes" & TreeID)= TreeView.Nodes
 Elseif (ExpNode = "Y") then
-
 	'-- Fetch the nodes collection from session var
 	Set TreeView.Nodes = Session("TVNodes" & TreeID)
 	if NOT IsEmpty(RemoveNode) then
@@ -399,12 +367,10 @@ Elseif (ExpNode = "Y") then
         '-- Removing the dummy node
 		On Error resume next
 		TreeView.Nodes.Remove(CStr(TempNode & "-1"))
-
 	End if
 	'-- Save the nodes collection in session var for reuse
 	Set Session("TVNodes" & TreeID)= TreeView.Nodes
 End if
-
 If IsObject(Session("TVNodes" & TreeID)) then
 	Set TreeView.Nodes = Session("TVNodes" & TreeID)
 	If TreeView.Nodes.Count > 0 then
@@ -416,7 +382,6 @@ If IsObject(Session("TVNodes" & TreeID)) then
 			if err.number > 0 then bRefresh = true
 		End if
 	End if
-
 	'-- Keep track of open nodes as URL string that can be appended when recalling the tree page
 	ClickedNode = Request.QueryString("sNode")
 	If Not IsEmpty(ClickedNode) then
@@ -432,7 +397,6 @@ If IsObject(Session("TVNodes" & TreeID)) then
 	'Response.Write "[" & ClickedNode & "==cn"
 	Set TreeView = Nothing
 End if
-
 '-- Open the target node
 response.Write chr(13)
 if bRefresh then
@@ -469,7 +433,6 @@ if isRack then
     else
 	    viewRackFilter = Session("viewRackFilter")
     end if
-
     Call GetInvCommand("{CALL " & Application("CHEMINV_USERNAME") & ".RACKS.DISPLAYRACKGRID(?,?)}", adCmdText)	
     Cmd.Parameters.Append Cmd.CreateParameter("P_LOCATIONID",200, 1, 30, LocationID)
 '-- CSBR ID:131045
@@ -485,7 +448,6 @@ if isRack then
     RS.Open Cmd
     RS.ActiveConnection = Nothing
     RS.filter = "COL_INDEX=1"
-
     rowName_arr = RS.GetRows(adGetRowsRest, , "RowName")
     numRows = Ubound(rowName_arr,2) + 1 
     RS.filter = 0
@@ -499,11 +461,9 @@ if isRack then
 	    cellWidth = 70
     end if
     cellWidthLucidaChars = cellWidth/6
-
     cntRacksInRack = 0
     cntPlatesInRack = 0
     cntContainersInRack = 0
-
     FldArray = split(lcase(displayFields),",")
     xmlHtml = ""
     xmlHtml = xmlHtml & "<xml ID=""xmlDoc""><rack>" & vbcrlf
@@ -544,7 +504,6 @@ if isRack then
 					    theValue = "<img src=""" & arrGridData(3) & """ border=""0"">&nbsp;" & GridBarcode
 				    end if
 			    end if
-
 			    isSelected = false
 			    if bCheckSelected then
 				    keyValue = RS(key).Value
@@ -555,14 +514,12 @@ if isRack then
 			    theValue = "<![CDATA[" & WrapRackContents(FldName, GridID, RS("name"), GridBarcode, GridType, theValue, Title, cellWidthLucidaChars, isSelected) & "]]>"
 			    colIndex = RS("COL_INDEX")
 			    xmlHtml = xmlHtml & "<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf
-
 			    RS.MoveNext		
 		    Wend
 		    xmlHtml = xmlHtml & "</" & FldName & ">" & vblf
 	    Next
     Next
     xmlHtml = xmlHtml & "</rack></xml>"
-
 response.Write xmlHtml
 %>
 <script type="text/javascript" language="javascript">
@@ -640,11 +597,9 @@ Rack displayed by <strong>Icon</strong>. To change the display, click on the arr
 </div>
 
 <script language="javascript">
-
     AlterCSS('.rackDetail','display','block');
     tbl.dataFld = "icon";
     tbl.dataSrc = "#xmlDoc"
-
 </script>
 <script for="cboField" event="onchange">
   var dispText = "Rack displayed by <strong>";
@@ -654,7 +609,6 @@ Rack displayed by <strong>Icon</strong>. To change the display, click on the arr
   tbl.dataSrc = ""; // unbind the table
   // Set the binding to the requested field
   tbl.dataFld = this.options(this.selectedIndex).value;
-
   tbl.dataSrc = "#xmlDoc"; // rebind the table
   document.all.hiddenSelector.style.visibility = 'hidden';
   wellFilter = tbl.dataFld;
@@ -664,7 +618,7 @@ Rack displayed by <strong>Icon</strong>. To change the display, click on the arr
 end if
 elseif Session("treeTab") = "Search" then
 %>
-    <div id="Div1" style="POSITION:Absolute;top:25;left:20;visibility:visible;z-index:-1;background-color=#ffffff;">
+    <div id="Div1" style="POSITION:Absolute;top:25;left:20;visibility:visible;z-index:0;background-color=#ffffff;">
     <table border="0" width="100%">
 	    <tr>
 		    <td align=right valign="top">
@@ -677,8 +631,6 @@ elseif Session("treeTab") = "Search" then
     <!--#INCLUDE VIRTUAL = "/cheminv/cheminv/TreeSearch.asp"-->
 <%  
 end if
-
-
 %>
 <script type="text/javascript" language="javascript">
 	<%if multiSelect = "1" and NodeURL ="" then%> //Add  NodeURL =""to check its a pop up or Tree Frame
@@ -701,14 +653,12 @@ end if
 	}
 	//show the selected racks
     displaySelectedRackText(getRackDictionary());
-
     <%end if%>
 </script>
 </BODY>
 </HTML>
 
 <%
-
 '****************************************************************************************
 '*	PURPOSE:  Adds a new layer of nodes to the tree each time a plus is checked                                              *
 '*  INPUT: 	  The node to add children to, pLevel <=2 for children and grandchildren,
@@ -759,7 +709,6 @@ Sub PopulateNodeLayer(pNodeID, pLevel)
 		if (ExpNode = "Y") then Session("PrevExpandedNodesList" & TreeID) = Session("PrevExpandedNodesList" & TreeID)& pNodeID & ":"
 	End if
 End Sub
-
 Sub BuildTree(pSQL)
     Dim fldParentID
     Dim fldImageActive
@@ -798,7 +747,6 @@ Sub BuildTree(pSQL)
 			imgInActive = fldImageInactive.Value
 			if isBlank(imgActive) then imgActive = "icon_openfold.gif"
 			if isBlank(imgInActive) then imgInActive = "icon_clsdfold.gif"
-
 			if bDebugPrint then
 				Response.Write "<br>" & i & ". " & id & "-" & ParentID & "-" & RS("Location_Name") & "-" & RS("LocationTypeName")
 			Else
@@ -827,11 +775,9 @@ Sub BuildTree(pSQL)
 	    	        end if
    				    
                 end if				    
-
 				' Add a Node to the Tree.
 				' Syntax: TREEVIEW.NODES.ADD ([Relative],[Relationship],[Key],[Text],[Image],[ExpandedImage],[URL],[Target],[ToolTipText])
 				Set Nodex = TreeView.Nodes.Add(ParentID,4,id,displayName, imgInActive, imgInActive, , , fldLocationTypeName.Value & vblf & fldLocationBarcode.value & vblf & fldLocationDescription.value)
-
 				Nodex.URL = NodeURL & "?LocationID=" & Nodex.Key & "&LocationName=" & Server.URLEncode(Nodex.Text) & "&showInList=" & showInList
 				Nodex.Target = NodeTarget
 				if TreeID = 2 or TreeID = 3 then MaybeCloseWindow = "window.close();"
@@ -867,19 +813,16 @@ Sub BuildTree(pSQL)
 				if (ParentID<>"" and ParentID<> NULL) then
 				    on error resume next
                     TreeView.Nodes.Remove(CStr(ParentID & "-1"))                  
-
 				end if 
 			End if
 			Set Nodex = nothing
 			RS.MoveNext
 		Loop
-
 		RS.Close
 		Conn.Close
 		Set RS = Nothing
 		Set Conn = Nothing
 End Sub
-
 Sub GetNodes(pNodeID)
 	if InStr(1,Session("PrevExpandedNodesList" & TreeID),":" & pNodeID & ":") = 0 Then
 		Dim PathSQL
@@ -913,7 +856,6 @@ Sub GetNodes(pNodeID)
 		end if
 	end if
 End Sub
-
 Function WrapRackContents(FldName, GridID, GridName, GridBarcode, GridType, strText, Title, Length, isSelected)
 	Dim str
 	if (strText = "") OR IsNull(strText) then strText = ""
@@ -950,7 +892,4 @@ Function WrapRackContents(FldName, GridID, GridName, GridBarcode, GridType, strT
 	str = str & "</span>"
 	WrapRackContents = str
 End function
-
-
-
  %>
