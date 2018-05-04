@@ -120,6 +120,7 @@ end if
 <script language="javascript" type="text/javascript">
 <!--
 	var currGridFormat = "<%=currGridFormat%>";
+	var pageBeingRefreshed = false;
 	
 	window.focus();
 	
@@ -379,6 +380,18 @@ end if
 		}
 		location.href="/cheminv/gui/NewLocation.asp?LocationID="+LocationID+"&LocationType=" + locationType + "&GetData=db";
 	}	
+	
+	/**
+	* This anonymous function works as a client-side listener that listens to value changes to document.form1.LocationID.value,..
+	* ..every 20 milliseconds
+	*/
+	setInterval(function() {
+		if (document.form1.LocationID.value != document.form1.ID.value && pageBeingRefreshed == false) {
+			pageBeingRefreshed = true;
+			// Later the value of pageBeingRefreshed identifier will be reset to false after successful page refresh
+			refreshPage(document.form1.LocationID.value);
+		}
+	}, 20);
 
 	function AutoGen_OnClick(element) {
 			document.form1.Barcode.value=''; 
@@ -547,7 +560,7 @@ end if
 	</tr>
 	<%Else%>
 <!--	<tr>		<td align="right" nowrap>			<%=LocationText%> ID:		</td>		<td>			<input type="text" name="LocationID" value="<%=Session("CurrentLocationID")%>">		</td>	</tr>	-->
-			<input type="hidden" name="LocationID" value="<%=LocationID%>" onpropertychange="refreshPage(document.form1.LocationID.value);">
+			<input type="hidden" name="LocationID" value="<%=LocationID%>">
 			<input type="hidden" name="Parent_ID" value=<%=Parent_ID%>>
 		<tr>
 	<td align="right" nowrap> 
