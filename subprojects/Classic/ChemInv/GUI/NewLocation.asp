@@ -386,10 +386,12 @@ end if
 	* ..every 20 milliseconds
 	*/
 	setInterval(function() {
-		if (document.form1.LocationID.value != document.form1.ID.value && pageBeingRefreshed == false) {
-			pageBeingRefreshed = true;
-			// Later the value of pageBeingRefreshed identifier will be reset to false after successful page refresh
-			refreshPage(document.form1.LocationID.value);
+		if (document.form1.LocationID && document.form1.ID) {
+			if (document.form1.LocationID.value != document.form1.ID.value && pageBeingRefreshed == false) {
+				pageBeingRefreshed = true;
+				// Later the value of pageBeingRefreshed identifier will be reset to false after successful page refresh
+				refreshPage(document.form1.LocationID.value);
+			}
 		}
 	}, 20);
 
