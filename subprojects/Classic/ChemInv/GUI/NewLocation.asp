@@ -516,7 +516,7 @@ end if
 <input TYPE="hidden" id="LocationAdmin" name="LocationAdmin" Value>
 <input TYPE="hidden" id="tempCsUserName" name="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 
-<table border="0">
+<table border="0" width="575px">
 	<tr>
 		<td colspan="2">
             <center>

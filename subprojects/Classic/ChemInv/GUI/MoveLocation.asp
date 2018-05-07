@@ -143,7 +143,7 @@ if isaGridElement > 0 then
 <span class="GuiFeedback">You cannot move or delete a location within a grid format.</span><br><br>
 <%=GetOkButton()%>
 <% else %>
-<table border="0">
+<table border="0" width="575px">
 	<tr>
 		<td colspan="2">
 			<span class="GuiFeedback">Move an inventory <%=lCase(LocationText)%> and all of its contents.</span><br><br>
