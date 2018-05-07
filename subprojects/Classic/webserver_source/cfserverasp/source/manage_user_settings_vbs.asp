@@ -812,15 +812,10 @@ Sub AppInitHitlistTables()
 		currentRDBMS = GetUserSettingsSQLSyntax(dbname, "base_form_group")
 		' Check if tables exist
 		numFields = GetNumberOfFieldsinTable(dbname, "CSDOHITLISTID")
-		if  numFields > 0 then
-			if numFields <> 8 then
+		if  numFields > 0 then			
 				DropTable dbname, "CSDOHITLIST"
 				DropTable dbname, "CSDOHITLISTID"
-				CreateHitListTables dbname, "CSDO"
-			Else 
-				'Clear expired hitlists
-				TruncateCSDOHitLists dbname 
-			End if
+				CreateHitListTables dbname, "CSDO"			
 		Else
 			CreateHitListTables dbname, "CSDO"
 		End if
