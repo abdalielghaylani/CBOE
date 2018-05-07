@@ -494,27 +494,27 @@ end if
  <%end if %>   
 <center>
 <form name="form1" action="<%=action%>" method="POST">
-<input type="hidden" name="LocationType" value="<%=LocationType%>"/>
-<input type="hidden" name="PlateMapID" value="<%=PlateMapID%>"/>
-<input type="hidden" name="bAddAddress" value="false"/>
-<input type="hidden" name="Address1"/>
-<input type="hidden" name="Address2"/>
-<input type="hidden" name="Address3"/>
-<input type="hidden" name="Address4"/>
-<input type="hidden" name="City"/>
-<input type="hidden" name="StateIDFK"/>
-<input type="hidden" name="CountryIDFK"/>
-<input type="hidden" name="Zip"/>
-<input type="hidden" name="Fax"/>
-<input type="hidden" name="Phone"/>
-<input type="hidden" name="Email"/>
-<input type="hidden" name="AutoGen" value="<%=AutoGen%>"/>
-<input TYPE="hidden" NAME="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
-<input TYPE="hidden" NAME="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
-<input TYPE="hidden" NAME="PrincipalID" Value='<%=PrincipalID%>'>
-<input TYPE="hidden" NAME="isAuthorised" Value='<%=isAuthorised%>'>
-<input TYPE="hidden" NAME="LocationAdmin" Value>
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" id="LocationType" name="LocationType" value="<%=LocationType%>"/>
+<input type="hidden" id="PlateMapID" name="PlateMapID" value="<%=PlateMapID%>"/>
+<input type="hidden" id="bAddAddress" name="bAddAddress" value="false"/>
+<input type="hidden" id="Address1" name="Address1" />
+<input type="hidden" id="Address2" name="Address2" />
+<input type="hidden" id="Address3" name="Address3" />
+<input type="hidden" id="Address4" name="Address4" />
+<input type="hidden" id="City" name="City" />
+<input type="hidden" id="StateIDFK" name="StateIDFK" />
+<input type="hidden" id="CountryIDFK" name="CountryIDFK" />
+<input type="hidden" id="Zip" name="Zip" />
+<input type="hidden" id="Fax" name="Fax" />
+<input type="hidden" id="Phone" name="Phone" />
+<input type="hidden" id="Email" name="Email" />
+<input type="hidden" id="AutoGen" name="AutoGen" value="<%=AutoGen%>"/>
+<input TYPE="hidden" id="OwnerShipGroupList" name="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
+<input TYPE="hidden" id="OwnerShipUserList" name="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
+<input TYPE="hidden" id="PrincipalID" name="PrincipalID" Value='<%=PrincipalID%>'>
+<input TYPE="hidden" id="isAuthorised" name="isAuthorised" Value='<%=isAuthorised%>'>
+<input TYPE="hidden" id="LocationAdmin" name="LocationAdmin" Value>
+<input TYPE="hidden" id="tempCsUserName" name="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 
 <table border="0">
 	<tr>
@@ -674,7 +674,7 @@ end if
 		<td colspan="2" align="right">
 		    <div id="GroupBlock3" >
 		<%if isEdit then%>
-						<br><input TYPE="checkbox" NAME="propagateownership" VALUE="1" >Propagate the Location Admin to child locations/containers/plates.</span>
+						<br><input TYPE="checkbox" NAME="propagateownership" id="propagateownership" VALUE="1" >Propagate the Location Admin to child locations/containers/plates.</span>
 		<%end if%>
 		</td>
             </div>
@@ -683,7 +683,7 @@ end if
 	<tr>
 		<td align=right>
 		<%if Session("Inv_Manage_Locations")=True then %>
-						<input TYPE="checkbox" NAME="makePublic" VALUE="1" <%=isPublic%> onclick="changeLocationtypeonPublic(this);">Access as Public.
+						<input TYPE="checkbox" id="makePublic" name="makePublic" VALUE="1" <%=isPublic%> onclick="changeLocationtypeonPublic(this);">Access as Public.
 		<%end if%>
 		</td>
 	</tr>
