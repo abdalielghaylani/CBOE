@@ -3,7 +3,7 @@
     Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
 <%@ Register TagPrefix="iglbar" Namespace="Infragistics.WebUI.UltraWebListbar" Assembly="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
-<%@ Register Assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
+<%@ Register Assembly="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
     Namespace="CambridgeSoft.COE.Framework.Controls" TagPrefix="cc2" %>
 
 
