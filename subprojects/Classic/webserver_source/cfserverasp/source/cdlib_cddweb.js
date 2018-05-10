@@ -58,14 +58,12 @@ function cd_getAnalysis(objName, selection) {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Return the *Molecular Weight* of selected/all structures in the Plugin named *objName*
 
-function cd_getMolWeight(objName, selection) {
-    if (selection == null)
-        selection = 0;
+function cd_getMolWeight(objName, callback) {
     var cddInstance = cd_getSpecificObject(objName);
     var cdXML = cddInstance.getCDXML();
-    return cddInstance.getMolecularWeight(cdXML, "chemical/x-cdx", function (weight, error) {
+    cddInstance.getMolecularWeight(cdXML, "chemical/x-cdx", function (weight, error) {
         if (!error) {
-            // TODO: deal with result
+            callback(weight);
         } else {
             // TODO: deal with error
         }

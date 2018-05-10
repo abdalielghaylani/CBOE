@@ -270,7 +270,7 @@ end if
 								ISISDraw = """False"""
 							end if'
 							end if%>
-							<script language="JavaScript">cd_insertObject("chemical/x-cdx", "280", "280", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>
+							<script language="JavaScript">cd_insertObject("chemical/x-cdx", "800", "300", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>
 						</td>
 					</tr>
 				</table>		

@@ -294,7 +294,7 @@ var cd_pluginID = 1000;
 function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile, viewOnly, shrinkToFit, dataURL, dontcache, ISISDraw) {
 	mimeType = "chemical/x-cdx";
 	var buf = "";
-	if (dataURL != null) {
+	if (dataURL != null && cd_currentUsing <= 3) {
 		//!DGB! 12/01 add a conditional call to unescape(dataURL)
 		//LJB 1/13/2004 add support for other escaped mimetypes
 		if ((dataURL.indexOf("%3Bbase64%2C") > 0)||(dataURL.indexOf("%3Achemical")>0)||(dataURL.indexOf("%3CCDXML")>0))
@@ -407,7 +407,12 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
 	    buf += "<div style=\"min-height: 0px; min-width: 0px;\"><div id=\"chemdrawjs-container\" style=\"width: " + objWidth + "px; height: " + objHeight + "px; MARGIN-LEFT: 0px !important;\"></div></div>";
 	    buf += "<SCRIPT LANGUAGE=\"JavaScript\">";
 	    buf += "var chemdrawjs;";
-	    buf += "var chemdrawjsAttached = function (chemdraw) { chemdrawjs = chemdraw; };";
+	    buf += "var chemdrawjsAttached = function (chemdraw) { chemdrawjs = chemdraw; ";
+	    if (dataURL != null && dataURL != "") {
+	        var b64 = dataURL.substring(dataURL.indexOf('VmpD')).replace(/\n/g, "\\n");
+	        buf += "chemdrawjs.loadB64CDX(unescape(\"" + b64 + "\"));";
+	    }
+	    buf += "};";
 	    buf += "var chemdrawjsFailed = function (error) { };";
 	    buf += "perkinelmer.ChemdrawWebManager.attach({ id: 'chemdrawjs-container', viewonly: " + viewOnly.toLowerCase() + ", callback: chemdrawjsAttached, errorCallback: chemdrawjsFailed, licenseUrl: '/cfserverasp/source/license.xml', configUrl: '/cfserverasp/source/cddconfiguration.json', preservePageInfo: true });";
 	    buf += "</SCRIPT>";

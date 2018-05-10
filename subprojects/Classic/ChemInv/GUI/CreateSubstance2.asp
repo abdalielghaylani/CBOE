@@ -1,64 +1,64 @@
 <html>
 <head>
 
-<title><%=Application("appTitle")%> -- Create or Edit an Inventory Substance</title>
-<script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
-<script LANGUAGE="javascript" src="CalculateFromPlugin.js"></script>
-<script LANGUAGE="javascript" src="/cheminv/utils.js"></script>
-<script language="JavaScript">
-	var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;
-	focus();
-</script>
-<script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
-<script>cd_includeWrapperFile("/cfserverasp/source/")</script>
-<script LANGUAGE="javascript">
-	// Calculates molw and formula from plugin data
-	var holdTime = 3000;
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
+    <title><%=Application("appTitle")%> -- Create or Edit an Inventory Substance</title>
+    <script language="javascript" src="/cheminv/Choosecss.js"></script>
+    <script language="javascript" src="CalculateFromPlugin.js"></script>
+    <script language="javascript" src="/cheminv/utils.js"></script>
+    <script language="JavaScript">
+        var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;
+        focus();
+    </script>
+    <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
+    <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+    <script language="javascript">
+        // Calculates molw and formula from plugin data
+        var holdTime = 10000;
+        if (cd_getBrowserVersion() >= 6) holdTime = 1;
+        window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
 
-	function BackOrClose(){
-		if (history.length > 0){
-			history.back()
-		}
-		else{
-			opener.close();
-			window.close();
-		}
+        function BackOrClose(){
+            if (history.length > 0){
+                history.back()
+            }
+            else{
+                opener.close();
+                window.close();
+            }
 		
-	}
+        }
 	
-	function OKButtonClick()
-	{
-	<% if Session("GUIReturnURL") <> "" then %>
-		window.location.href="<%=Session("GUIReturnURL")%>";
-	<%else%>
-		top.close();
-		return false;
-	<%End if%>
-	}
+        function OKButtonClick()
+        {
+            <% if Session("GUIReturnURL") <> "" then %>
+                window.location.href="<%=Session("GUIReturnURL")%>";
+            <%else%>
+                top.close();
+            return false;
+            <%End if%>
+            }
 	
-	function CloseAndReload()
-	{
-	    opener.location.reload( true );
-	    self.close();
-	}
+        function CloseAndReload()
+        {
+            opener.location.reload( true );
+            self.close();
+        }
 
-</script>
+    </script>
 </head>
 <%if Request("ManageMode") = "2" then %>
-    <body onunload="CloseAndReload();">
-<%else %>
-    <body >
-<%end if %>
-<form name="form1" action="POST">
-<!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc"-->
-<!--#INCLUDE VIRTUAL = "/cfserverasp/source/server_const_vbs.asp"-->
-<!--#INCLUDE VIRTUAL = "/cfserverasp/source/csdo_utils_vbs.asp"-->
-<!--#INCLUDE VIRTUAL = "/cheminv/api/apiUtils.asp"-->
-<!--#INCLUDE VIRTUAL = "/cheminv/gui/guiUtils.asp"-->
-<!--#INCLUDE VIRTUAL = "/cheminv/gui/compound_utils_vbs.asp"-->
-<%
+<body onunload="CloseAndReload();">
+    <%else %>
+    <body>
+        <%end if %>
+        <form name="form1" action="POST">
+            <!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc"-->
+            <!--#INCLUDE VIRTUAL = "/cfserverasp/source/server_const_vbs.asp"-->
+            <!--#INCLUDE VIRTUAL = "/cfserverasp/source/csdo_utils_vbs.asp"-->
+            <!--#INCLUDE VIRTUAL = "/cheminv/api/apiUtils.asp"-->
+            <!--#INCLUDE VIRTUAL = "/cheminv/gui/guiUtils.asp"-->
+            <!--#INCLUDE VIRTUAL = "/cheminv/gui/compound_utils_vbs.asp"-->
+            <%
 Dim Conn
 Dim Cmd
 Dim strError
@@ -202,9 +202,9 @@ If IsEmpty(SubstanceName) OR SubstanceName = "" then
 End if
 	
 	conflictingFields = "&inv_compounds.Conflicting_Fields="
-%>
-<!--#INCLUDE VIRTUAL = "/cheminv/api/createsubstanceOraSP.asp"-->	
-<%
+            %>
+            <!--#INCLUDE VIRTUAL = "/cheminv/api/createsubstanceOraSP.asp"-->
+            <%
 ' WJC Millennium - create/update custom fields
 'stop
 'CSBR-160188, 160299: Only do this when its Compound Edit
@@ -415,8 +415,8 @@ DisplaySubstance "", "Conflicting Substance" , bShowSelect ,bShowCreateDuplicate
 if bShowCreateDuplicate then
 	Response.Write "<script language=""javascript"">document.all.createDuplicateText.style.display = 'block';</script>"
 end if
-%>
-	<center>
+            %>
+            <center>
 		<table width="80%">
 		<tr>
 			<td colspan="2" align="right"> 
@@ -427,13 +427,13 @@ end if
 		</table>
 	</table>
 	</center>
-<%End if%>
-	</form>
-	<form name="repostForm" action="CreateSubstance2.asp" method="POST">
-	<input type="hidden" name="ResolveConflictsLater" value="1">
-	<input type="hidden" name="Density" value="<%=Density%>">
-	
-		<%
+            <%End if%>
+        </form>
+        <form name="repostForm" action="CreateSubstance2.asp" method="POST">
+            <input type="hidden" name="ResolveConflictsLater" value="1">
+            <input type="hidden" name="Density" value="<%=Density%>">
+
+            <%
 		for each fld in Request.Form
 			if fld <> "action" then
 				Response.Write "<input type=hidden name=""" & fld & """ value=""" & Request(fld) & """>" & vblf
@@ -444,11 +444,11 @@ end if
 				Response.Write "<input type=hidden name=""" & fld & """ value=""" & Request(fld) & """>" & vblf
 			end if
 		next
-		%>
-	</form>
-</body>
+            %>
+        </form>
+    </body>
 
-<%
+    <%
 Function GetSubstanceCount()
 	dim RS
 
@@ -461,4 +461,4 @@ Function GetSubstanceCount()
 	Set RS = nothing
 	GetSubstanceCount = theReturn
 end function
-%>
+    %>
