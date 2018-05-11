@@ -551,7 +551,7 @@ function ValidateBatchFields()
 	<td colspan=4><fieldset>
 	<legend><span class="GuiFeedback"><%=PrimaryBatchName%></span></legend>
 	
-	<table border="0" align="center">
+	<table border="0" align="center" width="100%">
 	<tr>
 		<td align="right" valign="top" width="29%">
             Grouping Field 1:
@@ -597,13 +597,13 @@ function ValidateBatchFields()
         <td></td>
         <td></td>
         
-        <td align="right" colspan="4"><input type="checkbox" name="clear1" value="1" />Clear <%=PrimaryBatchName%> Grouping Fields</td>	
+        <td align="left" style="padding-left: 60px;" colspan="2"><input type="checkbox" name="clear1" value="1" />Clear <%=PrimaryBatchName%> Grouping Fields</td>	
 	</tr></table></fieldset></td></tr>
 	<tr>
 		<td colspan=4><fieldset>
 	<legend><span class="GuiFeedback"><%=SecondaryBatchName%></span></legend>
 	
-	<table border="0" align="center">
+	<table border="0" align="center" width="100%">
 	<tr>
 		<td align="right" valign="top" width="29%">
             Grouping Field 1:
@@ -649,7 +649,7 @@ function ValidateBatchFields()
         <td></td>
         <td></td>
         
-        <td align="right" colspan="4"><input type="checkbox" name="clear2" value="1" />Clear <%=SecondaryBatchName%> Grouping Fields</td>	
+        <td align="left" style="padding-left: 60px;" colspan="2"><input type="checkbox" name="clear2" value="1" />Clear <%=SecondaryBatchName%> Grouping Fields</td>	
 	</tr></table></fieldset></td></tr>
 	
 <!--Thrid Grouping -->	
@@ -657,7 +657,7 @@ function ValidateBatchFields()
 		<td colspan=4><fieldset>
 	<legend><span class="GuiFeedback"><%=TertiaryBatchName%></span></legend>
 	
-	<table border="0" align="center">
+	<table border="0" align="center" width="100%">
 	<tr>
 		<td align="right" valign="top" width="29%">
             Grouping Field 1:
@@ -703,7 +703,7 @@ function ValidateBatchFields()
         <td></td>
         <td></td>
         
-        <td align="right" colspan="4"><input type="checkbox" name="clear3" value="1" />Clear <%=TertiaryBatchName%> Grouping Fields</td>	
+        <td align="left" style="padding-left: 60px;" colspan="2"><input type="checkbox" name="clear3" value="1" />Clear <%=TertiaryBatchName%> Grouping Fields</td>	
 	</tr></table></fieldset></td></tr>
 	
 	<tr>
@@ -723,7 +723,7 @@ function ValidateBatchFields()
             <tr>
             
                 <center>
-                    <fieldset style="width: 60%; height: 60%;">
+                    <fieldset style="width: 60%; height: 20%;">
                         <legend style="margin-top:150px"><span class="GuiFeedback">Grouping Fields</span></legend>
                         <table border="0" align="center" width="60%">                            
                                 <tr>
