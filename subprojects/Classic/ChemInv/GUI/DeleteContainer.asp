@@ -59,7 +59,7 @@ End if
 </table>
 <% else %>
 
-<form name="form1" xaction="echo.asp" action="DeleteContainer_action.asp" method="POST">
+<form name="form1" id="form1" xaction="echo.asp" action="DeleteContainer_action.asp" method="POST">
 <input Type="hidden" name="ContainerID" value="<%=ContainerID%>">
 <input Type="hidden" name="multiscan" value="<%=Request("multiscan")%>">
 
@@ -78,7 +78,7 @@ End if
 		</td>
 	<tr>
 		<td colspan="2" align="right"> 
-			<a HREF="#" onclick="window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="submit(); return false;"><img SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>
+			<a HREF="#" onclick="window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="document.getElementById('form1').submit(); return false;"><img SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>
 		</td>
 	</tr>	
 </table>	
