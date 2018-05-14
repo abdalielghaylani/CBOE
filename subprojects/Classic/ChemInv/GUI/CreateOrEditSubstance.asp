@@ -110,6 +110,7 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/utils.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
+<script LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></script>
 <script LANGUAGE="javascript">
 <!--
 	var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;

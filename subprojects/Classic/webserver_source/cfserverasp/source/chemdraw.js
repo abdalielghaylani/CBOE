@@ -121,8 +121,8 @@ function cd_figureOutUsing() {
 	else if (cd_testBrowserType("Chrome") || cd_testBrowserType("Mozilla")) {
 	    cd_currentUsing = 4;
 	    try {
-	        eval(perkinelmer);
-	    } catch(e) {
+	        eval(perkinelmer.ChemdrawWebManager);
+	    } catch (e) {	       
 	        document.write("<SCRIPT LANGUAGE=\"javascript\" src=\"https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js\"></SCRIPT>");
 	    }
 	}
