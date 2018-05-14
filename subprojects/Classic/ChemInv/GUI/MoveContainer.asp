@@ -153,8 +153,8 @@ if isBlank(LocationID) then LocationID = 0
 <input type="hidden" name="ContainerID" value="<%=ContainerID%>">
 <input type="hidden" name="GetSessionLocationID" value>
 <input type="hidden" name="multiscan" value="<%=Request("multiscan")%>">
-<input type="hidden" name="tempCSUserName" value="<%=Session("UserName" & "cheminv")%>" />
-<input type="hidden" name="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>" />
+<input type="hidden" name="tempCsUserName" id="tempCsUserName" value="<%=Session("UserName" & "cheminv")%>" />
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>" />
 <table border="0">
 	<tr>
 		<td colspan="2">
