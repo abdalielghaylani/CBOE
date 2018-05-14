@@ -252,7 +252,7 @@ Select Case sTab
 			currentUserNode.text = RegCAS
 		end if
 		'if there is no plugin generate a gif for the structure
-		if Session("isCDP") <> "TRUE" then
+		if Session("isCDP") <> "TRUE" or detectModernBrowser = true then
 		'if true then
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]/@IS_STRUCTURE")
 			currentUserNode.text = "0"

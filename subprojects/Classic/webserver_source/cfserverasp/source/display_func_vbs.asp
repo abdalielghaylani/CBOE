@@ -3435,6 +3435,12 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 			bShowGif= True
 		end if
 	end if
+
+'override cdx output if browser is chorme or firefox
+    if detectModernBrowser = true  AND UCase(formmode) = "LIST"  then
+        displaytype = "GIF"
+        bShowGif= True
+    end if
 	
 	if not displaytype = "GIF" then
 		if OverrideToGif(formmode) = True then

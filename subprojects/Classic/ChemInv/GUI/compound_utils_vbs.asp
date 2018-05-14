@@ -258,7 +258,7 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 	Response.Write "				<tr>" & vblf
 	
 	Response.Write "					<td>" & vblf										
-	if Session("isCDP") = "TRUE" then
+	if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 		if session("DrawPref") = "ISIS" then
 			ISISDraw = """True"""
         else
@@ -273,7 +273,7 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 		filePath = SessionDir & "structure" & "_" & 160 & "x" & 140 & ".gif"	
 		SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 		fileURL = SessionURLDir & "structure" & "_" & 160 & "x" & 140 & ".gif"	
-		ConvertCDXtoGif_Inv filePath, InLineCdx, 160, 140
+		ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 160, 140
 		Response.Write "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""0"">"
 	end if
 	Response.Write "					</td>" & vblf
