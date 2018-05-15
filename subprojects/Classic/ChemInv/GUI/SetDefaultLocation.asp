@@ -49,7 +49,7 @@ if Application("ALLOW_USER_TO_SET_DELIVERY_LOCATION") = "0" then disable=" disab
 	<input TYPE="hidden" NAME="LocationID" Value="<%=Session("CurrentLocationID")%>">
 	<tr>
 		<td colspan="2" align="right"> 
-			<a HREF="#" onclick="window.close(); return false;"><img SRC="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0"></a>&nbsp;<a HREF="#" onclick="submit(); return false;"><img SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0"></a>
+			<a HREF="#" onclick="window.close(); return false;"><img SRC="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0"></a>&nbsp;<a HREF="#" onclick="form1.submit(); return false;"><img SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0"></a>
 		</td>
 	</tr>
 </table>
