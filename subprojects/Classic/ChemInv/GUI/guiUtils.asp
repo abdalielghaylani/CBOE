@@ -610,7 +610,7 @@ Function BuildSelectBox2(RS, name, SelectedValue, TruncateLength, FirstOptionTex
 	End if
 
 	If IsNull(SelectedValue) then SelectedValue = ""
-	str = str & "<SELECT size=""" & size & """ name=""" & name & """" & multiple & " onchange=""" & ChangeScript & """>"
+	str = str & "<SELECT size=""" & size & """ name=""" & name & """ id=""" & name & """" & multiple & " onchange=""" & ChangeScript & """>"
 	if RS.EOF AND RS.BOF AND Len(FirstOptionText) = 0 then
 		if EmptyMessage <> "" then
 			str = str &  "<OPTION value=""NULL"">" & EmptyMessage

@@ -206,9 +206,9 @@ End if
 	</tr>
 	<tr>
 		<td colspan="2">
-		<table border="0" cellpadding="5">
+		<table border="0" cellpadding="5" width="100%">
 		<tr><td colspan="3" align="left">Users associated with organization:</td></tr>
-		<tr>
+		<tr align="right">
 		<%=ShowPickList3("", "users", UserID, "SELECT User_ID AS Value, Last_Name||DECODE(First_Name, NULL, '', ', '||First_Name) AS DisplayText, '' as DefaultValue FROM CS_SECURITY.People ORDER BY lower(Last_Name) ASC", 55, "", "", "", 12, true, "")%>
 		<td align="center">
 			<a href="javascript:appendOptionLast()"><img src="/cheminv/graphics/sq_btn/add_role_sq_btn.gif" border="0" /></a><br />
