@@ -404,7 +404,9 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
     else if (cd_currentUsing == 4) {
         buf += "<style>.cdd.cddroot .cdd-workspace-container { max-height: " + String(parseInt(objHeight) - 70) + "px !important; }";
         buf += ".cdd.cddroot .cdd-toolbar-container { max-height: 70px !important; } .cdd.cddroot .cdd-toolbar { min-height: 70px !important; } </style>";
-	    buf += "<div style=\"min-height: 0px; min-width: 0px;\"><div id=\"chemdrawjs-container\" style=\"width: " + objWidth + "px; height: " + objHeight + "px; MARGIN-LEFT: 0px !important;\"></div></div>";
+        buf += "<div style=\"min-height: 0px; min-width: 0px;\">";
+        buf += "<div id=\"progressMsg\" style=\"position: absolute;margin-left:" + String(parseInt(objWidth / 2) - 65) + "px;margin-top:" + String(parseInt(objHeight / 2) - 50) + "px;\"><img src=\"/cfserverasp/source/graphics/processing_Ybvl_Ysh_grey.gif\"></div>";
+        buf += "<div id=\"chemdrawjs-container\" style=\"width: " + objWidth + "px; height: " + objHeight + "px; MARGIN-LEFT: 0px !important;\"></div></div>";
 	    buf += "<SCRIPT LANGUAGE=\"JavaScript\">";
 	    buf += "var chemdrawjs;";
 	    buf += "var chemdrawjsAttached = function (chemdraw) { chemdrawjs = chemdraw; ";

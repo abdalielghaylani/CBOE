@@ -10,6 +10,7 @@ end if
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 	<head>
+        <SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
 		<script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
 		<script language="JavaScript">
 			top.bannerFrame.theMainFrame = <%=Application("mainwindow")%>
