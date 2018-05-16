@@ -67,6 +67,17 @@ spool Logs\LOG_Create_test_CheminvDB.txt
 @@"Patches\Patch &&schemaVersion\Parameters.sql"
 @@"Patches\Patch &&nextPatch\patch.sql"
 
+--When 17.1.0 is reached, we end the script execution and continue the remaining patch scripts as a fresh nested script to avoid problem.
+--This is to avoid the oracle error SP2-0309: SQL*Plus command procedures may only be nested to a depth of 20.
+--This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
+	SELECT	CASE
+		WHEN  '&&currentPatch' = '17.1.0'
+		THEN  '"sql\Patches\Patch &&nextPatch\patch.sql"'
+		ELSE  'sql\Patches\stop.sql'
+	END	AS setNextPatch 
+	FROM	DUAL;
+
+	@&&setNextPatch 
 
 --' Recompile pl/sql 
 @@PLSQL\RecompilePLSQL.sql
