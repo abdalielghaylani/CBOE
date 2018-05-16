@@ -192,14 +192,14 @@ end if
 <title>Create or Edit a substance in <%=Application("appTitle")%></title>
 </head>
 <body>
-<br><br><br>
+<br>
 <center>
 <form name="form1" action method="POST">
 	<input type="hidden" name="CompoundID" value="<%=CompoundID%>">
 	<input type="hidden" name="ManageMode" value="<%=ManageMode%>">
 	<input type="hidden" name="isEmptyStruc">
 	<input type="hidden" name="inv_compounds.Density" value="<%=dbDensity%>">
-	<table border="0" width="500" cellpadding="0" cellspacing="0">
+	<table border="0" width="100%" cellpadding="5 cellspacing="0">
 		  <tr>
 			<td valign="top" align="left" colspan=2>
 				<img src="<%=Application("NavButtonGifPath")%>cheminventory_banner.gif" border="0"><br><br>
@@ -225,7 +225,7 @@ end if
 			<td colspan="2">
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 					<tr>
-						<td align="right" nowrap>
+						<td align="left" nowrap>
 							<span title="(eg. Acetonitrile)" class="required">Substance Name:</span>
 						</td>
 						<td align="left">
@@ -276,8 +276,10 @@ end if
 					</tr>
 				</table>		
 			</td>
+		  </tr>
+		  <tr>
 			<td valign="top">
-				<table border="0">
+				<table border="0" width="100%">
 					
 					<tr>
 			        	<td>
@@ -287,9 +289,7 @@ end if
 								<input type="hidden" name="<%=FNP%>CAS_orig" value="<%=dBCAS%>"> 
 							<%end if%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+		      		    <td>
 							<span title="(e.g. X1001545-9)">ACX Number:<br>
 							<input type="text" name="inv_compounds.ACX_ID" value="<%=dBACX_ID%>" SIZE="30" value maxlength="15">
 							<%if bIsEdit then %>
