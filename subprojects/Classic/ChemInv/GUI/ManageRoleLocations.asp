@@ -117,10 +117,10 @@ Icon_open2 = "icon_openfold2.gif"
             for (i = 0; i < numLocations; i++) {
                 // determine if a value is a member of a list of values
                 for (j = 0; j < arrLocation.length; j++) {
-                    if (arrLocation[j] == document.form1.LocationID(i).value) {
-                        if (!document.form1.LocationID(i).checked) {
-                            document.form1.LocationID(i).checked = true;
-                            selecetedLocations(document.form1.LocationID(i).value);
+                    if (arrLocation[j] == document.form1.LocationID[i].value) {
+                        if (!document.form1.LocationID[i].checked) {
+                            document.form1.LocationID[i].checked = true;
+                            selecetedLocations(document.form1.LocationID[i].value);
                             document.form1.selectedLocationID.value = document.form1.selectedLocationID.value + "," + arrLocation[j];
                         }
                     }
@@ -140,8 +140,8 @@ Icon_open2 = "icon_openfold2.gif"
                 for (j = 0; j < arrLocation.length; j++) {
                     var numLocations = document.form1.LocationID.length;
                     for (k = 0; k < numLocations; k++) {
-                        if (arrLocation[j] == document.form1.LocationID(k).value) {
-                            if (document.form1.LocationID(k).checked) {
+                        if (arrLocation[j] == document.form1.LocationID[k].value) {
+                            if (document.form1.LocationID[k].checked) {
                                 newChildList = newChildList.replace("," + arrLocation[j] + ",", ",");
                                 break;
                             }
@@ -219,10 +219,10 @@ Icon_open2 = "icon_openfold2.gif"
                     // determine if a value is a member of a list of values
                     for (j = 0; j < arrLocation.length; j++) {
                         for (k = 0; k < numLocations; k++) {
-                            if (arrLocation[j] == document.form1.LocationID(k).value) {
-                                if (!document.form1.LocationID(k).checked) {
-                                    document.form1.LocationID(k).checked = true;
-                                    selecetedLocations(document.form1.LocationID(k).value);
+                            if (arrLocation[j] == document.form1.LocationID[k].value) {
+                                if (!document.form1.LocationID[k].checked) {
+                                    document.form1.LocationID[k].checked = true;
+                                    selecetedLocations(document.form1.LocationID[k].value);
                                     document.form1.selectedLocationID.value = document.form1.selectedLocationID.value + "," + arrLocation[j];
                                     break;
                                 }
@@ -535,21 +535,26 @@ End Sub
 
 'Open the target node
 if bRefresh then
-	response.write "<Script language=javascript>"
-	Response.Write "var Aelm = document.anchors(""refresh""); "
-	Response.Write "if (Aelm){"
-	Response.Write "Aelm.click();}</script>"
+	response.write "<Script language=javascript>" & vbCrLf
+	Response.Write "var Aelm = document.anchors.namedItem(""refresh""); " & vbCrLf
+	Response.Write "if (Aelm){" & vbCrLf
+	Response.Write "Aelm.click();}</script>" & vbCrLf
 elseif bGotoNode AND TreeID = 1 then
-	response.write "<Script language=javascript>"
-	Response.Write "var Aelm = document.anchors(""e" & Request.QueryString("Gotonode") & """); "
-	Response.Write "if (Aelm){"
+	response.write "<Script language=javascript>" & vbCrLf
+	Response.Write "var Aelm = document.anchors.namedItem(""e" & Request.QueryString("Gotonode") & """); " & vbCrLf
+	Response.Write "if (Aelm){" & vbCrLf
 	'Response.Write "document.all.e" & Request.QueryString("Gotonode") & ".href = document.all.e" & Request.QueryString("Gotonode") & ".href" & "+ '&SelectContainer=" & SelectContainer & "&SelectWell=" & SelectWell & "';" 
 	'Response.Write "document.all.e" & Request.QueryString("Gotonode") & ".href = document.all.e" & Request.QueryString("Gotonode") & ".href" & "+ '&SelectContainer=" & SelectContainer & "#" & SelectContainer & "';"
-	Response.Write "document.all.e" & Request.QueryString("Gotonode") & ".href = document.all.e" & Request.QueryString("Gotonode") & ".href" & "+ '&SelectContainer=" & SelectContainer & "';"  
-	Response.Write "Aelm.click();}</script>"
+	Response.Write "document.all.e" & Request.QueryString("Gotonode") & ".href = document.all.e" & Request.QueryString("Gotonode") & ".href" & "+ '&SelectContainer=" & SelectContainer & "';"   & vbCrLf
+	Response.Write "Aelm.click();}</script>" & vbCrLf
 	'Response.Write "alert(document.all.e" & Request.QueryString("Gotonode") & ".href);}</script>"
 Else
-	if TreeID = 1 then response.write "<Script language=javascript>var Aelm = document.anchors(""e0""); if (Aelm) {Aelm.click();}</script>"
+	if TreeID = 1 then 
+		response.write "<Script language=javascript>" & vbCrLf
+		Response.Write "var Aelm = document.anchors.namedItem(""e0""); " & vbCrLf
+		Response.Write "if (Aelm) {" & vbCrLf
+		Response.Write "Aelm.click();}</script>"
+	End if
 End if
 %>
 <script language="javascript">
@@ -563,8 +568,8 @@ End if
     for (i = 0; i < numLocations; i++) {
         // determine if a value is a member of a list of values
         for (j = 0; j < arrLocation.length; j++) {
-            if (arrLocation[j] == document.form1.LocationID(i).value)
-                document.form1.LocationID(i).checked = true;
+            if (arrLocation[j] == document.form1.LocationID[i].value)
+                document.form1.LocationID[i].checked = true;
         }
     }
     // select the child locations
