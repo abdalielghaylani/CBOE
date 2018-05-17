@@ -10,16 +10,9 @@
     <title>Loading</title>
 </head>
 <body>
-    <script language="javascript" src="/COECommonResources/ChemDraw/chemdraw.js" type="text/javascript"></script>
+    <script language="javascript" src="/cfserverasp/source/chemdraw.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
-        var isPluginInstalled  = false;
-        if (cd_currentUsing == 2 || cd_currentUsing == 3) {
-	        isPluginInstalled =	cd_isCDPluginInstalled();		
-        }
-        else if (cd_currentUsing == 1) {
-	        isPluginInstalled =	cd_isCDActiveXInstalled();
-        }
-        document.cookie = "isCDP=" + isPluginInstalled + "; path=/";
+        cd_setIsCDPPluginCookie();
         
         var queryString = location.search;
         

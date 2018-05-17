@@ -39,7 +39,7 @@ public partial class ChemBioVizSearch : GUIShellPage
     private const string _cdpJavascriptDetection = "cdpJavascriptDetection";
     private bool _exportedHits = false;
     private bool _isPageRenderedForDetectingCDP = false;
-    private const string _chemdrawjs = "/COECommonResources/ChemDraw/chemdraw.js";
+    private const string _chemdrawjs = "/cfserverasp/source/chemdraw.js";
     private const string _chemofficeenterprisejs = "/COECommonResources/ChemDraw/ChemOfficeEnterprise.js";
     #endregion
 
@@ -1377,15 +1377,7 @@ public partial class ChemBioVizSearch : GUIShellPage
             string searchFolder = string.IsNullOrEmpty(this.Page.Request["callingApp"]) ? this.Page.ResolveUrl(Constants.GetSearchContentAreaFolder()) : Constants.GetSearchContentAreaFolder(this.Page.Request["callingApp"]);
             string cdpDetectionScript = @"
             <script language='javascript' type='text/javascript'>
-                    var isPluginInstalled  = false;
-                    if (cd_currentUsing == 2 || cd_currentUsing == 3) {
-                        isPluginInstalled =	cd_isCDPluginInstalled();		
-                    }
-                    else if (cd_currentUsing == 1) {
-                        isPluginInstalled =	cd_isCDActiveXInstalled();
-                    }
-                    
-                    document.cookie = " + "\"isCDP=\" + isPluginInstalled + \"; path=/;\";" + @"
+                    cd_setIsCDPPluginCookie();" + @"
                     var url = '" + this.ResolveUrl(this.Page.AppRelativeVirtualPath) + "';" + @"
                     var queryString = '?" + this.Request.QueryString.ToString() + "';" + @"
                     if(location.search.length > 0)

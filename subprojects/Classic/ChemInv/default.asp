@@ -61,21 +61,8 @@ if Application("DBLoaded" & dbkey) = True then
 <title><%=Application("appTitle")%></title>
 <SCRIPT LANGUAGE="javascript" src="/cfserverasp/source/chemdraw.js"></SCRIPT>
 <script language="javascript" type="text/javascript" >
-
-var isPluginInstalled  = false;
-if (cd_currentUsing == 2 || cd_currentUsing == 3) {
-	isPluginInstalled =	cd_isCDPluginInstalled();		
-}
-else if (cd_currentUsing == 4) {
-    isPluginInstalled = true;
-}
-else if (cd_currentUsing == 1) {
-	isPluginInstalled =	cd_isCDActiveXInstalled();
-}
-document.cookie = "isCDP=" + isPluginInstalled + "; path=/"
-
+    cd_setIsCDPPluginCookie();
 </script>
-    <% Session("isCDP") = ucase(Request.Cookies("isCDP")) %>
 </head>
 <frameset BORDER="0" FRAMEBORDER="0" FRAMESPACING="0" rows="<%=bannerRows%>,*">
 		<frame BORDER="0" MARGINWIDTH="1" MARGINHEIGHT="1" SRC="<%=Application("AppPathHTTP")%>/<%=Application("appkey")%>/bannerframe.asp?showbanner=<%=Showbanner%>&formgroup=<%=formgroup%>" NAME="bannerFrame" scrolling="auto">

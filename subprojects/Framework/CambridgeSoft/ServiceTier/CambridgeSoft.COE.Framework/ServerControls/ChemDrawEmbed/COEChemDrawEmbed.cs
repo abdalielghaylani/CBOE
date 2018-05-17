@@ -398,7 +398,8 @@ namespace CambridgeSoft.COE.Framework.Controls.ChemDraw
         private const string _changeinlinejs = "changeInlines";
         private const string _chemofficeenterprisejs = "ChemOfficeEnterprise";
         private const string _nullOutput = "null";
-        private const string CHEMDRAWFOLDER = "/COECommonResources/ChemDraw/";
+        private const string CHEMDRAWFOLDER = "/cfserverasp/source/";
+        private const string CHEMDRAWENTERPRISEFOLDER = "/COECommonResources/ChemDraw/";
         #endregion
 
         #region Constructors
@@ -452,7 +453,7 @@ namespace CambridgeSoft.COE.Framework.Controls.ChemDraw
                 Page.ClientScript.RegisterClientScriptInclude(_chemdrawjs, url);
             }
             
-            url = CHEMDRAWFOLDER + "ChemOfficeEnterprise.js";
+            url = CHEMDRAWENTERPRISEFOLDER + "ChemOfficeEnterprise.js";
             if(!Page.ClientScript.IsClientScriptIncludeRegistered(_chemofficeenterprisejs)) {
                 Page.ClientScript.RegisterClientScriptInclude(_chemofficeenterprisejs, url);
             }

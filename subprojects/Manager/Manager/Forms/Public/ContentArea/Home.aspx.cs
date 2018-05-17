@@ -63,7 +63,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
             }
             else
             {
-                string url = "/COECommonResources/ChemDraw/chemdraw.js";
+                string url = "/cfserverasp/source/chemdraw.js";
                 if (!Page.ClientScript.IsClientScriptIncludeRegistered("chemdraw"))
                 {
                     Page.ClientScript.RegisterClientScriptInclude("chemdraw", url);
@@ -73,15 +73,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                 {
                     string cdpDetectionScript = @"
 
-                        var isPluginInstalled  = false;
-                        if (cd_currentUsing == 2 || cd_currentUsing == 3) {
-	                        isPluginInstalled =	cd_isCDPluginInstalled();		
-                        }
-                        else if (cd_currentUsing == 1) {
-	                        isPluginInstalled =	cd_isCDActiveXInstalled();
-                        }
-                        
-                        document.cookie = " + "\"isCDP=\" + isPluginInstalled + \"; path=/;\";";
+                        cd_setIsCDPPluginCookie();";
 
                     Page.ClientScript.RegisterClientScriptBlock(typeof(Forms_ContentArea_Home), "cdpJavascriptDetection", cdpDetectionScript, true);
                 }

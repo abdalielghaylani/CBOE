@@ -19,21 +19,13 @@ Session("bManageMode") = false
 <% 
 PageSource = Request("Source")
 if lcase(PageSource) = "eln" and Session("isCDP") = "" then
-    if ucase(Request.Cookies("isCDP")) = "" Then%>
+    if ucase(Request.Cookies("isCDP")) = "" Then
+%>
         <SCRIPT LANGUAGE="javascript" src="/cfserverasp/source/chemdraw.js"></SCRIPT>
         <script language="javascript" type="text/javascript" >
-            var isPluginInstalled = false;
-            if (cd_currentUsing == 2 || cd_currentUsing == 3) {
-                isPluginInstalled = cd_isCDPluginInstalled();
-            }
-            else if (cd_currentUsing == 4) {
-                isPluginInstalled = true;
-            }
-            else if (cd_currentUsing == 1) {
-                isPluginInstalled = cd_isCDActiveXInstalled();
-            }
-            document.cookie = "isCDP=" + isPluginInstalled + "; path=/"   
-            </script><%
+            cd_setIsCDPPluginCookie();   
+        </script>
+<%
         end if
         Session("isCDP") = ucase(Request.Cookies("isCDP"))
 end if
