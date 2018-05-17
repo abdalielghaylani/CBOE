@@ -762,9 +762,9 @@ if(document.form1.isAuthorised && document.form1.isAuthorised.value!="0")
         document.getElementById("barcodeLink").style.visibility = "hidden";
         document.getElementById("barcodeLink").disabled = true;
         document.getElementById("barcodeLink").onclick = "";
-        document.getElementById("addAddressLink").style.visibility = "hidden";
-        document.getElementById("addAddressLink").disabled = true;
-        document.getElementById("addAddressLink").onclick = "";
+		document.getElementById("AddAddressLink").style.visibility = "hidden";
+        document.getElementById("AddAddressLink").disabled = true;
+        document.getElementById("AddAddressLink").onclick = "";
     }
     if (document.getElementById("makePublic").checked){
         if (document.all.GroupBlock1)
