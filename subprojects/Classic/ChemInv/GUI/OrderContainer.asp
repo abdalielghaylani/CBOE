@@ -506,14 +506,6 @@ function setOwnership()
 <% if Session("isCDP") = "TRUE" then %>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
-<script LANGUAGE="javascript">
-	<!--
-	// Calculates molw and formula from plugin data
-		var holdTime = 3000;
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
-		window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-	//-->
-</script>
 <% end if %>
 
 </head>

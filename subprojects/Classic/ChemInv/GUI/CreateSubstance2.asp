@@ -1,3 +1,4 @@
+<!--#INCLUDE VIRTUAL = "/cfserverasp/source/display_func_vbs.asp"-->
 <html>
 <head>
 
@@ -12,11 +13,7 @@
     <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
     <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
     <script language="javascript">
-        // Calculates molw and formula from plugin data
-        var holdTime = 10000;
-        if (cd_getBrowserVersion() >= 6) holdTime = 1;
-        window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-
+        
         function BackOrClose(){
             if (history.length > 0){
                 history.back()

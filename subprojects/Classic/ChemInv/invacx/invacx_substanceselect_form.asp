@@ -18,11 +18,6 @@ end if%>
 <!--
 	// This flag tells the onload function called from recordset_footer to process the AfterOnLoad() function
 	DoAfterOnLoad = true;
-	var holdTime = 3000;
-	<%if Session("isCDP") = "TRUE" then%>
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-	<%end if%>
 	
 	function PostToCreateSubstace(BaseID){
 		document.form1["inv_compounds.Structure"].value = cd_getData("Substance.Structure" + BaseID + "_ctrl", "chemical/x-cdx");
@@ -36,12 +31,6 @@ end if%>
 	
 	// This function is called by recordset footer at the end of onload event
 	function AfterOnLoad(){
-		// Calculate the formula and molw from the plugin data
-		var holdTime = 3000;
-		<%if Session("isCDP") = "TRUE" then%>
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
-		setTimeout("GetFormula();GetMolWeight();",holdTime);
-		<%end if%>
 	}		
 //-->
 </script>

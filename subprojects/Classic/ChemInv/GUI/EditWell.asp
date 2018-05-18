@@ -174,14 +174,6 @@ if Request.QueryString("newCompoundId")<>"" then Compound_ID_FK= Request.QuerySt
 </script>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
-<script LANGUAGE="javascript">
-	<!--
-	// Calculates molw and formula from plugin data
-		var holdTime = 3000;
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
-		window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-	//-->
-</script>
 <script LANGUAGE="javascript" src="/cheminv/gui/CalculateFromPlugin.js"></script>
 
 </head>

@@ -32,16 +32,9 @@ end if
 	
 	var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;
 	var CD_AUTODOWNLOAD_PLUGIN = "<%=APPLICATION("CD_PLUGIN_DOWNLOAD_PATH")%>";
-	var holdTime = 3000;
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
 	
 	// This function is called by recordset footer at the end of onload event
 	function AfterOnLoad(){
-		// Calculate the formula and molw from the plugin data
-		var holdTime = 3000;
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
-		setTimeout("GetFormula();GetMolWeight();",holdTime);
 	}		
 //-->
 </script>

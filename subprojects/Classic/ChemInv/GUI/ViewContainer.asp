@@ -332,19 +332,6 @@ Select Case sTab
 <%
 Case "Substance"
 	'this is an inventory substance.  Show details form inv_compounds table
-
-if Session("isCDP") = "TRUE" then
-%>
-<script language="javascript" type="text/javascript">
-<!--
-// calculates the formula and molw from plugin data
-	var holdTime = 3000;
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-//-->
-</script>
-<%
-end if
 %>
 
 <center>
@@ -425,16 +412,6 @@ end if
 Case "RegSubstance"
 %>
 
-<%if Session("isCDP") = "TRUE" then%>
-<SCRIPT LANGUAGE=javascript>
-<!--
-// calculates the formula and molw from plugin data
-	var holdTime = 3000;
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-//-->
-</SCRIPT>
-<%end if%>
 <table border="0">
 	<tr>
 		<td>

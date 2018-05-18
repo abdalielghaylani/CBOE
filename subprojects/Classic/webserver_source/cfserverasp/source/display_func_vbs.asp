@@ -2937,7 +2937,20 @@ Function ConvertBase64toMW(Byval b64)
 
 End Function
 
+Function ConvertBase64toMFormula(Byval b64)
+        on error resume next
+        Set cdAx = GetCDAX()
+        cdax.DataEncoded = true           
+	'jhs - if then needed because of chemdraw bug
+	if lcase(left(b64,8)) = "vmpdrdax" then           
+        	cdAX.Data("chemical/x-cdx") = b64
+	else
+        	cdax.Data("chemical/mdl-molfile") = b64
+	end if
+	ConvertBase64toMFormula=cdAX.Objects.Formula
+        Set cdAx = Nothing
 
+End Function
 
 
 Function ConvertBase64toMolfile(Byval b64)

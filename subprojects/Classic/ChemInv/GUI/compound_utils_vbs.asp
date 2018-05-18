@@ -289,16 +289,14 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 	Response.Write "				</tr>" & vblf
 	Response.Write "				<tr>" & vblf
 	
-		
-	Response.Write						ShowField("Molecular Weight:", "MOLWEIGHT", 15, "MOLWEIGHT" & CDCounter)
-	
+	Response.Write	"<td align=right valign=top nowrap>Molecular Weight:</td><td class=""grayBackground"" align=right><span>" & Round(ConvertBase64toMW(Mid(InLineCdx, InStr(InLineCdx, "VmpD"))),3) & "</span></td>" & vblf
+
 	Response.Write						ShowField("CompoundID:", "dBCompoundID", 15, "")					
 	Response.Write "				</tr>" & vblf
 	Response.Write "				<tr>" & vblf
 	
-	
-	Response.Write						ShowField("Molecular Formula:", "FORMULA", 15, "FORMULA" & CDCounter)
-	
+	Response.Write	"<td align=right valign=top nowrap>Molecular Formula:</td><td class=""grayBackground"" align=right><span>" & ConvertBase64toMFormula(Mid(InLineCdx, InStr(InLineCdx, "VmpD"))) & "</span></td>" & vblf
+
 	Response.Write						ShowField(HighlightConflictingField(dBCompoundID, "inv_compounds.CAS", "CAS Number:"), "dBCAS", 15, "")
 	Response.Write "				</tr>" & vblf
 	Response.Write "				<tr>" & vblf

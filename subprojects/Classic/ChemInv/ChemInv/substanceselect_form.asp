@@ -28,19 +28,8 @@ end if%>
 		top.bannerFrame.document.all.searchLink.style.visibility = "visible";
 	}
 	
-	var holdTime = 3000;
-	<%if Session("isCDP") = "TRUE" then%>
-	if (cd_getBrowserVersion() >= 6) holdTime = 1;
-	window.onload = function(){setTimeout("GetFormula();GetMolWeight();",holdTime)}
-	<%end if%>
 	// This function is called by recordset footer at the end of onload event
 	function AfterOnLoad(){
-		// Calculate the formula and molw from the plugin data
-		var holdTime = 3000;
-		<%if Session("isCDP") = "TRUE" then%>
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
-		setTimeout("GetFormula();GetMolWeight();",holdTime);
-		<%end if%>
 	}		
 //-->
 </script>
