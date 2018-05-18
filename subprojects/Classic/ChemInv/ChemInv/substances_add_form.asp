@@ -47,7 +47,7 @@ MainWindow.commit_type = "<%=commit_type%>"
 		  		<img src="../graphics/pixel.gif" width="60" height="1" alt border="0">
 		  	</td>
 			<td width="300" valign="top">
-				<%ShowStrucInputField  dbkey, formgroup,"inv_compounds.Structure","5","300","220", "EXACT", "EXACT"%>
+				<%ShowStrucInputField  dbkey, formgroup,"inv_compounds.Structure","5","520","220", "EXACT", "EXACT"%>
 			</td>
 			<td valign="top">
 				<table border="0">

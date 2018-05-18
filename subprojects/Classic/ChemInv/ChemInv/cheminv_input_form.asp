@@ -707,7 +707,7 @@ Select Case lCase(sTab)
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "inv_vw_compounds.Structure", "1",300, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "inv_vw_compounds.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 					<tr>
@@ -963,7 +963,7 @@ Select Case lCase(sTab)
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "MolTable.Structure", "1",300, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "MolTable.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 				</table>			
@@ -1166,7 +1166,7 @@ Select Case lCase(sTab)
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "inv_compounds_alias.Structure", "1",300, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "inv_compounds_alias.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 				</table>			
@@ -1459,7 +1459,7 @@ Select Case lCase(sTab)
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
 			        		<input type="hidden" name="inv_wells_alias.well_id">
-							<%ShowStrucInputField  dbkey, formgroup, "well_compounds_alias.Structure", "1",300, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "well_compounds_alias.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 					<tr>

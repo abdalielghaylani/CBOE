@@ -89,7 +89,7 @@ Session("UserID" & "invreg") = Session("UserID" & "ChemInv")
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "MolTable.Structure", "1",300, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "MolTable.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 				</table>			

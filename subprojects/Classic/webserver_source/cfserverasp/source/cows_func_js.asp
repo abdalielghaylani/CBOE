@@ -352,6 +352,9 @@ location.reload(true)
 	<%else%>
 	<script language="JavaScript" src= "/cfserverasp/source/chemdraw.js"></script>
 	<%end if %>
+<%if detectModernBrowser = true then%>
+    <SCRIPT LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></SCRIPT>
+<%end if %>
 
 	<script language="JavaScript"> 
 	if (window.doPluginDetect != null) {
