@@ -3903,4 +3903,12 @@ Function GetCDAX()
 	end if	
 End Function
 
+Function detectModernBrowser()
+	ModernBrowser = false
+	UserAgent = Request.ServerVariables("HTTP_USER_AGENT")
+		If InStr(UCASE(UserAgent), "CHROME")>0 OR InStr(UCASE(UserAgent), "FIREFOX")>0 then
+			ModernBrowser = true
+		end if
+	detectModernBrowser = ModernBrowser
+End Function
 %>

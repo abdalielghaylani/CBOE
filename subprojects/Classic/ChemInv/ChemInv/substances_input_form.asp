@@ -83,7 +83,7 @@ end if
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "inv_compounds.Structure", "1",800, 300, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "inv_compounds.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 				</table>

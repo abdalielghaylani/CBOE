@@ -20,6 +20,8 @@ end if
 '
 Dim Conn
 Dim Cmd
+Dim cddEditMode
+cddEditMode = Request("cddEditMode")
 Response.Expires = -1
 action = Request("action")
 CompoundID = Request("CompoundID")
@@ -110,16 +112,28 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/utils.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
-<script LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></script>
+
+<%
+if inLineCdx = "" OR cddEditMode <> "" then
+%>
+    <script LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></script>
+<%
+end if
+%>
 <script LANGUAGE="javascript">
 <!--
 	var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;
 	var blankb64 = "VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAEAAAAENoZW1EcmF3IDYuMC4xCAAMAAAAbXl0ZXN0LmNkeAADMgAIAP///////wAAAAAAAP//AAAAAP////8AAAAA//8AAAAA/////wAAAAD/////AAD//wEJCAAAAFkAAAAEAAIJCAAAAKcCAAAXAgIIEAAAAAAAAAAAAAAAAAAAAAAAAwgEAAAAeAAECAIAeAAFCAQAAJoVAAYIBAAAAAQABwgEAAAAAQAICAQAAAACAAkIBAAAswIACggIAAMAYAC0AAMACwgIAAQAAADwAAMADQgAAAAIeAAAAwAAAAEAAQAAAAAACwARAAAAAAALABEDZQf4BSgAAgAAAAEAAQAAAAAACwARAAEAZABkAAAAAQABAQEABwABJw8AAQABAAAAAAAAAAAAAAAAAAIAGQGQAAAAAAJAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEAhAAAAD+/wAA/v8AAAIAAAACAAABJAAAAAIAAwDkBAUAQXJpYWwEAOQEDwBUaW1lcyBOZXcgUm9tYW4BgAEAAAAEAhAAAAD+/wAA/v8AAAIAAAACAA8IAgABABAIAgABABYIBAAAACQAGAgEAAAAJAAAAAAA";
-
+	var currentb64;
 	window.focus();
 	//CSBR-159359: Separate function for retrieving the base64 data; This will be called in form submit and when switching the custom field tabs
 	function GetCDXData() {
-		var b64 = cd_getData("mycdx", "chemical/x-cdx");
+	    var b64;
+	    if (currentb64) {
+	        b64 = currentb64.substring(currentb64.indexOf('VmpD'));
+	    } else {
+	        b64 = cd_getData("mycdx", "chemical/x-cdx");
+	    }
 		if (b64.length == 0){
 			b64 = blankb64;
 			document.form1.isEmptyStruc.value= "1";
@@ -249,8 +263,9 @@ end if
 							<input type="hidden" name="inv_compounds.Structure" value>
 							<input type="hidden" name="inv_compounds.Structure.sstype" value="1">
 							<%if bIsEdit then%>
-								<input type="hidden" name="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" value="<%=InLineCdx%>">
-								<input type="hidden" name="ExactSearchFields" value="<%=FNP%>BASE64_CDX<%=CompoundID%>">
+								<input type="hidden" id="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" name="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" value="<%=InLineCdx%>">
+			                    <%if detectModernBrowser = true and cddEditMode = "" then%><script LANGUAGE="javascript">currentb64 =  document.getElementById('<%=FNP%>BASE64_CDX<%=CompoundID%>_orig').value;</script><%end if%>
+                                <input type="hidden" name="ExactSearchFields" value="<%=FNP%>BASE64_CDX<%=CompoundID%>">
 								<input type="hidden" name="RelationalSearchFields" value="<%=FNP%>BASE64_CDX,<%=FNP%>Substance_Name,<%=FNP%>CAS,<%=FNP%>ACX_ID,<%=FNP%>ALT_ID_1,<%=FNP%>ALT_ID_2,<%=FNP%>ALT_ID_3,<%=FNP%>ALT_ID_4,<%=FNP%>ALT_ID_5,<%=FNP%>Conflicting_Fields">
 								<input type="hidden" name="row_id_table_names" value="inv_compounds">
 								<input type="hidden" name="inv_compounds_ROW_IDS" value="<%=CompoundID%>">
@@ -270,9 +285,19 @@ end if
 							else
 								ISISDraw = """False"""
 							end if'
-							end if%>
-							<script language="JavaScript">cd_insertObject("chemical/x-cdx", "800", "300", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>
-						</td>
+							end if
+                            if detectModernBrowser = true and dbStructure <> "" and cddEditMode = "" then
+                                SessionDir = Application("TempFileDirectory" & "ChemInv") & "Sessiondir"  & "\" & Session.sessionid & "\"
+		                        filePath = SessionDir & "structure" & "_" & 520 & "x" & 300 & ".gif"	
+		                        SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
+		                        fileURL = SessionURLDir & "structure" & "_" & 520 & "x" & 300 & ".gif"	
+		                        ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 520, 300
+		                        Response.Write "<a target=""_top"" href=""/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=1&action=edit&cddEditMode=true&CompoundID="+ CompoundID +"""><img src=""" & fileURL & """ width=""520"" height=""300"" border=""0""></a><br/><span style="""" class=""required"">Click on image to edit structure</span>"
+                            else
+                                %>
+                            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "520", "300", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>
+						    <%end if%>
+                        </td>
 					</tr>
 				</table>		
 			</td>

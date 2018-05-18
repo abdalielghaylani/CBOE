@@ -12,15 +12,22 @@
           "ZoomOut",
           "Copy",
           "Paste",
-          "SolidBond",
           "Eraser",
-          "DashedBond",
-          "BoldBond",
-          "HashedBond",
-          "WedgedBond",
-          "HashedWedgedBond",
-          "HollowWedgedBond",
-          "WavyBond",
+          {
+            "group": "Single Bonds",
+            "columns": "4",
+            "collapse": "always",
+            "order": [
+              "SolidBond",
+              "DashedBond",
+              "BoldBond",
+              "HashedBond",
+              "WedgedBond",
+              "HashedWedgedBond",
+              "HollowWedgedBond",
+              "WavyBond"
+            ]
+          },
           {
             "group": "Multiple Bonds",
             "columns": "4",
@@ -111,16 +118,24 @@
               "Arrow270ElipticalCCW"
             ]
           },
-          "Benzene",
-          "Pentadiene",
-          "Hexane",
-          "Pentane",
-          "Propane",
-          "Butane",
-          "Octane",
-          "Heptane",
-          "CyclohexaneChairRight",
-          "CyclohexaneChairLeft",
+          {
+            "group": "Rings",
+            "columns": "2",
+            "collapse": "always",
+            "writing-mode": "vertical",
+            "order": [
+              "Benzene",
+              "Pentadiene",
+              "Hexane",
+              "Pentane",
+              "Propane",
+              "Butane",
+              "Octane",
+              "Heptane",
+              "CyclohexaneChairRight",
+              "CyclohexaneChairLeft"
+            ]
+          },
           "Text",
           "Formula",
           "Superscript",
@@ -174,9 +189,6 @@
               "AttachmentWavy"
             ]
           }
-        ],
-        "hidden": [
-          "ReactionInterpretation"
         ]
       }
     ]
@@ -200,7 +212,7 @@
     "disabled": []
   },
   "properties": {
-    "chemservice": "https://chemdrawdirect.perkinelmer.cloud/rest/",
-    "StyleSheet": "ACS Document 1996"
+    "StyleSheet": "ACS Document 1996",
+    "chemservice": "https://chemdrawdirect.perkinelmer.cloud/rest/"
   }
 }
