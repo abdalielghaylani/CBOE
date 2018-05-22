@@ -130,10 +130,10 @@ function slide() {
 	// Bug fix: adjust the position of the report div so it is relative to the size of the header div
 	var objReport = document.getElementById("report");
     var objHeader = document.getElementById("header");
-    
+	
     if( objReport && objHeader )
     {
-	    objReport.style.top = objHeader.scrollHeight;
+	    //objReport.style.top = objHeader.scrollHeight;
 	}
 }
 function SortReport(fieldName){
@@ -464,8 +464,7 @@ Else
 		End if
 		Response.Write "</SCRIPT>"
 	 %>	 
-
-<div align="left" id="report" style="POSITION:Absolute;top:0;left:2;  z-index:1">
+<div align="left" id="report" style="POSITION:Absolute;top:60;left:2;  z-index:1">
 	<%
 	ListView.Show
 	ListView.Unload
