@@ -38,7 +38,7 @@ prompt **** Patch &&CurrentPatch Applied ****
 
 COL setNextPatch NEW_VALUE setNextPatch NOPRINT
 SELECT	CASE
-		WHEN  '&&toVersion'='&&CurrentPatch'
+		WHEN  '&&toVersion'='&&CurrentPatch' OR '&&CurrentPatch'='17.1.0'
 		THEN  'Patches\stop.sql'
 		ELSE  '"Patches\Patch &&nextPatch\patch.sql"'
 	END	AS setNextPatch 
