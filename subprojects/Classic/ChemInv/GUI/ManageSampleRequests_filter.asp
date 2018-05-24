@@ -167,8 +167,8 @@ end if
 		
 		
 		<td rowspan="3" valign="bottom" align="center">
-		    <a class="MenuLink" HREF="#" onclick="top.location.reload(); return false;"><img src="/cheminv/graphics/sq_btn/reset.gif" alt="Click to reset the filter" border=0 /></a><br />
-			<a class="MenuLink" HREF="#" onclick="Validate();; return false;"><img src="/cheminv/graphics/sq_btn/filter.gif" alt="Click to filter the display" border=0 /></a><br />			
+		    <a class="MenuLink" HREF="#" onclick="top.location.reload(); return false;"><img src="/cheminv/graphics/sq_btn/reset.gif" alt="Click to reset the filter" border=0 title="Click to reset the filter" /></a><br />
+			<a class="MenuLink" HREF="#" onclick="Validate();; return false;"><img src="/cheminv/graphics/sq_btn/filter.gif" alt="Click to filter the display" border=0 title="Click to filter the display" /></a><br />			
 			<%=GetCloseButton()%>
 		</td>
 	</tr>
