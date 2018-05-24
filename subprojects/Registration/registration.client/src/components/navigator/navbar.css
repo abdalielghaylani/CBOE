@@ -9,4 +9,5 @@
   transition-property: all;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   width: 100%;
+  z-index: 999 !important;
 }
