@@ -22,6 +22,45 @@ select[disabled] {
 	color: grey;
 }
 
+/* Style for any checkbox required to be displayed in IE style..>> */
+
+input[type=checkbox] {
+	height: 1.05em;
+    width: 1.05em;
+    border: 1px solid rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 1);    
+    vertical-align: middle;
+	-webkit-appearance: none;
+}
+
+input[type="checkbox"]:focus {
+    outline:none;
+}
+
+input[type="checkbox"]:checked:before {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	content: '\2714';
+	font-size: 0.80em;	
+	margin-left: 1px;
+	line-height: 1.2;
+}
+
+input[type=checkbox][disabled] {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+input[type="checkbox"]:active {
+	background-color: rgba(0, 0, 0, 0.20);
+}
+
+input[type="checkbox"][disabled]:checked:before {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+/*..<< */
+
 a:link {
     font-size: 8pt;
     color: #4682b4;
