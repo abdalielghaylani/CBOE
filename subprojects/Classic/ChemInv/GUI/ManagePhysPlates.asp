@@ -50,7 +50,7 @@ if cell_naming = "1" then
 	displayNamingRowCol = "none"
 	displayNamingSeq = "block"
 else
-	displayNamingRowCol = "block"
+	displayNamingRowCol = ""
 end if
 %>
 <html>
@@ -69,7 +69,7 @@ end if
 		if (namVal == 1) {
 			AlterCSS('.namingRowCol','display','none');
 		}else{
-			AlterCSS('.namingRowCol','display','block');
+			AlterCSS('.namingRowCol','display','');
 		}
 	}	
 </script>
