@@ -116,7 +116,7 @@ end if
 <%
 if inLineCdx = "" OR cddEditMode <> "" then
 %>
-    <script LANGUAGE="javascript" src="https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"></script>
+    <script LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></script>
 <%
 end if
 %>

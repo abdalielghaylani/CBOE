@@ -412,7 +412,13 @@ Sub SetAdditionalAppVariables()
 	
 	' Setting COWS version used by about boxes to same version as COE version in chemoffice.ini
 	Application("COWSVersion") = GetINIValue2("optional", "GLOBALS", "CHEMOFFICE_ENTERPRISE_VERSION", "chemoffice", "chemoffice")
-	
+
+    ' Optional ini for CDJS js library location
+    Application("CDJSUrl") = GetINIValue( "optional", "GLOBALS", "CDJS_URL", "chemoffice", "chemoffice")
+    if Application("CDJSUrl") = "" then
+        Application("CDJSUrl") = "https://chemdrawdirect.perkinelmer.cloud/js/chemdrawweb/chemdrawweb.js"
+    end if
+
 	' Optional ini for CDAX progID, defaults to 9
 	Application("CDAX_ProgID") = GetINIValue2("optional", "GLOBALS", "CDAX_PROGID", "chemoffice", "chemoffice")
 	Application("ForceHTTPS") = GetINIValue2("optional", "GLOBALS", "FORCE_HTTPS", "chemoffice", "chemoffice")
