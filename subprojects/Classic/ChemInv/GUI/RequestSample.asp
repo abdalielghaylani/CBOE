@@ -622,7 +622,7 @@ End Function
 				//alert(httpResponse);
 
 				if (httpResponse.length>0) {
-					document.all.EditAddressLink.style.display = "block";
+					document.all.EditAddressLink.style.display = "";
 			
 					arrAddress = httpResponse.split("::");
 					document.form1.AddressID.value = arrAddress[0];
@@ -715,7 +715,7 @@ End Function
             <%if inBatch or RequestTypeID = "2" then %>
             //show/hide the appropriate form elements
             RequestType_Click('aliquot');			
-            if (document.all.requestOption) document.all.requestOption.style.display = "block";
+            if (document.all.requestOption) document.all.requestOption.style.display = "";
             <%elseif (inBatch = false) or (RequestTypeId = "1") then %>
             //show/hide the appropriate form elements
             RequestType_Click('container');			
@@ -763,13 +763,13 @@ End Function
 	    
 	    if (value == "aliquot" )    
 	    {
-            if  (document.all.aliquot) document.all.aliquot.style.display = "block";
+            if  (document.all.aliquot) document.all.aliquot.style.display = "";
              if (document.all.container) document.all.container.style.display = "none";
             <%if RequestSampleByAmount then %>
             if (document.all.nextButton) document.all.nextButton.style.display = "none";
-            if (document.all.okButton) document.all.okButton.style.display = "block";
+            if (document.all.okButton) document.all.okButton.style.display = "";
             <%else %>
-            if (document.all.nextButton) document.all.nextButton.style.display = "block";
+            if (document.all.nextButton) document.all.nextButton.style.display = "";
             if (document.all.okButton) document.all.okButton.style.display = "none";
             <%end if %>
             if (document.all.RequestTypeID) document.all.RequestTypeID.value = "2";
@@ -777,9 +777,9 @@ End Function
 	    else if (value == "container")
 	    {
             if (document.all.aliquot) document.all.aliquot.style.display = "none";
-            if (document.all.container) document.all.container.style.display = "block";
+            if (document.all.container) document.all.container.style.display = "";
             if (document.all.nextButton) document.all.nextButton.style.display = "none";
-            if (document.all.okButton) document.all.okButton.style.display = "block";
+            if (document.all.okButton) document.all.okButton.style.display = "";
             if (document.all.RequestTypeID) document.all.RequestTypeID.value = "1";
 	    }
 	}
@@ -1143,7 +1143,7 @@ if not bAllowRequest then
 		<td class="fieldLabel">
 		</td>
 		<td valign="top">
-		<input type="checkbox" name="toggleShipmentInfo" value="" onclick="if (this.checked) document.all.shipmentInfo.style.display='block'; else document.all.shipmentInfo.style.display='none'; " /> Show Shipment Info
+		<input type="checkbox" name="toggleShipmentInfo" value="" onclick="if (this.checked) document.all.shipmentInfo.style.display=''; else document.all.shipmentInfo.style.display='none'; " /> Show Shipment Info
 		</td>
     </tr>
 	<tbody id="shipmentInfo" style="display:none;">
