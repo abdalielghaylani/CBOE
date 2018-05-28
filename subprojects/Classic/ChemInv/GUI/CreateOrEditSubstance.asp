@@ -11,7 +11,7 @@
 ' Not action, ManageMode, CompoundID, TB
 Dim aPersist
 aPersist = Array("inv_compounds.Substance_Name", "inv_compounds.Structure","inv_compounds.CAS","inv_compounds.ACX_ID","inv_compounds.Density","inv_compounds.ALT_ID_1","inv_compounds.ALT_ID_2","inv_compounds.ALT_ID_3","inv_compounds.ALT_ID_4","inv_compounds.ALT_ID_5")
-if Request("TB") = "" then
+if Request("TB") = "" and Request("cddEditMode") = "" then
     for nPersist = LBound(aPersist) to UBound(aPersist)
         strPersist = aPersist(nPersist)
         Session("tmp_"&strPersist) = Request(strPersist)
@@ -124,16 +124,16 @@ end if
 <!--
 	var cd_plugin_threshold= <%=Application("CD_PLUGIN_THRESHOLD")%>;
 	var blankb64 = "VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAEAAAAENoZW1EcmF3IDYuMC4xCAAMAAAAbXl0ZXN0LmNkeAADMgAIAP///////wAAAAAAAP//AAAAAP////8AAAAA//8AAAAA/////wAAAAD/////AAD//wEJCAAAAFkAAAAEAAIJCAAAAKcCAAAXAgIIEAAAAAAAAAAAAAAAAAAAAAAAAwgEAAAAeAAECAIAeAAFCAQAAJoVAAYIBAAAAAQABwgEAAAAAQAICAQAAAACAAkIBAAAswIACggIAAMAYAC0AAMACwgIAAQAAADwAAMADQgAAAAIeAAAAwAAAAEAAQAAAAAACwARAAAAAAALABEDZQf4BSgAAgAAAAEAAQAAAAAACwARAAEAZABkAAAAAQABAQEABwABJw8AAQABAAAAAAAAAAAAAAAAAAIAGQGQAAAAAAJAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEAhAAAAD+/wAA/v8AAAIAAAACAAABJAAAAAIAAwDkBAUAQXJpYWwEAOQEDwBUaW1lcyBOZXcgUm9tYW4BgAEAAAAEAhAAAAD+/wAA/v8AAAIAAAACAA8IAgABABAIAgABABYIBAAAACQAGAgEAAAAJAAAAAAA";
-	var currentb64 = blankb64;
+	var currentb64;
 	window.focus();
 	//CSBR-159359: Separate function for retrieving the base64 data; This will be called in form submit and when switching the custom field tabs
 	function GetCDXData() {
 	    var b64;
-	    if (currentb64) {
-	        b64 = currentb64.substring(currentb64.indexOf('VmpD'));
-	    } else {
-	        b64 = cd_getData("mycdx", "chemical/x-cdx");
-	    }
+	    <%if detectModernBrowser = true and dbStructure <> "" and cddEditMode = "" then%>
+	    b64 = currentb64.substring(currentb64.indexOf('VmpD'));
+	    <%else%>
+	    b64 = cd_getData("mycdx", "chemical/x-cdx");
+	    <%end if%>
 		if (b64.length == 0){
 			b64 = blankb64;
 			document.form1.isEmptyStruc.value= "1";
@@ -292,7 +292,9 @@ end if
 		                        SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 		                        fileURL = SessionURLDir & "structure" & "_" & 520 & "x" & 300 & ".gif"	
 		                        ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 520, 300
-		                        Response.Write "<a target=""_top"" href=""/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=1&action=edit&cddEditMode=true&CompoundID="+ CompoundID +"""><img src=""" & fileURL & """ width=""520"" height=""300"" border=""0""></a><br/><span style="""" class=""required"">Click on image to edit structure</span>"
+                                Dim action
+                                If CompoundID <> "0" then action = "&action=edit" end if
+		                        Response.Write "<a target=""_top"" href=""/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=1"& action &"&cddEditMode=true&CompoundID="+ CompoundID +"""><img src=""" & fileURL & """ width=""520"" height=""300"" border=""0""></a><br/><span style="""" class=""required"">Click on image to edit structure</span>"
                             else
                                 %>
                             <script language="JavaScript">cd_insertObject("chemical/x-cdx", "520", "300", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>

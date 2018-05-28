@@ -270,9 +270,9 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 		Response.Write "						</" & "script>"
 	else
 		SessionDir = Application("TempFileDirectory" & "ChemInv") & "Sessiondir"  & "\" & Session.sessionid & "\"
-		filePath = SessionDir & "structure" & "_" & 160 & "x" & 140 & ".gif"	
+		filePath = SessionDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
 		SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
-		fileURL = SessionURLDir & "structure" & "_" & 160 & "x" & 140 & ".gif"	
+		fileURL = SessionURLDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
 		ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 160, 140
 		Response.Write "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""0"">"
 	end if
