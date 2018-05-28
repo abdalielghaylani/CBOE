@@ -22,6 +22,9 @@ select[disabled] {
 	color: grey;
 }
 
+a.menulink:visited[disabled] {
+	color: grey;
+}
 /* Style for any checkbox required to be displayed in IE style..>> */
 
 input[type=checkbox] {
