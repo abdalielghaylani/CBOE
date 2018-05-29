@@ -32,6 +32,7 @@ function OpenDialog(url, name, type) {
 	WindowDef_4 = "height=450, width= 550px, top=50, left=200";
 	WindowDef_5 = "height=600, width= 800px, top=0, left=100";
 	WindowDef_6 = "height=450, width= 550px, top=50, left=540";
+	WindowDef_7 = "height=580, width= 1024px, top=0, left=0";
 	var WindowDef = eval("WindowDef_" + type);
 	var attribs = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars,resizable," + WindowDef;
 	DialogWindow = window.open(url, name, attribs);

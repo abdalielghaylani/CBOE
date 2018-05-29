@@ -46,7 +46,7 @@
 	<%End if%>
 	<%If Session("INV_CREATE_LOCATION" & dbkey) then%>
 	|
-	<a class="MenuLink" HREF="Admin Menu" onclick="OpenDialog('../gui/menu.asp', 'MenuDiag', 2); return false" target="_top">Tasks</a>
+	<a class="MenuLink" HREF="Admin Menu" onclick="OpenDialog('../gui/menu.asp', 'MenuDiag', 7); return false" target="_top">Tasks</a>
 	<%End if%>
 	|
 	<%if Len(Request.Cookies("CS_SEC_UserName")) > 0 then%>
