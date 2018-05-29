@@ -2,6 +2,7 @@ pipeline {
     agent {
         node {
             label 'ABSVS_2017'
+
               }
           }
     environment {
@@ -19,11 +20,6 @@ pipeline {
         buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '', numToKeepStr: '10'))
             }
     stages {
-           stage('CheckOut') {
-	            steps {
-                    	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '68f3b27b-7529-470c-9eb9-58cf5dcd7488', url: 'https://github.com/PerkinElmer/cboe']]]) 
-	                  }
-							}
         
            stage ('CBOE-Build') {	
                steps{
@@ -80,6 +76,8 @@ pipeline {
 				bat "${MSBUILD_PATH} %WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\Patcher\\Patcher.sln  /t:Publish /p:Configuration=Release"
 				bat "${MSBUILD_PATH} %WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\COELogViewer.sln /t:Publish /p:Configuration=Release"	
 				bat """ 
+				MD "%WORKSPACE%//ChemOffice"
+	            MD "%WORKSPACE%//Base/ChemOffice"
 				"C:\\Program Files (x86)\\Beyond Compare 2\\bc2.exe" "@%WORKSPACE%\\Installers\\InstallSupportFiles\\bc.txt" "%WORKSPACE%\\subprojects\\Classic" "%WORKSPACE%\\Base\\ChemOffice" "%WORKSPACE%\\ChemOffice" /silent 
 				"""		// Batch build step
 				bat """ 
@@ -152,6 +150,11 @@ pipeline {
 				}
 			}
 		stage ('Installer') {
+		     when {
+                     expression {
+                               return env.BRANCH_NAME == "master"
+                               }
+                   }
      		agent {
 				node {
 						label 'INST_2013'
