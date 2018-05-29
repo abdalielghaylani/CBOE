@@ -117,10 +117,12 @@ if lview = 3 then
 end if
 %>
 </div>
-<script FOR="window" EVENT="onscroll" LANGUAGE="JScript">
-	slide();
-</script>
+
 <script language="javascript">
+if (window.attachEvent)
+    window.attachEvent("onscroll", slide);
+else if (document.addEventListener)
+    document.addEventListener("scroll", slide, false)
     
 function slide() {
 	with(document.body){
