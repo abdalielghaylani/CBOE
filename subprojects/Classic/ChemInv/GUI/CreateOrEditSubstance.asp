@@ -478,7 +478,7 @@ end if
 <%     end if%>
 <%     Set tabs_dict = Nothing%>
 				<%=GetCancelButton()& vblf%>
-				<a HREF="Create%20a%20new%20substance" onclick="getStrucData(); return false;"><img SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0" alt="Create a new substance for this container"></a>
+				<a HREF="Create%20a%20new%20substance" onclick="getStrucData(); return false;"><img SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0" alt="Create a new substance for this container" title="Create a new substance for this container"></a>
 			</td>
 		</tr>
 		</table>
