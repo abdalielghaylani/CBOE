@@ -130,6 +130,9 @@ end if
 	function GetCDXData() {
 	    var b64;
 	    <%if detectModernBrowser = true and dbStructure <> "" and cddEditMode = "" then%>
+        if(currentb64 == null) {
+            currentb64 = blankb64;
+        }
 	    b64 = currentb64.substring(currentb64.indexOf('VmpD'));
 	    <%else%>
 	    b64 = cd_getData("mycdx", "chemical/x-cdx");
@@ -263,8 +266,7 @@ end if
 							<input type="hidden" name="inv_compounds.Structure" value>
 							<input type="hidden" name="inv_compounds.Structure.sstype" value="1">
 							<%if bIsEdit then%>
-								<input type="hidden" id="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" name="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" value="<%=InLineCdx%>">
-			                    <%if detectModernBrowser = true and cddEditMode = "" then%><script LANGUAGE="javascript">currentb64 =  document.getElementById('<%=FNP%>BASE64_CDX<%=CompoundID%>_orig').value;</script><%end if%>
+								<input type="hidden" id="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" name="<%=FNP%>BASE64_CDX<%=CompoundID%>_orig" value="<%=InLineCdx%>">			                    
                                 <input type="hidden" name="ExactSearchFields" value="<%=FNP%>BASE64_CDX<%=CompoundID%>">
 								<input type="hidden" name="RelationalSearchFields" value="<%=FNP%>BASE64_CDX,<%=FNP%>Substance_Name,<%=FNP%>CAS,<%=FNP%>ACX_ID,<%=FNP%>ALT_ID_1,<%=FNP%>ALT_ID_2,<%=FNP%>ALT_ID_3,<%=FNP%>ALT_ID_4,<%=FNP%>ALT_ID_5,<%=FNP%>Conflicting_Fields">
 								<input type="hidden" name="row_id_table_names" value="inv_compounds">
@@ -276,9 +278,18 @@ end if
 								<input type="hidden" name="add_record_action" value="Duplicate_Search_No_Add">	
 								<input type="hidden" name="commit_type" value="full_commit">	
 								<input type="hidden" name="RelationalSearchFields" value="inv_compounds.Substance_Name;0,inv_compounds.CAS;0,inv_compounds.ACX_ID;0,inv_compounds.ALT_ID_1;0,inv_compounds.ALT_ID_2;0,inv_compounds.ALT_ID_3;0,inv_compounds.ALT_ID_4;0,inv_compounds.ALT_ID_5;0,inv_compounds.Conflicting_Fields">
-								<script language="JavaScript">//cd_insertObjectStr("<embed src='/CFWTEMP/cheminv/cheminvTemp/mt.cdx' width='280' height='280' id='5' name='mycdx' type='chemical/x-cdx'>");</script>
 							<%end if%>
-							<input type="hidden" name="inline" value="<%=InLineCdx%>">
+							<input type="hidden" id="inline" name="inline" value="<%=InLineCdx%>">
+                            <%if detectModernBrowser = true and cddEditMode = "" then%>
+                                <script LANGUAGE="javascript">
+                                    var compoundID = <%=CompoundID%>;
+                                    if(compoundID > 0) {
+                                        currentb64 =  document.getElementById('<%=FNP%>BASE64_CDX<%=CompoundID%>_orig').value;
+                                    } else {
+                                        currentb64 =  document.getElementById('inline').value;
+                                    }
+                                </script>
+                            <%end if%>
 							<%
 							if session("DrawPref") = "ISIS" then
 								ISISDraw = """True"""
