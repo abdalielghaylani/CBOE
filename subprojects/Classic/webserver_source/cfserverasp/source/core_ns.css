@@ -1,237 +1,154 @@
 BODY
 {
-    BACKGROUND-COLOR: #ffffff;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 12px
-}
-P
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px
-}
-PRE
-{
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: maroon;
-    FONT-FAMILY: "courier new", courier, monospace;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 40px
-}
-SPAN.codemark
-{
-    BACKGROUND-COLOR: #d3d3d3;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 0px;
     COLOR: black;
-    FONT-WEIGHT: bold
-}
-CODE
-{
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: maroon;
-    DISPLAY: inline;
-    FONT-FAMILY: "courier new", courier, monospace;
-    FONT-SIZE: 14px
-}
-P
-{
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 36px;
-    MARGIN-TOP: 6px
-}
-OL
-{
-    BACKGROUND-COLOR: #fffff0;
     FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 36px
+    BACKGROUND-COLOR: #ffffff
 }
-UL
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 24px
-}
-OL UL
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 0px
-}
-UL UL
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 0px
-}
-TD UL
-{
-    MARGIN-LEFT: 0px
-}
-UL P
-{
-    MARGIN-LEFT: 0px
-}
-OL P
-{
-    MARGIN-LEFT: 0px
-}
-OL PRE
-{
-    MARGIN-LEFT: 0px
-}
-LI
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 0px
-}
+
 H1
 {
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-WEIGHT: bold;
     FONT-SIZE: 20px;
-    FONT-WEIGHT: bold
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px;
+    COLOR: black;
+    BACKGROUND-COLOR: #fffff0
 }
 H2
 {
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: Verdana, Arial, sans-serif;
-    FONT-SIZE: 18px;
     FONT-WEIGHT: bold;
-    MARGIN-LEFT: 12px
+    FONT-SIZE: 18px;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px;
+    COLOR: black;
+    BACKGROUND-COLOR: #fffff0
 }
 H3
 {
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 16px;
     FONT-WEIGHT: bold;
-    MARGIN-LEFT: 24px
+    FONT-SIZE: 16px;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px;
+    COLOR: black;
+    BACKGROUND-COLOR: #fffff0
 }
 H4
 {
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
     FONT-WEIGHT: bold;
-    MARGIN-LEFT: 36px
+    FONT-SIZE: 12px;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    BACKGROUND-COLOR: #fffff0
 }
 H5
 {
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 12px;
     FONT-WEIGHT: normal;
-    MARGIN-LEFT: 36px
-}
-H5.param
-{
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
     FONT-SIZE: 12px;
-    FONT-WEIGHT: bold;
-    MARGIN-BOTTOM: 0px;
-    MARGIN-LEFT: 40px;
-    MARGIN-TOP: 0px
+    COLOR: black;
+    BACKGROUND-COLOR: #fffff0
 }
-P.param
-{
-    FONT-SIZE: 14px;
-    MARGIN-LEFT: 40px;
-    MARGIN-TOP: -14px
-}
-DIV
-{
-    MARGIN-LEFT: 36px
-}
-DIV.navigation
-{
-    MARGIN-LEFT: 0px
-}
-DIV.navigation P
-{
-    MARGIN-LEFT: 0px
-}
+
+
 TABLE
 {
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif
 }
+
 TD
 {
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
     FONT-SIZE: 12px;
-    MARGIN-LEFT: 0px;
-    TEXT-ALIGN: left
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif
 }
+
+
 TH
 {
-    BACKGROUND-COLOR: #cccccc;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 12px;
     FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: #cccccc
+}
+UL P
+{
+    MARGIN-TOP: 6px;
+    MARGIN-BOTTOM: 6px
+}
+UL P LI
+{
+    MARGIN-TOP: 6px
+}
+UL LI LI
+{
+    MARGIN-TOP: 12px
+}
+OL UL
+{
+    MARGIN-LEFT: 36px
+}
+OL UL LI
+{
     MARGIN-LEFT: 0px;
-    TEXT-ALIGN: left
+    LIST-STYLE-TYPE: square
 }
-TH P
+UL UL
 {
-    BACKGROUND-COLOR: #cccccc;
-    FONT-SIZE: 12px;
-    TEXT-ALIGN: left
+    MARGIN-LEFT: 36px
 }
-TD.proc
+UL UL LI
 {
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
-    FONT-WEIGHT: bold
-}
-TD.copy
-{
-    BACKGROUND-COLOR: #fffff0;
-    COLOR: gray;
-    FONT-SIZE: 10px
-}
-PRE BR
-{
-    DISPLAY: none
-}
-DIV.proc
-{
-    MARGIN-LEFT: 22px
-}
-LI.first
-{
-    BACKGROUND-COLOR: #fffff0;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px;
     MARGIN-LEFT: 0px;
-    MARGIN-TOP: -12px
+    LIST-STYLE-TYPE: square
 }
+OL P
+{
+    MARGIN-TOP: 6px;
+    MARGIN-BOTTOM: 6px
+}
+OL P LI
+{
+    MARGIN-TOP: 6px
+}
+OL LI LI
+{
+    MARGIN-TOP: 12px
+}
+
+
+
+
 SPAN.required
 {
+    FONT-SIZE: 12px;
     COLOR: red;
-    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif;
-    FONT-SIZE: 14px
+    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif
+}
+SPAN.GuiFeedback
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12px;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif
+}
+SPAN.LinkSentence
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12px;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif
 }
 INPUT
 {
+    FONT-SIZE: 12px;
+    CURSOR: auto;
     COLOR: black;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
-    FONT-SIZE: 14px
+    FONT-FAMILY: verdana, Arial, helvetica, sans-serif
 }
 SELECT
 {
+    FONT-SIZE: 12px;
     COLOR: black;
-    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif;
-    FONT-SIZE: 14px
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif
 }
 A
 {
@@ -239,34 +156,76 @@ A
 }
 .MenuLink
 {
+    FONT-SIZE: 8pt;
     COLOR: #000000;
-    FONT-FAMILY: arial;
-    FONT-SIZE: 8pt
+    FONT-FAMILY: arial
 }
 A.MenuLink:link
 {
+    FONT-SIZE: 8pt;
     COLOR: #4682b4;
     FONT-FAMILY: arial;
-    FONT-SIZE: 8pt;
     TEXT-DECORATION: none
 }
 A.MenuLink:visited
 {
+    FONT-SIZE: 8pt;
     COLOR: #4682b4;
     FONT-FAMILY: arial;
-    FONT-SIZE: 8pt;
     TEXT-DECORATION: none
 }
 A.MenuLink:hover
 {
+    FONT-SIZE: 8pt;
     COLOR: #4682b4;
     FONT-FAMILY: arial;
-    FONT-SIZE: 8pt;
     TEXT-DECORATION: underline
 }
+
+
 SPAN.GrayedText
 {
+    FONT-WEIGHT: 100;
+    FONT-SIZE: 12px;
     COLOR: gray;
-    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif;
-    FONT-SIZE: 14px
+    FONT-FAMILY: Verdana, Arial, helvetica, sans-serif
 }
+
+/* Style for any checkbox required to be displayed in IE style..>> */
+
+input[type=checkbox] {
+	height: 1.05em;
+    width: 1.05em;
+    border: 1px solid rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 1);    
+    vertical-align: middle;
+	-webkit-appearance: none;
+}
+
+input[type="checkbox"]:focus {
+    outline:none;
+}
+
+input[type="checkbox"]:checked:before {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	content: '\2714';
+	font-size: 0.80em;	
+	margin-left: 1px;
+	line-height: 1.2;
+}
+
+input[type=checkbox][disabled] {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+input[type="checkbox"]:active {
+	background-color: rgba(0, 0, 0, 0.20);
+}
+
+input[type="checkbox"][disabled]:checked:before {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+/*..<< */
