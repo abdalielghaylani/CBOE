@@ -295,142 +295,59 @@ End if
 %>
 
 
-                <script language=vbscript runat=server>
-                    Function WrapRackContents(FldName, GridID, GridBarcode, GridType, strText, Title, Length, isSelected, hasDups, position)
-                    Dim str
-                    if (strText = "") OR IsNull(strText) then strText = ""
-                    strText2 = "<a href=# class="
-                    "MenuLink"
-                    ">" & strText
-                    if hasDups = "True"
-                    then
-                    className = "errorGrid"
-                    elementName = "filledGridName"
-                    if instr(errorMSG, GridID) = 0 then
-                    errorMSG = errorMSG & " - Container ID's, " & GridID & ", are dupliated in position " & position & " of Rack " & LocationID & vbcrlf
-                    end
-                    if
-                    Title = replace(errorMSG, "<br />", vbcrlf)
-                    GridID = "Error"
-                    strText = "<img src="
-                    "/cheminv/graphics/pixel.gif"
-                    " width="
-                    "1"
-                    " height="
-                    "16"
-                    " border="
-                    "0"
-                    ">&nbsp;Error"
-                    displayErrorMSG = true
-                    elseif GridID < > ""
-                    then
-                    className = "filledGrid"
-                    elementName = "filledGridName"
-                    else
-                        className = "emptyGrid"
-                    elementName = "emptyGridName"
-                    end
-                    if
-
-                    str = "<span id="
-                    "" & GridID & ""
-                    " name="
-                    "" & elementName & ""
-                    " class="
-                    "" & className & ""
-                    " "
-                    str = str & " title="
-                    "" & Title & ""
-                    ">"
-                    if GridID < > ""
-                    then
-                    if Session("bMultiSelect") and(GridType = "plate"
-                        or GridType = "container") then
-                    if hasDups = "True"
-                    then
-                    str = str & "<a href="
-                    "#"
-                    " class="
-                    "MenuLink"
-                    ">" & strText & "</a>"
-                    else
-                    if GridType = "container"
-                    then
-                    str = str & "<input type="
-                    "checkbox"
-                    " name="
-                    "selectChckBox"
-                    "  value="
-                    "" & GridID & ""
-                    " onclick="
-                    "Removals('" & GridID & "', this.checked);SelectMarked('" & GridType & "');"
-                    " />"
-                    elseif GridType = "plate"
-                    then
-                    str = str & "<input type="
-                    "checkbox"
-                    " name="
-                    "selectPlateChckBox"
-                    "  value="
-                    "" & GridID & ""
-                    " onclick="
-                    "Removals('" & GridID & "', this.checked);SelectMarked('" & GridType & "');"
-                    " />"
-                    end
-                    if
-                    end
-                    if
-                    end
-                    if
-                    if hasDups = "True"
-                    then
-                    str = str & "<a href="
-                    "#"
-                    " class="
-                    "MenuLink"
-                    ">" & strText & "</a>"
-                    elseif GridType = "rack"
-                    then
-                    str = str & "<a href="
-                    "#"
-                    " class="
-                    "MenuLink"
-                    " onclick="
-                    "SelectLocation(" & GridID & ", '', '')"
-                    ">" & strText & "</a>"
-                    elseif GridType = "plate"
-                    then
-                    str = str & "<a href="
-                    "View Plate Details"
-                    " class="
-                    "MenuLink"
-                    " target="
-                    "TabFrame"
-                    " onclick="
-                    "SelectPlate(this," & GridID & ", " & LocationID & ",'True'); highlightGrid(" & GridID & "); return false;"
-                    ">" & strText & "</a>"
-                    elseif GridType = "container"
-                    then
-                    str = str & "<a href="
-                    "View Container Details " & GridBarcode & ""
-                    "  class="
-                    "MenuLink"
-                    " onclick="
-                    "SelectContainer(" & GridID & "); highlightGrid(" & GridID & "); return false; "
-                    ">" & strText & "</a>"
-                    end
-                    if
-                    else
-                        str = str & "<font color="
-                    "#BABABA"
-                    ">" & Title & "</font>"
-                    end
-                    if
-                    str = str & "</span>"
-                    WrapRackContents = str
-                    End
-                    function
-                </script>
+<script language=vbscript runat=server>
+Function WrapRackContents(FldName, GridID, GridBarcode, GridType, strText, Title, Length, isSelected, hasDups, position)
+	Dim str
+	if (strText = "") OR IsNull(strText) then strText = ""
+	strText2 = "<a href=# class=""MenuLink"">" & strText 
+	if hasDups = "True" then
+		className="errorGrid"
+		elementName="filledGridName"
+		if instr(errorMSG,GridID) = 0 then
+			errorMSG = errorMSG & " - Container ID's, " & GridID & ", are dupliated in position " & position & " of Rack " & LocationID & vbcrlf
+		end if
+		Title = replace(errorMSG,"<br />",vbcrlf)
+		GridID = "Error"
+		strText = "<img src=""/cheminv/graphics/pixel.gif"" width=""1"" height=""16"" border=""0"">&nbsp;Error"
+		displayErrorMSG = true
+	elseif GridID <> "" then
+		className="filledGrid"
+		elementName="filledGridName"
+	else
+		className="emptyGrid"
+		elementName="emptyGridName"
+	end if
+	
+	str = "<span id=""" & GridID & """ name=""" & elementName & """ class=""" & className & """ "
+	str = str & " title=""" & Title & """>"
+	if GridID <> "" then 
+		if Session("bMultiSelect") and (GridType="plate" or GridType="container") then
+			if hasDups = "True" then
+				str = str & "<a href=""#"" class=""MenuLink"">" & strText & "</a>"
+			else
+			    if GridType = "container" then
+    				str = str & "<input type=""checkbox"" name=""selectChckBox""  value=""" & GridID & """ onclick=""Removals('" & GridID & "', this.checked);SelectMarked('" & GridType & "');"" />"
+			    elseif GridType = "plate" then
+    				str = str & "<input type=""checkbox"" name=""selectPlateChckBox""  value=""" & GridID & """ onclick=""Removals('" & GridID & "', this.checked);SelectMarked('" & GridType & "');"" />"
+			    end if
+			end if
+		end if 
+		if hasDups = "True" then
+			str = str & "<a href=""#"" class=""MenuLink"">" & strText & "</a>"
+		elseif GridType = "rack" then
+			str = str & "<a href=""#"" class=""MenuLink"" onclick=""SelectLocation(" & GridID & ", '', '')"">" & strText & "</a>"
+		elseif GridType = "plate" then
+			str = str & "<a href=""View Plate Details"" class=""MenuLink"" target=""TabFrame"" onclick=""SelectPlate(this," & GridID & ", " & LocationID & ",'True'); highlightGrid(" & GridID & "); return false;"">" & strText & "</a>"
+		elseif GridType = "container" then
+			str = str & "<a href=""View Container Details " & GridBarcode & """  class=""MenuLink"" onclick=""SelectContainer(" & GridID & "); highlightGrid(" & GridID & "); return false; "">" & strText & "</a>"
+		end if
+	else
+		str = str & "<font color=""#BABABA"">" & Title & "</font>"
+	end if
+	str = str & "</span>"
+	WrapRackContents = str
+End function
+</script>
 
                 <div id="titleBox" style="position:Absolute;top:5px;left:5px;visibility:visible;z-index=1">
                     <%
