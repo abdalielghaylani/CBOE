@@ -304,8 +304,8 @@ end if
 		                        fileURL = SessionURLDir & "structure" & "_" & 520 & "x" & 300 & ".gif"	
 		                        ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 520, 300
                                 Dim action
-                                If CompoundID <> "0" then action = "&action=edit" end if
-		                        Response.Write "<a target=""_top"" href=""/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=1"& action &"&cddEditMode=true&CompoundID="+ CompoundID +"""><img src=""" & fileURL & """ width=""520"" height=""300"" border=""0""></a><br/><span style="""" class=""required"">Click on image to edit structure</span>"
+                                If CompoundID <> "0" then action = "&action=edit" end if                                
+		                        Response.Write "<style>#editContainer { border: 1px solid white; } #editContainer:hover { border: 1px dashed brown; }</style><div id=""editContainer""><a title=""Click on image to edit structure"" target=""_top"" href=""/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=1"& action &"&cddEditMode=true&CompoundID="+ CompoundID +"""><img src=""" & fileURL & """ width=""520"" height=""300"" border=""0""></a></div>"
                             else
                                 %>
                             <script language="JavaScript">cd_insertObject("chemical/x-cdx", "520", "300", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", escape(document.all.inline.value),  "true", <%=ISISDraw%>)</script>
