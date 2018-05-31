@@ -406,7 +406,9 @@ function clearData(elm){
 		else if (cd_currentUsing == 2) // old Plugin + CDPHelper
 			r = document.applets[temp];
 		else if (cd_currentUsing == 3) // new Plugin (XPCOM, scriptable old Plugin)
-			r = document.embeds[temp];
+		    r = document.embeds[temp];
+		else if (cd_currentUsing == 4)
+		    r = chemdrawjs;
 		else
 			r = null	
 
