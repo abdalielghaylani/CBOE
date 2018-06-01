@@ -819,7 +819,7 @@ function setOwnership()
 <body style="overflow:auto">
 <!--End of Change for CSBR 137130-->
 <!--#INCLUDE VIRTUAL = "/cheminv/gui/CreateOrEditContainerTabs.asp"-->
-
+<br/>
 <form name="form1" method="POST">
 <input TYPE="hidden" NAME="ContainerID" Value="<%=ContainerID%>">
 <input TYPE="hidden" NAME="Barcode" Value>
@@ -906,7 +906,7 @@ function setOwnership()
 <%if NOT lcase(Application("HideOtherTab")) = "true" then%>
 	<% For each Key in custom_fields_dict%><input TYPE="hidden" NAME="<%=Key%>" Value="<%=Key%>"><%=vblf%><%next%>
 <%end if%>
-<table border="0" cellspacing="0" cellpadding="0" width="700">
+<table border="0" cellspacing="0" cellpadding="0" width="720">
 <%
 if Request("TB")="" then    ' WJC true first time in
     if not isEdit then      ' WJC true if not editing
@@ -924,7 +924,7 @@ Select Case sTab
 		<td align="right" valign="top" nowrap width="150">
 			<span class="required">Location ID:</span>
 		</td>
-		<td colspan="3">
+		<td colspan="3" align="left">
             <%  if Application("ENABLE_OWNERSHIP")="TRUE" then
                 authorityFunction = "SetOwnerInfo('location');"
             else
@@ -1021,9 +1021,8 @@ Select Case sTab
 	</tr>
 	<tr height="25">
 		<%=ShowInputBox("Lot Number:", "LotNum", 15, "", False, False)%>
-		<td></td>
 		<%if lcase(PageSource) <>"eln"  then%>
-		<td>&nbsp;
+		<td colspan="2">&nbsp;
 			<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
 			<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'SubsManager', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
 			&nbsp;|&nbsp;
@@ -1033,6 +1032,8 @@ Select Case sTab
 			%>
 			<a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=<%=substanceFG%>&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'SubsManager', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>
 		</td>
+		<% Else %>
+		<td colspan="2"></td>
         <%end if %>
 	</tr>
 	<%if Application("RegServerName") <> "NULL" then%>
