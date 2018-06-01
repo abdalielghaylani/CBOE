@@ -508,8 +508,7 @@ response.Write "</span>"
                                 document.all.waitGIF.style.display = "none";
 
                                 // Open the selected rack if there is one
-                                SelectRack = "<%=Session("
-                                SelectRack ")%>";
+                                SelectRack = "<%=Session("SelectRack")%>";
 
                                 if (SelectRack != "0") {
                                     var hiddenRackSelector = document.getElementById("hiddenRackSelector");
@@ -544,12 +543,10 @@ end if
 %>
 
                                 <script language="javascript" type="text/javascript">
-                                    TabFrameURL = "<%=Session("
-                                    TabFrameURL ")%>";
+                                    TabFrameURL = "<%=Session("TabFrameURL")%>";
                                     if (TabFrameURL != "") {
                                         //refresh tab frame
-                                        document.form1.action = "/Cheminv/GUI/<%=Session("
-                                        TabFrameURL ")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
+                                        document.form1.action = "/Cheminv/GUI/<%=Session("TabFrameURL")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
                                         document.form1.submit();
                                     }
 
