@@ -157,6 +157,7 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.exe" "F:\\Registration\\18.1_Test\\"
 				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.msi" "F:\\Registration\\18.1_Test\\" 
 				 '''
+                             deleteDir()
 				}
 			}
 		stage ('Installer') {
@@ -191,6 +192,7 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 			    to: "${NOTIFY_LIST}",
 				replyTo: "${NOTIFY_LIST}",
 				recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                               deleteDir()
 
 				}           
             }
