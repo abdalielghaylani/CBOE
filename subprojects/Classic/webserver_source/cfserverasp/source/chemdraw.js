@@ -413,7 +413,7 @@ function cd_getSpecificObjectTag(mimeType, objWidth, objHeight, objName, srcFile
         }
         buf += "};";
         buf += "var chemdrawjsFailed = function (error) { };";
-        buf += "perkinelmer.ChemdrawWebManager.attach({ id: 'chemdrawjs-container', viewonly: " + viewOnly.toLowerCase() + ", callback: chemdrawjsAttached, errorCallback: chemdrawjsFailed, licenseUrl: '/cfserverasp/source/license.xml', configUrl: '/cfserverasp/source/cddconfiguration.json', preservePageInfo: true });";
+        buf += "perkinelmer.ChemdrawWebManager.attach({ id: 'chemdrawjs-container', viewonly: " + viewOnly.toLowerCase() + ", callback: chemdrawjsAttached, errorCallback: chemdrawjsFailed, licenseUrl: '/cfserverasp/source/ChemDraw-JS-License.xml', configUrl: '/cfserverasp/source/cddconfiguration.json', preservePageInfo: true });";
         buf += "</SCRIPT>";
     }
     else {
