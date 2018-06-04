@@ -116,24 +116,25 @@ NumCols = Ubound(colName_arr,2) + 1
 cellWidth = 600/NumCols
 cellWidthLucidaChars = cellWidth/6
 FldArray = split(lcase(displayFields),",")
-Response.Write "<xml ID=""xmlDoc""><plate>"
+xmlHtml = ""
+xmlHtml = xmlHtml & "<xml ID=""xmlDoc""><plate>"
 'To fix CSBR-152262
 fieldLength=0
 For currRow = 1 to numRows
-	Response.Write currRow & ":test"
+xmlHtml = xmlHtml & currRow & ":test"
 	For i = 0 to Ubound(FldArray)
 		FldName = FldArray(i)
 		RS.filter = 0
 		RS.Movefirst
 		RS.filter = "ROW_INDEX=" & currRow
 		rowName = RS("ROWNAME") 
-		Response.Write "<" & FldName & ">" & vblf
-		Response.Write "<rowname>" & rowname & "</rowname>"
+		xmlHtml = xmlHtml & "<" & FldName & ">" & vblf
+		xmlHtml = xmlHtml & "<rowname>" & rowname & "</rowname>"
 		wellCriterion = Request("WellCriterion")
 		if len(wellCriterion) > 0 then
 			key = left(wellCriterion,instr(wellCriterion,",")-1)
 			value = right(wellCriterion,len(wellCriterion) - instr(wellCriterion,","))
-			Response.Write "key="&key&":value="&value&"<BR>" 
+			xmlHtml = xmlHtml & "key="&key&":value="&value&"<BR>" 
 			bCheckSelected = true
 		end if
 		While NOT RS.EOF
@@ -153,13 +154,13 @@ For currRow = 1 to numRows
 			end if
 			theValue = "<![CDATA[" & WrapWellContents(FldName, well_ID, theValue, cellWidthLucidaChars, isSelected) & "]]>"
 			colIndex = RS("COL_INDEX")
-			Response.Write "<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf
+			xmlHtml = xmlHtml & "<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf
 			RS.MoveNext		
 		Wend
-		Response.Write "</" & FldName & ">" & vblf
+		xmlHtml = xmlHtml & "</" & FldName & ">" & vblf
 	Next
 Next
-Response.Write "</plate></xml>"
+xmlHtml = xmlHtml & "</plate></xml>"
 
 
 %>

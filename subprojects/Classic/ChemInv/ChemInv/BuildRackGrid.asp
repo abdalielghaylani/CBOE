@@ -215,53 +215,67 @@ if cellSeqNaming then
 		xmlHtml = replace(xmlHtml,"<rowname>" & arrRowNames(i) & "</rowname>","<rowname></rowname>")
 	next
 end if
+Set machine = Server.CreateObject("WScript.Network")
+ComputerName = machine.ComputerName
+clientName = Cstr(ComputerName)
+dim fs,tfile
+set fs=Server.CreateObject("Scripting.FileSystemObject")
+if fs.FileExists(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml")) then
+   fs.DeleteFile(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml"))
+end if
+set tfile=fs.CreateTextFile(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml"), True)
+tfile.WriteLine(xmlHtml)
+tfile.close
+set tfile=nothing
+set fs=nothing
 %>
-    <html>
+<html>
 
-    <head>
-        <script type="text/javascript" language="javascript" src="/cheminv/utils.js"></script>
-        <script type="text/javascript" language="javascript" src="/cheminv/choosecss.js"></script>
-        <script type="text/javascript" language="javascript" src="/cheminv/gui/refreshGUI.js"></script>
+<head>
+    <script type="text/javascript" language="javascript" src="/cheminv/utils.js"></script>
+    <script type="text/javascript" language="javascript" src="/cheminv/choosecss.js"></script>
+    <script type="text/javascript" language="javascript" src="/cheminv/gui/refreshGUI.js"></script>
 
-        <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
             <!--
-            lastSelectedGrid = 0;
+    lastSelectedGrid = 0;
 
-            function highlightGrid(GridID) {
-                if (lastSelectedGrid > 0) {
-                    document.getElementById(lastSelectedGrid).className = 'filledGrid';
-                }
-                changeClass(GridID, 'selectedGrid');
-                lastSelectedGrid = GridID;
+    function highlightGrid(GridID) {
+        if (lastSelectedGrid > 0) {
+            document.getElementById(lastSelectedGrid).className = 'filledGrid';
+        }
+        changeClass(GridID, 'selectedGrid');
+        lastSelectedGrid = GridID;
+    }
+
+    function changeClass(ElementName, ClassName) {
+        document.getElementById(ElementName).className = ClassName;
+    }
+    //Adding this function for fixing bug CSBR-75908
+    function RefreshLocationBar(LocationPath) {
+        if (top.bannerFrame) {
+            if (top.bannerFrame.LocationBar.LocationBox) {
+                top.bannerFrame.LocationBar.LocationBox.value = LocationPath;
             }
+        }
+    }
+    // -->
+    </script>
 
-            function changeClass(ElementName, ClassName) {
-                document.getElementById(ElementName).className = ClassName;
-            }
-            //Adding this function for fixing bug CSBR-75908
-            function RefreshLocationBar(LocationPath) {
-                if (top.bannerFrame) {
-                    if (top.bannerFrame.LocationBar.LocationBox) {
-                        top.bannerFrame.LocationBar.LocationBox.value = LocationPath;
-                    }
-                }
-            }
-            // -->
-        </script>
+</head>
 
-    </head>
+<body>
 
-    <body>
+    <form name="form1" method="POST" target="TabFrame">
+        <input type="hidden" name="LocationID" value="<%=LocationID%>">
+        <input type="hidden" name="removeList">
+        <div id="waitGIF" align="center">
+            <img src="<%=Application(" ANIMATED_GIF_PATH ")%>" width="130" height="100" border=""></div>
+        <div style="display: none">
+            <%=xmlHtml%>
+        </div>
 
-        <form name="form1" method="POST" target="TabFrame">
-            <input type="hidden" name="LocationID" value="<%=LocationID%>">
-            <input type="hidden" name="removeList">
-            <div id="waitGIF" align="center"><img src="<%=Application(" ANIMATED_GIF_PATH ")%>" WIDTH="130" HEIGHT="100" BORDER=""></div>
-            <div style="display:none">
-                <%=xmlHtml%>
-            </div>
-
-            <% 
+        <% 
 ' Added following lines for bug CSBR-75908
 if Not IsEmpty(LocationID) then
 	Call GetInvCommand(Application("CHEMINV_USERNAME") & ".GETLOCATIONPATH", adCmdStoredProc)	
@@ -292,10 +306,10 @@ if Not IsEmpty(LocationID) then
 	Session("CurrentLocationName") = LocationPath
 End if
 ' 75908 end
-%>
+        %>
 
 
-<script language=vbscript runat=server>
+        <script language="vbscript" runat="server">
 Function WrapRackContents(FldName, GridID, GridBarcode, GridType, strText, Title, Length, isSelected, hasDups, position)
 	Dim str
 	if (strText = "") OR IsNull(strText) then strText = ""
@@ -347,10 +361,10 @@ Function WrapRackContents(FldName, GridID, GridBarcode, GridType, strText, Title
 	str = str & "</span>"
 	WrapRackContents = str
 End function
-</script>
+        </script>
 
-                <div id="titleBox" style="position:Absolute;top:5px;left:5px;visibility:visible;z-index=1">
-                    <%
+        <div id="titleBox" style="position: Absolute; top: 5px; left: 5px; visibility: visible; z-index=1">
+            <%
 '-- Handle counting and display of elements in grid
 if cInt(cntRacksInRack) > 0 then cntRacksInRack = cntRacksInRack/numFields
 if cInt(cntPlatesInRack) > 0 then cntPlatesInRack = cntPlatesInRack/numFields
@@ -360,35 +374,35 @@ if cInt(cntPlatesInRack) = 1 then strPlatesInRack = cntPlatesInRack & " Plate" e
 if cInt(cntContainersInRack) = 1 then strContainersInRack = cntContainersInRack & " Container" else strContainersInRack = cntContainersInRack & " Containers" end if
 'Response.write(renderBoxHeader("<img src=""/cheminv/images/treeview/rack_open.gif"">",Request("LocationName"),"(" & strRacksInRack & ")&nbsp;(" & strPlatesInRack & ")&nbsp;(" & strContainersInRack & ")","631px"))
 
-%>
-                </div>
+            %>
+        </div>
 
-                <%
+        <%
 '-- show menu links
     if Session("bMultiSelect") then
-%>
-                    <div class="dropDownMenuControl">
-                        <ul id="nav">
-                            <li><a href="#" title="Select All" onclick="CheckAll(true); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Select All</a></li>
-                            <li><a href="#" title="Clear All" onclick="CheckAll(false); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Clear All</a></li>
-                            <li><a href="/cheminv/gui/<%=Session(" TabFrameURL ")%>?containerCount=0&clear=1&showInList=<%=showInList%>" target="TabFrame" title="Clear All" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Cancel MultiSelect</a></li>
-                        </ul>
-                    </div>
+        %>
+        <div class="dropDownMenuControl">
+            <ul id="nav">
+                <li><a href="#" title="Select All" onclick="CheckAll(true); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Select All</a></li>
+                <li><a href="#" title="Clear All" onclick="CheckAll(false); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Clear All</a></li>
+                <li><a href="/cheminv/gui/<%=Session(" TabFrameURL ")%>?containerCount=0&clear=1&showInList=<%=showInList%>" target="TabFrame" title="Clear All" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Cancel MultiSelect</a></li>
+            </ul>
+        </div>
 
-                    <%
+        <%
     else
-%>
-                        <div class="dropDownMenuControl">
-                            <ul id="nav">
-                                <li><a href="BuildList.asp?view=3&multiSelect=1&LocationID=<%=Locationid%>&LocationName=<%=Request(" LocationName ")%>&showInList=racks" title="Multi-Select" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Multi-Select</a></li>
-                                <li><a href="Print Rack Summary" title="Print Rack Summary" onclick="OpenDialog('/cheminv/gui/ViewSimpleRackLayout.asp?rackid=<%=LocationID%>&locationid=<%=LocationID%>&containerid=&RackPath=&Summary=(&nbsp;<%=strRacksInRack%>&nbsp;)&nbsp;(&nbsp;<%=strPlatesInRack%>&nbsp;)&nbsp;(&nbsp;<%=strContainersInRack%>&nbsp;)', 'Diag1', 2); return false;"
-                                        class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Print Rack</a></li>
-                            </ul>
-                        </div>
-                        <% end if %>
+        %>
+        <div class="dropDownMenuControl">
+            <ul id="nav">
+                <li><a href="BuildList.asp?view=3&multiSelect=1&LocationID=<%=Locationid%>&LocationName=<%=Request(" LocationName ")%>&showInList=racks" title="Multi-Select" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Multi-Select</a></li>
+                <li><a href="Print Rack Summary" title="Print Rack Summary" onclick="OpenDialog('/cheminv/gui/ViewSimpleRackLayout.asp?rackid=<%=LocationID%>&locationid=<%=LocationID%>&containerid=&RackPath=&Summary=(&nbsp;<%=strRacksInRack%>&nbsp;)&nbsp;(&nbsp;<%=strPlatesInRack%>&nbsp;)&nbsp;(&nbsp;<%=strContainersInRack%>&nbsp;)', 'Diag1', 2); return false;"
+                    class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Print Rack</a></li>
+            </ul>
+        </div>
+        <% end if %>
 
-                            <div id="contentsCount" style="margin-left:5px; float:left; position:Absolute;top:25px;left:5px;visibility:visible;z-index=1;">
-                                <%
+        <div id="contentsCount" style="margin-left: 5px; float: left; position: Absolute; top: 25px; left: 5px; visibility: visible; z-index=1;">
+            <%
 '-- Handle counting and display of elements in grid
 numRacks = cInt(cntRacksInRack)
 numContainers = cInt(cntContainersInRack)
@@ -428,37 +442,38 @@ if (numRacks > 0 or numPlates > 0) and numContainers > 0 then response.Write "&n
 response.write strContainersInRack
 if totalInRack > 0 then response.Write ")"'
 response.Write "</span>"
-%>
-                            </div>
+            %>
+        </div>
 
-                            <div id="sorttext" style="margin-left: 350px; float:left; position:Absolute;top:25px;left:5px;visibility:visible;z-index=1;font-size:11px;">
-                                Rack displayed by <strong>Icon</strong>. To change the display, click on the arrow.
-                            </div>
+        <div id="sorttext" style="margin-left: 350px; float: left; position: Absolute; top: 25px; left: 5px; visibility: visible; z-index=1; font-size: 11px;">
+            Rack displayed by <strong>Icon</strong>. To change the display, click on the arrow.
+        </div>
 
-                            <div id="rackViewer" style="position:Absolute;top:44px;left:5px;visibility:visible;z-index=1">
-                                <table style="font-size:7pt; font-family: verdana; table-layout:fixed; border-collapse: collapse;" cellspacing="0" cellpadding="0" bordercolor="#999999" id="tbl" datasrc datafld="icon" border="1">
-                                    <col width="30">
-                                    <%
+        <div id="rackViewer" style="position: Absolute; top: 44px; left: 5px; visibility: visible; z-index=1">
+            <table style="font-size: 7pt; font-family: verdana; table-layout: fixed; border-collapse: collapse;" cellspacing="0" cellpadding="0" bordercolor="#999999" id="tbl" datasrc datafld="icon" border="1">
+                <col width="30">
+                <%
 		For i=0 to NumCols-1
 			Response.Write "<col width=""" & cellWidth & """>"
 		Next
-	%>
-                                        <thead>
-                                            <th align="center">
-                                                <a href="#" onclick="document.all.hiddenSelector.style.visibility = 'visible';" title="Click to select displayed value"><img src="/cheminv/graphics/desc_arrow.gif" border="0" width="12" height="6"></a>
-                                                <a id="hiddenRackSelector" target="rackJSFrame"></a>
-                                                <div id="hiddenSelector" style="position:Absolute;top:0;left:0;visibility:hidden;z-index=2">
-                                                    <select id="cboField" size="7" onchange="HideShow();">	
-				<option value></option>
-				<option value="Icon">Icon</option>
-				<option value="Barcode">Barcode</option>
-				<option value="Cellname">Cell Name</option>
-				<option value="RegNumber">Reg Number</option>
-				<option value="BatchNumber">Batch Number</option>
-			</select>
-                                                </div>
-                                            </th>
-                                            <%
+                %>
+                <thead>
+                    <th align="center">
+                        <a href="#" onclick="document.all.hiddenSelector.style.visibility = 'visible';" title="Click to select displayed value">
+                            <img src="/cheminv/graphics/desc_arrow.gif" border="0" width="12" height="6"></a>
+                        <a id="hiddenRackSelector" target="rackJSFrame"></a>
+                        <div id="hiddenSelector" style="position: Absolute; top: 0; left: 0; visibility: hidden; z-index=2">
+                            <select id="cboField" size="7" onchange="loadXMLDoc();">
+                                <option value></option>
+                                <option value="Icon">Icon</option>
+                                <option value="Barcode">Barcode</option>
+                                <option value="Cellname">Cell Name</option>
+                                <option value="RegNumber">Reg Number</option>
+                                <option value="BatchNumber">Batch Number</option>
+                            </select>
+                        </div>
+                    </th>
+                    <%
 		For i=0 to NumCols-1
 			Response.Write "<th>"
 			if not cellSeqNaming then
@@ -466,10 +481,10 @@ response.Write "</span>"
 			end if
 			Response.Write "</th>" & vblf
 		Next
-	%>
-                                        </thead>
+                    %>
+                </thead>
 
-                                        <%
+                <%
 		Set objXMLDoc = Server.CreateObject("Microsoft.XMLDOM") 
 		objXMLDoc.async = False 
 		objXMLDoc.Loadxml(xmlHtml)
@@ -484,51 +499,89 @@ response.Write "</span>"
 		Next
 			    Next
 		Set objXMLDoc = Nothing
-	%>
+                %>
                                             </tr>
                                             </tbody>
-                                </table>
-                                <% if displayErrorMSG then %>
-                                    <span style="font-size: 10px; display: block; margin-top: 3px; ">
-	<div style="display: block; height: 15px; width: 15px; float: left; background: #CC0000;">&nbsp;</div>
-<%=replace(errorMSG,"<br /><br />","<br />")%>
-</span>
-                                    <% end if %>
+            </table>
+            <% if displayErrorMSG then %>
+            <span style="font-size: 10px; display: block; margin-top: 3px;">
+                <div style="display: block; height: 15px; width: 15px; float: left; background: #CC0000;">&nbsp;</div>
+                <%=replace(errorMSG,"<br /><br />","<br />")%>
+            </span>
+            <% end if %>
+        </div>
 
-                            </div>
+        <script language="javascript">
+            if (parent.TabFrame) parent.TabFrame.location.href = '/cheminv/cheminv/SelectContainerMsg.asp?entity=rack location';
 
-                            <script language="javascript">
-                                if (parent.TabFrame) parent.TabFrame.location.href = '/cheminv/cheminv/SelectContainerMsg.asp?entity=rack location';
+            function SelectPlate(elm, PlateID, locationID, Refresh) {
+                if (parent.TabFrame) parent.TabFrame.location.href = "/cheminv/gui/ViewPlate.asp?PlateID=" + PlateID + "&refresh=" + Refresh;
+            }
 
-                                function SelectPlate(elm, PlateID, locationID, Refresh) {
-                                    if (parent.TabFrame) parent.TabFrame.location.href = "/cheminv/gui/ViewPlate.asp?PlateID=" + PlateID + "&refresh=" + Refresh;
-                                }
+            // Hide the wait gif
+            document.all.waitGIF.style.display = "none";
 
-                                // Hide the wait gif
-                                document.all.waitGIF.style.display = "none";
+            // Open the selected rack if there is one
+            SelectRack = "<%=Session("SelectRack")%>";
 
-                                // Open the selected rack if there is one
-                                SelectRack = "<%=Session("SelectRack")%>";
+            if (SelectRack != "0") {
+                var hiddenRackSelector = document.getElementById("hiddenRackSelector");
+                hiddenRackSelector.click();
+            }
+            document.all.cboField.options[1].selected = true;
+        </script>
 
-                                if (SelectRack != "0") {
-                                    var hiddenRackSelector = document.getElementById("hiddenRackSelector");
-                                    hiddenRackSelector.click();
-                                }
-                                document.all.cboField.options[1].selected = true;
-                            </script>
+        <script language="javascript">
+            var path = "/ChemInv/config/xml_templates/";
+            var client = "<%=clientname%>";
+            var columns = "<%=NumCols%>";
+            var xmlfile = client + ".xml";
+            var fullpath = path + xmlfile;
+            var table = document.getElementById("tbl");
+            function loadXMLDoc() {
+                var selectedRack = document.getElementById("cboField").value;
+                var dispText = "Rack displayed by <strong>";
+                dispText = dispText + selectedRack + "</strong>. To change the display, click on the arrow.";
+                document.getElementById("sorttext").innerHTML = dispText;
+                document.all.hiddenSelector.style.visibility = 'hidden';
+                changeContent(document.all.sorttext, dispText);                     
+                if (window.XMLHttpRequest) {
+                    xhttp = new XMLHttpRequest();
+                } else {                    
+                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        BindTable(xhttp.responseXML);
+                    }
+                };
+                xhttp.open("GET", fullpath, true);
+                xhttp.send();
+            }
+            function BindTable(xml) {
+                html = "";    
+                wellFilter = selectedRack;
+                var RootNode = "";
+                RootNode = xml.getElementsByTagName(selectedRack);                
+                for (var k = RootNode.length; k > 0; k--) {
+                    table.deleteRow(k);
+                }                
+                for (i = 0; i <= RootNode.length - 1; i++) {
+                    rowname = RootNode[i].getElementsByTagName("rowname")[0].childNodes[0].nodeValue;
+                    html = "<tbody><tr height='20'><th><span>" + rowname + "</span></th>";
+                    for (j = 1; j <= columns; j++) {
+                        col = "col" + j;
+                        name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
+                        html = html + "<td align='center' valign='center'><dIV class='col'" + j + ">" + name + "</div></td>";
+                    }
+                    html = html + "</tr></tbody>";                    
+                    var row = table.insertRow(i + 1);
+                    row.innerHTML = html;
+                }
+            }
+        </script>
 
-                            <script language="javascript">
-                                function HideShow() {
-                                    var selectedRack = document.getElementById("cboField").value;
-                                    var dispText = "Rack displayed by <strong>";
-                                    dispText = dispText + selectedRack + "</strong>. To change the display, click on the arrow.";
-                                    document.getElementById("sorttext").innerHTML = dispText;
-                                    document.all.hiddenSelector.style.visibility = 'hidden';
-                                    changeContent(document.all.sorttext, dispText);
-                                }
-                            </script>
-
-                            <% 
+        <% 
 '-- select the container/plate
 if SelectContainer <> "" and SelectContainer <> "0" then 
 	Response.Write "<script language=""javascript"" for=""window"" event=""onload"">"
@@ -540,113 +593,112 @@ if SelectContainer <> "" and SelectContainer <> "0" then
     end if
   Response.Write "</script>"
 end if 
-%>
+        %>
 
-                                <script language="javascript" type="text/javascript">
-                                    TabFrameURL = "<%=Session("TabFrameURL")%>";
-                                    if (TabFrameURL != "") {
-                                        //refresh tab frame
-                                        document.form1.action = "/Cheminv/GUI/<%=Session("TabFrameURL")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
-                                        document.form1.submit();
-                                    }
+        <script language="javascript" type="text/javascript">
+            TabFrameURL = "<%=Session("TabFrameURL")%>";
+            if (TabFrameURL != "") {
+                //refresh tab frame
+                document.form1.action = "/Cheminv/GUI/<%=Session("TabFrameURL")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
+                document.form1.submit();
+            }
 
-                                    function SelectMarked(type) {
+            function SelectMarked(type) {
 
-                                        // Restrict batch Rack grid options to Containerse for now
-                                        //if (type == 'container') {
-                                        var reml = document.form1.removeList;
-                                        var len = reml.value.length
-                                        if (reml.value.substring(len - 1, len) == ",") {
-                                            reml.value = reml.value.substring(0, len - 1);
-                                        }
-                                        if (type == 'container') {
-                                            document.form1.action = "/Cheminv/GUI/multiselect.asp?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
-                                            elm = document.form1.selectChckBox;
-                                        } else if (type == 'plate') {
-                                            document.form1.action = "/Cheminv/GUI/multiselect_plate.asp?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
-                                            elm = document.form1.selectPlateChckBox;
-                                        }
-                                        //document.form1.action = "/Cheminv/GUI/<%=Session("TabFrameURL")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>&dicttype="+type;
-                                        //elm = document.form1.selectChckBox;
-                                        <%if bDisableChkBoxes then%>
-                                        //MCD: added check for case where there's only one element
-                                        if (elm.length) {
-                                            for (i = 0; i < elm.length; i++) {
-                                                elm[i].disabled = false;
-                                            }
-                                        } else {
-                                            elm.disabled = false;
-                                        }
-                                        <%end if%>
-                                        document.form1.submit();
-                                        <%if bDisableChkBoxes then%>
-                                        //MCD: added check for case where there's only one element
-                                        if (elm.length) {
-                                            for (i = 0; i < elm.length; i++) {
-                                                elm[i].disabled = true;
-                                            }
-                                        } else {
+                // Restrict batch Rack grid options to Containerse for now
+                //if (type == 'container') {
+                var reml = document.form1.removeList;
+                var len = reml.value.length
+                if (reml.value.substring(len - 1, len) == ",") {
+                    reml.value = reml.value.substring(0, len - 1);
+                }
+                if (type == 'container') {
+                    document.form1.action = "/Cheminv/GUI/multiselect.asp?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
+                    elm = document.form1.selectChckBox;
+                } else if (type == 'plate') {
+                    document.form1.action = "/Cheminv/GUI/multiselect_plate.asp?containerCount=<%=totalContainers%>&showInList=<%=showInList%>";
+                    elm = document.form1.selectPlateChckBox;
+                }
+                //document.form1.action = "/Cheminv/GUI/<%=Session("TabFrameURL")%>?containerCount=<%=totalContainers%>&showInList=<%=showInList%>&dicttype="+type;
+                //elm = document.form1.selectChckBox;
+                <%if bDisableChkBoxes then%>
+                //MCD: added check for case where there's only one element
+                if (elm.length) {
+                    for (i = 0; i < elm.length; i++) {
+                        elm[i].disabled = false;
+                    }
+                } else {
+                    elm.disabled = false;
+            }
+            <%end if%>
+            document.form1.submit();
+            <%if bDisableChkBoxes then%>
+            //MCD: added check for case where there's only one element
+            if (elm.length) {
+                for (i = 0; i < elm.length; i++) {
+                    elm[i].disabled = true;
+                }
+            } else {
                                             elm.disabled = true;
-                                        }
+            }
                                         <%end if%>
                                         reml.value = "";
-                                        //} 
-                                    }
+            //} 
+            }
 
-                                    function CheckAll(bCheck) {
-                                        var cbObj = document.form1.selectChckBox;
-                                        var cbPlateObj = document.form1.selectPlateChckBox;
-                                        if (cbObj != undefined) {
-                                            if (cbObj.length) {
-                                                for (i = 0; i < cbObj.length; i++) {
-                                                    if (cbObj[i].checked ^ bCheck) {
-                                                        cbObj[i].checked = bCheck;
-                                                        if (!bCheck) Removals(cbObj[i].value, false);
-                                                    }
-                                                }
-                                            } else {
-                                                if (cbObj.checked ^ bCheck) {
-                                                    cbObj.checked = bCheck;
-                                                    if (!bCheck) Removals(cbObj.value, false);
-                                                }
-                                            }
-                                            SelectMarked('container');
-                                        }
-                                        if (cbPlateObj != undefined) {
-                                            if (cbPlateObj.length) {
-                                                for (i = 0; i < cbPlateObj.length; i++) {
-                                                    if (cbPlateObj[i].checked ^ bCheck) {
-                                                        cbPlateObj[i].checked = bCheck;
-                                                        if (!bCheck) Removals(cbPlateObj[i].value, false);
-                                                    }
-                                                }
-                                            } else {
-                                                if (cbPlateObj.checked ^ bCheck) {
-                                                    cbPlateObj.checked = bCheck;
-                                                    if (!bCheck) Removals(cbPlateObj.value, false);
-                                                }
-                                            }
-                                            SelectMarked('plate');
-                                        }
-                                    }
+            function CheckAll(bCheck) {
+                var cbObj = document.form1.selectChckBox;
+                var cbPlateObj = document.form1.selectPlateChckBox;
+                if (cbObj != undefined) {
+                    if (cbObj.length) {
+                        for (i = 0; i < cbObj.length; i++) {
+                            if (cbObj[i].checked ^ bCheck) {
+                                cbObj[i].checked = bCheck;
+                                if (!bCheck) Removals(cbObj[i].value, false);
+                            }
+                        }
+                    } else {
+                        if (cbObj.checked ^ bCheck) {
+                            cbObj.checked = bCheck;
+                            if (!bCheck) Removals(cbObj.value, false);
+                        }
+                    }
+                    SelectMarked('container');
+                }
+                if (cbPlateObj != undefined) {
+                    if (cbPlateObj.length) {
+                        for (i = 0; i < cbPlateObj.length; i++) {
+                            if (cbPlateObj[i].checked ^ bCheck) {
+                                cbPlateObj[i].checked = bCheck;
+                                if (!bCheck) Removals(cbPlateObj[i].value, false);
+                            }
+                        }
+                    } else {
+                        if (cbPlateObj.checked ^ bCheck) {
+                            cbPlateObj.checked = bCheck;
+                            if (!bCheck) Removals(cbPlateObj.value, false);
+                        }
+                    }
+                    SelectMarked('plate');
+                }
+            }
 
-                                    function Removals(id, bRemove) {
-                                        var idc = id + ",";
-                                        var reml = document.form1.removeList;
+            function Removals(id, bRemove) {
+                var idc = id + ",";
+                var reml = document.form1.removeList;
 
-                                        if (bRemove) {
-                                            if (reml.value.indexOf(idc) >= 0) {
-                                                reml.value = reml.value.replace(idc, "");
-                                            }
-                                        } else {
-                                            if (reml.value.indexOf(idc) == -1) {
-                                                reml.value += id + ",";
-                                            }
-                                        }
-                                        //alert(reml.value);				
-                                    }
-                                </script>
+                if (bRemove) {
+                    if (reml.value.indexOf(idc) >= 0) {
+                        reml.value = reml.value.replace(idc, "");
+                    }
+                } else {
+                    if (reml.value.indexOf(idc) == -1) {
+                        reml.value += id + ",";
+                    }
+                }
+                //alert(reml.value);				
+            }
+        </script>
+</body>
 
-    </body>
-
-    </html>
+</html>
