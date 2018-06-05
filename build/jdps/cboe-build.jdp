@@ -154,8 +154,8 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 				xcopy /Y "%WORKSPACE%\\Install\\Registration\\Registration\\Registration\\SINGLE_EXE_IMAGE\\DiskImages\\Disk1\\*.*" "%WORKSPACE%\\StagingArea"
 				xcopy /Y "%WORKSPACE%\\Install\\Registration\\Registration\\Registration\\SINGLE_MSI_IMAGE\\DiskImages\\Disk1\\*.*" "%WORKSPACE%\\StagingArea"
 				SUBST F: "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise"
-				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.exe" "F:\\Registration\\Test_%VERSION_STRING%"\\"
-				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.msi" "F:\\Registration\\Test_%VERSION_STRING%"\\" 
+				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.exe" "F:\\Registration\\Test_%VERSION_STRING%\\"
+				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.msi" "F:\\Registration\\Test_%VERSION_STRING%\\" 
 				 '''
                              deleteDir()
 				}
@@ -176,7 +176,7 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
                 bat """ 
 				del /Q "C:\\CBOE\\CBOEServerInstaller_18.1"
 				xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\Server\\CBOEServerInstaller_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
-				xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\Registration\\Test_%VERSION_STRING%"\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
+				xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\Registration\\Test_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
 				cd "C:\\Program Files (x86)\\InstallShield\\2013\\System"
 				"IsCmdBld.exe" -p "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%"
 				xcopy "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "%PUBLISH_PATH%\\Dev\\TestBuilds\\CBOE_18.1.0.50%BUILD_NUMBER%" /I /Y /S
