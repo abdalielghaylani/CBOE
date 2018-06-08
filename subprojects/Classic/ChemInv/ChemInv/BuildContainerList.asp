@@ -26,6 +26,7 @@ Else
 	fieldArray = Session("ContainerReportFieldArray2")
 End if
 %>
+<!--#INCLUDE VIRTUAL = "/ChemInv/GUI/compound_utils_vbs.asp"-->
 <HTML>
 	<HEAD>
 	<script language="javascript" type="text/javascript" src="/cheminv/utils.js"></script>
@@ -459,8 +460,13 @@ Else
 					response.write "clickElement('Page" & mypage & "');"
 				end if
 			end if
-			theLink = "document.anchors(""e" & CLng(ContainerID) & """)"
-			response.write "if (" & theLink & ") " & theLink & ".click()"
+			if detectModernBrowser = true then
+				theLink = "document.getElementById(""e" & CLng(ContainerID) & """)"
+				response.write "window.onload = function() { if (" & theLink & ") " & theLink & ".click(); }"
+			Else
+				theLink = "document.anchors(""e" & CLng(ContainerID) & """)"
+				response.write "if (" & theLink & ") " & theLink & ".click()"
+			end if
 		Else
 			if NOT (Session("bMultiSelect") OR reconcile) then response.write "if (parent.TabFrame) parent.frames['TabFrame'].location.href = 'SelectContainerMsg.asp';"
 		End if
