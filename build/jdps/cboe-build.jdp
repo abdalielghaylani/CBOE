@@ -103,11 +103,7 @@ pipeline {
 				"C:\\Program Files (x86)\\Microsoft Visual Studio\\VB98\\vb6" /m "%WORKSPACE%\\subprojects\\Classic\\VB Projects\\InvLoader\\PlateImporter.vbp"
 				xcopy /Y "%WORKSPACE%\\subprojects\\Classic\\VB Projects\\InvLoader\\Inno Installer\\Output\\InvLoaderSetup.exe" "%WORKSPACE%\\ChemOffice\\ChemInv\\Installation\\InvLoader"
 				'''
-				bat '''"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System"\\IsCmdBld.exe -p %WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%" -z "BUILDVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%"
-				'''
-				bat '''MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
-				xcopy /Y "%WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "%PUBLISH_PATH%\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
-				'''
+				
             }
         }               
         stage ('Registration-Build') {	
@@ -145,18 +141,12 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 				xcopy /Y "%WORKSPACE%\\CBOE17.1\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				xcopy /Y "%WORKSPACE%\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl17.dll" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				set WORKSPACE_PATH_ROOT=%WORKSPACE%
-				IF ERRORLEVEL 1 EXIT/B ERRORLEVEL
-				"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System\\IsCmdBld.exe" -p "%WORKSPACE%\\Install\\Registration\\Registration.ism" -r SINGLE_EXE_IMAGE -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -a "Registration" -c COMP -e y -y %VERSION_BASE%.50%BUILD_NUMBER% -e y 
-				IF ERRORLEVEL 1 EXIT/B ERRORLEVEL
-				"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System\\IsCmdBld.exe" -p "%WORKSPACE%\\Install\\Registration\\Registration.ism" -r SINGLE_MSI_IMAGE -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -a "Registration" -c COMP -e y -y %VERSION_BASE%.50%BUILD_NUMBER% -e n
-				MD "%WORKSPACE%\\StagingArea\\"
-				MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\Registration\\Test_%VERSION_STRING%"
-				xcopy /Y "%WORKSPACE%\\Install\\Registration\\Registration\\Registration\\SINGLE_EXE_IMAGE\\DiskImages\\Disk1\\*.*" "%WORKSPACE%\\StagingArea"
-				xcopy /Y "%WORKSPACE%\\Install\\Registration\\Registration\\Registration\\SINGLE_MSI_IMAGE\\DiskImages\\Disk1\\*.*" "%WORKSPACE%\\StagingArea"
-				SUBST F: "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise"
-				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.exe" "F:\\Registration\\Test_%VERSION_STRING%\\"
-				xcopy /Y "%WORKSPACE%\\StagingArea\\Registration.Server.msi" "F:\\Registration\\Test_%VERSION_STRING%\\" 
-				 '''
+				'''
+bat '''"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System"\\IsCmdBld.exe -p %WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%" -z "BUILDVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%"
+				'''
+				bat '''MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
+				xcopy /Y "%WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "%PUBLISH_PATH%\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
+				'''
                              deleteDir()
 				}
 			}
