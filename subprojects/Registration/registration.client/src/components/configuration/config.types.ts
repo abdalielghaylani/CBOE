@@ -563,6 +563,28 @@ export class CConfigProperties {
         };
       } else if (this.formData.type === 'DATE') {
         c.editorType = 'dxDateBox';
+      } else if (this.formData.type === 'NUMBER') {
+        let validationRules = [];
+        this.formData.validationRules.forEach(vr => {
+          switch (vr.name) {
+            case 'integer':
+              validationRules.push({ group: 'length', type: 'pattern', pattern: '^[0-9]+$',
+                message: 'Default value must be an integer number' });
+              break;
+            case 'textLength':
+            validationRules.push({ group: 'length', type: 'pattern',
+              pattern: '^((?!(0))[0-9]{' + vr.parameters[0].value + ',' + vr.parameters[1].value + '})$',
+              message: 'Default value can have between ' + vr.parameters[0].value + ' and ' + vr.parameters[1].value + ' characters' });
+            break;
+            case 'float':
+              validationRules.push({ group: 'length', type: 'pattern',
+              pattern: '^[0-9]+\.[0-9]+$',
+              message: 'Default value must be a float number with at most ' + vr.parameters[0].value + ' integer and ' +
+              vr.parameters[1].value + ' decimal digits' });
+              break;
+          }
+        });
+        c.validationRules = validationRules;
       }
     }
     c.visible = visible;
