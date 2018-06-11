@@ -1117,9 +1117,9 @@
 		<row><td>CreateUser</td><td>Next</td><td>DoAction</td><td>SetInstallMode</td><td>PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>10</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>DoAction</td><td>USERSETUP</td><td>BUILDAUSER="True" AND CREATENEWUSER = "True"</td><td>4</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>DoAction</td><td>ValidateUser</td><td>CREATENEWUSER = "False"</td><td>2</td></row>
-		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>DatabaseFolder</td><td>NOT Installed And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>9</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>PasswordMismatch</td><td>PASSWORDMISMATCH = "True"</td><td>6</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>Installed And _IsMaintenance = "Change" And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>11</td></row>
+		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>NOT Installed And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>9</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed</td><td>1</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>SetupType</td><td>NOT Installed</td><td>2</td></row>
 		<row><td>CustomSetup</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -5412,7 +5412,6 @@ Set shell = Nothing
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
 		<row><td>Pkg2</td><td>PerkinElmer_ChemOffice_Professional_2017.msi</td><td>{A6DD7E2A-1456-40E9-86B1-C0B25117E153}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2017\"</td><td/><td/><td>CBOU</td></row>
 		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_17.1.msi</td><td>{43625056-479C-4F72-8678-8754A5AA5B29}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2017\"</td><td/><td/><td>ChemScript</td></row>
-		<row><td>Pkg4</td><td>Registration.Server.msi</td><td>{6BD2EDBC-68E9-4ED0-8871-E2D0D2BD2778}</td><td>1</td><td>0</td><td>Not Installed And REGINSTALL="1"</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOfficeEnterprise"</td><td/><td/><td>Registration.Server</td></row>
 	</table>
 
 	<table name="ISChainPackageData">
@@ -5425,7 +5424,6 @@ Set shell = Nothing
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
 		<row><td>Pkg2</td><td>_F61611648B31E1A7656831D9555A6F05</td><td>PerkinElmer_ChemOffice_Professional_2017.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemOffice\PerkinElmer_ChemOffice_Professional_2017.msi</td></row>
 		<row><td>Pkg3</td><td>_13E0581122813A8F510F9604A3082AA2</td><td>PerkinElmer_ChemScript_17.1.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemScript\PerkinElmer_ChemScript_17.1.msi</td></row>
-		<row><td>Pkg4</td><td>_64819BF9CEFBBC528ED70326188ACA39</td><td>Registration.Server.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Registration.Server.msi</td></row>
 	</table>
 
 	<table name="ISClrWrap">

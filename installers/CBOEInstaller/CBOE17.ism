@@ -418,6 +418,10 @@
 		<row><td>AppPoolComponent1</td><td>{78280B3F-4B30-48F4-B52D-EF17865883B4}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppPoolComponent2</td><td>{E9FE7957-7B87-45D2-A594-1179239C0814}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppPoolComponent3</td><td>{080417B6-6E6D-4769-AEC2-A8B316AD7AC2}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>App_GlobalResources</td><td>{517C71F0-DB9A-40F8-993B-B7C0FD4C0698}</td><td>APP_GLOBALRESOURCES4</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Assets</td><td>{0E50ED5F-23E3-4E4E-AF3F-573721EFD9D0}</td><td>ASSETS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Bin</td><td>{3BEEDDBD-F52D-4BB0-87EC-FAD24F07DE75}</td><td>BIN16</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CBOEHelp</td><td>{4E0FE0F7-6E5E-45DF-848E-BD8D47ADA1D3}</td><td>CBOEHELP1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo17.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17_Server</td><td>{A87714E9-122B-4197-BBBE-7CBF51218429}</td><td>_F2042E99_9D3A_4685_9386_69AF368B7525_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO17_Server_File</td><td>{1108557E-BC27-4949-B533-97CD3074B23B}</td><td>NEW_DIRECTORY15</td><td>8</td><td/><td>csdo17.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -450,12 +454,15 @@
 		<row><td>REPORTQ.dll</td><td>{4B067D7E-5067-4E76-A439-71E775F43425}</td><td>DLLS</td><td>0</td><td/><td>reportq.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>REPORTQ_Server</td><td>{2621D4EA-4AF1-4718-8750-2CD10D11AC62}</td><td>_48FF1F3E_E93A_4B1D_9565_56A26B60B805_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>REPORTQ_Server_File</td><td>{D564CC4B-C33E-498E-A1B9-9B170072E15F}</td><td>NEW_DIRECTORY5</td><td>8</td><td/><td>reportq.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Registration.Client</td><td>{74FBDCDE-9093-4F0F-8E58-918B437F9E11}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Registration.Core.dll</td><td>{FCB32E01-16AB-4596-99B5-72DB4EBF7981}</td><td>BIN10</td><td>0</td><td/><td>registration.core.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Registration.Server</td><td>{5448DF48-D3BA-46E6-839E-15396130F76E}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Registration.ServerWebServices</td><td>{269570E7-9C7E-43F5-B031-180277522BCA}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SingleSignOnCom.dll</td><td>{67F4FC81-FC9C-4291-8693-A0D90498A703}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.dll</td><td>49</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SingleSignOnCom.tlb</td><td>{21BAF3C6-1CAF-4ABD-9DE4-B495312CC7BB}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.tlb1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServiceExtensionComponent</td><td>{709A5C9C-A67F-4772-82EC-8220368C3154}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>WebServices</td><td>{40DE0D1B-7BEA-4F78-9A6C-95280C02BA18}</td><td>WEBSERVICES1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{EF6E2318-0894-44B6-9772-396FDB6C56E5}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>WebsiteComponent1</td><td>{269570E7-9C7E-43F5-B031-180277522BCA}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mage.exe</td><td>{F4705868-0A25-4FA5-ADC2-16A6056C6175}</td><td>DATALOADER_CLICKONCE</td><td>0</td><td/><td>mage.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mswcrun.dll</td><td>{915840AA-58CF-4D91-A37E-3B0FB1C61D1C}</td><td>ADMINSOURCE</td><td>8</td><td/><td>mswcrun.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -1271,9 +1278,9 @@
 		<row><td>INSTALLDIR</td><td>AppPoolComponent3</td></row>
 		<row><td>INSTALLDIR</td><td>ISRegistryComponent</td></row>
 		<row><td>INSTALLDIR</td><td>NewComponent1</td></row>
+		<row><td>INSTALLDIR</td><td>Registration.ServerWebServices</td></row>
 		<row><td>INSTALLDIR</td><td>WebServiceExtensionComponent</td></row>
 		<row><td>INSTALLDIR</td><td>WebsiteComponent</td></row>
-		<row><td>INSTALLDIR</td><td>WebsiteComponent1</td></row>
 		<row><td>PERKINELMER</td><td>AllOtherFiles32</td></row>
 		<row><td>PYTHONSCRIPTS</td><td>AllOtherFiles67</td></row>
 		<row><td>REGISTRATION</td><td>AllOtherFiles5</td></row>
@@ -2502,9 +2509,12 @@ End If
 		<row><td>APP_GLOBALRESOURCES</td><td>CHEMBIOVIZ</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
 		<row><td>APP_GLOBALRESOURCES1</td><td>MANAGER</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
 		<row><td>APP_GLOBALRESOURCES2</td><td>WEBAPP</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
+		<row><td>APP_GLOBALRESOURCES3</td><td>CHEMOFFICEENTERPRISE</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
+		<row><td>APP_GLOBALRESOURCES4</td><td>REGISTRATION.SERVER</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
 		<row><td>APP_THEMES</td><td>CHEMBIOVIZ</td><td>APP_TH~1|App_Themes</td><td/><td>0</td><td/></row>
 		<row><td>APP_THEMES1</td><td>MANAGER</td><td>APP_TH~1|App_Themes</td><td/><td>0</td><td/></row>
 		<row><td>APP_THEMES2</td><td>WEBAPP</td><td>APP_TH~1|App_Themes</td><td/><td>0</td><td/></row>
+		<row><td>ASSETS</td><td>REGISTRATION.SERVER</td><td>Assets</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
 		<row><td>BIN</td><td>CHEMBIOVIZ</td><td>bin</td><td/><td>0</td><td/></row>
@@ -2515,6 +2525,7 @@ End If
 		<row><td>BIN13</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>BIN14</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>BIN15</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
+		<row><td>BIN16</td><td>REGISTRATION.SERVER</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>BIN2</td><td>WEBAPP</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>BIN3</td><td>SECURITY</td><td>bin</td><td/><td>0</td><td/></row>
 		<row><td>BIN4</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
@@ -2525,6 +2536,7 @@ End If
 		<row><td>BIN9</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>CAMBRIDGESOFT</td><td>ProgramFilesFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
 		<row><td>CBOEHELP</td><td>CHEMOFFICEENTERPRISE</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
+		<row><td>CBOEHELP1</td><td>REGISTRATION.SERVER</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERADMIN</td><td>WEBSERVER_SOURCE</td><td>CFSERV~1|cfserveradmin</td><td/><td>0</td><td/></row>
 		<row><td>CHEMBIOVIZ</td><td>CHEMOFFICEENTERPRISE</td><td>CHEMBI~1|ChemBioViz</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV</td><td>CHEMOFFICE_DATA</td><td>cheminv</td><td/><td>0</td><td/></row>
@@ -2638,6 +2650,7 @@ End If
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>REGISTRATION</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
+		<row><td>REGISTRATION.SERVER</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration.Server</td><td/><td>0</td><td/></row>
 		<row><td>REGISTRATION1</td><td>CHEMOFFICEENTERPRISE11.0.1.0</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
 		<row><td>RLSCONFIGURATIONTOOL</td><td>CONFIG12</td><td>RLSCON~1|RLSConfigurationTool</td><td/><td>0</td><td/></row>
 		<row><td>RUNTIMELIBRARIES</td><td>FRAMEWORK</td><td>RUNTIM~1|RuntimeLibraries</td><td/><td>0</td><td/></row>
@@ -2659,6 +2672,7 @@ End If
 		<row><td>WEBSERVICE</td><td>FRAMEWORK</td><td>WEBSER~1|WebService</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVICEHOST</td><td>CHEMOFFICEENTERPRISE</td><td>WEBSER~1|WebServiceHost</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVICES</td><td>WEBAPP</td><td>WEBSER~1|Webservices</td><td/><td>0</td><td/></row>
+		<row><td>WEBSERVICES1</td><td>REGISTRATION.SERVER</td><td>WEBSER~1|WebServices</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>_042DE214_1109_41E9_AB1B_300D5DEAC777_</td><td>COMPLUS_APPLICATIONS</td><td>{042DE~1|{042DE214-1109-41E9-AB1B-300D5DEAC777}</td><td/><td>0</td><td/></row>
@@ -3387,6 +3401,7 @@ End If
 		<row><td>Framework</td><td>COE</td><td>##ID_STRING3##</td><td/><td>2</td><td>1</td><td>INSTALLDIR</td><td>16</td><td/><td/><td/><td/></row>
 		<row><td>Manager</td><td>COE</td><td>##ID_STRING5##</td><td/><td>6</td><td>1</td><td>INSTALLDIR</td><td>0</td><td/><td/><td/><td/></row>
 		<row><td>Registration</td><td>COE</td><td>##ID_STRING4##</td><td/><td>4</td><td>1</td><td>INSTALLDIR</td><td>0</td><td/><td/><td/><td/></row>
+		<row><td>Registration.Server</td><td/><td>##ID_STRING571##</td><td/><td>7</td><td>1</td><td>INSTALLDIR</td><td>0</td><td/><td/><td/><td/></row>
 		<row><td>Security</td><td>COE</td><td>##ID_STRING8##</td><td/><td>12</td><td>1</td><td>INSTALLDIR</td><td>0</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -3435,7 +3450,6 @@ End If
 		<row><td>COE</td><td>NewComponent1</td></row>
 		<row><td>COE</td><td>WebServiceExtensionComponent</td></row>
 		<row><td>COE</td><td>WebsiteComponent</td></row>
-		<row><td>COE</td><td>WebsiteComponent1</td></row>
 		<row><td>Classic</td><td>AllOtherFiles34</td></row>
 		<row><td>Classic</td><td>AllOtherFiles41</td></row>
 		<row><td>Classic</td><td>AllOtherFiles71</td></row>
@@ -3493,6 +3507,14 @@ End If
 		<row><td>Registration</td><td>NewComponent3</td></row>
 		<row><td>Registration</td><td>NewComponent4</td></row>
 		<row><td>Registration</td><td>NewComponent5</td></row>
+		<row><td>Registration.Server</td><td>App_GlobalResources</td></row>
+		<row><td>Registration.Server</td><td>Assets</td></row>
+		<row><td>Registration.Server</td><td>Bin</td></row>
+		<row><td>Registration.Server</td><td>CBOEHelp</td></row>
+		<row><td>Registration.Server</td><td>Registration.Client</td></row>
+		<row><td>Registration.Server</td><td>Registration.Server</td></row>
+		<row><td>Registration.Server</td><td>Registration.ServerWebServices</td></row>
+		<row><td>Registration.Server</td><td>WebServices</td></row>
 		<row><td>Security</td><td>AllOtherFiles28</td></row>
 		<row><td>Security</td><td>AllOtherFiles29</td></row>
 		<row><td>Security</td><td>AllOtherFiles6</td></row>
@@ -3512,10 +3534,17 @@ End If
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>appl.vbs1</td><td>AllOtherFiles50</td><td>Appl.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>21</td><td/></row>
 		<row><td>appl1.vbs1</td><td>AllOtherFiles50</td><td>Appl1.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>21</td><td/></row>
+		<row><td>cambridgesoft.coe.chembioviz</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.ChemBioViz.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.ChemBioViz.Services.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.framework.</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.Framework.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.framework.1</td><td>CambridgeSoft.COE.Framework.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\CambridgeSoft.COE.Framework.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.framework.2</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.XmlSerializers.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.Framework.XmlSerializers.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati</td><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati1</td><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.Registration.Services.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.registrati2</td><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.registrati3</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.Registration.RegistrationAddins.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.registrati4</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Registration.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.Registration.Services.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.registrati5</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.registrati6</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.RegistrationWebApp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.RegistrationWebApp.dll</td><td>1</td><td/></row>
 		<row><td>chembiooffice.html1</td><td>AllOtherFiles79</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
 		<row><td>cheminv_reports_11.0.2.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_11.0.2.mdb</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_11.0.2.mdb</td><td>17</td><td/></row>
 		<row><td>cheminv_reports_12.5.0.mdb</td><td>AllOtherFiles36</td><td>CHEMIN~1.MDB|ChemInv_Reports_12.5.0.mdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_12.5.0.mdb</td><td>1</td><td/></row>
@@ -3523,44 +3552,121 @@ End If
 		<row><td>coeexceptionhandling.xml</td><td>AllOtherFiles33</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>5</td><td/></row>
 		<row><td>coeframeworkconfig.xml</td><td>AllOtherFiles33</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>5</td><td/></row>
 		<row><td>coeframeworkservices.asmx</td><td>AllOtherFiles59</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
+		<row><td>coeregistrationservices.asmx</td><td>WebServices</td><td>COEREG~1.ASM|COERegistrationServices.asmx</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\COERegistrationServices.asmx</td><td>17</td><td/></row>
+		<row><td>coeregistrationservicestesti</td><td>WebServices</td><td>COEREG~1.HTM|COERegistrationServicesTesting.htm</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\COERegistrationServicesTesting.htm</td><td>17</td><td/></row>
 		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>5</td><td/></row>
 		<row><td>csdo17.dll</td><td>CSDO17_Server_File</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
 		<row><td>csdo17.dll1</td><td>CSDO17</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
 		<row><td>csla.compression.dll</td><td>Csla.Compression.dll</td><td>CSLACO~1.DLL|Csla.Compression.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Csla.Compression.dll</td><td>1</td><td/></row>
+		<row><td>csla.dll</td><td>Bin</td><td>Csla.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Csla.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu5.dll</td><td>CSWebMenu5.dll</td><td>CSWEBM~1.DLL|CSWebMenu5.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu5.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu6.dll</td><td>CSWebMenu6.dll</td><td>CSWEBM~1.DLL|CSWebMenu6.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu6.dll</td><td>1</td><td/></row>
+		<row><td>customwsdlhelpgenerator.aspx</td><td>WebServices</td><td>CUSTOM~1.ASP|CustomWsdlHelpGenerator.aspx</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\CustomWsdlHelpGenerator.aspx</td><td>17</td><td/></row>
 		<row><td>default.aspx</td><td>AllOtherFiles4</td><td>DEFAUL~1.ASP|Default.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Default.aspx</td><td>1</td><td/></row>
 		<row><td>default.htm</td><td>AllOtherFiles78</td><td>default.htm</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_FORMS_FILES1&gt;\DataViewManager\ContentArea\Help\default.htm</td><td>1</td><td/></row>
+		<row><td>devexpress.charts.v10.2.core</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.Charts.v10.2.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.Charts.v10.2.Core.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.data.v10.2.dll</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.Data.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.Data.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.utils.v10.2.dll</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.Utils.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.Utils.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.web.v10.2.dll</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.Web.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.Web.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtrabars.v10.2.dl</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraBars.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraBars.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtracharts.v10.2.1</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraCharts.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraCharts.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtracharts.v10.2.3</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraCharts.v10.2.Web.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraCharts.v10.2.Web.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtraeditors.v10.21</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraEditors.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraEditors.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtranavbar.v10.2.</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraNavBar.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraNavBar.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtrapivotgrid.v10</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraPivotGrid.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraPivotGrid.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtraprinting.v10.</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraPrinting.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraPrinting.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtrareports.v10.21</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraReports.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraReports.v10.2.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtrareports.v10.24</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraReports.v10.2.Web.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraReports.v10.2.Web.dll</td><td>1</td><td/></row>
+		<row><td>devexpress.xtratreelist.v10.</td><td>Bin</td><td>DEVEXP~1.DLL|DevExpress.XtraTreeList.v10.2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\DevExpress.XtraTreeList.v10.2.dll</td><td>1</td><td/></row>
 		<row><td>exceptionshandling.xml</td><td>AllOtherFiles33</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>5</td><td/></row>
+		<row><td>favicon.ico</td><td>Assets</td><td>favicon.ico</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist\assets\favicon.ico</td><td>17</td><td/></row>
 		<row><td>global.asax</td><td>AllOtherFiles4</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax1</td><td>AllOtherFiles1</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax2</td><td>AllOtherFiles21</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Global.asax</td><td>1</td><td/></row>
+		<row><td>global.asax3</td><td>Registration.Server</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\Global.asax</td><td>1</td><td/></row>
 		<row><td>icsharpcode.sharpziplib.dll</td><td>ICSharpCode.SharpZipLib.dll</td><td>ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\ICSharpCode.SharpZipLib.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.document</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.Documents.Excel.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.Documents.Excel.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.misc.v11</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.Misc.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.Misc.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.shared.v</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.Shared.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.Shared.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb2</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb3</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebGrid.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebGrid.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb4</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebListbar.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebListbar.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb5</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebNavigator.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebNavigator.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb6</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebTab.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebTab.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.ultraweb7</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.UltraWebToolbar.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.UltraWebToolbar.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webcombo</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebCombo.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebCombo.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webdatai</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebDataInput.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebDataInput.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webdatec</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebDateChooser.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebDateChooser.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webhtmle</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebHtmlEditor.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebHtmlEditor.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webnavba</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebNavBar.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebNavBar.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.websched</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebSchedule.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebSchedule.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.websched1</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>infragistics2.webui.webspell</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>1</td><td/></row>
+		<row><td>interop.chemdrawcontrol17.dl</td><td>Bin</td><td>INTERO~1.DLL|Interop.ChemDrawControl17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Interop.ChemDrawControl17.dll</td><td>1</td><td/></row>
 		<row><td>invloadersetup.exe</td><td>InvLoaderSetup.exe</td><td>INVLOA~1.EXE|InvLoaderSetup.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\Installation\InvLoader\InvLoaderSetup.exe</td><td>17</td><td/></row>
+		<row><td>ironmath.dll</td><td>Bin</td><td>IronMath.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\IronMath.dll</td><td>1</td><td/></row>
+		<row><td>ironpython.dll</td><td>Bin</td><td>IRONPY~1.DLL|IronPython.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\IronPython.dll</td><td>1</td><td/></row>
+		<row><td>log4net.dll</td><td>Bin</td><td>log4net.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\log4net.dll</td><td>1</td><td/></row>
 		<row><td>logoff.aspx</td><td>AllOtherFiles4</td><td>LOGOFF~1.ASP|Logoff.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Logoff.aspx</td><td>1</td><td/></row>
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\mage.exe</td><td>17</td><td/></row>
 		<row><td>mage_dataloader.bat</td><td>AllOtherFiles50</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>21</td><td/></row>
+		<row><td>microsoft.aspnet.webapi.vers</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.AspNet.WebApi.Versioning.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.AspNet.WebApi.Versioning.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri</td><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri1</td><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri10</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri2</td><td>Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.d</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri3</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri4</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Common.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri6</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Data.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri7</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.enterpri8</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.practices.objectbu</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.ObjectBuilder.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.ObjectBuilder.dll</td><td>1</td><td/></row>
 		<row><td>msvcp71.dll</td><td>Msvcp</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>msvcp71.dll1</td><td>Msvcp71</td><td>msvcp71.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\msvcp71.dll</td><td>1</td><td/></row>
 		<row><td>mswcrun.dll</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
 		<row><td>mykey.cer</td><td>AllOtherFiles50</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
 		<row><td>mykey.pvk</td><td>AllOtherFiles50</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
 		<row><td>mypfx.pfx</td><td>AllOtherFiles50</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.dll</td><td>Bin</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>oracle.dataaccess.dll</td><td>Bin</td><td>ORACLE~1.DLL|Oracle.DataAccess.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Oracle.DataAccess.dll</td><td>1</td><td/></row>
+		<row><td>packages.config</td><td>Registration.Server</td><td>PACKAG~1.CON|packages.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\packages.config</td><td>1</td><td/></row>
+		<row><td>pe_background_dd.png</td><td>Assets</td><td>PE_BAC~1.PNG|pe_background_dd.png</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist\assets\pe_background_dd.png</td><td>17</td><td/></row>
+		<row><td>perkinelmer.coe.registration</td><td>Bin</td><td>PERKIN~1.DLL|PerkinElmer.COE.Registration.Server.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.dll</td><td>1</td><td/></row>
+		<row><td>perkinelmer.coe.registration1</td><td>Bin</td><td>PERKIN~1.CON|PerkinElmer.COE.Registration.Server.dll.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.dll.config</td><td>1</td><td/></row>
+		<row><td>perkinelmer.coe.registration2</td><td>Bin</td><td>PERKIN~1.XML|PerkinElmer.COE.Registration.Server.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.xml</td><td>1</td><td/></row>
+		<row><td>pki_logo.png</td><td>Assets</td><td>pki-logo.png</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist\assets\pki-logo.png</td><td>17</td><td/></row>
 		<row><td>pyengine3.dll</td><td>PyEngine3.dll</td><td>PYENGI~1.DLL|PyEngine3.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\PyEngine3.dll</td><td>1</td><td/></row>
+		<row><td>pyengine3.dll1</td><td>Bin</td><td>PYENGI~1.DLL|PyEngine3.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\PyEngine3.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.algorithms.dll</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Algorithms.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Algorithms.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.collections.dll</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Collections.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Collections.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.concepts.dll</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Concepts.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Concepts.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.exceptions.dll</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Exceptions.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Exceptions.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.predicates.dll</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Predicates.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Predicates.dll</td><td>1</td><td/></row>
+		<row><td>quickgraph.representations.d</td><td>Bin</td><td>QUICKG~1.DLL|QuickGraph.Representations.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Representations.dll</td><td>1</td><td/></row>
 		<row><td>registration.core.dll</td><td>Registration.Core.dll</td><td>REGIST~1.DLL|Registration.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Bin\Registration.Core.dll</td><td>1</td><td/></row>
+		<row><td>registration.core.dll1</td><td>Bin</td><td>REGIST~1.DLL|Registration.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Registration.Core.dll</td><td>1</td><td/></row>
+		<row><td>registryrecord.xsd</td><td>WebServices</td><td>REGIST~1.XSD|RegistryRecord.xsd</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\RegistryRecord.xsd</td><td>17</td><td/></row>
 		<row><td>reportq.dll</td><td>REPORTQ.dll</td><td>REPORTQ.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\REPORTQ.dll</td><td>1</td><td/></row>
 		<row><td>reportq.dll1</td><td>REPORTQ_Server_File</td><td>REPORTQ.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\Common\dlls\REPORTQ.dll</td><td>1</td><td/></row>
+		<row><td>resource.designer.cs</td><td>App_GlobalResources</td><td>RESOUR~1.CS|Resource.designer.cs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\App_GlobalResources\Resource.designer.cs</td><td>17</td><td/></row>
+		<row><td>resource.resx</td><td>App_GlobalResources</td><td>RESOUR~1.RES|Resource.resx</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\App_GlobalResources\Resource.resx</td><td>17</td><td/></row>
+		<row><td>sautinsoft.rtftohtml.dll</td><td>Bin</td><td>SAUTIN~1.DLL|SautinSoft.RtfToHtml.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\SautinSoft.RtfToHtml.dll</td><td>1</td><td/></row>
 		<row><td>singlesignon.asmx</td><td>AllOtherFiles6</td><td>SINGLE~1.ASM|SingleSignOn.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\SingleSignOn.asmx</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
+		<row><td>swashbuckle.core.dll</td><td>Bin</td><td>SWASHB~1.DLL|Swashbuckle.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Swashbuckle.Core.dll</td><td>1</td><td/></row>
+		<row><td>system.linq.dynamic.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Linq.Dynamic.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Linq.Dynamic.dll</td><td>1</td><td/></row>
+		<row><td>system.net.http.formatting.d</td><td>Bin</td><td>SYSTEM~1.DLL|System.Net.Http.Formatting.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Net.Http.Formatting.dll</td><td>1</td><td/></row>
+		<row><td>system.web.http.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Web.Http.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Web.Http.dll</td><td>1</td><td/></row>
+		<row><td>system.web.http.webhost.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Web.Http.WebHost.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Web.Http.WebHost.dll</td><td>1</td><td/></row>
+		<row><td>tecit.tbarcode.dll</td><td>Bin</td><td>TECITT~1.DLL|TECIT.TBarCode.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\TECIT.TBarCode.dll</td><td>1</td><td/></row>
 		<row><td>web.config</td><td>AllOtherFiles4</td><td>WEB~1.CON|Web.Config</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Web.Config</td><td>17</td><td/></row>
 		<row><td>web.config1</td><td>AllOtherFiles1</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config2</td><td>AllOtherFiles21</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config3</td><td>AllOtherFiles6</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
+		<row><td>web.config5</td><td>Registration.Server</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\Web.config</td><td>1</td><td/></row>
+		<row><td>webactivatorex.dll</td><td>Bin</td><td>WEBACT~1.DLL|WebActivatorEx.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\WebActivatorEx.dll</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4333,6 +4439,10 @@ End If
 		<row><td>AppPoolComponent1</td><td/><td/><td>_62AA4535_9D29_45FD_B87C_1D8A4B212D64_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppPoolComponent2</td><td/><td/><td>_7C6C0C33_EA27_4BD5_85FE_0BF945E21381_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppPoolComponent3</td><td/><td/><td>_7A91C60E_BFFD_4EC7_9F38_0C88E1B58FCE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>App_GlobalResources</td><td/><td/><td>_6FA5C3F5_D085_4D4F_B331_D14FE0461751_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Assets</td><td/><td/><td>_64AD0EAF_8270_4FB3_B795_6D37A8097CF9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Bin</td><td/><td/><td>_5FBC7188_A2DC_4C0E_A3C7_AC4663D7BA52_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CBOEHelp</td><td/><td/><td>_4ABEB334_7F46_4242_B45A_E9328F558268_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17</td><td/><td/><td>_55F39456_A4D8_4107_9522_8D0123C65F7E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17_Server</td><td/><td/><td>_92B65B8D_5A15_4E52_9DB3_567593CF7B4F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO17_Server_File</td><td/><td/><td>_8833D279_CEAE_45CB_B2CD_BEB4241BA2C1_FILTER</td><td/><td/><td/><td/></row>
@@ -4365,12 +4475,15 @@ End If
 		<row><td>REPORTQ.dll</td><td/><td/><td>_E904579F_7584_4D98_893D_E771B376DA6D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>REPORTQ_Server</td><td/><td/><td>_607DE1B9_6A99_40F1_ABF3_953EBB33125B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>REPORTQ_Server_File</td><td/><td/><td>_6171D72E_D86D_4912_80F4_55D80EC90B94_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Registration.Client</td><td/><td/><td>_B0AAE241_FDB2_4B09_A4DB_7638E082B249_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Registration.Core.dll</td><td/><td/><td>_65E511F1_7BAB_49AF_913D_745AB8356E78_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Registration.Server</td><td/><td/><td>_B242E5EC_E4BB_47AF_8C47_160238106771_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Registration.ServerWebServices</td><td/><td/><td>_8C23AB70_D503_4858_B497_F658D10DF99B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SingleSignOnCom.dll</td><td/><td/><td>_FF7B9E4D_8F05_4047_9EF8_9B953DD64F83_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SingleSignOnCom.tlb</td><td/><td/><td>_0CED8E5B_EDAE_44C1_A884_57EEC14D48E3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServiceExtensionComponent</td><td/><td/><td>_80CA2C46_50DA_4DFD_BF0E_5F08D4CE2482_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>WebServices</td><td/><td/><td>_03C56F81_CAC4_408C_9391_1BFD288BEBFC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_78397AD3_C9F2_4418_9568_8B7084F6A600_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>WebsiteComponent1</td><td/><td/><td>_8C23AB70_D503_4858_B497_F658D10DF99B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mage.exe</td><td/><td/><td>_9B5F206E_3CC9_4E9E_B9F6_A80E4AC85ACD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mswcrun.dll</td><td/><td/><td>_979B34F0_99D6_4F2F_83E0_0BD3025D2BA1_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -4498,10 +4611,12 @@ End If
 		<row><td>AllOtherFiles70</td><td>&lt;BUILDPROJECTROOT&gt;\Database\CoeDB\Documents</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles75</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles77</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\ServiceTier\RLSConfigurationTool\RLSConfigurationTool\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
+		<row><td>CBOEHelp</td><td>&lt;WORKSPACEPATH&gt;\Documentation</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent2</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Forms</td><td>4</td><td/><td>*.cs</td><td>10</td></row>
 		<row><td>NewComponent3</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\Config</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent4</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PythonScripts</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent5</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\App_Themes</td><td>4</td><td/><td/><td>10</td></row>
+		<row><td>Registration.Client</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist</td><td>4</td><td/><td/><td>8</td></row>
 	</table>
 
 	<table name="ISFeatureDIMReferences">
@@ -4553,17 +4668,18 @@ End If
 		<col def="L255">DisplayName</col>
 		<col def="i4">Type</col>
 		<col def="S72">Component_</col>
-		<row><td>IisItem1</td><td/><td>##ID_STRING536##</td><td>1</td><td>WebsiteComponent1</td></row>
+		<row><td>IisItem1</td><td/><td>##ID_STRING536##</td><td>1</td><td>Registration.ServerWebServices</td></row>
 		<row><td>IisItem10</td><td/><td>##ID_STRING556##</td><td>4</td><td>AppPoolComponent3</td></row>
-		<row><td>IisItem11</td><td>IisItem1</td><td>##ID_STRING560##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem2</td><td>IisItem1</td><td>##ID_STRING540##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem3</td><td>IisItem1</td><td>##ID_STRING541##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem4</td><td>IisItem1</td><td>##ID_STRING569##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem5</td><td>IisItem1</td><td>##ID_STRING543##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem6</td><td>IisItem1</td><td>##ID_STRING544##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem7</td><td>IisItem1</td><td>##ID_STRING545##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem8</td><td>IisItem1</td><td>##ID_STRING546##</td><td>2</td><td>WebsiteComponent1</td></row>
-		<row><td>IisItem9</td><td>IisItem1</td><td>##ID_STRING547##</td><td>2</td><td>WebsiteComponent1</td></row>
+		<row><td>IisItem11</td><td>IisItem1</td><td>##ID_STRING560##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem12</td><td>IisItem1</td><td>##ID_STRING572##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem2</td><td>IisItem1</td><td>##ID_STRING540##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem3</td><td>IisItem1</td><td>##ID_STRING541##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem4</td><td>IisItem1</td><td>##ID_STRING569##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem5</td><td>IisItem1</td><td>##ID_STRING543##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem6</td><td>IisItem1</td><td>##ID_STRING544##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem7</td><td>IisItem1</td><td>##ID_STRING545##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem8</td><td>IisItem1</td><td>##ID_STRING546##</td><td>2</td><td>Registration.ServerWebServices</td></row>
+		<row><td>IisItem9</td><td>IisItem1</td><td>##ID_STRING547##</td><td>2</td><td>Registration.ServerWebServices</td></row>
 	</table>
 
 	<table name="ISIISProperty">
@@ -4622,7 +4738,18 @@ End If
 		<row><td>ISIISProperty136</td><td>IisItem11</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty137</td><td>IisItem11</td><td/><td>AspVer</td><td/><td/><td/><td/><td>4.0.30319</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty138</td><td>IisItem11</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty139</td><td>IisItem12</td><td/><td>Path</td><td/><td/><td/><td/><td>REGISTRATION.SERVER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty14</td><td>IisItem2</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING549##</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty140</td><td>IisItem12</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING573##</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty141</td><td>IisItem12</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty142</td><td>IisItem12</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty143</td><td>IisItem12</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty144</td><td>IisItem12</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty145</td><td>IisItem12</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty146</td><td>IisItem12</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty147</td><td>IisItem12</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty148</td><td>IisItem12</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty149</td><td>IisItem12</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty15</td><td>IisItem2</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty16</td><td>IisItem2</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty17</td><td>IisItem2</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
@@ -4934,7 +5061,8 @@ End If
 		<row><td>PATH_TO_SINGLESIGNON_FILES</td><td>&lt;BUILDPROJECTROOT&gt;\Security\SingleSignOn\SingleSignOn</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
-		<row><td>WORKSPACEPATH</td><td>C:\builds\workspace\TBR-CBOE18.1</td><td/><td>2</td></row>
+		<row><td>WORKSPACEPATH</td><td>&lt;WORKSPACE_PATH_ROOT&gt;</td><td/><td>2</td></row>
+		<row><td>WORKSPACE_PATH_ROOT</td><td>WORKSPACE_PATH_ROOT</td><td/><td>4</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
 	</table>
 
@@ -6906,6 +7034,9 @@ End If
 		<row><td>ID_STRING569</td><td>1033</td><td>CBOEHelp</td><td>0</td><td/><td>547796417</td></row>
 		<row><td>ID_STRING57</td><td>1033</td><td>REGIST~1|Registration Help Guide</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING570</td><td>1033</td><td>ChemBioOffice Enterprise Applications User Guide.htm,ChemBioOffice Enterprise Administrator Guide.htm</td><td>0</td><td/><td>547798529</td></row>
+		<row><td>ID_STRING571</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>1126578693</td></row>
+		<row><td>ID_STRING572</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>1126591173</td></row>
+		<row><td>ID_STRING573</td><td>1033</td><td>index.html</td><td>0</td><td/><td>1126611653</td></row>
 		<row><td>ID_STRING58</td><td>1033</td><td>DATAVI~1|DataView Manager Help Guide</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
