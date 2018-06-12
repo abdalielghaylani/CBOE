@@ -841,31 +841,31 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 								ScriptVal = " onBlur=""UpdateCBFieldVal(this.form,this)"""
 							end if
 
-						output = output &  "<input type=""checkbox""  name=""" & fullfieldname & "_orig" & """ value="
+						output = output &  "<input type=""checkbox"" id=""" & fullfieldname & "_orig" & """ name=""" & fullfieldname & "_orig" & """ value="
 						output = output &  QuotedString(fieldvalue)
 						output = output &  " " & ScriptVal & checkedValue & ">"
-						output = output &  "<input type=""hidden""  name=""" & fullfieldname  & """ value="""
+						output = output &  "<input type=""hidden"" id=""" & fullfieldname  & """ name=""" & fullfieldname  & """ value="""
 						output = output &  fieldvalue
 						output = output &  """>"
 					else
-						output = output &  "<input type=""checkbox""  name=""" & fullfieldname & """  value="
+						output = output &  "<input type=""checkbox"" id=""" & fullfieldname & """ name=""" & fullfieldname & """  value="
 						output = output &  QuotedString(fieldvalue)
 						output = output &  checkedValue &  ">"
 						
 					end if
 				Case "HIDDEN"
-					output = output &  "<input type =""hidden""  name=""" & fullfieldname & """ value = """& fieldvalue & """>"
+					output = output &  "<input type =""hidden"" id=""" & fullfieldname & """ name=""" & fullfieldname & """ value = """& fieldvalue & """>"
 
 				Case "SCRIPT"
 					script_name =theType(1)
 					if detectIE() = true then
-						output = output &  "<input type =""text""  name=""" & fullfieldname & """ value = """& fieldvalue & """ size = """ & width & """ onBlur=""" & script_name & """>"
+						output = output &  "<input type =""text"" id=""" & fullfieldname & """ name=""" & fullfieldname & """ value = """& fieldvalue & """ size = """ & width & """ onBlur=""" & script_name & """>"
 					else
-						output = output &  "<input type =""text""  name=""" & fullfieldname & """ value = """& fieldvalue & """ size = """ & width & """ onChange=""" & script_name & """>"
+						output = output &  "<input type =""text"" id=""" & fullfieldname & """ name=""" & fullfieldname & """ value = """& fieldvalue & """ size = """ & width & """ onChange=""" & script_name & """>"
 					end if
 				Case "TEXTAREA"
 					height = theType(1)
-					output = output &  "<TEXTAREA name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
+					output = output &  "<TEXTAREA id=""" & fullfieldname & """ name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
 					output = output &   " wrap= ""soft"""
 					if theAddScript<> "" then
 						if detectIE = true then
@@ -881,7 +881,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 				
 				Case "TEXTAREA_HARD"
 					height = theType(1)
-					output = output &  "<TEXTAREA name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
+					output = output &  "<TEXTAREA id=""" & fullfieldname & """ name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
 					output = output &   " wrap= ""hard"""
 					if theAddScript<> "" then
 						if detectIE = true then
@@ -897,7 +897,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 					
 				Case "TEXTAREA_DEFAULT"
 					height = theType(1)
-					output = output &  "<TEXTAREA name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
+					output = output &  "<TEXTAREA id=""" & fullfieldname & """ name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
 					if theAddScript <> "" then
 						if detectIE = true then
 							output = output & " onBlur=""" & theAddScript_orig & """>"
@@ -912,7 +912,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 					
 				Case "TEXTAREA_NOWRAP"
 					height = theType(1)
-					output = output &  "<TEXTAREA name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
+					output = output &  "<TEXTAREA id=""" & fullfieldname & """ name=""" & fullfieldname & """ cols=" & QuotedString(width) & " rows=" & QuotedString(height) 
 					output = output &   " wrap= ""off"""
 					if theAddScript<> "" then
 						if detectIE = true then
@@ -941,7 +941,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 					if detectIE5() = true then
 						'SYAN 12/12/2003 to fix CSBR-35466
 						'output = output &  "<input type=""text"" name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onBlur=""isValid(this, " & thetype(1) & ")"">"
-						output = output &  "<input type=""text"" name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onBlur=""isValid(this, " & Application("DATE_FORMAT") & ")"">"
+						output = output &  "<input type=""text"" id=""" & fullfieldname & """ name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onBlur=""isValid(this, " & Application("DATE_FORMAT") & ")"">"
 						
 						'SYAN 12/12/2003 to fix CSBR-35466
 						'output = output & "<a href="" ""  onclick=""return PopUpDate(&quot;" & fullfieldname & "&quot;,&quot;" & theFullSourcePath & "&quot;)"">"
@@ -950,7 +950,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 					else
 						'SYAN 12/12/2003 to fix CSBR-35466
 						'output = output &  "<input type=""text"" name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onChange=""isValid(this, " & thetype(1) & ")"">"
-						output = output &  "<input type=""text"" name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onChange=""isValid(this, " & Application("DATE_FORMAT") & ")"">"
+						output = output &  "<input type=""text"" id=""" & fullfieldname & """ name=""" & fullfieldname & """ size=""" & width & """ value=""" & fieldvalue & """ onChange=""isValid(this, " & Application("DATE_FORMAT") & ")"">"
 
 						'SYAN 12/12/2003 to fix CSBR-35466
 						'output = output & "<a href="" "" onclick=""return PopUpDate(&quot;" & fullfieldname & "&quot;,&quot;" & theFullSourcePath & "&quot;)"">"
@@ -964,6 +964,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 					'stop
 				'End of SYAN modification
 					output = output &  "<input type=""text"" name=" & QuotedString(fullfieldname)
+					output = output &  " id=" & QuotedString(fullfieldname)
 					output = output &  " SIZE=" & QuotedString(width)
 					output = output &  " value=" & QuotedString(fieldvalue) 
 					fieldtype = theType(1)
@@ -1057,8 +1058,9 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 				'SYAN added on 10/7/2005 to fix CSBR-58866	
 				Case "HYPERLINK"
 					output = output &  "<input type=""text"" name=" & QuotedString(fullfieldname) 
+					output = output &  " id=" & QuotedString(fullfieldname)
 					output = output &  " SIZE=" & QuotedString(width)
-					output = output &  " value=" & QuotedString(fieldvalue) 
+					output = output &  " value=" & QuotedString(fieldvalue)
 					fieldtype = theType(1)
 					if theAddScript <> "" then
 						theAddScript_orig = theAddScript
@@ -1083,6 +1085,7 @@ Function getShowInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldname, By
 			Case Else
 					
 					output = output &  "<input type=""text"" name=" & QuotedString(fullfieldname)
+					output = output &  " id=" & QuotedString(fullfieldname)
 					output = output &  " SIZE=" & QuotedString(width)
 					output = output &  " value=" & QuotedString(fieldvalue) 
 						if detectIE() = true then
