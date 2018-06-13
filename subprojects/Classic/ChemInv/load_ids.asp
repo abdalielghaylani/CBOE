@@ -182,7 +182,7 @@ var strString = readFile
 <form name = "formx" action="Load_IDs.asp" method="post"  ENCTYPE="multipart/form-data">
 Click browse to select an SD file containing query molecules.
 <table border = "1"><tr><td nowrap>
-			<input type="file" name="browsefile" onChange="dosubmit()" size = "30">
+			<input type="file" name="browsefile" size = "30">
 			
 				<font face="Arial" size="2" color="#182889"><strong>
 				<input type="button" value="Load File" onClick="dosubmit()">
