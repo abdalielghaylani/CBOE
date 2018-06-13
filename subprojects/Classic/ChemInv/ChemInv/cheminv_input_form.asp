@@ -692,10 +692,10 @@ Select Case lCase(sTab)
 	Case "substructure"
 %>
 		<table border="0" cellpadding="0" cellspacing="0">
-		  	<tr>
-		  	<td rowspan="2">
-		  		<img src="../graphics/pixel.gif" width="60" height="1" alt border="0">
-		  	</td>
+			<tr>
+			<td rowspan="2">
+				<img src="../graphics/pixel.gif" width="5" height="1" alt border="0">
+			</td>
 			<td>
 				<table border="0">
 					<tr>
@@ -707,10 +707,10 @@ Select Case lCase(sTab)
 						</td>
 					</tr>
 					<tr>
-			        	<td valign="top" align="left" colspan="2">
+						<td valign="top" align="left" colspan="2">
 							<%ShowStrucInputField  dbkey, formgroup, "inv_vw_compounds.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
-		      		</tr>
+					</tr>
 					<tr>
 						<td colspan="2" align="left">
 							<input Type="checkbox" onclick="top.navbar.location.reload()" <%=Checked%> name="checkbox1">Group results by chemical structure
@@ -722,59 +722,59 @@ Select Case lCase(sTab)
 				<!-----COL 1 -------->
 				<table border="0">
 					<tr>
-			        	<td>
+						<td>
 							<span title="(e.g. Acetonitrile)">Substance Name:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.Substance_Name", "0","30"%>        
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="(e.g. 50-50-0)">CAS Registry#:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.CAS", "0","30"%>        
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="(e.g. X1001545-9)">ACX Number:<br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.ACX_ID", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.Substance_Name", "0","28"%>        
 						</td>
 					</tr>
-		      		<tr>
-		        		<td>
+					<tr>
+						<td>
+							<span title="(e.g. 50-50-0)">CAS Registry#:</span><br>
+							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.CAS", "0","28"%>        
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="(e.g. X1001545-9)">ACX Number:<br>
+							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.ACX_ID", "0","28"%>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<span title="(e.g. C8H3Cl3O, C1-5O&lt;3F0-1)">Molecular Formula:<br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.Formula", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.Formula", "0","28"%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 							<span title="&lt;120, 120-130, &gt;250">MolWeight Range:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.MolWeight", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_vw_compounds.MolWeight", "0","28"%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 							<span title="Numerical value">Purity:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Purity", "0","12"%>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Purity_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 3 ORDER BY lower(Unit_Abreviation) ASC", 16, RepeatString(20, "&nbsp;"), "")%>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Purity", "0","17"%>
+							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Purity_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 3 ORDER BY lower(Unit_Abreviation) ASC", 16, RepeatString(11, "&nbsp;"), "")%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 							<span title="Numerical value">Concentration:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Concentration", "0","12"%>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Conc_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK in (3,6) ORDER BY lower(Unit_Abreviation) ASC", 16, RepeatString(20, "&nbsp;"), "")%>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Concentration", "0","17"%>
+							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Conc_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK in (3,6) ORDER BY lower(Unit_Abreviation) ASC", 16, RepeatString(11, "&nbsp;"), "")%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 							<span title="(e.g. HPLC, ACS, Ultra Pure)">Grade:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Grade", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Grade", "0","28"%>
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 							<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span><br>
-							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 17, true%> 
+							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 4, 12, true%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<BR>
 							<font size="1"><input Type="CheckBox" name="searchSubLocations" onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>         
 							<br>
@@ -782,145 +782,152 @@ Select Case lCase(sTab)
 							<font size="1"><input Type="CheckBox" name="ExcludeSpecialLocations" value="checked" <%if Application("DefaultExcludeSpecialLocations") then %>checked <%end if %> onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)">Exclude <a class="menuLink" href="#" onclick="OpenDialog('SpecialLocationSelector.asp', 'LocSelectDiag', 1); return false">Special</a> Locations</font>         
 							<input type="hidden" name="inv_containers_subsearch_alias.Location_ID_FK">
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
+					</tr>
+					<tr>
+						<td>
 						</td>
-		      		</tr>
-		      		
-		    	</table>
+					</tr>
+					
+				</table>
 			</td>
 			<td valign="top">
 				<!-----COL 2 -------->
 				<table border="0">
 					<tr>
-			        	<td>
+						<td>
 							<span title="One or more Container Barcode Id values separated by commas">Container ID:<%=GetBarcodeIcon()%>&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Barcode", "0","30"%>   
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="One or more Container ID values separated by commas">Container ID (internal):&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_ID", "0","30"%>   
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="Descriptive name of the container">Container Name:&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_Name", "0","30"%>        
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="Pick an option from the list">Container Type:</span><br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Container_Type_ID_FK", "", "SELECT Container_Type_ID AS Value, Container_Type_Name AS DisplayText FROM inv_container_types ORDER BY lower(Container_Type_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="Pick an option from the list">Container Status:</span><br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Container_Status_ID_FK", "", "SELECT Container_Status_ID AS Value, Container_Status_Name AS DisplayText FROM inv_container_status ORDER BY lower(Container_Status_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="Pick an option from the list">Unit of Measure:</span><br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Meas_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2,4) ORDER BY lower(Unit_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Numerical value">Size <span id="UOMtext1"></span>:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Max", "0","30"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Numerical value">Qty Remain <span id="UOMtext2"></span>:</span></span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Remaining", "0","30"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Numerical value">Qty Available <span id="UOMtext3"></span>:</span></span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Available", "0","30"%>
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="One or more Location Barcode values separated by commas">Location Barcode:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_Locations.Location_Barcode", "0","30"%>        
-						</td>
-		      		</tr>
-		    	</table>
-			</td>
-			<td valign="top">
-				<!-----COL 3 -------->
-				<table border="0">
-					<tr>
-			        	<td>
-							<span title="Supplier's catalog number">Catalog Number:&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Supplier_CatNum", "0","30"%>        
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="Pick an option from the list">Supplier:</span><br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Supplier_ID_FK", "", "SELECT Supplier_ID AS Value, Supplier_Short_Name AS DisplayText FROM inv_suppliers ORDER BY lower(Supplier_Short_Name) ASC", 27, RepeatString(43, "&nbsp;"), "")%>        
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="<%=dateFormatString%>">Expiration Date:<br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Expires", "DATE_PICKER:8","27"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="<%=dateFormatString%>">Date Ordered:<br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Ordered", "DATE_PICKER:8","27"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="<%=dateFormatString%>">Date Received:<br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Received", "DATE_PICKER:8","27"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Purchase Order Number">PO Number:<br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.PO_Number", "0","30"%>
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="Supplier's lot number">Lot Number:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Lot_Num", "0","30"%>        
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Must be a number">Container Cost($):<br>
-							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_Cost", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Barcode", "0","28"%>   
 						</td>
 					</tr>
-		      		<tr>
-		        		<td>
-							<span title="User ID of container owner">Owner:<br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Owner_ID_FK", "", "SELECT owner_id AS Value, description AS DisplayText FROM " & Application("CHEMINV_USERNAME") & ".inv_owners ORDER BY lower(description) ASC", 27, RepeatString(43, "&nbsp;"), "")%>
+					<tr>
+						<td>
+							<span title="One or more Container ID values separated by commas">Container ID (internal):&nbsp;</span><br>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_ID", "0","28"%>   
 						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="User ID of current user responsible for the container">Current User:<br>
-							<%= ShowSelectBox2("inv_containers_subsearch_alias.Current_User_ID_FK", "", "SELECT User_ID AS Value, Last_Name||DECODE(First_Name, NULL, '', ', '||First_Name) AS DisplayText FROM CS_SECURITY.People ORDER BY lower(Last_Name) ASC", 27, RepeatString(43, "&nbsp;"), "")%>
+					</tr>
+					<tr>
+						<td>
+							<span title="Descriptive name of the container">Container Name:&nbsp;</span><br>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_Name", "0","28"%>        
 						</td>
-		      		</tr>
-		    	</table>
+					</tr>
+					<tr>
+						<td>
+							<span title="Pick an option from the list">Container Type:</span><br>
+							<%= ShowSelectBox2("inv_containers_subsearch_alias.Container_Type_ID_FK", "", "SELECT Container_Type_ID AS Value, Container_Type_Name AS DisplayText FROM inv_container_types ORDER BY lower(Container_Type_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="Pick an option from the list">Container Status:</span><br>
+							<%= ShowSelectBox2("inv_containers_subsearch_alias.Container_Status_ID_FK", "", "SELECT Container_Status_ID AS Value, Container_Status_Name AS DisplayText FROM inv_container_status ORDER BY lower(Container_Status_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="Pick an option from the list">Unit of Measure:</span><br>
+							<%= ShowSelectBox2("inv_containers_subsearch_alias.Unit_Of_Meas_ID_FK", "", "SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2,4) ORDER BY lower(Unit_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="Numerical value">Size <span id="UOMtext1"></span>:</span><br>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Max", "0","28"%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="Numerical value">Qty Remain <span id="UOMtext2"></span>:</span></span><br>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Remaining", "0","28"%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="Numerical value">Qty Available <span id="UOMtext3"></span>:</span></span><br>
+							<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Qty_Available", "0","28"%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span title="One or more Location Barcode values separated by commas">Location Barcode:</span><br>
+							<%ShowInputField dbkey, formgroup, "inv_Locations.Location_Barcode", "0","28"%>        
+						</td>
+					</tr>
+					
+					
+				</table>
 			</td>
-		  </tr>
+			</tr>	
+			<tr>
+			<!----- Columns on the bottom -------->		
+				<td valign="top">
+					<table border="0" width="100%">
+						<tr>
+							<td>
+								<span title="Supplier's catalog number">Catalog Number:&nbsp;</span><br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Supplier_CatNum", "0","28"%>        
+							</td>				
+							<td>
+								<span title="<%=dateFormatString%>">Date Ordered:<br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Ordered", "DATE_PICKER:8","24.75"%>
+							</td>
+							
+						</tr>
+						<tr>
+							<td>
+								<span title="Pick an option from the list">Supplier:</span><br>
+								<%= ShowSelectBox2("inv_containers_subsearch_alias.Supplier_ID_FK", "", "SELECT Supplier_ID AS Value, Supplier_Short_Name AS DisplayText FROM inv_suppliers ORDER BY lower(Supplier_Short_Name) ASC", 27, RepeatString(51, "&nbsp;"), "")%>        
+							</td>
+							<td>
+								<span title="<%=dateFormatString%>">Date Received:<br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Received", "DATE_PICKER:8","24.75"%>
+							</td>				
+						</tr>
+						<tr>
+							<td>
+								<span title="<%=dateFormatString%>">Expiration Date:<br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Date_Expires", "DATE_PICKER:8","24.75"%>
+							</td>			
+							<td>
+								<span title="Purchase Order Number">PO Number:<br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.PO_Number", "0","28"%>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td valign="top">
+					<table border="0" width="100%">
+						<tr>
+							<td>
+								<span title="Supplier's lot number">Lot Number:</span><br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Lot_Num", "0","28"%>        
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span title="Must be a number">Container Cost($):<br>
+								<%ShowInputField dbkey, formgroup, "inv_containers_subsearch_alias.Container_Cost", "0","28"%>
+							</td>
+						</tr>			
+						<tr>
+							<td>
+								<span title="User ID of container owner">Owner:<br>
+								<%= ShowSelectBox2("inv_containers_subsearch_alias.Owner_ID_FK", "", "SELECT owner_id AS Value, description AS DisplayText FROM " & Application("CHEMINV_USERNAME") & ".inv_owners ORDER BY lower(description) ASC", 27, RepeatString(51, "&nbsp;"), "")%>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td valign="top">
+					<table border="0" width="100%">
+						<tr>
+							<td>
+								<span title="User ID of current user responsible for the container">Current User:<br>
+								<%= ShowSelectBox2("inv_containers_subsearch_alias.Current_User_ID_FK", "", "SELECT User_ID AS Value, Last_Name||DECODE(First_Name, NULL, '', ', '||First_Name) AS DisplayText FROM CS_SECURITY.People ORDER BY lower(Last_Name) ASC", 27, RepeatString(51, "&nbsp;"), "")%>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
 
 <%

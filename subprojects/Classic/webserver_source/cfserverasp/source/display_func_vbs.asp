@@ -3745,7 +3745,7 @@ Function getShowStrucInputField(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 		else
 			structureTable = tablenameTemp(0) 
 		end if
-		output= output & "<table><tr><td>Structures From SD File</td><td>" & getShowSDFileSearchInputField(dbkey, formgroup,structureTable,"17") & "</td></tr></table>"
+		output= output & "<table><tr><td>Structures From SD File</td><td>" & getShowSDFileSearchInputField(dbkey, formgroup,structureTable,"24") & "</td></tr></table>"
 	end if
 	getShowStrucInputField=output
 End Function

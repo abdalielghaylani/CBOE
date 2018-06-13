@@ -127,14 +127,11 @@ End Function
 
 Function detectIE()
 	IEBrowser = false
-
 	UserAgent = Request.ServerVariables("HTTP_USER_AGENT")
-			'response.write UserAgent
-
-		If InStr(UCASE(UserAgent), "MSIE")>0 then
-			IEBrowser = true
-		end if
-		'IEBrowser = false
+	If ((InStr(UCASE(UserAgent), "MSIE")>0) Or (InStr(UCASE(UserAgent), "RV:")>0 And InStr(UCASE(UserAgent), "TRIDENT")>0))  then
+		'Compatibility mode Or IE11 or higher.
+		IEBrowser = true
+	end if
 	detectIE = IEBrowser
 End Function
 
