@@ -203,13 +203,13 @@ Sub BuildResultsTree(ByVal pSearchType)
 				anchorIndex = 1
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description, Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name, max(collapse_child_nodes) as isRack, Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_containers, inv_compounds WHERE inv_locations.Location_ID = inv_containers.Location_ID_FK AND inv_containers.compound_id_fk = inv_compounds.compound_id AND inv_compounds." & fieldName & "='" & BaseID & "') GROUP BY inv_locations.Location_ID HAVING Max(inv_locations.Parent_ID) IS NOT NULL ORDER BY Max(Level) DESC"
 			Case "ByContainerID"
-				anchorIndex = "document.anchors.length-1"
+				anchorIndex = "document.getElementsByTagName('a')[document.getElementsByTagName('a').length-1].id"
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description,  Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name, max(collapse_child_nodes) as isRack, Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_containers WHERE inv_locations.Location_ID = inv_containers.Location_ID_FK AND inv_containers.Container_ID=" & ContainerID & ") GROUP BY inv_locations.Location_ID  ORDER BY Max(Level) DESC"
 			Case "PlatesByCompoundID"
 				anchorIndex = 1
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description, Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name, Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_wells, inv_plates WHERE inv_locations.Location_ID = inv_plates.Location_ID_FK AND inv_plates.plate_id = inv_wells.plate_id_fk AND inv_wells.Compound_ID_FK=" & BaseID & ") GROUP BY inv_locations.Location_ID HAVING Max(inv_locations.Parent_ID) IS NOT NULL ORDER BY Max(Level) DESC"
 			Case "PlatesByPlateID"
-				anchorIndex = "document.anchors.length-1"
+				anchorIndex = "document.getElementsByTagName('a')[document.getElementsByTagName('a').length-1].id"
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description,  Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name,max(collapse_child_nodes) as isRack, Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_plates WHERE inv_locations.Location_ID = inv_plates.Location_ID_FK AND inv_plates.plate_ID=" & plateID & ") GROUP BY inv_locations.Location_ID  ORDER BY Max(Level) DESC"
 		End Select
 		'Response.Write sSQL 
@@ -275,13 +275,12 @@ End Sub
 
 %>
 <SCRIPT LANGUAGE=javascript>
-	if ((document.anchors("<%="e" & Session("CurrentLocationID")%>")) && (document.anchors("<%="e" & Session("CurrentLocationID")%>").href.length > 0)) {
-		document.anchors("<%="e" & Session("CurrentLocationID")%>").click();
-	}
-	else if (document.anchors(<%=anchorIndex%>)){
-		//alert('Clicking here: ' + document.anchors(<%=anchorIndex%>));
-		document.anchors(<%=anchorIndex%>).click();
-	}
+    if ((document.getElementById("<%="e" & Session("CurrentLocationID")%>")) && (document.getElementById("<%="e" & Session("CurrentLocationID")%>").href.length > 0)) {
+        document.getElementById("<%="e" & Session("CurrentLocationID")%>").click();
+    }
+    else if (document.getElementById(<%=anchorIndex%>)){
+        document.getElementById(<%=anchorIndex%>).click();
+    }
 </SCRIPT>
 
 </BODY>
