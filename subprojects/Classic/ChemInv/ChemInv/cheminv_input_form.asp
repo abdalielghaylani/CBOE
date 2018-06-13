@@ -202,14 +202,15 @@ Select Case lCase(sTab)
 %>
         <input type=hidden name="inv_compounds.reg_id_fk" value=" (1 = 1) " />
 	    <input type=hidden name="inv_compounds.batch_number_fk" value="  (1 = 1) " />
-		<table border="0" width="500" cellpadding="0" cellspacing="0">
+	    <br/>	
+		<table border="0" width="800px" cellpadding="0" cellspacing="0">
 		  	<tr>
 		  	<td rowspan="2">
-		  		<img src="../graphics/pixel.gif" width="60" height="1" alt border="0">
+		  		<img src="../graphics/pixel.gif" width="40" height="1" alt border="0">
 		  	</td>
 			<td valign="top">
 				<!-----COL 1 -------->
-				<table border="0">
+				<table border="0" width="260px">
 					<tr>
 			        	<td>
 							<span title="(e.g. 50-50-0)">CAS Registry#:</span><br>
@@ -272,7 +273,7 @@ Select Case lCase(sTab)
 		      		<tr>
 		        		<td>
 							<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span><br>
-							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 16, true%> 
+							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 8, 10, true%> 
 							<font size="1"><input Type="CheckBox" name="searchSubLocations"  onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>         
 							<br>
 							<input type="hidden" name="SpecialLocationList" value="<%=invSpecialLocs%>">
@@ -288,7 +289,7 @@ Select Case lCase(sTab)
 			</td>
 			<td valign="top">
 				<!-----COL 2 -------->
-				<table border="0">
+				<table border="0" width="250px">
 					<tr>
 			        	<td>
 							<span title="One or more Container Barcode Id values separated by commas">Container ID:<%=GetBarcodeIcon()%>&nbsp;</span><br>
@@ -362,7 +363,7 @@ Select Case lCase(sTab)
 			</td>
 			<td valign="top">
 				<!-----COL 3 -------->
-				<table border="0">
+				<table border="0" width="250px">
 					<tr>
 			        	<td>
 							<span title="Supplier's catalog number">Catalog Number:&nbsp;</span><br>
