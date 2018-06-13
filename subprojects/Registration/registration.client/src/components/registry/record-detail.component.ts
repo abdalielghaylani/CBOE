@@ -368,18 +368,22 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       return;
     }
     if (this.template) {
-      let dialogResult = dxDialog.confirm(
-        `Do you want to overwrite the saved template?`,
-        'Confirm overwrite template');
-      dialogResult.done(response => {
-        if (response) {
-          this.updateTemplate();
-        }
+      let templateDialog = dxDialog.custom({
+        title: 'Confirm overwrite template',
+        message: 'Do you want to overwrite the saved template?',
+        buttons: [{ text: 'Yes', onClick: () => { this.updateTemplate(); } },
+        { text: 'No', onClick: () => { this.showSaveTemplatePopup(); } },
+        { text: 'Cancel' }]
       });
+      templateDialog.show();
     } else {
-      this.saveTemplatePopupHeight = !!navigator.userAgent.match(/firefox/i) ? 238 : 220;
-      this.saveTemplatePopupVisible = true;
+      this.showSaveTemplatePopup();
     }
+  }
+
+  private showSaveTemplatePopup() {
+    this.saveTemplatePopupHeight = !!navigator.userAgent.match(/firefox/i) ? 238 : 220;
+    this.saveTemplatePopupVisible = true;
   }
 
   private saveTemplate(e) {
