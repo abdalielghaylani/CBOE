@@ -385,7 +385,7 @@ if cInt(cntContainersInRack) = 1 then strContainersInRack = cntContainersInRack 
             <ul id="nav">
                 <li><a href="#" title="Select All" onclick="CheckAll(true); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Select All</a></li>
                 <li><a href="#" title="Clear All" onclick="CheckAll(false); return false" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Clear All</a></li>
-                <li><a href="/cheminv/gui/<%=Session(" TabFrameURL ")%>?containerCount=0&clear=1&showInList=<%=showInList%>" target="TabFrame" title="Clear All" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Cancel MultiSelect</a></li>
+                <li><a href="/cheminv/gui/<%=Session("TabFrameURL")%>?containerCount=0&clear=1&showInList=<%=showInList%>" target="TabFrame" title="Clear All" class="contextMenu" onmouseover="this.className = 'menuOn'" onmouseout="this.className = 'contextMenu';">Cancel MultiSelect</a></li>
             </ul>
         </div>
 
