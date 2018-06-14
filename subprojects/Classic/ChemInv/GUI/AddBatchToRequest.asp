@@ -335,7 +335,7 @@ end if
         //-- Change Done by : Manoj Unnikrishnan
         //-- Purpose: If using Re-Aliquot Samples we need to use the CreateSamples workflow; This is to withhold the user from duplicating the fulfill request
         //-- Date: 14/03/2010
-			OpenDialog('/Cheminv/GUI/CreateSamplesFromBatch.asp?Action=new&amp;batchid=<%=BatchID%>&amp;DefLocationID=' + defLocationID + '&amp;RequestID=<%=RequestID%>&amp;SampleRegID=<%=SampleRegID%>&amp;SampleBatchNumber=<%=SampleBatchNumber%>&amp;ContainerIDList='+strContainerIDList, 'Diag', 1); return false;
+			OpenDialog('/Cheminv/GUI/CreateSamplesFromBatch.asp?Action=new&batchid=<%=BatchID%>&DefLocationID=' + defLocationID + '&RequestID=<%=RequestID%>&SampleRegID=<%=SampleRegID%>&SampleBatchNumber=<%=SampleBatchNumber%>&ContainerIDList='+strContainerIDList, 'Diag', 1); return false;
 		/*End of Change #122385#*/	
 		}		
 	}
