@@ -27,7 +27,7 @@ Sub GetMultiDBSelectList()
 		display_text = "Select the databases to search"
 	end if
 	multi_dbnames_array = split(multi_dbnames, ",", -1)
-	Response.Write "<table border = ""0"" bgcolor=""#D1D1D1"" width = ""100%""><tr><td>"
+	Response.Write "<table border = ""0"" bgcolor=""#f5f5f5"" width = ""100%""><tr><td>"
 	Response.Write "<small>" & display_text & "</small><br>"
 		' !DGB! 11/21/02
 		' Allow selected checkboxes to be controlled by ini setting and remembered from previous seacrh
@@ -1252,7 +1252,7 @@ Function getGetSearchOptions(ByVal dbkey, ByVal formgroup, ByVal fullfieldname,B
 			Select Case display
 				Case "NONE"
 				Case "SELECTLIST"
-							output = output & "<small><strong><font face=""arial"">SearchType</font></strong></small><br>"
+							output = output & "<strong style=""font-size: 12px;font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;"">SearchType:</strong><br/>"
 							output = output & "<select name=""" & fullfieldname & ".sstype""size=""1"">"
 						
 							if (searchtype = "0"  OR  searchtype = "") then
