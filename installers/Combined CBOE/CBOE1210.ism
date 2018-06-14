@@ -353,41 +353,23 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>AllOtherFiles</td><td>{A6EB2053-75B7-4357-98A0-0BB7DAB8ADF3}</td><td>CHEMOFFICEENTERPRISE</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles1</td><td>{E1AA072B-D43A-455A-9C6B-FE263FFDDC1E}</td><td>CHEMBIOVIZ</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles15</td><td>{94AA72B9-424D-4216-9B8C-0C22C0C874CD}</td><td>RUNTIMELIBRARIES</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles21</td><td>{7999AE6B-D364-4B5E-92D6-31753FD6BE62}</td><td>WEBAPP</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles28</td><td>{27FED36F-B1D6-4E59-9C36-5502BBE686B2}</td><td>BIN3</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles29</td><td>{A9C6E909-890A-495C-9231-4E8BBE6E8036}</td><td>HELP1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles3</td><td>{587F962A-196D-4E91-8558-D969F59CD7C9}</td><td>FRAMEWORK</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles31</td><td>{0C01CEAD-ACA8-457B-AFC8-5042DDA99421}</td><td>CommonAppDataFolder</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles32</td><td>{5BF0ED94-FBB0-4498-BF66-633ACD5024DC}</td><td>PERKINELMER</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles33</td><td>{58AD3C73-6C7F-4398-AF4A-4BFA91E46E73}</td><td>CHEMOFFICEENTERPRISE1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles34</td><td>{47CE7723-1EA9-4241-9EBD-8B85C0DCC4A1}</td><td>CHEMOFFICE</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles35</td><td>{1C24FD1D-90BB-4EFB-A603-BA848054479D}</td><td>SAMPLE1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles36</td><td>{9DECD122-304A-4D5B-A89D-B6BFCE06B66F}</td><td>SAMPLE_ORA1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles37</td><td>{C1E99217-316A-4E79-9A3A-E5494F777320}</td><td>SAMPLE_SQLSERVER1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles38</td><td>{812E171D-97C4-429D-87B9-C5FBACBC2067}</td><td>WEBSERVER_SOURCE1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles39</td><td>{9A8208E0-A925-4F56-A7DD-D0D623C0780A}</td><td>CS_SECURITY1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles4</td><td>{FC4A68B4-D8A7-4FEC-AD2D-43C14AE5242F}</td><td>MANAGER</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles40</td><td>{A3CBA6C8-526E-4DA2-B390-25CCD8A70716}</td><td>CONFIG1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles41</td><td>{E46A10AA-A7CF-424B-9193-0C006A409138}</td><td>COMMON</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles43</td><td>{BC7C9AA2-15C5-477C-8204-BB8172FD7276}</td><td>CHEMACX1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles44</td><td>{114BFA2E-FAC1-47CC-BAD0-DE79DA0C296A}</td><td>CHEMINV</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles45</td><td>{337283B5-402E-4C23-B753-0AF3C353A535}</td><td>CBOEHELP</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles48</td><td>{498FE427-C3A9-48C8-B618-400CBC88141E}</td><td>DATALOADER</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles5</td><td>{55823696-7538-4311-8BD7-669FE163FAAB}</td><td>REGISTRATION</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles50</td><td>{782465CC-1D7A-4BD7-9D31-DE8091C6BADE}</td><td>DATALOADER_CLICKONCE</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles51</td><td>{92D8481E-4A83-4E10-BEB0-7B6C3440FB1C}</td><td>DATALOADER2</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles52</td><td>{C6B47F8A-8568-4029-AA13-F5475BF6AE3E}</td><td>WindowsVolume</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles53</td><td>{215C5CC4-BD71-4246-A78A-6C88FB99D8E0}</td><td>CHEMOFFICE_DATA</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles54</td><td>{9EAD337D-73DD-4EE2-8F71-2910ACEBDB11}</td><td>CHEMACX</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles55</td><td>{7FD15E12-7FDB-4B0A-8710-DAC133075D13}</td><td>CHEMINV1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles57</td><td>{1EDAD1A4-5FFA-4A0E-93F5-5D9D8499C02D}</td><td>CFWTEMP</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles58</td><td>{8C241B23-DCF3-4081-8E7D-D664A3FDB8A4}</td><td>CONFIGURATION_AND_DB_TOOLS</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles59</td><td>{BC939B9F-22BC-4FA7-B7A6-4F907073B661}</td><td>WEBSERVICE</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles6</td><td>{951651F5-B511-42C6-8D8D-F0455C070907}</td><td>SECURITY</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles60</td><td>{78F004A0-A026-472E-AD4A-DDF26DC6CA26}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles61</td><td>{8158C786-2FB5-4433-8356-8B46796914E0}</td><td>WEBSERVICEHOST</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles71</td><td>{CDF06114-3F96-4A05-B737-49C0AFA3DCCE}</td><td>DLLS</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles73</td><td>{B27E9D11-A5BB-4460-BBED-2F7A49B4AB07}</td><td>DLLS</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles74</td><td>{0ECC1F20-21C8-4E1A-A99A-BBD165897498}</td><td>DLLS</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -415,15 +397,12 @@
 		<row><td>CSSecurityLDAP_Server</td><td>{4BDB7314-B3A2-4E3E-A430-95DB0481E8CB}</td><td>_07E07208_61A6_4C6A_9033_C91C39B9FB55_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSSecurityLDAP_Server_File</td><td>{5EDBA113-EBE0-4EC0-80E2-4DCE899612E3}</td><td>NEW_DIRECTORY7</td><td>0</td><td/><td>cssecurityldap.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td>{FDDCCA6E-86EE-4A64-B2B5-5C24C9B8BA1D}</td><td>RUNTIMELIBRARIES</td><td>8</td><td/><td>cambridgesoft.coe.framework.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>{20BFA985-1B77-4AE2-BB75-0D10897934F2}</td><td>BIN4</td><td>8</td><td/><td>cambridgesoft.coe.framework.1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server</td><td>{F85EAB50-C36F-4677-9E62-5DCF404786C1}</td><td>_93C7DCE3_1049_4389_A848_B114738B6DE3_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server_File</td><td>{2F15C4E4-DF3B-4DA4-80FE-8D0DB628A989}</td><td>NEW_DIRECTORY3</td><td>0</td><td/><td>chemimp.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>FileBatchLoad.exe</td><td>{87AC576D-8A8D-4A63-ADE8-F61E12168332}</td><td>DLLS</td><td>8</td><td/><td>filebatchload.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISRegistryComponent</td><td>{14E10E08-8B3B-438E-B4EC-DC5E713E8854}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MVC71</td><td>{EA0E55F8-FFE1-461E-A5BE-347F315E54AE}</td><td>System64Folder</td><td>8</td><td/><td>msvcp71.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MVC7132</td><td>{9FA6C012-6613-4423-A6A3-57C5B31209BC}</td><td>SystemFolder</td><td>8</td><td/><td>msvcp71.dll1</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>{44723C57-19FE-42FD-A756-7C30E1A6066A}</td><td>BIN4</td><td>8</td><td/><td>microsoft.practices.enterpri</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>{E3D3EFF8-7080-4A8A-A1EF-08C6BB2D0204}</td><td>BIN4</td><td>8</td><td/><td>microsoft.practices.enterpri1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MolParser.dll</td><td>{8AC95B72-6969-4858-AC03-C9B0049C3312}</td><td>DLLS</td><td>8</td><td/><td>molparser.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MolParser_Server</td><td>{640D2AB9-6669-4116-8C00-BCDA000FC76A}</td><td>_92AA34CE_5FBB_4C3E_87AF_66DDAADC2A8E_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MolParser_Server_File</td><td>{F40F0668-4098-47C7-AA55-1F7F8AA67EFB}</td><td>NEW_DIRECTORY11</td><td>8</td><td/><td>molparser.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -446,7 +425,6 @@
 		<row><td>instsrv.exe</td><td>{80E67266-47FE-4D20-BDE3-8451CE6ECBCF}</td><td>RPT</td><td>0</td><td/><td>instsrv.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mage.exe</td><td>{F4705868-0A25-4FA5-ADC2-16A6056C6175}</td><td>DATALOADER_CLICKONCE</td><td>0</td><td/><td>mage.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mswcrun.dll</td><td>{2C7F3753-A529-4974-878F-1FC36EC5BFF3}</td><td>ADMINSOURCE1</td><td>8</td><td/><td>mswcrun.dll1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>mswrun</td><td>{898AE4EB-F57A-4DFB-9C01-6A9934AE94E1}</td><td>ADMINSOURCE</td><td>8</td><td/><td>mswcrun.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1170,7 +1148,7 @@
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>DatabaseFolder</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>CBOE="yes"</td><td>3</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -1203,7 +1181,7 @@
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>ReinstallMode</td><td>omus</td><td>PATCH And REINSTALLMODE=""</td><td>2</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>DatabaseFolder</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -1282,11 +1260,8 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>CBOEHELP</td><td>AllOtherFiles45</td></row>
-		<row><td>CHEMACX</td><td>AllOtherFiles54</td></row>
 		<row><td>CHEMOFFICE</td><td>AllOtherFiles34</td></row>
 		<row><td>CHEMOFFICEENTERPRISE</td><td>AllOtherFiles</td></row>
-		<row><td>CHEMOFFICE_DATA</td><td>AllOtherFiles53</td></row>
 		<row><td>CommonAppDataFolder</td><td>AllOtherFiles31</td></row>
 		<row><td>FRAMEWORK</td><td>AllOtherFiles3</td></row>
 		<row><td>INSTALLDIR</td><td>AppPoolComponent</td></row>
@@ -1301,8 +1276,6 @@
 		<row><td>NEW_DIRECTORY5</td><td>COESSO_Server_File2</td></row>
 		<row><td>NEW_DIRECTORY5</td><td>NewComponent7</td></row>
 		<row><td>NEW_DIRECTORY5</td><td>NewComponent8</td></row>
-		<row><td>PERKINELMER</td><td>AllOtherFiles32</td></row>
-		<row><td>REGISTRATION</td><td>AllOtherFiles5</td></row>
 		<row><td>System64Folder</td><td>AllOtherFiles80</td></row>
 		<row><td>SystemFolder</td><td>AllOtherFiles81</td></row>
 		<row><td>WindowsFolder</td><td>AllOtherFiles76</td></row>
@@ -4325,45 +4298,30 @@ Set shell = Nothing
 		<col def="I4">ISAttributes</col>
 		<col def="S255">ISFolderName</col>
 		<row><td>ACCESSINI</td><td>CONFIG9</td><td>ACCESS~1|AccessINI</td><td/><td>0</td><td/></row>
-		<row><td>ADMINSOURCE</td><td>CFSERVERADMIN</td><td>ADMINS~1|AdminSource</td><td/><td>0</td><td/></row>
 		<row><td>ADMINSOURCE1</td><td>CFSERVERADMIN1</td><td>ADMINS~1|AdminSource</td><td/><td>0</td><td/></row>
 		<row><td>ALLUSERSPROFILE</td><td>TARGETDIR</td><td>.:ALLUSE~1|All Users</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
-		<row><td>BIN3</td><td>SECURITY</td><td>bin</td><td/><td>0</td><td/></row>
-		<row><td>BIN4</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
-		<row><td>BIN6</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
-		<row><td>BIN7</td><td>WEBSERVICEHOST</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>CAMBRIDGESOFT</td><td>ProgramFilesFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
-		<row><td>CBOEHELP</td><td>CHEMOFFICEENTERPRISE</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERADMIN</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|CFServerAdmin</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERADMIN1</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|cfserveradmin</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERADSI</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|CFServerADSI</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERASP</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|cfserverasp</td><td/><td>0</td><td/></row>
-		<row><td>CFWTEMP</td><td>CHEMOFFICE</td><td>cfwtemp</td><td/><td>0</td><td/></row>
-		<row><td>CHEMACX</td><td>CHEMOFFICE_DATA</td><td>ChemACX</td><td/><td>0</td><td/></row>
 		<row><td>CHEMACX.UDL</td><td>CONFIG4</td><td>CHEMAC~1|ChemACX.udl</td><td/><td>0</td><td/></row>
 		<row><td>CHEMACX1</td><td>CHEMOFFICE</td><td>ChemACX</td><td/><td>0</td><td/></row>
-		<row><td>CHEMBIOVIZ</td><td>CHEMOFFICEENTERPRISE</td><td>CHEMBI~1|ChemBioViz</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV</td><td>CHEMOFFICE</td><td>ChemInv</td><td/><td>0</td><td/></row>
-		<row><td>CHEMINV1</td><td>CHEMOFFICE_DATA</td><td>ChemINV</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICE</td><td>IISROOTFOLDER</td><td>CHEMOF~1|ChemOffice</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE</td><td>INSTALLDIR</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
-		<row><td>CHEMOFFICEENTERPRISE1</td><td>PERKINELMER</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE11.0.1.0</td><td>INSTALLDIR</td><td>CHEMOF~1|ChemOfficeEnterprise11.0.1.0</td><td/><td>0</td><td/></row>
-		<row><td>CHEMOFFICE_DATA</td><td>WindowsVolume</td><td>CHEMOF~1|ChemOffice_Data</td><td/><td>0</td><td/></row>
 		<row><td>COMMON</td><td>CHEMOFFICEENTERPRISE</td><td>Common</td><td/><td>0</td><td/></row>
-		<row><td>COMMONRESOURCES</td><td>CHEMOFFICEENTERPRISE</td><td>COMMON~1|CommonResources</td><td/><td>0</td><td/></row>
 		<row><td>COMPLUS_APPLICATIONS</td><td>ProgramFilesFolder</td><td>COMPLU~1|COMPlus Applications</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG</td><td>SAMPLE_ORA1</td><td>Config</td><td/><td>0</td><td/></row>
-		<row><td>CONFIG1</td><td>CHEMOFFICE</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG10</td><td>CS_SECURITY1</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG11</td><td>SAMPLE1</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG2</td><td>SAMPLE_SQLSERVER1</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG4</td><td>CHEMINV</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG8</td><td>CSWDA</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG9</td><td>CHEMACX1</td><td>Config</td><td/><td>0</td><td/></row>
-		<row><td>CONFIGURATION_AND_DB_TOOLS</td><td>CHEMOFFICEENTERPRISE</td><td>CONFIG~1|Configuration and DB Tools</td><td/><td>0</td><td/></row>
 		<row><td>CONTENTAREA</td><td>PUBLIC</td><td>CONTEN~1|ContentArea</td><td/><td>0</td><td/></row>
 		<row><td>CONTENTAREA1</td><td>PUBLIC1</td><td>CONTEN~1|ContentArea</td><td/><td>0</td><td/></row>
 		<row><td>CSWDA</td><td>IISROOTFOLDER</td><td>CSWDA</td><td/><td>0</td><td/></row>
@@ -4389,7 +4347,6 @@ Set shell = Nothing
 		<row><td>DLLS7</td><td>COMMON</td><td>dlls</td><td/><td>0</td><td/></row>
 		<row><td>DLLS8</td><td>COMMON</td><td>dlls</td><td/><td>0</td><td/></row>
 		<row><td>DLLS9</td><td>COMMON</td><td>dlls</td><td/><td>0</td><td/></row>
-		<row><td>DOES_NOT_EXIST_IN_THE_DIRECTORY_TABLE.</td><td>CONFIGURATION_AND_DB_TOOLS</td><td>DOESNO~1|does not exist in the Directory table.</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
 		<row><td>FORMS3</td><td>WEBAPP1</td><td>Forms</td><td/><td>0</td><td/></row>
 		<row><td>FORMS4</td><td>MANAGER1</td><td>Forms</td><td/><td>0</td><td/></row>
@@ -4397,7 +4354,6 @@ Set shell = Nothing
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>HELP1</td><td>SECURITY</td><td>Help</td><td/><td>0</td><td/></row>
 		<row><td>HELP12</td><td>CHEMACX1</td><td>Help</td><td/><td>0</td><td/></row>
 		<row><td>HELP3</td><td>CFSERVERASP</td><td>Help</td><td/><td>0</td><td/></row>
 		<row><td>HELP4</td><td>CHEMINV</td><td>Help</td><td/><td>0</td><td/></row>
@@ -4410,7 +4366,6 @@ Set shell = Nothing
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
-		<row><td>MANAGER</td><td>CHEMOFFICEENTERPRISE</td><td>Manager</td><td/><td>0</td><td/></row>
 		<row><td>MANAGER1</td><td>CHEMOFFICEENTERPRISE11.0.1.0</td><td>Manager</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY1</td><td>_E449D8AD_0E1F_4BF4_A290_01277DBFA9D7_</td><td>.:Server</td><td/><td>0</td><td/></row>
@@ -4427,7 +4382,6 @@ Set shell = Nothing
 		<row><td>NEW_DIRECTORY8</td><td>_71BED3E7_85CA_4BAC_B418_83777C191D66_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY9</td><td>_1D9E94BC_2B52_438D_A2D2_55BD45EA7FD5_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>ORAINI</td><td>CONFIG9</td><td>OraINI</td><td/><td>0</td><td/></row>
-		<row><td>PERKINELMER</td><td>CommonAppDataFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
 		<row><td>PUBLIC</td><td>FORMS3</td><td>Public</td><td/><td>0</td><td/></row>
 		<row><td>PUBLIC1</td><td>FORMS4</td><td>Public</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
@@ -4435,7 +4389,6 @@ Set shell = Nothing
 		<row><td>ProgramFiles64Folder</td><td>TARGETDIR</td><td>.:Prog64~1|Program Files 64</td><td/><td>0</td><td/></row>
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
-		<row><td>REGISTRATION</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
 		<row><td>REGISTRATION1</td><td>CHEMOFFICEENTERPRISE11.0.1.0</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
 		<row><td>RPT</td><td>CFSERVERASP</td><td>RPT</td><td/><td>0</td><td/></row>
 		<row><td>RPT1</td><td>CFSERVERASP</td><td>RPT</td><td/><td>0</td><td/></row>
@@ -4443,8 +4396,6 @@ Set shell = Nothing
 		<row><td>SAMPLE1</td><td>CHEMOFFICE</td><td>Sample</td><td/><td>0</td><td/></row>
 		<row><td>SAMPLE_ORA1</td><td>CHEMOFFICE</td><td>SAMPLE~1|Sample_Ora</td><td/><td>0</td><td/></row>
 		<row><td>SAMPLE_SQLSERVER1</td><td>CHEMOFFICE</td><td>SAMPLE~1|Sample_SqlServer</td><td/><td>0</td><td/></row>
-		<row><td>SECURITY</td><td>CHEMOFFICEENTERPRISE</td><td>Security</td><td/><td>0</td><td/></row>
-		<row><td>SETUPLOGS</td><td>CONFIGURATION_AND_DB_TOOLS</td><td>SETUPL~1|SetupLogs</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
 		<row><td>StartupFolder</td><td>TARGETDIR</td><td>.:StartUp</td><td/><td>3</td><td/></row>
@@ -4455,11 +4406,9 @@ Set shell = Nothing
 		<row><td>TempFolder</td><td>TARGETDIR</td><td>.:Temp</td><td/><td>0</td><td/></row>
 		<row><td>TemplateFolder</td><td>TARGETDIR</td><td>.:ShellNew</td><td/><td>0</td><td/></row>
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
-		<row><td>WEBAPP</td><td>REGISTRATION</td><td>WebApp</td><td/><td>0</td><td/></row>
 		<row><td>WEBAPP1</td><td>REGISTRATION1</td><td>WebApp</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVER_SOURCE1</td><td>CHEMOFFICE</td><td>WEBSER~1|WebServer_Source</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVICE</td><td>FRAMEWORK</td><td>WEBSER~1|WebService</td><td/><td>0</td><td/></row>
-		<row><td>WEBSERVICEHOST</td><td>CHEMOFFICEENTERPRISE</td><td>WEBSER~1|WebServiceHost</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>_063D7372_7BFA_4210_91B9_EB8CF4764C1B_</td><td>COMPLUS_APPLICATIONS</td><td>{063D7~1|{063D7372-7BFA-4210-91B9-EB8CF4764C1B}</td><td/><td>0</td><td/></row>
@@ -5190,9 +5139,7 @@ Set shell = Nothing
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>BioSARBrowser</td><td>AllOtherFiles45</td></row>
 		<row><td>BioSARBrowser</td><td>AllOtherFiles52</td></row>
-		<row><td>BioSARBrowser</td><td>AllOtherFiles53</td></row>
 		<row><td>BioSARBrowser</td><td>AllOtherFiles76</td></row>
 		<row><td>BioSARBrowser</td><td>AllOtherFiles79</td></row>
 		<row><td>BioSARBrowser</td><td>AllOtherFiles80</td></row>
@@ -5200,15 +5147,9 @@ Set shell = Nothing
 		<row><td>BioSARBrowser</td><td>MVC71</td></row>
 		<row><td>BioSARBrowser</td><td>MVC7132</td></row>
 		<row><td>BioSARBrowser</td><td>mswcrun.dll</td></row>
-		<row><td>CBV</td><td>AllOtherFiles1</td></row>
 		<row><td>CBV</td><td>AllOtherFiles31</td></row>
-		<row><td>CBV</td><td>AllOtherFiles32</td></row>
-		<row><td>CFWTemp</td><td>AllOtherFiles57</td></row>
 		<row><td>COE</td><td>AllOtherFiles</td></row>
-		<row><td>COE</td><td>AllOtherFiles58</td></row>
 		<row><td>COE</td><td>AllOtherFiles59</td></row>
-		<row><td>COE</td><td>AllOtherFiles60</td></row>
-		<row><td>COE</td><td>AllOtherFiles61</td></row>
 		<row><td>COE</td><td>AppPoolComponent</td></row>
 		<row><td>COE</td><td>AppPoolComponent1</td></row>
 		<row><td>COE</td><td>AppPoolComponent2</td></row>
@@ -5225,10 +5166,7 @@ Set shell = Nothing
 		<row><td>Classic</td><td>AllOtherFiles37</td></row>
 		<row><td>Classic</td><td>AllOtherFiles38</td></row>
 		<row><td>Classic</td><td>AllOtherFiles39</td></row>
-		<row><td>Classic</td><td>AllOtherFiles40</td></row>
 		<row><td>Classic</td><td>AllOtherFiles41</td></row>
-		<row><td>Classic</td><td>AllOtherFiles54</td></row>
-		<row><td>Classic</td><td>AllOtherFiles55</td></row>
 		<row><td>Classic</td><td>BLOB_Server</td></row>
 		<row><td>Classic</td><td>BLOB_Server_File</td></row>
 		<row><td>Classic</td><td>BLOB_Server_File1</td></row>
@@ -5257,7 +5195,6 @@ Set shell = Nothing
 		<row><td>Classic</td><td>SingleSignOnCom.dll</td></row>
 		<row><td>Classic</td><td>SingleSignOnCom.tlb</td></row>
 		<row><td>Classic</td><td>instsrv.exe</td></row>
-		<row><td>Classic</td><td>mswrun</td></row>
 		<row><td>DataLoader</td><td>AllOtherFiles48</td></row>
 		<row><td>DataLoader</td><td>AllOtherFiles50</td></row>
 		<row><td>DataLoader</td><td>mage.exe</td></row>
@@ -5275,16 +5212,6 @@ Set shell = Nothing
 		<row><td>DocManager</td><td>dsofile.dll</td></row>
 		<row><td>Framework</td><td>AllOtherFiles15</td></row>
 		<row><td>Framework</td><td>AllOtherFiles3</td></row>
-		<row><td>Framework</td><td>AllOtherFiles33</td></row>
-		<row><td>Framework</td><td>CambridgeSoft.COE.Framework.dll1</td></row>
-		<row><td>Framework</td><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td></row>
-		<row><td>Framework</td><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td></row>
-		<row><td>Manager</td><td>AllOtherFiles4</td></row>
-		<row><td>Registration</td><td>AllOtherFiles21</td></row>
-		<row><td>Registration</td><td>AllOtherFiles5</td></row>
-		<row><td>Security</td><td>AllOtherFiles28</td></row>
-		<row><td>Security</td><td>AllOtherFiles29</td></row>
-		<row><td>Security</td><td>AllOtherFiles6</td></row>
 	</table>
 
 	<table name="File">
@@ -5307,58 +5234,39 @@ Set shell = Nothing
 		<row><td>blob.dll1</td><td>Blob.dll</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
 		<row><td>blob.dll2</td><td>BLOB_Server_File1</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.framework.</td><td>CambridgeSoft.COE.Framework.dll</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Release\CambridgeSoft.COE.Framework.dll</td><td>21</td><td/></row>
-		<row><td>cambridgesoft.coe.framework.1</td><td>CambridgeSoft.COE.Framework.dll1</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\CambridgeSoft.COE.Framework.dll</td><td>1</td><td/></row>
 		<row><td>chembiooffice.html1</td><td>AllOtherFiles79</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
 		<row><td>chemimp.dll</td><td>ChemImp_Server_File</td><td>ChemImp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\ChemImp.dll</td><td>1</td><td/></row>
-		<row><td>cheminv_reports_11.0.2.mdb</td><td>AllOtherFiles55</td><td>CHEMIN~1.MDB|ChemInv_Reports_11.0.2.mdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_11.0.2.mdb</td><td>1</td><td/></row>
 		<row><td>chemoffice.asp1</td><td>AllOtherFiles79</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
-		<row><td>coeexceptionhandling.xml</td><td>AllOtherFiles33</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>1</td><td/></row>
-		<row><td>coeframeworkconfig.xml</td><td>AllOtherFiles33</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>1</td><td/></row>
 		<row><td>coeframeworkservices.asmx</td><td>AllOtherFiles59</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
 		<row><td>coeheaderserver.dll</td><td>COEHeaderServer_Server_File</td><td>COEHEA~1.DLL|COEHeaderServer.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\COEHeaderServer.dll</td><td>1</td><td/></row>
-		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>1</td><td/></row>
 		<row><td>cssecurityldap.dll</td><td>CSSecurityLDAP_Server_File</td><td>CSSECU~1.DLL|CSSecurityLDAP.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\CSSecurityLDAP.dll</td><td>1</td><td/></row>
 		<row><td>dcomcnfg.cmd</td><td>AllOtherFiles73</td><td>DCOMCNFG.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\DCOMCNFG.cmd</td><td>1</td><td/></row>
 		<row><td>dcomperm.exe</td><td>dcomperm.exe</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
 		<row><td>dcomperm.exe1</td><td>dcomperm.exe1</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
-		<row><td>default.aspx</td><td>AllOtherFiles4</td><td>DEFAUL~1.ASP|Default.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Default.aspx</td><td>1</td><td/></row>
 		<row><td>deletefiles.bat</td><td>AllOtherFiles74</td><td>DELETE~1.BAT|DeleteFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DeleteFiles.bat</td><td>1</td><td/></row>
 		<row><td>dsofile.dll</td><td>dsofile.dll</td><td>dsofile.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dsofile.dll</td><td>1</td><td/></row>
-		<row><td>exceptionshandling.xml</td><td>AllOtherFiles33</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>1</td><td/></row>
 		<row><td>filebatchload.exe</td><td>FileBatchLoad.exe</td><td>FILEBA~1.EXE|FileBatchLoad.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\FileBatchLoad.exe</td><td>1</td><td/></row>
-		<row><td>global.asax</td><td>AllOtherFiles4</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Global.asax</td><td>1</td><td/></row>
-		<row><td>global.asax1</td><td>AllOtherFiles1</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Global.asax</td><td>1</td><td/></row>
-		<row><td>global.asax2</td><td>AllOtherFiles21</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>instsrv.exe</td><td>instsrv.exe</td><td>instsrv.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\instsrv.exe</td><td>1</td><td/></row>
 		<row><td>loadfiles.bat</td><td>AllOtherFiles71</td><td>LOADFI~1.BAT|LoadFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\LoadFiles.bat</td><td>1</td><td/></row>
-		<row><td>logoff.aspx</td><td>AllOtherFiles4</td><td>LOGOFF~1.ASP|Logoff.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Logoff.aspx</td><td>1</td><td/></row>
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage.exe</td><td>1</td><td/></row>
 		<row><td>mage_dataloader.bat</td><td>AllOtherFiles50</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>1</td><td/></row>
-		<row><td>microsoft.practices.enterpri</td><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>1</td><td/></row>
-		<row><td>microsoft.practices.enterpri1</td><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
 		<row><td>molparser.dll</td><td>MolParser.dll</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
 		<row><td>molparser.dll1</td><td>MolParser_Server_File</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
 		<row><td>molserver85.dll</td><td>MolServer85.dll</td><td>MOLSER~1.DLL|MolServer85.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolServer85.dll</td><td>1</td><td/></row>
 		<row><td>mssoap30.dll</td><td>COEHeaderServer_Server_File1</td><td>MSSOAP30.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;CommonFilesFolder&gt;\MSSoap\Binaries\MSSOAP30.dll</td><td>1</td><td/></row>
 		<row><td>msvcp71.dll</td><td>MVC71</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>msvcp71.dll1</td><td>MVC7132</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
-		<row><td>mswcrun.dll</td><td>mswrun</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\WebServer_Source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
 		<row><td>mswcrun.dll1</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\WebServer_Source\cfserveradmin\AdminSource\mswcrun.dll</td><td>17</td><td/></row>
 		<row><td>mykey.cer</td><td>AllOtherFiles50</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
 		<row><td>mykey.pvk</td><td>AllOtherFiles50</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
 		<row><td>mypfx.pfx</td><td>AllOtherFiles50</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
 		<row><td>setdcompermission.cmd</td><td>AllOtherFiles73</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
-		<row><td>singlesignon.asmx</td><td>AllOtherFiles6</td><td>SINGLE~1.ASM|SingleSignOn.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\SingleSignOn.asmx</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb</td><td>COESSO_Server_File1</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>srvany.exe</td><td>SRVANY.EXE</td><td>SRVANY.EXE</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\SRVANY.EXE</td><td>1</td><td/></row>
 		<row><td>taskscheduler.dll</td><td>Scheduler_Server_File</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
 		<row><td>taskscheduler.dll1</td><td>Scheduler_Server_File1</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
-		<row><td>web.config</td><td>AllOtherFiles4</td><td>WEB~1.CON|Web.Config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Web.Config</td><td>1</td><td/></row>
-		<row><td>web.config1</td><td>AllOtherFiles1</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Web.config</td><td>1</td><td/></row>
-		<row><td>web.config2</td><td>AllOtherFiles21</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Web.config</td><td>1</td><td/></row>
-		<row><td>web.config3</td><td>AllOtherFiles6</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
 	</table>
 
@@ -6998,41 +6906,23 @@ Set shell = Nothing
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>AllOtherFiles</td><td/><td/><td>_65D79AED_FA4C_405B_85E9_A25B602B2CD2_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles1</td><td/><td/><td>_043116D2_BB4A_4146_BD35_83B493BDC5F5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles15</td><td/><td/><td>_CD27060A_7470_40EA_A4DB_F894B1DD55EC_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles21</td><td/><td/><td>_04F8AD1A_D78F_4B59_8B40_C279AA68B9FD_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles28</td><td/><td/><td>_E11AE3CD_CBE8_4031_8BF5_D6990F2681F1_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles29</td><td/><td/><td>_C1644AFE_D5A5_4246_8805_CC71CCAC8C63_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles3</td><td/><td/><td>_E12024D1_8EB2_4188_AF00_4E42DDE8DCA1_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles31</td><td/><td/><td>_C4919173_0B74_4300_AA08_720080431969_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles32</td><td/><td/><td>_37F45533_7CC0_4F6A_A772_212ADBB7A8B9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles33</td><td/><td/><td>_B9510EA5_81C4_434B_96B5_0E9D4C9C2828_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles34</td><td/><td/><td>_C453F079_9DE2_48DB_AB32_3B4B265E34DA_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles35</td><td/><td/><td>_3A431C91_EDBF_4EF4_9F32_36D4AF6FFAD6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles36</td><td/><td/><td>_59768A6A_A8FE_4AFE_A2D6_38B5939FEB9B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles37</td><td/><td/><td>_6E26A05B_D0D5_4F5D_AFDF_1368ACE4979F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles38</td><td/><td/><td>_F2382631_C0AF_4847_9521_EF6F0DCDCB49_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles39</td><td/><td/><td>_022CD759_A098_4166_9445_75C79A22EF68_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles4</td><td/><td/><td>_B3C5BE65_4846_4CA7_AD9C_E1C94C30BA18_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles40</td><td/><td/><td>_F6AA2071_2997_4A75_9392_B9A43F9E46C0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles41</td><td/><td/><td>_61385215_DEA8_4937_B404_630AC66DB478_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles43</td><td/><td/><td>_7CB8DCF5_5DF6_4988_A8DF_E664EA18B67B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles44</td><td/><td/><td>_6566EFBE_C5DC_45BA_A660_98BEBFB2039D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles45</td><td/><td/><td>_B8CAC69E_164B_4758_AEF4_25239BC53B33_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles48</td><td/><td/><td>_B37760B1_07D4_4A08_B2CF_0247A56191E4_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles5</td><td/><td/><td>_F48881B9_6DE5_4510_9521_DCF9E73B8836_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles50</td><td/><td/><td>_7252C04E_0EB6_451E_B69E_0DF93E49645E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles51</td><td/><td/><td>_15665596_2020_4353_87F1_63DACED30FB3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles52</td><td/><td/><td>_0DF8E64B_B628_4C60_A177_F0C71C1AC16C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles53</td><td/><td/><td>_42897752_337E_4A2E_A977_788E8BE88796_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles54</td><td/><td/><td>_05D3B6A2_63AE_4112_962C_B2DF146D4E93_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles55</td><td/><td/><td>_1C66B6A4_50EE_4C1C_ABE7_0296C4BF3863_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles57</td><td/><td/><td>_892ABB23_A26E_4839_A762_4F323F24072E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles58</td><td/><td/><td>_38A779DA_4341_47BE_8058_123726EBF9CF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles59</td><td/><td/><td>_7AAB24FA_E845_4002_8956_1CF8946A63AC_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles6</td><td/><td/><td>_E97BB560_D45E_441A_AED1_90ACDBB2694E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles60</td><td/><td/><td>_78D9F7BB_2199_49A1_80CB_EE753E57746C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles61</td><td/><td/><td>_D302540B_AE8D_4583_81C9_68A87BEBDF3D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles71</td><td/><td/><td>_D1A897EE_2C17_449B_9B57_8356F2CD6FCC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles73</td><td/><td/><td>_00668A15_95BD_4A4C_96A4_B800A0CEEFB6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles74</td><td/><td/><td>_0DF07257_DFBE_4E81_978A_276B0DCF86F9_FILTER</td><td/><td/><td/><td/></row>
@@ -7060,15 +6950,12 @@ Set shell = Nothing
 		<row><td>CSSecurityLDAP_Server</td><td/><td/><td>_2530F0F6_9AC5_42F6_998E_6ADB5B06B1BE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSSecurityLDAP_Server_File</td><td/><td/><td>_CB547743_F838_466B_8A0C_8DE42FC6AC8A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td/><td/><td>_6BDC8DCC_0162_4B11_B55C_2E7927150B93_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CambridgeSoft.COE.Framework.dll1</td><td/><td/><td>_4F1EB1A3_251A_41BE_834B_380426DF1927_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemImp_Server</td><td/><td/><td>_9B059B34_AAFC_4602_B00A_3C262D465079_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemImp_Server_File</td><td/><td/><td>_65B3AADA_CD02_47AA_9538_4E998183F5C9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>FileBatchLoad.exe</td><td/><td/><td>_4844FC02_8FF1_4D6D_B3C8_277AB617CAEC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISRegistryComponent</td><td/><td/><td>_57E1FC69_6208_458B_B643_7FA5DF91A72A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MVC71</td><td/><td/><td>_4C1ACFF6_F50B_4D89_A914_93B151C22555_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MVC7132</td><td/><td/><td>_EB10489F_8D6B_47F3_853E_E37F5C8C94E7_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td/><td/><td>_AB5FD0FF_8EF1_4E23_9A24_A4A1140835B9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td/><td/><td>_F678F082_ADE3_4C77_843A_4157E7E88C01_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MolParser.dll</td><td/><td/><td>_4E362E50_1ACB_4BCC_8B12_7775D252D234_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MolParser_Server</td><td/><td/><td>_524741E5_AA06_44AD_98ED_B537E3FD6658_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MolParser_Server_File</td><td/><td/><td>_54964EEC_AF09_49F9_856F_8D11E6432144_FILTER</td><td/><td/><td/><td/></row>
@@ -7091,7 +6978,6 @@ Set shell = Nothing
 		<row><td>instsrv.exe</td><td/><td/><td>_03C47A07_C192_435A_BC60_8F834711E671_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mage.exe</td><td/><td/><td>_9B5F206E_3CC9_4E9E_B9F6_A80E4AC85ACD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mswcrun.dll</td><td/><td/><td>_FCB85F5A_E659_4B0C_8020_9B561A29AD4F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>mswrun</td><td/><td/><td>_00A9C71B_97A1_4DAF_8565_FE12EA11214A_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -7185,22 +7071,17 @@ Set shell = Nothing
 		<col def="S0">ExcludeFiles</col>
 		<col def="I4">ISAttributes</col>
 		<row><td>AllOtherFiles15</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;</td><td>4</td><td/><td/><td>8</td></row>
-		<row><td>AllOtherFiles28</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\bin</td><td>4</td><td/><td>*.pdb,*.xml</td><td>10</td></row>
-		<row><td>AllOtherFiles29</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Help</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles35</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles36</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample_ora</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles37</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample_sqlserver</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles38</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\webserver_source</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles39</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\cs_security</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>AllOtherFiles40</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\config</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles41</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common</td><td>4</td><td/><td>web.config,CSDO.dll, CSDO10.dll,  CSDO11.dll, MolServer.dll</td><td>10</td></row>
 		<row><td>AllOtherFiles43</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\chemacx</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles44</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\ChemInv</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>AllOtherFiles48</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\DataLoader\bin\Release\DataLoader.publish</td><td>4</td><td/><td>*.pdb</td><td>8</td></row>
 		<row><td>AllOtherFiles50</td><td>&lt;New Path Variable&gt;\Perforce\Goods\program files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\DataLoader\DataLoader_ClickOnce</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>AllOtherFiles51</td><td>&lt;New Path Variable&gt;\Perforce\Goods\program files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\DataLoader2</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
-		<row><td>AllOtherFiles57</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\cfwtemp</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>AllOtherFiles61</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.WebServiceHost</td><td>4</td><td/><td/><td>10</td></row>
 	</table>
 
 	<table name="ISFeatureDIMReferences">
@@ -7253,10 +7134,8 @@ Set shell = Nothing
 		<col def="L255">DisplayName</col>
 		<col def="i4">Type</col>
 		<col def="S72">Component_</col>
-		<row><td>IisItem1</td><td>IisItem2</td><td>##ID_STRING11##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem12</td><td>IisItem2</td><td>##ID_STRING34##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem13</td><td>IisItem2</td><td>##ID_STRING35##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem15</td><td>IisItem2</td><td>##ID_STRING39##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem16</td><td>IisItem2</td><td>##ID_STRING40##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem17</td><td>IisItem2</td><td>##ID_STRING41##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem18</td><td>IisItem2</td><td>##ID_STRING42##</td><td>2</td><td>WebsiteComponent</td></row>
@@ -7267,15 +7146,8 @@ Set shell = Nothing
 		<row><td>IisItem22</td><td>IisItem2</td><td>##ID_STRING47##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem23</td><td>IisItem2</td><td>##ID_STRING48##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem24</td><td>IisItem2</td><td>##ID_STRING49##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem25</td><td>IisItem2</td><td>##ID_STRING50##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem26</td><td>IisItem2</td><td>##ID_STRING51##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem27</td><td>IisItem2</td><td>##ID_STRING52##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem28</td><td/><td>##ID_STRING525##</td><td>5</td><td>WebServiceExtensionComponent</td></row>
-		<row><td>IisItem3</td><td>IisItem2</td><td>##ID_STRING12##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem4</td><td>IisItem2</td><td>##ID_STRING538##</td><td>2</td><td>WebsiteComponent</td></row>
-		<row><td>IisItem5</td><td>IisItem2</td><td>##ID_STRING14##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem6</td><td/><td>##ID_STRING15##</td><td>4</td><td>AppPoolComponent1</td></row>
-		<row><td>IisItem7</td><td>IisItem2</td><td>##ID_STRING21##</td><td>2</td><td>WebsiteComponent</td></row>
 		<row><td>IisItem9</td><td/><td>##ID_STRING31##</td><td>4</td><td>AppPoolComponent2</td></row>
 	</table>
 
@@ -7291,7 +7163,6 @@ Set shell = Nothing
 		<col def="L0">MetaDataValue</col>
 		<col def="I4">Order</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>ISIISProperty1</td><td>IisItem1</td><td/><td>Path</td><td/><td/><td/><td/><td>MANAGER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty10</td><td>IisItem2</td><td/><td>Path</td><td/><td/><td/><td/><td>IISROOTFOLDER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty106</td><td>IisItem9</td><td/><td>Attributes</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty107</td><td>IisItem9</td><td/><td>RecycleMinutes</td><td/><td/><td/><td/><td>1740</td><td>0</td><td>0</td></row>
@@ -7333,20 +7204,7 @@ Set shell = Nothing
 		<row><td>ISIISProperty17</td><td>IisItem2</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty171</td><td>IisItem13</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty172</td><td>IisItem12</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty176</td><td>IisItem15</td><td/><td>Path</td><td/><td/><td/><td/><td>DATALOADER_CLICKONCE</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty177</td><td>IisItem15</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING521##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty178</td><td>IisItem15</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty179</td><td>IisItem15</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty18</td><td>IisItem2</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty180</td><td>IisItem15</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty181</td><td>IisItem15</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty182</td><td>IisItem15</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty183</td><td>IisItem15</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty184</td><td>IisItem15</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty185</td><td>IisItem15</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty186</td><td>IisItem15</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty187</td><td>IisItem15</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty188</td><td>IisItem15</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty189</td><td>IisItem16</td><td/><td>Path</td><td/><td/><td/><td/><td>CHEMOFFICE</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty19</td><td>IisItem2</td><td/><td>ServerBindings</td><td/><td/><td/><td/><td>[IPADDRESS]:[PORTNO]:[HOSTHEADER]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty190</td><td>IisItem16</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
@@ -7359,7 +7217,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty197</td><td>IisItem16</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty198</td><td>IisItem16</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty199</td><td>IisItem16</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING31##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty2</td><td>IisItem1</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING517##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty20</td><td>IisItem2</td><td/><td>SiteNumber</td><td/><td/><td/><td/><td>[SITENUMBER]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty200</td><td>IisItem17</td><td/><td>Path</td><td/><td/><td/><td/><td>CFSERVERADMIN</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty201</td><td>IisItem17</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
@@ -7382,7 +7239,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty217</td><td>IisItem18</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty218</td><td>IisItem18</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty219</td><td>IisItem18</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty22</td><td>IisItem1</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty220</td><td>IisItem18</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty221</td><td>IisItem18</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty222</td><td>IisItem18</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
@@ -7393,7 +7249,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty227</td><td>IisItem19</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty228</td><td>IisItem19</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty229</td><td>IisItem19</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty23</td><td>IisItem1</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty230</td><td>IisItem19</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty231</td><td>IisItem19</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty232</td><td>IisItem19</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
@@ -7404,7 +7259,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty237</td><td>IisItem20</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty238</td><td>IisItem20</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty239</td><td>IisItem20</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty24</td><td>IisItem3</td><td/><td>Path</td><td/><td/><td/><td/><td>WEBAPP</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty240</td><td>IisItem20</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty241</td><td>IisItem20</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty242</td><td>IisItem20</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
@@ -7415,7 +7269,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty247</td><td>IisItem20</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty248</td><td>IisItem21</td><td/><td>Path</td><td/><td/><td/><td/><td>CS_SECURITY1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty249</td><td>IisItem21</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty25</td><td>IisItem3</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING516##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty250</td><td>IisItem21</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty251</td><td>IisItem21</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty252</td><td>IisItem21</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
@@ -7426,7 +7279,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty257</td><td>IisItem21</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty258</td><td>IisItem21</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING31##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty259</td><td>IisItem21</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty26</td><td>IisItem3</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty260</td><td>IisItem22</td><td/><td>Path</td><td/><td/><td/><td/><td>SAMPLE1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty261</td><td>IisItem22</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty262</td><td>IisItem22</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
@@ -7437,7 +7289,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty267</td><td>IisItem22</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty268</td><td>IisItem22</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty269</td><td>IisItem22</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty27</td><td>IisItem3</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty270</td><td>IisItem22</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING31##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty271</td><td>IisItem22</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty272</td><td>IisItem23</td><td/><td>Path</td><td/><td/><td/><td/><td>SAMPLE_ORA1</td><td>0</td><td>0</td></row>
@@ -7448,7 +7299,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty277</td><td>IisItem23</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty278</td><td>IisItem23</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty279</td><td>IisItem23</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty28</td><td>IisItem3</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty280</td><td>IisItem23</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty281</td><td>IisItem23</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty282</td><td>IisItem23</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING31##</td><td>0</td><td>0</td></row>
@@ -7459,30 +7309,15 @@ Set shell = Nothing
 		<row><td>ISIISProperty287</td><td>IisItem24</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty288</td><td>IisItem24</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty289</td><td>IisItem24</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty29</td><td>IisItem3</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty290</td><td>IisItem24</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty291</td><td>IisItem24</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty292</td><td>IisItem24</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty293</td><td>IisItem24</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty294</td><td>IisItem24</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING31##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty295</td><td>IisItem24</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty296</td><td>IisItem25</td><td/><td>Path</td><td/><td/><td/><td/><td>COMMONRESOURCES</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty297</td><td>IisItem25</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty298</td><td>IisItem25</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty299</td><td>IisItem25</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty3</td><td>IisItem1</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty30</td><td>IisItem3</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty300</td><td>IisItem25</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty301</td><td>IisItem25</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty302</td><td>IisItem25</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty303</td><td>IisItem25</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty304</td><td>IisItem25</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty305</td><td>IisItem25</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty306</td><td>IisItem25</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty307</td><td>IisItem17</td><td/><td>AnonymousUserName</td><td/><td/><td/><td/><td>[COMUSERNAME]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty308</td><td>IisItem18</td><td/><td>AnonymousUserName</td><td/><td/><td/><td/><td>[COMUSERNAME]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty309</td><td>IisItem19</td><td/><td>AnonymousUserName</td><td/><td/><td/><td/><td>[COMUSERNAME]</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty31</td><td>IisItem3</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty310</td><td>IisItem17</td><td/><td>AnonymousPassword</td><td/><td/><td/><td/><td>[APPUSERPASSWORD]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty311</td><td>IisItem18</td><td/><td>AnonymousPassword</td><td/><td/><td/><td/><td>[APPUSERPASSWORD]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty312</td><td>IisItem19</td><td/><td>AnonymousPassword</td><td/><td/><td/><td/><td>[APPUSERPASSWORD]</td><td>0</td><td>0</td></row>
@@ -7490,35 +7325,9 @@ Set shell = Nothing
 		<row><td>ISIISProperty314</td><td>IisItem13</td><td/><td>AnonymousPassword</td><td/><td/><td/><td/><td>[APPUSERPASSWORD]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty315</td><td>IisItem13</td><td/><td>AnonymousUserName</td><td/><td/><td/><td/><td>[COMUSERNAME]</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty317</td><td>IisItem12</td><td/><td>AnonymousUserName</td><td/><td/><td/><td/><td>[COMUSERNAME]</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty319</td><td>IisItem26</td><td/><td>Path</td><td/><td/><td/><td/><td>WEBSERVICEHOST</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty32</td><td>IisItem3</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty320</td><td>IisItem26</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty321</td><td>IisItem26</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty322</td><td>IisItem26</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty323</td><td>IisItem26</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty324</td><td>IisItem26</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty325</td><td>IisItem26</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty326</td><td>IisItem26</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty327</td><td>IisItem26</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty328</td><td>IisItem26</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty329</td><td>IisItem26</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty33</td><td>IisItem3</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty330</td><td>IisItem27</td><td/><td>Path</td><td/><td/><td/><td/><td>WEBSERVICE</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty331</td><td>IisItem27</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>Default.asp</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty332</td><td>IisItem27</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty333</td><td>IisItem27</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty334</td><td>IisItem27</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty335</td><td>IisItem27</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty336</td><td>IisItem27</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty337</td><td>IisItem27</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty338</td><td>IisItem27</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty339</td><td>IisItem27</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty34</td><td>IisItem3</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty340</td><td>IisItem27</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty347</td><td>IisItem12</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty348</td><td>IisItem12</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty349</td><td>IisItem13</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty35</td><td>IisItem4</td><td/><td>Path</td><td/><td/><td/><td/><td>CBOEHELP</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty350</td><td>IisItem13</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty353</td><td>IisItem20</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty354</td><td>IisItem20</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
@@ -7527,7 +7336,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty357</td><td>IisItem17</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty358</td><td>IisItem17</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty359</td><td>IisItem18</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty36</td><td>IisItem4</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING539##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty360</td><td>IisItem18</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty361</td><td>IisItem19</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty362</td><td>IisItem19</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
@@ -7538,31 +7346,19 @@ Set shell = Nothing
 		<row><td>ISIISProperty367</td><td>IisItem23</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty368</td><td>IisItem23</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty369</td><td>IisItem24</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
-		<row><td>ISIISProperty37</td><td>IisItem4</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty370</td><td>IisItem24</td><td/><td/><td>7051</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty371</td><td>IisItem2</td><td/><td/><td>7002</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty372</td><td>IisItem2</td><td/><td/><td>7008</td><td>1</td><td>101</td><td>1</td><td>TRUE</td><td>0</td><td>1</td></row>
 		<row><td>ISIISProperty373</td><td>IisItem28</td><td/><td>Attributes</td><td/><td/><td/><td/><td>7</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty38</td><td>IisItem4</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty385</td><td>IisItem2</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty387</td><td>IisItem12</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty388</td><td>IisItem13</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty39</td><td>IisItem4</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty392</td><td>IisItem17</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty393</td><td>IisItem18</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty394</td><td>IisItem19</td><td/><td>AnonymousPasswordSync</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty395</td><td>IisItem26</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty396</td><td>IisItem27</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty397</td><td>IisItem25</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty398</td><td>IisItem25</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty399</td><td>IisItem26</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty4</td><td>IisItem1</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty40</td><td>IisItem4</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty400</td><td>IisItem27</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty407</td><td>IisItem12</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty408</td><td>IisItem12</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty409</td><td>IisItem13</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty41</td><td>IisItem4</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty410</td><td>IisItem13</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty413</td><td>IisItem20</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty414</td><td>IisItem20</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
@@ -7571,7 +7367,6 @@ Set shell = Nothing
 		<row><td>ISIISProperty417</td><td>IisItem17</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty418</td><td>IisItem17</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty419</td><td>IisItem18</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty42</td><td>IisItem4</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty420</td><td>IisItem18</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty421</td><td>IisItem19</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty422</td><td>IisItem19</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
@@ -7582,42 +7377,17 @@ Set shell = Nothing
 		<row><td>ISIISProperty427</td><td>IisItem23</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty428</td><td>IisItem23</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty429</td><td>IisItem24</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty43</td><td>IisItem4</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty430</td><td>IisItem24</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty431</td><td>IisItem9</td><td/><td>Enable32bitAppOnWin64</td><td/><td/><td/><td/><td>true</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty44</td><td>IisItem4</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty45</td><td>IisItem4</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty46</td><td>IisItem5</td><td/><td>Path</td><td/><td/><td/><td/><td>CHEMBIOVIZ</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty47</td><td>IisItem5</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING519##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty48</td><td>IisItem5</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty49</td><td>IisItem5</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty5</td><td>IisItem1</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty50</td><td>IisItem5</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty51</td><td>IisItem5</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty52</td><td>IisItem5</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty53</td><td>IisItem5</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty54</td><td>IisItem5</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty55</td><td>IisItem5</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty56</td><td>IisItem5</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty57</td><td>IisItem6</td><td/><td>Attributes</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty58</td><td>IisItem6</td><td/><td>RecycleMinutes</td><td/><td/><td/><td/><td>1740</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty59</td><td>IisItem6</td><td/><td>RecycleRequests</td><td/><td/><td/><td/><td>-1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty6</td><td>IisItem1</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty60</td><td>IisItem6</td><td/><td>IdleTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty61</td><td>IisItem6</td><td/><td>QueueLimit</td><td/><td/><td/><td/><td>4000</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty62</td><td>IisItem6</td><td/><td>CPUMon</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty63</td><td>IisItem6</td><td/><td>MaxProc</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty64</td><td>IisItem6</td><td/><td>managedRuntimeVersion</td><td/><td/><td/><td/><td>v2.0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty65</td><td>IisItem6</td><td/><td>managedPipelineMode</td><td/><td/><td/><td/><td>Classic</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty66</td><td>IisItem1</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty67</td><td>IisItem1</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty68</td><td>IisItem3</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty69</td><td>IisItem3</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty7</td><td>IisItem1</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty70</td><td>IisItem4</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty71</td><td>IisItem4</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty72</td><td>IisItem5</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty73</td><td>IisItem5</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty74</td><td>IisItem6</td><td/><td>Enable32bitAppOnWin64</td><td/><td/><td/><td/><td>true</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty75</td><td>IisItem2</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty75</td><td>IisItem6</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>##ID_STRING16##</td><td/><td/></row>
@@ -7625,23 +7395,8 @@ Set shell = Nothing
 		<row><td>ISIISProperty77</td><td>IisItem2</td><td/><td>MimeMap</td><td/><td/><td/><td/><td>.application;application/x-ms-application</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty78</td><td>IisItem2</td><td/><td>MimeMap</td><td/><td/><td/><td/><td>.manifest;application/x-ms-application</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty79</td><td>IisItem2</td><td/><td>MimeMap</td><td/><td/><td/><td/><td>.sdf;chemical/x-mdl-sdfile</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty8</td><td>IisItem1</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty80</td><td>IisItem2</td><td/><td>MimeMap</td><td/><td/><td/><td/><td>.msp;application/microsoftpatch</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty81</td><td>IisItem2</td><td/><td>MimeMap</td><td/><td/><td/><td/><td>.msu;application/microsoftpatch</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty82</td><td>IisItem7</td><td/><td>Path</td><td/><td/><td/><td/><td>SECURITY</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty83</td><td>IisItem7</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING520##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty84</td><td>IisItem7</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty85</td><td>IisItem7</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty86</td><td>IisItem7</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty87</td><td>IisItem7</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty88</td><td>IisItem7</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty89</td><td>IisItem7</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty9</td><td>IisItem1</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty90</td><td>IisItem7</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty91</td><td>IisItem7</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty92</td><td>IisItem7</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty93</td><td>IisItem7</td><td/><td>AspVer</td><td/><td/><td/><td/><td>2.0.50727</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty94</td><td>IisItem7</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 	</table>
 
 	<table name="ISInstallScriptAction">
@@ -7726,9 +7481,6 @@ Set shell = Nothing
 		<row><td>CHEMOFFICE</td><td>CreateFolder</td><td></td><td>Administrators</td><td>1880031743</td><td>0</td></row>
 		<row><td>CHEMOFFICE</td><td>CreateFolder</td><td></td><td>Authenticated Users</td><td>1880031743</td><td>0</td></row>
 		<row><td>CHEMOFFICE</td><td>CreateFolder</td><td></td><td>Everyone</td><td>131241</td><td>0</td></row>
-		<row><td>CHEMOFFICE_DATA</td><td>CreateFolder</td><td></td><td>Administrators</td><td>1880031743</td><td>0</td></row>
-		<row><td>CHEMOFFICE_DATA</td><td>CreateFolder</td><td></td><td>Authenticated Users</td><td>1880031743</td><td>0</td></row>
-		<row><td>CHEMOFFICE_DATA</td><td>CreateFolder</td><td></td><td>Everyone</td><td>131241</td><td>0</td></row>
 	</table>
 
 	<table name="ISLogicalDisk">
@@ -8172,7 +7924,6 @@ Set shell = Nothing
 		<col def="I2">Cost</col>
 		<col def="I2">Order</col>
 		<col def="S50">CmdLine</col>
-		<row><td>mswcrun.dll</td><td>1</td><td/><td/></row>
 		<row><td>mswcrun.dll1</td><td>1</td><td/><td/></row>
 	</table>
 
@@ -10070,10 +9821,7 @@ Set shell = Nothing
 		<row><td>IniTableKey156</td><td>##ID_STRING440##</td><td>CONFIG9</td><td>##ID_STRING442##</td><td>##ID_STRING445##</td><td>ChemACX</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey157</td><td>##ID_STRING440##</td><td>CONFIG9</td><td>##ID_STRING443##</td><td>##ID_STRING446##</td><td>[WindowsVolume]Chemoffice_Data\ChemACX\ChemACX.mst</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey158</td><td>##ID_STRING453##</td><td>CONFIG4</td><td>##ID_STRING456##</td><td>##ID_STRING457##</td><td>[IISROOTFOLDER]ChemOffice\ChemINV\config\ChemInv.udl</td><td>0</td><td>AllOtherFiles34</td></row>
-		<row><td>IniTableKey159</td><td>##ID_STRING458##</td><td>CONFIG1</td><td>##ID_STRING459##</td><td>##ID_STRING461##</td><td>[BUILDVERSION]</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey16</td><td>##ID_STRING450##</td><td>ACCESSINI</td><td>##ID_STRING451##</td><td>##ID_STRING452##</td><td>ChemACX</td><td>0</td><td>AllOtherFiles34</td></row>
-		<row><td>IniTableKey160</td><td>##ID_STRING458##</td><td>CONFIG1</td><td>##ID_STRING459##</td><td>##ID_STRING462##</td><td>[INSTALLDIR]ChemOfficeEnterprise\</td><td>0</td><td>AllOtherFiles34</td></row>
-		<row><td>IniTableKey161</td><td>##ID_STRING458##</td><td>CONFIG1</td><td>##ID_STRING459##</td><td>##ID_STRING463##</td><td>1</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey164</td><td>##ID_STRING483##</td><td>CONFIG4</td><td>##ID_STRING484##</td><td>##ID_STRING486##</td><td> </td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey165</td><td>##ID_STRING483##</td><td>CONFIG4</td><td>##ID_STRING484##</td><td>##ID_STRING487##</td><td> </td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey166</td><td>##ID_STRING483##</td><td>CONFIG4</td><td>##ID_STRING484##</td><td>##ID_STRING488##</td><td> </td><td>0</td><td>AllOtherFiles34</td></row>
@@ -10087,7 +9835,6 @@ Set shell = Nothing
 		<row><td>IniTableKey174</td><td>##ID_STRING497##</td><td>CONFIG</td><td>##ID_STRING510##</td><td>##ID_STRING511##</td><td>sample_ora [BUILDVERSION]</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey175</td><td>##ID_STRING498##</td><td>CONFIG2</td><td>##ID_STRING512##</td><td>##ID_STRING513##</td><td>sample_sqlserver [BUILDVERSION]</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey176</td><td>##ID_STRING498##</td><td>CONFIG2</td><td>##ID_STRING514##</td><td>##ID_STRING515##</td><td>[IISROOTFOLDER]ChemOffice\sample_sqlserver\database\sample.mst</td><td>0</td><td>AllOtherFiles34</td></row>
-		<row><td>IniTableKey18</td><td>##ID_STRING458##</td><td>CONFIG1</td><td>##ID_STRING459##</td><td>##ID_STRING460##</td><td>ChemInv,ChemACX</td><td>3</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey2</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING370##</td><td>[IISROOTFOLDER]ChemOffice</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey23</td><td>##ID_STRING480##</td><td>CONFIG4</td><td>##ID_STRING481##</td><td>##ID_STRING482##</td><td>[IISROOTFOLDER]ChemOffice\ChemInv\config\ChemACX.udl</td><td>0</td><td>AllOtherFiles34</td></row>
 		<row><td>IniTableKey24</td><td>##ID_STRING483##</td><td>CONFIG4</td><td>##ID_STRING484##</td><td>##ID_STRING485##</td><td> </td><td>0</td><td>AllOtherFiles34</td></row>
@@ -10905,7 +10652,6 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>NewShortcut11</td><td>newfolder7</td><td>##ID_STRING68##</td><td>AllOtherFiles44</td><td>[HELP4]Inventory Manager User's Guide.chm</td><td/><td/><td/><td>NewShortcut11_B4B3F566FA6349B9A43B10DCAC4C973B.exe</td><td>1</td><td>1</td><td>HELP4</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut12</td><td>newfolder2</td><td>##ID_STRING69##</td><td>AllOtherFiles48</td><td>[DATALOADER]DataLoader.exe</td><td/><td/><td/><td>NewShortcut12_63E93F6CBD6F42C090D62D1E858EDE38.exe</td><td>1</td><td>1</td><td>DATALOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut15</td><td>newfolder2</td><td>##ID_STRING54##</td><td>AllOtherFiles48</td><td>[HELP2]DataLoader.chm</td><td/><td/><td/><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td>1</td><td>1</td><td>HELP2</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut17</td><td>newfolder10</td><td>##ID_STRING57##</td><td>AllOtherFiles21</td><td>[HELP9]default.htm</td><td/><td/><td/><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td>1</td><td>1</td><td>HELP9</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut3</td><td>newfolder1</td><td>##ID_STRING60##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]Setuplogs</td><td/><td/><td/><td>NewShortcut3_CAE912D443824125AE490CF2A3018190.exe</td><td>1</td><td>1</td><td>SETUPLOGS</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut4</td><td>newfolder1</td><td>##ID_STRING61##</td><td>AllOtherFiles38</td><td>[HELP3]ChemOffice WebServer User's Guide.chm</td><td/><td/><td/><td>NewShortcut4_06CA7823C1944AB3825310E3A37A906E.exe</td><td>1</td><td>1</td><td>HELP3</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut5</td><td>newfolder1</td><td>##ID_STRING62##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseUpgrade.hta</td><td/><td/><td/><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
