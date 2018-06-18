@@ -69,7 +69,7 @@ if Application("DBLoaded" & dbkey) = True then
 		<% 
 		'Response.Write("###" & Session("CurrentLocation" & dbkey & formgroup) & "##")
 		'Response.End %>
-			<frameset BORDER="0" FRAMEBORDER="0" FRAMESPACING="0" rows="110,*">
+			<frameset BORDER="0" FRAMEBORDER="0" FRAMESPACING="0" rows="80,*">
 				<frameset border="0" frameborder="0" framespacing="0" cols="580,*">
 			  		<frame BORDER="0" MARGINWIDTH="1" MARGINHEIGHT="1" SCROLLING="no" SRC="loading.html" NAME="navbar">	
 					<frame BORDER="0" MARGINWIDTH="1" MARGINHEIGHT="1" SRC="loading.html" NAME="userinfo" scrolling="no">	

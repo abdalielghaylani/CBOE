@@ -1451,7 +1451,7 @@ Select Case lCase(sTab)
 		<table border="0" cellpadding="0" cellspacing="0">
 		  	<tr>
 		  	<td rowspan="2">
-		  		<img src="../graphics/pixel.gif" width="60" height="1" alt border="0">
+		  		<img src="../graphics/pixel.gif" width="10" height="1" alt border="0">
 		  	</td>
 			<td>
 				<%if Session("isCDP") = "TRUE" then%>
@@ -1475,6 +1475,32 @@ Select Case lCase(sTab)
 							<input Type="checkbox" onclick="top.navbar.location.reload()" <%=Checked%> name="checkbox1">Group results by chemical structure
 						</td>
 					</tr> 
+					<tr>
+						<td colspan="2">
+							<table border="0" width="100%">
+								<tr>
+									<td>
+										<span title="Supplier's name">Supplier Name:&nbsp;</span><br>
+										<%ShowInputField dbkey, formgroup, "inv_plates.supplier", "0","30"%>        
+									</td>
+									<td>
+										<span title="Supplier's shipment code">Supplier Shipment Code:&nbsp;</span><br>
+										<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_code", "0","30"%>        
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span title="Supplier's shipment number">Supplier Shipment Number:</span><br>
+										<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_number", "0","30"%>        
+									</td>
+									<td>
+										<span title="<%=dateFormatString%>">Supplier Shipment Date:<br>
+										<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_date", "DATE_PICKER:8","27"%>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 				</table>			
 				<%end if%>
 			</td>
@@ -1484,39 +1510,39 @@ Select Case lCase(sTab)
 					<tr>
 			        	<td>
 							<span title="(e.g. Acetonitrile)">Substance Name:</span><br>
-							<%ShowInputField dbkey, formgroup, "well_compounds_alias.substance_name", "0","30"%>        
+							<%ShowInputField dbkey, formgroup, "well_compounds_alias.substance_name", "0","28"%>        
 						</td>
 		      		</tr>
 					<tr>
 			        	<td>
 							<span title="(e.g. 50-50-0)">CAS Registry#:</span><br>
-							<%ShowInputField dbkey, formgroup, "well_compounds_alias.cas", "0","30"%>        
+							<%ShowInputField dbkey, formgroup, "well_compounds_alias.cas", "0","28"%>        
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="(e.g. X1001545-9)">ACX Number:<br>
-							<%ShowInputField dbkey, formgroup, "well_compounds_alias.acx_id", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "well_compounds_alias.acx_id", "0","28"%>
 						</td>
 					</tr>
 					<%if Application("RegServerName") <> "NULL" then%>
 		      		<tr>
 		        		<td>
 							<span title="(e.g. AB-00001)">Reg Number:<br>
-							<%ShowInputField dbkey, formgroup, "inv_vw_reg_batches_alias.regnumber", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_vw_reg_batches_alias.regnumber", "0","28"%>
 						</td>
 		      		</tr>
 		      		<%end if%>
 		      		<tr>
 		        		<td>
 							<span title="(e.g. C8H3Cl3O, C1-5O&lt;3F0-1)">Molecular Formula:<br>
-							<%ShowInputField dbkey, formgroup, "well_compounds_alias.Formula", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "well_compounds_alias.Formula", "0","28"%>
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="&lt;120, 120-130, &gt;250">MolWeight Range:</span><br>
-							<%ShowInputField dbkey, formgroup, "well_compounds_alias.MolWeight", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "well_compounds_alias.MolWeight", "0","28"%>
 						</td>
 		      		</tr>
 		      		<tr>
@@ -1536,23 +1562,37 @@ Select Case lCase(sTab)
 		      		<tr>
 		        		<td>
 							<span title="(e.g. HPLC, ACS, Ultra Pure)">Solvent:</span><br>
-							<%= ShowSelectBox2("inv_plates.solvent_id_fk", "", "SELECT solvent_id AS Value, solvent_name AS DisplayText FROM inv_solvents ORDER BY lower(Solvent_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
+							<%= ShowSelectBox2("inv_plates.solvent_id_fk", "", "SELECT solvent_id AS Value, solvent_name AS DisplayText FROM inv_solvents ORDER BY lower(Solvent_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
+						</td>
+		      		</tr>
+					<tr>
+			        	<td>
+							<span title="Supplier's lot number">Library:</span><br>
+							<%= ShowSelectBox2("inv_plates.library_id_fk", "", "SELECT Enum_ID AS Value, Enum_value AS DisplayText FROM inv_enumeration WHERE Eset_id_fk = 5 ORDER BY lower(Enum_value) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
+						</td>
+					</tr>
+					<tr>
+		        		<td>
+							<span title="Must be a number">Group Name:<br>
+							<%ShowInputField dbkey, formgroup, "inv_plates.group_name", "0","28"%>
+						</td>
+		      		</tr>
+		      		<tr>
+		        		<td>
+							<span title="Freeze/Thaw Cycles">Freeze/Thaw Cycles:<br>
+							<%ShowInputField dbkey, formgroup, "inv_plates.ft_cycles", "0","28"%>						
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span><br>
-							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 17, true%> 
+							<%ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 5, 12, true%> 
 							<br>
 							<font size="1"><input Type="CheckBox" name="searchSubLocations" onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>         
 							<br>
 							<input type="hidden" name="SpecialLocationList" value="<%=invSpecialLocs%>">
 							<font size="1"><input Type="CheckBox" name="ExcludeSpecialLocations" value="checked" <%if Application("DefaultExcludeSpecialLocations") then %>checked <%end if %> onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)">Exclude <a class="menuLink" href="#" onclick="OpenDialog('SpecialLocationSelector.asp', 'LocSelectDiag', 1); return false">Special</a> Locations</font>         
 							<input type="hidden" name="inv_plates.location_id_fk">
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
 						</td>
 		      		</tr>
 		      		
@@ -1564,55 +1604,55 @@ Select Case lCase(sTab)
 					<tr>
 			        	<td>
 							<span title="(e.g. Acetonitrile)">Plate Barcode:<%=GetBarcodeIcon()%>&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.plate_barcode", "0","30"%>        
+							<%ShowInputField dbkey, formgroup, "inv_plates.plate_barcode", "0","28"%>        
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="Pick an option from the lis">Plate Map:<br>
-							<%= ShowSelectBox2("inv_plates.plate_map_id_fk", "", "SELECT plate_id AS Value, decode( plate_name, null, plate_barcode, plate_name ) AS DisplayText FROM inv_plates WHERE is_plate_map = 1 ORDER BY lower(plate_name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
+							<%= ShowSelectBox2("inv_plates.plate_map_id_fk", "", "SELECT plate_id AS Value, decode( plate_name, null, plate_barcode, plate_name ) AS DisplayText FROM inv_plates WHERE is_plate_map = 1 ORDER BY lower(plate_name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
 						</td>
 		      		</tr>
 					<tr>
 			        	<td>
 							<span title="One or more Plate ID values separated by commas">Plate ID (internal):&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.plate_id", "0","30"%>   
+							<%ShowInputField dbkey, formgroup, "inv_plates.plate_id", "0","28"%>   
 						</td>
 		      		</tr>
 		      		<tr>
 			        	<td>
 							<span title="Descriptive name of the plate">Plate Name:&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.plate_name", "0","30"%>        
+							<%ShowInputField dbkey, formgroup, "inv_plates.plate_name", "0","28"%>        
 						</td>
 		      		</tr>
 					<tr>
 			        	<td>
 							<span title="Pick an option from the list">Plate Type:</span><br>
-							<%= ShowSelectBox2("inv_plates.plate_type_id_fk", "", "SELECT Plate_Type_ID AS Value, Plate_Type_Name AS DisplayText FROM inv_plate_types ORDER BY lower(Plate_Type_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
+							<%= ShowSelectBox2("inv_plates.plate_type_id_fk", "", "SELECT Plate_Type_ID AS Value, Plate_Type_Name AS DisplayText FROM inv_plate_types ORDER BY lower(Plate_Type_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
 						</td>
 		      		</tr>
 		      		<tr>
 			        	<td>
 							<span title="Pick an option from the list">Plate Status:</span><br>
-							<%= ShowSelectBox2("inv_plates.status_id_fk", "", "SELECT Enum_ID AS Value, Enum_value AS DisplayText FROM inv_enumeration WHERE Eset_id_fk = 2 ORDER BY lower(Enum_value) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
+							<%= ShowSelectBox2("inv_plates.status_id_fk", "", "SELECT Enum_ID AS Value, Enum_value AS DisplayText FROM inv_enumeration WHERE Eset_id_fk = 2 ORDER BY lower(Enum_value) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
 						</td>
 		      		</tr>
 		      		<tr>
 			        	<td>
 							<span title="Pick an option from the list">Unit of Measure:</span><br>
-							<%= ShowSelectBox2("inv_plates.qty_unit_fk", "", "SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2,4) ORDER BY lower(Unit_Name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
+							<%= ShowSelectBox2("inv_plates.qty_unit_fk", "", "SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2,4) ORDER BY lower(Unit_Name) ASC", 30, RepeatString(51, "&nbsp;"), "")%>
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="Numerical value">Qty Remaining <span id="UOMtext2"></span>:</span></span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.qty_remaining", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_plates.qty_remaining", "0","28"%>
 						</td>
 		      		</tr>
 		      		<tr>
 		        		<td>
 							<span title="Numerical value">Qty Initial <span id="UOMtext3"></span>:</span></span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.qty_initial", "0","30"%>
+							<%ShowInputField dbkey, formgroup, "inv_plates.qty_initial", "0","28"%>
 						</td>
 		      		</tr>
 		      		<tr>
@@ -1624,70 +1664,14 @@ Select Case lCase(sTab)
 		      		</tr>
 		      		<tr>
 			        	<td>
-							&nbsp;
-						</td>
-		      		</tr>
-		    	</table>
-			</td>
-			<td valign="top">
-				<!-----COL 3 -------->
-				<table border="0">
-					<tr>
-			        	<td>
-							<span title="Supplier's name">Supplier Name:&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.supplier", "0","30"%>        
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="Supplier's shipment code">Supplier Shipment Code:&nbsp;</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_code", "0","30"%>        
-						</td>
-		      		</tr>
-					<tr>
-			        	<td>
-							<span title="Supplier's shipment number">Supplier Shipment Number:</span><br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_number", "0","30"%>        
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="<%=dateFormatString%>">Supplier Shipment Date:<br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_date", "DATE_PICKER:8","27"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
 							<span title="<%=dateFormatString%>">Date Created:<br>
 							<%ShowInputField dbkey, formgroup, "inv_plates.date_created", "DATE_PICKER:8","27"%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Purchase Order Number">Plate Format:<br>
-							<%= ShowSelectBox2("inv_plates.plate_format_id_fk", "", "SELECT plate_format_id AS Value, plate_format_name AS DisplayText FROM inv_plate_format ORDER BY lower(plate_format_name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
-						</td>
-		      		</tr>
-		      		<tr>
-			        	<td>
-							<span title="Supplier's lot number">Library:</span><br>
-							<%= ShowSelectBox2("inv_plates.library_id_fk", "", "SELECT Enum_ID AS Value, Enum_value AS DisplayText FROM inv_enumeration WHERE Eset_id_fk = 5 ORDER BY lower(Enum_value) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
-						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							<span title="Must be a number">Group Name:<br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.group_name", "0","30"%>
 						</td>
 					</tr>
 		      		<tr>
 		        		<td>
-							<span title="Freeze/Thaw Cycles">Freeze/Thaw Cycles:<br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.ft_cycles", "0","30"%>						</td>
-		      		</tr>
-		      		<tr>
-		        		<td>
-							
+							<span title="Purchase Order Number">Plate Format:<br>
+							<%= ShowSelectBox2("inv_plates.plate_format_id_fk", "", "SELECT plate_format_id AS Value, plate_format_name AS DisplayText FROM inv_plate_format ORDER BY lower(plate_format_name) ASC", 30, RepeatString(43, "&nbsp;"), "")%>
 						</td>
 		      		</tr>
 		    	</table>
