@@ -145,8 +145,8 @@ end if
 	}
 
 	function postToSelf(strTab){
-		GetCDXData();// CSBR-159359: Call this when switching around the custom field tabs
-		document.form1.action = "/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=<%=ManageMode%>&action=<%=action%>&CompoundID=<%=CompoundID%>&TB=" + strTab;
+	    GetCDXData();// CSBR-159359: Call this when switching around the custom field tabs
+	    document.form1.action = "/cheminv/gui/CreateOrEditSubstance.asp?ManageMode=<%=ManageMode%>&action=<%=action%>&CompoundID=<%=CompoundID%>&cddEditMode=<%=cddEditMode%>&TB=" + strTab;
 		document.form1.submit();
 	}
 	
