@@ -473,6 +473,37 @@ export class CConfigProperties {
         notifyWarning(`Default value is required!`, 5000);
         return false;
       }
+      if (this.formData.type === 'NUMBER') {
+        try {
+          this.formData.validationRules.forEach(vr => {
+            let regexp;
+            switch (vr.name) {
+              case 'integer':
+                regexp = new RegExp('^[0-9]+$');
+                if (!regexp.test(dataValidation.defaultValue)) {
+                  throw 'Default value must be an integer number!';
+                }
+                break;
+              case 'textLength':
+                regexp = new RegExp('^((?!(0))[0-9]{' + vr.parameters[0].value + ',' + vr.parameters[1].value + '})$');
+                if (!regexp.test(dataValidation.defaultValue)) {
+                  throw 'Default value can have between ' + vr.parameters[0].value + ' and ' + vr.parameters[1].value + ' characters!';
+                }
+                break;
+              case 'float':
+                regexp = new RegExp('^[0-9]+\.[0-9]+$');
+                if (!regexp.test(dataValidation.defaultValue)) {
+                  throw 'Default value must be a float number with at most ' + vr.parameters[0].value + ' integer and ' +
+                  vr.parameters[1].value + ' decimal digits';
+                }
+                break;
+            }
+          });
+        } catch (err) {
+          notifyWarning(err, 5000);
+          return false;
+        }
+      }
     } else if (name === 'textLength') {
       const minValue = dataValidation.min ? dataValidation.min : this.getParamValue(params, 'min');
       const maxValue = dataValidation.max ? dataValidation.max : this.getParamValue(params, 'max');
@@ -563,28 +594,6 @@ export class CConfigProperties {
         };
       } else if (this.formData.type === 'DATE') {
         c.editorType = 'dxDateBox';
-      } else if (this.formData.type === 'NUMBER') {
-        let validationRules = [];
-        this.formData.validationRules.forEach(vr => {
-          switch (vr.name) {
-            case 'integer':
-              validationRules.push({ group: 'length', type: 'pattern', pattern: '^[0-9]+$',
-                message: 'Default value must be an integer number' });
-              break;
-            case 'textLength':
-            validationRules.push({ group: 'length', type: 'pattern',
-              pattern: '^((?!(0))[0-9]{' + vr.parameters[0].value + ',' + vr.parameters[1].value + '})$',
-              message: 'Default value can have between ' + vr.parameters[0].value + ' and ' + vr.parameters[1].value + ' characters' });
-            break;
-            case 'float':
-              validationRules.push({ group: 'length', type: 'pattern',
-              pattern: '^[0-9]+\.[0-9]+$',
-              message: 'Default value must be a float number with at most ' + vr.parameters[0].value + ' integer and ' +
-              vr.parameters[1].value + ' decimal digits' });
-              break;
-          }
-        });
-        c.validationRules = validationRules;
       }
     }
     c.visible = visible;
