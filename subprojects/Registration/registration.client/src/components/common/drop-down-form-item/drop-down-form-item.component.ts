@@ -36,6 +36,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     let options = this.viewModel.editorOptions;
     if (options.pickListDomain) {
       let pickListDomainIndex = options.pickListDomain as number;
+      let pickListValue = (options.value) ? +options.value : 0;
       let lookups = this.ngRedux.getState().session.lookups;
       if (lookups && lookups.pickListDomains) {
         let pickListDomain = lookups.pickListDomains.find(d => d.ID === pickListDomainIndex);
@@ -47,6 +48,18 @@ export class RegDropDownFormItem extends RegBaseFormItem {
             }
             return d;
           });
+          if (pickListValue > 0) {
+            let selectedValue = this.dataSource.find(d => d.key === pickListValue);
+            if (!selectedValue) {
+              let pickListDomainSources = lookups.pickListDomains.filter(d => d.EXT_ID_COL === pickListDomain.EXT_ID_COL && d.ID !== pickListDomain.ID);
+              pickListDomainSources.forEach(element => {
+                let pickListToInclude = element.data.find(k => k.key === pickListValue);
+                if (pickListToInclude) {
+                  this.dataSource.push(pickListToInclude);
+                }
+              });
+            }
+          }
           this.valueExpr = 'key';
           this.displayExpr = 'value';
         }
