@@ -650,13 +650,13 @@ function AlterCSS(theClass, element, value) {
 //	Changes inner HTML for element
 /////////////////////////////////////////////////////////////////////
 function changeContent(docElement, text) {
-	if (document.all)
-		docElement.innerHTML = text;
-	else if (document.layers) {
-		docElement.document.open();
-		docElement.document.write(text);
-		docElement.document.close();
-	}
+    if (document.all || document.getElementById)
+        docElement.innerHTML = text;
+    else if (document.layers) {
+        docElement.document.open();
+        docElement.document.write(text);
+        docElement.document.close();
+    }
 }
 
 
