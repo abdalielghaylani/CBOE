@@ -696,7 +696,7 @@ function move(index,to) {
 		<td align="right" valign="top" nowrap>
 			<span class="required">Sample Location ID:</span>
 		</td>
-		<td colspan="3">
+		<td colspan="3" nowrap>
             <%  if Application("ENABLE_OWNERSHIP") = "TRUE" then
                 authorityFunction = "SetOwnerInfo('location');"
             else
