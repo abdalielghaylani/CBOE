@@ -96,7 +96,7 @@ if action = "showconflicts" then session("GUIReturnURL") = ""
 ManageMode = Request("ManageMode")
 if ManageMode="" then ManageMode=0 
 if ManageMode = "1" then 
-	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminv&amp;GotoCurrentLocation=true"
+	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminv&GotoCurrentLocation=true"
 Else
 	Session("GUIReturnURL") = ""
 End if

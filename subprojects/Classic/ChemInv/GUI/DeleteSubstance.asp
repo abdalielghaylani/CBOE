@@ -9,7 +9,7 @@ Dim Conn
 ManageMode = Request.QueryString("ManageMode")
 CompoundID = Request("CompoundID")
 if ManageMode = "1" then 
-	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminv&amp;GotoCurrentLocation=true"
+	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminvGotoCurrentLocation=true"
 Else
 	Session("GUIReturnURL") = ""
 End if

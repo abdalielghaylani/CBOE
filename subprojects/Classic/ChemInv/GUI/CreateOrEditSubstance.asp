@@ -31,7 +31,7 @@ inLineCdx = TempCdxPath & "nostructure.cdx"
 inLineMarker = "data:chemical/x-cdx;base64,"
 ManageMode = Request("ManageMode")
 if ManageMode = "1" then 
-	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminv&amp;GotoCurrentLocation=true"
+	Session("GUIReturnURL") = "/cheminv/inputtoggle.asp?formgroup=substances_form_group&dbname=cheminv&GotoCurrentLocation=true"
 Else
 	Session("GUIReturnURL") = ""
 End if
