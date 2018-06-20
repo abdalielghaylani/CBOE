@@ -605,7 +605,7 @@ Select Case lCase(sTab)
 		        		<td>
 							<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span><br>
 							<%
-							ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 20, true%> 
+							ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 27, true%> 
 							<font size="1"><input Type="CheckBox" name="searchSubLocations"  onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>
 							<br>
 							<input type="hidden" name="SpecialLocationList" value="<%=invSpecialLocs%>">
