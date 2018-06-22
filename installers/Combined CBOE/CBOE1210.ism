@@ -1156,7 +1156,7 @@
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>DatabaseFolder</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>CBOE="yes"</td><td>3</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -1189,7 +1189,7 @@
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>ReinstallMode</td><td>omus</td><td>PATCH And REINSTALLMODE=""</td><td>2</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>DatabaseFolder</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
