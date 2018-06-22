@@ -43,6 +43,9 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --INDEXES
 --#########################################################
 
+create index structure_identifier_str_id on structure_identifier(structureid);
+
+
 --#########################################################
 --CONSTRAINTS
 --#########################################################
