@@ -183,13 +183,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallServiceMethod((service) =>
             {
                 string record;
+                string regNum = string.Empty;
                 if (id < 0)
                 {
                     record = service.RetrieveNewRegistryRecord();
                 }
                 else
                 {
-                    var regNum = GetRegNumber(id);
+                    regNum = GetRegNumber(id);
                     record = service.RetrieveRegistryRecord(regNum);
                 }
 
@@ -206,27 +207,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new JObject(new JProperty("data", record),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
                     new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor),
-                    new JProperty("inventoryContainers", GetInventoryContainerList(id)));
+                    new JProperty("inventoryContainers", GetInventoryContainerList(regNum)));
             });
         }
 
-        private JObject GetInventoryContainerList(int id)
+        private JObject GetInventoryContainerList(string regNum)
         {
-            if (id <= 0)
+            if (string.IsNullOrEmpty(regNum))
                 return null;
 
             if (!RegUtilities.GetInventoryIntegration())
                 return null;
-
-            var regNum = GetRegNumber(id);
+         
             RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-
+            // get container list for registry record level
             DataSet retVal = GetInvContainers(registryRecord.RegNumber.ID, -1);
 
             if (retVal == null || retVal.Tables.Count == 0)
                 return null;
 
             var containerTable = retVal.Tables[0];
+            if (containerTable.Rows.Count == 0)
+                return null;
+
             containerTable.DefaultView.Sort = "CONTAINERID DESC";
             containerTable = containerTable.DefaultView.ToTable();
 
@@ -240,20 +243,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             invList.Add(new JProperty("containers", recordList));
 
-            var batchContainerList = new JArray();
-            foreach (var batch in registryRecord.BatchList)
+            // get continerlist for each batch
+            var batchContainerList = new JArray();            
+            List<string> uniqueBatchList = new List<string>();
+          
+            foreach (InvContainer container in invContainerList)
             {
+                if (uniqueBatchList.Contains(container.RegBatchID))
+                    continue;
+
+                var batch = registryRecord.BatchList.GetBatchFromFullRegNum(container.RegBatchID);
                 retVal = GetInvContainers(registryRecord.RegNumber.ID, batch.BatchNumber);
                 if (retVal == null || retVal.Tables.Count == 0)
+                {
                     continue;
+                }
                 containerTable = retVal.Tables[0];
                 containerTable.DefaultView.Sort = "CONTAINERID DESC";
                 containerTable = containerTable.DefaultView.ToTable();
-                invContainerList = InvContainerList.NewInvContainerList(containerTable, registryRecord.RegNumber.RegNum);
-                foreach (InvContainer container in invContainerList)
+                var batchInvContainerList = InvContainerList.NewInvContainerList(containerTable, registryRecord.RegNumber.RegNum);
+                foreach (InvContainer batchContainer in batchInvContainerList)
                 {
-                    batchContainerList.Add(GenerateInvContainerJSON(container));
+                    batchContainerList.Add(GenerateInvContainerJSON(batchContainer));
                 }
+                uniqueBatchList.Add(container.RegBatchID);
             }
             invList.Add(new JProperty("batchContainers", batchContainerList));
 
