@@ -331,12 +331,12 @@ end if
 		if (cntContainers == 0){
 			alert("Please select at least one sample to aliquot");
 		}else{
-        //-- CSBR ID:122385
-        //-- Change Done by : Manoj Unnikrishnan
-        //-- Purpose: If using Re-Aliquot Samples we need to use the CreateSamples workflow; This is to withhold the user from duplicating the fulfill request
-        //-- Date: 14/03/2010
-			OpenDialog('/Cheminv/GUI/CreateSamplesFromBatch.asp?Action=new&batchid=<%=BatchID%>&DefLocationID=' + defLocationID + '&RequestID=<%=RequestID%>&SampleRegID=<%=SampleRegID%>&SampleBatchNumber=<%=SampleBatchNumber%>&ContainerIDList='+strContainerIDList, 'Diag', 1); return false;
-		/*End of Change #122385#*/	
+		    //-- CSBR ID:122385
+		    //-- Change Done by : Manoj Unnikrishnan
+		    //-- Purpose: If using Re-Aliquot Samples we need to use the CreateSamples workflow; This is to withhold the user from duplicating the fulfill request
+		    //-- Date: 14/03/2010
+		    window.location.href = '/Cheminv/GUI/CreateSamplesFromBatch.asp?Action=new&batchid=<%=BatchID%>&DefLocationID=' + defLocationID + '&RequestID=<%=RequestID%>&SampleRegID=<%=SampleRegID%>&SampleBatchNumber=<%=SampleBatchNumber%>&ContainerIDList='+strContainerIDList; return false;
+		    /*End of Change #122385#*/	
 		}		
 	}
 	
