@@ -45,6 +45,14 @@
   color: #ffffff;
 }
 
+/deep/ #addinConfigTextArea > .dx-texteditor-container > textarea {
+  padding: 2px 4px;
+  font-size: 13px !important;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
 .grid-icon {
   font-size: 14px;
   margin: 0 3px;

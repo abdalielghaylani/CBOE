@@ -2,6 +2,10 @@
 using System.Text.RegularExpressions;
 using CambridgeSoft.COE.Framework.Common;
 using PerkinElmer.COE.Registration.Server.Models;
+using System.Text;
+using System.IO;
+using System.Xml;
+using System.Xml.Xsl;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
@@ -46,6 +50,43 @@ namespace PerkinElmer.COE.Registration.Server.Code
             // replace all html tags (and consequtive whitespaces) by spaces
             // trim the first and last space
             return regex.Replace(htmlText, " ").Trim();
+        }
+
+        /// <summary>
+        /// Transform the given XML to pretty printed format
+        /// </summary>
+        /// <param name="xmlInput">xmlInput is a string that contains xml</param>
+        /// <returns></returns>
+        public static string TransformToPrettyPrintXML(string xmlInput)
+        {
+            StringBuilder xsltInput = new StringBuilder();
+            xsltInput.Append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">");
+            xsltInput.Append("<xsl:output omit-xml-declaration=\"yes\" indent=\"yes\"/>");
+            xsltInput.Append("<xsl:template match=\"node()|@*\">");
+            xsltInput.Append("<xsl:copy>");
+            xsltInput.Append("<xsl:apply-templates select=\"node()|@*\"/>");
+            xsltInput.Append("</xsl:copy>");
+            xsltInput.Append("</xsl:template>");
+            xsltInput.Append("</xsl:stylesheet>");
+
+            string output = string.Empty;
+            using (StringReader srt = new StringReader(xsltInput.ToString())) 
+            using (StringReader sri = new StringReader(xmlInput))
+            {
+                using (XmlReader xrt = XmlReader.Create(srt))
+                using (XmlReader xri = XmlReader.Create(sri))
+                {
+                    XslCompiledTransform xslt = new XslCompiledTransform();
+                    xslt.Load(xrt);
+                    using (StringWriter sw = new StringWriter())
+                    using (XmlWriter xwo = XmlWriter.Create(sw, xslt.OutputSettings))
+                    {
+                        xslt.Transform(xri, xwo);
+                        output = sw.ToString();
+                    }
+                }
+            }
+            return output;
         }
     }
 }

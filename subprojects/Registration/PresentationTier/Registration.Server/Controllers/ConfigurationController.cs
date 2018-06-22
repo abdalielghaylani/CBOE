@@ -788,9 +788,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     // get innter text of <AddInConfiguration>
                     if (!string.IsNullOrWhiteSpace(addin.AddInConfiguration))
                     {
-                        XmlDocument addInXml = new XmlDocument();
-                        addInXml.LoadXml(addin.AddInConfiguration);
-                        addinData.Configuration = addInXml.DocumentElement.InnerXml;
+                        addinData.Configuration = RegAppHelper.TransformToPrettyPrintXML(addin.AddInConfiguration);
                     }
 
                     addinData.Events = new List<AddinEvent>();
@@ -871,7 +869,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
 
-                data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+                if (!data.Configuration.ToLower().StartsWith("<addinconfiguration>"))
+                {
+                    // user input may not contain root xml node <AddInConfiguration>, in this base we insert the root note in the input data
+                    data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+                }
 
                 // check addin configuration is valid
                 XmlDocument xml = new XmlDocument();
@@ -960,7 +962,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     if (!string.IsNullOrWhiteSpace(data.Configuration))
                     {
-                        data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+                        if (!data.Configuration.ToLower().StartsWith("<addinconfiguration>"))
+                        {
+                            // user input may not contain root xml node <AddInConfiguration>, in this base we insert the root note in the input data
+                            data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+                        }
 
                         // check addin configuration is valid
                         XmlDocument xml = new XmlDocument();
