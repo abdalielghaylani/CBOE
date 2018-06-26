@@ -877,44 +877,44 @@ function isPosInteger(inputVal){
 getButtons();
 </script>
 <%if show_prefs = "true" then%>
-
+<br/><br/>
 <form name="prefs" action method="Post">
   <table border="1" width="379" bordercolor="#0A1492">
     <tr>
-      <td width="359"><table border="0" width="100%">
+      <td><table border="0" width="100%">
         <tr>
           <td width="100%"><table border="1" width="366">
             <tr>
-              <td width="340" colspan="2" bgcolor="#0A1492"><small><font color="#FFFFFF" face="verdana" size="2"><strong>Display
-              Preferences</strong></font></small></td>
+              <td width="340" colspan="2" bgcolor="#0A1492"><font color="#FFFFFF" face="verdana" size="2"><strong>Display
+              Preferences</strong></font></td>
             </tr>
            <% If CBool(Application ("ENABLE_DETAIL_VIEW")) = true or NOT Application ("ENABLE_DETAIL_VIEW")<> ""then %>
             <tr>
-              <td width="205"><font face="verdana" size="2"><small>Results Display</small></font></td>
-              <td width="145"><input type="radio" value="edit" name="UserResultsPrefs"><font face="verdana" size="1"><small>Form<input type="radio" value="list"
-              name="UserResultsPrefs">List</small></font></td>
+              <td width="205"><font face="verdana" size="1">Results Display</font></td>
+              <td width="145"><input type="radio" value="edit" name="UserResultsPrefs"><font face="verdana" size="1">Form<input type="radio" value="list"
+              name="UserResultsPrefs">List</font></td>
             </tr>
             <%else%>
             <input type  = "hidden" name = "UserResultsPrefs" value = "list">
             <%end if%>
             <tr>
-              <td width="205"><font face="verdana" size="1"><small>Number Displayed in List View<br>
-                (Maximum of 99)</small></font></td>
+              <td width="205"><font face="verdana" size="1">Number Displayed in List View<br>
+                (Maximum of 99)</font></td>
               <td width="145" valign="middle"><input type="text" value="5" name="NumListViewText"
-              onChange="checkNumVal()" size="3"><font face="verdana" size="1"><small>Records&nbsp;</small></font></td>
+              onChange="checkNumVal()" size="3"><font face="verdana" size="1">Records&nbsp;</font></td>
 			<input type  = "hidden" name = "NumListViewText_Orig" value = "">
             </tr>
             <!--SYAN added on 2/6/2006 to add ISIS Draw Editing Preference-->  
             <%if Application("SHOW_ISIS_PREF") = "1" then%>    
             <tr>
-				<td width="340" colspan="2" bgcolor="#0A1492"><small><font color="#FFFFFF" face="verdana" size="2">
-					<strong>Draw Editing Preferences</strong></font></small>
+				<td width="340" colspan="2" bgcolor="#0A1492"><font color="#FFFFFF" face="verdana" size="2">
+					<strong>Draw Editing Preferences</strong></font>
 				</td>
             </tr>
             
 			<tr><td><font face="verdana" size="1">Edit Structure With</font></td>
-				<td width="145"><input type="radio" value="CDAX" name="DrawPref"><font face="verdana" size="1"><small>ChemDraw ActiveX
-								<input type="radio" value="ISIS" name="DrawPref">ISIS</small></font>
+				<td width="145"><input type="radio" value="CDAX" name="DrawPref"><font face="verdana" size="1">ChemDraw ActiveX
+								<input type="radio" value="ISIS" name="DrawPref">ISIS</font>
 				</td>
 			</tr>
 			
@@ -925,62 +925,62 @@ getButtons();
           </td>
         </tr>
       </table>
-      <table border="0" width="101%">
+      <table border="0" width="100%">
         <tr>
           <td width="100%"><table border="1" width="100%">
             <tr>
-              <td width="66%" colspan="2" bgcolor="#0A1492"><small><font color="#FFFFFF" face="Verdana" size="2"><strong>Search
-              Preferences</strong></font></small></td>
+              <td width="66%" colspan="2" bgcolor="#0A1492"><font color="#FFFFFF" face="Verdana" size="2"><strong>Search
+              Preferences</strong></font></td>
             </tr>
             
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Hit any charge on heteroatom</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Hit any charge on heteroatom</font></td>
               <td width="26%"><input type="checkbox" name="S5" value=" "></td>
             </tr>
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Reaction query must hit reaction center</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Reaction query must hit reaction center</font></td>
               <td width="26%"><input type="checkbox" name="S4" value=" "></td>
             </tr>
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Hit any charge on carbon</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Hit any charge on carbon</font></td>
               <td width="26%"><input type="checkbox" name="S3" value=" "></td>
             </tr>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Permit Extraneous Fragments in Full Structure(exact) Searches </small></font></td>
+              <td width="40%"><font face="verdana" size="1">Permit Extraneous Fragments in Full Structure(exact) Searches </font></td>
               <td width="26%"><input type="checkbox" name="S8" value=" " ID=></td>
             </tr>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Permit Extraneous Fragments in Reaction Full Structure(exact) Searches </small></font></td>
+              <td width="40%"><font face="verdana" size="1">Permit Extraneous Fragments in Reaction Full Structure(exact) Searches </font></td>
               <td width="26%"><input type="checkbox" name="S9" value=" "></td>
             </tr>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Query Fragments Can Overlap in Target </small></font></td>
+              <td width="40%"><font face="verdana" size="1">Query Fragments Can Overlap in Target </font></td>
               <td width="26%"><input type="checkbox" name="S10" value=" "></td>
             </tr>
             <%if isTautomerSupport then%>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Tautomeric</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Tautomeric</font></td>
               <td width="26%"><input type="checkbox" name="S14" value=" " ></td>
             </tr>
             <%end if%>
             <%if isLooseDelocalizationSupport then%>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Loose Delocalization</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Loose Delocalization</font></td>
               <td width="26%"><input type="checkbox" name="S15" value=" " ></td>
             </tr>
             <%end if%>
             <%if isImplicitHSupport then%>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Ignore Implicit Hydrogens</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Ignore Implicit Hydrogens</font></td>
               <td width="26%"><input type="checkbox" name="S16" value=" " ></td>
             </tr>
             <%end if%>
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Similarity search (20-100%)</small></font></td>
-              <td width="26%"><font face="verdana" size="1"><small><input type="text" value="90" name="S6" size="4" onChange="checkSimVal()"></font></small><small>%</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Similarity search (20-100%)</font></td>
+              <td width="26%"><font face="verdana" size="1"><input type="text" value="90" name="S6" size="4" onChange="checkSimVal()">%</font></td>
             </tr>
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Full Structure Similarity </small></font></td>
+              <td width="40%"><font face="verdana" size="1">Full Structure Similarity </font></td>
               <td width="26%"><input type="checkbox" name="S7" value=" "></td>
             </tr>
             <%
@@ -1001,18 +1001,18 @@ getButtons();
     %>
              <tr><td colspan="2"><font face="verdana" size="1"><b>Stereochemistry Options</b></font></td></tr>
              <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Match tetrahedral stereo</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Match tetrahedral stereo</font></td>
               <td width="26%"><input type="checkbox" name="S1" value=" "></td>
             </tr>
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Match double bond stereo</small></font></td>
+              <td width="40%"><font face="verdana" size="1">Match double bond stereo</font></td>
               <td width="26%"><input type="checkbox" name="S2" value=" "></td>
             </tr>
             
            <%if bShow71Flags = "true" then%>
            
             <tr>
-              <td width="40%"><font face="verdana" size="1"><small>Thick Bonds Represent Relative Stereochemistry </small></font></td>
+              <td width="40%"><font face="verdana" size="1">Thick Bonds Represent Relative Stereochemistry </font></td>
               <td width="26%"><input type="checkbox" name="S12" value=" "></td>
             </tr>
             <!--<tr>
