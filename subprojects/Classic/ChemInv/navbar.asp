@@ -61,12 +61,22 @@ formgroup = Request("formgroup")
 		MainWindow = top.main.mainFrame
 	}
 	function Print() {
-		//alert(formmode.toLowerCase())
-		if (formmode.toLowerCase() == "edit")
-			top.main.TabFrame.focus();
-		else
-			parent.frames["main"].focus();
-		window.print();
+	    //alert(formmode.toLowerCase())
+	    var win;
+	    
+	    if (formmode.toLowerCase() == "edit") {
+	        top.main.TabFrame.focus();
+	        win = top.main.TabFrame;
+	    } else {
+	        parent.frames["main"].focus();
+	        win = parent.frames["main"];
+	    }
+		
+	    if (/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)) {
+	        win.print();
+	    } else {
+	        window.print();
+	    }
 	}
 	formgroupflag = MainWindow.formgroupflag
 	var formgroup = MainWindow.formgroup
