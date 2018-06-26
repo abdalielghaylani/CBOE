@@ -444,7 +444,8 @@ export class RegRecords implements OnInit, OnDestroy {
         $editIcon.addClass('fa fa-info-circle');
         $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Detail view' });
         // For Delete icon
-        if (PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges)) {
+        if (PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges) &&
+          !(this.approvalsEnabled && this.isApproved({ value: e.data.STATUSID }))) {
           let $deleteIcon = $links.filter('.dx-link-delete');
           $deleteIcon.addClass('dx-icon-trash');
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
