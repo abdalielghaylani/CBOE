@@ -374,12 +374,17 @@ mypage=request.querystring("whichpage")
     Response.Write "<SCRIPT LANGUAGE=javascript>" & showMultiSelect & "</SCRIPT>"	
 	Response.Write "<Script language=javascript for=window event=onload>"
 	if ContainerCount = 1 OR CLng(SelectContainer)>0 then
-		if CLng(SelectContainer)>0 then ContainerID = SelectContainer
-		theLink = "document.anchors(""e" & CLng(ContainerID) & """)"
-		response.write "if (" & theLink & ") " & theLink & ".click()"
-	Else
-		if NOT (Session("bMultiSelect") OR reconcile) then response.write "if (parent.TabFrame) parent.frames['TabFrame'].location.href = 'SelectContainerMsg.asp?entity=plate';"
-	End if
+        if CLng(SelectContainer)>0 then ContainerID = SelectContainer
+            if detectModernBrowser = true then
+                theLink = "document.getElementById(""e" & CLng(ContainerID) & """)"
+                response.write "window.onload = function() { if (" & theLink & ") " & theLink & ".click(); }"
+            Else
+                theLink = "document.anchors(""e" & CLng(ContainerID) & """)"
+                response.write "if (" & theLink & ") " & theLink & ".click()"
+            end if
+	    Else
+		    if NOT (Session("bMultiSelect") OR reconcile) then response.write "if (parent.TabFrame) parent.frames['TabFrame'].location.href = 'SelectContainerMsg.asp?entity=plate';"
+        End if
 	Response.Write "</SCRIPT>"
 %>	 
 
