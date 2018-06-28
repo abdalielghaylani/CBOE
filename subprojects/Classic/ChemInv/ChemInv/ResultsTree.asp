@@ -76,36 +76,35 @@ A.TreeView:HOVER {Text-Decoration: underline; color:#4682b4; font-size:8pt; font
 	<!--
 	var PrevFolderImage
 	var PrevLink
-	var sNode = <%=sNode%>
-	
+				
 	function OpenFolder(locationID){
 		
-		if (document.anchors(1)){
-			var ename = "e" +  locationID
-			var elm
-			var elm2
-			if (locationID == 0){
-				elm = document.anchors(0);
-				elm2 = document.anchors(1);
-			}
-			else{
-				elm = document.anchors(ename);
-				elm2 = elm;
-			}
-			elm2.style.color = "black"
-			elm2.style.fontWeight = "bold"
-			CurrFolderImage = elm.firstChild 
-			elm.firstChild.src = "/ChemInv/images/treeview/<%=icon_open%>";
-			if ((typeof(PrevFolderImage)== "object") && (PrevFolderImage!=CurrFolderImage))
-			{
-				PrevFolderImage.src = "/ChemInv/images/treeview/<%=icon_clsd%>";
-				PrevLink.style.color = "#4682b4";
-				PrevLink.style.fontWeight = ""
-			}
-		
-			PrevLink = elm2;
-			PrevFolderImage = elm.firstChild;
-		}	
+		if (document.anchors.length >= 1){
+            var ename = "e" +  locationID
+            var elm
+            var elm2
+            if (locationID == 0){
+                elm = document.anchors[0];
+                elm2 = document.getElementById(ename);
+            }
+            else {
+                elm = document.getElementById(ename);
+                elm2 = elm;
+            }
+            elm2.style.color = "black"
+            elm2.style.fontWeight = "bold"
+            CurrFolderImage = elm.firstChild 
+            elm.firstChild.src = "/ChemInv/images/treeview/<%=icon_open%>";
+            if ((typeof(PrevFolderImage)== "object") && (PrevFolderImage!=CurrFolderImage))
+            {
+                PrevFolderImage.src = "/ChemInv/images/treeview/<%=icon_clsd%>";
+                PrevLink.style.color = "#4682b4";
+                PrevLink.style.fontWeight = ""
+            }
+        
+            PrevLink = elm2;
+            PrevFolderImage = elm.firstChild;
+        }    	
 	}
 	-->
 </SCRIPT>
@@ -197,7 +196,8 @@ Sub BuildResultsTree(ByVal pSearchType)
 		        anchorIndex = 1
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description, Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name, max(collapse_child_nodes) as isRack , Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_containers, inv_compounds WHERE inv_locations.Location_ID = inv_containers.Location_ID_FK AND inv_compounds.compound_id = inv_containers.compound_id_fk and inv_compounds." & fieldName & "=" & BaseID & ") GROUP BY inv_locations.Location_ID HAVING Max(inv_locations.Parent_ID) IS NOT NULL ORDER BY Max(Level) DESC"				
 			Case "ByCompoundID"
-				anchorIndex = 1
+				'set the anchorIndex values based on the anchor element length and this will executed with the java script call in the bottom of this page
+				anchorIndex = "document.getElementsByTagName('a')[document.getElementsByTagName('a').length-1].id"
 				sSQL = "SELECT Max(Location_barcode) AS Location_barcode, Max(Location_description) AS Location_Description, Max(inv_locations.Parent_ID) As parent_id, inv_locations.Location_ID As Id, Max(inv_locations.Location_Name) AS Location_Name, max(collapse_child_nodes) as isRack , Max((SELECT Location_Type_Name FROM inv_Location_Types WHERE Location_Type_ID = inv_Locations.Location_Type_ID_fk)) AS LocationTypeName, Min(Level) AS MaxLevel FROM inv_locations CONNECT BY Location_id = prior Parent_id START WITH Location_id IN (SELECT DISTINCT inv_locations.Location_ID FROM inv_locations, inv_containers WHERE inv_locations.Location_ID = inv_containers.Location_ID_FK AND inv_containers." & fieldName & "=" & BaseID & ") GROUP BY inv_locations.Location_ID HAVING Max(inv_locations.Parent_ID) IS NOT NULL ORDER BY Max(Level) DESC"				
 			Case "ByACXID"
 				anchorIndex = 1
