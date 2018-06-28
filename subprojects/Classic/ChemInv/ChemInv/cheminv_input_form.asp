@@ -501,7 +501,7 @@ Select Case lCase(sTab)
     <input type=hidden name="inv_compounds.reg_id_fk" value=" (1 = 1) " />
 	<input type=hidden name="inv_compounds.batch_number_fk" value="  (1 = 1) " />
 		
-	<table border="0" width="500" cellpadding="10" cellspacing="0">
+	<table border="0" width="750" cellpadding="10" cellspacing="0">
 		  	<tr>
 		  	<td rowspan="2">
 		  		<img src="../graphics/pixel.gif" width="60" height="1" alt border="0">
@@ -603,14 +603,31 @@ Select Case lCase(sTab)
 		      		</tr>
 		      		<tr>
 		        		<td>
-							<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span><br>
-							<%
-							ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 27, true%> 
-							<font size="1"><input Type="CheckBox" name="searchSubLocations"  onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>
-							<br>
-							<input type="hidden" name="SpecialLocationList" value="<%=invSpecialLocs%>">
-							<font size="1"><input Type="CheckBox" name="ExcludeSpecialLocations" value="checked" <%if Application("DefaultExcludeSpecialLocations") then %>checked <%end if %> onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" >Exclude <a class="menuLink" href="#" onclick="OpenDialog('SpecialLocationSelector.asp', 'LocSelectDiag', 1); return false">Special</a> Locations</font>         
-							<input type="hidden" name="inv_containers.Location_ID_FK">
+							<table>
+								<tr>
+									<td>
+									<span title="Use a barcode reader or the browse link to select the location to search">Location ID: <%=GetBarcodeIcon()%></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<%
+									ShowLocationPicker "document.cows_input_form", "tempLocation_ID", "LocationBarCode", "LocationName", 10, 27, true%>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<font size="1"><input Type="CheckBox" name="searchSubLocations"  onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" <%if Application("DefaultSearchSublocations") then %>checked <%end if %>>Search Sublocations</font>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<input type="hidden" name="SpecialLocationList" value="<%=invSpecialLocs%>">
+									<font size="1"><input Type="CheckBox" name="ExcludeSpecialLocations" value="checked" <%if Application("DefaultExcludeSpecialLocations") then %>checked <%end if %> onclick="SetLocationSQL(document.cows_input_form.tempLocation_ID.value)" >Exclude <a class="menuLink" href="#" onclick="OpenDialog('SpecialLocationSelector.asp', 'LocSelectDiag', 1); return false">Special</a> Locations</font>         
+									<input type="hidden" name="inv_containers.Location_ID_FK">
+									</td>
+								</tr>
+							</table>
 						</td>
 		      		</tr>
 		      		<tr>
