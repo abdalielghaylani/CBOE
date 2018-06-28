@@ -1,0 +1,460 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  This template script provides the code necessary to build an entry-point 
+//  function to be called in an InstallScript custom action. 
+//                                                                            
+//                                                                            
+//    File Name:  Setup.rul                                                   
+//                                                                            
+//  Description:  InstallShield script                                        
+//
+///////////////////////////A/////////////////////////////////////////////////////
+
+// Include Ifx.h for built-in InstallScript function prototypes, for Windows 
+// Installer API function prototypes and constants, and to declare code for 
+// the OnBegin and OnEnd events.
+#include "ifx.h"
+
+// The keyword export identifies MyFunction() as an entry-point function.
+// The argument it accepts must be a handle to the Installer database.
+export prototype MyFunction(HWND);
+EXPORT prototype EditELNMageBatchFile(HWND);
+export prototype CopyElnClickOnceFiles(HWND);
+export prototype EditCBVNMageBatchFile(HWND);
+export prototype EditDataLoaderMageBatchFile(HWND);
+export prototype EditAppVBS(HWND);
+export prototype SetScriptMaps(HWND);
+export prototype DeleteVirtuals(HWND);
+// To Do:  Declare global variables, define constants, and prototype user-
+//         defined and DLL functions here.
+
+
+// To Do:  Create a custom action for this entry-point function:
+// 1.  Right-click on "Custom Actions" in the Sequences/Actions view.
+// 2.  Select "Custom Action Wizard" from the context menu.
+// 3.  Proceed through the wizard and give the custom action a unique name.
+// 4.  Select "Run InstallScript code" for the custom action type, and in
+//     the next panel select "MyFunction" (or the new name of the entry-
+//     point function) for the source.
+// 5.  Click Next, accepting the default selections until the wizard
+//     creates the custom action.
+//
+// Once you have made a custom action, you must execute it in your setup by
+// inserting it into a sequence or making it the result of a dialog's
+// control event.
+
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           
+// Function:  MyFunction
+//                                                                           
+//  Purpose:  This function will be called by the script engine when
+//            Windows(TM) Installer executes your custom action (see the "To
+//            Do," above).
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function MyFunction(hMSI)
+    // To Do:  Declare local variables.
+    STRING CBOEIDir;
+    NUMBER nBuff;
+begin
+
+    // To Do:  Write script that will be executed when MyFunction is called.
+	nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"CBOEINSTALLDIR", CBOEIDir, nBuff);
+
+end;
+
+function EditELNMageBatchFile(hMSI)
+    STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,szVersion, szVer, svResult;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvFileHandle;
+begin             
+  
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "NEWELNCLICKONCEFOLDER" , szVersion, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "NEWELNCLICKONCEVERSION" , szVer, nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+  	if (OpenFile(nvFileHandle, INSTALLDIR^"E-Notebook 12.1\\ClickOnce", "mage_eln.bat") < 0) then
+   	  MessageBox ("Unable to edit mage_eln.bat. Please contact the administrator.", SEVERE);
+     // abort;
+  	else     
+  	FileGrep(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "-cf MyPFX.pfx",svReturnLineB,nvLineNumberB, RESTART);
+  	// Close the File  
+  	CloseFile (nvFileHandle);
+  	endif;
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "mage -u ChemBioViz.NET.application -appm \"Application Files\\ChemBioViz.NET_"+szVer+"\\ChemBioViz.NET.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu http://" + szSAdd + "/CBVNClickOnce/ChemBioViz.NET.application", nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "mage -u \"Application Files\\ChemBioViz.NET_" + szVer + "\\ChemBioViz.NET.exe.manifest\" -fd \"Application Files\\ChemBioViz.NET_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\mage_eln.bat", "mage -s \"Application Files\\ChemBioViz.NET_"  + szVer+"\\ChemBioViz.NET.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	
+  	    
+end;  
+
+function CopyElnClickOnceFiles(hMSI)
+	STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,szVersion, szVer, svResult, szSDir;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvFileHandle;
+begin             
+  
+	nBuff=256;
+	MsiGetProperty(ISMSI_HANDLE, "SUPPORTDIR", szSDir, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "NEWELNCLICKONCEFOLDER" , szVersion, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "NEWELNCLICKONCEVERSION" , szVer, nBuff);
+	if(FindFile(INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion, "ENFramework.dll.deploy", svResult) = 0) then 
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "CSSDM.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\CSSDM.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\CSSDM.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENClient.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENClient.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENClient.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENCombiChemv2.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENCombiChemv2.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENCombiChemv2.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENFramework.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENFramework.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENFramework.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "EnhancedAddins.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\EnhancedAddins.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\EnhancedAddins.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "EnhancedSaltHandling.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\EnhancedSaltHandling.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\EnhancedSaltHandling.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENLTA.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENLTA.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENLTA.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENStandard.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENStandard.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENStandard.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "RDLIMS.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\RDLIMS.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\RDLIMS.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "SampleManagement.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\SampleManagement.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\SampleManagement.dll.deploy");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENISISDraw.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENISISDraw.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENISISDraw.dll.deploy");
+		endif;
+		 
+			CopyFile(szSDir^"ENContainer.exe.manifest", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENContainer.exe.manifest");
+		
+    else
+    	if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "CSSDM.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\CSSDM.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\CSSDM.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENClient.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENClient.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENClient.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENCombiChemv2.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENCombiChemv2.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENCombiChemv2.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENFramework.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENFramework.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENFramework.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "EnhancedAddins.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\EnhancedAddins.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\EnhancedAddins.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "EnhancedSaltHandling.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\EnhancedSaltHandling.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\EnhancedSaltHandling.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENLTA.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENLTA.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENLTA.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENStandard.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENStandard.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENStandard.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "RDLIMS.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\RDLIMS.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\RDLIMS.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "SampleManagement.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\SampleManagement.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\SampleManagement.dll");
+		endif;
+		if(FindFile(INSTALLDIR^"E-Notebook 12.1\\Bin", "ENISISDraw.dll", svResult) = 0) then 
+			CopyFile(INSTALLDIR^"E-Notebook 12.1\\Bin\\ENISISDraw.dll", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENISISDraw.dll");
+		endif;
+		
+		CopyFile(szSDir^"ENContainer.exe.manifest", INSTALLDIR^"E-Notebook 12.1\\ClickOnce\\"+szVersion+"\\ENContainer.exe.manifest");
+		
+    endif;
+end;
+
+function EditCBVNMageBatchFile(hMSI)
+    STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,svReturnLineC,svReturnLineD,szVersion, szVer, svResult,svUrl;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvLineNumberC,nvLineNumberD,nvFileHandle;
+begin             
+    //szVersion="12.3.0.*";
+    //szVer="12_3_0_*";
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"CBVNBUILDNUMBER",szVersion,nBuff);
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"CBVNFOLDERVERSION",szVer,nBuff);
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"SADDRESSCBVN",szSAdd,nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+  	if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "mage_cbvn.bat") < 0) then
+   	  MessageBox ("Unable to edit mage_cbvn.bat. Please contact the administrator.", SEVERE);
+     // abort;
+  	else     
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "ChemBioViz.NET.exe.manifest\" -cf MyPFX.pfx -pwd mykey",svReturnLineB,nvLineNumberB, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_11_0_2_0028",svReturnLineC,nvLineNumberC, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_11_0_2_0030",svReturnLineC,nvLineNumberD, RESTART);
+  	
+  	
+  	// Close the File  
+  	CloseFile (nvFileHandle);
+  	endif;
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -u ChemBioViz.NET.application -appm \"Application Files\\ChemBioViz.NET_"+szVer+"\\ChemBioViz.NET.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu " + szSAdd , nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -u \"Application Files\\ChemBioViz.NET_" + szVer + "\\ChemBioViz.NET.exe.manifest\" -fd \"Application Files\\ChemBioViz.NET_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "mage -s \"Application Files\\ChemBioViz.NET_"  + szVer+"\\ChemBioViz.NET.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_"  + szVer, nvLineNumberC, REPLACE); 
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\mage_cbvn.bat", "cd Application Files\\ChemBioViz.NET_"  + szVer, nvLineNumberD, REPLACE); 
+  	
+  	
+        
+end;
+
+function EditDataLoaderMageBatchFile(hMSI)
+    STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,svReturnLineC,svReturnLineD,szVersion, szVer, svResult;
+    NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvLineNumberC,nvLineNumberD,nvFileHandle;
+begin             
+    //szVersion="12.3.0.*";
+    //szVer="12_3_0_*";
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"CBVNBUILDNUMBER",szVersion,nBuff);
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"CBVNFOLDERVERSION",szVer,nBuff);
+    nBuff=256;
+    MsiGetProperty(ISMSI_HANDLE,"DLSADDRESS",szSAdd,nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+  	if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "mage_DataLoader.bat") < 0) then
+   	  MessageBox ("Unable to edit mage_DataLoader.bat. Please contact the administrator.", SEVERE);
+     // abort;                    
+  	else     
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "DataLoader.exe.manifest\" -cf",svReturnLineB,nvLineNumberB, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_0",svReturnLineC,nvLineNumberC, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_10",svReturnLineD,nvLineNumberD, RESTART);
+  	// Close the File  
+  	CloseFile (nvFileHandle);
+  	endif;
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u DataLoader.application -appm \"Application Files\\DataLoader_"+szVer+"\\DataLoader.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu " + szSAdd, nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u \"Application Files\\DataLoader_" + szVer + "\\DataLoader.exe.manifest\" -fd \"Application Files\\DataLoader_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -s \"Application Files\\DataLoader_"  + szVer+"\\DataLoader.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberC, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberD, REPLACE);
+  	
+  	
+        
+end; 
+function EditAppVBS(hMSI)
+ 	STRING OraService, svLine, svString,szNewString, svReturnLine, szMsg;
+    NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
+ begin 
+ nBuff=256;
+      // open the file in Unicode mode.   
+  /*  OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs", "D:\\CBVN110X_Deployment\\ChemBioViz.Net.application\"",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs", "D:\CBVN110X_Deployment\ChemBioViz.Net.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	*/
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit DataLoader APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit DataLoader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  endif;	
+  	//DataUploader
+ /* OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs", "D:\\DataUploader110X_Deployment\\COEDataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\Data Loader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  
+  	
+  	endif;
+  	*/
+  	
+  	
+end;
+
+function SetScriptMaps(hMSI)
+    // To Do:  Declare local variables.
+    STRING regAspnet,com,com1,svSiteNum,szSupportDir, szVirtualName;
+    NUMBER nBuff;
+ begin            
+     nBuff=256;
+     MsiGetProperty(ISMSI_HANDLE,"SITENUMBER",svSiteNum,nBuff);
+     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v4.0.30319\\aspnet_regiis.exe";
+     com = "-s W3SVC/" + svSiteNum + "/ROOT";
+     com1= "-s W3SVC";
+     if (LaunchAppAndWait(regAspnet, com, WAIT) < 0) then
+         MessageBox ("Unable to launch "+ regAspnet +".",SEVERE);
+     endif;
+     if (LaunchAppAndWait(regAspnet, com1, WAIT) < 0) then
+         MessageBox ("Unable to launch "+ regAspnet +".",SEVERE);
+     endif;
+end;
+function DeleteVirtuals(hMsi)
+OBJECT objIIS_Root, objIISVirtual;
+STRING szSiteNum,regAspnet,com;
+NUMBER nBuff;
+begin
+//nBuff=256;
+ nBuff=256;
+     MsiGetProperty(ISMSI_HANDLE,"SITENUMBER",szSiteNum,nBuff);
+     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v4.0.30319\\aspnet_regiis.exe";
+     com = "-s W3SVC/" + szSiteNum + "/ROOT/";
+     //MessageBox(regAspnet + com + "COEFrameworkServices", INFORMATION);
+     LaunchAppAndWait(regAspnet, com + "COEFrameworkServices", WAIT);
+     LaunchAppAndWait(regAspnet, com + "COEWebServiceHost", WAIT);
+     LaunchAppAndWait(regAspnet, com + "COECommonResources", WAIT);
+     LaunchAppAndWait(regAspnet, com + "DataLoader", WAIT);
+     LaunchAppAndWait(regAspnet, com + "COESingleSignOn", WAIT);
+     LaunchAppAndWait(regAspnet, com + "CBVNClickOnce", WAIT);
+     LaunchAppAndWait(regAspnet, com + "COEManager", WAIT);
+     LaunchAppAndWait(regAspnet, com + "COERegistration", WAIT);
+     LaunchAppAndWait(regAspnet, com + "ChemBioViz", WAIT);
+     
+/*
+if (IsObject(objIIS_Root)) then
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COEFrameworkServices","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COEFrameworkServices");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COEWebServiceHost","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COEWebServiceHost");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COECommonResources","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COECommonResources");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/DataLoader","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "DataLoader");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COESingleSignOn","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COESingleSignOn");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/CBVNClickOnce","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "CBVNClickOnce");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COEManager","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COEManager");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/COERegistration","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "COERegistration");
+			set objIISVirtual = NOTHING;
+		endif;
+		set objIISVirtual= CoGetObject("IIS://localhost/W3SVC/" + szSiteNum + "/Root/ChemBioViz","");
+		if (IsObject(objIISVirtual)) then
+			objIIS_Root.Delete("IISWebVirtualDir", "ChemBioViz");
+			set objIISVirtual = NOTHING;
+		endif;	
+
+endif;
+*/
+end;
