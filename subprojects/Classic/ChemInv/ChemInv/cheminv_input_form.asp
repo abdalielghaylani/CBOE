@@ -1512,7 +1512,7 @@ Select Case lCase(sTab)
 									</td>
 									<td>
 										<span title="<%=dateFormatString%>">Supplier Shipment Date:<br>
-										<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_date", "DATE_PICKER:8","27"%>
+										<%ShowInputField dbkey, formgroup, "inv_plates.supplier_shipment_date", "DATE_PICKER:8","24"%>
 									</td>
 								</tr>
 							</table>
@@ -1682,7 +1682,7 @@ Select Case lCase(sTab)
 		      		<tr>
 			        	<td>
 							<span title="<%=dateFormatString%>">Date Created:<br>
-							<%ShowInputField dbkey, formgroup, "inv_plates.date_created", "DATE_PICKER:8","27"%>
+							<%ShowInputField dbkey, formgroup, "inv_plates.date_created", "DATE_PICKER:8","24"%>
 						</td>
 					</tr>
 		      		<tr>
