@@ -1489,17 +1489,22 @@ namespace CambridgeSoft.COE.Framework.Common
                                 this.max = double.Parse(_valueRange[0].Trim().Substring(_valueRange[0].Trim().IndexOf('<') + 1));
                                 this.min = double.Parse(_valueRange[1].Trim().Substring(_valueRange[1].Trim().IndexOf('>') + 1));
                             }
+                            if (this.min < 0 || this.max < 0)
+                                throw new Exception(Resources.NegativeValueForMolWeightCriteria);
                         }
                         else if (_value.Trim()[0] == '<')
                         {
                             this.min = 0.0;
                             this.max = double.Parse(_value.Substring(_value.IndexOf('<') + 1));
+                            if (this.max < 0)
+                                throw new Exception(Resources.NegativeValueForMolWeightCriteria);
                         }
                         else if (_value.Trim()[0] == '>')
                         {
                             this.min = double.Parse(_value.Substring(_value.IndexOf('>') + 1));
                             this.max = float.MaxValue;
-
+                            if (this.min < 0)
+                                throw new Exception(Resources.NegativeValueForMolWeightCriteria);
                         }
                         else
                         {
@@ -1509,6 +1514,8 @@ namespace CambridgeSoft.COE.Framework.Common
                             {
                                 this.max = double.Parse(values[1]);
                                 this.min = double.Parse(values[0]);
+                                if (this.min < 0 || this.max < 0)
+                                    throw new Exception(Resources.NegativeValueForMolWeightCriteria);
                             }
                             else if (values.Length > 0)
                             {
