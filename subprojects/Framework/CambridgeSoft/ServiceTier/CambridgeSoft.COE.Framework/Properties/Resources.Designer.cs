@@ -851,6 +851,17 @@ namespace CambridgeSoft.COE.Framework.Properties {
                 return ResourceManager.GetString("InvalidDataTypeForMolWeightCriteria", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The data you have entered for searching with MolWeight contains negative value(s)..
+        /// </summary>
+        internal static string NegativeValueForMolWeightCriteria
+        {
+            get
+            {
+                return ResourceManager.GetString("NegativeValueForMolWeightCriteria", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to The database columns used to join the parent and child data have incompatible data types.  Please ensure that relationships in the dataview use compatible data types..

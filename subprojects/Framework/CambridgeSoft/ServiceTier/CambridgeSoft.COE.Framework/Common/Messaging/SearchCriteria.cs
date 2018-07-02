@@ -1515,6 +1515,9 @@ namespace CambridgeSoft.COE.Framework.Common
                                 double doubleValue;
                                 if (double.TryParse(values[0], out doubleValue))
                                 {
+                                    if (doubleValue < 0)
+                                        throw new Exception(Resources.NegativeValueForMolWeightCriteria);
+
                                     NormalizationUtils.GetSearchRange(values[0],
                                                               ref this.min,
                                                               ref this.max);

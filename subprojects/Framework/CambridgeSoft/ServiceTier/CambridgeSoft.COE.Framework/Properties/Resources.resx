@@ -333,6 +333,12 @@
   <data name="InvalidDataTypeForMolWeightCriteria" xml:space="preserve">
     <value>The data you have entered for searching with MolWeight is not recognized.</value>
   </data>
+
+  <data name="NegativeValueForMolWeightCriteria" xml:space="preserve">
+    <value>The data you have entered for searching with MolWeight contains negative value(s).</value>
+  </data>
+  
+  
   <data name="ParentQueryAlias" xml:space="preserve">
     <value>"COESearch_Service_Parent_Query"</value>
   </data>

@@ -509,6 +509,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             try
             {
                 searchCriteria.GetFromXML(searchCriteriaXML);
+                // validates the search criteria coming from client
+                ValidateAndResetSearchCriteria(searchCriteria);
                 SearchCriteria.SearchExpression itemToDelete = null;
                 foreach (var item in searchCriteria.Items)
                 {
@@ -541,7 +543,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                throw new RegistrationException("The search criteria is invalid", ex);
+                throw new RegistrationException(ex.Message, ex);
+            }
+        }
+
+        private static void ValidateAndResetSearchCriteria(SearchCriteria searchCriteria)
+        {
+            try
+            {
+                foreach (var item in searchCriteria.Items)
+                {
+                    if (!(item is SearchCriteria.SearchCriteriaItem)) continue;
+
+                    var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                    if (searchCriteriaItem.Criterium is SearchCriteria.CSMolWeightCriteria)
+                    {
+                        var mwCriteria = searchCriteriaItem.Criterium as SearchCriteria.CSMolWeightCriteria;
+
+                        // re-assign the MW criteria, so that validation rules will be invoked and value will reset based on the rules
+                        mwCriteria.Value = mwCriteria.Value;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new RegistrationException(ex.Message, ex);
             }
         }
 
