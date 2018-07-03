@@ -170,7 +170,12 @@ end if
 		
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/input_form_footer_vbs.asp"-->
 	<script language="JavaScript">
-		document.cows_input_form.onsubmit = function(){getAction("search","<%=substanceFG%>"); return false;}
+	    document.cows_input_form.onsubmit = function() { 
+	        if (window.document.activeElement.className.indexOf("cdd-dialog-input") < 0) {
+	            doSearch("search","<%=substanceFG%>"); 
+	        }
+	        return false;
+	    }
 	</script>
 
 	</body>

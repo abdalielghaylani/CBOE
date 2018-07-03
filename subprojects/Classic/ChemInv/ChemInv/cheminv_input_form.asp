@@ -1758,7 +1758,12 @@ removed after fixing core bug CSBR-97594.-->
 		
 		if (MainWindow.document.cows_input_form.checkbox1){
 			//alert(document.cows_input_form.checkbox1.checked ? chkfg : unchkfg)
-			document.cows_input_form.onsubmit = function(){SetSearchCriteria(); return false;}
+		    document.cows_input_form.onsubmit = function() { 
+		        if (window.document.activeElement.className.indexOf("cdd-dialog-input") < 0) {
+		            SetSearchCriteria();       
+		        }
+		        return false;
+		    }
 		}
 		else{
 			//DJP: this doesn't need to be set b/c core will do it and this is resetting what core is doing

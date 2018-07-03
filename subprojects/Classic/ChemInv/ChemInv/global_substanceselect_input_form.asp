@@ -260,7 +260,12 @@ Session("UserID" & "invreg") = Session("UserID" & "ChemInv")
 	end if 
 	%>
 	
-	document.cows_input_form.onsubmit = function(){getAction("search","global_substanceselect_form_group"); return false;}
+	document.cows_input_form.onsubmit = function() {
+        if (window.document.activeElement.className.indexOf("cdd-dialog-input") < 0) {
+            doSearch("search","global_substanceselect_form_group");
+		}
+        return false;
+    }
 	</script>
 	</body>
 </html>
