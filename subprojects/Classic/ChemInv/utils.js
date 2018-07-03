@@ -197,8 +197,8 @@ function AssignRegCompound(RegID, BatchNumber, RegNumber) {
 // Update Location Picker from a Location Barcode
 //
 function UpdateLocationPickerFromBarCode(barCode, formelm, elm1, elm2, elm3) {
-	var CsUserName = document.getElementById("tempCSUserName").value;
-	var CsUserID = document.getElementById("tempCsUserID").value;
+	var CsUserName = document.getElementById("tempCsUserName").value;
+	var CsUserID = document.getElementById("tempCSUserID").value;
 	var strURL = serverType + serverName + "/cheminv/api/GetLocationFromBarcode.asp?LocationBarcode=" + barCode + "&tempCsUserName=" + CsUserName + "&tempCsUserID=" + CsUserID;
 	var httpResponse = JsHTTPGet(strURL)
 	//alert("'" + httpResponse + "'")
