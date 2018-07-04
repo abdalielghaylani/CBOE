@@ -957,14 +957,14 @@ Sub ShowLocationPicker(formelm, elm1, elm2, elm3, size2, size3, isLocSearch)
                 QueryString = QueryString & Credentials
                 loc = CShttpRequest2("POST",ServerName,"/cheminv/api/GetLocationFromID.asp","ChemInv",QueryString) 'CBOE-1575 SJ To restore the location barcode in the textbox when refining the query
                 arr1 = Split(loc,",")
-	            Response.Write "<input TYPE=""Text"" SIZE=""" & size2 &""" value=""" & Trim(arr1(1)) & """ name=""" & elm2 & """ onfocus=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"" "">"
+	            Response.Write "<input TYPE=""Text"" SIZE=""" & size2 &""" value=""" & Trim(arr1(1)) & """ name=""" & elm2 & """ onfocus=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"" onblur=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"">"
             ElseIf UBound(arr1) = 2 then 'CBOE-1433 SJ : to remove the invalid text in the location id text box when search sub location is selected.
                 Credentials = "&CSUserName=" & Server.URLEncode(Session("UserName" & "cheminv")) & "&CSUSerID=" & Server.URLEncode(Session("UserID" & "cheminv"))
                 QueryString = "LocationID=" & replace(Trim(arr1(2)),")","")
                 QueryString = QueryString & Credentials
                 loc = CShttpRequest2("POST",ServerName,"/cheminv/api/GetLocationFromID.asp","ChemInv",QueryString) 'CBOE-1575 SJ To restore the location barcode in the textbox when refining the query
                 arr1 = Split(loc,",")
-                Response.Write "<input TYPE=""Text"" SIZE=""" & size2 &""" value=""" & Trim(arr1(1)) & """ name=""" & elm2 & """ onfocus=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"" "">"
+                Response.Write "<input TYPE=""Text"" SIZE=""" & size2 &""" value=""" & Trim(arr1(1)) & """ name=""" & elm2 & """ onfocus=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"" onblur=""UpdateLocationPickerFromBarCode(this.value," & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"">"
             End If
 	    Else
 	        Response.Write "<input TYPE=""Text"" SIZE=""" & size2 &""" Value="""" name=""" & elm2 & """ onchange=""UpdateLocationPickerFromBarCode(this.value, " & formelm & ",'" & elm1 & "','" & elm2 & "', '" & elm3 & "')"">"
