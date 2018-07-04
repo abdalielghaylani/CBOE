@@ -182,8 +182,7 @@ function doUpdate(){
 	}
 	document.cows_input_form.action = actiontemp + '?DataAction=' + action + "&formgroup=" + formgroup + "&dbname=" + dbkey 
 	document.cows_input_form.submit();
-	OpenerWindow.reloadNavBar()
-	doReturnMain()
+	OpenerWindow.reloadNavBar()	
 }
 
 </script>

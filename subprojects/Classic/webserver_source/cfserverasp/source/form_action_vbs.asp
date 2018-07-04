@@ -61,8 +61,8 @@ Select Case strDataAction
 		returnVal = doEditStoredQuery(dbkey, formgroup, db_query_item)
 		if returnVal <> "" then
 			showmessagedialog(returnval)
-		end if
-		'doredirect dbkey , "/" & Application("appkey") & "/save_query.asp?manage_query_mode=manage_queries&dbname=" & dbkey & "&formgroup="& formgroup 
+		end if		
+		response.redirect Application("AppPathHTTP") & "/save_query.asp?manage_query_mode=manage_queries&dbname=" & dbkey & "&formgroup=" & formgroup
 
 	Case "save_query"
 		query_name = request("query_name")
