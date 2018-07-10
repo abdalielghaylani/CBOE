@@ -1,49 +1,52 @@
 pipeline {
     agent {
         node {
-            label 'ABSVS_2017'
-            customWorkspace "CBOE/${BRANCH_NAME}"
-
-              }
+				label 'ABSVS_2017'
+				customWorkspace "CBOE/${BRANCH_NAME}"
+             }
           }
-    environment {
+    environment 
+		  {
             PROD_VERSION = '18.1.0'
 	        VERSION_STRING = "${PROD_VERSION}.50${BUILD_NUMBER}"
 	        STAGING_DIR = "staging"
-	        NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"
 	        MSBUILD_PATH = '"c:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"'
 	        MSBUILD_PATH2013 = '"C:\\Program Files (x86)\\MSBuild\\12.0\\Bin\\msbuild.exe"'
 	        PUBLISH_PATH='"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1"'
+                NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"
+			
       
-             }
-    options {
-        timestamps()
-        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '', numToKeepStr: '10'))
-            }
-    stages {
+           }
+    options 
+		   {
+			timestamps()
+			buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '', numToKeepStr: '10'))
+           }
+    stages 
+	      {
         
            stage ('CBOE-Build') {	
                steps{
  	              bat """ 
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Security\\SingleSignOn\\SingleSignOn\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\SQLGenerator.NUnitTest\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\SQLGenerator.NUnitTest\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.NUnitTests\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.UnitTests\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Manager\\Manager\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\RegistrationAddins\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-                  C:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.RegistrationAdmin.Services\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Core\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebServices\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Manager\\COEConfigurationPublishTool\\COEConfigurationPublishTool\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\CBVN\\ChemBioViz.Net\\ChemControls\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
-			      c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\DataLoaderGUI\\DataLoaderGUI\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+                                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+                                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\RegistrationAddins\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+                                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+                                  C:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.RegistrationAdmin.Services\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+                                  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Core\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebServices\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Manager\\COEConfigurationPublishTool\\COEConfigurationPublishTool\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\CBVN\\ChemBioViz.Net\\ChemControls\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
+			          c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\DataLoaderGUI\\DataLoaderGUI\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\DataUploader\\DataPreviewer\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\DataUploader\\DataUploader.Core\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
 				  c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\DataUploader\\DataUploader\\Properties\\AssemblyInfo.cs" -fileversion=%VERSION_STRING%
@@ -60,7 +63,6 @@ pipeline {
 		// Batch build step
 				bat """ 
 				xcopy /Y  "C:\\Users\\jmsayan\\Desktop\\Test\\DataLoader\\*.*" "%WORKSPACE%\\subprojects\\DataLoader" 
-				xcopy /Y  "C:\\Users\\jmsayan\\Desktop\\Test\\Install\\*.*" "%WORKSPACE%\\installers\\CBOEInstaller" 
 				cd %WORKSPACE%\\Installers\\InstallSupportFiles
 				EditDataLoaderProj1261.vbs %WORKSPACE%\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj 50%BUILD_NUMBER% 
 				"""
@@ -78,7 +80,7 @@ pipeline {
 				bat "${MSBUILD_PATH} %WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\COELogViewer.sln /t:Publish /p:Configuration=Release"	
 				bat """ 
 				MD "%WORKSPACE%//ChemOffice"
-	            MD "%WORKSPACE%//Base/ChemOffice"
+	            		MD "%WORKSPACE%//Base/ChemOffice"
 				"C:\\Program Files (x86)\\Beyond Compare 2\\bc2.exe" "@%WORKSPACE%\\Installers\\InstallSupportFiles\\bc.txt" "%WORKSPACE%\\subprojects\\Classic" "%WORKSPACE%\\Base\\ChemOffice" "%WORKSPACE%\\ChemOffice" /silent 
 				"""		// Batch build step
 				bat """ 
@@ -115,9 +117,14 @@ pipeline {
 				 """		// Batch build step
 				bat """ 
 
-MD "%WORKSPACE%\\CBOE17.1"
-MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test" 
-xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\Test\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test\\"
+				MD "%WORKSPACE%\\CBOE17.1"
+				MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test" 
+				MD "%WORKSPACE%\\Install\\install9" 
+				MD "%WORKSPACE%\\Install\\install9\\UserInterface" 
+				xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\Test\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test\\"
+				xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\Install\\install9\\UserInterface\\*.*" "%WORKSPACE%\\Install\\install9\\UserInterface\\"
+				xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\ChemOffice\\webserver_source\\cfserveradmin\\AdminSource\\mswcrun.dll" "%WORKSPACE%\\ChemOffice\\webserver_source\\cfserveradmin\\AdminSource\\"
+				
 				c:\\Tools\\BuildTools\\setversionstring.pl -file="%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\Properties\\AssemblyInfo.cs"  -fileversion=%VERSION_STRING%
 				xcopy /Y "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test\\Registration.Server.2013.Build.sln"  "%WORKSPACE%\\subprojects\\Registration\\PresentationTier"
 				xcopy /Y "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Test\\Registration.Server.csproj"   "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server"
@@ -129,10 +136,10 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 				xcopy /Y "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationAdmin.Services.dll" "%WORKSPACE%\\CBOE17.1"
 				xcopy /Y "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationWebApp.dll" "%WORKSPACE%\\CBOE17.1"
 				xcopy /Y "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\Registration.Core.dll" "%WORKSPACE%\\CBOE17.1" 
-MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\packages"
-MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages"
-xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\packages\\"
-xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages\\"
+				MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\packages"
+				MD "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages"
+				xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\packages\\"
+				xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages\\"
 
 				 """
 				bat ''' 
@@ -140,53 +147,67 @@ xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\
 				xcopy /Y "%WORKSPACE%\\subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				xcopy /Y "%WORKSPACE%\\CBOE17.1\\*.*" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				xcopy /Y "%WORKSPACE%\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl17.dll" "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
-				set WORKSPACE_PATH_ROOT=%WORKSPACE%
 				'''
-bat '''"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System"\\IsCmdBld.exe -p %WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%" -z "BUILDVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%"
+				bat '''
+				set WORKSPACE_PATH_ROOT=%WORKSPACE%
+				"C:\\Program Files (x86)\\InstallShield\\2013 SP1 SAB\\System"\\IsCmdBld.exe -p %WORKSPACE%\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=%VERSION_BASE%.50%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%" -z "BUILDVERSION=%CBVNFOLDERVERSION%_50%BUILD_NUMBER%"
 				'''
 				bat '''MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
-				xcopy /Y "%WORKSPACE%\\Installers\\CBOEInstaller\\CBOE17\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "%PUBLISH_PATH%\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
+				xcopy /Y "%WORKSPACE%\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "%PUBLISH_PATH%\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
 				'''
-                             deleteDir()
+                
 				}
 			}
-		stage ('Installer') {
-		     when {
-                     expression {
+		stage ('Installer')
+				{
+		     when 
+					{
+                     expression 
+							   {
                                return env.BRANCH_NAME == "master"
                                }
-                   }
-     		agent {
-				node {
-						label 'INST_2013'
-                                                customWorkspace "CBOE/${BRANCH_NAME}"
-					 }
-				  }
-             steps{
-                bat """ 
-				del /Q "C:\\CBOE\\CBOEServerInstaller_18.1"
-				xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\Server\\CBOEServerInstaller_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
-				xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\Registration\\Test_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
-				cd "C:\\Program Files (x86)\\InstallShield\\2013\\System"
-				"IsCmdBld.exe" -p "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%"
-				xcopy "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "%PUBLISH_PATH%\\Dev\\TestBuilds\\CBOE_18.1.0.50%BUILD_NUMBER%" /I /Y /S
-				""" 
-				  }
-				}
- 	    }
-        post {
-        always { 
-				emailext body: "${env.BUILD_URL} has result ${currentBuild.result?:'SUCCESS'}",
-				mimeType: 'text/html',
-				subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
-			    to: "${NOTIFY_LIST}",
-				replyTo: "${NOTIFY_LIST}",
-				recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-                               deleteDir()
+                    }
+     		agent 
+			        {
+				node 
+				       {
+							label 'INST_2013'
+                             customWorkspace "CBOE/${BRANCH_NAME}"
+						}
+					}
+             steps
+			        {
+						bat """ 
+						del /Q "C:\\CBOE\\CBOEServerInstaller_18.1"
+						xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\Server\\CBOEServerInstaller_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
+						xcopy /Y "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\Registration\\Test_%VERSION_STRING%\\*.*" "C:\\CBOE\\CBOEServerInstaller_18.1"
+						cd "C:\\Program Files (x86)\\InstallShield\\2013\\System"
+						"IsCmdBld.exe" -p "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=%VERSION_BASE%.50%BUILD_NUMBER%"
+						xcopy "c:\\builds\\workspace\\TBR-CBOE18.1\\ChemBioOfficeInstallers\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "%PUBLISH_PATH%\\Dev\\TestBuilds\\CBOE_18.1.0.50%BUILD_NUMBER%" /I /Y /S
+						""" 
+						
+				    }
+				
+                     
+		}
+  
 
-				}           
+   stage ('Clean Workspace') {
+       steps{
+    		deleteDir()
             }
-   }
+		}
+ 	    }
+
+ post {
+        always {
+            emailext body: "${env.BUILD_URL} has result ${currentBuild.result?:'SUCCESS'}",	mimeType: 'text/html',subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",to: "${NOTIFY_LIST}",replyTo: "${NOTIFY_LIST}",recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+            deleteDir()
+        }
+    }       
+
+
+		}
     
     
     
