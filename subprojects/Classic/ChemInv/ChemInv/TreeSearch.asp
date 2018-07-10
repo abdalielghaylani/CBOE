@@ -63,38 +63,62 @@ end if
 <script type="text/javascript" language="JavaScript">
     //function to change the labels of batch fields
     function ResetBatchFielslabels(batchTypeid) {
-        var TempBatchStr =  eval("document.form1.FieldStringBatch" + batchTypeid + ".value");
-        if (TempBatchStr == '') {
-            for (i = 1; i <= 3; i++) {
-                document.getElementById("BatchFld" + i).style.display = 'none';
-                document.getElementById("batch_field_" + i).value = '';
-                document.getElementById("reg_number").value = '';
-            }
-        }
-        else {
-            var arrBatchValues = TempBatchStr.split("|");
-            for (i = 0; i < arrBatchValues.length; i++) {
-                vartemp = document.getElementById("BatchFieldDisplay" + arrBatchValues[i].split(',')[1]).innerHTML;
-                var dispVal = arrBatchValues[i].split(',')[0];
-                document.getElementById("BatchFieldDisplay" + arrBatchValues[i].split(',')[1]).innerHTML = dispVal + ":";
-                document.getElementById("BatchFld" + arrBatchValues[i].split(',')[1]).style.display = 'block';
-                document.getElementById("batch_field_" + arrBatchValues[i].split(',')[1]).value = '';
-                var FieldName = arrBatchValues[i].split(",")[2];
-                var ToolTip = document.getElementById("batch_field_" + arrBatchValues[i].split(',')[1]);
-                if (FieldName == "REG_ID_FK") {
-                    ToolTip.title = 'Example AB-000001';
-                }
-                else {
-                    ToolTip.title = '';
+        var TempBatchStr = document.getElementById('FieldStringBatch' + batchTypeid);
+        if (TempBatchStr) {
+            if (TempBatchStr.value == '') {
+                for (i = 1; i <= 3; i++) {
+                    var BatchFld = document.getElementById("BatchFld" + i);
+                    if (BatchFld) {
+                        BatchFld.style.display = 'none';
+                    }
+                    var batch_field = document.getElementById("batch_field_" + i);
+                    if (batch_field) {
+                        batch_field.value = '';
+                    }
+                    var reg_number = document.getElementById("reg_number");
+                    if (reg_number) {
+                        reg_number.value = '';
+                    }
                 }
             }
-            for (i = arrBatchValues.length + 1; i <= 3; i++) {
-                document.getElementById("BatchFld" + i).style.display = 'none';
-                document.getElementById("batch_field_" + i).value = '';
+            else {
+                var arrBatchValues = TempBatchStr.value.split("|");
+                for (i = 0; i < arrBatchValues.length; i++) {
+                    var dispVal = arrBatchValues[i].split(',')[0];
+                    var batchField = arrBatchValues[i].split(',')[1];
+                    var BatchFieldDisplay = document.getElementById("BatchFieldDisplay" + batchField);
+                    if (BatchFieldDisplay) {
+                        BatchFieldDisplay.innerHTML = dispVal + ":";
+                    }
+                    var BatchFld = document.getElementById("BatchFld" + batchField);
+                    if (BatchFld) {
+                        BatchFld.style.display = 'block';
+                    }
+                    var batch_field = document.getElementById("batch_field_" + batchField);
+                    if (batch_field) {
+                        batch_field.value = '';
+                        var FieldName = arrBatchValues[i].split(",")[2];
+                        if (FieldName == "REG_ID_FK") {
+                            batch_field.title = 'Example AB-000001';
+                        }
+                        else {
+                            batch_field.title = '';
+                        }
+                    }
+                }
+                for (i = arrBatchValues.length + 1; i <= 3; i++) {
+                    var BatchFld = document.getElementById("BatchFld" + i);
+                    if (BatchFld) {
+                        BatchFld.style.display = 'none';
+                    }
+                    var batch_field = document.getElementById("batch_field_" + i);
+                    if (batch_field) {
+                        batch_field.value = '';
+                    }
+                }
             }
         }
-    }
-				
+    }				
 </script>
 
 <form name="form1" action="BrowseTree.asp?<%=Request.Querystring%>" method="POST">
@@ -122,19 +146,19 @@ if showResults <> "true" then
                 <tr id="BatchFld1">
 		        		<td>
 							<span id="BatchFieldDisplay1" style="display:block">BatchFieldDisplay1:</span>
-                            <input type="text" size="10" name="batch_field_1"/>
+                            <input type="text" size="10" name="batch_field_1" id="batch_field_1" />
 						</td>
 					</tr>
                     <tr id="BatchFld2">
 		        		<td>
 							<span id="BatchFieldDisplay2" style="display:block">BatchFieldDisplay2:</span>
-							 <input type="text" size="10" name="batch_field_2" />
+							 <input type="text" size="10" name="batch_field_2" id="batch_field_2" />
 						</td>
 					</tr>
                     <tr id="BatchFld3">
 		        		<td>
 							<span id="BatchFieldDisplay3" style="display:block">BatchFieldDisplay3:</span>
-							 <input type="text" size="10" name="batch_field_3" />
+							 <input type="text" size="10" name="batch_field_3" id="batch_field_3" />
 						</td>
 					</tr>
                     <% Call GetInvConnection()
@@ -172,18 +196,18 @@ if showResults <> "true" then
 					RS.MoveNext
 					Loop
 					End If%> 	
-					<input Type="hidden" name="FieldStringBatch1" value="<%=FieldStringBatch1%>" />
-					<input Type="hidden" name="FieldStringBatch2" value="<%=FieldStringBatch2%>" />
-					<input Type="hidden" name="FieldStringBatch3" value="<%=FieldStringBatch3%>" />
+					<input Type="hidden" name="FieldStringBatch1" id="FieldStringBatch1" value="<%=FieldStringBatch1%>" />
+					<input Type="hidden" name="FieldStringBatch2" id="FieldStringBatch2" value="<%=FieldStringBatch2%>" />
+					<input Type="hidden" name="FieldStringBatch3" id="FieldStringBatch3" value="<%=FieldStringBatch3%>" />
                     <script language="javascript"> ResetBatchFielslabels(1);</script> 
                     <%end if  %>
             <td>
                 
 	            Number of open positions:<br />
-	            <input type="text" size="3" name="OpenPositions" value="<%=OpenPositions%>" /><br />
+	            <input type="text" size="3" name="OpenPositions" id="OpenPositions" value="<%=OpenPositions%>" /><br />
 	            Container Size:<br />
 	            <table cellpadding="0" cellspacing="0"><tr><td>
-		            <input type="text" size="3" name="ContainerSize" value="<%=ContainerSize%>" />&nbsp;
+		            <input type="text" size="3" name="ContainerSize" id="ContainerSize" value="<%=ContainerSize%>" />&nbsp;
 	            </td><td>
 	            <%Response.write ShowPickList2("", "UOM", UOMAbv,"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2) ORDER BY lower(DisplayText) ASC","300"," ","","") & vbcrlf%>
 	            </td></tr></table>
