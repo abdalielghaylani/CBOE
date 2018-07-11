@@ -58,7 +58,7 @@ function appDisplay(appValue) {
 		</td>
 		<td align="right" valign="top">
 			<a class="MenuLink" target="_top" href="AuditReport_frset.asp?ft=std&CompoundID=<%=Request("CompoundID")%>">Standard</a> |
-			<a class="MenuLink" target="_top" href="#" onclick="return false" disabled>Aggregate</a>
+			<a class="MenuLink" target="_top" href="#" onclick="return false" style="color:grey" disabled>Aggregate</a>
 		</td>
 	</tr>
 	<!--SYAN added on 1/20/2005 to fix CSBR-50830-->

@@ -95,7 +95,7 @@ function Validate() {
 			<img src="<%=Application("NavButtonGifPath")%>cheminventory_banner.gif" border="0">
 		</td>
 		<td align="right" valign="top">
-			<a class="MenuLink" target="_top" href="AuditReport_frset.asp?ft=std" disabled>Standard</a> |
+			<a class="MenuLink" target="_top" href="AuditReport_frset.asp?ft=std" style="color:grey" disabled>Standard</a> |
 			<a class="MenuLink" target="_top" href="AuditReport_frset.asp?ft=Aggregate&CompoundID=<%=Request("CompoundID")%>">Aggregate</a>
 		</td>
 	</tr>
