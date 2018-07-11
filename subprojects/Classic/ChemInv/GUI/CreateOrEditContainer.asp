@@ -941,13 +941,20 @@ Select Case sTab
 		<td>
 			<input type="text" name="iContainerName" size="30" value="<%=ContainerName%>">
 		</td>
-		<%= ShowPickList("Unit of Weight:", "iUOWID", Session("UOWIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (2) ORDER BY lower(DisplayText) ASC")%>
+		<td rowspan="4">
+			<table>
+				<tr>
+					<%= ShowPickList("Unit of Weight:", "iUOWID", Session("UOWIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (2) ORDER BY lower(DisplayText) ASC")%>
+				</tr>
+				<tr><%=ShowInputBox("Total weight:", "FinalWeight", 15, "", False, false)%></tr>
+				<tr><%=ShowInputBox("Tare Weight:", "TareWeight", 15, "", False, false)%></tr>
+				<tr><%=ShowInputBox("Net Weight:", "NetWeight", 15, "", False, false)%></tr>
+			</table>
+		</td>
 	</tr>
 	<tr height="25">
 	<%=ShowPickList("<SPAN class=required>Container Type:</span>", "iContainerTypeID", ContainerTypeID,"SELECT Container_Type_ID AS Value, Container_Type_Name AS DisplayText FROM inv_Container_Types ORDER BY lower(DisplayText) ASC")%>
-		
-		<%=ShowInputBox("Total weight:", "FinalWeight", 15, "", False, false)%>	
-
+	
 	</tr>
 	<tr height="25">
 		<%'ShowPickList("<SPAN class=required>Unit of measure:</span>", "iUOMID", Session("UOMIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2) ORDER BY lower(DisplayText) ASC")%>
@@ -957,11 +964,9 @@ Select Case sTab
 		<td>
 		<%=ShowSelectBox2("iUOMID", Session("UOMIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (1,2,4) ORDER BY lower(DisplayText) ASC", 20, "", "")%>
 		</td>
-		<%=ShowInputBox("Tare Weight:", "TareWeight", 15, "", False, false)%>
 	</tr>
 	<tr height="25">
 		<%=ShowInputBox("Container Size:", "QtyMax", 15, "", False, true)%>
-		<%=ShowInputBox("Net Weight:", "NetWeight", 15, "", False, false)%>
 	</tr>
 	<% if not IsEdit then
 	'QtyInitial = QtyMax
@@ -1022,15 +1027,22 @@ Select Case sTab
 	<tr height="25">
 		<%=ShowInputBox("Lot Number:", "LotNum", 15, "", False, False)%>
 		<%if lcase(PageSource) <>"eln"  then%>
-		<td colspan="2">&nbsp;
-			<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
-			<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'SubsManager', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
-			&nbsp;|&nbsp;
-			<%end if%>
-			<%
-			substanceFG = iif((Session("isCDP") = "TRUE"),"global_substanceselect_form_group","global_substanceselect_np_form_group")
-			%>
-			<a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=<%=substanceFG%>&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'SubsManager', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>
+		<td colspan="2" align="right">
+			<table width="450px">
+				<tr>
+				<td width="150px">&nbsp;</td>
+					<td>
+						<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
+						<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'SubsManager', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
+						&nbsp;|&nbsp;
+						<%end if%>
+						<%
+						substanceFG = iif((Session("isCDP") = "TRUE"),"global_substanceselect_form_group","global_substanceselect_np_form_group")
+						%>
+						<a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=<%=substanceFG%>&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'SubsManager', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>
+					</td>
+				</tr>
+			</table>
 		</td>
 		<% Else %>
 		<td colspan="2"></td>
@@ -1057,11 +1069,17 @@ Select Case sTab
 		<td><%call ShowInputField("", "", "iDateOrdered:form1:" & DateOrdered , "DATE_PICKER:TEXT", "15")%>
 		<!--<input type="text" name="iDateOrdered" size="15" value="<%=DateOrdered%>"><a href onclick="return PopUpDate(&quot;iDateOrdered&quot;,&quot;/cheminv/gui/month_view1.asp&quot;)"><img src="/cfserverasp/source/graphics/navbuttons/icon_mview.gif" height="16" width="16" border="0"></a>-->
 		</td>
-		<%if Application("RegServerName") <> "NULL" then%>
-			<td width="200" align="right">Compound ID:</td><td><input type="text" Size="15" name="iCompoundID" value="<%=CompoundID%>" onchange="ValidateCompoundID2(this, true);"></td>
-		<%else%>
-			<td width="200" align="right">Compound ID:</td><td><input type="text" Size="15" name="iCompoundID" value="<%=CompoundID%>" onchange="ValidateCompoundID2(this, false);"></td>
-		<%End if%>
+		<td colspan="2">
+			<table width="450px">
+				<tr>
+				<%if Application("RegServerName") <> "NULL" then%>
+					<td width="150" align="right">Compound ID:</td><td><input type="text" Size="15" name="iCompoundID" value="<%=CompoundID%>" onchange="ValidateCompoundID2(this, true);"></td>
+				<%else%>
+					<td width="150" align="right">Compound ID:</td><td><input type="text" Size="15" name="iCompoundID" value="<%=CompoundID%>" onchange="ValidateCompoundID2(this, false);"></td>
+				<%End if%>
+				</tr>
+			</table>
+		</td>
 		<input Type="hidden" name="NewCompoundID">
 	</tr>
 	<tr height="25">
@@ -1069,23 +1087,45 @@ Select Case sTab
 		<td><%call ShowInputField("", "", "iDateReceived:form1:" & DateReceived , "DATE_PICKER:TEXT", "15")%>
 		<!--<input type="text" name="iDateReceived" size="15" value="<%=DateReceived%>"><a href onclick="return PopUpDate(&quot;iDateReceived&quot;,&quot;/cheminv/gui/month_view1.asp&quot;)"><img src="/cfserverasp/source/graphics/navbuttons/icon_mview.gif" height="16" width="16" border="0"></a>-->
 		</td>
-		<%=ShowInputBox("Grade:", "Grade", 15, "", False, False)%>
+		<td colspan="2">
+			<table width="450px">
+				<tr><%=ShowInputBox("Grade:", "Grade", 15, "", False, False)%></tr>
+			</table>
+		</td>
 	</tr>
 	<tr height="25">
 		<td align="right" valign="top" nowrap width="150">Container Cost:</td>
-		<td>
+		<td valign="top">
 			<%=ShowSelectBox("iUOCostID", Session("UOCostIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Abreviation AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 5 ORDER BY Unit_Name ASC")%>
 			<input type="text" name="iContainerCost" size="15" value="<%=ContainerCost%>">
 		</td>
-		<%=ShowInputBox("Purity:", "Purity", 15, ShowSelectBox("iUOPID", Session("UOPIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 3 ORDER BY Unit_Name ASC"), False, False)%>
+		<td colspan="2">
+			<table width="450px">
+				<tr> 
+					<%=ShowInputBox("Purity:", "Purity", 10, ShowSelectBox("iUOPID", Session("UOPIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 3 ORDER BY Unit_Name ASC"), False, False)%>
+				</tr>
+			</table>
+		</td>
 	</tr>
-	<tr height="25">
+	<tr height="25" valign="top"> 
 		<%=ShowInputBox("PO Number:", "PONumber", 25, "", False, False)%>
-		<%=ShowInputBox("Concentration:", "Concentration", 15, ShowSelectBox("iUOCID", Session("UOCIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK in (3,6) ORDER BY Unit_Name ASC"), False, False)%>
+		<td colspan="2">
+			<table width="450px">
+				<tr>
+					<%=ShowInputBox("Concentration:", "Concentration", 10, ShowSelectBox("iUOCID", Session("UOCIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK in (3,6) ORDER BY Unit_Name ASC"), False, False)%>
+				</tr>
+			</table>
+		</td>
 	</tr>
-	<tr height="25">
+	<tr height="25" valign="top">
 		<%=ShowInputBox("PO Line Number:", "POLineNumber", 10, "", False, False)%>
-		<%=ShowInputBox("Density:", "Density", 15, ShowSelectBox("iUODID", Session("UODIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 6 ORDER BY Unit_Name ASC"), False, False)%>
+		<td colspan="2">
+			<table width="450px">
+				<tr>
+					<%=ShowInputBox("Density:", "Density", 10, ShowSelectBox("iUODID", Session("UODIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 6 ORDER BY Unit_Name ASC"), False, False)%>
+				</tr>
+			</table>
+		</td>
 	</tr>
 	<% if not isEdit then%>
 	<tr height="25">
@@ -1131,9 +1171,12 @@ Select Case sTab
 
 	<%Else%>
 	<tr height="25">
-		<td align="right" valign="top" nowrap width="150">Container ID:</td><td>&nbsp;<%=GetBarcodeIcon()%>&nbsp;<input type="text" name="iBarcode" size="15" value="<%=Barcode%>"></td>
+		<td align="right" valign="top" nowrap width="150">Container ID:</td><td valign="top">&nbsp;<%=GetBarcodeIcon()%>&nbsp;<input type="text" name="iBarcode" size="15" value="<%=Barcode%>"></td>
 	<%End if%>
-	<td></td><td align="right"><br />
+	<td colspan="2"></td>
+	</tr>
+	<tr height="25">
+	<td colspan="4" align="right" style="padding-right:60px">
                 <% if lcase(PageSource) <> "eln" then %>
 				    <a href="#" onclick="if(typeof(parent.CloseModal) == 'function'){parent.CloseModal(false);} if (DialogWindow) {DialogWindow.close()}; window.close();return false"><img SRC="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0" alt="Cancel"></a>
                 <%End if
@@ -1245,8 +1288,8 @@ Case "RegSubstance"
 				%>
 				<tr>
                      <%if lcase(PageSource) <>"eln"  then%>
-					<td colspan="4" align="right">
-						<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
+					<td colspan="4" align="right">						
+					<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
 						<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'newDialog', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
 						&nbsp;|&nbsp;
 						<%end if%>
