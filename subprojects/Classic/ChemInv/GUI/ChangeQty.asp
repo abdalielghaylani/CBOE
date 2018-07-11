@@ -16,9 +16,10 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
 <script language="JavaScript">
 <!--Hide JavaScript
-	window.focus();
-	function ValidateQtyChange(){
-		
+    window.focus();
+    var errorAlreadyAlerted = false;
+    function ValidateQtyChange()
+    {
 		var bWriteError = false;
 		var bWriteWarning = false;
 		var errmsg = "Please fix the following problems:\r\r";
@@ -104,11 +105,14 @@ end if
 
 		document.form1.okbutton.value='';
 		if (bWriteError){
-			alert(errmsg);
+		    if (!errorAlreadyAlerted) {
+		        alert(errmsg);
+		        errorAlreadyAlerted = true;
+		    }
 			return false;
 		}
 		else{
-			var bcontinue = true;
+		    var bcontinue = true;
 			// Report warnings, user can choose to accept or cancel
 			bConfirmWarning = true;
 			if (bWriteWarning) {
@@ -134,7 +138,7 @@ end if
 	
 	function calculateQtyRemoved() {
 		var bError = false;
-			
+		errorAlreadyAlerted = false;	
 		//bError = !ValidateQtyChange(); 		
 			
 		//if (!bError) {
