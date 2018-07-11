@@ -40,13 +40,13 @@ cdxPath = Application("TempFileDirectory" & dbkey) & FileRootName & ".cdx"
 			<tr>
 				<td>
 <%  
-	if len(gifWidth)>0 then
-		'TODO:  need to make sure the cdx is there.
-		ConvertCDXtoGIF dbkey, TableName, FieldName, BaseID, gifWidth, gifHeight
-		zoomGifPath = Application("TempFileDirectoryHTTP" & dbkey) & FileRootName & "_" & gifWidth & "x" & gifHeight & ".gif"				
-%>	
-					<img SRC="<%=zoomGifPath%>" Border="0">
-<%Else%>
+if detectModernBrowser = true then
+    embed_tag_string = embed_tag_string & "<IMG SRC="
+    embed_tag_string = embed_tag_string &  """"  
+    embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=gs_form_group&dataaction=get_structure&Table=" & TableName & "&Field=" & FieldName & "&DisplayType=SIZEDGIF&StrucID=" & BaseID & "&width=400&height=400"
+    embed_tag_string = embed_tag_string  &  """ border=0>"
+    Response.Write embed_tag_string				
+Else%>
 					<script language="javascript">cd_insertObjectStr("<embed src='<%=initial_CDP_file%>' border='0' width='400' height='400' id='1' name='CDX' viewonly='true' type='chemical/x-cdx' dataurl='<%=Application("ActionForm" & dbkey)%>?dbname=<%=dbkey%>&formgroup=gs_form_group&dataaction=get_structure&Table=<%=TableName%>&Field=<%=FieldName%>&DisplayType=cdx&StrucID=<%=BaseID%>'>");</script> 
 <%End if %>		
 				</td>
