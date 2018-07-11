@@ -2849,6 +2849,10 @@ Sub ConvertAndServeCDXtoGIF (Byval dbkey, Byval tablename, Byval fieldname, Byva
 		cdxPath = tempPath & fileNameRoot & ".cdx"
 		set oCDAX =  GetCDAX()		
 		rc = oCDAX.Open(cdxPath,false)
+		if oCDAX.Objects.Count = 0 then 
+		cdxPath = tempPath & "nostructure.cdx"
+		rc = oCDAX.Open(cdxPath,false)
+		end if
 		Response.Clear
 		Response.ContentType = "image/gif"
 		Response.BinaryWrite oCDAX.Objects.Data("gif", 72, gifWidth, gifHeight)
