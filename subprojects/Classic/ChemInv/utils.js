@@ -27,7 +27,7 @@ function CloseDialog() {
 // The size and positions of the popups has been optimized to look Ok even at 800 X 600 resolution
 function OpenDialog(url, name, type) {
 	WindowDef_1 = "height=530, width= 575px, top=50, left=0";
-	WindowDef_2 = "height=580, width= 850px, top=0, left=0";
+	WindowDef_2 = "height=600, width= 850px, top=0, left=0";
 	WindowDef_3 = "height=450, width= 300px, top=50, left=540";
 	WindowDef_4 = "height=450, width= 550px, top=50, left=200";
 	WindowDef_5 = "height=600, width= 800px, top=0, left=100";

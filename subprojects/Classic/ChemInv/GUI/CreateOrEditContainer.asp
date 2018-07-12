@@ -973,28 +973,40 @@ Select Case sTab
 	%>
 	<tr height="25">
 		<%=ShowInputBox("Initial Amount:", "QtyInitial", 15, "", False, True)%>
-		<% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
-		<td rowspan=3 align=right> <span title="Pick an option from the list" class="required">Container Admin:</span></td>
-		<td rowspan=3 align=left>
-		<table border=.5>
-		<tr><td><input type="Radio" name="Ownership" name="User_cb" id="User_cb" onclick="SetOwnerInfo('user');"/>by user</td>
-		<td><input type="Radio" name="Ownership" name="Group_cb" id="Group_cb" onclick="SetOwnerInfo('group');" />by Group</td></tr>
-		<tr><td colspan="2"><SELECT id="Ownershiplst" onchange="setPrincipalID(this);" ><OPTION></OPTION></SELECT></td></tr></table></td>
-		<% end if %>
+		<td rowspan=3 colspan="2" align="left">
+			<table>
+				<tr>
+					<% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
+					<td width="150px" align=right> <span title="Pick an option from the list" class="required">Container Admin:</span></td>
+					<td align=left>
+					<table border=.5>
+					<tr><td><input type="Radio" name="Ownership" name="User_cb" id="User_cb" onclick="SetOwnerInfo('user');"/>by user</td>
+					<td><input type="Radio" name="Ownership" name="Group_cb" id="Group_cb" onclick="SetOwnerInfo('group');" />by Group</td></tr>
+					<tr><td colspan="2"><SELECT id="Ownershiplst" onchange="setPrincipalID(this);" ><OPTION></OPTION></SELECT></td></tr></table></td>
+					<% end if %>
+				</tr>
+			</table>
+		</td>
 	</tr>
 	<tr height="25">
 		<%=ShowInputBox("Number of Copies:", "NumCopies", 5, "", False, True)%>
 	</tr>
 	<%else%>
 		<%=ShowInputBox("Quantity Remaining:", "QtyRemaining", 5, "", False, true)%>
-		<% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
-		<td rowspan=3 align=right> <span title="Pick an option from the list" class="required">Container Admin:</span></td>
-		<td rowspan=3 align=left>
-		<table border=.5>
-		<tr><td><input type="Radio" name="Ownership" name="User_cb" id="User_cb" onclick="getList(OwnerShipUserList.value,OwnershipType.value);"/>by user</td>
-		<td><input type="Radio" name="Ownership" name="Group_cb" id="Group_cb" onclick="getList(OwnerShipGroupList.value,OwnershipType.value);" />by Group</td></tr>
-		<tr><td colspan="2"><SELECT id="Ownershiplst" name="Ownershiplst" onchange="setPrincipalID(this)"><OPTION></OPTION></SELECT></td></tr></table></td>
-		<% end if %>
+		<td rowspan=3 colspan="2" align="left">
+			<table>
+				<tr>
+					<% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
+					<td width="150px" align=right> <span title="Pick an option from the list" class="required">Container Admin:</span></td>
+					<td align=left>
+					<table border=.5>
+					<tr><td><input type="Radio" name="Ownership" name="User_cb" id="User_cb" onclick="getList(OwnerShipUserList.value,OwnershipType.value);"/>by user</td>
+					<td><input type="Radio" name="Ownership" name="Group_cb" id="Group_cb" onclick="getList(OwnerShipGroupList.value,OwnershipType.value);" />by Group</td></tr>
+					<tr><td colspan="2"><SELECT id="Ownershiplst" name="Ownershiplst" onchange="setPrincipalID(this)"><OPTION></OPTION></SELECT></td></tr></table></td>
+					<% end if %>
+				</tr>
+			</table>
+		</td>
 	<%End if%>
 
 	<tr height="25">
@@ -1011,8 +1023,14 @@ Select Case sTab
 		<% if  Application("ENABLE_OWNERSHIP")="TRUE" and not IsEdit then
 	'Set LocationType
 	%>
-		<td align="right"><span class="">Location Type:<span></td>
-		<td><%=ShowSelectBox3("iLocationTypeID", LocationTypeID,"SELECT Location_Type_ID AS Value, Location_Type_Name AS DisplayText FROM inv_Location_Types ORDER BY Location_Type_Name ASC", 0, "None", "0","")%></td>
+		<td colspan="2">
+			<table>
+				<tr>
+					<td align="right" width="150px"><span class="">Location Type:<span></td>
+					<td><%=ShowSelectBox3("iLocationTypeID", LocationTypeID,"SELECT Location_Type_ID AS Value, Location_Type_Name AS DisplayText FROM inv_Location_Types ORDER BY Location_Type_Name ASC", 0, "None", "0","")%></td>
+				</tr>
+			</table>
+		</td>
 	<%End if%>
 	</tr>
 	<tr height="25">
@@ -1020,18 +1038,25 @@ Select Case sTab
 		<% if  Application("ENABLE_OWNERSHIP")="TRUE" and IsEdit then
 	'Set LocationType
 	%>
-		<td align="right"><span class="">Location Type:<span></td>
-		<td><%=ShowSelectBox3("iLocationTypeID", LocationTypeID,"SELECT Location_Type_ID AS Value, Location_Type_Name AS DisplayText FROM inv_Location_Types ORDER BY Location_Type_Name ASC", 0, "None", "0","")%></td>
+		<td colspan="2">
+			<table>
+				<tr>
+					<td align="right" width="150px"><span class="">Location Type:<span></td>
+					<td><%=ShowSelectBox3("iLocationTypeID", LocationTypeID,"SELECT Location_Type_ID AS Value, Location_Type_Name AS DisplayText FROM inv_Location_Types ORDER BY Location_Type_Name ASC", 0, "None", "0","")%></td>
+				</tr>
+			</table>
+		</td>
 	<%End if%>
 	</tr>
 	<tr height="25">
 		<%=ShowInputBox("Lot Number:", "LotNum", 15, "", False, False)%>
 		<%if lcase(PageSource) <>"eln"  then%>
-		<td colspan="2" align="right">
+        <td colspan="2" align="left">
 			<table width="450px">
-				<tr>
+				<tr>                
 				<td width="150px">&nbsp;</td>
-					<td>
+                    <td align="left">
+
 						<%if Session("INV_MANAGE_SUBSTANCES" & "cheminv") then%>
 						<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'SubsManager', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
 						&nbsp;|&nbsp;
@@ -1054,9 +1079,19 @@ Select Case sTab
 		<td><%call ShowInputField("", "", "iExpDate:form1:" & ExpDate , "DATE_PICKER:TEXT", "15")%>
 		<!--<input type="text" name="iExpDate" size="15" value="<%=ExpDate%>"><a href onclick="return PopUpDate(&quot;iExpDate&quot;,&quot;/cheminv/gui/month_view1.asp&quot;)"><img src="/cfserverasp/source/graphics/navbuttons/icon_mview.gif" height="16" width="16" border="0"></a>-->
 		</td>
-		<td width="200" align="right">Registry Batch ID:</td><td><input type="text" Size="15" name="RegBatchID" value="<%=RegBatchID%>" onchange="GetRegIDFromRegNum(this.value); iCompoundID.value=''; CompoundID.value='';"><input type="hidden" name="iRegID" value="<%=RegID%>"><input type="hidden" name="iBatchNumber" value="<%=BatchNumber%>"></td>
-		<input type="hidden" name="NewRegID">
-		<input type="hidden" name="NewBatchNumber">
+		<td colspan="2">
+			<table width="450px">
+				<tr>
+					<td width="150" align="right">Registry Batch ID:</td>
+					<td>
+					<input type="text" Size="15" name="RegBatchID" value="<%=RegBatchID%>" onchange="GetRegIDFromRegNum(this.value); iCompoundID.value=''; CompoundID.value='';"><input type="hidden" name="iRegID" value="<%=RegID%>">
+					<input type="hidden" name="iBatchNumber" value="<%=BatchNumber%>">
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" name="NewRegID">
+			<input type="hidden" name="NewBatchNumber">
+		</td>
 	</tr>
 	<%
 	else
