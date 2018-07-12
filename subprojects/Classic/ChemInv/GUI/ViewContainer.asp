@@ -259,6 +259,7 @@ Select Case sTab
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]")
 			SessionDir = Application("TempFileDirectory" & "ChemInv") & "Sessiondir"  & "\" & Session.sessionid & "\"
 			fileURL = SessionURLDir & "structure" & "_" & 160 & "x" & 140 & ".gif"
+			filePath = SessionDir & "structure" & "_" & CompoundID & "_" & 160 & "x" & 140 & ".gif"
 			ConvertCDXtoGif_Inv filePath, BASE64_CDX, 160, 140
 			SessionURLDir = "chemoffice" & Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 			fileURL = "/" & SessionURLDir & "structure" & "_" & CompoundID & "_" & 160 & "x" & 140 & ".gif"
