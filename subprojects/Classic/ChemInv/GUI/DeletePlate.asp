@@ -62,7 +62,7 @@ End if
 			<table align="right"><tr><td>
 	<a HREF="#" onclick="window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>
 </td><td>
-	<a HREF="#" id="spanSubmit" style="display:<%=DisplaySpan%>" onclick="submit(); return false;"><img SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>
+	<a HREF="#" id="spanSubmit" style="display:<%=DisplaySpan%>" onclick="return document.forms.form1.submit()"><img SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>
 	</td></tr></table>
 		</td>
 	</tr>	
