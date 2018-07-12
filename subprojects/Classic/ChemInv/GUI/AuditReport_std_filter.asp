@@ -285,7 +285,7 @@ function Validate() {
 		</td>
 		
 		<td rowspan="3" valign="top">
-			<span id="updateCriteria_ctrl" style="display=none">
+			<span id="updateCriteria_ctrl" style="display:none">
 			<table>
 				<tr>
 					<th colspan="4" align="center">
