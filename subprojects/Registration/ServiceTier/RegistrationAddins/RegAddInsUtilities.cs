@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,7 +21,81 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
     {
         #region Variables
         //Mutex to apply wait on the chemdraw control 
-        private static Mutex _chemDrawMutex = new Mutex(false, "ChemDrawProcess");
+        const string mutexName = "Global\\ChemDrawProcess";
+        private static Mutex _chemDrawMutex;
+
+        public static Mutex ChemDrawMutex
+        {
+            get
+            {
+                if (_chemDrawMutex == null)
+                {
+                    Mutex chemDrawProcessMutex = null;
+                    bool doesNotExist = false;
+                    bool unauthorized = false;
+                    bool mutexWasCreated = false;
+
+                    // Attempt to open the named mutex.
+                    try
+                    {
+                        chemDrawProcessMutex = Mutex.OpenExisting(mutexName);
+                    }
+                    catch (WaitHandleCannotBeOpenedException)
+                    {
+                        doesNotExist = true;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        unauthorized = true;
+                    }
+
+                    if (doesNotExist)
+                    {
+                        var user = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+
+                        MutexSecurity mSec = new MutexSecurity();
+
+                        MutexAccessRule rule = new MutexAccessRule(user,
+                            MutexRights.Synchronize | MutexRights.Modify,
+                            AccessControlType.Deny);
+                        mSec.AddAccessRule(rule);
+
+                        rule = new MutexAccessRule(user,
+                            MutexRights.ReadPermissions | MutexRights.ChangePermissions,
+                            AccessControlType.Allow);
+                        mSec.AddAccessRule(rule);
+
+                        chemDrawProcessMutex = new Mutex(false, mutexName, out mutexWasCreated, mSec);
+                    }
+                    else if (unauthorized)
+                    {
+                        chemDrawProcessMutex = Mutex.OpenExisting(mutexName,
+                                MutexRights.ReadPermissions | MutexRights.ChangePermissions);
+
+                        MutexSecurity mSec = chemDrawProcessMutex.GetAccessControl();
+
+                        var user = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+
+                        MutexAccessRule rule = new MutexAccessRule(user,
+                             MutexRights.Synchronize | MutexRights.Modify,
+                             AccessControlType.Deny);
+                        mSec.RemoveAccessRule(rule);
+
+                        rule = new MutexAccessRule(user,
+                            MutexRights.Synchronize | MutexRights.Modify,
+                            AccessControlType.Allow);
+                        mSec.AddAccessRule(rule);
+
+                        chemDrawProcessMutex.SetAccessControl(mSec);
+                        chemDrawProcessMutex = Mutex.OpenExisting(mutexName);
+                    }
+
+                    _chemDrawMutex = chemDrawProcessMutex;
+                }
+                return _chemDrawMutex;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -54,7 +130,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
         /// <param name="searchCriteria"></param>
         /// <param name="resultFields"></param>
         /// <returns></returns>
-        public static DataResult DoSearch(int dataViewID, string searchCriteria, string[] resultFields )
+        public static DataResult DoSearch(int dataViewID, string searchCriteria, string[] resultFields)
         {
             DataResult retVal;
             COESearch search = new COESearch(dataViewID);
@@ -144,7 +220,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
 
             string key = "PythonWebService" + url;
 
-            if(AppDomain.CurrentDomain.GetData(key) == null) //No object found, so let's create it.
+            if (AppDomain.CurrentDomain.GetData(key) == null) //No object found, so let's create it.
             {
                 pythonWebService = new Service();
                 pythonWebService.Url = url;
@@ -166,7 +242,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
             ctrl.Objects.set_Data("chemical/x-cdx", null, null, null, UnicodeEncoding.ASCII.GetBytes(base64));
         }
 
-        
+
         /// <summary>
         /// Determines if the add in should be disable for the current record based on a value in a propertylist
         /// </summary>
@@ -175,9 +251,9 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
         /// <param name="propertyName">propery name in property list</param>
         /// <param name="disableValueList">string array of values indicating to disable</param>
         /// <returns></returns>
-        public static bool DisableAddIn(IRegistryRecord registryRecord, PropertyListType propertyListType, string propertyName,  string[] disableValueList )
+        public static bool DisableAddIn(IRegistryRecord registryRecord, PropertyListType propertyListType, string propertyName, string[] disableValueList)
         {
-         
+
             bool disableAddIn = false;
             switch (propertyListType)
             {
@@ -191,7 +267,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                             disableAddIn = true;
                         }
                     }
-                    
+
                     break;
 
                 case PropertyListType.Component:
@@ -201,10 +277,10 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                     {
 
                         if (componentPropertyValue == disableValueList[i].ToString().Trim().ToLower())
-                            {
-                                disableAddIn = true;
-                            }
-                        
+                        {
+                            disableAddIn = true;
+                        }
+
                     }
                     break;
                 case PropertyListType.Structure:
@@ -214,10 +290,10 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                     {
 
                         if (structurePropertyValue == disableValueList[i].ToString().Trim().ToLower())
-                            {
-                                disableAddIn = true;
-                            }
-                        
+                        {
+                            disableAddIn = true;
+                        }
+
                     }
                     break;
                 case PropertyListType.NotSet:
@@ -229,7 +305,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
 
             return disableAddIn;
         }
-        
+
 
         /// <summary>
         /// level of registry record for propertylist
@@ -248,7 +324,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
         /// </summary>
         public static void ChemDrawWaitOnce()
         {
-            _chemDrawMutex.WaitOne();
+            ChemDrawMutex.WaitOne();
         }
 
         /// <summary>
@@ -256,7 +332,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
         /// </summary>
         public static void ChemDrawReleaseMutex()
         {
-            _chemDrawMutex.ReleaseMutex();
+            ChemDrawMutex.ReleaseMutex();
         }
 
     }
