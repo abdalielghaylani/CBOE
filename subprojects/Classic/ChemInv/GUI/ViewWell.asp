@@ -101,8 +101,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 		oTemplate.load(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/ViewWell_Summary.xml"))
 		Set mainTable = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT")
 		'if there is no plugin generate a gif for the structure
-		if Session("isCDP") <> "TRUE" then
-		'if true then
+		if Session("isCDP") <> "TRUE" or detectModernBrowser = true  then
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]/@IS_STRUCTURE")
 			currentUserNode.text = "0"
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]")
@@ -182,7 +181,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
  					regNumber = null
  				end if
 				'if there is no plugin generate a gif for the structure
-				if Session("isCDP") <> "TRUE" then
+				if Session("isCDP") <> "TRUE" AND detectModernBrowser = true then
 				'if true then
 					SessionDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 					filePath = SessionDir & "structure" & i & "_" & 160 & "x" & 140 & ".gif"
