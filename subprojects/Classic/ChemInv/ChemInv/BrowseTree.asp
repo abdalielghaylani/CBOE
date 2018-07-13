@@ -520,8 +520,10 @@ if isRack then
 	    Next
     Next
     xmlHtml = xmlHtml & "</rack></xml>"
-response.Write xmlHtml
 %>
+<div style="display: none">
+            <%=xmlHtml%>
+        </div>
 <script type="text/javascript" language="javascript">
     function selectRackPosition(locationId){
         
@@ -568,10 +570,10 @@ Rack displayed by <strong>Icon</strong>. To change the display, click on the arr
 	%>
 	<thead>
 		<th align="center">
-			<a href="#" onclick="document.all.hiddenSelector.style.visibility = 'visible';document.all.cboField.click()" title="Click to select displayed value"><img SRC="../graphics/desc_arrow.gif" border="0" WIDTH="12" HEIGHT="6"></a>
+			<a href="#" onclick="document.all.hiddenSelector.style.visibility = 'visible';" title="Click to select displayed value"><img SRC="../graphics/desc_arrow.gif" border="0" WIDTH="12" HEIGHT="6"></a>
 			<a id="hiddenRackSelector" target="rackJSFrame"></a>
 			<div id="hiddenSelector" style="POSITION:Absolute;left=0;visibility:hidden;z-index:2">
-			<select id="cboField" size="4">	
+			<select id="cboField" size="4" onchange="loadXMLDoc();">	
 				<option value></option>
 				<option value="icon">Icon</option>
 				<option value="barcode">Barcode</option>
@@ -584,35 +586,80 @@ Rack displayed by <strong>Icon</strong>. To change the display, click on the arr
 		Next
 	%>
 	</thead>
-	<tr height="20" class="bar">
-		<th><span DATAFLD="rowname"></span></th>
-		<%
-		For i=1 to NumCols
-			Response.Write "<td class=""nav"" onmouseover=""className='roll'"" onmouseout=""className='nav'"" align=""center"" valign=""center""><div DATAFORMATAS=html DATAFLD=""col" & i &"""></div></td>" & vblf
+	<%
+		Set objXMLDoc = Server.CreateObject("Microsoft.XMLDOM") 
+		objXMLDoc.async = False 
+		objXMLDoc.Loadxml(xmlHtml)
+		Set Root = objXMLDoc.documentElement		
+		Set NodeList = Root.getElementsByTagName(viewRackFilter)
+			Response.Write "<tbody>"	
+		For Each xmlItem In NodeList	
+			Response.Write "<tr height=""20""><th><span></span></th>"
+				For i = 1 to NumCols step 1
+					name = xmlItem.childNodes(i).text 
+					Response.Write "<td align=""center"" valign=""center""><dIV class=""col" & i & """>" & name & "</div></td>" &vblf			
 		Next
-		%>
+			    Next
+		Set objXMLDoc = Nothing
+                %>
 	</tr>
+	</tbody>
 </table>
 <!--<div align="right" style="margin-top:10px;"><a href="#" onclick="top.opener.focus();window.close(); return false;"><img SRC="../graphics/sq_btn/cancel_dialog_btn.gif" border="0" WIDTH="53" HEIGHT="21"></a></div>-->
 </div>
 
 <script language="javascript">
-    AlterCSS('.rackDetail','display','block');
-    tbl.dataFld = "icon";
-    tbl.dataSrc = "#xmlDoc"
+    AlterCSS('.rackDetail','display','block');    
 </script>
-<script for="cboField" event="onchange">
-  var dispText = "Rack displayed by <strong>";
-  dispText = dispText + this.options(this.selectedIndex).value + "</strong>. To change the display, click on the arrow.";
-  changeContent(document.all.sorttext,dispText);
-  
-  tbl.dataSrc = ""; // unbind the table
-  // Set the binding to the requested field
-  tbl.dataFld = this.options(this.selectedIndex).value;
-  tbl.dataSrc = "#xmlDoc"; // rebind the table
-  document.all.hiddenSelector.style.visibility = 'hidden';
-  wellFilter = tbl.dataFld;
-</script>
+<script language="javascript">
+            var path = "/ChemInv/config/xml_templates/";
+            var client = "<%=clientname%>";
+            var columns = "<%=NumCols%>";
+            var xmlfile = client + ".xml";
+            var fullpath = path + xmlfile;
+            var table = document.getElementById("tbl");
+            function loadXMLDoc() {
+                var selectedRack = document.getElementById("cboField").value;
+                var dispText = "Rack displayed by <strong>";
+                dispText = dispText + selectedRack + "</strong>. To change the display, click on the arrow.";
+                document.getElementById("sorttext").innerHTML = dispText; alert(dispText);
+                document.all.hiddenSelector.style.visibility = 'hidden';
+                changeContent(document.all.sorttext, dispText);                     
+                if (window.XMLHttpRequest) {
+                    xhttp = new XMLHttpRequest();
+                } else {                    
+                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        BindTable(xhttp.responseXML);
+                    }
+                };
+                xhttp.open("GET", fullpath, true);
+                xhttp.send();
+            }
+            function BindTable(xml) {
+                html = "";    
+                wellFilter = selectedRack;
+                var RootNode = "";
+                RootNode = xml.getElementsByTagName(selectedRack);                
+                for (var k = RootNode.length; k > 0; k--) {
+                    table.deleteRow(k);
+                }                
+                for (i = 0; i <= RootNode.length - 1; i++) {
+                    rowname = RootNode[i].getElementsByTagName("rowname")[0].childNodes[0].nodeValue;
+                    html = "<tbody><tr height='20'><th><span>" + rowname + "</span></th>";
+                    for (j = 1; j <= columns; j++) {
+                        col = "col" + j;
+                        name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
+                        html = html + "<td align='center' valign='center'><dIV class='col'" + j + ">" + name + "</div></td>";
+                    }
+                    html = html + "</tr></tbody>";                    
+                    var row = table.insertRow(i + 1);
+                    row.innerHTML = html;
+                }
+            }
+        </script>
 
 <%
 end if
