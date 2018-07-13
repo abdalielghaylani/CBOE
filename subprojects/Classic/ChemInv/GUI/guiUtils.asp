@@ -2172,23 +2172,38 @@ function showMenu (evt) {
     document.all.contextMenu.style.visibility = 'visible';
     return false;
   }
-  else if (document.layers) {
-    if (evt.which == 3) {
-      document.contextMenu.left = evt.x;
-      document.contextMenu.top = evt.y;
-      document.contextMenu.onmouseout =
-        function (evt) { this.visibility = 'hide'; };
-      document.contextMenu.visibility = 'show';
-      return false;
-    }
+  else if (document.getElementById('contextMenu')) {
+	 winW = window.innerWidth;
+	 winH = window.innerHeight;
+
+	varAdjHeight = 0;
+	varAdjWidth = 0;
+	if (event.clientY > (winH-195)) {
+		varAdjHeight = event.clientY-195;
+	} else {
+		varAdjHeight = event.clientY;
+	}
+	if (event.clientX > (winW-346)) {
+		varAdjWidth = event.clientX-346;
+	} else {
+		varAdjWidth = event.clientX;
+	}
+    document.getElementById('contextMenu').style.left = varAdjWidth;
+    document.getElementById('contextMenu').style.top = varAdjHeight;
+    document.getElementById('contextMenu').style.visibility = 'visible';
+    return false;
   }
   return true;
 }
 if (document.all)
   document.oncontextmenu =showMenu;
-if (document.layers) {
-  document.captureEvents(Event.MOUSEDOWN);
-  document.onmousedown = showMenu;
+ if (document.getElementById('contextMenu')){ 
+	document.addEventListener('contextmenu',function (e)
+	{
+		e.preventDefault();
+		showMenu();
+		return false;
+	} );
 }
 </script>
 
