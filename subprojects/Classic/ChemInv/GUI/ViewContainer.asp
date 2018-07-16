@@ -114,6 +114,14 @@ If BatchID <> "" Or BatchID2<>"" Or BatchID3<>"" Then
     Dim BatchName3
     GetBatchFiledName()
 End if
+if NOT IsEmpty(CompoundID) then
+    GetSubstanceAttributesFromDb(CompoundID)
+    if dbstructure <> "" then
+        inLineStruc = inLineMarker & dBStructure
+    else
+        inLineStruc = ""
+    end if
+end if
 Select Case sTab
 	Case "Summary"
 
@@ -258,11 +266,14 @@ Select Case sTab
 			currentUserNode.text = "0"
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]")
 			SessionDir = Application("TempFileDirectory" & "ChemInv") & "Sessiondir"  & "\" & Session.sessionid & "\"
-			fileURL = SessionURLDir & "structure" & "_" & 160 & "x" & 140 & ".gif"
-			filePath = SessionDir & "structure" & "_" & CompoundID & "_" & 160 & "x" & 140 & ".gif"
-			ConvertCDXtoGif_Inv filePath, BASE64_CDX, 160, 140
-			SessionURLDir = "chemoffice" & Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
-			fileURL = "/" & SessionURLDir & "structure" & "_" & CompoundID & "_" & 160 & "x" & 140 & ".gif"
+		    filePath = SessionDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
+		    SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
+		    fileURL = SessionURLDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
+			if (inLineStruc = "") then
+				ConvertCDXtoGif_Inv filePath, inLineStruc, 160, 140
+			else
+				ConvertCDXtoGif_Inv filePath, Mid(inLineStruc, InStr(inLineStruc, "VmpD")), 160, 140
+			end if
 			currentUserNode.text = "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""1"">"
 		end if
 
@@ -342,22 +353,14 @@ Case "Substance"
 <%
 
 	if NOT IsEmpty(CompoundID) then
-		GetSubstanceAttributesFromDb(CompoundID)
 		hdrText = ""
 		bConflicts = false
 		if ConflictingFields <> "" then
 			hdrText = "<font color=red>Warning: Duplicate Substance</font>"
 			bConflicts = true
 		End if
-		if dbstructure <> "" then
-			inLineStruc = inLineMarker & dBStructure
-		else
-			inLineStruc = ""
-		end if
 
         DisplaySubstance "", hdrText, false, false, false, false, bConflicts, inLineStruc
-		'DisplaySubstance "", hdrText, false, false, false, false, bConflicts, inLineMarker & dBStructure
-
 
 %>
 	</td>
