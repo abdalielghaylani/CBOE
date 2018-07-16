@@ -7738,7 +7738,7 @@ Set shell = Nothing
 		<col def="S255">MsiCommandLine</col>
 		<col def="I4">ISSetupPrerequisiteLocation</col>
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>\\165.88.210.101\c$\Users\Administrator\Desktop</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2017 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2017 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2018 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
 	</table>
 
 	<table name="ISReleaseASPublishInfo">
@@ -7791,7 +7791,7 @@ Set shell = Nothing
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemBioOffice Enterprise 17.1</td></row>
 		<row><td>Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemBioOffice Enterprise 17.1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemOffice Enterprise 18.1</td></row>
 	</table>
 
 	<table name="ISReleasePublishInfo">
