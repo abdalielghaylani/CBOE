@@ -1057,7 +1057,7 @@ function getRecordAction(inputstr){
 	if (inputstr == "goto_record"){
 		totalrecords = base_records_found
 		if (w.name == null){
-			w = window.open(app_Path + "/go_to_record.asp?total_records=" + totalrecords,"go_to_record","width=300,height=100,status=no,resizable=no");
+			w = window.open(app_Path + "/go_to_record.asp?total_records=" + totalrecords,"go_to_record","width=490,height=150,status=no,resizable=no");
 			w.focus()
 		}
 		else{
