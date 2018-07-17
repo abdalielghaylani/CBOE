@@ -252,7 +252,7 @@ end if
 
 Response.ContentType = "text/xml"
 
-Response.Write "<?xml:stylesheet type=""text/xsl"" href=""recordsetxml.xsl""?>" & vbCrLf
+Response.Write "<?xml-stylesheet type=""text/xsl"" href=""recordsetxml.xsl""?>" & vbCrLf
 
 RS.Save Response, 1
 'Response.Write sql
