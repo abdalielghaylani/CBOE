@@ -833,7 +833,7 @@ Select Case sTab
 	<tr height="25">
 		<%=ShowInputBox2("Purity:", "Purity", 200, 15,  ShowSelectBox("iPurity_Unit_FK", iif((isEmpty(Purity_Unit_FK) or Purity_Unit_FK=""),Session("UOPIDOptionValue"),purity_Unit_FK),"SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (3) ORDER BY lower(DisplayText) ASC"), False, false)%>
 		<td ALIGN="right" VALIGN="top" NOWRAP WIDTH="200">Supplier Shipment Date:</td>
-		<td><%call ShowInputField("", "", "iSupplier_Shipment_Date:form1:" & Supplier_Shipment_Date , "DATE_PICKER:TEXT", "15")%></td>
+		<td><%call ShowInputField("", "", "iSupplier_Shipment_Date:form1:" & Supplier_Shipment_Date , "DATE_PICKER:TEXT", "12")%></td>
 		<td></td>
 		<td></td>
 	</tr>
