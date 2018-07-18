@@ -846,7 +846,7 @@ if not bAllowRequest then
 <input type="hidden" name="BatchAmountAvailable" value="<%=BatchAmountAvailable%>"/>
 <input type="hidden" name="RequiredUOM" value=""/>
 <input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input type="hidden" name="tempCSUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <input type="hidden" name="Olduserid" value="<%=UserID%>"/>
 <input type="hidden" name="OldOrgUnitID" value="<%=OrgUnitID%>"/>
 <input type="hidden" name="OldDateRequired" value="<%=DateRequired%>"/>

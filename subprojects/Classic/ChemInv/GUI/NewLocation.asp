@@ -515,6 +515,7 @@ end if
 <input TYPE="hidden" id="isAuthorised" name="isAuthorised" Value='<%=isAuthorised%>'>
 <input TYPE="hidden" id="LocationAdmin" name="LocationAdmin" Value>
 <input TYPE="hidden" id="tempCsUserName" name="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 
 <table border="0" width="575px">
 	<tr>

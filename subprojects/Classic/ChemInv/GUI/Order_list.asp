@@ -460,8 +460,8 @@ else {parent.ScanFrame.document.form1.ShipToName.value = ""}
 <input TYPE="hidden" NAME="OrderID" VALUE="<%=OrderID%>">
 <input TYPE="hidden" NAME="OrderStatusID" VALUE="<%=OrderStatusID%>">
 <input TYPE="hidden" NAME="CreateType" VALUE="<% =CreateType %>">
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input type="hidden" name="tempCSUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <script LANGUAGE="JavaScript">
 	//parent.ScanFrame.document.form1.ShipToName.value = "<%=ShipToName%>";
 	//alert(parent.ScanFrame.document.form1.LocationID.value);

@@ -816,8 +816,8 @@ function FormatNumber(num, decimalNum, bolLeadingZero, bolParens)
 <input type="hidden" name="ContainerStatus" value="<%=ContainerStatus%>">
 <input type="hidden" name="BarcodeDescID" value>
 <input type="hidden" name="RegID" value="<%=RegID%>">
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input TYPE="hidden" NAME="tempCsUserID" Value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>">
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input TYPE="hidden" NAME="tempCsUserID" id="tempCsUserID" Value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>">
 <% if ActionStep = "2" then %>
 	<input type="hidden" name="OriginalQty" value="<%=QtyRemaining%>">
 <% else %>

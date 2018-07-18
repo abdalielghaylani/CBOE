@@ -603,8 +603,8 @@ function move(index,to) {
 <input type="hidden" NAME="OwnershipType" id="OwnershipType" value="<%=OwnershipType%>" />
 <input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
 <% end if %>
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input type="hidden" name="tempCSUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 
 <% if FormStep = "2" then %>
 <input type="hidden" name="QtyPerSample" value>

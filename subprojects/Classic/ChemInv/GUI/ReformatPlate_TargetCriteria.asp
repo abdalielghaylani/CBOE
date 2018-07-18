@@ -295,8 +295,8 @@ end if
 <input TYPE="hidden" NAME="PrincipalID" Value>
 <input TYPE="hidden" NAME="LocationAdmin" Value>
 <% end if %>
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input type="hidden" name="tempCSUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <!--<INPUT TYPE="hidden" NAME="AmtType" VALUE="<%=AmtType%>">-->
 
 <table border="0" cellspacing="0" cellpadding="1">

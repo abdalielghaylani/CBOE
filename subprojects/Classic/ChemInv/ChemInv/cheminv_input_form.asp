@@ -170,7 +170,7 @@ Session("isSearchMode") = True
 	</head>
 	<body bgcolor="#FFFFFF">
 	<input TYPE="hidden" ID="tempCsUserName" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-	<input type="hidden" ID="tempCSUserID" name="tempCSUserID" value='<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>' />
+	<input type="hidden" ID="tempCsUserID" name="tempCsUserID" value='<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>' />
 <%
 	'-- set the return action so that the cancel button comes back to this page	
 	Session("returnaction") = formgroup

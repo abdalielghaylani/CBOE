@@ -306,8 +306,8 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
     <input type="hidden" name="OwnershipType" value />
     <input TYPE="hidden" NAME="LocationAdmin" Value="<%=LocationAdmin%>">
     <% end if %>
-    <input type="hidden" name="tempCSUserName" value="<%=Session("UserName" & "cheminv")%>" />
-    <input type="hidden" name="tempCSUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
+    <input type="hidden" name="tempCsUserName" id="tempCsUserName" value="<%=Session("UserName" & "cheminv")%>" />
+    <input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <table border="0">
 <tr>
 	<td align="right" nowrap>
