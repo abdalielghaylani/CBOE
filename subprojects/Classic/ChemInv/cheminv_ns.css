@@ -656,6 +656,7 @@ div.tasktitle {
 .filledGrid {
     width: 100%;
     background: #eaeaff;
+    display: block;
 }
 
 .emptyGrid {
@@ -666,6 +667,7 @@ div.tasktitle {
 .selectedGrid {
     width: 100%;
     background: #FFFF66;
+    display: block;
 }
 
 .listCaption {
