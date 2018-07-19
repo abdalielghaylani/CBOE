@@ -14,9 +14,20 @@
     <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
     <script language="javascript">
         
-        function BackOrClose(){
+        function BackOrClose(){	
             if (history.length > 0){
-                history.back()
+                var urlBack = document.referrer.replace('&conflictBack=true','');
+				if(document.referrer.indexOf("?") > -1) {
+					urlBack += '&';
+				}
+				else {
+					urlBack += '?';
+				}
+				urlBack += 'conflictBack=true';
+				if(document.referrer.indexOf("&cddEditMode=true") == -1) {
+				    urlBack += '&cddEditMode=true';
+				}
+				window.location.href = urlBack;
             }
             else{
                 opener.close();
@@ -45,10 +56,10 @@
 </head>
 <%if Request("ManageMode") = "2" then %>
 <body onunload="CloseAndReload();">
-    <%else %>
-    <body>
-        <%end if %>
-        <form name="form1" action="POST">
+<%else %>
+<body>
+<%end if %>
+    <form name="form1" action="POST">
             <!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc"-->
             <!--#INCLUDE VIRTUAL = "/cfserverasp/source/server_const_vbs.asp"-->
             <!--#INCLUDE VIRTUAL = "/cfserverasp/source/csdo_utils_vbs.asp"-->
@@ -114,7 +125,17 @@ ALT_ID_1 = Request("inv_Compounds.ALT_ID_1")
 ALT_ID_2 = Request("inv_Compounds.ALT_ID_2")
 ALT_ID_3 = Request("inv_Compounds.ALT_ID_3")
 ALT_ID_4 = Request("inv_Compounds.ALT_ID_4")
-ALT_ID_5 = Request("inv_Compounds.ALT_ID_5") 
+ALT_ID_5 = Request("inv_Compounds.ALT_ID_5")
+Session("tmp_inv_compounds.Substance_Name") = SubstanceName
+Session("tmp_inv_compounds.Structure") = Structure
+Session("tmp_inv_compounds.CAS") = CAS
+Session("tmp_inv_compounds.ACX_ID") = ACX_ID
+Session("tmp_inv_compounds.Density") = Density
+Session("tmp_inv_Compounds.ALT_ID_1") = ALT_ID_1
+Session("tmp_inv_Compounds.ALT_ID_2") = ALT_ID_2
+Session("tmp_inv_Compounds.ALT_ID_3") = ALT_ID_3
+Session("tmp_inv_Compounds.ALT_ID_4") = ALT_ID_4
+Session("tmp_inv_Compounds.ALT_ID_5")  = ALT_ID_5
 
 For each key in unique_alt_ids_dict
 	cKey = Replace(Key,"inv_compounds.","")

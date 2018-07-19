@@ -11,7 +11,7 @@
 ' Not action, ManageMode, CompoundID, TB
 Dim aPersist
 aPersist = Array("inv_compounds.Substance_Name", "inv_compounds.Structure","inv_compounds.CAS","inv_compounds.ACX_ID","inv_compounds.Density","inv_compounds.ALT_ID_1","inv_compounds.ALT_ID_2","inv_compounds.ALT_ID_3","inv_compounds.ALT_ID_4","inv_compounds.ALT_ID_5")
-if Request("TB") = "" and Request("cddEditMode") = "" then
+if Request("TB") = "" and Request("cddEditMode") = "" and Request("conflictBack") = "" then
     for nPersist = LBound(aPersist) to UBound(aPersist)
         strPersist = aPersist(nPersist)
         Session("tmp_"&strPersist) = Request(strPersist)
