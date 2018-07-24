@@ -567,8 +567,8 @@ function setOwnership()
 <!--MCD: Added for 'Order Reason' -->
 <input TYPE="hidden" NAME="OrderReason" Value>
 <input TYPE="hidden" NAME="OrderReasonOther" Value="<%=OrderReasonOther%>">
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
-<input TYPE="hidden" NAME="tempCsUserID" Value=<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>>
+<input TYPE="hidden" NAME="tempCsUserName" ID="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input TYPE="hidden" NAME="tempCsUserID" ID="tempCsUserID" Value=<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>>
 <%if Application("ENABLE_OWNERSHIP")="TRUE" then%>
 <input TYPE="hidden" NAME="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
 <input TYPE="hidden" NAME="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
