@@ -914,7 +914,7 @@ Function WrapRackContents(FldName, GridID, GridName, GridBarcode, GridType, strT
 			bgColor = "transparent"
 		end if
 	'end if
-	str = "<span style=""width:100%; background:" & bgColor & ";"""
+	str = "<span style=""width:100%; display:block; background-color:" & bgColor & ";"""
 	if (len(strText) > Length) AND (strText <> "&nbsp;") AND (Title <> "&nbsp;") then 
 		str = str & " title=""" & Title & """>"
 		'if ActionType = "select" then
