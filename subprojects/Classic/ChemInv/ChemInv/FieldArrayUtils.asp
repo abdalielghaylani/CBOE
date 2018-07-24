@@ -185,7 +185,11 @@ Function PageNavBar()
 	if counterstart <> 1 then
 
 	ref=ref & "<a class=MenuLink href='" & scriptname
+	if Session("bMultiSelect") = true then
+	ref=ref & "?view=3&multiSelect=1&whichpage=" & (counterstart - 1)
+	else
 	ref=ref & "?whichpage=" & (counterstart - 1)
+	end if
 	ref=ref & qs
 	ref=ref & "' onclick='location=this.href; return false;' id='Page" & counterstart - 1 & "'><b>&lt;</b></a>&nbsp;"
 	end if
@@ -196,7 +200,11 @@ Function PageNavBar()
 	end if
 	if cstr(counter) <> mypage then
 	ref=ref & "<a class=MenuLink href='" & scriptname
-	ref=ref & "?whichpage=" & counter 
+	if Session("bMultiSelect") = true then
+	ref=ref & "?view=3&multiSelect=1&whichpage=" & counter 
+	else
+	ref=ref & "?whichpage=" & counter
+	end if
 	ref=ref & qs
 	ref=ref & "' onclick='location=this.href; return false;' id='Page" & counter & "'>" & pad & counter & "</a>"
 	else
@@ -207,7 +215,11 @@ Function PageNavBar()
 	ref = ref & "]&nbsp;"
 	if counterend <> maxcount then
 	ref=ref & "<a class=MenuLink href='" & scriptname
+	if Session("bMultiSelect") = true then
+	ref=ref & "?view=3&multiSelect=1&whichpage=" & (counterend + 1)
+	else
 	ref=ref & "?whichpage=" & (counterend + 1)
+	end if
 	ref=ref & qs
 	ref=ref & "' onclick='location=this.href; return false;' id='Page" & counter & "'><b>&gt;</b></a>"
 	

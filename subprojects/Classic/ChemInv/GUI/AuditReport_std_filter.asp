@@ -132,7 +132,7 @@ function Validate() {
 				<tr>
 					<td align="left" valign="top" nowrap colspan="2">
 						<!--SYAN added on 1/20/2005 to fix CSBR-50830-->
-						<span id="inv_tables" style="display=block">
+						<span id="inv_tables" style="display:block">
 						<table border="0">
 							<tr>
 								<td>
@@ -159,7 +159,7 @@ function Validate() {
 						</table>
 						</span>
 						
-						<span id="docmanager_tables" style="display=none">
+						<span id="docmanager_tables" style="display:none">
 						<table>
 							<tr>
 								<td>
@@ -178,7 +178,7 @@ function Validate() {
 						</span>
 
 						<!--End of SYAN modification-->
-						<span id="cs_security_tables" style="display=none">
+						<span id="cs_security_tables" style="display:none">
 						<table>
 							<tr>
 								<td>
