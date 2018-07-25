@@ -510,11 +510,11 @@ end if
 	</tr>
 	<%if reformatAction="daughter" then%>
 	<tr>
-		<td colspan="2" align="right"><a HREF="#" onclick="opener.focus(); window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a HREF="#" onclick="history.go(-1);"><img SRC="../graphics/btn_back_61.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="Validate(); return false;"><input type="image" SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a></td>
+		<td colspan="2" align="right"><a HREF="#" onclick="opener.focus(); window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a HREF="#" onclick="backToHistory();"><img SRC="../graphics/btn_back_61.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="Validate(); return false;"><input type="image" SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a></td>
 	</tr>	
 	<%else%>
 	<tr>
-		<td colspan="2" align="right"><a HREF="#" onclick="opener.focus(); window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a HREF="#" onclick="history.go(-1);"><img SRC="../graphics/btn_back_61.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="Validate(); return false;"><input type="image" SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a></td>
+		<td colspan="2" align="right"><a HREF="#" onclick="opener.focus(); window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a HREF="#" onclick="backToHistory();"><img SRC="../graphics/btn_back_61.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="Validate(); return false;"><input type="image" SRC="../graphics/ok_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a></td>
 	</tr>	
 	<%end if%>
 
@@ -525,6 +525,18 @@ end if
     SetOwnerInfo('location');
  </script>
 <%end if %>
+<script language="javascript">
+function backToHistory(){ 
+	if (parseInt(navigator.appVersion) > 3) {
+		 if (navigator.appName=="Netscape") {
+			window.history.go(-1);
+		 }
+		 if (navigator.appName.indexOf("Microsoft")!=-1) {
+			 window.history.go(-2);
+		 }
+	}
+}
+ </script>
 </form>
 </center>
 </body>
