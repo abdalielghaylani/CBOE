@@ -804,8 +804,7 @@ function setOwnership()
 <script language="javascript">
 	<!--
 	// Calculates molw and formula from plugin data
-		var holdTime = 3000;
-		if (cd_getBrowserVersion() >= 6) holdTime = 1;
+		var holdTime = 1;		
 		window.onload = function(){setTimeout("setOwnership();",holdTime)}			
 	//-->
 </script>
