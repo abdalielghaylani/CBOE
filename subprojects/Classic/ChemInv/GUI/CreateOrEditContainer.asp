@@ -1276,7 +1276,7 @@ Case "RegSubstance"
 					<!-- Structure -->
 					<td>
 						<%
-						if Session("isCDP") = "TRUE" then
+						if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 							specifier = 185
 						else
 							specifier = "185:gif"

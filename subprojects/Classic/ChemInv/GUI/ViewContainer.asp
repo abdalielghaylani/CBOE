@@ -261,6 +261,9 @@ Select Case sTab
 		end if
 		'if there is no plugin generate a gif for the structure
 		if Session("isCDP") <> "TRUE" or detectModernBrowser = true then
+            if (inLineStruc = "" and IsEmpty(CompoundID)) then
+                 inLineStruc = Session("oViewContainerData").selectSingleNode("xml").getElementsByTagName("rs:data").item(0).getElementsByTagName("z:row").item(0).getAttribute("BASE64_CDX")
+            end if
 		'if true then
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]/@IS_STRUCTURE")
 			currentUserNode.text = "0"
@@ -424,7 +427,7 @@ Case "RegSubstance"
 					<!-- Structure -->
 					<td>
 						<%
-						if Session("isCDP") = "TRUE" then
+						if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 							specifier = 185
 						else
 							specifier = "185:gif"
