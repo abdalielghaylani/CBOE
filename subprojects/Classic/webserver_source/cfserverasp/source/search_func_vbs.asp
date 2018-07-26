@@ -5581,6 +5581,9 @@ Sub SetSessionVars(ByVal dbkey, ByVal formgroup, ByVal stype)
 			Session("StatusComment" & dbkey & formgroup) = ""
 			Session("reload_basers" & dbkey & formgroup)=""
 		Case "edit_query","new_search","db","restore_query","delete_query"
+			if(stype = "new_search") then
+				Session("SearchData" & "inv_compounds.SDF" & dbkey & formgroup)=""	
+			end if
 			Session("fEmptyRecordset" & dbkey & formgroup) = False
 			Session("no_gui" & dbkey & formgroup) = False
 			Session("Base_RSRecordCount" & dbkey & formgroup)=0
