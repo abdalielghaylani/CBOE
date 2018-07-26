@@ -783,6 +783,7 @@ Case "Substance"
 	Session("IsPopUP") = false
 %>
 	<input type="hidden" name="isSubstanceTab">
+    <%if NOT IsEmpty(CompoundID) then %>
 	<tr height="150">
 		<td>
 			<table border="1">
@@ -790,7 +791,7 @@ Case "Substance"
 					<!-- Structure -->
 					<td>
 						<%
-						if Session("isCDP") = "TRUE" then
+						if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 							specifier = 185
 						else
 							specifier = "185:gif"
@@ -825,14 +826,17 @@ Case "Substance"
 					<td></td><td></td>
 					<!-- Row 3 Col 2-->
 					<%=ShowField("ACX ID:", "ACX_ID", 15, "")%>
-				</tr>
-				<tr>
-					<td colspan="4" align="right">
-						<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'newDialog', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>&nbsp;|&nbsp;<a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=global_substanceselect_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'newDialog', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>			
-					</td>
 				</tr>			
 			</table>
 		</td>
+	</tr>
+    <%end if %>
+    <tr>
+        <td colspan="4" align="right">
+            <a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'newDialog', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
+            &nbsp;|&nbsp;
+            <a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=global_substanceselect_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'newDialog', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>			
+        </td>
 	</tr>
 <%	
 Case "RegSubstance"
@@ -846,7 +850,7 @@ Case "RegSubstance"
 					<!-- Structure -->
 					<td>
 						<%
-						if Session("isCDP") = "TRUE" then
+						if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 							specifier = 185
 						else
 							specifier = "185:gif"
@@ -889,15 +893,17 @@ Case "RegSubstance"
 					<%=ShowField("Chemist:", "RegScientist", 15, "")%>
 					<!-- Row 4 Col 2-->
 					<%=ShowField("Purity:", "Purity", 15, "")%>
-				</tr>
-				<tr>
-					<td colspan="4" align="right">
-						<a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'newDialog', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>&nbsp;|&nbsp;<a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=global_substanceselect_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'newDialog', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>			
-					</td>
-				</tr>			
+				</tr>		
 			</table>
 		</td>
 	</tr>
+    <tr>
+        <td colspan="4" align="right">
+            <a class="MenuLink" href="Create%20a%20new%20inventory%20substance%20and%20assign%20it%20to%20this%20container" onclick="OpenDialog('/cheminv/gui/CreateOrEditSubstance.asp', 'newDialog', 2); return false;" title="Create a new inventory substance and assign it to this container">New Substance</a>
+            &nbsp;|&nbsp;
+            <a class="MenuLink" HREF="Select%20an%20existing%20substance%20and%20assign%20it%20to%20this%20container" target="SubstancesFormGroup" onclick="OpenDialog('/cheminv/inputtoggle.asp?formgroup=global_substanceselect_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;showbanner=false', 'newDialog', 2); return false;" title="Select an existing substance and assign it to this container">Select Substance</a>			
+        </td>
+    </tr>	
 <!--<%	Case "Supplier"%>	<tr height="25">		<td align="right">			<span title="Pick an option from the list">Supplier Name:</span>		</td>		<td colspan="3">			<%= ShowSelectBox2("iSupplierID", SupplierID, "SELECT Supplier_ID AS Value, Supplier_Short_Name AS DisplayText FROM inv_suppliers ORDER BY lower(Supplier_Short_Name) ASC", 27, RepeatString(43, "&nbsp;"), "")%>        		<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unknown Supplier Info:</b>			</td>	</tr>	<tr height="25">		<%=ShowInputBox("Catalog Number:", "SupplierCatNum", 15, "", False, False)%>		<%=ShowInputBox("Name:", "UnknownSupplierName", 25, "", False, False)%>	</tr>	<tr height="25">		<%=ShowInputBox("Container Cost($):", "ContainerCost", 15, "", False, False)%>		<%=ShowInputBox("Contact:", "UnknownSupplierContact", 25, "", False, False)%>	</tr>		<tr height="25">		<td align="right" valign="top" nowrap width="150">Due Date:</td><td><input type="text" name="iDueDate" size="15" value="<%=DueDate%>"><a href onclick="return PopUpDate(&quot;iDueDate&quot;,&quot;/cheminv/gui/month_view1.asp&quot;)"><img src="/cfserverasp/source/graphics/navbuttons/icon_mview.gif" height="16" width="16" border="0"></a></td>		<%=ShowInputBox("Phone#:", "UnknownSupplierPhoneNumber", 25, "", False, False)%>	</tr>	<tr height="25">		<td align=right valign=top nowrap width=0></td>	    <td><input type=text disabled size=0 style="border-width: 0;"></td>		<%=ShowInputBox("FAX#:", "UnknownSupplierFAXNumber", 25, "", False, False)%>	</tr>-->
 <%
 	Case "Contents"
