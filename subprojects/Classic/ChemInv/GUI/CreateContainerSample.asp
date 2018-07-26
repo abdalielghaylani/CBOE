@@ -845,10 +845,10 @@ function FormatNumber(num, decimalNum, bolLeadingZero, bolParens)
 <input type="hidden" name="SamplingRegBatchID" value="<%=SamplingRegBatchID%>">
 <input type="hidden" name="SamplingContainerName" value="<%=SamplingContainerName%>">
 <% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
-<input TYPE="hidden" NAME="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
-<input TYPE="hidden" NAME="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
-<input TYPE="hidden" NAME="PrincipalID" Value>
-<input TYPE="hidden" NAME="LocationAdmin" Value="<%=LocationAdmin%>">
+<input TYPE="hidden" NAME="OwnerShipGroupList" id="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
+<input TYPE="hidden" NAME="OwnerShipUserList" id="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
+<input TYPE="hidden" NAME="PrincipalID" id="PrincipalID" Value>
+<input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
 <% end if %>
 <table border="0">
 	<tr>

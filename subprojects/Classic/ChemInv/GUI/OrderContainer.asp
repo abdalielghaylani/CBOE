@@ -570,12 +570,12 @@ function setOwnership()
 <input TYPE="hidden" NAME="tempCsUserName" ID="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 <input TYPE="hidden" NAME="tempCsUserID" ID="tempCsUserID" Value=<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>>
 <%if Application("ENABLE_OWNERSHIP")="TRUE" then%>
-<input TYPE="hidden" NAME="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
-<input TYPE="hidden" NAME="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
-<input TYPE="hidden" NAME="PrincipalID" Value=<%=PrincipalID%>>
-<input type="hidden" NAME="OwnershipType" value="<%=OwnershipType%>" />
-<input TYPE="hidden" NAME="LocationAdmin" Value="<%=LocationAdmin%>">
-<input TYPE="hidden" NAME="LocationTypeID" Value>
+<input TYPE="hidden" NAME="OwnerShipGroupList" id="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
+<input TYPE="hidden" NAME="OwnerShipUserList" id="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
+<input TYPE="hidden" NAME="PrincipalID" id="PrincipalID" Value=<%=PrincipalID%>>
+<input type="hidden" NAME="OwnershipType" id="OwnershipType" value="<%=OwnershipType%>" />
+<input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
+<input TYPE="hidden" NAME="LocationTypeID" id="LocationTypeID" Value>
 <% end if %>
 <table border="0" cellspacing="0" cellpadding="0" width="700">
 <%

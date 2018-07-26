@@ -501,11 +501,11 @@ function FormatNumber(num, decimalNum, bolLeadingZero, bolParens)
 <input type="hidden" name="pageAction" value="<%=pageAction%>" />
 <input Type="hidden" name="CurrPage" value="<%=CurrPage%>">
 <% if Application("ENABLE_OWNERSHIP")="TRUE" then %> 
-<input TYPE="hidden" NAME="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
-<input TYPE="hidden" NAME="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
-<input TYPE="hidden" NAME="PrincipalID" Value>
-<input type="hidden" NAME="OwnershipType" value="<%=OwnershipType%>" />
-<input TYPE="hidden" NAME="LocationAdmin" Value="<%=LocationAdmin%>">
+<input TYPE="hidden" NAME="OwnerShipGroupList" id="OwnerShipGroupList" Value="<%=GetOwnerShipGroupList()%>">
+<input TYPE="hidden" NAME="OwnerShipUserList" id="OwnerShipUserList" Value="<%=GetOwnerShipUserList()%>">
+<input TYPE="hidden" NAME="PrincipalID" id="PrincipalID" Value>
+<input type="hidden" NAME="OwnershipType" id="OwnershipType" value="<%=OwnershipType%>" />
+<input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
 <% end if %>
 <input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 <input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
