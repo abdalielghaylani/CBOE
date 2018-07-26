@@ -69,7 +69,7 @@ End if
 			Synonym:
 		</td>
 		<td>
-			<input tabIndex="1" Name="SubstanceName" TYPE="tetx" SIZE="70" Maxlength="255" VALUE="<%=SubstanceName%>" <%=disabled%>>
+			<input tabIndex="1" Name="SubstanceName" TYPE="tetx" SIZE="60" Maxlength="255" VALUE="<%=SubstanceName%>" <%=disabled%>>
 		</td>
 	</tr>
 	<tr>
