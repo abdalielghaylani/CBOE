@@ -441,6 +441,7 @@ end if
             AlterCSS('.locationDisplay','display','block');
             // select display as rack
             document.form1.collapseChildNodes[1].checked = true;
+            SetLocationTypeAsRack();
         }
     }
     
