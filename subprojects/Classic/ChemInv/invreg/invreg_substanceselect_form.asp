@@ -71,7 +71,7 @@ end if%>
 				<tr>
 					<!-- Row 1 Col 1-->
 					<!-- for formula id must be MOLWEIGHT -->		
-					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
+					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>          
 					<!-- Row 1 Col 2-->
 					<%=ShowField("Reg Number:", "baseRegNumber", 15, "")%>
 					
@@ -79,6 +79,7 @@ end if%>
 				<tr>
 					<!-- Row 2 Col 1-->
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(ConvertBase64toMW(Mid(StructuresRS("BASE64_CDX"), InStr(StructuresRS("BASE64_CDX"), "VmpD"))),3) &"','" & ConvertBase64toMFormula(Mid(StructuresRS("BASE64_CDX"), InStr(StructuresRS("BASE64_CDX"), "VmpD"))) &"'); </script>" %>
 					<!-- Row 2 Col 2-->
 					<%=ShowField("CAS Number:", "CAS", 15, "")%>
 				</tr>

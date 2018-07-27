@@ -38,6 +38,18 @@ function GetMolWeight() {
     }
 }
 
+function GetMolWeightAndFormula(molWeightNameElementId, formulaNameElementId, molWeight, formula) {
+    var objMolWeight = document.getElementById(molWeightNameElementId);
+    var objFormula = document.getElementById(formulaNameElementId);
+    objMolWeight.innerHTML = molWeight;
+    if (formula.length > 15) {
+        objFormula.innerHTML = formula.substring(0, 15);
+        objFormula.title = formula;
+    } else {
+        objFormula.innerHTML = formula;
+    }
+}
+
 function round(number, x) {
     // rounds number to X decimal places, defaults to 2
     x = (!x ? 2 : x);

@@ -811,13 +811,14 @@ Case "Substance"
 				<tr>
 					<!-- Row 1 Col 1-->
 					<!-- for formula id must be MOLWEIGHT -->		
-					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
+					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>		
 					<!-- Row 1 Col 2-->
 					<%=ShowField("CompoundID:", "CompoundID", 15, "")%>
 				</tr>
 				<tr>
 					<!-- Row 2 Col 1-->
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(ConvertBase64toMW(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))),3) &"','" & ConvertBase64toMFormula(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))) &"'); </script>" %>
 					<!-- Row 2 Col 2-->
 					<%=ShowField("CAS Number:", "CAS", 15, "")%>
 				</tr>
@@ -871,6 +872,7 @@ Case "RegSubstance"
 					<!-- Row 1 Col 1-->
 					<!-- for formula id must be MOLWEIGHT -->		
 					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
+					<%Response.Write "<script languaje='javascript'> var mol = document.getElementById('MOLWEIGHT0'); var molValue = '" & Round(ConvertBase64toMW(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))),3) &"'; mol.innerHTML = molValue; </script>" %>
 					<!-- Row 1 Col 2-->
 					<%=ShowField("RegBatchID:", "RegBatchID", 15, "")%>
 					<input type="hidden" name="iRegID" value="<%=RegID%>">
@@ -879,6 +881,7 @@ Case "RegSubstance"
 				<tr>
 					<!-- Row 2 Col 1-->
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> var formula = document.getElementById('FORMULA0'); var formulaValue = '" & ConvertBase64toMFormula(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))) &"'; if (formulaValue.length > 15) { formula.innerHTML = formulaValue.substring(0, 15); formula.title = formulaValue; } else { formula.innerHTML = formulaValue; } </script>" %>
 					<!-- Row 2 Col 2-->
 					<%=ShowField("RegBatchAmount:", "RegAmount", 15, "")%>
 				</tr>

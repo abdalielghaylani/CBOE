@@ -427,7 +427,7 @@ Case "RegSubstance"
 					<!-- Structure -->
 					<td>
 						<%
-						if Session("isCDP") = "TRUE" then
+						if Session("isCDP") = "TRUE" and detectModernBrowser = false then
 							specifier = 185
 						else
 							specifier = "185:gif"
@@ -448,6 +448,7 @@ Case "RegSubstance"
 				<tr>
 					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(ConvertBase64toMW(Mid(Session("wBASE64_CDX"), InStr(Session("wBASE64_CDX"), "VmpD"))),3) &"','" & ConvertBase64toMFormula(Mid(Session("wBASE64_CDX"), InStr(Session("wBASE64_CDX"), "VmpD"))) &"'); </script>" %>
 				</tr>
 				<!--
 				<tr>

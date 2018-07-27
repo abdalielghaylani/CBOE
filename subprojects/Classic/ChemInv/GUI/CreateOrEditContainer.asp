@@ -1295,6 +1295,7 @@ Case "RegSubstance"
 				<tr>
 					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(ConvertBase64toMW(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))),3) &"','" & ConvertBase64toMFormula(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))) &"'); </script>" %>
 				</tr>
 				<!--				<tr>					<%=ShowField("RegBatchID:", "RegBatchID", 15, "")%>					<input type="hidden" name="iRegID" value="<%=RegID%>">					<input type="hidden" name="iBatchNumber" value="<%=BatchNumber%>">					<%=ShowField("RegBatchAmount:", "RegAmount", 15, "")%>				</tr>				<tr>					<%=ShowField("NoteBook:", "NoteBook", 15, "")%>					<%=ShowField("Page:", "Page", 15, "")%>				</tr>				<tr>					<%=ShowField("Chemist:", "RegScientist", 15, "")%>					<%=ShowField("Purity:", "Purity", 15, "")%>				</tr>				-->
 				<%

@@ -448,6 +448,7 @@ Case "RegSubstance"
 				<tr>
 					<%=ShowField("Molecular Weight:", "MOLWEIGHT0", 15, "MOLWEIGHT0")%>
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(ConvertBase64toMW(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))),3) &"','" & ConvertBase64toMFormula(Mid(Base64_CDX, InStr(Base64_CDX, "VmpD"))) &"'); </script>" %>
 				</tr>
 				<%
 				k = 0
