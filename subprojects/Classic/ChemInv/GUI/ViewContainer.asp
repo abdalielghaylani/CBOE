@@ -272,7 +272,7 @@ Select Case sTab
 		    filePath = SessionDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
 		    SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 		    fileURL = SessionURLDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
-			if (inLineStruc = "") then
+			if (inLineStruc = "") or IsNull(inLineStruc) then
 				ConvertCDXtoGif_Inv filePath, inLineStruc, 160, 140
 			else
 				ConvertCDXtoGif_Inv filePath, Mid(inLineStruc, InStr(inLineStruc, "VmpD")), 160, 140
