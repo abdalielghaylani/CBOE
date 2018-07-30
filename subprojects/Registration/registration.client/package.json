@@ -27,6 +27,7 @@
     "start": "cross-env NODE_ENV=production node server/node-server.js",
     "pretest": "rimraf coverage/ & npm run lint",
     "test": "karma start --singleRun true",
+    "test:ci": "karma start --karma-config ./karma.ci.conf.js --singleRun true",
     "posttest": "npm run cover",
     "test:watch": "karma start --singleRun false"
   },
@@ -129,7 +130,9 @@
     "webpack-split-by-path": "^2.0.0",
     "x2js": "3.1.0",
     "xmldom": "^0.1.27",
-    "zone.js": "0.7.6"
+    "zone.js": "0.7.6",
+    "karma-junit-reporter": "^1.2.0",
+    "puppeteer": "^1.6.1"
   },
   "dependencies": {
     "atmosphere.js": "^2.3.2",
