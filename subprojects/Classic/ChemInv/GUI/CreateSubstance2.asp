@@ -15,7 +15,7 @@
     <script language="javascript">
         
         function BackOrClose(){	
-            if (history.length > 0){
+            if (document.location.href.indexOf('action=showconflicts') == -1 & history.length > 0){
                 var urlBack = document.referrer.replace('&conflictBack=true','');
 				if(document.referrer.indexOf("?") > -1) {
 					urlBack += '&';
