@@ -73,7 +73,7 @@ module.exports = (config) => {
 
     coverageReporter: {
       reporters: [
-        { type: 'json' },
+        { type: 'html' },
       ],
       dir: './coverage/',
       subdir: (browser) => {
