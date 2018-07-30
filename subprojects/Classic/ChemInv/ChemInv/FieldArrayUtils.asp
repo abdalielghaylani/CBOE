@@ -251,7 +251,13 @@ Function PageNavBar2()
 	if counterend > maxcount then counterend = maxcount
 	if counterstart <> 1 then
 		ref=ref & "<a class=MenuLink href='" & scriptname
-		ref=ref & "?whichpage=" & (counterstart - 1)
+		if Session("bMultiSelect") = true then
+			ref=ref & "?view=3"
+			ref=ref & "&multiSelect=1"
+			ref=ref & "&whichpage=" & (counterstart - 1)
+		else
+			ref=ref & "?whichpage=" & (counterstart - 1)
+		end if
 		'DJP added maxcount to qs
 		ref=ref & "&maxcount=" & maxcount
 		ref=ref & qs
@@ -264,7 +270,13 @@ Function PageNavBar2()
 		end if
 		if cstr(counter) <> mypage then
 			ref=ref & "<a class=MenuLink href='" & scriptname
-			ref=ref & "?whichpage=" & counter
+			if Session("bMultiSelect") = true then
+				ref=ref & "?view=3"
+				ref=ref & "&multiSelect=1"
+				ref=ref & "&whichpage=" & counter
+			else
+				ref=ref & "?whichpage=" & counter
+			end if
 			'DJP added maxcount to qs
 			ref=ref & "&maxcount=" & maxcount
 			ref=ref & qs
@@ -277,7 +289,13 @@ Function PageNavBar2()
 	ref = ref & "]&nbsp;"
 	if counterend <> maxcount then
 		ref=ref & "<a class=MenuLink href='" & scriptname
-		ref=ref & "?whichpage=" & (counterend + 1) 
+		if Session("bMultiSelect") = true then
+			ref=ref & "?view=3"
+			ref=ref & "&multiSelect=1"
+			ref=ref & "&whichpage=" & (counterend + 1) 
+		else
+			ref=ref & "?whichpage=" & (counterend + 1) 
+		end if
 		'DJP added maxcount to qs
 		ref=ref & "&maxcount=" & maxcount
 		ref=ref & qs
