@@ -290,11 +290,13 @@ End select
 if (ContainerID="" or isnull(ContainerID)) and inBatch then
     Call GetInvConnection()
     SQL = "SELECT container_id FROM inv_containers WHERE ROWNUM =1 AND (batch_id_fk = ? or batch_id2_fk = ? or batch_id3_fk = ?)  "
+	Set Cmd = GetCommand(Conn, SQL, adCmdText)
 	Cmd.Parameters.Append Cmd.CreateParameter("BatchID",131, 1, 0, BatchID)
-    Set Cmd = GetCommand(Conn, SQL, adCmdText)
+	Cmd.Parameters.Append Cmd.CreateParameter("BatchID2",131, 1, 0, BatchID)
+	Cmd.Parameters.Append Cmd.CreateParameter("BatchID3",131, 1, 0, BatchID)
     Set RS = Cmd.Execute
     ContainerID = RS("container_id")
-end if 
+end if  
 
 Function GetBatchToUse()
     UseBatch=Request("UseBatch")
