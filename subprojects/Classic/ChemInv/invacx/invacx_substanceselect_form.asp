@@ -20,7 +20,18 @@ end if%>
 	DoAfterOnLoad = true;
 	
 	function PostToCreateSubstace(BaseID){
+		<%
+		if  detectModernBrowser = false then 
+		%>
 		document.form1["inv_compounds.Structure"].value = cd_getData("Substance.Structure" + BaseID + "_ctrl", "chemical/x-cdx");
+		<%
+		else
+		%>
+		if (document.getElementById('SubstanceBASE64_CDX_' + BaseID + '_orig'))
+			document.form1["inv_compounds.Structure"].value = document.getElementById('SubstanceBASE64_CDX_' + BaseID + '_orig').value;
+		<%
+		end if
+		%>		
 		document.form1.action = "/cheminv/gui/CreateSubstance2.asp";
 		//alert(document.form1.Structure.value);
 		//alert(document.form1.CAS.value);
@@ -46,10 +57,10 @@ end if%>
 <!--#INCLUDE VIRTUAL ="/cheminv/invacx/GetACXSubstanceAttributes.asp"-->
 <%
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
-if  plugin_value  then
+if  plugin_value And detectModernBrowser = false then
 	displayType = "cdx"
 else
-	displayType = "SizedGif"
+	displayType = "GIF"
 end if
 %>
 <table border="0">

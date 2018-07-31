@@ -3550,6 +3550,8 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 					embed_tag_string = embed_tag_string &  """"  
 					embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
 					embed_tag_string = embed_tag_string  &  """ border=0>"
+					base64_cdx_name = tablename & fieldname  & "_" & uniqueid
+					embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
 				else
 					embed_tag_string = "<IMG SRC="
 					embed_tag_string = embed_tag_string &  """"  
