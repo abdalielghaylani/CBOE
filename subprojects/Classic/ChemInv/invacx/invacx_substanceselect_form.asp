@@ -104,6 +104,17 @@ end if
 					<%=ShowField("Molecular Formula:", "FORMULA0", 15, "FORMULA0")%>
 					<!-- Row 2 Col 2-->
 					<%=ShowField("CAS Number:", "CAS", 15, "")%>
+					<%
+					If (Session("Formula" & dbkey & formgroup & "Substance" & "FORMULA" & BaseID) = "") then
+						CSDOGetChemData dbkey, formgroup, "Substance", "FORMULA", BaseID, "formula", ""
+					End if
+					formula = Trim(Session("Formula" &  dbkey & formgroup & "Substance" & "FORMULA" & BaseID))
+					If (Session("MW" & dbkey & formgroup & "Substance" & "MOLWEIGHT" & BaseID) = "") then
+						CSDOGetChemData dbkey, formgroup, "Substance", "MOLWEIGHT", BaseID, "molweight",""
+					End if
+					molWeight = Session("MW" & dbkey & formgroup & "Substance" & "MOLWEIGHT" & BaseID)
+					%>
+					<%Response.Write "<script languaje='javascript'> GetMolWeightAndFormula('MOLWEIGHT0', 'FORMULA0', '" & Round(molWeight,3) &"','" & formula &"'); </script>" %>
 				</tr>
 				<tr>
 					<!-- Row 3 Col 1-->
