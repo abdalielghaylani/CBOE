@@ -577,6 +577,7 @@ function setOwnership()
 <input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
 <input TYPE="hidden" NAME="LocationTypeID" id="LocationTypeID" Value>
 <% end if %>
+<br/>
 <table border="0" cellspacing="0" cellpadding="0" width="700">
 <%
 Select Case sTab
