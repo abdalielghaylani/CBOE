@@ -77,7 +77,9 @@ create index structure_identifier_str_id on structure_identifier(structureid);
 --#########################################################
 --PACKAGES
 --#########################################################
-
+set define off
+@"sql\Patches\Patch 18.1.0\Packages\pkg_CompoundRegistry_body.sql"
+set define on
 --#########################################################
 --TRIGGERS
 --#########################################################
