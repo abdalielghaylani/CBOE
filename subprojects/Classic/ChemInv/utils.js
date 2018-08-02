@@ -149,7 +149,17 @@ function DoSelectSubstance(NewCompoundID, NewCompoundName) {
 	}
 	if (top.opener.document.form1.isSubstanceTab) {
 		top.opener.location.href = top.opener.location.pathname + "?newCompoundID=" + NewCompoundID
-	};
+	} else {
+		var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if (isChrome) {
+            var sTab = 'Required';
+            if (top.opener.location.href.indexOf('TB=') > -1) {
+                var url = new URL(top.opener.location.href);
+                sTab = url.searchParams.get("TB");
+            }
+            top.opener.postDataFunction(sTab);
+        }
+    }
 	top.opener.focus();
 	top.close();
 }
