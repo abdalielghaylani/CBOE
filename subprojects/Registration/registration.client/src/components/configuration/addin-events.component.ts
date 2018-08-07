@@ -6,12 +6,15 @@ import { HttpService } from '../../services';
 import { RegConfigBaseComponent } from './config-base';
 import { ILookupData } from '../../redux';
 import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
+import { notifyError } from '../../common';
+
 
 @Component({
   selector: 'reg-addin-events-template',
   template: `
   <dx-data-grid [dataSource]="eventSource.events ? eventSource.events : []" [disabled]="disabled"
-  [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" 
+  [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true"
+  (onRowInserting)='onRowInserting($event)'
   (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)'
   (onRowInserted)="onDataSourceChange($event)" (onRowUpdated)="onDataSourceChange($event)" (onRowRemoved)="onDataSourceChange($event)">
   <dxi-column dataField="eventName" caption="Event" editorType="dxSelectBox" [width]="200" dataType="string">
@@ -59,6 +62,15 @@ export class RegAddinEventsListItem extends RegConfigBaseComponent implements On
   public hasEditData(): boolean {
     return this.grid.instance ? this.grid.instance.hasEditData() : false;
   }
+
+  onRowInserting(e) {
+    // check event exists
+    if (this.eventSource.events.find(i => i.eventName === e.data.eventName)) {
+      notifyError(`The event already exists.`, 5000);
+      e.cancel = true;
+    }
+  }
+
   onDataSourceChange(e) {
     this.valueUpdated.emit(
       (e.component && e.component.getDataSource()._items) ? e.component.getDataSource()._items : []);
