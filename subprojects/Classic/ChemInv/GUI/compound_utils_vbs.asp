@@ -195,9 +195,8 @@ End function
 	
 
 Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEdit, bShowEditExisting, bShowConflicts, InLineCdx)
-	Dim TempCdxPath
-		
-
+	Dim TempCdxPath		
+	
 	TempCdxPath = Application("TempFileDirectoryHTTP" & "cheminv")
 
 	Response.Write "	<span class=""GuiFeedback"">" & vblf
