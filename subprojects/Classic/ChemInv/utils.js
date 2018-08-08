@@ -153,11 +153,11 @@ function DoSelectSubstance(NewCompoundID, NewCompoundName) {
 		var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
         if (isChrome) {
             var sTab = 'Required';
-            if (top.opener.location.href.indexOf('TB=') > -1) {
+			if (top.opener.location.href.indexOf('TB=') > -1) {
                 var url = new URL(top.opener.location.href);
                 sTab = url.searchParams.get("TB");
+			    top.opener.postDataFunction(sTab);
             }
-            top.opener.postDataFunction(sTab);
         }
     }
 	top.opener.focus();
