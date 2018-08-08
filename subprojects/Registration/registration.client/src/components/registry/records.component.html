@@ -1,99 +1,101 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
-  <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
-  <div>
-    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="marksShown ? markedHitListId : hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
-    <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
-    <command-button *ngIf="!!hitListId &amp;&amp; !marksShown" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
-    <command-button *ngIf="!marksShown" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
-    <command-button *ngIf="!marksShown" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
-    <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-    <command-button *ngIf="hitListId > 0 || marksShown" testid="retrieve-all-button" (onClick)="showAllRecords()" iconName="refresh" title="Retrieve All"></command-button>
-  </div>
-  <reg-header testid="configuration-heading" id="qa-configuration-heading">
-    <span *ngIf="temporary">Temporary</span> Registration Records
-  </reg-header>
-  <reg-bulk-register-popup [viewModel]="regMarkedModel" *ngIf="regMarkedModel.isVisible" (registerMarked)="registerMarkedStart($event)"></reg-bulk-register-popup>
-  <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save {{isMarkedQuery ? 'Marked' : 'Query'}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
-    <div *dxTemplate="let data of 'content'">
-      <dx-form id="editHitlistForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="hitlistVM.saveQueryVM.editColumns" [formData]="hitlistVM.saveQueryVM.data"></dx-form>
-      <div class="mt2">
-        <button class="mr1 btn btn-primary" (click)="saveHitlist()">Save</button>
-        <button class="mr1 btn btn-primary" (click)="cancelSaveQuery()">Cancel</button>
-      </div>
+    <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
+    <div>
+        <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="marksShown ? markedHitListId : hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
+        <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
+        <command-button *ngIf="!!hitListId &amp;&amp; !marksShown" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
+        <command-button *ngIf="!marksShown" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
+        <command-button *ngIf="!marksShown" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+        <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
+        <command-button *ngIf="hitListId > 0 || marksShown" testid="retrieve-all-button" (onClick)="showAllRecords()" iconName="refresh" title="Retrieve All"></command-button>
     </div>
-  </dx-popup>
-  <dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible"
-    [animation]="{show:{duration: 0}}">
-    <div *dxTemplate="let data of 'content'">
-      <chemdraw-web id="structureDataCdd" [editMode]="false" [activated]="true" [value]="structureData" ></chemdraw-web>
+    <reg-header testid="configuration-heading" id="qa-configuration-heading">
+        <span *ngIf="temporary">Temporary</span> Registration Records
+    </reg-header>
+    <reg-bulk-register-popup [viewModel]="regMarkedModel" *ngIf="regMarkedModel.isVisible" (registerMarked)="registerMarkedStart($event)"></reg-bulk-register-popup>
+    <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save {{isMarkedQuery ? 'Marked' : 'Query'}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+            <dx-form id="editHitlistForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="hitlistVM.saveQueryVM.editColumns" [formData]="hitlistVM.saveQueryVM.data"></dx-form>
+            <div class="mt2">
+                <button class="mr1 btn btn-primary" (click)="saveHitlist()">Save</button>
+                <button class="mr1 btn btn-primary" (click)="cancelSaveQuery()">Cancel</button>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible" [animation]="{show:{duration: 0}}">
+        <div *dxTemplate="let data of 'content'">
+            <chemdraw-web id="structureDataCdd" [editMode]="false" [activated]="true" [value]="structureData"></chemdraw-web>
+        </div>
+    </dx-popup>
+    <div>
+        <div id="divDataGrid">
+            <dx-data-grid [height]="gridHeight" id="grdRecords" [noDataText]="noDataText" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onInitialized)='onInitialized($event)'
+                (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true" [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }"
+                columnAutoWidth=true wordWrapEnabled=true (onContentReady)="onContentReady($event)">
+                <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="temporary" [allowAdding]="false"></dxo-editing>
+                <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>
+                <dxo-paging [pageSize]="20"></dxo-paging>
+                <dxo-sorting mode="single"></dxo-sorting>
+                <dxo-filter-row [visible]="filterRowEnabled"></dxo-filter-row>
+                <dxo-search-panel [visible]="filterRowEnabled" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <div *dxTemplate="let data of 'batchDetailTemplate'">
+                    <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }"
+                        (onInitialized)='onInitialized($event)' (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)" [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'"
+                        [wordWrapEnabled]="true">
+                        <dxo-editing *ngIf="createContainersEnabled" mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+                    </dx-data-grid>
+                </div>
+                <div *dxTemplate="let data of 'toolbarContents'">
+                    <badge-count [hidden]="recordsTotalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
+                    <badge-count [hidden]="markedHitCount==0" color="orange" icon="check" text="Marked Hits" [count]="markedHitCount"></badge-count>
+                    <command-button *ngIf="createContainersEnabled &amp;&amp; markedHitCount > 0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
+                    <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
+                    <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
+                    <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>
+                    <command-button *ngIf="markedHitCount > 0 &amp;&amp; !marksShown" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
+                    <command-button *ngIf="marksShown" testid="show-results-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show Search Results"></command-button>
+                    <command-button [hidden]="markedHitCount &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
+                    <command-button [hidden]="markedHitCount &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="square-o" title="Clear Marked"></command-button>
+                </div>
+                <div *dxTemplate="let data of 'structureImageColumnTemplate'">
+                    <reg-structure-image-column-item-template (onClick)="structureImageClicked($event)" title="Click to view the structure detail" [source]="data.data"></reg-structure-image-column-item-template>
+                </div>
+                <div class="wrap" *dxTemplate="let data of 'urlTemplate'">
+                    <a *ngIf="temporary" [href]="getAbsoluteUrl(data.value)" target="_blank" title="{{data.value}}">{{data.value}}</a>
+                    <div *ngIf="!temporary">{{data.value}}</div>
+                </div>
+                <div *dxTemplate="let data of 'checkBoxTemplate'">
+                    <dx-check-box [value]="data.value === 'T'" [readOnly]="true">
+                    </dx-check-box>
+                </div>
+                <div *dxTemplate="let data of 'statusTemplate'">
+                    <div class="center">
+                        <i class="fa fa-lg fa-thumbs-{{isApproved(data) ? 'o-up green' : 'o-down red'}}"></i>
+                    </div>
+                </div>
+                <div *dxTemplate="let data of 'markedHeaderTemplate'">
+                    <div class="center" title="{{recordsTotalCount > markedHitsMax ? 'Too many records!' : 'Mark all records' }}">
+                        Marked<br/>
+                        <dx-check-box [disabled]='recordsTotalCount > markedHitsMax || marksShown' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
+                    </div>
+                </div>
+                <div *dxTemplate="let data of 'markedTemplate'">
+                    <div class="center">
+                        <dx-check-box [value]="data.value" (onInitialized)="prepareMarked($event)" (onValueChanged)="selectMarked($event, data)"></dx-check-box>
+                    </div>
+                </div>
+            </dx-data-grid>
+        </div>
     </div>
-  </dx-popup>
-  <div>
-    <div id="divDataGrid">
-      <dx-data-grid [height]="gridHeight" id="grdRecords" [noDataText]="noDataText" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)"
-        (onInitialized)='onInitialized($event)' (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true" [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }"
-        columnAutoWidth=true wordWrapEnabled=true (onContentReady)="onContentReady($event)">
-        <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="temporary" [allowAdding]="false"></dxo-editing>
-        <dxo-load-panel [enabled]="true"></dxo-load-panel>
-        <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>
-        <dxo-paging [pageSize]="20"></dxo-paging>
-        <dxo-sorting mode="single"></dxo-sorting>
-        <dxo-filter-row [visible]="filterRowEnabled"></dxo-filter-row>
-        <dxo-search-panel [visible]="filterRowEnabled" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <div *dxTemplate="let data of 'batchDetailTemplate'">
-          <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }"
-            (onInitialized)='onInitialized($event)' (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)" [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'" [wordWrapEnabled]="true">
-            <dxo-editing *ngIf="createContainersEnabled" mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
-          </dx-data-grid>
-        </div>
-        <div *dxTemplate="let data of 'toolbarContents'">
-          <badge-count [hidden]="recordsTotalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
-          <badge-count [hidden]="markedHitCount==0" color="orange" icon="check" text="Marked Hits" [count]="markedHitCount"></badge-count>
-          <command-button *ngIf="createContainersEnabled &amp;&amp; markedHitCount > 0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
-          <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
-          <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
-          <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>
-          <command-button *ngIf="markedHitCount > 0 &amp;&amp; !marksShown" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
-          <command-button *ngIf="marksShown" testid="show-results-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show Search Results"></command-button>
-          <command-button [hidden]="markedHitCount &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
-          <command-button [hidden]="markedHitCount &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="square-o" title="Clear Marked"></command-button>
-        </div>
-        <div *dxTemplate="let data of 'structureImageColumnTemplate'">
-          <reg-structure-image-column-item-template (onClick)="structureImageClicked($event)" title="Click to view the structure detail" [source]="data.data"></reg-structure-image-column-item-template>
-        </div>
-        <div class="wrap" *dxTemplate="let data of 'urlTemplate'">
-          <a *ngIf="temporary" [href]="getAbsoluteUrl(data.value)" target="_blank" title="{{data.value}}">{{data.value}}</a>
-          <div *ngIf="!temporary">{{data.value}}</div>
-        </div>
-        <div *dxTemplate="let data of 'checkBoxTemplate'">
-          <dx-check-box [value]="data.value === 'T'" [readOnly]="true">
-          </dx-check-box>
-        </div>
-        <div *dxTemplate="let data of 'statusTemplate'">
-          <div class="center">
-            <i class="fa fa-lg fa-thumbs-{{isApproved(data) ? 'o-up green' : 'o-down red'}}"></i>
-          </div>
-        </div>
-        <div *dxTemplate="let data of 'markedHeaderTemplate'">
-          <div class="center" title="{{recordsTotalCount > markedHitsMax ? 'Too many records!' : 'Mark all records' }}">
-            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax || marksShown' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
-          </div>
-        </div>
-        <div *dxTemplate="let data of 'markedTemplate'">
-          <div class="center">
-            <dx-check-box [value]="data.value" (onInitialized)="prepareMarked($event)" (onValueChanged)="selectMarked($event, data)"></dx-check-box>
-          </div>
-        </div>
-      </dx-data-grid>
-    </div>
-  </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-search-query [temporary]="temporary"  [hitlistId]="hitListId"  [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+    <reg-search-query [temporary]="temporary" [hitlistId]="hitListId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search [totalSearchableCount]="isRefine ? recordsTotalCount : totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
+    <reg-record-search [totalSearchableCount]="isRefine ? recordsTotalCount : totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine"
+        [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>
