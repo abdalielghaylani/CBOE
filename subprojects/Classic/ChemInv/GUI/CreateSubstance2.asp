@@ -378,7 +378,7 @@ Else
 			cc = cc + 1
 			if Duplicates_dict.Count > 1 then snum = cc
 			GetSubstanceAttributesFromDb(Key)
-			DisplaySubstance "", "Existing Substance " & snum, true ,bShowCreateDuplicate, bShowEdit, false, bShowConflicts,  inLineMarker & dbStructure
+			DisplaySubstance "", "Existing Substance " & snum, true ,bShowCreateDuplicate, bShowEdit, false, bShowConflicts,  inLineMarker & dBStructure
 		end if
 	Next
 End if	
@@ -429,7 +429,7 @@ if NOT bSubstanceCreated then
 			bShowEditExisting = false
 			bShowConflicts = false
 	End Select		
-DisplaySubstance "", "Conflicting Substance" , bShowSelect ,bShowCreateDuplicate, bShowEdit, bShowEditExisting, bShowConflicts, inLineMarker & dbStructure
+DisplaySubstance "", "Conflicting Substance" , bShowSelect ,bShowCreateDuplicate, bShowEdit, bShowEditExisting, bShowConflicts, inLineMarker & dBStructure
 if bShowCreateDuplicate then
 	Response.Write "<script language=""javascript"">document.all.createDuplicateText.style.display = 'block';</script>"
 end if
