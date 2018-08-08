@@ -26,8 +26,8 @@
     "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=production node server/node-server.js",
     "pretest": "rimraf coverage/ & npm run lint",
-    "test": "karma start --singleRun true",
-    "test:ci": "karma start --karma-config ./karma.ci.conf.js --singleRun true",
+    "test": "karma start --singleRun true --browsers=Chrome",
+    "test:ci": "karma start --singleRun true --browsers=ChromeHeadless",
     "posttest": "npm run cover",
     "test:watch": "karma start --singleRun false"
   },

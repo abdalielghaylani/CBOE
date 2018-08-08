@@ -1,7 +1,7 @@
 'use strict';
-
 process.env.TEST = true;
-
+// puppeteer uses Chromium package to run tests in CI environment in headless mode
+process.env.CHROMIUM_BIN = require('puppeteer').executablePath();
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
 
@@ -15,6 +15,9 @@ module.exports = (config) => {
       'jasmine',
     ],
 
+    browserNoActivityTimeout: 50000,
+    browserDisconnectTolerance: 2,
+
     plugins: [
       'karma-jasmine',
       'karma-sourcemap-writer',
@@ -24,6 +27,7 @@ module.exports = (config) => {
       'karma-remap-istanbul',
       'karma-spec-reporter',
       'karma-chrome-launcher',
+      'karma-junit-reporter',
     ],
 
     files: [
@@ -35,6 +39,19 @@ module.exports = (config) => {
         watched: true,
       },
     ],
+
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          // Without a remote debugging port, Google Chrome exits immediately.
+          '--remote-debugging-port=9222',
+        ],
+      },
+    },
 
     preprocessors: {
       './src/tests.entry.ts': [
@@ -69,31 +86,30 @@ module.exports = (config) => {
 
     reporters: ['spec']
       .concat(coverage)
-      .concat(coverage.length > 0 ? ['karma-remap-istanbul'] : []),
+      .concat(coverage.length > 0 ? ['karma-remap-istanbul', 'junit'] : []),
 
     coverageReporter: {
       reporters: [
         { type: 'html' },
       ],
-      dir: './coverage/',
+      dir: './test-coverage/',
       subdir: (browser) => {
         return browser.toLowerCase().split(/[ /-]/)[0]; // returns 'chrome'
       },
     },
 
-    // remapIstanbulReporter: {
-    //   src: './coverage/chrome/coverage-final.json',
-    //   reports: {
-    //     html: 'coverage',
-    //   },
-    //   timeoutNotCreated: 5000,
-    // },
+    junitReporter: {
+      outputDir: require('path').join(__dirname, './test-output'),
+      outputFile: 'test-results.xml',
+      suite: 'unit',
+      useBrowserName: false,
+    },
 
     port: 9999,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'], // Alternatively: 'PhantomJS'
+    browsers: ['Chrome', 'ChromiumHeadless'],
     captureTimeout: 6000,
   });
 };
@@ -115,4 +131,3 @@ function combinedLoaders() {
   },
   []);
 }
-
