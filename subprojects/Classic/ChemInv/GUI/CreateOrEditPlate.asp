@@ -668,6 +668,7 @@ end if
 <body onload="setOwnership();">
 <!--#INCLUDE VIRTUAL = "/cheminv/gui/CreateOrEditPlateTabs.asp"-->
 <form name="form1" method="POST">
+<br/>
 <table border="0" cellspacing="0" cellpadding="0" width="700">
 <!--#INCLUDE VIRTUAL = "/cheminv/gui/GetPlateAttributes.asp"-->
 <% if Request("isCreate") or Request("plIsCopy") Then Is_Plate_Map=0 %>
@@ -746,14 +747,18 @@ Select Case sTab
 	<tr height="25">
 		<td ALIGN="right" VALIGN="top" NOWRAP WIDTH="200"><span CLASS="required">Number of copies:</span></td>
 		<td><input TYPE="text" NAME="iNumCopies" SIZE="5" VALUE="<%=NumCopies%>" ONCHANGE="CheckNumCopies(this);"></td>
+		<td rowspan=3 colspan="2">
 		<% if Application("ENABLE_OWNERSHIP")="TRUE" then %>
-		<td rowspan=3 align=right> <span title="Pick an option from the list" class="required">Plate Admin:</span></td>
-		<td rowspan=3 align=left>
-		<table border=.5>
+		<table width="100%">
+		<td align=right width="100px"> <span title="Pick an option from the list" class="required">Plate Admin:</span></td>
+		<td align=left>
+		<table border=.5 width="100%">
 		<tr><td><input type="Radio" name="Ownership" name="User_cb" id="User_cb" onclick="SetOwnerInfo('user');"/>by user</td>
 		<td><input type="Radio" name="Ownership" name="Group_cb" id="Group_cb" onclick="SetOwnerInfo('group');" />by Group</td></tr>
 		<tr><td colspan="2"><SELECT id="Ownershiplst" onchange="setPrincipalID(this);"><OPTION></OPTION></SELECT></td></tr></table></td>
+		</table>
 		<% end if %>
+		</td>
 	</tr>
 	<tr height="25">
 		<%=ShowPickList("Plate status:", "iStatus_ID_FK", Status_ID_FK,"SELECT Enum_ID AS Value, Enum_Value AS DisplayText FROM inv_enumeration, inv_enumeration_set WHERE Eset_name = 'Plate Status' and eset_id_fk = eset_id ORDER BY lower(DisplayText) ASC")%>
@@ -792,11 +797,15 @@ Select Case sTab
 	<tr height="25" class="OverwriteWells">
 		<td align="right" VALIGN="top" nowrap>Select Solvent:</td>
 		<td><%=ShowSelectBox2("iSolvent_ID_FK",solvent_id_fk,"SELECT solvent_id AS Value, solvent_name AS DisplayText FROM " & Application("CHEMINV_USERNAME") & ".inv_solvents ORDER BY lower(DisplayText) ASC", null, "Select a Solvent", "null")%></td>
-        <%=ShowInputBox2("Concentration:", "Concentration", 200, 15,  ShowSelectBox("iConc_Unit_FK", iif((isEmpty(Conc_Unit_FK) or Conc_Unit_FK=""),Application("plDefConcUnitID"),Conc_Unit_FK),"SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (3) ORDER BY lower(DisplayText) ASC"), False, false)%>		
+		<td colspan="3"><table><tr>
+        <%=ShowInputBox2("Concentration:", "Concentration", 100, 10,  ShowSelectBox("iConc_Unit_FK", iif((isEmpty(Conc_Unit_FK) or Conc_Unit_FK=""),Application("plDefConcUnitID"),Conc_Unit_FK),"SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (3) ORDER BY lower(DisplayText) ASC"), False, false)%>	
+		</tr></table></td>		
 	</tr>
 	<tr height="25" class="OverwriteWells">
-		<%=ShowInputBox2("Solvent volume:", "Solvent_Volume", 200, 15, "", False, False)%>		
-		<%=ShowInputBox2("Weight:", "Weight", 200, 15, ShowSelectBox("iWeight_Unit_FK", iif((isEmpty(Weight_Unit_FK) or Weight_Unit_FK=""),Application("plDefMassUnitID"),Weight_Unit_FK),"SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (2) ORDER BY lower(DisplayText) ASC"), False, False)%>		
+		<%=ShowInputBox2("Solvent volume:", "Solvent_Volume", 200, 15, "", False, False)%>	
+		<td colspan="3"><table><tr>		
+		<%=ShowInputBox2("Weight:", "Weight", 100, 10, ShowSelectBox("iWeight_Unit_FK", iif((isEmpty(Weight_Unit_FK) or Weight_Unit_FK=""),Application("plDefMassUnitID"),Weight_Unit_FK),"SELECT UNIT_ID AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK IN (2) ORDER BY lower(DisplayText) ASC"), False, False)%>	
+		</tr></table></td>		
 	</tr>
 	<tr height="25" class="OverwriteWells">
 		<%=ShowInputBox2("Solution volume:", "Solution_Volume", 200, 15, "", False, False)%>
