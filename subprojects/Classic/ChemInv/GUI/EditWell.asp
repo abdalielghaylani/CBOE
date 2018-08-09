@@ -180,7 +180,8 @@ if Request.QueryString("newCompoundId")<>"" then Compound_ID_FK= Request.QuerySt
 <body>
 <!--#INCLUDE VIRTUAL = "/cheminv/gui/EditWellTabs.asp"-->
 <form name="form1" method="POST">
-<table border="0" cellspacing="0" cellpadding="0" width="700">
+<br/>
+<table border="0" cellspacing="0" cellpadding="0" width="800px">
 <INPUT TYPE="hidden" NAME="iWellIDs" VALUE="<%=Well_ID%>">
 <INPUT TYPE="hidden" NAME="iCompound_ID_FK" VALUE="<%=Compound_ID_FK%>">
 <INPUT TYPE="hidden" NAME="NewCompoundID">
