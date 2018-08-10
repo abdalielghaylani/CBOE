@@ -100,8 +100,8 @@ Status_ID_FK = Application("plDefRetireStatusID")
 		<td align="right" nowrap>
 			<span class="required" title="LocationID of the destination">Destination Location: <%=GetBarcodeIcon()%></span>
 		</td>
-		<td>
-			<%ShowLocationPicker "document.form1", "Location_ID_FK", "lpLocationBarCode", "lpLocationName", 10, 30, false%> 
+		<td nowrap>
+			<%ShowLocationPicker "document.form1", "Location_ID_FK", "lpLocationBarCode", "lpLocationName", 7, 28, false%> 
 		</td>
 	</tr>
 	<tr>
