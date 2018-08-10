@@ -76,8 +76,9 @@ End Function
 <head>
 <link rel="shortcut icon" href="/cheminv/graphics/favicon.ico" type="image/x-icon">	
 <title><%=Application("appTitle")%></title>
+<meta http-equiv="X-UA-Compatible" content="IE=11">
 </head>
-<meta http-equiv="X-UA-Compatible" content="IE=IE11">
+
 <frameset rows="97,*">
 	<frameset cols="*,1">
 		<frame name="bannerFrame" src="browsebannerFrame.asp?FormPopup=<%=FormPopup%>" MARGINWIDTH="1" MARGINHEIGHT="1" SCROLLING="auto">
