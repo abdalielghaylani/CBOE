@@ -55,7 +55,7 @@ End if
 			Plate to delete:
 		</td>
 		<td>
-			<input TYPE="text" SIZE="60" Maxlength="50" onfocus="blur()" VALUE="<%=DisplayText%>" disabled id="text1" name="text1">
+			<input TYPE="text" SIZE="50" Maxlength="50" onfocus="blur()" VALUE="<%=DisplayText%>" disabled id="text1" name="text1">
 		</td>
 	<tr>
 		<td colspan="2" align="right"> 
