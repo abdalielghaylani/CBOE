@@ -800,6 +800,7 @@ function setOwnership()
  
 <%if Session("isCDP") = "TRUE" then%>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
+<SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
 <script language="javascript">
 	<!--
@@ -813,7 +814,7 @@ function setOwnership()
 	window.onload = function(){setOwnership();}
 </script>
 <% end if %>
-
+<!--#INCLUDE FILE="../source/app_js.js"-->
 </head>
 <body style="overflow:auto">
 <!--End of Change for CSBR 137130-->

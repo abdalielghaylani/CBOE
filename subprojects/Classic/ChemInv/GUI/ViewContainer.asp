@@ -22,6 +22,7 @@ dbkey = "ChemInv"%>
 <% Session("isCDP") = ucase(Request.Cookies("isCDP"))%>
 <% if Session("isCDP") = "TRUE" then %>
 <script language="javascript" type="text/javascript" src= "/cfserverasp/source/chemdraw.js"></script>
+<SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
 <script language="javascript" type="text/javascript">cd_includeWrapperFile("/cfserverasp/source/")</script>
 <% end if %>
 <style type="text/css">
@@ -78,6 +79,7 @@ dbkey = "ChemInv"%>
 //-->
 </script>
 </head>
+<!--#INCLUDE FILE="../source/app_js.js"-->
 <body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
  <% 'This Check is here to stop loading DHTML menu while viewing a Container from a Batch.
   if Session("isBatchSearch") = "" Then 
@@ -277,7 +279,11 @@ Select Case sTab
 			else
 				ConvertCDXtoGif_Inv filePath, Mid(inLineStruc, InStr(inLineStruc, "VmpD")), 160, 140
 			end if
-			currentUserNode.text = "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""1"">"
+            structureNode = "<div style=""display:none;""><input type=""hidden"" id=""inline_" & dbCompoundID & """ name=""inline_" & dbCompoundID & """ value=""" & inLineStruc &""">" & vblf
+		    structureNode = structureNode & "<" & "script language=""JavaScript"">" & vblf
+		    structureNode = structureNode & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & dbCompoundID & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_" & dbCompoundID & ".value),  ""true""" & ")" & vblf 
+		    structureNode = structureNode & "</" & "script></div>" & vblf 
+			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy2(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
 		end if
 
 		'oTemplate.save "c:\temp\test.xml"

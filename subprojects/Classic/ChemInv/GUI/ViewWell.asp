@@ -39,6 +39,7 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
 <script language="JavaScript" src= "/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+<SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript">
 function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 	//alert(event.ctrlKey);
@@ -51,6 +52,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 	}
 }
 </SCRIPT>
+<!--#INCLUDE FILE="../source/app_js.js"-->
 </head>
 <body>
 <table border="0" cellspacing="0" cellpadding="2" width="100%" align="left">
@@ -110,7 +112,11 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 			SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 			fileURL = SessionURLDir & "structure" & "_" & 160 & "x" & 140 & ".gif"
 			ConvertCDXtoGif_Inv filePath, rsWell("base64_cdx"), 160, 140
-			currentUserNode.text = "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""1"">"
+            structureNode = "<div style=""display:none;""><input type=""hidden"" id=""inline_0"" name=""inline_0"" value=""" & rsWell("base64_cdx") &""">"
+		    structureNode = structureNode & "<" & "script language=""JavaScript"">"
+		    structureNode = structureNode & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_0"", """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_0.value),  ""true""" & ")"
+		    structureNode = structureNode & "</" & "script></div>"
+			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy2(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
 		end if
 	end if
 	'Response.Write mainTable.xml & "=xml<BR>"
@@ -187,7 +193,11 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 					filePath = SessionDir & "structure" & i & "_" & 160 & "x" & 140 & ".gif"
 					ConvertCDXtoGif_Inv filePath, rsMixtureCompounds("base64_cdx"), 160, 140
 					structureHTML = structureHTML & "<td COLSPAN=""2""><table cellpadding=""1"" cellspacing=""1"" BORDER=""1""><tr><td>"
-					structureHTML = structureHTML & "<img src=""" & filePath & """ width=""160"" height=""140"" border=""1"">" & "</td></tr></table></td>"
+                    structureHTML = structureHTML & "<div style=""display:none;""><input type=""hidden"" id=""inline_" & compoundID & """ name=""inline_" & compoundID & """ value=""" & rsMixtureCompounds("base64_cdx") &""">"
+		            structureHTML = structureHTML & "<" & "script language=""JavaScript"">"
+		            structureHTML = structureHTML & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & dbCompoundID & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_" & dbCompoundID & ".value),  ""true""" & ")"
+		            structureHTML = structureHTML & "</" & "script></div>"
+					structureHTML = structureHTML & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & filePath & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy2(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>" & "</td></tr></table></td>"
 				else
 					structureHTML = structureHTML & "<td COLSPAN=""2""><table cellpadding=""1"" cellspacing=""1"" BORDER=""1""><tr><td><input type=""hidden"" name=""structure" & i & """ value=""data:chemical/x-cdx;base64," & rsMixtureCompounds("base64_cdx") & """>"
 					structureHTML = structureHTML & "<script language=""javascript"">cd_insertObject(""chemical/x-cdx"",150,130,""mycdx"",""" & TempcdxPath & """, true, true, dataURL=document.form1.structure" & i & ".value," & ISISDraw & ");</script></td></tr></table></td>"

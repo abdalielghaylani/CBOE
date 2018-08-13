@@ -45,6 +45,13 @@ Dim RS
 
 if end_index = 1 then Response.Redirect "/cheminv/invreg/cheminv_form_frset.asp?formgroup=gs_form_group&dbname=invreg&formmode=edit" & "&unique_id=" & BaseRunningIndex
 Response.Write "<span class=""GUIFeedback"">The following Registry substances matched your query:<BR><BR></span>"
+if detectModernBrowser = true then
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
 if Not Session("fEmptyRecordset" & dbkey & formgroup) = True  then
   listItemNumber = 0
   Response.Write "<table border=""1"" bgcolor=""#FFFFFF"" align=""left"">"
@@ -63,10 +70,10 @@ if instr(BaseIDList,BaseID & ", ") = 0 then
     plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
     if  plugin_value  then
 	    displayType = "cdx"
-	    zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ", 0, 0, 'zoom_blue_btn.gif')"
+	    zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ", 'StructuresBASE64_CDX_" & BaseID & "_orig', 0, 0, 'zoom_blue_btn.gif')"
     else
 	    displayType = "SizedGif"
-	    zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ",500,450,'zoom_blue_btn.gif')"
+	    zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ", 'StructuresBASE64_CDX_" & BaseID & "_orig',500,450,'zoom_blue_btn.gif')"
     end if
     Set InvConn=GetConnection("cheminv", "base_form_group", "inv_containers")
     sql = "SELECT Count(inv_containers.Container_ID) AS ContainerCount FROM inv_containers, inv_compounds WHERE inv_containers.compound_id_fk = inv_compounds.compound_id and inv_compounds.Reg_ID_FK = " & Reg_ID & " and inv_compounds.batch_number_fk = " & batchNumber

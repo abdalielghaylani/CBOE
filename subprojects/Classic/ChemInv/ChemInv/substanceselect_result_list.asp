@@ -49,10 +49,10 @@ SubstanceName = BaseRS("Substance_Name")
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ")"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ", 'inv_compoundsBASE64_CDX_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ",500,450)"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ", 'inv_compoundsBASE64_CDX_" & BaseID & "_orig',500,450)"
 end if
 %>
 				<td align="center" valign="top" width="194" nowrap>

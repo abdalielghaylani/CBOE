@@ -273,7 +273,11 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 		SessionURLDir = Application("TempFileDirectoryHTTP" & "ChemInv") & "Sessiondir"  & "/" & Session.sessionid & "/"
 		fileURL = SessionURLDir & "structure" & "_" & "CD_" & dbCompoundID & "_" & 160 & "x" & 140 & ".gif"	
 		ConvertCDXtoGif_Inv filePath, Mid(InLineCdx, InStr(InLineCdx, "VmpD")), 160, 140
-		Response.Write "<img src=""" & fileURL & """ width=""160"" height=""140"" border=""0"">"
+        Response.Write "<div style=""display:none;""><input type=""hidden"" id=""inline_" & dbCompoundID & """ name=""inline_" & dbCompoundID & """ value=""" & InLineCdx &""">" & vblf
+		Response.Write "<" & "script language=""JavaScript"">" & vblf
+		Response.Write "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & dbCompoundID & """, """ & TempCdxPath & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_" & dbCompoundID & ".value),  ""true""," & ISISDraw & ")" & vblf 
+		Response.Write "</" & "script></div>"
+        Response.Write "<div class=""copyContainer""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""0""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopyIndividual(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
 	end if
 	Response.Write "					</td>" & vblf
 	Response.Write "				</tr>" & vblf

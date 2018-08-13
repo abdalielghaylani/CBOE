@@ -42,10 +42,10 @@
 <%
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.Structure'," & BaseID & ")"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.Structure'," & BaseID & ", 'inv_compoundsStructure_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.Structure'," & BaseID & ",600,450)"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.Structure'," & BaseID & ", 'inv_compoundsStructure_" & BaseID & "_orig',600,450)"
 end if
 %>
 	<center>

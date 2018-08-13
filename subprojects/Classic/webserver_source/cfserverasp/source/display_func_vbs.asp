@@ -3545,13 +3545,28 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 					else
 						SaveMolToTemp session("base64cdx"), myDir
 					end if
+
+                    onclickCopyFunction = "doStructureCopyIndividual();"
+                    if UCase(formmode) = "LIST" then
+                        onclickCopyFunction = "doStructureCopy('" & tablename & fieldname & "_" & uniqueid & "_orig');"
+                    end if
+		            
 					'jhs
-					embed_tag_string = "<IMG SRC="
+                    embed_tag_string = "<div class=""copyContainer"">"
+					embed_tag_string = embed_tag_string &  "<IMG SRC="
 					embed_tag_string = embed_tag_string &  """"  
 					embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
-					embed_tag_string = embed_tag_string  &  """ border=0>"
-					base64_cdx_name = tablename & fieldname  & "_" & uniqueid
-					embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
+					embed_tag_string = embed_tag_string &  """ border=0>"
+                    embed_tag_string = embed_tag_string & "<div class=""copyOverlay""><A HREF =""#"" onclick=""" & onclickCopyFunction & "return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
+					if UCase(formmode) = "LIST" then
+                        base64_cdx_name = tablename & fieldname  & "_" & uniqueid
+					    embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
+                    else
+                        embed_tag_string = embed_tag_string &  "<div style=""display:none;"">"
+                        embed_tag_string = embed_tag_string & "<" & "script language=""JavaScript"">"
+		                embed_tag_string = embed_tag_string & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & uniqueid & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all." & base64_cdx_name & "_orig" & ".value),  ""true""" & ")"
+		                embed_tag_string = embed_tag_string & "</" & "script></div>" 
+                    end if
 				else
 					embed_tag_string = "<IMG SRC="
 					embed_tag_string = embed_tag_string &  """"  

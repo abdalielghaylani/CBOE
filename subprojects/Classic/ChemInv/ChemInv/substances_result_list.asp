@@ -41,6 +41,15 @@ end if
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 recordsFound = false
 %>
+<%
+if detectModernBrowser = true then
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
+%>
 		<table id="resultsTable" border="1" bgcolor="#FFFFFF" align="left" width="600">
 			<tr>
 			<!--#INCLUDE VIRTUAL ="/cfserverasp/source/recordset_vbs.asp"-->
@@ -51,6 +60,7 @@ if end_index = 1 then
 	resultsURL = "/cheminv/cheminv/substances_form.asp?formgroup=" & formgroup & "&dbname=" & dbkey & "&formmode=edit" & "&unique_id=" & BaseRunningIndex
 	Response.Redirect resultsURL
 End if
+
 Set DataConn=GetConnection(dbkey, formgroup, "inv_compounds")
 sql = "SELECT inv_compounds.compound_id, inv_compounds.CAS,inv_compounds.Substance_Name,inv_compounds.BASE64_CDX FROM inv_compounds WHERE inv_compounds.Compound_ID =" & BaseID
 Set BaseRS = DataConn.Execute(sql)
@@ -58,16 +68,18 @@ CAS = BaseRS("CAS")
 'Response.Write sql
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ")"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ", 'inv_compoundsBASE64_CDX_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ",500,450)"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_compounds.BASE64_CDX'," & BaseID & ", 'inv_compoundsBASE64_CDX_" & BaseID & "_orig',500,450)"
 end if
+'copyFunction = "getStrucCopyBtn('inv_compounds', 'BASE64_CDX', '" & BaseID & "')"
 %>
-				<td align="center" valign="top" width="194" nowrap>
-					<table border="0" cellpadding="0" cellspacing="0">
+				 <td align="center" valign="top" width="194" nowrap>
+                     <table border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td><script language="JavaScript"><%=zoomFunction%></script></td>					
+							<td><script language="JavaScript"><%=zoomFunction%></script></td>		
+<!--                            <%if detectModernBrowser = true then %><td><script language="JavaScript"><%=copyFunction%></script></td><%end if %>	-->		
 							<td><a href="Synonyms" onClick="openSynWindow(100,200, <%=BaseID%>,<%=BaseRunningIndex%>);return false"><img src="<%=Application("NavButtonGifPath")%>names.gif" alt border="0"><nobr></a></td>				
 							<!---<td><script language="JavaScript">getFormViewBtn("details.gif","cheminv_form_frset.asp","<%=BaseActualIndex%>", "edit", "", "base_form_group&CompoundID=<%=BaseID%>&ClearNodes=1&sNode=1&Exp=Y#1")</script></td>-->
 							<td><script language="JavaScript">getFormViewBtn("details.gif","substances_form.asp","<%=BaseActualIndex%>")</script></td>

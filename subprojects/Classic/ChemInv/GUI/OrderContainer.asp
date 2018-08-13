@@ -36,6 +36,7 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/gui/CalculateFromPlugin.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/navbar_js.js"-->
+<!--#INCLUDE FILE="../source/app_js.js"-->
 <script language="JavaScript">
 <!--Hide JavaScript
 	var DialogWindow;
@@ -506,6 +507,7 @@ function setOwnership()
 <% if Session("isCDP") = "TRUE" then %>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+<SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
 <% end if %>
 
 </head>

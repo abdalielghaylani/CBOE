@@ -11,6 +11,7 @@
         focus();
     </script>
     <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
+    <script language="javascript" src="<%=Application("CDJSUrl")%>"></script>
     <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
     <script language="javascript">
         
@@ -53,6 +54,7 @@
         }
 
     </script>
+<!--#INCLUDE FILE="../source/app_js.js"-->
 </head>
 <%if Request("ManageMode") = "2" then %>
 <body onunload="CloseAndReload();">

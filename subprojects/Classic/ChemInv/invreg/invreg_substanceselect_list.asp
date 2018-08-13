@@ -59,10 +59,10 @@ BaseIDList = BaseIDList & BaseID & ", "
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ",0,0,'zoom_blue_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ", 'StructuresBASE64_CDX_" & BaseID & "_orig',0,0,'zoom_blue_btn.gif')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ",500,450,'zoom_blue_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('INV_VW_REG_STRUCTURES.BASE64_CDX'," & cpdDBCounter & ", 'StructuresBASE64_CDX_" & BaseID & "_orig',500,450,'zoom_blue_btn.gif')"
 end if
 
 if lCase(Application("DISPLAY_SUBSTANCE_RESULT_AS_LIST")) = "true" then

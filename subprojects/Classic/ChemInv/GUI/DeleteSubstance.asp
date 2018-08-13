@@ -26,6 +26,7 @@ End if
 </script>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+<script LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></script>
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/utils.js"></script>
 <script language="JavaScript">
@@ -54,7 +55,8 @@ End if
 	}
 	
 -->
-</script>
+</script>  
+<!--#INCLUDE FILE="../source/app_js.js"-->  
 </head>
 <body>
 
