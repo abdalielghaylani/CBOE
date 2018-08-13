@@ -689,6 +689,33 @@ input.readOnly {
     background: #ffff99;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+.copyContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.copyOverlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(155, 155, 155, 0.9); /* Black see-through */
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 60px;
+    text-align: center;
+}
+
+.copyContainer:hover .copyOverlay {
+    opacity: 1;
+}
 
 /*
 BODY
