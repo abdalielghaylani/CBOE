@@ -147,8 +147,30 @@ pipeline {
 				bat '''MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
 				xcopy /Y "%WORKSPACE%\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "%PUBLISH_PATH%\\Dev\\server\\CBOEServerInstaller_%VERSION_STRING%"
 				'''
+                bat """ 
+				cd "%WORKSPACE%\\subprojects\\Registration\\registration.client"
+				npm run test:ci
+				"""	
                 }
 			}
+
+            stage('Report')
+    			{
+	       		
+                steps {              
+                    junit 'subprojects/Registration/registration.client/test-output/test-results.xml' 
+                    publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: 'subprojects/Registration/registration.client/test-coverage/headlesschrome',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage Registration Web Client',
+                    reportTitles: ''
+                    ]
+               
+                     }
+                }		
 		stage ('Installer'){
 		     when {
                      expression{
@@ -158,7 +180,8 @@ pipeline {
      		agent{
 				node {
 						label 'INST_2013'
-                        customWorkspace "CBOE/${BRANCH_NAME}"
+						customWorkspace "CBOE/${BRANCH_NAME}"
+                        
 					 }
 				}
              steps{
@@ -173,8 +196,9 @@ pipeline {
 						
 				  }		          
 		}      
-	stage ('JIRA Updation') {
-	    when {
+		
+	    stage ('JIRA Updation') {
+	         when {
                      expression{
                                return env.BRANCH_NAME == "master"
                                }
@@ -191,14 +215,15 @@ pipeline {
 					  }
 				 } 
                }
+	
 		
-	stage ('Clean Workspace') {
+	    stage ('Clean Workspace') {
              steps{
     		           deleteDir()
                   }
 		       }
-	  }
- post {
+	     }
+       post {
         always {
             emailext body: "${env.BUILD_URL} has result ${currentBuild.result?:'SUCCESS'}",	mimeType: 'text/html',subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",to: "${NOTIFY_LIST}",replyTo: "${NOTIFY_LIST}",recipientProviders: [[$class: 'CulpritsRecipientProvider']]
             deleteDir()
