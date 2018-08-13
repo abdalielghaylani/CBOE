@@ -263,11 +263,27 @@ End if
 		}		
 	}
 	
+	function applySolvatePlateChoiceOnLoad() {
+		/*code supported by IE document mode 5*/
+		var radioBtnList = window.sessionStorage.yesRadioBtns;
+		var radioBtnNames = radioBtnList.split(' ');
+		if (radioBtnNames.length > 0) {
+			var currentRadioBtn, currentRadioBtnSuffix;
+			for (index = 0; index < radioBtnNames.length; index++) {
+				currentRadioBtn = document.getElementById(radioBtnNames[index]);
+				if (currentRadioBtn && currentRadioBtn.checked == true) {
+					currentRadioBtnSuffix = radioBtnNames[index].substring('yesRadioBtn'.length, radioBtnNames[index].length);
+					ShowHide(currentRadioBtnSuffix, currentRadioBtn.value);
+				}
+			}
+		}
+	}
+	
 -->
 </script>
 
 </head>
-<body>
+<body onload="applySolvatePlateChoiceOnLoad();">
 <center>
 <%if Cint(numSourcePlates)>300 then%>
 <table border="0">
@@ -315,6 +331,9 @@ End if
 	RS.Open SQL, Conn, adOpenKeyset, adLockOptimistic, adCmdText 
 	numSourcePlates = RS.RecordCount
 
+	Response.Write "<script language='javascript'>"
+	Response.Write "sessionStorage.removeItem('yesRadioBtns')"
+	Response.Write "</script>"
 	for i=0 to numSourcePlates-1
 		molar_amount = RS("molar_amount")
 		molar_conc = RS("molar_conc")
@@ -325,8 +344,16 @@ End if
 		<TD ALIGN="right" WIDTH="200" NOWRAP><%=pageVerb%> plate <B><%=RS("plate_barcode")%><%'=arrBarcodeList(i)%></B>:</TD>
 		<TD WIDTH="300">
 		<DIV STYLE="display:<%=displayStyleCB%>;" ID="divCB<%=i%>">
-			<INPUT TYPE="radio" NAME="solvate<%=i%>" VALUE="yes" ONCLICK="ShowHide(<%=i%>, this.value);" <%=yesChecked%>>Yes
-			<INPUT TYPE="radio" NAME="solvate<%=i%>" VALUE="no" ONCLICK="ShowHide(<%=i%>, this.value);" <%=noChecked%>>No
+			<INPUT TYPE="radio" ID="yesRadioBtn<%=i%>" NAME="solvate<%=i%>" VALUE="yes" ONCLICK="ShowHide(<%=i%>, this.value);" <%=yesChecked%>>Yes
+			<INPUT TYPE="radio" NAME="solvate<%=i%>" VALUE="no" ONCLICK="ShowHide(<%=i%>, this.value);" <%=noChecked%>>No			
+			<%
+			Response.Write "<script language='javascript'>"
+			Response.Write " var list; if (window.sessionStorage.yesRadioBtns) { list = window.sessionStorage.yesRadioBtns; } else { list = ''; }"
+			Response.Write "list = list.concat('yesRadioBtn" & i & "'); list = list.concat(' ');"
+			Response.Write "window.sessionStorage.yesRadioBtns = list;"
+			Response.Write "</script>"
+			%>			
+			
 		</DIV>
 			<INPUT TYPE="hidden" NAME="plateOrder<%=i%>" VALUE="<%execute("Request(""plateOrder" & i & """)")%>">
 			<INPUT TYPE="hidden" NAME="PlateID<%=i%>" VALUE="<%=RS("plate_id")%>">
