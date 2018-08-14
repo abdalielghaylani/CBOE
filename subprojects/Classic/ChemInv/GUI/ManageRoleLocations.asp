@@ -581,8 +581,8 @@ End if
 <%end if%>
 	<tr><td colspan="2" align="right">
 		<%if stepValue = "2" then%>
-			<a HREF="#" onclick="window.location='ManageRoleLocations.asp?refresh=1'; return false;"><img SRC="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0"></a>&nbsp;
-			<a HREF="#" onclick="history.go(-1);"><img SRC="/cheminv/graphics/sq_btn/btn_back_61.gif" border="0"></a>
+			<a HREF="#" onclick="window.location='menu.asp'; return false;"><img SRC="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0"></a>&nbsp;
+			<a HREF="#" onclick="window.location='ManageRoleLocations.asp?refresh=1'; return false;"><img SRC="/cheminv/graphics/sq_btn/btn_back_61.gif" border="0"></a>
 			<a HREF="#" onclick="Validate(); return false;"><img SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0"></a>
             <br /><span class="GuiFeedback">Please note: </span> On selecting a location, all child location will also be excluded.
 		<%else%>
