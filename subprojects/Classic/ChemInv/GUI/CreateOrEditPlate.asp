@@ -567,7 +567,7 @@ end if
 	    iCopyType = CopyVal;
 		if( CopyVal == 0 )
 		{
-			AlterCSS('.OverwriteWells','display','inline');
+			AlterCSS('.OverwriteWells','display','');
 		}
 		else
 		{
@@ -659,7 +659,7 @@ end if
 if not isEdit then 
 %>
 <style>
-	.OverwriteWells { display: inline; }	
+	.OverwriteWells { display: ''; }	
 </style>
 <%
 end if
