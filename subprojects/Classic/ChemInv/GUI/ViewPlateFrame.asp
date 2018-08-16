@@ -150,14 +150,14 @@ Select Case sPlateTab
 		End if
         %>
         <!--#INCLUDE VIRTUAL = "/cheminv/gui/writePlateXMLIsland.asp"-->
-        <%        
+         <%        
 dim fs,tfile
 set fs=Server.CreateObject("Scripting.FileSystemObject")
 if fs.FileExists(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml")) then
    fs.DeleteFile(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml"))
 end if
 set tfile=fs.CreateTextFile(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml"), True)
-tfile.WriteLine(xmlHtml)
+tfile.Write(xmlHtml)
 tfile.close
 set tfile=nothing
 set fs=nothing
