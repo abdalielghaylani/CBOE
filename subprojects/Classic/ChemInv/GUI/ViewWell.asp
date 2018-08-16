@@ -116,7 +116,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 		    structureNode = structureNode & "<" & "script language=""JavaScript"">"
 		    structureNode = structureNode & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_0"", """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_0.value),  ""true""" & ")"
 		    structureNode = structureNode & "</" & "script></div>"
-			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy2(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
+			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopyIndividual(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
 		end if
 	end if
 	'Response.Write mainTable.xml & "=xml<BR>"
@@ -197,7 +197,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 		            structureHTML = structureHTML & "<" & "script language=""JavaScript"">"
 		            structureHTML = structureHTML & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & dbCompoundID & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_" & dbCompoundID & ".value),  ""true""" & ")"
 		            structureHTML = structureHTML & "</" & "script></div>"
-					structureHTML = structureHTML & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & filePath & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy2(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>" & "</td></tr></table></td>"
+					structureHTML = structureHTML & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & filePath & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopyIndividual(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>" & "</td></tr></table></td>"
 				else
 					structureHTML = structureHTML & "<td COLSPAN=""2""><table cellpadding=""1"" cellspacing=""1"" BORDER=""1""><tr><td><input type=""hidden"" name=""structure" & i & """ value=""data:chemical/x-cdx;base64," & rsMixtureCompounds("base64_cdx") & """>"
 					structureHTML = structureHTML & "<script language=""javascript"">cd_insertObject(""chemical/x-cdx"",150,130,""mycdx"",""" & TempcdxPath & """, true, true, dataURL=document.form1.structure" & i & ".value," & ISISDraw & ");</script></td></tr></table></td>"
