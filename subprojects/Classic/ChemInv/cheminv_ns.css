@@ -568,6 +568,7 @@ div.tasktitle {
     height: 0px;
     left: -900px;
     margin: 0px 0px 0px 0px;
+	z-index: 1;
     /* border: 1px solid #999; */
 }
 
