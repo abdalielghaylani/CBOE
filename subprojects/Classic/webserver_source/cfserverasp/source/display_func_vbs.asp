@@ -3558,10 +3558,9 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 					embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
 					embed_tag_string = embed_tag_string &  """ border=0>"
                     embed_tag_string = embed_tag_string & "<div class=""copyOverlay""><A HREF =""#"" onclick=""" & onclickCopyFunction & "return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
-					if UCase(formmode) = "LIST" then
-                        base64_cdx_name = tablename & fieldname  & "_" & uniqueid
-					    embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
-                    else
+					base64_cdx_name = tablename & fieldname  & "_" & uniqueid
+					embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
+                    if NOT UCase(formmode) = "LIST" then
                         embed_tag_string = embed_tag_string &  "<div style=""display:none;"">"
                         embed_tag_string = embed_tag_string & "<" & "script language=""JavaScript"">"
 		                embed_tag_string = embed_tag_string & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & uniqueid & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all." & base64_cdx_name & "_orig" & ".value),  ""true""" & ")"
