@@ -207,7 +207,7 @@ Sub DisplaySubstance(Caption, Header, bShowSelect, bShowCreateDuplicate, bShowEd
 					"BAAAAAAAAAAAAAAAAAAIAGQGQAAAAAAJAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEAhAAAAD+/wAA/v8AAAIAA" &_
 					"AACAAABJAAAAAIAAwDkBAUAQXJpYWwEAOQEDwBUaW1lcyBOZXcgUm9tYW4BgAEAAAAEAhAAAAD+/wAA/v8AAAIAAAACAA" &_
 					"8IAgABABAIAgABABYIBAAAACQAGAgEAAAAJAAAAAAA"
-	if InLineCdx = "data:chemical/x-cdx;base64,0" OR InLineCdx = "data:chemical/x-cdx;base64," OR  Then
+	if InLineCdx = "data:chemical/x-cdx;base64,0" OR InLineCdx = "data:chemical/x-cdx;base64," Then
 			InLineCdx = BlankBase64CDX
 	end if 
 	Response.Write "	<span class=""GuiFeedback"">" & vblf
