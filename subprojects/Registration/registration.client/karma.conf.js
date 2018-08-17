@@ -101,7 +101,7 @@ module.exports = (config) => {
     junitReporter: {
       outputDir: require('path').join(__dirname, './test-output'),
       outputFile: 'test-results.xml',
-      suite: 'unit',
+      suite: 'Registration Web Client Tests',
       useBrowserName: false,
     },
 

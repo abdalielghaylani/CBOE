@@ -12,7 +12,7 @@ import { TestModule } from '../test';
 import { HttpService } from '../services';
 import { RegistryActions, IAppState } from '../redux';
 
-describe('configuration.epics', () => {
+describe('configuration : epics', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
