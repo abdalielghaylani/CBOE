@@ -225,7 +225,7 @@ pipeline {
 	     }
        post {
         always {
-            emailext body: "${env.BUILD_URL} has result ${currentBuild.result?:'SUCCESS'}",	mimeType: 'text/html',subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",to: "${NOTIFY_LIST}",replyTo: "${NOTIFY_LIST}",recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+            emailext attachLog:true, body: '''${SCRIPT, template="groovy-html.template"}''',	mimeType: 'text/html',subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",to: "${NOTIFY_LIST}",replyTo: "${NOTIFY_LIST}",recipientProviders: [[$class: 'CulpritsRecipientProvider']]
             deleteDir()
               }
       }       
