@@ -81,7 +81,7 @@ if detectModernBrowser = true then
     embed_tag_string = embed_tag_string & "<div class=""copyContainer""><IMG SRC="
     embed_tag_string = embed_tag_string &  """"  
     embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=gs_form_group&dataaction=get_structure&Table=" & TableName & "&Field=" & FieldName & "&DisplayType=SIZEDGIF&StrucID=" & BaseID & "&width=400&height=400"
-    embed_tag_string = embed_tag_string  &  """ border=0><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy('" & structDataObjName & "', true); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
+    embed_tag_string = embed_tag_string  &  """ border=0><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy('" & structDataObjName & "', true); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div></div>"
     Response.Write embed_tag_string				
 Else%>
 					<script language="javascript">cd_insertObjectStr("<embed src='<%=initial_CDP_file%>' border='0' width='400' height='400' id='1' name='CDX' viewonly='true' type='chemical/x-cdx' dataurl='<%=Application("ActionForm" & dbkey)%>?dbname=<%=dbkey%>&formgroup=gs_form_group&dataaction=get_structure&Table=<%=TableName%>&Field=<%=FieldName%>&DisplayType=cdx&StrucID=<%=BaseID%>'>");</script> 
