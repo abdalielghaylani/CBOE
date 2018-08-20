@@ -1165,7 +1165,7 @@ Sub GetURLs(fk_value, table_name, fk_name, url_type, link_text_override, link_ti
 					Link_text = link_text_override
 				Else
 					if Link_image_src <> "" then
-						Link_text = "<IMG border=0 src=""" & Link_image_src & """ alt=""" & RS("link_txt") & """>"
+						Link_text = "<IMG border=0 src=""" & Link_image_src & """ title=""" & RS("link_txt") & """ alt=""" & RS("link_txt") & """>"
 					else
 						Link_text = RS("link_txt")
 					End if
