@@ -34,15 +34,16 @@ cdxPath = Application("TempFileDirectory" & dbkey) & FileRootName & ".cdx"
 
         .copyOverlay {
             position: absolute;
-            bottom: 0;
-            background: rgba(155, 155, 155, 0.9); /* Black see-through */
-            width: 100%;
-            height: 100%;
+            bottom: 185px;
+            left: 185px;
+            background: rgba(0, 0, 0, 0.20); /* Black see-through */
+            width: 30px;
+            height: 30px;
             transition: .5s ease;
             opacity: 0;
             color: white;
-            font-size: 20px;
-            padding: 200px;
+            font-size: 10px;
+            padding: 5px;
             text-align: center;
         }
 

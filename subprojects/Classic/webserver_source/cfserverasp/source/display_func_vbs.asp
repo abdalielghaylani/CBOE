@@ -3566,6 +3566,8 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 		                embed_tag_string = embed_tag_string & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & uniqueid & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all." & base64_cdx_name & "_orig" & ".value),  ""true""" & ")"
 		                embed_tag_string = embed_tag_string & "</" & "script>" 
                         embed_tag_string = embed_tag_string & "</div>"
+                    else
+                        embed_tag_string = embed_tag_string &  "<style> .copyOverlay { bottom: 50px; left: 80px; } </" & "style>"
                     end if
                     embed_tag_string = embed_tag_string &  "</div>"
 				else

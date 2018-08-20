@@ -283,7 +283,7 @@ Select Case sTab
 		    structureNode = structureNode & "<" & "script language=""JavaScript"">" & vblf
 		    structureNode = structureNode & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & dbCompoundID & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all.inline_" & dbCompoundID & ".value),  ""true""" & ")" & vblf 
 		    structureNode = structureNode & "</" & "script></div>" & vblf 
-			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopyIndividual(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
+			currentUserNode.text = structureNode & "<div class=""copyContainer"" style=""width: 160px; height: 140px;""><img src=""" & fileURL & """ width=""160"" height=""140"" border=""1""><div class=""copyOverlay"" style=""bottom: 60px; left: 60px;""><A HREF =""#"" onclick=""doStructureCopyIndividual(); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
 		end if
 
 		'oTemplate.save "c:\temp\test.xml"

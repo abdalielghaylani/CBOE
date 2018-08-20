@@ -103,25 +103,28 @@ function getStrucCopyBtn(tablename, fieldname, uniqueid) {
 }
  
 function doStructureCopy(structDataObjName, isDialog) {
-    //var base64_cdx_name = tablename + fieldname  + '_' + uniqueid + '_orig';
-    var base64_cdx = (isDialog) ? opener.document.getElementById(structDataObjName).value : document.getElementById(structDataObjName).value;
-    var b64 = base64_cdx.replace(new RegExp('<br>', 'g'), '');
-    chemdrawjs.loadB64CDX(b64);
-    var textField = document.createElement('textarea');    
-    document.body.appendChild(textField);
-    textField.innerText = chemdrawjs.getCDXML();
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();    
+    if(chemdrawjs) {
+        var base64_cdx = (isDialog) ? opener.document.getElementById(structDataObjName).value : document.getElementById(structDataObjName).value;
+        var b64 = base64_cdx.replace(new RegExp('<br>', 'g'), '');
+        chemdrawjs.loadB64CDX(b64);
+        var textField = document.createElement('textarea');    
+        document.body.appendChild(textField);
+        textField.innerText = chemdrawjs.getCDXML();
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();   
+    }
 }
 
 function doStructureCopyIndividual() {
-    var textField = document.createElement('textarea');    
-    document.body.appendChild(textField);
-    textField.innerText = chemdrawjs.getCDXML();
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();    
+    if(chemdrawjs) {
+        var textField = document.createElement('textarea');    
+        document.body.appendChild(textField);
+        textField.innerText = chemdrawjs.getCDXML();
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();   
+    }
 }
 
 </script>
