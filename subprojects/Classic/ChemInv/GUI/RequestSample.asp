@@ -922,7 +922,7 @@ if not bAllowRequest then
 		</td>
 	</tr>
 	<% end if %>
-	<tbody id="requestOption" style="display:block;">
+	<tbody id="requestOption">
 	<tr>
 	    <td class="fieldLabel"><span class="required">Request Option:</span></td>
 	    <td>
@@ -939,7 +939,7 @@ if not bAllowRequest then
     
     <%
     if ((action="edit") and (batchtype1 = "FULLREGNUM" or batchtype1="REGNUM")) or (BatchID1<>"" and BatchID2="" and batchID3="" and allowContainerRequest="" and regAttributes1<>"" )  then%>
-	<tbody id="Tbody1" style="display:block;">
+	<tbody id="Tbody1">
 	<tr>
 	     <td align="center" colspan="2 valign="top">
            <%
@@ -977,7 +977,7 @@ if not bAllowRequest then
 		end if%>
 		</td>
 	</tr>
-	<tbody id="aliquot" style="display:block;">
+	<tbody id="aliquot">
 	<%if RequestSampleByAmount then%>
 	<tr>
 		<td align="right" nowrap><span class="required">Amount Required :</span></td>
@@ -1241,7 +1241,7 @@ if not bAllowRequest then
 		</td>
 	</tr>		
 	</tbody>
-	<tbody id="nextButton" style="display:block;">
+	<tbody id="nextButton">
 	<tr>
 		<td colspan="2" align="right"> 
 			<a HREF="#" onclick="if(typeof(parent.CloseModal) == 'function'){parent.CloseModal(false);} if (DialogWindow) {DialogWindow.close()}; window.close(); return false;"><img SRC="../graphics/cancel_dialog_btn.gif" border="0" WIDTH="61" HEIGHT="21"></a><a HREF="#" onclick="ValidateRequest('<%=action%>','<%=pageAction%>'); return false;"><img SRC="../graphics/btn_next_61.gif" border="0" alt WIDTH="61" HEIGHT="21"></a>
