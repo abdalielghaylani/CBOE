@@ -113,6 +113,10 @@ arrPlateFormatCount=split(temp,",")
 			sessionStorage.setItem("LocationID", document.form1.iLocation_ID_FK.value);
 			LocationID = sessionStorage.getItem("LocationID");		
 		}
+		else if (document.form1.iLocation_ID_FK.value.length == 0)
+		{
+			document.form1.iLocation_ID_FK.value = sessionStorage.getItem("LocationID");
+		}
 		PlateTypeID = document.form1.iPlate_Type_ID_FK.value;
 		
 		// Validate import template
