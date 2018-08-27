@@ -227,6 +227,7 @@ Sub GetAppINIValues()
 	' Global database support is toggled from invconfig.ini
 	'Application("AllowGlobalSearch") = CBool( lcase(GetIniValue("optional", "APPLICATION", "ALLOW_GLOBAL_SEARCH", "web_app", "invconfig")) = "true")
 	Application("RegServerName") = GetIniValue("optional", "CHEMREG", "REG_SERVER_NAME", "web_app", "invconfig")
+    Application("NewRegServerName") = GetIniValue("optional", "CHEMREG", "NEWREG_SERVER_NAME", "web_app", "invconfig")
 	Application("ACXServerName") = GetIniValue("optional", "CHEMACX", "ACX_SERVER_NAME", "web_app", "invconfig")
 	Application("InvServerName") = GetIniValue("optional", "APPLICATION", "INV_SERVER_NAME", "web_app", "invconfig")
 	Application("DBNames") = GetINIValue( "required", "GLOBALS", "DB_Names", "web_app", "cfserver")
@@ -1386,6 +1387,7 @@ Sub GetConfigINIValues()
 
     '--CHEMREG section
 	Application("RegServerName") = GetIniValue("optional", "CHEMREG", "REG_SERVER_NAME", "web_app", "invconfig")
+    Application("NewRegServerName") = GetIniValue("optional", "CHEMREG", "NEWREG_SERVER_NAME", "web_app", "invconfig")
 	Application("RegContainersOnly") = GetIniValue("optional","CHEMREG","REG_CONTAINERS_ONLY", "web_app", "invconfig")
 	Application("UseNotebookTable") = GetIniValue("optional", "CHEMREG", "USE_NOTEBOOK_TABLE", "web_app", "invconfig")
     Application("UseRegMap") = GetIniValue("optional", "CHEMREG", "USE_REGISTRATION_MAP", "web_app", "invconfig")

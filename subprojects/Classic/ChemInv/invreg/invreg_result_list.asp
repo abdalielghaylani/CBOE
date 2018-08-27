@@ -117,8 +117,15 @@ if instr(BaseIDList,BaseID & ", ") = 0 then
 						    <font size="1" face="Arial">
 							    <strong>
 								    <br>Reg Number: 
-								    <% if Application("RegServerName") <> "NULL" then  %>
-								    <a class="MenuLink" href="/cheminv/GUI/ViewRegDetails.asp?reg_number=<% =baseRegNumber %>" target="_blank"><% = RegBatchID %></a>
+								    <% 
+                                        if Application("RegServerName") <> "NULL" then  
+                                            if detectModernBrowser = true then
+                                                regIdParameter = reg_ID
+                                            else
+                                                regIdParameter = baseRegNumber
+                                            end if
+                                    %>
+								    <a class="MenuLink" href="/cheminv/GUI/ViewRegDetails.asp?reg_number=<% =regIdParameter %>" target="_blank"><% = RegBatchID %></a>
 								    <% else %>
 								    <%=RegBatchID%>
 								    <% end if %>
