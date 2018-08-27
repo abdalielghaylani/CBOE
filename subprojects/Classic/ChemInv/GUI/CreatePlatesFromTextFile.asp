@@ -108,8 +108,11 @@ arrPlateFormatCount=split(temp,",")
 			errmsg = errmsg + "- File path is required.\r";
 			bWriteError = true;
 		}
-				
-		LocationID = document.form1.Location_BarCode.value;
+		if (document.form1.iLocation_ID_FK.value.length > 0)
+		{	
+			sessionStorage.setItem("LocationID", document.form1.iLocation_ID_FK.value);
+			LocationID = sessionStorage.getItem("LocationID");		
+		}
 		PlateTypeID = document.form1.iPlate_Type_ID_FK.value;
 		
 		// Validate import template
@@ -129,18 +132,18 @@ arrPlateFormatCount=split(temp,",")
 		}
 
 		//LocationID is required
-		if (document.form1.Location_BarCode.value.length == 0) {
+		if (sessionStorage.getItem("LocationID").length == 0) {
 			errmsg = errmsg + "- Location ID is required.\r";
 			bWriteError = true;
 		}
 		else{
 			// LocationID can't be the root
-			if (document.form1.Location_BarCode.value == 0){
+			if (sessionStorage.getItem("LocationID") == 0){
 				errmsg = errmsg + "- Cannot create plate at the root location.\r";
 				bWriteError = true;
 			}
 			// LocationID must be a positive number
-			if (!isPositiveNumber(document.form1.Location_BarCode.value)&&(document.form1.Location_BarCode.value != 0)){
+			if (!isPositiveNumber(sessionStorage.getItem("LocationID"))&&(sessionStorage.getItem("LocationID") != 0)){
 				errmsg = errmsg + "- Location ID must be a positive number.\r";
 				bWriteError = true;
 			}
@@ -200,7 +203,7 @@ arrPlateFormatCount=split(temp,",")
 		}
 		
 		// LocationID must be valid for this plate type
-		if (!(IsPlateTypeAllowed('',LocationID,document.form1.iPlate_Type_ID_FK.value,'') == 1)){
+		if (!(IsPlateTypeAllowed('',sessionStorage.getItem("LocationID"),document.form1.iPlate_Type_ID_FK.value,'') == 1)){
 			errmsg = errmsg + "- This location does not accept this plate type.\r";
 			bWriteError = true;
 		}
