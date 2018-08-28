@@ -159,8 +159,13 @@ end if
 									<%=BaseID%>
 								<% end if
 							else    ' if IsNull(RegIDFK) then
-%>
-                                <br>Reg Number: <a class="MenuLink" href="/cheminv/GUI/ViewRegDetails.asp?reg_number=<% =RegNumber %>" target="_blank"><% = RegBatchID %></a>
+                                if detectModernBrowser = true then
+                                    regIdParameter = RegIDFK
+                                else
+                                    regIdParameter = RegNumber
+                                end if
+%>                                
+                                <br>Reg Number: <a class="MenuLink" href="/cheminv/GUI/ViewRegDetails.asp?reg_number=<% =regIdParameter %>" target="_blank"><% = RegBatchID %></a>
 <%
                             end if
 						end if

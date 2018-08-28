@@ -124,6 +124,11 @@ if NOT IsEmpty(CompoundID) then
         inLineStruc = ""
     end if
 end if
+if detectModernBrowser = true then
+    regIdParameter = RegID
+else
+    regIdParameter = regnumber
+end if
 Select Case sTab
 	Case "Summary"
 
@@ -234,8 +239,13 @@ Select Case sTab
 			Set newNode2 = nothing
 		end if
 		if not Session("Search_Reg" & dbkey) then ' if no privilege to view the reg record; remove the hyperlink
-			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT/FIELD[@VALUE_COLUMNS='REGNUMBER,REG_BATCH_ID']")
-			currentUserNode.text = Eval("REGBATCHID")
+			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT/FIELD[@VALUE_COLUMNS='REGNUMBER,REG_ID_FK,REG_BATCH_ID']")
+            currentUserNode.text = Eval("REGBATCHID")
+        else
+            if detectModernBrowser = true then
+                Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT/FIELD[@VALUE_COLUMNS='REGNUMBER,REG_ID_FK,REG_BATCH_ID']")
+                currentUserNode.text = Replace(currentUserNode.text, "reg_number=#REGNUMBER#", "reg_number=#REG_ID_FK#")
+            end if
 		end if
 
 		For each key in custom_fields_dict
@@ -469,8 +479,8 @@ Case "RegSubstance"
 							tempstr = tempstr & "</td>"
 							tempstr = tempstr & "<td class=""grayBackground"" align=right>"	
 							' Only show the hyperlink for regbatchid if the user has privilege to view the reg record
-							if Session("Search_Reg" & dbkey) then
-								tempstr2 = "<A CLASS=""MenuLink"" HREF=""/cheminv/gui/ViewRegDetails.asp?reg_number=" & regnumber & """  TITLE=""Registration Details"" target=""_blank"">" & Eval(key) &" </a>"
+							if Session("Search_Reg" & dbkey) then                        
+								tempstr2 = "<A CLASS=""MenuLink"" HREF=""/cheminv/gui/ViewRegDetails.asp?reg_number=" & regIdParameter & """  TITLE=""Registration Details"" target=""_blank"">" & Eval(key) &" </a>"
 							else
 								tempstr2 = regnumber
 							end if	

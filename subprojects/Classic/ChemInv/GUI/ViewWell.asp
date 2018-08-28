@@ -106,6 +106,8 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 		if Session("isCDP") <> "TRUE" or detectModernBrowser = true  then
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]/@IS_STRUCTURE")
 			currentUserNode.text = "0"
+            Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT/FIELD[@VALUE_COLUMNS='REG_BATCH_ID,REG_ID_FK,REG_NUMBER']")
+            currentUserNode.text = Replace(currentUserNode.text, "reg_number=#REG_NUMBER#", "reg_number=#REG_ID_FK#")
 			Set currentUserNode = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/FIELD[1]")
 			SessionDir = Application("TempFileDirectory" & "ChemInv") & "Sessiondir"  & "\" & Session.sessionid & "\"
 			filePath = SessionDir & "structure" & "_" & 160 & "x" & 140 & ".gif"
@@ -182,6 +184,11 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
  				If Application("RegServerName") <> "NULL" then
  					regBatchID = rsMixtureCompounds("reg_batch_id")
  					regNumber = rsMixtureCompounds("reg_number")
+                    if detectModernBrowser = true then
+                        regIdParameter = rsMixtureCompounds("Reg_ID_FK")
+                    else
+                        regIdParameter = regNumber
+                    end if
  				else
  					regBatchID = null
  					regNumber = null
@@ -205,8 +212,8 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 				substanceNameHTML = substanceNameHTML & "<td COLSPAN=""2"" CLASS=""CenteredBoldItalic"">"  & TruncateInSpan(rsMixtureCompounds("Substance_Name"),18,"substance_name"&i) & "</td>"
 				if not isNull(compoundID) then
 					IDHTML = IDHTML & "<td CLASS=""LeftAlign"" WIDTH="""" HEIGHT="""">Compound ID:</td><td CLASS=""GrayedTextLeft"" WIDTH=""60"">" & compoundID & "</td>"
-				elseif not isNull(regBatchID) then
-					IDHTML = IDHTML & "<td CLASS=""LeftAlign"" WIDTH="""" HEIGHT="""">Reg Batch ID:</td><td CLASS=""GrayedTextLeft"" WIDTH=""60""><a class=""MenuLink"" href=""ViewRegDetails.asp?reg_number=" & regNumber & """ target=""_blank"">" & regBatchID & "</a></td>"
+				elseif not isNull(regBatchID) then                    
+					IDHTML = IDHTML & "<td CLASS=""LeftAlign"" WIDTH="""" HEIGHT="""">Reg Batch ID:</td><td CLASS=""GrayedTextLeft"" WIDTH=""60""><a class=""MenuLink"" href=""ViewRegDetails.asp?reg_number=" & regIdParameter & """ target=""_blank"">" & regBatchID & "</a></td>"
 				else
 					IDHTML = IDHTML & "<td CLASS=""LeftAlign"" WIDTH="""" HEIGHT=""""></td><td CLASS=""GrayedText""></td>"
 				end if

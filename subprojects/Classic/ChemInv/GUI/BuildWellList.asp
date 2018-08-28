@@ -265,7 +265,11 @@ Set ListView = Server.CreateObject("VASPLV.ASPListView")
 					if rsCompound.EOF and not rsCompound.BOF then rsCompound.MoveFirst					
 					While not rsCompound.EOF 
 					    if not isnull(rsCompound("Reg_Number")) then
-						    regBatchIDText = regBatchIDText & RegBatchDetailsURL & rsCompound("Reg_Number") & "'>" & rsCompound("Reg_Batch_ID") & "</a><BR>"
+                            regIdParameter = rsCompound("Reg_Number")
+                            if detectModernBrowser = true then
+                                regIdParameter = rsCompound("Reg_ID_FK")
+                            else
+						    regBatchIDText = regBatchIDText & RegBatchDetailsURL & regIdParameter & "'>" & rsCompound("Reg_Batch_ID") & "</a><BR>"
 						else
 						    regBatchIDText = regBatchIDText & "<br>"
 						end if
