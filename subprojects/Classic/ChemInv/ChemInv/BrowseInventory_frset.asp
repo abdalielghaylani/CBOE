@@ -71,12 +71,10 @@ Function GetGotoNode(GotoNode)
     End if
 End Function
 %>
-<!DOCTYPE html>
 <html>
 <head>
 <link rel="shortcut icon" href="/cheminv/graphics/favicon.ico" type="image/x-icon">	
 <title><%=Application("appTitle")%></title>
-<meta http-equiv="X-UA-Compatible" content="IE=11">
 </head>
 
 <frameset rows="97,*">
