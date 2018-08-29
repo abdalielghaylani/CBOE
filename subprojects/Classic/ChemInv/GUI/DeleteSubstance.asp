@@ -73,8 +73,8 @@ if ConflictingFields <> "" then
 	bConflicts = true
 End if
 DisplaySubstance "", hdrText, false, false, false, false, false, inLineMarker & dBStructure
-Response.Write GetCancelButton()
 %>
+<a HREF="<%=Session("GUIReturnURL")%>"  target="_top"><img SRC="/cheminv/graphics/cancel_dialog_btn.gif" border="0"></a>
 <input type="hidden" name="CompoundID" value="<%=CompoundID%>">
 <input type="image" src="/cheminv/graphics/ok_dialog_btn.gif">
 
