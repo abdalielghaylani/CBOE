@@ -36,6 +36,7 @@ if detectModernBrowser = true then
             <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
         </div>
 <%
+end if
 if Not Session("fEmptyRecordset" & dbkey & formgroup) = True  then
   listItemNumber = 0
   
