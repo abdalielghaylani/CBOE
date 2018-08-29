@@ -1439,9 +1439,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (selectedProperty == null)
                     throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
 
-                selectedProperty.BeginEdit();
+                var currenPrecision = selectedProperty.Precision;
+                switch (selectedProperty.Type.ToUpper())
+                {
+                    case "NUMBER":
+                        if (!string.IsNullOrEmpty(selectedProperty.Precision) && selectedProperty.Precision.Contains("."))
+                        {
+                            currenPrecision = RegAdminUtils.ConvertPrecision(selectedProperty.Precision, false);
+                        }
+                        break;
+                }
 
-                if ((!string.IsNullOrWhiteSpace(selectedProperty.Precision)) && (!selectedProperty.Precision.Equals(data.Precision)))
+                selectedProperty.BeginEdit();
+                
+                if ((!string.IsNullOrWhiteSpace(currenPrecision)) && (!currenPrecision.Equals(data.Precision)))
                 {
                     switch (selectedProperty.Type)
                     {
