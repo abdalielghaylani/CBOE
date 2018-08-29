@@ -150,7 +150,7 @@ Select Case sPlateTab
 		End if
         %>
         <!--#INCLUDE VIRTUAL = "/cheminv/gui/writePlateXMLIsland.asp"-->
-         <%        
+        <%        
 dim fs,tfile
 set fs=Server.CreateObject("Scripting.FileSystemObject")
 if fs.FileExists(Server.MapPath("/" & Application("AppKey") & "/config/xml_templates/" & ComputerName & ".xml")) then
@@ -272,35 +272,40 @@ set fs=nothing
             }
             function BindTable(xml) 
             {
-                html = "";
+                table.removeChild(table.getElementsByTagName("tbody")[0]);
+                var tbody = document.createElement("tbody");
+
                 var plateFilter = document.getElementById("cboField").value;
                 wellFilter = plateFilter;
                 var RootNode = "";
                 RootNode = xml.getElementsByTagName(plateFilter);
-                //Delete all the rows from table except Header
-                for (var k = RootNode.length; k > 0; k--)
-                {
-                    table.deleteRow(k);
-                }
                 //Read the xml values and create a html string with body,tr,th..
                 for (i = 0; i <= RootNode.length - 1; i++)
-                {            
+                { 
+                    var tr = document.createElement("tr");
                     rowname = RootNode[i].getElementsByTagName("rowname")[0].childNodes[0].nodeValue;
-                    html = "<tbody><tr height='20'><th><span>" + rowname + "</span></th>";
+                    var th = document.createElement("th");
+                    th.height = 20;
+                    var thtxt = document.createTextNode(rowname);
+                    th.appendChild(thtxt);
+                    tr.appendChild(th);                    
                     for (j = 1; j <= columns; j++)
                     {
                         col = "col" + j;
                         name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
-                        html = html + "<td align='center' valign='center'><dIV class='col'" + j + ">" + name + "</div></td>";
+                        var td = document.createElement("td");
+                        td.align = "center";
+                        td.valign = "center";
+                        var div = document.createElement("div");
+                        div.className = "col" + j;
+                        div.innerHTML = name;
+                        td.appendChild(div);
+                        tr.appendChild(td);
                     }
-                    html = html + "</tr></tbody>";
-                    // Insert the rows based on the RootNode Length..
-                    // Notice we dont want the rows to be created above the header so using i+1.
-                    var row = table.insertRow(i+1);
-                    row.innerHTML = html;
+                    tbody.appendChild(tr);
                 }
-            }   
-  
+                table.appendChild(tbody);
+            }
         </script>
 
         <!--<br><br><table>	<tr>		<td>			<table DATASRC="#xmlDoc" DATAFLD="customer" style="table-layout:fixed" BORDER>  <col width="150">  				<col width="150">  				<thead>					<th>NAME</th>					<th>ID</th>				</thead>  				<tr>    					<td><span DATAFLD="name"></span></td>    					<td><span DATAFLD="custID"></span></td>  				</tr>			</table>		</td>		<td>			<table DATASRC="#xmlDoc" DATAFLD="item" style="table-layout:fixed" BORDER>  				<col width="150"><col width="150">  				<thead>					<th>ITEM</th>					<th>PRICE</th>				</thead>  				<tr>    					<td><span DATAFLD="name"></span></td>    					<td><span DATAFLD="price"></span></td>  				</tr>			</table>		</td>	</tr></table>-->
