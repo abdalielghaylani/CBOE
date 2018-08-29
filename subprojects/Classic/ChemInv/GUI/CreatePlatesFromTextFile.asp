@@ -113,7 +113,7 @@ arrPlateFormatCount=split(temp,",")
 			sessionStorage.setItem("LocationID", document.form1.iLocation_ID_FK.value);
 			LocationID = sessionStorage.getItem("LocationID");
 		}
-		else if (document.form1.iLocation_ID_FK.value.length == 0)
+		else if (window.performance.navigation.type == 2 && document.form1.iLocation_ID_FK.value.length == 0)
 		{
 			document.form1.iLocation_ID_FK.value = sessionStorage.getItem("LocationID");
 		}
