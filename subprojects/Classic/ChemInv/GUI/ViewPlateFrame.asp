@@ -163,7 +163,7 @@ set tfile=nothing
 set fs=nothing
         %>
         <div id="plateViewer" style="top: 60; left: 10; visibility: visible; z-index: -1">
-            <table style="table-layout: fixed; border-collapse: collapse;" cellspacing="0" cellpadding="1" bordercolor="#666666" id="tbl" datasrc datafld="name" border="1">
+            <table style="table-layout: fixed; border-collapse: collapse; width:98%;" cellspacing="0" cellpadding="1" bordercolor="#666666" id="tbl" datasrc datafld="name" border="1">
                 <col width="30">
                 <%
 		For i=0 to NumCols-1
