@@ -115,7 +115,8 @@ arrPlateFormatCount=split(temp,",")
 		}
 		else if (window.performance.navigation.type == 2 && document.form1.iLocation_ID_FK.value.length == 0)
 		{
-			document.form1.iLocation_ID_FK.value = sessionStorage.getItem("LocationID");
+			if (document.getElementsByName("Location_BarCode")[0] && document.getElementsByName("Location_BarCode")[0].value)
+				document.form1.iLocation_ID_FK.value = sessionStorage.getItem("LocationID");
 		}
 		PlateTypeID = document.form1.iPlate_Type_ID_FK.value;
 		
