@@ -22,7 +22,9 @@ dbkey = "ChemInv"%>
 <% Session("isCDP") = ucase(Request.Cookies("isCDP"))%>
 <% if Session("isCDP") = "TRUE" then %>
 <script language="javascript" type="text/javascript" src= "/cfserverasp/source/chemdraw.js"></script>
+<%if detectModernBrowser = true then%>
 <SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
+<%end if %>
 <script language="javascript" type="text/javascript">cd_includeWrapperFile("/cfserverasp/source/")</script>
 <% end if %>
 <style type="text/css">

@@ -26,7 +26,9 @@ End if
 </script>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
-<script LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></script>
+<%if detectModernBrowser = true then%>
+<SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
+<%end if %>
 <script LANGUAGE="javascript" src="/cheminv/gui/validation.js"></script>
 <script LANGUAGE="javascript" src="/cheminv/utils.js"></script>
 <script language="JavaScript">

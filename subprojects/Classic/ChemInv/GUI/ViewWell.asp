@@ -39,7 +39,9 @@ end if
 <script LANGUAGE="javascript" src="/cheminv/Choosecss.js"></script>
 <script language="JavaScript" src= "/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+<%if detectModernBrowser = true then%>
 <SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
+<%end if %>
 <SCRIPT LANGUAGE="JavaScript">
 function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 	//alert(event.ctrlKey);

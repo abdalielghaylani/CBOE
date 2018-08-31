@@ -174,7 +174,9 @@ if Request.QueryString("newCompoundId")<>"" then Compound_ID_FK= Request.QuerySt
 </script>
 <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+<%if detectModernBrowser = true then%>
 <SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
+<%end if %>
 <script LANGUAGE="javascript" src="/cheminv/gui/CalculateFromPlugin.js"></script>
 <!--#INCLUDE FILE="../source/app_js.js"-->
 </head>

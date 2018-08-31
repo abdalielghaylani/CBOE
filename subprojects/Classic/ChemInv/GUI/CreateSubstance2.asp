@@ -11,7 +11,9 @@
         focus();
     </script>
     <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
-    <script language="javascript" src="<%=Application("CDJSUrl")%>"></script>
+    <%if detectModernBrowser = true then%>
+    <SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
+    <%end if %>
     <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
     <script language="javascript">
         

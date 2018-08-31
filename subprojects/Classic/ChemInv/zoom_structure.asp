@@ -64,8 +64,10 @@ cdxPath = Application("TempFileDirectory" & dbkey) & FileRootName & ".cdx"
     </script>
     <script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
     <script>cd_includeWrapperFile("/cfserverasp/source/")</script>
-    <script language="javascript" src="<%=Application("CDJSUrl")%>"></script>
+    <%if detectModernBrowser = true then%>
+    <SCRIPT LANGUAGE="javascript" src="<%=Application("CDJSUrl")%>"></SCRIPT>
     <!--#INCLUDE FILE="source/app_js.js"-->
+    <%end if %>
 </head>
 <body bgcolor="White">
     <center>
