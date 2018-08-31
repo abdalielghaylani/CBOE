@@ -467,7 +467,7 @@ response.Write "</span>"
                                 <option value></option>
                                 <option value="Icon">Icon</option>
                                 <option value="Barcode">Barcode</option>
-                                <option value="Cellname">Cell Name</option>
+                                <option value="CellName">Cell Name</option>
                                 <option value="RegNumber">Reg Number</option>
                                 <option value="BatchNumber">Batch Number</option>
                             </select>
@@ -559,25 +559,39 @@ response.Write "</span>"
                 xhttp.send();
             }
             function BindTable(xml) {
-                html = "";    
+                table.removeChild(table.getElementsByTagName("tbody")[0]);
+                var tbody = document.createElement("tbody");
+
+                var selectedRack = document.getElementById("cboField").value;
                 wellFilter = selectedRack;
                 var RootNode = "";
-                RootNode = xml.getElementsByTagName(selectedRack);                
-                for (var k = RootNode.length; k > 0; k--) {
-                    table.deleteRow(k);
-                }                
+                RootNode = xml.getElementsByTagName(selectedRack);                              
                 for (i = 0; i <= RootNode.length - 1; i++) {
-                    rowname = RootNode[i].getElementsByTagName("rowname")[0].childNodes[0].nodeValue;
-                    html = "<tbody><tr height='20'><th><span>" + rowname + "</span></th>";
+                    rowname = '';
+                    if (RootNode[i].getElementsByTagName("rowname")[0].childNodes.length > 0) {
+                        rowname = RootNode[i].getElementsByTagName("rowname")[0].childNodes[0].nodeValue;
+                    }
+                    var tr = document.createElement("tr");
+                    var th = document.createElement("th");
+                    th.height = 20;
+                    var thtxt = document.createTextNode(rowname);
+                    th.appendChild(thtxt);
+                    tr.appendChild(th); 
                     for (j = 1; j <= columns; j++) {
                         col = "col" + j;
                         name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
-                        html = html + "<td align='center' valign='center'><dIV class='col'" + j + ">" + name + "</div></td>";
+                        var td = document.createElement("td");
+                        td.align = "center";
+                        td.valign = "center";
+                        var div = document.createElement("div");
+                        div.className = "col" + j;
+                        div.innerHTML = name;
+                        td.appendChild(div);
+                        tr.appendChild(td);
                     }
-                    html = html + "</tr></tbody>";                    
-                    var row = table.insertRow(i + 1);
-                    row.innerHTML = html;
+                    tbody.appendChild(tr);
                 }
+                table.appendChild(tbody);
             }
         </script>
 
