@@ -118,7 +118,7 @@ function PickPlateMapLocation(id, dl, islocationSearch, formelm, elm1, elm2, elm
 	if (elm1) ls += "elm1=" + elm1 + "&";
 	if (elm2) ls += "elm2=" + elm2 + "&";
 	if (elm3) ls += "elm3=" + elm3 + "&";
-	OpenDialog('/cheminv/cheminv/BrowseTree.asp?' + ls + 'LocationPickerID=' + id + '&TreeID=3&ClearNodes=1&GotoNode=' + dl + '&Node=' + dl + '&sNode=' + dl + '&Exp=Y#' + dl, 'NewLocDiag', 3);
+	OpenDialog('/cheminv/cheminv/BrowseTree.asp?' + ls + 'LocationPickerID=' + id + '&TreeID=3&ClearNodes=1&GotoNode=' + dl + '&Node=' + dl + '&sNode=' + dl + '&Exp=Y#' + dl, 'NewLocDiag', 4);
 }
 
 ///////////////////////////////////////////////////////////////////////
