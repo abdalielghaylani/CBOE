@@ -270,3 +270,34 @@ SPAN.GrayedText
     FONT-FAMILY: Verdana, Arial, helvetica, sans-serif;
     FONT-SIZE: 14px
 }
+
+* {
+    box-sizing: border-box;
+}
+
+.copyContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+}
+
+.copyOverlay {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    margin-left: 0px;
+    background: rgba(0, 0, 0, 0.20); /* Black see-through */
+    width: 30px;
+    height: 30px;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.copyContainer:hover .copyOverlay {
+    opacity: 1;
+}

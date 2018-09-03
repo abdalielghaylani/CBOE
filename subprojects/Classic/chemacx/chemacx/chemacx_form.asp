@@ -37,6 +37,12 @@
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cows_func_js.asp"-->
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
 		<!--#INCLUDE VIRTUAL ="/cfserverasp/source/recordset_vbs.asp"-->
+        <style>
+            .copyOverlay {
+                bottom: 55px;
+                left: 80px;
+            }
+        </style>
 	</head>
 	<!--#INCLUDE FILE="../source/secure_nav.asp"-->
 	<!--#INCLUDE FILE="../source/app_vbs.asp"-->
@@ -50,10 +56,19 @@ If isArray(Session("Base_RS" & dbkey & formgroup)) then
 <%
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ")"
+    zoomFunction = "ACX_getStrucZoomBtn('Substance.BASE64_CDX'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ",300,300)"
+    zoomFunction = "ACX_getStrucZoomBtn('Substance.BASE64_CDX'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',300,300)"
+end if
+
+if detectModernBrowser = true then
+    TempCdxPath =Application("TempFileDirectoryHTTP" & "chemacx")
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
 end if
 %>
 	<center>

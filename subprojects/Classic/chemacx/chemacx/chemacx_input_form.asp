@@ -42,7 +42,12 @@ Response.expires= -1
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cows_func_js.asp"-->
 		<!--#INCLUDE FILE="../source/secure_nav.asp"-->
 		<!--#INCLUDE FILE="../source/app_js.js"-->
-		<!--#INCLUDE FILE="../source/app_vbs.asp"-->       
+		<!--#INCLUDE FILE="../source/app_vbs.asp"-->      
+        <style>
+            div {
+                margin-left: 0px;
+            }
+        </style> 
 	</head>
 	<body bgcolor="#FFFFFF">
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
@@ -97,7 +102,7 @@ Response.expires= -1
 					</tr>
 					<tr>
 			        	<td valign="top" align="left" colspan="2">
-							<%ShowStrucInputField  dbkey, formgroup, "Substance.Structure", "1",330, 250, "AllOptions", ""%>
+							<%ShowStrucInputField  dbkey, formgroup, "Substance.Structure", "1",520, 300, "AllOptions", ""%>
 						</td>
 		      		</tr>
 				</table>			

@@ -33,6 +33,14 @@ end if
 
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 
+if detectModernBrowser = true then
+    TempCdxPath =Application("TempFileDirectoryHTTP" & "chemacx")
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
 %>
 		<table border="1" bgcolor="#FFFFFF" align="left" width="200">
 			<tr>
@@ -53,10 +61,10 @@ ACX_ID = BaseRS("ACX_ID").value
 bHasMSDX = BaseRS("HasMSDS").value
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ")"
+    zoomFunction = "ACX_getStrucZoomBtn('Substance.BASE64_CDX'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ",300,300)"
+    zoomFunction = "ACX_getStrucZoomBtn('Substance.BASE64_CDX'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',300,300)"
 end if
 %>
 				<td align="center" valign="top" width="194" nowrap>

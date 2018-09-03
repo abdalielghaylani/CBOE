@@ -28,10 +28,10 @@ function OpenDialog(url, name, type)
 //////////////////////////////////////////////////////////////////////////////////////////
 // Displays the zoom button and calls ACX_doStructureZoom() when clicked
 //
-function ACX_getStrucZoomBtn(fullSrucFieldName, BaseID, gifWidth, gifHeight){
+function ACX_getStrucZoomBtn(fullSrucFieldName, BaseID, structDataObjName, gifWidth, gifHeight){
 	var outputval = ""
 	var buttonGifPath = button_gif_path + "zoom_btn.gif"
-	var params = "&quot;" + fullSrucFieldName + "&quot;," + BaseID 
+	var params = "&quot;" + fullSrucFieldName + "&quot;," + BaseID + ",&quot;" + structDataObjName + "&quot;" 
 	
 	if(typeof gifWidth != "undefined"){
 		params +=  "," + gifWidth + "," + gifHeight	  
@@ -43,10 +43,10 @@ function ACX_getStrucZoomBtn(fullSrucFieldName, BaseID, gifWidth, gifHeight){
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pops up a window with zoom_structure.asp in it
 //
-function ACX_doStructureZoom(fullSrucFieldName, BaseID, gifWidth, gifHeight){
+function ACX_doStructureZoom(fullSrucFieldName, BaseID, structDataObjName, gifWidth, gifHeight){
 	var z = ""
 	var attribs = 'width=550,height=600,left=60,top=60,xpos=60,ypos=60,status=yes,resizable=yes';
-	var url = app_Path + "/zoom_structure.asp?baseid="+ BaseID + "&dbname=" + dbname + "&fullSrucFieldName=" + fullSrucFieldName;
+	var url = app_Path + "/zoom_structure.asp?baseid="+ BaseID + "&dbname=" + dbname + "&fullSrucFieldName=" + fullSrucFieldName + "&structDataObjName=" + structDataObjName;
 	
 	if (typeof gifWidth != "undefined"){
 		url += "&gifWidth=" + gifWidth + "&gifHeight=" + gifHeight;
@@ -166,6 +166,32 @@ function ACXPrintCurrentPage(){
 	}
 	window.print();
 }
+
+function doStructureCopy(structDataObjName, isDialog) {
+    if(chemdrawjs) {
+        var base64_cdx = (isDialog) ? opener.document.getElementById(structDataObjName).value : document.getElementById(structDataObjName).value;
+        var b64 = base64_cdx.replace(new RegExp('<br>', 'g'), '');
+        chemdrawjs.loadB64CDX(b64);
+        var textField = document.createElement('textarea');    
+        document.body.appendChild(textField);
+        textField.innerText = chemdrawjs.getCDXML();
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();   
+    }
+}
+
+function doStructureCopyIndividual() {
+    if(chemdrawjs) {
+        var textField = document.createElement('textarea');    
+        document.body.appendChild(textField);
+        textField.innerText = chemdrawjs.getCDXML();
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();   
+    }
+}
+
 </script>
 
 

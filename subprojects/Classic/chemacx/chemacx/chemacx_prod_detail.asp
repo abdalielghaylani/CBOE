@@ -14,7 +14,8 @@ formgroup = request("formgroup")
 BaseID = request.querystring("strucid")
 isPlugin = Request("IsPlugin")
 TableName = "Substance"
-FieldName = "Structure"
+FieldName = "BASE64_CDX"
+structDataObjName = "SubstanceBASE64_CDX_" & BaseID & "_orig"
 FileRootName = TableName & FieldName & "_" & BaseID
 GifWidth = 300
 GifHeight= 300
@@ -40,8 +41,61 @@ Set PropRS = GetRecordSet(SQLQuery, SQLQuery_Parameters)
 		<title>ChemACX - Product Detail</title>
 		<script language="JavaScript" src="/cfserverasp/source/chemdraw.js"></script>
 		<script>cd_includeWrapperFile("/cfserverasp/source/")</script>
+        <%if detectModernBrowser = true then%>
+        <script language="javascript" src="<%=Application("CDJSUrl")%>"></script>
+        <%end if%>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            .copyContainer {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .copyOverlay {
+                position: absolute;
+                bottom: 142px;
+                left: 214px;
+                background: rgba(0, 0, 0, 0.20); /* Black see-through */
+                width: 30px;
+                height: 30px;
+                transition: .5s ease;
+                opacity: 0;
+                color: white;
+                font-size: 10px;
+                padding: 5px;
+                text-align: center;
+            }
+
+            .copyContainer:hover .copyOverlay {
+                opacity: 1;
+            }
+        </style>
 	</head>
 	<body bgcolor="#FFFFFF">
+        <%if detectModernBrowser = true then%>
+        <script language="JavaScript">
+            function doStructureCopy(structDataObjName, isDialog) {
+                if(chemdrawjs) {
+                    var base64_cdx = (isDialog) ? opener.document.getElementById(structDataObjName).value : document.getElementById(structDataObjName).value;
+                    var b64 = base64_cdx.replace(new RegExp('<br>', 'g'), '');
+                    chemdrawjs.loadB64CDX(b64);
+                    var textField = document.createElement('textarea');    
+                    document.body.appendChild(textField);
+                    textField.innerText = chemdrawjs.getCDXML();
+                    textField.select();
+                    document.execCommand('copy');
+                    textField.remove();   
+                }
+            }
+        </script>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=initial_CDP_file%>mt.cdx", "False", "true", "", "true", "false")</script>
+        </div>
+        <%end if%>
 		<form name="proddet">
 		<table cellspacing="0" cellpadding="0" bordercolor="#4A5AA9" border="1" align="center">
 			<tr>
@@ -57,16 +111,18 @@ Set PropRS = GetRecordSet(SQLQuery, SQLQuery_Parameters)
 			<tr>
 		    	<td align="center">
 					<% 
-					if Not isPlugin then
+					if detectModernBrowser = true then
 						zoomGifDir = Application("TempFileDirectory" & dbkey) & FileRootName & "_" & gifWidth & "x" & gifHeight & ".gif"
 						zoomGifPath = Application("TempFileDirectoryHTTP" & dbkey) & FileRootName & "_" & gifWidth & "x" & gifHeight & ".gif"
 						Set checkFile = Server.CreateObject("Scripting.FileSystemObject")
 						If NOT checkFile.FileExists(zoomGifDir) then
 							ConvertCDXtoGIF dbkey, TableName, FieldName, BaseID, gifWidth, gifHeight	
 						End if
-						Set checkFile = nothing				
+						Set checkFile = nothing
+                        embed_tag_string = embed_tag_string & "<div class=""copyContainer""><IMG SRC=""" & zoomGifPath & """" & "border=0>"
+                        embed_tag_string = embed_tag_string &  "<div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy('" & structDataObjName & "', true); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div></div>"
+                        Response.Write embed_tag_string					
 				%>	
-									<img SRC="<%=zoomGifPath%>" Border="0">
 				<%Else%>
 									<script language="javascript">cd_insertObjectStr("<embed src='<%=initial_CDP_file%>' border='0' width='300' height='300' id='1' name='CDX' viewonly='true' type='chemical/x-cdx' dataurl='<%=Application("ActionForm" & dbkey)%>?dbname=chemacx&formgroup=base_form_group&dataaction=get_structure&Table=<%=TableName%>&Field=<%=FieldName%>&DisplayType=cdx&StrucID=<%=BaseID%>'>");</script> 
 				<%End if %>		
