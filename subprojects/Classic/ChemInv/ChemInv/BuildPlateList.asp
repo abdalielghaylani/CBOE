@@ -301,8 +301,7 @@ mypage=request.querystring("whichpage")
 	ContainerCount =0
 
     '-- set position of list view
-    listViewTop = 60
-    if containerEntityCount > 0 then listViewTop = 60    
+    listViewTop = 65  
     '-- if there is paging and plates then there will be another line
     if maxCount > 1 and containerEntityCount > 0 then listViewTop = 75
     
