@@ -400,7 +400,6 @@ end if
 <% end if %>
 <input type="hidden" name="BatchAmountAvailable" value="<%=BatchAmountAvailable%>"/>
 <input type="hidden" name="RequiredUOM" value=""/>
-<input type="hidden" name="ShipToName" value=""/>
 <input type="hidden" name="Olduserid" value="<%=UserID%>"/>
 <input type="hidden" name="OldOrgUnitID" value="<%=OrgUnitID%>"/>
 <input type="hidden" name="OldDateRequired" value="<%=DateRequired%>"/>
