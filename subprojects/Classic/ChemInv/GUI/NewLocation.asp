@@ -518,7 +518,7 @@ end if
 <input TYPE="hidden" id="tempCsUserName" name="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 <input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 
-<table border="0" width="575px">
+<table border="0" width="675px">
 	<tr>
 		<td colspan="2">
             <center>
@@ -673,7 +673,8 @@ end if
         </td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right">
+		<td></td>
+		<td align="left">
 		    <div id="GroupBlock3" >
 		<%if isEdit then%>
 						<br><input TYPE="checkbox" NAME="propagateownership" id="propagateownership" VALUE="1" >Propagate the Location Admin to child locations/containers/plates.</span>
@@ -683,7 +684,8 @@ end if
 	</tr>
 	
 	<tr>
-		<td align=right>
+		<td></td>
+		<td align="left">
 		<%if Session("Inv_Manage_Locations")=True then %>
 						<input TYPE="checkbox" id="makePublic" name="makePublic" VALUE="1" <%=isPublic%> onclick="changeLocationtypeonPublic(this);">Access as Public.
 		<%end if%>
