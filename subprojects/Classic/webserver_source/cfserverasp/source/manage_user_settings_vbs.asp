@@ -878,15 +878,46 @@ Function GetNumberOfFieldsinTable(dbname, tableName)
 	Else
 		GetNumberOfFieldsinTable = RS.Fields.Count	
 	end if 	
-End function	
+End function
+
+Function FindTable(dbname, tableName)
+	Dim lRecsAffected
+	Dim sql
+	Dim RS
+	currentRDBMS = GetUserSettingsSQLSyntax(dbname, "base_form_group")
+	Select Case(currentRDBMS)
+	Case "ORACLE"
+		sql = "SELECT COUNT(*) FROM (SELECT * FROM USER_TABLES where TABLE_NAME = '" & tableName & "')"
+	Case "SQLSERVER"
+		sql = "SELECT COUNT(*) FROM (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" & Application(dbname & "_USERNAME") & "' AND TABLE_NAME = '" & tableName & "')"
+	Case "ACCESS"		
+		sql = "SELECT COUNT(*) FROM (SELECT * FROM MSysObjects WHERE MSysObjects.Name='" & tableName & "' AND MSysObjects.Type=1)"
+	End select
+	on error resume next
+	Set RS = UserSettingConn.Execute(Sql)	
+	if err.number <> 0 then
+		FindTable = false
+	else
+		if (RS.Fields.Count > 0 AND CInt(RS.Fields.Item(1)) > 0) then
+			FindTable = true
+		else
+			FindTable = false
+		end if
+	end if
+	
+End function
 
 Sub DropTable(dbname, tableName)
 	Dim lRecsAffected
-	Dim slq
-	currentRDBMS = GetUserSettingsSQLSyntax(dbname, "base_form_group")
-	if Ucase(currentRDBMS) = "ORACLE" then tableName = Application(dbname & "_USERNAME") & "." & tableName
-	sql = "DROP TABLE " & tableName 
-	UserSettingConn.Execute Sql, lRecsAffected, adCmdText + adExecuteNoRecords 
+	Dim sql	
+	if FindTable(dbname, tableName) = true then
+		currentRDBMS = GetUserSettingsSQLSyntax(dbname, "base_form_group")
+		if Ucase(currentRDBMS) = "ORACLE" then
+			tableName = Application(dbname & "_USERNAME") & "." & tableName
+		end if
+		sql = "DROP TABLE " & tableName
+		UserSettingConn.Execute Sql, lRecsAffected, adCmdText + adExecuteNoRecords
+	end if	
 End Sub
 
 Sub TruncateTable(dbname, tableName)
