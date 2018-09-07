@@ -169,7 +169,7 @@ formgroup = Request("formgroup")
 				</tr>
 				<tr>
 					<td  valign="top" colspan="2" nowrap>
-						<table border="0" bordercolor="#666666" width="550">
+						<table border="0" bordercolor="#666666" width="620">
 							<tr>
 								<td nowrap>
 									<script language="JavaScript">
