@@ -118,8 +118,6 @@ Else
 	<table border="1">
 	<tr>
 		<th>
-		</th>
-		<th>
 			ContainerID
 		</th>
 		<th>
