@@ -168,27 +168,43 @@ function ACXPrintCurrentPage(){
 }
 
 function doStructureCopy(structDataObjName, isDialog) {
+    var isNotCopied = true;
     if(chemdrawjs) {
         var base64_cdx = (isDialog) ? opener.document.getElementById(structDataObjName).value : document.getElementById(structDataObjName).value;
         var b64 = base64_cdx.replace(new RegExp('<br>', 'g'), '');
         chemdrawjs.loadB64CDX(b64);
-        var textField = document.createElement('textarea');    
-        document.body.appendChild(textField);
-        textField.innerText = chemdrawjs.getCDXML();
-        textField.select();
-        document.execCommand('copy');
-        textField.remove();   
+        var cdxml = chemdrawjs.getCDXML();
+        if (cdxml != '') {
+            var textField = document.createElement('textarea');    
+            document.body.appendChild(textField);
+            textField.innerText = cdxml;
+            textField.select();
+            document.execCommand('copy');
+            textField.remove(); 
+            isNotCopied = false;
+        }
+    } 
+    if (isNotCopied) {
+        alert('Structure is still loading, try again in a few seconds!');
     }
 }
 
 function doStructureCopyIndividual() {
+    var isNotCopied = true;
     if(chemdrawjs) {
-        var textField = document.createElement('textarea');    
-        document.body.appendChild(textField);
-        textField.innerText = chemdrawjs.getCDXML();
-        textField.select();
-        document.execCommand('copy');
-        textField.remove();   
+        var cdxml = chemdrawjs.getCDXML();
+        if (cdxml != '') {
+            var textField = document.createElement('textarea');    
+            document.body.appendChild(textField);
+            textField.innerText = cdxml;
+            textField.select();
+            document.execCommand('copy');
+            textField.remove();
+            isNotCopied = false;
+        }   
+    } 
+    if (isNotCopied) {
+        alert('Structure is still loading, try again in a few seconds!');
     }
 }
 
