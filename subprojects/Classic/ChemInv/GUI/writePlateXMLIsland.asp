@@ -1,3 +1,4 @@
+
 <%
 Response.Expires = -1
 Dim colName_arr
@@ -5,6 +6,9 @@ Dim cellWidth
 Dim regConn
 'To fix CSBR-152262
 Dim fieldLength
+Dim oString
+Dim strText, Length
+Set oString = New ASPString
 
 bCheckSelected = false
 
@@ -92,6 +96,7 @@ end if
 'show the benzene gif in case writing this xml island takes a long time
 Response.Write "<DIV ID=""waitGIF"" ALIGN=""center""><img src=""" & Application("ANIMATED_GIF_PATH") & """ WIDTH=""130"" HEIGHT=""100"" BORDER=""""></DIV>"
 Response.Flush
+
 'Response.Write(SQL)
 'Response.end
 Call GetInvCommand(SQL, adCmdText)
@@ -116,27 +121,30 @@ NumCols = Ubound(colName_arr,2) + 1
 cellWidth = 600/NumCols
 cellWidthLucidaChars = cellWidth/6
 FldArray = split(lcase(displayFields),",")
-xmlHtml = ""
-xmlHtml = xmlHtml & "<xml ID=""xmlDoc""><plate>"
+
+
 'To fix CSBR-152262
 fieldLength=0
+
+With oString
+.Append("<xml ID=""xmlDoc""><plate>")
 For currRow = 1 to numRows
-xmlHtml = xmlHtml & currRow & ":test"
+.Append(currRow&":test")
 	For i = 0 to Ubound(FldArray)
 		FldName = FldArray(i)
 		RS.filter = 0
 		RS.Movefirst
 		RS.filter = "ROW_INDEX=" & currRow
-		rowName = RS("ROWNAME") 
-		xmlHtml = xmlHtml & "<" & FldName & ">" & vblf
-		xmlHtml = xmlHtml & "<rowname>" & rowname & "</rowname>"
+		rowName = RS("ROWNAME")
+		.Append("<"&cStr(FldName)&">"&vblf&"<rowname>"&rowname&"</rowname>")
 		wellCriterion = Request("WellCriterion")
 		if len(wellCriterion) > 0 then
 			key = left(wellCriterion,instr(wellCriterion,",")-1)
 			value = right(wellCriterion,len(wellCriterion) - instr(wellCriterion,","))
-			xmlHtml = xmlHtml & "key="&key&":value="&value&"<BR>" 
+			.Append("key="&cStr(key)&":value="&cStr(value)&"<BR>")
 			bCheckSelected = true
 		end if
+
 		While NOT RS.EOF
 			well_ID = RS("well_id").value	
 			theValue = RS(FldName).value
@@ -152,44 +160,40 @@ xmlHtml = xmlHtml & currRow & ":test"
 				if isNull(keyValue) then keyValue = ""	
 				if cstr(keyValue) = cstr(value) then isSelected = true
 			end if
-			theValue = "<![CDATA[" & WrapWellContents(FldName, well_ID, theValue, cellWidthLucidaChars, isSelected) & "]]>"
+			strText = theValue
+			Length = cellWidthLucidaChars
 			colIndex = RS("COL_INDEX")
-			xmlHtml = xmlHtml & "<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf
+			.Append("<col"&cStr(colIndex)&"><![CDATA[")
+			
+	if (strText = "") OR IsNull(strText) then strText = "-"			
+		str="<span"
+	if (len(strText) > Length) AND (strText <> "&nbsp;") then
+		.Append(str&" title="""&strText&"""><a style=""font-size:7pt;"" href=""ViewWellFrame.asp?wellID="&cStr(well_ID)&"&filter="&cStr(FldName)&""" target=""wellJSFrame"">"&cStr(left(strText, Length))&"</a>")
+	else
+		if isSelected then		
+			.Append(str&"><a style=""font-size:7pt;"" class=""plateView"" style=""color:red;"" href= ""ViewWellFrame.asp?wellID="&cStr(well_ID)&"&filter="&cStr(FldName)&""" target=""wellJSFrame"">"&cStr(left(strText, Length))&"</a>")		
+		else
+			.Append(str&"><a style=""font-size:7pt;"" class=""plateView"" href=""ViewWellFrame.asp?wellID="&cStr(well_ID)&"&filter="&cStr(FldName)&""" target=""wellJSFrame"">"&cStr(left(strText, Length))&"</a>")										
+		end if		
+	end if	
+			.Append("</span>]]></col"&cStr(colIndex)&">"&vblf)				
+
 			RS.MoveNext		
 		Wend
-		xmlHtml = xmlHtml & "</" & FldName & ">" & vblf
+		.Append("</"&cStr(FldName)&">"&vblf)				
+
 	Next
 Next
-xmlHtml = xmlHtml & "</plate></xml>"
+End with
 
+With oString
+.Append("</plate></xml>")
+xmlHtml = oString.ToString
+End With
+Set oString = Nothing
 
 %>
-<SCRIPT LANGUAGE=vbscript RUNAT=Server>
-Function WrapWellContents(FldName, wellID, strText, Length, isSelected)
-	Dim str
-	
-	if (strText = "") OR IsNull(strText) then strText = "-"
-	strText2 = "<a hfref=#>" & strText 
-	'str = "<span onclick=""viewWell(" & wellID & ");"""
-	str = "<span "
-	if (len(strText) > Length) AND (strText <> "&nbsp;") then 
-		str = str & "title=""" & strText & """>"
-		str = str & "<a style=""font-size:7pt;"" href=""ViewWellFrame.asp?wellID=" & wellID &  "&filter=" & FldName & """ target=""wellJSFrame"">" & left(strText, Length)& "</a>"
-	else
-		if isSelected then
-			str = str & "><a style=""font-size:7pt;"" class=""plateView"" style=""color:red;"" href=""ViewWellFrame.asp?wellID=" & wellID &  "&filter=" & FldName & """ target=""wellJSFrame"" title=""click to view well details"">" & strText & "</a>"
-		else
-			str = str & "><a style=""font-size:7pt;"" class=""plateView"" href=""ViewWellFrame.asp?wellID=" & wellID &  "&filter=" & FldName & """ target=""wellJSFrame"" title=""click to view well details"">" & strText & "</a>"
-		end if
 
-	end if
-	
-	str = str & "</span>"
-
-	WrapWellContents = str
-End function
-
-</SCRIPT>
 
 
 

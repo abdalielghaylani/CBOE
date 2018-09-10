@@ -3,6 +3,7 @@
 <!--#INCLUDE VIRTUAL = "/cheminv/gui/guiUtils.asp"-->
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc"-->
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/xml_source/RS2HTML.asp"-->
+<!--#INCLUDE VIRTUAL = "/cheminv/gui/cASPString.asp"-->
 <%
 Dim Conn
 Dim Cmd
