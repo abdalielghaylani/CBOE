@@ -379,8 +379,7 @@ function clearAllFields(){
 		clearFields();
 		}
 	else{
-		MainWindow.document.cows_input_form.reset()
-		clearFields();
+		MainWindow.document.cows_input_form.reset()		
 		
 		var strucArray = struc_fields.split(",");
 		for(i = 0;i<strucArray.length;i++){	
