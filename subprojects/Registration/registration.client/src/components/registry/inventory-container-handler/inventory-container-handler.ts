@@ -17,7 +17,6 @@ export class RegInvContainerHandler {
   }
 
   public openContainerPopup(url: string, params: string) {
-    if (!this.isBrowserIE()) { dxDialog.alert(this.warningText, `Warning`); return; }
     let windowParams = params ? params : invNormalWindowParams;
     window.open((invIntegrationBasePath + url), '_blank', windowParams);
   }

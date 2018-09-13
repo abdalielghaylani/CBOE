@@ -206,9 +206,17 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 	
 	function GetActionBatchXML(){
 		var LocationID = document.form1.LocationID.value;
-		var mydoc = new ActiveXObject("Msxml2.DOMDocument");
+		var mydoc;
+		if (window.DOMParser) {
+            mydoc = document.implementation.createDocument("", "", null);
+        }
+        else // Internet Explorer
+        {
+            mydoc = new ActiveXObject("MSXML2.DOMDocument");
+        }
+		
 		// <CHEMINVACTIONBATCH>
-		RootElm = mydoc.createElement("CHEMINVACTIONBATCH");
+		var RootElm = mydoc.createElement("CHEMINVACTIONBATCH");
 		RootElm.setAttribute("FromReg","true");
 		mydoc.appendChild(RootElm);
 		for (i=0; i< Container_arr.length; i++){
@@ -247,21 +255,20 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 			OptParams= mydoc.createElement("OPTIONALPARAMS"); 
 			//<REGBATCHID>
 			OptElm = mydoc.createElement("REGID"); 
-			OptElm.text = RegID;
+			OptElm.appendChild(mydoc.createTextNode(RegID));
+
 			//<BATCHNUMBER>
 			OptElm2 = mydoc.createElement("BATCHNUMBER"); 
-			OptElm2.text = BatchNumber;
+			OptElm2.appendChild(mydoc.createTextNode(BatchNumber));
+
 			//<CONTAINERNAME>
 			OptElm3 = mydoc.createElement("CONTAINERNAME"); 
-		/*	' CSBR ID : 59253
-	        ' Date : 01-Feb-2010
-	        ' Changed by :Soorya Anwar	        
-	    */			
-			OptElm3.text = strContainerName;//Setting the Container Name 			
-			//End of Change for CSBR# 59253
+			OptElm3.appendChild(mydoc.createTextNode(strContainerName));
+			
 			//<CONTAINERSTATUSID>
-			OptElm4 = mydoc.createElement("CONTAINERSTATUSID")
-			OptElm4.text = '<%=defaultStatusID%>';
+			OptElm4 = mydoc.createElement("CONTAINERSTATUSID");
+			OptElm4.appendChild(mydoc.createTextNode('<%=defaultStatusID%>'));
+			
 			// Asemble the tree
 			ActionElm.appendChild(OptParams);
 			OptParams.appendChild(OptElm);
@@ -270,7 +277,7 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 			OptParams.appendChild(OptElm4);
 			RootElm.appendChild(ActionElm);
 		}		
-		return mydoc.xml;
+		return (new XMLSerializer()).serializeToString(mydoc);
 	}
 </script>
 </head>
