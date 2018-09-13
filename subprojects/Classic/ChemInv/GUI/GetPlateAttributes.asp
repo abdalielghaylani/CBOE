@@ -201,6 +201,11 @@ Sub SetPlateSessionVarsFromDb(pPlateID)
 		Session("plPlate_Barcode") = ""
 	End if
 	
+	' User attributes
+	if Application("ENABLE_OWNERSHIP")="TRUE" then	
+		Session("plIsAuthorised") = RS("isAuthorised").value
+	end if
+	
 End sub
 
 Sub SetPlateSessionVarsFromPostedData()
