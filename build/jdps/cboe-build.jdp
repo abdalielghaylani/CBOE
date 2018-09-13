@@ -187,7 +187,7 @@ pipeline
 					bat """ 
 						del /Q ${DISKLOCATION}
 						xcopy /Y "${PUBLISH_PATH}\\Dev\\Server\\CBOEServerInstaller_${VERSION_STRING}\\*.*" ${DISKLOCATION}
-						${INST_2013} -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=%VERSION_BASE%.5%BUILD_NUMBER%"
+						"${INST_2013}" -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=18.1.0.5%BUILD_NUMBER%"
 						xcopy "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\TestBuilds\\CBOE_18.1.0.5${BUILD_NUMBER}" /I /Y /S
 					""" 
 				}		          
