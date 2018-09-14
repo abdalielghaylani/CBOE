@@ -1,4 +1,5 @@
 import * as dxDialog from 'devextreme/ui/dialog';
+import dxNotify from 'devextreme/ui/notify';
 
 const notificationDuration = 2000;
 
@@ -24,7 +25,12 @@ export function getExceptionMessage(baseMessage: string, error): string {
 }
 
 export function notify(message: string, type: string, duration: number = notificationDuration) {
-  if (type === 'success') { type = 'Success'; } else if (type === 'error') { type = 'Error'; } else if (type === 'warning') { type = 'Warning'; }
+  if (type === 'success') {
+    dxNotify(message, 'success', notificationDuration);
+    return;
+  } else if (type === 'error') {
+    type = 'Error';
+  } else if (type === 'warning') { type = 'Warning'; }
   dxDialog.alert(message, type);
 }
 
@@ -41,7 +47,7 @@ export function notifyException(message: string, error, duration: number = notif
 }
 
 export function notifySuccess(message: string, duration: number = notificationDuration) {
-  dxDialog.alert(message, 'Success');
+  dxNotify(message, 'success', notificationDuration);
 }
 
 export function b64Encode(utf8Array) {
