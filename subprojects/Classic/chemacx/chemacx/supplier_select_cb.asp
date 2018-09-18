@@ -97,7 +97,8 @@ function SavePreferedList(){
 	//alert(thelist);
 nextyear = new Date();
 nextyear.setFullYear(nextyear.getFullYear() +1);
-wholecookie= "acxprefsuplist=" + thelist + "; expires=" + nextyear.toGMTString()
+wholecookie = "acxprefsuplist=" + thelist + "; expires=" + nextyear.toGMTString();
+
 document.cookie =  wholecookie; 
 commalist =  thelist.replace(/:/g,",");
 opener.<%=Application("mainwindow")%>.document.cows_input_form["Product.SupplierID"].value= commalist;

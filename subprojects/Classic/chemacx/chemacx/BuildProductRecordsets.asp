@@ -2,6 +2,7 @@
 
 <%
 'SYAN modified to parameterize SQL statements 3/25/2004
+    Session("suppliersTosearch") = Replace(request.cookies("acxprefsuplist"), ":",",")
 	ShowProContent = Session("okOnService_" & Application("CSWebUsers_ServiceID"))
 	'Set tab session variables
 	If ShowProContent then 
