@@ -109,7 +109,8 @@ SourceLocationName = Mid(str, start+1, Len(str)-start)
 <body>
 <center>
 <form name="form1" xaction="echo.asp" action="MoveLocation_action.asp" method="POST" target="this.window">
-<input TYPE="hidden" NAME="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserName" id="tempCsUserName" value="<%=Session("UserName" & "cheminv")%>" />
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"),"ChemInv\API\GetBatchInfo.asp"))%>" />
 <% 
 if Application("ENABLE_OWNERSHIP")="TRUE" then
   isAuthorised=cint(isAuthorisedLocation(LocationID))
