@@ -307,11 +307,11 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 	<input type="hidden" name="ActionBatchXML">
 	<input type="hidden" name="OpenAsModalFrame" value='<%=sOpenAsModalFrame%>'/>
 	<%if Application("ENABLE_OWNERSHIP")="TRUE" then%>
-	<input type="hidden" name="OwnerShipGroupList" value='<%=GetOwnerShipGroupList()%>'/>
-    <input type="hidden" name="OwnerShipUserList" value='<%=GetOwnerShipUserList()%>'/>
+	<input type="hidden" name="OwnerShipGroupList" id="OwnerShipGroupList"  value='<%=GetOwnerShipGroupList()%>'/>
+    <input type="hidden" name="OwnerShipUserList" id="OwnerShipUserList"  value='<%=GetOwnerShipUserList()%>'/>
     <input type="hidden" name="PrincipalID" value/>
     <input type="hidden" name="OwnershipType" value />
-    <input TYPE="hidden" NAME="LocationAdmin" Value="<%=LocationAdmin%>">
+    <input TYPE="hidden" NAME="LocationAdmin" id="LocationAdmin" Value="<%=LocationAdmin%>">
     <% end if %>
     <input type="hidden" name="tempCsUserName" id="tempCsUserName" value="<%=Session("UserName" & "cheminv")%>" />
     <input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
