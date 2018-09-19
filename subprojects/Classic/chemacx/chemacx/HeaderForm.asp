@@ -11,7 +11,7 @@ var dd= ":";
 var dq = String.fromCharCode(34);
 var cc = ",";
 var ohl ="ACXSUPID,SUPPLIER,QTY,UNIT,CATNUM,DESCRIPTION,UPRICE,SUBTOT,S1,S2,DATE,DATEREQ,NAME,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,EXPDATE,d1,d2,d3,d4,e1,e2,e3,e4,e5,e6,p1,p2,p3,p4,p5,p6,PHONEAC,PHONE,FAXAC,FAX,NAME,ADDR1,ADDR2,ADDR3,CITY,STATE,ZIP"  
-ohl += String.fromCharCode(10,13);
+ohl += String.fromCharCode(10);
 ohl += ",,,,,,,,"
 with (document.SAFAX){
 //digitize the cc and cost center fields
