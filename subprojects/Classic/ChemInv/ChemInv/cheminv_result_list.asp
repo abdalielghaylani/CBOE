@@ -29,6 +29,15 @@
 	<body bgcolor="#FFFFFF">
 	<!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
 <%
+if detectModernBrowser = true then
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
+%>
+<%
 if end_index = 1 and lcase(formgroup)<> "gs_form_group" then Response.Redirect "/cheminv/cheminv/cheminv_form_frset.asp?formgroup=base_form_group&dbname=cheminv&formmode=edit" & "&unique_id=" & BaseRunningIndex
 
 if( lcase(formgroup)<> "base_form_group" ) then
