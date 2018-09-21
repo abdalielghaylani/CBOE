@@ -42,7 +42,7 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
 	column setNextPatch noprint new_value setNextPatch
 	SELECT	CASE
-		WHEN  '&&currentPatch' = '17.1.0'
+		WHEN  '&&CurrentPatch' = '17.1.0'
 		THEN  '"Patches\Patch &&nextPatch\patch.sql"'
 		ELSE  'Patches\stop.sql'
 	END	AS setNextPatch 
