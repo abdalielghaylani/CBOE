@@ -869,25 +869,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
 
-                if (!data.Configuration.ToLower().StartsWith("<addinconfiguration>"))
+                if (data.Configuration != null)
                 {
-                    // user input may not contain root xml node <AddInConfiguration>, in this base we insert the root note in the input data
-                    data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
-                }
+                    if (!data.Configuration.ToLower().StartsWith("<addinconfiguration>"))
+                    {
+                        // user input may not contain root xml node <AddInConfiguration>, in this base we insert the root note in the input data
+                        data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+                    }
 
-                // check addin configuration is valid
-                XmlDocument xml = new XmlDocument();
-                try
-                {
-                    xml.LoadXml(data.Configuration);
+                    // check addin configuration is valid
+                    XmlDocument xml = new XmlDocument();
+                    try
+                    {
+                        xml.LoadXml(data.Configuration);
+                    }
+                    catch
+                    {
+                        throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+                    }
+                    if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
+                        throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
                 }
-                catch
-                {
-                    throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
-                }
-                if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
-                    throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
-
                 // get all events
                 EventList eventList = EventList.NewEventList();
                 foreach (PerkinElmer.COE.Registration.Server.Models.AddinEvent evtItem in data.Events)
@@ -1451,7 +1453,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 selectedProperty.BeginEdit();
-                
+
                 if ((!string.IsNullOrWhiteSpace(currenPrecision)) && (!currenPrecision.Equals(data.Precision)))
                 {
                     switch (selectedProperty.Type)
