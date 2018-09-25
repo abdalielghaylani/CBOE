@@ -188,17 +188,17 @@ export const CONFIG_FORMS_COLUMNS = [
     dataField: 'label',
     allowEditing: true,
     validationRules:
-    [
-      {
-        group: 'label', type: 'required',
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
-      },
-      {
-        group: 'label', type: 'pattern',
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
-        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
-      }
-    ]
+      [
+        {
+          group: 'label', type: 'required',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
+        },
+        {
+          group: 'label', type: 'pattern',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
+          pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
+        }
+      ]
   },
   {
     dataField: 'controlType',
@@ -276,74 +276,6 @@ export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = {
   }]
 };
 
-export const CONFIG_PROPERTIES_FORMS = [{
-  dataField: 'groupName',
-  label: { text: 'Group Name' },
-  editorType: 'dxSelectBox',
-  validationRules: [{ group: 'always', type: 'required', message: 'Group name required' }],
-  disabled: true,
-}, {
-  dataField: 'name',
-  label: { text: 'Name' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-  validationRules: [{ group: 'always', type: 'required', message: 'Name required' },
-  {
-    group: 'always', type: 'pattern', pattern: '^[a-zA-Z_@#][a-zA-Z0-9_\\$@#]{0,28}[a-zA-Z0-9_\\$@#]$',
-    message: 'Invalid property name: use only alpha-numeric and underscore characters (no spaces, 30 characters max)'
-  }
-  ],
-  disabled: true,
-}, {
-  dataField: 'friendlyName',
-  label: { text: 'Label' },
-  dataType: 'string',
-  validationRules: [{ group: 'always', type: 'required', message: 'Label required' },
-  {
-    group: 'always', type: 'pattern',
-    pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/,
-    message: 'Invalid label text: some punctuation characters not allowed (30 characters max)'
-  }],
-  editorType: 'dxTextBox',
-}, {
-  dataField: 'type',
-  label: { text: 'Type' },
-  editorOptions: {
-    items: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL']
-  },
-  editorType: 'dxSelectBox',
-  validationRules: [{ group: 'always', type: 'required', message: 'Type required' }],
-  disabled: true,
-}, {
-  dataField: 'precision',
-  label: { text: 'Length', visible: false },
-  editorOptions: { showSpinButtons: true, showClearButton: true, visible: false },
-  validationRules: [{ group: 'length', type: 'required', message: 'Length required' },
-  { group: 'length', type: 'pattern', pattern: '^[0-9]+$', message: 'Length should be a positive number with out decimal' }],
-  validationGroup: 'precision',
-  dataType: 'Number',
-  editorType: 'dxNumberBox'
-}, {
-  dataField: 'pickListDomainId',
-  label: { text: 'PickList Domain' },
-  visible: false,
-  validationRules: [{ group: 'picklist', type: 'required', message: 'PickList Domain required' }],
-  validationGroup: 'picklist',
-  editorType: 'dxSelectBox'
-}, {
-  dataField: 'precision',
-  label: { text: 'Precision', visible: false },
-  editorOptions: { showClearButton: true, visible: false },
-  validationRules: [{
-    group: 'precision', type: 'required', message: 'Precision required'
-  },
-  { group: 'precision', type: 'pattern', pattern: '^[0-9]+\.[0-9]+$', message: 'Precision required ( Eg:5.2 )' },
-  ],
-  validationGroup: 'number',
-  dataType: 'Number',
-  editorType: 'dxNumberBox'
-}];
-
 export class CConfigPropertiesFormData {
   name: string;
   groupName: string;
@@ -387,11 +319,12 @@ export class CConfigProperties {
   addRuleVisible: boolean = false;
   formValidationColumns: any;
   validationGridColumns: any;
+  precisionCache: string;
   constructor(lookups: ILookupData) {
     this.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.columns = this.buildPropertiesColumnConfig(lookups);
     this.formValidationColumns = CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS;
-    this.formColumns = CONFIG_PROPERTIES_FORMS;
+    this.formColumns = this.getFormColumns();
     this.formData = new CConfigPropertiesFormData();
     this.formDataValidation = new CPropertiesValidationFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
@@ -399,6 +332,90 @@ export class CConfigProperties {
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
     this.pickListDomain = lookups.pickListDomains;
+  }
+
+  getFormColumns() {
+    return [{
+      dataField: 'groupName',
+      label: { text: 'Group Name' },
+      editorType: 'dxSelectBox',
+      validationRules: [{ group: 'always', type: 'required', message: 'Group name required' }],
+      disabled: true,
+    }, {
+      dataField: 'name',
+      label: { text: 'Name' },
+      dataType: 'string',
+      editorType: 'dxTextBox',
+      validationRules: [{ group: 'always', type: 'required', message: 'Name required' },
+      {
+        group: 'always', type: 'pattern', pattern: '^[a-zA-Z_@#][a-zA-Z0-9_\\$@#]{0,28}[a-zA-Z0-9_\\$@#]$',
+        message: 'Invalid property name: use only alpha-numeric and underscore characters (no spaces, 30 characters max)'
+      }
+      ],
+      disabled: true,
+    }, {
+      dataField: 'friendlyName',
+      label: { text: 'Label' },
+      dataType: 'string',
+      validationRules: [{ group: 'always', type: 'required', message: 'Label required' },
+      {
+        group: 'always', type: 'pattern',
+        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/,
+        message: 'Invalid label text: some punctuation characters not allowed (30 characters max)'
+      }],
+      editorType: 'dxTextBox',
+    }, {
+      dataField: 'type',
+      label: { text: 'Type' },
+      editorOptions: {
+        items: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL']
+      },
+      editorType: 'dxSelectBox',
+      validationRules: [{ group: 'always', type: 'required', message: 'Type required' }],
+      disabled: true,
+    }, {
+      dataField: 'precision',
+      label: { text: 'Length', visible: false },
+      editorOptions: { showSpinButtons: true, showClearButton: true, visible: false },
+      validationRules: [{ group: 'length', type: 'required', message: 'Length required' },
+      { group: 'length', type: 'pattern', pattern: '^[0-9]+$', message: 'Length should be a positive number with out decimal' }],
+      validationGroup: 'precision',
+      dataType: 'Number',
+      editorType: 'dxNumberBox'
+    }, {
+      dataField: 'pickListDomainId',
+      label: { text: 'PickList Domain' },
+      visible: false,
+      validationRules: [{ group: 'picklist', type: 'required', message: 'PickList Domain required' }],
+      validationGroup: 'picklist',
+      editorType: 'dxSelectBox'
+    }, {
+      dataField: 'precision',
+      label: { text: 'Precision', visible: false },
+      editorOptions: { showClearButton: true, visible: false },
+      validationRules: [{
+        group: 'precision', type: 'required', message: 'Precision required'
+      },
+      {
+        group: 'precision', type: 'custom', parent: this, reevaluate: true,
+        validationCallback: this.checkPrecision,
+        message: 'You cannot reduce the precision or scale of a property. Please delete the property or create a new property.'
+      },
+      { group: 'precision', type: 'pattern', pattern: '^[0-9]+\.[0-9]+$', message: 'Precision required ( Eg:5.2 )' },
+      ],
+      validationGroup: 'number',
+      dataType: 'Number',
+      editorType: 'dxNumberBox'
+    }];
+  }
+
+  checkPrecision() {
+    const k: any = this;
+    if (Number(k.parent.formData.precision) < Number(k.parent.precisionCache)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   clearParams(p: string) {
@@ -576,6 +593,7 @@ export class CConfigProperties {
       this.window = { title: 'Edit Property', viewIndex: w };
       this.formData = d;
       this.showHideDataFields({ dataField: 'type', value: this.formData.type });
+      this.precisionCache = this.formData.precision ? this.formData.precision : '';
     }
   }
 

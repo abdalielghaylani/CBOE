@@ -53,6 +53,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
     this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.configProperties.clearFormData();
     this.grids._results[0].instance.cancelEditData();
+    this.grids._results[0].instance.refresh();
   }
 
   showValidationRule(d: any) {
@@ -92,6 +93,8 @@ export class RegConfigProperties extends RegConfigBaseComponent {
         notifyError(err, 5000);
       });
       this.cancel();
+    } else {
+      this.hideLoadPanel();
     }
   }
 
@@ -107,6 +110,8 @@ export class RegConfigProperties extends RegConfigBaseComponent {
         notifyError(err, 5000);
       });
       this.cancel();
+    } else {
+      this.hideLoadPanel();
     }
   }
 
