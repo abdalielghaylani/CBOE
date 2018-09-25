@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SetupPrereq>
+	<conditions>
+		<condition Type="1" Comparison="2" Path="HKEY_CLASSES_ROOT\Installer\Products\7DA5A23A3F2FCA34E85C5EDEDEFC6C0B" FileName="" ReturnValue=""></condition>
+	</conditions>
+	<files>
+		<file LocalFile="C:\CBOE\Installers\CambridgeSoft\CDJS\ChemDraw-JS-Setup-18.0.0.exe" CheckSum="B761FB70F309B92BE5BFEF3EFD8D9ACE" FileSize="0,128108088"></file>
+	</files>
+	<execute file="ChemDraw-JS-Setup-18.0.0.exe" cmdline="/s /v/qn" cmdlinesilent="/s /v/qn"></execute>
+	<properties Id="{3F1F382E-73EA-4A26-BD36-2D3893167147}"></properties>
+</SetupPrereq>

@@ -7983,6 +7983,7 @@ Set shell = Nothing
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
+		<row><td>_7C42282B_7D63_4027_B599_599706FD7F97_</td><td>CDJS 18.0.prq</td><td/><td/><td/></row>
 		<row><td>_9454FE9C_E3FC_48B6_B550_532A110BAE80_</td><td>Microsoft Visual C++ 2017 Redistributable Package (x86).prq</td><td/><td/><td/></row>
 		<row><td>_A553A840_3363_431B_8372_26F3AF51EF6B_</td><td>Microsoft ASP.Net AJAX Extensions.prq</td><td>5</td><td/><td/></row>
 		<row><td>_C66BA029_26A0_4B75_9C7E_18F58E6E79AB_</td><td>Windows Installer 4.5 for Windows Server 2008 (x86).prq</td><td>4</td><td/><td/></row>
