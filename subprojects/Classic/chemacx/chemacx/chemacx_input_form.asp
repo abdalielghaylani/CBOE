@@ -174,6 +174,16 @@ Response.expires= -1
 		</table>
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/input_form_footer_vbs.asp"-->
 		<script  type="text/javascript" language="JavaScript">
+
+		    function checkEnter(e){
+		        e = e || event;
+		        if(e.srcElement.className == 'cdd-dialog-input form-control') {
+		            return (e.keyCode || e.which || e.charCode || 0) !== 13;
+		        }
+		    }
+
+		    document.cows_input_form.onkeypress = checkEnter;
+
 		    var limitflag = false;
 		    var limit = ReadCookie("acxlimitsearch");
 
