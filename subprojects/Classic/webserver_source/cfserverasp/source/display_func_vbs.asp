@@ -3547,7 +3547,7 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 					end if
 
                     onclickCopyFunction = "doStructureCopyIndividual();"
-                    if UCase(formmode) = "LIST" then
+                    if UCase(formmode) = "LIST" OR UCase(dbkey) = "CHEMACX" then
                         onclickCopyFunction = "doStructureCopy('" & tablename & fieldname & "_" & uniqueid & "_orig');"
                     end if
 		            
