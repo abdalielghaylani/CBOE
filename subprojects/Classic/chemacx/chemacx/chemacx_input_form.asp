@@ -107,7 +107,7 @@ Response.expires= -1
 		      		</tr>
 				</table>			
 			</td>
-			<td valign="bottom">
+			<td valign="middle" cellpadding="3" cellspacing="3">
 				<table border="0">
 					<tr>
 			        	<td nowrap>
