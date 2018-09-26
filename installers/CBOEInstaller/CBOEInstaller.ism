@@ -395,7 +395,6 @@
 		<row><td>AllOtherFiles58</td><td>{8C241B23-DCF3-4081-8E7D-D664A3FDB8A4}</td><td>CONFIGURATION_AND_DB_TOOLS</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles59</td><td>{BC939B9F-22BC-4FA7-B7A6-4F907073B661}</td><td>WEBSERVICE</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles6</td><td>{951651F5-B511-42C6-8D8D-F0455C070907}</td><td>SECURITY</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AllOtherFiles60</td><td>{78F004A0-A026-472E-AD4A-DDF26DC6CA26}</td><td>COMMONRESOURCES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles61</td><td>{8158C786-2FB5-4433-8356-8B46796914E0}</td><td>WEBSERVICEHOST</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles62</td><td>{64E50086-A8E5-4005-8BB2-A63BE61FB36A}</td><td>COELOGVIEWER</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles63</td><td>{604FDD61-FE77-49AE-8F3C-CF150793BB1A}</td><td>COEPATCHINGTOOL</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -436,6 +435,7 @@
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>{51A36A11-E95A-43D9-AC2B-C1C5ED7D9C85}</td><td>BIN2</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>{E6BC6472-3D2E-4A6A-9885-41D1AD200210}</td><td>BIN10</td><td>0</td><td/><td>cambridgesoft.coe.registrati2</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td>{56E1393D-93DF-4823-94C6-AFDC44126BE4}</td><td>BIN2</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CommonRes</td><td>{78F004A0-A026-472E-AD4A-DDF26DC6CA26}</td><td>COMMONRESOURCES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Csla.Compression.dll</td><td>{75FAC602-A0AF-4AED-98B2-35E8688ABEF4}</td><td>BIN10</td><td>0</td><td/><td>csla.compression.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td>{6D0B1B64-969F-41A6-A080-A7422655D36C}</td><td>BIN10</td><td>0</td><td/><td>icsharpcode.sharpziplib.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISRegistryComponent</td><td>{14E10E08-8B3B-438E-B4EC-DC5E713E8854}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1268,6 +1268,7 @@
 		<row><td>CHEMOFFICEENTERPRISE</td><td>AllOtherFiles</td></row>
 		<row><td>CHEMOFFICE_DATA</td><td>AllOtherFiles35</td></row>
 		<row><td>COEDB</td><td>AllOtherFiles30</td></row>
+		<row><td>COMMONRESOURCES</td><td>CommonRes</td></row>
 		<row><td>CONFIG12</td><td>AllOtherFiles20</td></row>
 		<row><td>CommonAppDataFolder</td><td>AllOtherFiles31</td></row>
 		<row><td>DBINSTALLSCRIPTS</td><td>AllOtherFiles26</td></row>
@@ -3432,7 +3433,6 @@ End If
 		<row><td>COE</td><td>AllOtherFiles52</td></row>
 		<row><td>COE</td><td>AllOtherFiles58</td></row>
 		<row><td>COE</td><td>AllOtherFiles59</td></row>
-		<row><td>COE</td><td>AllOtherFiles60</td></row>
 		<row><td>COE</td><td>AllOtherFiles61</td></row>
 		<row><td>COE</td><td>AllOtherFiles62</td></row>
 		<row><td>COE</td><td>AllOtherFiles63</td></row>
@@ -3446,6 +3446,7 @@ End If
 		<row><td>COE</td><td>CSDO17_Server</td></row>
 		<row><td>COE</td><td>CSDO17_Server_File</td></row>
 		<row><td>COE</td><td>CambridgeSoft.COE.Framework.dll</td></row>
+		<row><td>COE</td><td>CommonRes</td></row>
 		<row><td>COE</td><td>ISRegistryComponent</td></row>
 		<row><td>COE</td><td>Msvcp</td></row>
 		<row><td>COE</td><td>Msvcp71</td></row>
@@ -4420,7 +4421,6 @@ End If
 		<row><td>AllOtherFiles58</td><td/><td/><td>_38A779DA_4341_47BE_8058_123726EBF9CF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles59</td><td/><td/><td>_7AAB24FA_E845_4002_8956_1CF8946A63AC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles6</td><td/><td/><td>_E97BB560_D45E_441A_AED1_90ACDBB2694E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AllOtherFiles60</td><td/><td/><td>_78D9F7BB_2199_49A1_80CB_EE753E57746C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles61</td><td/><td/><td>_D302540B_AE8D_4583_81C9_68A87BEBDF3D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles62</td><td/><td/><td>_820E9144_1B16_419C_BEB9_EF63FF839C41_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles63</td><td/><td/><td>_56272E0C_FD03_480C_A745_1799D07647F6_FILTER</td><td/><td/><td/><td/></row>
@@ -4461,6 +4461,7 @@ End If
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td/><td/><td>_6554C83C_B479_4F92_82B2_220F69F7D7D7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td/><td/><td>_70F4F1AC_28E4_47AA_BD4A_ACF9F1D6DB48_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td/><td/><td>_B3D602E2_EFB2_4313_ABF9_3E3D0165DD89_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CommonRes</td><td/><td/><td>_78D9F7BB_2199_49A1_80CB_EE753E57746C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Csla.Compression.dll</td><td/><td/><td>_A12CF1AB_1087_4BB9_82F7_8B3E86903F12_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td/><td/><td>_497B8F00_270C_49E2_A03D_595B5B61336C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISRegistryComponent</td><td/><td/><td>_57E1FC69_6208_458B_B643_7FA5DF91A72A_FILTER</td><td/><td/><td/><td/></row>
@@ -4604,7 +4605,6 @@ End If
 		<row><td>AllOtherFiles50</td><td>&lt;BUILDPROJECTROOT&gt;\DataLoader\bin\Release\app.publish</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>AllOtherFiles51</td><td>&lt;BUILDPROJECTROOT&gt;\DataUploader\DataUploader\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>AllOtherFiles58</td><td>&lt;BUILDPROJECTROOT&gt;\Configuration and DB Tools</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>AllOtherFiles60</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\CommonResources</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles61</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.WebServiceHost</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles62</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\ServiceTier\COELogViewer\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>AllOtherFiles63</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\ServiceTier\Patcher\Patcher\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
@@ -4617,6 +4617,7 @@ End If
 		<row><td>AllOtherFiles75</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles77</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\ServiceTier\RLSConfigurationTool\RLSConfigurationTool\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>CBOEHelp</td><td>&lt;WORKSPACEPATH&gt;\Documentation</td><td>4</td><td/><td/><td>10</td></row>
+		<row><td>CommonRes</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\CommonResources</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent2</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Forms</td><td>4</td><td/><td>*.cs</td><td>10</td></row>
 		<row><td>NewComponent3</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\Config</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent4</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PythonScripts</td><td>4</td><td/><td/><td>10</td></row>
@@ -4925,6 +4926,8 @@ End If
 		<col key="yes" def="s255">User</col>
 		<col def="I4">Permission</col>
 		<col def="I4">Attributes</col>
+		<row><td>COMMONRESOURCES</td><td>CreateFolder</td><td>[%USERDOMAIN]</td><td>Everyone</td><td>1880031743</td><td>0</td></row>
+		<row><td>COMMONRESOURCES</td><td>CreateFolder</td><td>[%USERDOMAIN]</td><td>Network Service</td><td>1880031743</td><td>0</td></row>
 		<row><td>coeframeworkconfig.xml</td><td>File</td><td></td><td>Administrators</td><td>1880031679</td><td>0</td></row>
 		<row><td>coeframeworkconfig.xml</td><td>File</td><td></td><td>Authenticated Users</td><td>1880031679</td><td>0</td></row>
 		<row><td>coeframeworkconfig.xml</td><td>File</td><td></td><td>Everyone</td><td>131241</td><td>0</td></row>
