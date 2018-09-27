@@ -1245,7 +1245,13 @@ Function GetINIValue(ByVal allowempty, ByVal theSection, ByVal theKeyname, ByVal
 			if inivalue = "INIEmpty" then
 				emptyval = "ini file:  /config/" & ININame & ".ini. <br>" 
 			End if
-			
+		Case "chemoffice"
+			chemoffice_path = Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\" & Application("COWSRoot") & "\config\chemoffice.ini"
+			inivalue = INIVAR.VBGetPrivateProfileString(Trim(theSection), Trim(theKeyname), Trim(chemoffice_path))
+			if inivalue = "INIEmpty" then
+				emptyval = "ini file: /chemoffice/" & ININame & ".ini. <br>"
+			End if
+
 	End Select
 	if inivalue = "INIEmpty" then
 		Select case allowempty
