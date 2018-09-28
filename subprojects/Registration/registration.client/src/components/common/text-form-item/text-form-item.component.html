@@ -1,5 +1,5 @@
-<dx-text-box (onValueChanged)="onValueChanged($event, viewModel)" [value]="value" [readOnly]="readOnly">
-  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
-    <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
-  </dx-validator>
+<dx-text-box [inputAttr]="{ title:this.value }" (onValueChanged)="onValueChanged($event, viewModel)" [value]="value" [readOnly]="readOnly">
+    <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
+        <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
+    </dx-validator>
 </dx-text-box>
