@@ -210,9 +210,5 @@
       "ExtendedCopyPaste"
     ],
     "disabled": []
-  },
-  "properties": {
-    "StyleSheet": "ACS Document 1996",
-    "chemservice": "https://chemdrawdirect.perkinelmer.cloud/rest/"
   }
 }
