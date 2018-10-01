@@ -47,6 +47,9 @@ Response.expires= -1
             div {
                 margin-left: 0px;
             }
+	    .pb-13 {
+		padding-bottom: 13px
+	    }
         </style> 
 	</head>
 	<body bgcolor="#FFFFFF">
@@ -107,10 +110,12 @@ Response.expires= -1
 		      		</tr>
 				</table>			
 			</td>
-			<td valign="middle" cellpadding="3" cellspacing="3">
+			<td valign="top">
 				<table border="0">
+					<tr><td>&nbsp;</td></tr>
+					<tr><td>&nbsp;</td></tr>
 					<tr>
-			        	<td nowrap>
+			        	<td nowrap class="pb-13">
 							<span title="(e.g. Acetonitrile)">Substance Name:</span><br>
 							<%'SYAN changed on 4/7/2004 for global search form%>
 							<%'ShowInputField dbkey, formgroup, SynTableName, "0","30"%>    
@@ -122,25 +127,25 @@ Response.expires= -1
 						</td>
 		      		</tr>
 					<tr>
-			        	<td>
+			        	<td class="pb-13">
 							<span title="(e.g. 50-50-0)">CAS Registry#:</span><br>
 							<%ShowInputField dbkey, formgroup, "Substance.CAS", "0","30"%>        
 						</td>
 		      		</tr>
 		      		<tr>
-		        		<td>
+		        		<td class="pb-13">
 							<span title="(e.g. X1001545-9)">ACX Number:</span><br>
 							<%ShowInputField dbkey, formgroup, "Substance.ACX_ID", "0","30"%>
 						</td>
 					</tr>
 		      		<tr>
-		        		<td>
+		        		<td class="pb-13">
 							<span title="(e.g. C8H3Cl3O, C1-5O&lt;3F0-1)">Molecular Formula:</span><br>
 							<%ShowInputField dbkey, formgroup, "Substance.Formula", "0","30"%>
 						</td>
 		      		</tr>
 		      		<tr>
-		        		<td>
+		        		<td class="pb-13">
 							<span title="&lt;120, 120-130, &gt;250">MolWeight Range:</span><br>
 							<%ShowInputField dbkey, formgroup, "Substance.MolWeight", "0","30"%>
 						</td>
