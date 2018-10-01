@@ -1236,7 +1236,6 @@
       <add name="ChemACX" enabled="true" coeIdentifier="ChemACX" display="ChemACX" newWindow="true" groupIconSize="none" color="red" helpText="Search available chemical content from over 500 suppliers.">
         <links>
           <add name="Search" display="Search" tip="Search ChemACX" url="/chemacx/default.asp?formgroup=base_form_group&amp;dbname=chemacx&amp;dataaction=db" privilege="BROWSE_ACX||BUY_ACX" linkIconSize="small" linkIconBasePath="Icon_Library/windows_Collection/windows_png/PNG" linkIconFileName="search.png"/>
-          <add name="DatabaseWizard" display="Database Wizard" tip="Convert chemfinder databases for web viewing" url="/cfserveradmin/AdminSource/webeditor.asp" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Database_Wizard.png"/>
         </links>
       </add>
       <add name="Databases" coeIdentifier="Databases" enabled="true" display="Chemical Databases" newWindow="true" color="darkBlue" helpText="Search content from CambridgeSoft and custom databases.">
