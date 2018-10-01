@@ -29,6 +29,15 @@ Dim RS
 
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
 <%
+if detectModernBrowser = true then
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
+%>
+<%
 if Not Session("fEmptyRecordset" & dbkey & formgroup) = True  then
   listItemNumber = 0
   Response.Write "<span class=""GUIFeedback"">Select a " & Application("appTitle") & " Substance<BR><BR></span>"

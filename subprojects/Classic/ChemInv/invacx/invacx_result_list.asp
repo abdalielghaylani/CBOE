@@ -57,10 +57,10 @@ ContainerCount = Clng(Count_RS("ContainerCount"))
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceStructure_" & BaseID & "_orig', 0, 0,'zoom_red_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig', 0, 0,'zoom_red_btn.gif')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceStructure_" & BaseID & "_orig',600,450,'zoom_red_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',600,450,'zoom_red_btn.gif')"
 end if
 %>
 				<td align="center" valign="top" width="194" nowrap>

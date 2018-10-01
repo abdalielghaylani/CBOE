@@ -112,10 +112,10 @@ End if
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_vw_compounds.Structure'," & BaseID & ", 'inv_vw_compoundsStructure_" & BaseID & "_orig')"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_vw_compounds.Structure'," & BaseID & ", 'inv_vw_compoundsBASE64_CDX_" & BaseID & "_orig')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('inv_vw_compounds.Structure'," & BaseID & ", 'inv_vw_compoundsStructure_" & BaseID & "_orig',600,450)"
+	zoomFunction = "ACX_getStrucZoomBtn('inv_vw_compounds.Structure'," & BaseID & ", 'inv_vw_compoundsBASE64_CDX_" & BaseID & "_orig',600,450)"
 end if
 
 %>

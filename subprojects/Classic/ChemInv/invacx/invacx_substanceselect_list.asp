@@ -29,6 +29,15 @@
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
 <!--#INCLUDE VIRTUAL = "/cheminv/GUI/guiUtils.asp"-->
 <%
+if detectModernBrowser = true then
+%>
+        <div style="display: none">
+            <script language="JavaScript">cd_insertObject("chemical/x-cdx", "100", "100", "mycdx", "<%=TempCdxPath%>mt.cdx", "False", "true", "", "true", <%=ISISDraw%>)</script>
+        </div>
+<%
+end if
+%>
+<%
 if Not Session("fEmptyRecordset" & dbkey & formgroup) = True  then
   listItemNumber = 0
   Response.Write "<span class=""GUIFeedback"">Select a ChemACX Substance<BR><BR></span>"
@@ -44,10 +53,10 @@ end if
 plugin_value =GetFormGroupVal(dbkey, formgroup, kPluginValue)
 if  plugin_value  then
 	displayType = "cdx"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceStructure_" & BaseID & "_orig',0,0,'zoom_red_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',0,0,'zoom_red_btn.gif')"
 else
 	displayType = "SizedGif"
-	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceStructure_" & BaseID & "_orig',600,450,'zoom_red_btn.gif')"
+	zoomFunction = "ACX_getStrucZoomBtn('Substance.Structure'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',600,450,'zoom_red_btn.gif')"
 end if
 %>
 				<td align="center" valign="top" width="194" nowrap>
