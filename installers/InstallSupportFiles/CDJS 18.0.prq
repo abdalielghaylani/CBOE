@@ -6,6 +6,6 @@
 	<files>
 		<file LocalFile="C:\CBOE\Installers\CambridgeSoft\CDJS\ChemDraw-JS-Setup-18.0.0.exe" CheckSum="B761FB70F309B92BE5BFEF3EFD8D9ACE" FileSize="0,128108088"></file>
 	</files>
-	<execute file="ChemDraw-JS-Setup-18.0.0.exe" cmdline="/s /v/qn" cmdlinesilent="/s /v/qn"></execute>
+	<execute file="ChemDraw-JS-Setup-18.0.0.exe" cmdline="/s /v/&quot;qn  SERVER_PORT=80 SERVER_VIRPATH=cdjs&quot;" cmdlinesilent="/s /v/&quot;qn SERVER_PORT=80 SERVER_VIRPATH=cdjs&quot;"></execute>
 	<properties Id="{3F1F382E-73EA-4A26-BD36-2D3893167147}"></properties>
 </SetupPrereq>

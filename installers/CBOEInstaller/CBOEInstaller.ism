@@ -1412,7 +1412,8 @@ Dim WSH, SiteNumber, sBindings,strBindings,portN
 Set WSH = CreateObject("WScript.Shell")  
  
     Set WshShell = CreateObject("WScript.Shell")
-
+    Session.Property("SERVERNAMEHOST")= WSH.RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Computername\ActiveComputername\Computername") 
+   
     X = WshShell.RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\PROCESSOR_ARCHITECTURE")
 
     If X = "x86" Then
@@ -7065,6 +7066,7 @@ End If
 		<row><td>ID_STRING575</td><td>1033</td><td>INVCON~1.INI|InvConfig.ini</td><td>0</td><td/><td>-458861755</td></row>
 		<row><td>ID_STRING576</td><td>1033</td><td>CHEMREG</td><td>0</td><td/><td>-458853563</td></row>
 		<row><td>ID_STRING577</td><td>1033</td><td>NEWREG_SERVER_URL</td><td>0</td><td/><td>-458857627</td></row>
+		<row><td>ID_STRING578</td><td>1033</td><td>CDJS_URL</td><td>0</td><td/><td>220643108</td></row>
 		<row><td>ID_STRING58</td><td>1033</td><td>DATAVI~1|DataView Manager Help Guide</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
@@ -7284,6 +7286,7 @@ End If
 		<row><td>IniTableKey3</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING562##</td><td>ChemInv,ChemACX</td><td>3</td><td>invconfigini</td></row>
 		<row><td>IniTableKey4</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING563##</td><td>1</td><td>0</td><td>invconfigini</td></row>
 		<row><td>IniTableKey5</td><td>##ID_STRING575##</td><td>CONFIG1</td><td>##ID_STRING576##</td><td>##ID_STRING577##</td><td>NULL</td><td>1</td><td>invconfigini</td></row>
+		<row><td>IniTableKey6</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING578##</td><td>http://[SERVERNAMEHOST]/cdjs/js/chemdrawweb/chemdrawweb.js</td><td>0</td><td>invconfigini</td></row>
 	</table>
 
 	<table name="IniLocator">
@@ -7879,6 +7882,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>NewProperty12</td><td>0</td><td/></row>
 		<row><td>NewProperty13</td><td>0</td><td/></row>
 		<row><td>NewProperty14</td><td>0</td><td/></row>
+		<row><td>NewProperty15</td><td>0</td><td/></row>
 		<row><td>NewProperty2</td><td>0</td><td/></row>
 		<row><td>NewProperty3</td><td/><td/></row>
 		<row><td>NewProperty32334</td><td/><td/></row>
@@ -7932,6 +7936,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SADDRESS</td><td/><td/></row>
 		<row><td>SERVERNAME</td><td/><td/></row>
+		<row><td>SERVERNAMEHOST</td><td/><td/></row>
 		<row><td>SITENUMBER</td><td/><td/></row>
 		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;INSTALLDIR;IISROOTFOLDER;EAPPUSERPASSWORD;CREATENEWUSER;APPUSERPASSWORD2;APPUSERNAME;existinguserrbdesc;ADMINUSERNAME;DOMAINUSER;APPUSERPASSWORD;NewProperty32334;dlgdesccreateuser;dlgtitlecreateuser;passwordeditlabel;apppwdconfirm;newuserrbdesc;NewProperty1011;usernamelable;NewProperty13;NewProperty10;NewProperty12;PORTNO;WEBSITE;IPADDRESS;NewProperty2;NewProperty3;HOSTHEADER;WEBSITEN;CREATEWEBSITE;NewProperty4;ORACLESERVICE;IEVERSION;CBOEINSTALLDIR;COWSVERSION;COWSEXIST;IIS_VERSION;WEBSITENAME</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
