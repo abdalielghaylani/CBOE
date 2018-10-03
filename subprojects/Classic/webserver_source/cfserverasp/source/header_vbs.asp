@@ -35,7 +35,7 @@ Select Case UCase(formmode)
 	<input Type="Image"  name="default_action_image" src="/cfserverasp/source/graphics/navbuttons/pixel.gif" border="0" WIDTH="1" HEIGHT="1">
 	<%end if%>
 <%Case "REFINE"%>
-<form name="cows_input_form" method="post" Action="<%=default_action_path%>" onsubmit="doSearch('search');return false;" >
+<form name="cows_input_form" method="post" Action="<%=default_action_path%>" onsubmit="doSearch('apply');return false;" >
 	<%If DetectIE = true then%>
 	<input Type="Image"  name="default_action_image" src="/cfserverasp/source/graphics/navbuttons/pixel.gif" border="0" WIDTH="1" HEIGHT="1">
 	<%end if%>
