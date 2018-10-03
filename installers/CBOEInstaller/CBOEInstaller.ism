@@ -355,7 +355,6 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AllOtherFiles</td><td>{A6EB2053-75B7-4357-98A0-0BB7DAB8ADF3}</td><td>CHEMOFFICEENTERPRISE</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles1</td><td>{E1AA072B-D43A-455A-9C6B-FE263FFDDC1E}</td><td>CHEMBIOVIZ</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles10</td><td>{CE6FE1F1-F6B5-4AAA-8428-63D62076AC83}</td><td>APP_GLOBALRESOURCES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles11</td><td>{F71CD81E-3A84-492B-ABBB-90A992669DE3}</td><td>APP_THEMES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -464,6 +463,8 @@
 		<row><td>WebServiceExtensionComponent</td><td>{709A5C9C-A67F-4772-82EC-8220368C3154}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServices</td><td>{40DE0D1B-7BEA-4F78-9A6C-95280C02BA18}</td><td>WEBSERVICES1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{EF6E2318-0894-44B6-9772-396FDB6C56E5}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>invconfig</td><td>{4AAFC91E-FAEE-4F9E-8E6E-15435B09C134}</td><td>CONFIG1</td><td>8</td><td/><td>invconfig.ini</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>invconfigini</td><td>{A6EB2053-75B7-4357-98A0-0BB7DAB8ADF3}</td><td>CONFIG1</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mage.exe</td><td>{F4705868-0A25-4FA5-ADC2-16A6056C6175}</td><td>DATALOADER_CLICKONCE</td><td>0</td><td/><td>mage.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>mswcrun.dll</td><td>{915840AA-58CF-4D91-A37E-3B0FB1C61D1C}</td><td>ADMINSOURCE</td><td>8</td><td/><td>mswcrun.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -1265,10 +1266,10 @@
 		<row><td>BIN2</td><td>CambridgeSoft.COE.Registration.Services.dll</td></row>
 		<row><td>BIN2</td><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll</td></row>
 		<row><td>BIN2</td><td>CambridgeSoft.COE.RegistrationWebApp.dll</td></row>
-		<row><td>CHEMOFFICEENTERPRISE</td><td>AllOtherFiles</td></row>
 		<row><td>CHEMOFFICE_DATA</td><td>AllOtherFiles35</td></row>
 		<row><td>COEDB</td><td>AllOtherFiles30</td></row>
 		<row><td>COMMONRESOURCES</td><td>CommonRes</td></row>
+		<row><td>CONFIG1</td><td>invconfigini</td></row>
 		<row><td>CONFIG12</td><td>AllOtherFiles20</td></row>
 		<row><td>CommonAppDataFolder</td><td>AllOtherFiles31</td></row>
 		<row><td>DBINSTALLSCRIPTS</td><td>AllOtherFiles26</td></row>
@@ -2544,6 +2545,7 @@ End If
 		<row><td>CHEMBIOVIZ</td><td>CHEMOFFICEENTERPRISE</td><td>CHEMBI~1|ChemBioViz</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV</td><td>CHEMOFFICE_DATA</td><td>cheminv</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV1</td><td>CHEMOFFICE</td><td>ChemInv</td><td/><td>0</td><td/></row>
+		<row><td>CHEMINV2</td><td>CHEMOFFICE</td><td>ChemInv</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICE</td><td>IISROOTFOLDER</td><td>CHEMOF~1|ChemOffice</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE</td><td>INSTALLDIR</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE1</td><td>PERKINELMER</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
@@ -2556,6 +2558,7 @@ End If
 		<row><td>COMMONRESOURCES</td><td>CHEMOFFICEENTERPRISE</td><td>COMMON~1|CommonResources</td><td/><td>0</td><td/></row>
 		<row><td>COMPLUS_APPLICATIONS</td><td>ProgramFilesFolder</td><td>COMPLU~1|COMPlus Applications</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG</td><td>CHEMINV1</td><td>Config</td><td/><td>0</td><td/></row>
+		<row><td>CONFIG1</td><td>CHEMINV2</td><td>config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG12</td><td>REGISTRATION</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG8</td><td>CSWDA</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIGLOADER</td><td>FRAMEWORK</td><td>CONFIG~1|ConfigLoader</td><td/><td>0</td><td/></row>
@@ -2731,7 +2734,7 @@ End If
 		<col def="l255">Name</col>
 		<col def="L255">Value</col>
 		<col def="s72">Component_</col>
-		<row><td>NewEnvironment1</td><td>##ID_STRING522##</td><td>##ID_STRING523##</td><td>AllOtherFiles</td></row>
+		<row><td>NewEnvironment1</td><td>##ID_STRING522##</td><td>##ID_STRING523##</td><td>invconfigini</td></row>
 	</table>
 
 	<table name="Error">
@@ -3426,8 +3429,8 @@ End If
 		<row><td>CBV</td><td>InvLoaderSetup.exe</td></row>
 		<row><td>CBV</td><td>Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.d</td></row>
 		<row><td>CBV</td><td>PyEngine3.dll</td></row>
+		<row><td>CBV</td><td>invconfig</td></row>
 		<row><td>CBV</td><td>mswcrun.dll</td></row>
-		<row><td>COE</td><td>AllOtherFiles</td></row>
 		<row><td>COE</td><td>AllOtherFiles14</td></row>
 		<row><td>COE</td><td>AllOtherFiles30</td></row>
 		<row><td>COE</td><td>AllOtherFiles52</td></row>
@@ -3454,6 +3457,7 @@ End If
 		<row><td>COE</td><td>Registration.ServerAppPool</td></row>
 		<row><td>COE</td><td>WebServiceExtensionComponent</td></row>
 		<row><td>COE</td><td>WebsiteComponent</td></row>
+		<row><td>COE</td><td>invconfigini</td></row>
 		<row><td>Classic</td><td>AllOtherFiles34</td></row>
 		<row><td>Classic</td><td>AllOtherFiles41</td></row>
 		<row><td>Classic</td><td>AllOtherFiles71</td></row>
@@ -3607,6 +3611,7 @@ End If
 		<row><td>infragistics2.webui.websched1</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>1</td><td/></row>
 		<row><td>infragistics2.webui.webspell</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>1</td><td/></row>
 		<row><td>interop.chemdrawcontrol17.dl</td><td>Bin</td><td>INTERO~1.DLL|Interop.ChemDrawControl17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Interop.ChemDrawControl17.dll</td><td>1</td><td/></row>
+		<row><td>invconfig.ini</td><td>invconfig</td><td>INVCON~1.INI|invconfig.ini</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\config\invconfig.ini</td><td>1</td><td/></row>
 		<row><td>invloadersetup.exe</td><td>InvLoaderSetup.exe</td><td>INVLOA~1.EXE|InvLoaderSetup.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\Installation\InvLoader\InvLoaderSetup.exe</td><td>17</td><td/></row>
 		<row><td>ironmath.dll</td><td>Bin</td><td>IronMath.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\IronMath.dll</td><td>1</td><td/></row>
 		<row><td>ironpython.dll</td><td>Bin</td><td>IRONPY~1.DLL|IronPython.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\IronPython.dll</td><td>1</td><td/></row>
@@ -4381,7 +4386,6 @@ End If
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AllOtherFiles</td><td/><td/><td>_65D79AED_FA4C_405B_85E9_A25B602B2CD2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles1</td><td/><td/><td>_043116D2_BB4A_4146_BD35_83B493BDC5F5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles10</td><td/><td/><td>_8E662C2B_8E20_4E89_BE48_DF24DC3BF1D7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles11</td><td/><td/><td>_F19F962B_0288_42B6_BE5D_D343D3423314_FILTER</td><td/><td/><td/><td/></row>
@@ -4490,6 +4494,8 @@ End If
 		<row><td>WebServiceExtensionComponent</td><td/><td/><td>_80CA2C46_50DA_4DFD_BF0E_5F08D4CE2482_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServices</td><td/><td/><td>_03C56F81_CAC4_408C_9391_1BFD288BEBFC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_78397AD3_C9F2_4418_9568_8B7084F6A600_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>invconfig</td><td/><td/><td>_381C58A2_65D7_47BC_9D22_134AEE48C9EB_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>invconfigini</td><td/><td/><td>_65D79AED_FA4C_405B_85E9_A25B602B2CD2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mage.exe</td><td/><td/><td>_9B5F206E_3CC9_4E9E_B9F6_A80E4AC85ACD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>mswcrun.dll</td><td/><td/><td>_979B34F0_99D6_4F2F_83E0_0BD3025D2BA1_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -4600,7 +4606,7 @@ End If
 		<row><td>AllOtherFiles27</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices</td><td>4</td><td/><td/><td>8</td></row>
 		<row><td>AllOtherFiles28</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\bin</td><td>4</td><td/><td>*.pdb,*.xml</td><td>10</td></row>
 		<row><td>AllOtherFiles29</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Help</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>AllOtherFiles34</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice</td><td>4</td><td/><td>*Addin1240.exe,*.frm,*.frx,*.cls,*.bas,DISK04.ico,gridhlp.zip,*.vbp,*.vbw</td><td>10</td></row>
+		<row><td>AllOtherFiles34</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice</td><td>4</td><td/><td>*Addin1240.exe,*.frm,*.frx,*.cls,*.bas,DISK04.ico,gridhlp.zip,*.vbp,*.vbw,invconfig.ini</td><td>10</td></row>
 		<row><td>AllOtherFiles48</td><td>&lt;BUILDPROJECTROOT&gt;\DataLoader\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>8</td></row>
 		<row><td>AllOtherFiles50</td><td>&lt;BUILDPROJECTROOT&gt;\DataLoader\bin\Release\app.publish</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>AllOtherFiles51</td><td>&lt;BUILDPROJECTROOT&gt;\DataUploader\DataUploader\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
@@ -7056,6 +7062,9 @@ End If
 		<row><td>ID_STRING572</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>1126591173</td></row>
 		<row><td>ID_STRING573</td><td>1033</td><td>index.html</td><td>0</td><td/><td>1126611653</td></row>
 		<row><td>ID_STRING574</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>-886665978</td></row>
+		<row><td>ID_STRING575</td><td>1033</td><td>INVCON~1.INI|InvConfig.ini</td><td>0</td><td/><td>-458861755</td></row>
+		<row><td>ID_STRING576</td><td>1033</td><td>CHEMREG</td><td>0</td><td/><td>-458853563</td></row>
+		<row><td>ID_STRING577</td><td>1033</td><td>NEWREG_SERVER_URL</td><td>0</td><td/><td>-458857627</td></row>
 		<row><td>ID_STRING58</td><td>1033</td><td>DATAVI~1|DataView Manager Help Guide</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
@@ -7270,10 +7279,11 @@ End If
 		<col def="s255">Value</col>
 		<col def="i2">Action</col>
 		<col def="s72">Component_</col>
-		<row><td>IniTableKey1</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING559##</td><td>[ProductVersion]</td><td>0</td><td>AllOtherFiles</td></row>
-		<row><td>IniTableKey2</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING561##</td><td>[INSTALLDIR]ChemOfficeEnterprise\</td><td>0</td><td>AllOtherFiles</td></row>
-		<row><td>IniTableKey3</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING562##</td><td>ChemInv,ChemACX</td><td>3</td><td>AllOtherFiles</td></row>
-		<row><td>IniTableKey4</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING563##</td><td>1</td><td>0</td><td>AllOtherFiles</td></row>
+		<row><td>IniTableKey1</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING559##</td><td>[ProductVersion]</td><td>0</td><td>invconfigini</td></row>
+		<row><td>IniTableKey2</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING561##</td><td>[INSTALLDIR]ChemOfficeEnterprise\</td><td>0</td><td>invconfigini</td></row>
+		<row><td>IniTableKey3</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING562##</td><td>ChemInv,ChemACX</td><td>3</td><td>invconfigini</td></row>
+		<row><td>IniTableKey4</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING563##</td><td>1</td><td>0</td><td>invconfigini</td></row>
+		<row><td>IniTableKey5</td><td>##ID_STRING575##</td><td>CONFIG1</td><td>##ID_STRING576##</td><td>##ID_STRING577##</td><td>NULL</td><td>1</td><td>invconfigini</td></row>
 	</table>
 
 	<table name="IniLocator">
@@ -8112,16 +8122,16 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING59##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseInstall.hta</td><td/><td/><td/><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING59##</td><td>invconfigini</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseInstall.hta</td><td/><td/><td/><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut12</td><td>newfolder2</td><td>##ID_STRING69##</td><td>AllOtherFiles48</td><td>[DATALOADER]DataLoader.exe</td><td/><td/><td/><td>NewShortcut12_056D2EC3AFF443A09C56A05DEFC70C9C.exe</td><td>1</td><td>1</td><td>DATALOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut14</td><td>newfolder8</td><td>##ID_STRING55##</td><td>AllOtherFiles65</td><td>[CONFIGLOADER]ConfigLoader.exe</td><td/><td/><td/><td>NewShortcut14_17F1DF869819449E96E2BEE15A06A164.exe</td><td>1</td><td>1</td><td>CONFIGLOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut15</td><td>newfolder2</td><td>##ID_STRING54##</td><td>AllOtherFiles48</td><td>[HELP2]DataLoader.chm</td><td/><td/><td/><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td>1</td><td>1</td><td>HELP2</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut16</td><td>newfolder9</td><td>##ID_STRING58##</td><td>AllOtherFiles16</td><td>[HELP8]default.htm</td><td/><td/><td/><td>NewShortcut16_7AAD1165DFB446B395667760166449B1.exe</td><td>1</td><td>1</td><td>HELP8</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut17</td><td>newfolder10</td><td>##ID_STRING57##</td><td>AllOtherFiles21</td><td>[HELP9]default.htm</td><td/><td/><td/><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td>1</td><td>1</td><td>HELP9</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut2</td><td>newfolder8</td><td>##ID_STRING79##</td><td>AllOtherFiles65</td><td>[HELP5]ConfigLoader.chm</td><td/><td/><td/><td>NewShortcut2_986FB7C3104D4C0990DF5C80B0A94447.exe</td><td>1</td><td>1</td><td>HELP5</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut3</td><td>newfolder1</td><td>##ID_STRING60##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]Setuplogs</td><td/><td/><td/><td>NewShortcut3_CAE912D443824125AE490CF2A3018190.exe</td><td>1</td><td>1</td><td>SETUPLOGS</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut5</td><td>newfolder1</td><td>##ID_STRING62##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseUpgrade.hta</td><td/><td/><td/><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut6</td><td>newfolder1</td><td>##ID_STRING63##</td><td>AllOtherFiles</td><td>[CONFIGURATION_AND_DB_TOOLS]COEConfigurationTool.hta</td><td/><td/><td/><td>NewShortcut6_6CAFB4D780574BCABA310389A6EAD09B.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut3</td><td>newfolder1</td><td>##ID_STRING60##</td><td>invconfigini</td><td>[CONFIGURATION_AND_DB_TOOLS]Setuplogs</td><td/><td/><td/><td>NewShortcut3_CAE912D443824125AE490CF2A3018190.exe</td><td>1</td><td>1</td><td>SETUPLOGS</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut5</td><td>newfolder1</td><td>##ID_STRING62##</td><td>invconfigini</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseUpgrade.hta</td><td/><td/><td/><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut6</td><td>newfolder1</td><td>##ID_STRING63##</td><td>invconfigini</td><td>[CONFIGURATION_AND_DB_TOOLS]COEConfigurationTool.hta</td><td/><td/><td/><td>NewShortcut6_6CAFB4D780574BCABA310389A6EAD09B.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
