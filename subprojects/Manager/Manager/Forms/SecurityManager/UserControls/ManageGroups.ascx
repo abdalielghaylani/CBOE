@@ -313,6 +313,7 @@ function AfterNodeSelectionChange(treeId, nodeId) {
                                     
 
                                 </Columns>
+				<RowStyle HorizontalAlign="Center" />
                             </asp:GridView>
         	            </asp:Panel>
                         </td></tr></table>
