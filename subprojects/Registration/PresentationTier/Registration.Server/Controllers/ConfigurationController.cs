@@ -962,7 +962,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     // Notes: updating configuration and events seperately because these fields are not updating with IsEnable field
                     var addinSelected = configurationBO.AddInList[index];
 
-                    if (!string.IsNullOrWhiteSpace(data.Configuration))
+                    if (!string.IsNullOrWhiteSpace(data.Configuration) && !data.Configuration.ToLower().Equals("<addinconfiguration />"))
                     {
                         if (!data.Configuration.ToLower().StartsWith("<addinconfiguration>"))
                         {
@@ -983,13 +983,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
                             throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
 
-                    }
-                    else
-                    {
-                        data.Configuration = "<AddInConfiguration></AddInConfiguration>";
-                    }
-
-                    addinSelected.AddInConfiguration = data.Configuration;
+                        addinSelected.AddInConfiguration = data.Configuration;
+                    }                    
 
                     // clear existing events, if any
                     List<Event> markedEventsForDeletion = new List<Event>();
