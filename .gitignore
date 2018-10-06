@@ -13,3 +13,5 @@ obj/
 
 
 
+subprojects/Inventory/API/packages/
+subprojects/Inventory/API/.vs/Inventory.API/

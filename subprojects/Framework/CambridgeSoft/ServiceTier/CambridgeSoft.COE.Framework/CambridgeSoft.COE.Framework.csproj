@@ -797,7 +797,7 @@
     <Compile Include="SearchCriteria\DAL\SystemDataOledbClientDAL.cs" />
     <Compile Include="SearchCriteria\DAL\SystemDataSqlClientDAL.cs" />
     <Compile Include="SearchCriteria\COESearchCriteriaUtilities.cs" />
-    <Compile Include="Search\BLL\COESearchUtilities.cs" />       
+    <Compile Include="Search\BLL\COESearchUtilities.cs" />
     <Compile Include="Search\DAL\OracleDataAccessClientDAL.cs" />
     <Compile Include="Search\Processors\BaseCustomProcessor.cs" />
     <Compile Include="Search\Processors\DomainProcessor.cs" />
@@ -846,9 +846,7 @@
     <Compile Include="Search\BLL\COESearch.cs" />
     <Compile Include="Search\BLL\SearchManager.cs" />
     <Compile Include="Search\DAL\KeepAliveHolder.cs" />
-    <Compile Include="Search\DAL\DAL.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Search\DAL\DAL.cs" />
     <Compile Include="Search\Enums.cs" />
     <Compile Include="Search\Processors\FormulaProcessor.cs" />
     <Compile Include="Search\Processors\GenericProcessor.cs" />
