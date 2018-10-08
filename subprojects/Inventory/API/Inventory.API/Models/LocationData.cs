@@ -12,13 +12,13 @@ namespace PerkinElmer.COE.Inventory.API.Models
         /// Gets or sets the internal identifier of the location.
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the internal identifier of the parent location.
         /// </summary>
         [JsonProperty(PropertyName = "parentId")]
-        public string ParentId { get; set; }
+        public int ParentId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the location.

@@ -70,15 +70,15 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 // TODO: This should be moved to service and DAL
                 var connectionString = ConfigurationManager.ConnectionStrings["InvDB"];
                 var locations = new List<LocationData>();
-                using (var command = new OracleCommand("select * from locations", Connection))
+                using (var command = new OracleCommand("select * from inv_locations", Connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         locations.Add(new LocationData
                         {
-                            Id = reader["Id"].ToString(),
-                            Name = reader["Name"].ToString()
+                            Id = (int)reader["LOCATION_ID"],
+                            Name = (string)reader["LOCATION_NAME"]
                         });
                     }
                 }
