@@ -1640,6 +1640,7 @@ div.MenuItemContainer
 	color:#333333;
 	margin:63px 0px 0px 0px;
 	right:5px;
+	z-index: 1;
 }
 
 .PublicHeader #mainnav span
