@@ -622,6 +622,14 @@ BODY
 {
 	text-decoration: underline;
 }
+
+.ImageButton:disabled
+{
+    color: gray;
+    filter: alpha(opacity=30);
+    opacity: .30;
+}
+
 .ImageButtonDiv
 {	
 	height: 25px;
