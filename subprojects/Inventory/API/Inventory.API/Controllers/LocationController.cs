@@ -1,16 +1,16 @@
-﻿using Microsoft.Web.Http;
-using PerkinElmer.COE.Inventory.API.Code;
-using PerkinElmer.COE.Inventory.API.Models;
-using Swashbuckle.Swagger.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
+using System.Data;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.Web.Http;
 using Oracle.DataAccess.Client;
+using PerkinElmer.COE.Inventory.API.Code;
+using PerkinElmer.COE.Inventory.API.Models;
+using Swashbuckle.Swagger.Annotations;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
@@ -18,6 +18,15 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
     public class LocationController : ApiController
     {
         private OracleConnection connection;
+
+        private LocationData BuildLocationData(OracleDataReader reader)
+        {
+            return new LocationData
+            {
+                Id = (int)reader["location_id"],
+                Name = (string)reader["location_name"]
+            };
+        }
 
         protected OracleConnection Connection
         {
@@ -75,14 +84,48 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 {
                     while (reader.Read())
                     {
-                        locations.Add(new LocationData
-                        {
-                            Id = (int)reader["LOCATION_ID"],
-                            Name = (string)reader["LOCATION_NAME"]
-                        });
+                        locations.Add(BuildLocationData(reader));
                     }
                 }
                 responseMessage = Request.CreateResponse(statusCode, locations);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "locations/{id}")]
+        [SwaggerOperation("GetLocations")]
+        [SwaggerResponse(200, type: typeof(LocationData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetLocationById(int id)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                // TODO: Should check authentication and authorization
+                var statusCode = HttpStatusCode.OK;
+                LocationData location = null;
+                using (var command = new OracleCommand("select * from inv_locations where location_id=:id", Connection))
+                {
+                    command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32, id, ParameterDirection.Input));
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            location = BuildLocationData(reader);
+                        }
+                    }
+                }
+                if (location == null)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the location, {0}", id));
+                responseMessage = Request.CreateResponse(statusCode, location);
             }
             catch (Exception ex)
             {
