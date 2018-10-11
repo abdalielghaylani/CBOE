@@ -1021,6 +1021,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
                 bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
+                if (id < 0) 
+                {
+                    const string sequenceIdPath = "/MultiCompoundRegistryRecord/RegNumber/SequenceID";
+                    XmlNode sequenceNode = recordXml.SelectSingleNode(sequenceIdPath);
+                    sequenceNode.InnerText = "-1";
+                    record = recordXml.InnerXml;
+                }
+
                 return new JObject(new JProperty("data", record),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
                     new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor));
