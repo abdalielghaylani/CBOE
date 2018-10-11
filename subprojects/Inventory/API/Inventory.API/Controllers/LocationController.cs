@@ -15,10 +15,8 @@ using Swashbuckle.Swagger.Annotations;
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
-    public class LocationController : ApiController
+    public class LocationController : InvApiController
     {
-        private OracleConnection connection;
-
         private LocationData BuildLocationData(OracleDataReader reader)
         {
             return new LocationData
@@ -28,43 +26,9 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             };
         }
 
-        protected OracleConnection Connection
-        {
-            get
-            {
-                if (connection == null)
-                {
-                    connection = new OracleConnection(ConfigurationManager.ConnectionStrings["InvDB"].ConnectionString);
-                    connection.Open();
-                }
-                return connection;
-            }
-        }
-
-        protected HttpResponseMessage CreateErrorResponse(Exception ex)
-        {
-            var message = ex.Message;
-            var statusCode = ex is IndexOutOfRangeException ?
-                HttpStatusCode.NotFound :
-                HttpStatusCode.InternalServerError;
-            return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (connection != null)
-                {
-                    connection.Dispose();
-                }
-            }
-            base.Dispose(disposing);
-        }
-
         [HttpGet]
         [Route(Consts.apiPrefix + "locations")]
-        [SwaggerOperation("GetLocations")]
+        [SwaggerOperation("Locations")]
         [SwaggerResponse(200, type: typeof(List<LocationData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
@@ -99,7 +63,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
         [HttpGet]
         [Route(Consts.apiPrefix + "locations/{id}")]
-        [SwaggerOperation("GetLocations")]
+        [SwaggerOperation("Locations")]
         [SwaggerResponse(200, type: typeof(LocationData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
