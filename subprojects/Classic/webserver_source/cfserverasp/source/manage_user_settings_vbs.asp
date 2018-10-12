@@ -910,7 +910,7 @@ End function
 Sub DropTable(dbname, tableName)
 	Dim lRecsAffected
 	Dim sql	
-	if FindTable(dbname, tableName) = true then
+	if GetNumberOfFieldsinTable(dbname, tableName) > 0 then
 		currentRDBMS = GetUserSettingsSQLSyntax(dbname, "base_form_group")
 		if Ucase(currentRDBMS) = "ORACLE" then
 			tableName = Application(dbname & "_USERNAME") & "." & tableName
