@@ -3538,6 +3538,7 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 		'!DGB! new displaytype to support gif resize	
 			Elseif Ucase(displaytype) = "SIZEDGIF" then
 				if session("base64cdx") <> "" then
+                    
 					myDir = Application("TempFileDirectory" & dbkey)  & tablename & fieldname  & "_" & uniqueid & "." & "cdx"
 					'jhs
 					if lcase(left(session("base64cdx"), 8)) = "vmpdrdax" then
@@ -3546,30 +3547,37 @@ Function getDisplayCFWStructure(ByVal dbkey, ByVal formgroup, ByVal fullfieldnam
 						SaveMolToTemp session("base64cdx"), myDir
 					end if
 
-                    onclickCopyFunction = "doStructureCopyIndividual();"
-                    if UCase(formmode) = "LIST" OR UCase(dbkey) = "CHEMACX" then
-                        onclickCopyFunction = "doStructureCopy('" & tablename & fieldname & "_" & uniqueid & "_orig');"
-                    end if
+                    if detectModernBrowser = true then
+                        onclickCopyFunction = "doStructureCopyIndividual();"
+                        if UCase(formmode) = "LIST" OR UCase(dbkey) = "CHEMACX" then
+                            onclickCopyFunction = "doStructureCopy('" & tablename & fieldname & "_" & uniqueid & "_orig');"
+                        end if
 		            
-					'jhs
-                    embed_tag_string = "<div class=""copyContainer"">"
-					embed_tag_string = embed_tag_string &  "<IMG SRC="
-					embed_tag_string = embed_tag_string &  """"  
-					embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
-					embed_tag_string = embed_tag_string &  """ border=0>"
-                    embed_tag_string = embed_tag_string & "<div class=""copyOverlay""><A HREF =""#"" onclick=""" & onclickCopyFunction & "return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
-					base64_cdx_name = tablename & fieldname  & "_" & uniqueid
-					embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
-                    if NOT UCase(formmode) = "LIST" then
-                        embed_tag_string = embed_tag_string &  "<div style=""display:none;"">"
-                        embed_tag_string = embed_tag_string & "<" & "script language=""JavaScript"">"
-		                embed_tag_string = embed_tag_string & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & uniqueid & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all." & base64_cdx_name & "_orig" & ".value),  ""true""" & ")"
-		                embed_tag_string = embed_tag_string & "</" & "script>" 
-                        embed_tag_string = embed_tag_string & "</div>"
+					    'jhs
+                        embed_tag_string = "<div class=""copyContainer"">"
+					    embed_tag_string = embed_tag_string &  "<IMG SRC="
+					    embed_tag_string = embed_tag_string &  """"  
+					    embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
+					    embed_tag_string = embed_tag_string &  """ border=0>"
+                        embed_tag_string = embed_tag_string & "<div class=""copyOverlay""><A HREF =""#"" onclick=""" & onclickCopyFunction & "return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div>"
+					    base64_cdx_name = tablename & fieldname  & "_" & uniqueid
+					    embed_tag_string = embed_tag_string &  "<Input type=""hidden"" id=""" & base64_cdx_name & "_orig" & """ value=""" & session("base64cdx") & """>"
+                        if NOT UCase(formmode) = "LIST" then
+                            embed_tag_string = embed_tag_string &  "<div style=""display:none;"">"
+                            embed_tag_string = embed_tag_string & "<" & "script language=""JavaScript"">"
+		                    embed_tag_string = embed_tag_string & "    cd_insertObject(""chemical/x-cdx"", ""185"", ""130"", ""CD_" & uniqueid & """, """ & Application("TempFileDirectoryHTTP" & "ChemInv")  & "mt.cdx"", ""true"", ""true"", escape(document.all." & base64_cdx_name & "_orig" & ".value),  ""true""" & ")"
+		                    embed_tag_string = embed_tag_string & "</" & "script>" 
+                            embed_tag_string = embed_tag_string & "</div>"
+                        else
+                            embed_tag_string = embed_tag_string &  "<style> .copyOverlay { bottom: 50px; left: 80px; } </" & "style>"
+                        end if
+                        embed_tag_string = embed_tag_string &  "</div>"
                     else
-                        embed_tag_string = embed_tag_string &  "<style> .copyOverlay { bottom: 50px; left: 80px; } </" & "style>"
+                        embed_tag_string = embed_tag_string &  "<IMG SRC="
+					    embed_tag_string = embed_tag_string &  """"  
+					    embed_tag_string = embed_tag_string &  Application("ActionForm" & dbkey) & "?dbname=" & dbkey & "&formgroup=" & formgroup & "&dataaction=get_structure&Table=" & tablename & "&Field=" & fieldname & "&DisplayType=" & displaytype  & "&StrucID=" & uniqueid & "&width=" & width & "&height=" & height
+					    embed_tag_string = embed_tag_string &  """ border=0>"
                     end if
-                    embed_tag_string = embed_tag_string &  "</div>"
 				else
 					embed_tag_string = "<IMG SRC="
 					embed_tag_string = embed_tag_string &  """"  

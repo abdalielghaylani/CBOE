@@ -81,7 +81,7 @@ cdxPath = Application("TempFileDirectory" & dbkey) & FileRootName & ".cdx"
 			<tr>
 				<td>
 <% 
-	if detectModernBrowser = true then
+	if len(gifWidth)>0 or detectModernBrowser = true then
         gifWidth = 300
         gifHeight = 300
 		zoomGifDir = Application("TempFileDirectory" & dbkey) & FileRootName & "_" & gifWidth & "x" & gifHeight & ".gif"
@@ -91,9 +91,14 @@ cdxPath = Application("TempFileDirectory" & dbkey) & FileRootName & ".cdx"
 			ConvertCDXtoGIF dbkey, TableName, FieldName, BaseID, gifWidth, gifHeight	
 		End if
 		Set checkFile = nothing	
-        embed_tag_string = embed_tag_string & "<div class=""copyContainer""><IMG SRC=""" & zoomGifPath & """" & "border=0>"
-        embed_tag_string = embed_tag_string &  "<div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy('" & structDataObjName & "', true); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div></div>"
-        Response.Write embed_tag_string				
+        if detectModernBrowser = true then
+            embed_tag_string = embed_tag_string & "<div class=""copyContainer""><IMG SRC=""" & zoomGifPath & """" & "border=0>"
+            embed_tag_string = embed_tag_string &  "<div class=""copyOverlay""><A HREF =""#"" onclick=""doStructureCopy('" & structDataObjName & "', true); return false;""><img width=""20"" size=""20"" src=""/ChemInv/graphics/copy-icon.png"" /></a></div></div>"
+            Response.Write embed_tag_string		
+        Else
+%>
+            <img SRC="<%=zoomGifPath%>" Border="0">
+<%        End if		
 Else%>
 					<script language="javascript">cd_insertObjectStr("<embed src='<%=initial_CDP_file%>' border='0' width='500' height='400' id='1' name='CDX' viewonly='true' type='chemical/x-cdx' dataurl='<%=Application("ActionForm" & dbkey)%>?dbname=chemacx&amp;formgroup=base_form_group&amp;dataaction=get_structure&amp;Table=<%=TableName%>&amp;Field=<%=FieldName%>&amp;DisplayType=cdx&amp;StrucID=<%=BaseID%>'>");</script> 
 <%End if %>		

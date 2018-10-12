@@ -346,7 +346,7 @@ location.reload(true)
 
 
 <%end if%>
-<%if UCase(strTrueFalse(GetFormGroupVal(dbkey, formgroup, kPluginValue))) = "TRUE" then
+<%if UCase(strTrueFalse(GetFormGroupVal(dbkey, formgroup, kPluginValue))) = "TRUE" or detectModernBrowser = true then
 	if detectNS4 = true then%>
 	<script language="JavaScript" src= "/cfserverasp/source/chemdraw_ns4.js"></script>
 	<%else%>

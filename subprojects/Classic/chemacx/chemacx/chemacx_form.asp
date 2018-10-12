@@ -62,7 +62,7 @@ else
     zoomFunction = "ACX_getStrucZoomBtn('Substance.BASE64_CDX'," & BaseID & ", 'SubstanceBASE64_CDX_" & BaseID & "_orig',300,300)"
 end if
 
-if detectModernBrowser = true then
+if detectModernBrowser = true or displayType = "SizedGif" then
     TempCdxPath =Application("TempFileDirectoryHTTP" & "chemacx")
 %>
         <div style="display: none">
