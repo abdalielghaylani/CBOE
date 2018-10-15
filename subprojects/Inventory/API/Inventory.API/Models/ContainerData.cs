@@ -15,6 +15,12 @@ namespace PerkinElmer.COE.Inventory.API.Models
         public int Id { get; set; }
 
         /// <summary>
+        /// Gets or sets the container id of the container.
+        /// </summary>
+        [JsonProperty(PropertyName = "containerId")]
+        public string ContainerId { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the container.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
