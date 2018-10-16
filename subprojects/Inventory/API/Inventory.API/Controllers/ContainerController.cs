@@ -55,7 +55,7 @@ where
         }
 
         [HttpGet]
-        [Route(Consts.apiPrefix + "containers/{id:int}")]
+        [Route(Consts.apiPrefix + "containers/byId/{id:int}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
