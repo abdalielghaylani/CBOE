@@ -355,7 +355,6 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AllOtherFiles1</td><td>{E1AA072B-D43A-455A-9C6B-FE263FFDDC1E}</td><td>CHEMBIOVIZ</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles10</td><td>{CE6FE1F1-F6B5-4AAA-8428-63D62076AC83}</td><td>APP_GLOBALRESOURCES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles11</td><td>{F71CD81E-3A84-492B-ABBB-90A992669DE3}</td><td>APP_THEMES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AllOtherFiles12</td><td>{86BBA759-0A10-49E7-8F6A-70D2E803AE28}</td><td>BIN</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -434,6 +433,7 @@
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td>{51A36A11-E95A-43D9-AC2B-C1C5ED7D9C85}</td><td>BIN2</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>{E6BC6472-3D2E-4A6A-9885-41D1AD200210}</td><td>BIN10</td><td>0</td><td/><td>cambridgesoft.coe.registrati2</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td>{56E1393D-93DF-4823-94C6-AFDC44126BE4}</td><td>BIN2</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ChemBioViz</td><td>{E1AA072B-D43A-455A-9C6B-FE263FFDDC1E}</td><td>CHEMBIOVIZ</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CommonRes</td><td>{78F004A0-A026-472E-AD4A-DDF26DC6CA26}</td><td>COMMONRESOURCES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Csla.Compression.dll</td><td>{75FAC602-A0AF-4AED-98B2-35E8688ABEF4}</td><td>BIN10</td><td>0</td><td/><td>csla.compression.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td>{6D0B1B64-969F-41A6-A080-A7422655D36C}</td><td>BIN10</td><td>0</td><td/><td>icsharpcode.sharpziplib.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -2509,6 +2509,7 @@ End If
 		<col def="S255">ISDescription</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S255">ISFolderName</col>
+		<row><td>ACCESSINI</td><td>CONFIG2</td><td>ACCESS~1|AccessINI</td><td/><td>0</td><td/></row>
 		<row><td>ADMINSOURCE</td><td>CFSERVERADMIN</td><td>ADMINS~1|AdminSource</td><td/><td>0</td><td/></row>
 		<row><td>ALLUSERSPROFILE</td><td>TARGETDIR</td><td>.:ALLUSE~1|All Users</td><td/><td>0</td><td/></row>
 		<row><td>APP_GLOBALRESOURCES</td><td>CHEMBIOVIZ</td><td>APP_GL~1|App_GlobalResources</td><td/><td>0</td><td/></row>
@@ -2543,6 +2544,7 @@ End If
 		<row><td>CBOEHELP</td><td>CHEMOFFICEENTERPRISE</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CBOEHELP1</td><td>REGISTRATION.SERVER</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERADMIN</td><td>WEBSERVER_SOURCE</td><td>CFSERV~1|cfserveradmin</td><td/><td>0</td><td/></row>
+		<row><td>CHEMACX</td><td>CHEMOFFICE</td><td>ChemACX</td><td/><td>0</td><td/></row>
 		<row><td>CHEMBIOVIZ</td><td>CHEMOFFICEENTERPRISE</td><td>CHEMBI~1|ChemBioViz</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV</td><td>CHEMOFFICE_DATA</td><td>cheminv</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV1</td><td>CHEMOFFICE</td><td>ChemInv</td><td/><td>0</td><td/></row>
@@ -2561,6 +2563,7 @@ End If
 		<row><td>CONFIG</td><td>CHEMINV1</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG1</td><td>CHEMINV2</td><td>config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG12</td><td>REGISTRATION</td><td>Config</td><td/><td>0</td><td/></row>
+		<row><td>CONFIG2</td><td>CHEMACX</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIG8</td><td>CSWDA</td><td>Config</td><td/><td>0</td><td/></row>
 		<row><td>CONFIGLOADER</td><td>FRAMEWORK</td><td>CONFIG~1|ConfigLoader</td><td/><td>0</td><td/></row>
 		<row><td>CONFIGURATION_AND_DB_TOOLS</td><td>CHEMOFFICEENTERPRISE</td><td>CONFIG~1|Configuration and DB Tools</td><td/><td>0</td><td/></row>
@@ -2646,6 +2649,7 @@ End If
 		<row><td>NEW_DIRECTORY9</td><td>_1D9E94BC_2B52_438D_A2D2_55BD45EA7FD5_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>ORACLE_INSTALL_SCRIPTS</td><td>DBINSTALLSCRIPTS</td><td>ORACLE~1|Oracle_Install_Scripts</td><td/><td>0</td><td/></row>
 		<row><td>ORACLE_INSTALL_SCRIPTS1</td><td>COEDB</td><td>ORACLE~1|Oracle_Install_Scripts</td><td/><td>0</td><td/></row>
+		<row><td>ORAINI</td><td>CONFIG2</td><td>OraINI</td><td/><td>0</td><td/></row>
 		<row><td>PERKINELMER</td><td>CommonAppDataFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
 		<row><td>PUBLIC</td><td>FORMS3</td><td>Public</td><td/><td>0</td><td/></row>
 		<row><td>PUBLIC1</td><td>FORMS4</td><td>Public</td><td/><td>0</td><td/></row>
@@ -3415,7 +3419,6 @@ End If
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>CBV</td><td>AllOtherFiles1</td></row>
 		<row><td>CBV</td><td>AllOtherFiles10</td></row>
 		<row><td>CBV</td><td>AllOtherFiles11</td></row>
 		<row><td>CBV</td><td>AllOtherFiles12</td></row>
@@ -3425,6 +3428,7 @@ End If
 		<row><td>CBV</td><td>AllOtherFiles35</td></row>
 		<row><td>CBV</td><td>AllOtherFiles36</td></row>
 		<row><td>CBV</td><td>CSWebMenu6.dll</td></row>
+		<row><td>CBV</td><td>ChemBioViz</td></row>
 		<row><td>CBV</td><td>Csla.Compression.dll</td></row>
 		<row><td>CBV</td><td>ICSharpCode.SharpZipLib.dll</td></row>
 		<row><td>CBV</td><td>InvLoaderSetup.exe</td></row>
@@ -3590,7 +3594,7 @@ End If
 		<row><td>exceptionshandling.xml</td><td>AllOtherFiles33</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>5</td><td/></row>
 		<row><td>favicon.ico</td><td>Assets</td><td>favicon.ico</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist\assets\favicon.ico</td><td>17</td><td/></row>
 		<row><td>global.asax</td><td>AllOtherFiles4</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Global.asax</td><td>1</td><td/></row>
-		<row><td>global.asax1</td><td>AllOtherFiles1</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Global.asax</td><td>1</td><td/></row>
+		<row><td>global.asax1</td><td>ChemBioViz</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax2</td><td>AllOtherFiles21</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Global.asax</td><td>1</td><td/></row>
 		<row><td>global.asax3</td><td>Registration.Server</td><td>GLOBAL~1.ASA|Global.asax</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\Global.asax</td><td>1</td><td/></row>
 		<row><td>icsharpcode.sharpziplib.dll</td><td>ICSharpCode.SharpZipLib.dll</td><td>ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\ICSharpCode.SharpZipLib.dll</td><td>1</td><td/></row>
@@ -3672,7 +3676,7 @@ End If
 		<row><td>system.web.http.webhost.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Web.Http.WebHost.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Web.Http.WebHost.dll</td><td>1</td><td/></row>
 		<row><td>tecit.tbarcode.dll</td><td>Bin</td><td>TECITT~1.DLL|TECIT.TBarCode.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\TECIT.TBarCode.dll</td><td>1</td><td/></row>
 		<row><td>web.config</td><td>AllOtherFiles4</td><td>WEB~1.CON|Web.Config</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Web.Config</td><td>17</td><td/></row>
-		<row><td>web.config1</td><td>AllOtherFiles1</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Web.config</td><td>1</td><td/></row>
+		<row><td>web.config1</td><td>ChemBioViz</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHEMBIOVIZWEBAP_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config2</td><td>AllOtherFiles21</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config3</td><td>AllOtherFiles6</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
@@ -4387,7 +4391,6 @@ End If
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AllOtherFiles1</td><td/><td/><td>_043116D2_BB4A_4146_BD35_83B493BDC5F5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles10</td><td/><td/><td>_8E662C2B_8E20_4E89_BE48_DF24DC3BF1D7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles11</td><td/><td/><td>_F19F962B_0288_42B6_BE5D_D343D3423314_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AllOtherFiles12</td><td/><td/><td>_420B07B7_8498_4D45_B552_7F66E4029EE8_FILTER</td><td/><td/><td/><td/></row>
@@ -4466,6 +4469,7 @@ End If
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll</td><td/><td/><td>_6554C83C_B479_4F92_82B2_220F69F7D7D7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td/><td/><td>_70F4F1AC_28E4_47AA_BD4A_ACF9F1D6DB48_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.RegistrationWebApp.dll</td><td/><td/><td>_B3D602E2_EFB2_4313_ABF9_3E3D0165DD89_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ChemBioViz</td><td/><td/><td>_043116D2_BB4A_4146_BD35_83B493BDC5F5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CommonRes</td><td/><td/><td>_78D9F7BB_2199_49A1_80CB_EE753E57746C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Csla.Compression.dll</td><td/><td/><td>_A12CF1AB_1087_4BB9_82F7_8B3E86903F12_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ICSharpCode.SharpZipLib.dll</td><td/><td/><td>_497B8F00_270C_49E2_A03D_595B5B61336C_FILTER</td><td/><td/><td/><td/></row>
@@ -7067,7 +7071,16 @@ End If
 		<row><td>ID_STRING576</td><td>1033</td><td>CHEMREG</td><td>0</td><td/><td>-458853563</td></row>
 		<row><td>ID_STRING577</td><td>1033</td><td>NEWREG_SERVER_URL</td><td>0</td><td/><td>-458857627</td></row>
 		<row><td>ID_STRING578</td><td>1033</td><td>CDJS_URL</td><td>0</td><td/><td>220643108</td></row>
+		<row><td>ID_STRING579</td><td>1033</td><td>ChemACX.ini</td><td>0</td><td/><td>1696999557</td></row>
 		<row><td>ID_STRING58</td><td>1033</td><td>DATAVI~1|DataView Manager Help Guide</td><td>0</td><td/><td>-1457540204</td></row>
+		<row><td>ID_STRING580</td><td>1033</td><td>GLOBALS</td><td>0</td><td/><td>1696993509</td></row>
+		<row><td>ID_STRING581</td><td>1033</td><td>ABOUT_WINDOW</td><td>0</td><td/><td>1696991525</td></row>
+		<row><td>ID_STRING582</td><td>1033</td><td>ChemACX.ini</td><td>0</td><td/><td>1697012165</td></row>
+		<row><td>ID_STRING583</td><td>1033</td><td>GLOBALS</td><td>0</td><td/><td>1696995813</td></row>
+		<row><td>ID_STRING584</td><td>1033</td><td>ABOUT_WINDOW</td><td>0</td><td/><td>1697010149</td></row>
+		<row><td>ID_STRING585</td><td>1033</td><td>ChemACX.ini</td><td>0</td><td/><td>1697044965</td></row>
+		<row><td>ID_STRING586</td><td>1033</td><td>GLOBALS</td><td>0</td><td/><td>1697020421</td></row>
+		<row><td>ID_STRING587</td><td>1033</td><td>ABOUT_WINDOW</td><td>0</td><td/><td>1697030661</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
 		<row><td>ID_STRING60</td><td>1033</td><td>SETUPL~1|Setup Logs</td><td>0</td><td/><td>-1457540204</td></row>
@@ -7287,6 +7300,9 @@ End If
 		<row><td>IniTableKey4</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING563##</td><td>1</td><td>0</td><td>invconfigini</td></row>
 		<row><td>IniTableKey5</td><td>##ID_STRING575##</td><td>CONFIG1</td><td>##ID_STRING576##</td><td>##ID_STRING577##</td><td>NULL</td><td>1</td><td>invconfigini</td></row>
 		<row><td>IniTableKey6</td><td>##ID_STRING557##</td><td>NEW_DIRECTORY2</td><td>##ID_STRING558##</td><td>##ID_STRING578##</td><td>http://[SERVERNAMEHOST]/cdjs/js/chemdrawweb/chemdrawweb.js</td><td>0</td><td>invconfigini</td></row>
+		<row><td>IniTableKey7</td><td>##ID_STRING579##</td><td>CONFIG2</td><td>##ID_STRING580##</td><td>##ID_STRING581##</td><td>ChemACX [PDTVERSION]</td><td>0</td><td>ChemBioViz</td></row>
+		<row><td>IniTableKey8</td><td>##ID_STRING582##</td><td>ORAINI</td><td>##ID_STRING583##</td><td>##ID_STRING584##</td><td>ChemACX [PDTVERSION]</td><td>0</td><td>ChemBioViz</td></row>
+		<row><td>IniTableKey9</td><td>##ID_STRING585##</td><td>ACCESSINI</td><td>##ID_STRING586##</td><td>##ID_STRING587##</td><td>ChemACX [PDTVERSION]</td><td>0</td><td>ChemBioViz</td></row>
 	</table>
 
 	<table name="IniLocator">
@@ -7894,6 +7910,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>NewProperty9</td><td>0</td><td/></row>
 		<row><td>ORACLESERVICE</td><td>Orcl</td><td/></row>
 		<row><td>PASSWORDMISMATCH</td><td>False</td><td/></row>
+		<row><td>PDTVERSION</td><td>18.1.0</td><td/></row>
 		<row><td>PIDTemplate</td><td>12345&lt;###-%%%%%%%&gt;@@@@@</td><td/></row>
 		<row><td>PORTNO</td><td>80</td><td/></row>
 		<row><td>PROGMSG_IIS_CREATEAPPPOOL</td><td>##IDS_PROGMSG_IIS_CREATEAPPPOOL##</td><td/></row>
