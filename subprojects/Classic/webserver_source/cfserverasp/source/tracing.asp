@@ -125,13 +125,15 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 	
 	function StartTrace(){
 		
-		var level= traceLevel.value 
-		var scope = GetRadioSelection(traceScope);		
+		var level= document.getElementById("traceLevel").value;		
+		var scope = GetRadioSelection(document.getElementsByName("traceScope"));		
 		var bContinue;
-		bcontinue = confirm('Are you sure you want to start tracing for ' + dbkey + ' with ' + scope + ' scope and level ' + level + '?');
-		if (bcontinue){ 
+		bContinue = confirm('Are you sure you want to start tracing for ' + dbkey + ' with ' + scope + ' scope and level ' + level + '?');
+
+		if (bContinue){ 
+
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StartTracing&level=" + level + "&scope=" + scope;
-			var httpResponse = JsHTTPGet(strURL)
+			var httpResponse = JsHTTPGet(strURL);
 			if (httpResponse == '1'){
 				DisableStatusAndLevel(true)
 				alert('Trace: On\rScope: ' + scope + '\rLevel: '+ level);		
@@ -141,7 +143,7 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 			}
 		}
 		else{
-			traceStatus[0].checked = true
+			document.getElementsByName("traceStatus")[0].checked = true
 		}	 
 	}
 	
@@ -151,6 +153,7 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		var bContinue;
 		bcontinue = confirm('Are you sure you want to stop tracing for ' + dbkey + '?');
 		if (bcontinue){ 
+
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StopTracing";
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
@@ -166,20 +169,28 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		}	 	 
 	}
 	/////////////////////////////////////////////////////////////////////
-	//	GetHTTP Content using msxml
+	//	GetHTTP Content using xmlhttp
 	//	
 	function JsHTTPGet(strURL){
-		var objXML = new ActiveXObject("Msxml2.XMLHTTP"); 
-		objXML.open("GET", strURL, false);
-		objXML.send(); 
-		strResponse = objXML.responseText;
-		return strResponse;
+		if (window.XMLHttpRequest) {
+                   var xhttp = new XMLHttpRequest();
+                } else {                    
+                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        return xhttp.responseText;
+                    }
+                };
+                xhttp.open("GET", strURL, false);
+                xhttp.send();
+				return  xhttp.onreadystatechange();
 	}
 	
 	function DisableStatusAndLevel(bool){
-		traceScope[0].disabled = bool;
-		traceScope[1].disabled = bool;
-		traceLevel.disabled = bool;	
+		document.getElementsByName("traceScope")[0].disabled = bool;
+		document.getElementsByName("traceScope")[1].disabled = bool;
+		document.getElementById("traceLevel").disabled = bool;	
 	}
 
 	function SetPageTimer(b){
@@ -255,7 +266,7 @@ set fs=nothing
 			<%=dbkey%>
 		</td>
 		<td align="center">
-			<input type="text" name="traceLevel" value="20" size="3" xonchange="StartTrace();">			
+			<input type="text" id="traceLevel" name="traceLevel" value="20" size="3" xonchange="StartTrace();">			
 		</td>
 		<td>
 			<input checked type="radio" name="traceScope" value="Session">Session
@@ -273,7 +284,7 @@ set fs=nothing
 		</td>
 	</tr>
 </table>
-<BR><BR><input type="checkbox" name="pageTimer" value="1" onclick="SetPageTimer(this.checked);">			
+<BR><BR><input type="checkbox" id="pageTimer" name="pageTimer" value="1" onclick="SetPageTimer(this.checked);">			
 Enable page timer for <%=dbkey%>
 <center>
 	<input type="button" value="Back" onClick="history.back()" id=button1 name=button1>
@@ -287,17 +298,18 @@ Enable page timer for <%=dbkey%>
 	
 		
 	
-	traceStatus[0].checked = true
-	traceScope[1].checked = true
-	traceLevel.value = 20
+	document.getElementsByName("traceStatus")[0].checked = true
+	document.getElementsByName("traceScope")[1].checked = true
+	document.getElementById("traceLevel").value = 20
 	if (level > 0){
-		traceLevel.value = level
-		traceStatus[1].checked = true
-		if (scope == "session") traceScope[0].checked = true;
+		document.getElementById("traceLevel").value = level
+		document.getElementsByName("traceStatus")[1].checked = true
+		if (scope == "session") document.getElementsByName("traceScope")[0].checked = true;
 		DisableStatusAndLevel(true);
 	}
-	if ((pTimer == "on") && (!pageTimer.checked)) pageTimer.checked = true; 
-	if ((pTimer == "off") && (pageTimer.checked)) pageTimer.checked = false;
+	var pt = document.getElementById("pageTimer");
+	if ((pTimer == "on") && (!pt.checked)) pt.checked = true; 
+	if ((pTimer == "off") && (pt.checked)) pt.checked = false;
 </SCRIPT>
 
 <!-- #include virtual="/cs_security/footer.asp" -->
