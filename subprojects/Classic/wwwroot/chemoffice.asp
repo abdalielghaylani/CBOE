@@ -10,7 +10,7 @@
 PAGE_URL = "CambridgeSoft ChemOffice Enterprise"
 PAGE_COLOR = color_blue
 PAGE_APP = "header_" & color_blue & "_coent.gif"
-TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrative Tools</b></a>&nbsp;|&nbsp;<a href=""http://www.cambridgesoft.com/services/topics.cfm?FID=6"" target=""_blank""><b>Technical Notes</b></a>"
+TOP_NAV = "<a href=""http://www.cambridgesoft.com/services/topics.cfm?FID=6"" target=""_blank""><b>Technical Notes</b></a>"
 
 
 Response.Expires = -1
