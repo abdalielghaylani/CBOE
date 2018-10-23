@@ -199,7 +199,7 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		(b ? state = "on" : state = "off") 
 		bcontinue = confirm('Are you sure you want to turn the page timer ' + state + ' for ' + dbkey + '?');
 		if (bcontinue){
-			var scope = GetRadioSelection(traceScope);
+			var scope = GetRadioSelection(document.getElementsByName("traceScope"));
 			 
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=SetPageTimer&state=" + state + "&scope=" + scope;
 			var httpResponse = JsHTTPGet(strURL)
