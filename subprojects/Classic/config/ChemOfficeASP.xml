@@ -4,8 +4,4 @@
 	<chemofficeiniApps apptype="CO_WEBSERVER_STANDARD" caption="Standard: " useDropdownThreshold="10" />
 	<chemofficeiniApps apptype="CO_WEBSERVER_ULTRA" caption="Ultra: " useDropdownThreshold="10" />				
 </section>
-<section name="Wizard" caption="Custom Databases">
-	<line caption="ChemFinder databases published with the Web Wizard will appear in this space.&lt;BR&gt;"></line>
-	<chemofficeiniApps apptype="WIZARD" useDropdownThreshold="3" caption="Custom: "/>
-</section>
 </home>
