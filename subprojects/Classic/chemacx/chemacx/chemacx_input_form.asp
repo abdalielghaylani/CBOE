@@ -42,7 +42,8 @@ Response.expires= -1
 		<!--#INCLUDE VIRTUAL = "/cfserverasp/source/cows_func_js.asp"-->
 		<!--#INCLUDE FILE="../source/secure_nav.asp"-->
 		<!--#INCLUDE FILE="../source/app_js.js"-->
-		<!--#INCLUDE FILE="../source/app_vbs.asp"-->      
+		<!--#INCLUDE FILE="../source/app_vbs.asp"-->
+		<!--#INCLUDE VIRTUAL="/cheminv/gui/guiutils.asp"-->      
         <style>
             div {
                 margin-left: 0px;
