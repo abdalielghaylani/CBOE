@@ -14,6 +14,9 @@ end if%>
 <!--#INCLUDE FILE="../source/secure_nav.asp"-->
 <!--#INCLUDE FILE="../source/app_js.js"-->
 <!--#INCLUDE FILE="../source/app_vbs.asp"-->
+<%if detectModernBrowser = true then%>
+    <SCRIPT LANGUAGE="javascript" src="<%=GetINIValue( "required", "GLOBALS", "CDJS_URL", "chemoffice", "chemoffice")%>"></SCRIPT>
+<%end if %>
 </head>
 <body <%=Application("BODY_BACKGROUND")%>>
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/header_vbs.asp"-->
