@@ -7,8 +7,14 @@ using Swashbuckle.Application;
 
 namespace PerkinElmer.COE.Inventory.API
 {
+    /// <summary>
+    /// Swagger configuration class
+    /// </summary>
     public class SwaggerConfig
     {
+        /// <summary>
+        /// Swagger registration method
+        /// </summary>
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
@@ -31,12 +37,10 @@ namespace PerkinElmer.COE.Inventory.API
                         // Use "SingleApiVersion" to describe a single version API. Swagger 2.0 includes an "Info" object to
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
-                        //
                         c.SingleApiVersion("v1", "PerkinElmer.COE.Inventory.API");
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
-                        //
-                        //c.PrettyPrint();
+                        c.PrettyPrint();
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -100,8 +104,7 @@ namespace PerkinElmer.COE.Inventory.API
                         // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
-                        //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        c.IncludeXmlComments(GetXmlCommentsPath());
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -181,8 +184,7 @@ namespace PerkinElmer.COE.Inventory.API
                     {
                         // Use the "DocumentTitle" option to change the Document title.
                         // Very helpful when you have multiple Swagger pages open, to tell them apart.
-                        //
-                        //c.DocumentTitle("My Swagger UI");
+                        c.DocumentTitle("Inventory API Swagger UI");
 
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
@@ -211,8 +213,7 @@ namespace PerkinElmer.COE.Inventory.API
                         // Use this option to control how the Operation listing is displayed.
                         // It can be set to "None" (default), "List" (shows operations for each resource),
                         // or "Full" (fully expanded: shows operations and their details).
-                        //
-                        //c.DocExpansion(DocExpansion.List);
+                        c.DocExpansion(DocExpansion.List);
 
                         // Specify which HTTP operations will have the 'Try it out!' option. An empty paramter list disables
                         // it for all operations.
@@ -250,6 +251,10 @@ namespace PerkinElmer.COE.Inventory.API
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
+        }
+        private static string GetXmlCommentsPath()
+        {
+            return string.Format(@"{0}\bin\Inventory.API.xml", System.AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

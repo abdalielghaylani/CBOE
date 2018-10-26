@@ -14,6 +14,9 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
+    /// <summary>
+    /// The location controller
+    /// </summary>
     [ApiVersion(Consts.apiVersion)]
     public class LocationController : InvApiController
     {
@@ -26,6 +29,10 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             };
         }
 
+        /// <summary>
+        /// Get all locations
+        /// </summary>
+        /// <returns>List of locations</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "locations")]
         [SwaggerOperation("Locations")]
@@ -61,6 +68,11 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
+        /// <summary>
+        /// Get location by id
+        /// </summary>
+        /// <param name="id">Location id</param>
+        /// <returns>Location</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "locations/{id}")]
         [SwaggerOperation("Locations")]

@@ -9,6 +9,9 @@ using System.Web.Http;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
+    /// <summary>
+    /// The inventory api controller
+    /// </summary>
     public class InvApiController : ApiController
     {
         private OracleConnection connection;

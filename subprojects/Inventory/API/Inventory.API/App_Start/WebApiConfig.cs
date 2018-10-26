@@ -7,8 +7,15 @@ using System.Web.Http.Routing;
 
 namespace PerkinElmer.COE.Inventory.API
 {
+    /// <summary>
+    /// Web API configuration class.
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Web API registration method
+        /// </summary>
+        /// <param name="config">Http configuration</param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

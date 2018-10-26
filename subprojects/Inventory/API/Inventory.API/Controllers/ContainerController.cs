@@ -14,6 +14,9 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
+    /// <summary>
+    /// The inventory container controller
+    /// </summary>
     [ApiVersion(Consts.apiVersion)]
     public class ContainerController : InvApiController
     {
@@ -53,7 +56,12 @@ where
                 Status = (string)reader["container_status"]
             };
         }
-
+		
+        /// <summary>
+        /// Get container by internal id
+        /// </summary>
+        /// <param name="id">Internal id</param>
+        /// <returns>Container</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "containers/byId/{id:int}")]
         [SwaggerOperation("Containers")]
@@ -92,6 +100,11 @@ where
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
+        /// <summary>
+        /// Get container by container id
+        /// </summary>
+        /// <param name="containerId">Container id</param>
+        /// <returns>Container</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "containers/{containerId}")]
         [SwaggerOperation("Containers")]
