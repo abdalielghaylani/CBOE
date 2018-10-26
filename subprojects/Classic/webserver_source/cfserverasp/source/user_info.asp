@@ -167,7 +167,7 @@ Select Case UCase(action)
 			else
 				formName = result_list_view
 				formPath = Application("AppPathHTTP")& "/" & dbkey & "/" & formName & "?formgroup=" & formgroup & "&dbname=" & dbkey & "&formmode=list"  
-				'ShowListView(formPath)
+				ShowListView(formPath)
 			end if
 		end if
 		DoSetNullAction()
@@ -182,7 +182,7 @@ End Function
 
 Function ReloadMainFrame()
 %><script language = "javascript">
-	theWindow.location.replace("<%=Session("CurrentLocation" & dbkey & formgroup)%>")
+	theWindow.location.href = "<%=Session("CurrentLocation" & dbkey & formgroup)%>"
 </script>
 <%
 End Function
@@ -191,7 +191,8 @@ Function ShowListView(formPath)
 %><script language = "javascript">
 	
 	currentRecord = theWindow.document.forms["nav_variables"].elements["CurrentRecord"].value
-	theWindow.location.replace("<%=formPath%>" + "&indexvalue=" + currentRecord)
+	theMainWindow = <%=Application("mainwindow")%>
+	theMainWindow.location.href = "<%=formPath%>" + "&indexvalue=" + currentRecord
 	
 </script>
 <%
@@ -206,7 +207,7 @@ End Function
 
 Function ReloadUserFrame()
 %><script language = "javascript">
-	theUserInfoWindow.location.replace("<%=Application("AppPathHTTP")%>" + "/user_info.asp?dbname=" + dbname + "&formgroup=" + formgroup + "&formmode=" + formmode)
+	theUserInfoWindow.location.href = "<%=Application("AppPathHTTP")%>" + "/user_info.asp?dbname=" + dbname + "&formgroup=" + formgroup + "&formmode=" + formmode
 </script>
 <%
 End Function
