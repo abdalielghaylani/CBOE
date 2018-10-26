@@ -205,6 +205,8 @@ namespace CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager
             {                
                 //if ((SpotfireSetting.SpotfireUser != "") || (SpotfireSetting.SpotfireUser == "" && settingsGroup.Name != "DVManager"))
                 //{
+                if (settingsGroup.Name != "DVManager" && settingsGroup.Title != "DataViewManager settings")
+                {
                     Infragistics.WebUI.UltraWebTab.Tab tab = new Infragistics.WebUI.UltraWebTab.Tab();
                     tab.Key = settingsGroup.Name;
                     tab.Text = settingsGroup.Title;
@@ -262,6 +264,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager
                         this.Tabs.Add(tab);
                         currentIndex++;
                     }
+                }
                 //}
             }
 
