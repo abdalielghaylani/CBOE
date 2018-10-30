@@ -106,8 +106,9 @@ public partial class Forms_ContentArea_Home : GUIShellPage
             for (int i = 0; i < homeData.Groups.Count; i++)
             {                
                 Group myGroup = homeData.Groups.Get(i);
-                bool browser = Request.Browser.Type.ToUpper().Contains("IE");
-                if (myGroup != null && myGroup.Name != "COEMANAGER_DV" && (browser? true: myGroup.COEIdentifier != "Registration"))
+                var browser = (HttpBrowserCapabilities) Master.COERequestBrowser;
+                bool isIE = browser.Type.ToUpper().Contains("IE") || browser.Type.ToUpper().Contains("INTERNETEXPLORER");
+                if (myGroup != null && myGroup.Name != "COEMANAGER_DV" && (isIE ? true : (myGroup.Name != "Registration" && myGroup.COEIdentifier != "Registration")))
                     {
                         // Make sure the DataView Manager is not displayed for non-SpotfireUsers 
                         //if ((SpotfireSetting.SpotfireUser != "" ) || (SpotfireSetting.SpotfireUser == "" && myGroup.Name != "COEMANAGER_DV"))

@@ -35,6 +35,7 @@ public partial class Forms_Master_MasterPage : GUIShellMaster
     COEMenu COEMenuObject;
     COEMenu COEToolbarObject;
     COEMenu COEFooterObject;
+    public HttpBrowserCapabilities COERequestBrowser;
 
     #endregion
 
@@ -47,7 +48,8 @@ public partial class Forms_Master_MasterPage : GUIShellMaster
 
     protected override void OnInit(EventArgs e)
     {
-        if (Request != null && Request.Browser != null && (Request.Browser.Browser.ToLower() == ("mozilla") || ((Request.Browser.Browser == "IE" || Request.Browser.Browser == "InternetExplorer") && Request.Browser.MajorVersion >= 10)))
+        COERequestBrowser = Request.Browser;
+         if (Request != null && Request.Browser != null && (Request.Browser.Browser.ToLower() == ("chrome")) || (Request.Browser.Browser.ToLower() == ("mozilla") || ((Request.Browser.Browser == "IE" || Request.Browser.Browser == "InternetExplorer") && Request.Browser.MajorVersion >= 10)))
             Page.ClientTarget = "iecustom";
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         _showLeftPanel = false;
