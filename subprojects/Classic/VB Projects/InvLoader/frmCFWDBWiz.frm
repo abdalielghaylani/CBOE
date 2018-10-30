@@ -714,7 +714,7 @@ Begin VB.Form frmCFWDBWiz
          Height          =   285
          Left            =   600
          TabIndex        =   70
-         Text            =   "C:\Program Files\Cambridgesoft\InvLoader\Logs"
+         Text            =   "C:\Program Files (x86)\PerkinElmer\InvLoader\Logs"
          Top             =   960
          Width           =   3735
       End
