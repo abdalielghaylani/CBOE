@@ -80,6 +80,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private loadingVisible: boolean = false;
   private createContainerButtonEnabled: boolean = false;
   private invIntegrationEnabled: boolean = false;
+  private sendToInventoryEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
   private saveTemplatePopupHeight: number = 220;
   private showApprovedIcon: boolean = false;
@@ -194,12 +195,14 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
-    this.invIntegrationEnabled = (ss.isInventoryIntegrationEnabled && ss.isSendToInventoryEnabled)
+    this.invIntegrationEnabled = ss.isInventoryIntegrationEnabled
       && !this.temporary
       && !this.isNewRecord
-      && !editMode;
+      && !editMode;    
     this.createContainerButtonEnabled = this.invIntegrationEnabled
+      && ss.isSendToInventoryEnabled
       && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges);
+    this.sendToInventoryEnabled = this.createContainerButtonEnabled;
 
     this.backButtonEnabled = !editMode;
     if (forceUpdate) {

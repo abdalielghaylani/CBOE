@@ -29,6 +29,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Input() viewModel: CRegistryRecord;
   @Input() template: boolean;
   @Input() invIntegrationEnabled: boolean = false;
+  @Input() sendToInventoryEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
@@ -242,7 +243,10 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     super.update();
     let lookups = this.ngRedux.getState().session.lookups;
     let systemSettings = new CSystemSettings(lookups.systemSettings);
-    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
+    this.createContainerButtonEnabled = !this.editMode 
+      && this.invIntegrationEnabled 
+      && this.sendToInventoryEnabled 
+      && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
     let isLoggedUserBatchOwner: boolean = false;

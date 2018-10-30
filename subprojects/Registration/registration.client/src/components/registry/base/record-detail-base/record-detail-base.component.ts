@@ -34,6 +34,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   @Input() revision?: number;
   @Input() updatable: boolean = false;
   @Input() invIntegrationEnabled: boolean = false;
+  @Input() sendToInventoryEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
   @Input() useCurrent: boolean;
   @Input() parentHeight: string;

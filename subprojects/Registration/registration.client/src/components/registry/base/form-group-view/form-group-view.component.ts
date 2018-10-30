@@ -24,6 +24,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() viewConfig: CViewGroupContainer[];
   @Input() updatable: boolean = false;
   @Input() invIntegrationEnabled: boolean = false;
+  @Input() sendToInventoryEnabled: boolean = false;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Input() invContainers: IInventoryContainerList;
 
