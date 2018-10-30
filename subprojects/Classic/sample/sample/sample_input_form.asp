@@ -34,7 +34,7 @@ end if%>
 			<table>
 				<tr>
 					<td>
-						<%ShowStrucInputField  dbkey, formgroup,"MolTable.Structure","5","340","180", "AllOptions", "SelectList"%>
+						<%ShowStrucInputField  dbkey, formgroup,"MolTable.Structure","5","520","300", "AllOptions", "SelectList"%>
 					</td>
 				</tr>
 			</table>
