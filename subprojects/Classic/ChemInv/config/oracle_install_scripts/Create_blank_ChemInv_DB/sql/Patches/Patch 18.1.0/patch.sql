@@ -18,7 +18,11 @@ prompt '#########################################################'
 prompt '#########################################################'
 prompt 'Updating Functions, Procedures and Packages...'
 prompt '#########################################################'
+
+@"Patches\Patch &&currentpatch\Functions\f_getRegAltID.sql"
+
 @"Patches\Patch &&currentpatch\PLSQL\Packages\pkg_Authority_Body.sql"
+
 
 
 prompt '#########################################################'
