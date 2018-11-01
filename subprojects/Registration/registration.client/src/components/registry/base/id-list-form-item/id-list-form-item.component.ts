@@ -76,7 +76,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
       editorType: 'dxSelectBox',
       items: items,
       lookup: {
-        dataSource: activeItems,
+        dataSource: items,
         displayExpr: 'NAME',
         valueExpr: 'ID',
         placeholder: 'Select Identifier'
