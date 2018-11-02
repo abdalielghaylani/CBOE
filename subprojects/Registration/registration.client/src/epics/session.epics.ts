@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { createAction } from 'redux-actions';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { IPayloadAction, SessionActions, RegActions, ILookupData } from '../redu
 
 @Injectable()
 export class SessionEpics {
-  constructor(private http: HttpService, private router: Router) { }
+  constructor(private http: HttpService, private router: Router, private route: ActivatedRoute) { }
 
   handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
@@ -42,17 +42,23 @@ export class SessionEpics {
   }
 
   navigateToHomePage(lookupData: ILookupData) {
-    let homeMenuPrivileges = lookupData.homeMenuPrivileges;
-    if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_TEMP')) {
-      this.router.navigate(['records/temp']);
-    } else if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_REG')) {
-      this.router.navigate(['records']);
-    } else if (this.getPrivilege(homeMenuPrivileges, 'ADD_COMPOUND_TEMP')) {
-      this.router.navigate(['records/new']);
-    } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
-      this.router.navigate(['configuration']);
+    let returnUrlParam = 'returnUrl';
+    let returnUrl = this.route.snapshot.queryParams[returnUrlParam];
+    if (returnUrl) {
+      this.router.navigate([returnUrl]);
     } else {
-      this.router.navigate(['unauthorized']);
+      let homeMenuPrivileges = lookupData.homeMenuPrivileges;
+      if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_TEMP')) {
+        this.router.navigate(['records/temp']);
+      } else if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_REG')) {
+        this.router.navigate(['records']);
+      } else if (this.getPrivilege(homeMenuPrivileges, 'ADD_COMPOUND_TEMP')) {
+        this.router.navigate(['records/new']);
+      } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
+        this.router.navigate(['configuration']);
+      } else {
+        this.router.navigate(['unauthorized']);
+      }
     }
   }
 

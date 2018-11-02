@@ -81,6 +81,7 @@ export const REG_APP_ROUTES: Routes = [{
   component: RegRecordDetailPage
 }, {
   path: 'records/:id',
+  canActivate: [AuthGuard],
   component: RegRecordDetailPage
 }, {
   path: 'records/temp/:id',

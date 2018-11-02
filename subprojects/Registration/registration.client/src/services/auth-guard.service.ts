@@ -22,6 +22,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let privilege = route.data.privilege;
+    if (privilege === undefined) {
+      if (this.ngRedux.getState().session.token === null) {
+        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+      }
+      return true;
+    }
     return this.getPrivilege(privilege);
   }
 
