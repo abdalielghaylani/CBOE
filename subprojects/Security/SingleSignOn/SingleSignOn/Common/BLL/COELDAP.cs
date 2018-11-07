@@ -700,8 +700,9 @@ namespace CambridgeSoft.COE.Security.Services
         }
 
         public int GetCSExpiryDate(string userName, string password)
-        {
-            throw new Exception("The method or operation is not implemented.");
+        {            
+            int daysForPasswordExpiration = Convert.ToInt16(ConfigurationManager.AppSettings.Get("DaysToExpire"));
+            return daysForPasswordExpiration;
         }
 
     }
