@@ -346,10 +346,10 @@ namespace CambridgeSoft.COE.Patcher
             else
             {
                 // Ask for current version.
-                Console.Write("What version are you upgrading from? (11.0.1): ");
+                Console.Write("What version are you upgrading from? (12.1.3): ");
                 string userTyped = Console.ReadLine();
                 if (string.IsNullOrEmpty(userTyped))
-                    userInput[3] = "11.0.1";
+                    userInput[3] = "12.1.3";
                 else
                     userInput[3] = userTyped;
 
