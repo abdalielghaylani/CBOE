@@ -23,6 +23,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
   private tableId: string;
   private dataSource: CustomStore;
   private configTable: CConfigTable = new CConfigTable();
+  private tempRow: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -86,6 +87,17 @@ export class RegConfigTables extends RegConfigBaseComponent {
   }
 
   onInitNewRow(e) {
+    let data = e.component.getVisibleRows().filter(i => i.rowType === 'detail')[0];
+    if (data && data.data && Object.keys(data.data).length > 1) {
+      this.tempRow = data.data;
+    }
+    if (data && data.data && this.tempRow) {
+      for (let attr in this.tempRow) {
+        if (attr !== '__KEY__') {
+          e.data[attr] = this.tempRow[attr];
+        }
+      }
+    }
     if (this.tableId === 'VW_FRAGMENT') {
       e.tableId = 'VW_FRAGMENT';
       this.configTable.addEdit(e, 'add');
