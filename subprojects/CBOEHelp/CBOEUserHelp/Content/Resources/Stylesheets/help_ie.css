@@ -1,3 +1,4 @@
+@namespace MadCap url(http://www.madcapsoftware.com/Schemas/MadCap.xsd);
 /*<meta />*/
 
 BODY
@@ -272,3 +273,17 @@ MadCap|xref
 	mc-format: 'Make Default';
 }
 
+DIV.Caution
+{
+	background-image: url(../Images/caution.png);
+	background-repeat: no-repeat;
+	background-position: 0 0em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-style: italic;
+	mc-auto-number-format: '{b}Caution: {/b} ';
+	margin-bottom: 1.00em;
+	margin-top: 1.00em;
+	line-height: 1.30em;
+}

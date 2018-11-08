@@ -1031,10 +1031,48 @@
       conditions="Default.Not supported in 1261"
       ReplaceMergeNode="false">
       <TocEntry
+        Title="Detail View"
+        Link="/Content/Web Registration/Detail View.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Editing Records in the Temporary Table"
+          Link="/Content/Web Registration/Editing_records_in_the_t.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
         Title="Filter Row"
         Link="/Content/Web Registration/Filter Row.htm"
         conditions="Default.Not supported in 1261,Default.Not needed in Web Reg"
         ReplaceMergeNode="false" />
+      <TocEntry
+        Title="Types of Searches"
+        Link="/Content/Web Registration/Types of Searches.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Structure Search"
+          Link="/Content/Web Registration/Structure Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Text Search"
+          Link="/Content/Web Registration/Text Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Numeric Search"
+          Link="/Content/Web Registration/Numeric Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Formula Search"
+          Link="/Content/Web Registration/Formula Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Date Search"
+          Link="/Content/Web Registration/Date Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Boolean Search"
+          Link="/Content/Web Registration/Boolean Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
       <TocEntry
         Title="Managing Queries"
         Link="/Content/Web Registration/Managing Queries.htm"
@@ -1081,17 +1119,60 @@
       conditions="Default.Not supported in 1261"
       ReplaceMergeNode="false">
       <TocEntry
-        Title="Save as Template"
-        Link="/Content/Web Registration/Save as Template.htm"
+        Title="Creating a Registry Record"
+        Link="/Content/Web Registration/Creating_a_registry_reco.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Entering Registry Information"
+          Link="/Content/Web Registration/Entering_registry_inform.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Entering Component Information"
+          Link="/Content/Web Registration/Entering_component_infor.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Entering Fragment Information"
+          Link="/Content/Web Registration/Entering_fragment_inform.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Entering Batch Information"
+          Link="/Content/Web Registration/Entering_batch_informati.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
+        Title="Required Fields"
+        Link="/Content/Web Registration/Required_fields.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
         conditions="Default.Not supported in 1261" />
       <TocEntry
-        Title="Load from Templates"
-        Link="/Content/Web Registration/Load from Templates.htm"
+        Title="Options in Submit Record Form"
+        Link="/Content/Web Registration/Options_in_submit_record.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Save as Template"
+          Link="/Content/Web Registration/Save as Template.htm"
+          conditions="Default.Not supported in 1261" />
+        <TocEntry
+          Title="Load from Templates"
+          Link="/Content/Web Registration/Load from Templates.htm"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
+        Title="ChemDraw Chemical Warning"
+        Link="/Content/Web Registration/ChemDraw Chemical Warning.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
         conditions="Default.Not supported in 1261" />
     </TocEntry>
     <TocEntry
       Title="Approving and Registering a Compound"
       Link="/Content/Web Registration/Approving and Registering a Compound.htm"
+      conditions="Default.Not supported in 1261"
+      ReplaceMergeNode="false" />
+    <TocEntry
+      Title="Direct Registration"
+      Link="/Content/Web Registration/Direct_register.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+      conditions="Default.Not supported in 1261" />
+    <TocEntry
+      Title="Duplicate Resolution"
+      Link="/Content/Web Registration/Duplicate Resolution.htm"
       conditions="Default.Not supported in 1261"
       ReplaceMergeNode="false" />
     <TocEntry
@@ -1104,17 +1185,47 @@
         Link="/Content/Web Registration/Bulk Compounds Approval.htm"
         conditions="Default.Not supported in 1261"
         ReplaceMergeNode="false" />
+      <TocEntry
+        Title="Bulk Registration"
+        Link="/Content/Web Registration/Bulk Registration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261" />
     </TocEntry>
     <TocEntry
-      Title="Searching the Registration Records"
-      Link="/Content/Web Registration/Searching the Registration Records.htm"
-      conditions="Default.Not supported in 1261"
-      ReplaceMergeNode="false" />
-    <TocEntry
-      Title="Duplicate Resolution"
-      Link="/Content/Web Registration/Duplicate Resolution.htm"
-      conditions="Default.Not supported in 1261"
-      ReplaceMergeNode="false" />
+      Title="Managing the Registered Records"
+      Link="/Content/Web Registration/Managing_the_Registered.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+      conditions="Default.Not supported in 1261">
+      <TocEntry
+        Title="Searching the Registration Records"
+        Link="/Content/Web Registration/Searching the Registration Records.htm"
+        conditions="Default.Not supported in 1261"
+        ReplaceMergeNode="false">
+        <TocEntry
+          Title="SDF Search"
+          Link="/Content/Web Registration/SDF Search.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+      <TocEntry
+        Title="Editing a Registered Record"
+        Link="/Content/Web Registration/Editing_a_registered_rec.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Deleting a Registered Record"
+        Link="/Content/Web Registration/Deleting a Registered Record.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Creating Containers"
+        Link="/Content/Web Registration/Creating Containers.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261" />
+      <TocEntry
+        Title="Batches"
+        Link="/Content/Web Registration/Batches.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+        conditions="Default.Not supported in 1261">
+        <TocEntry
+          Title="Adding a Batch"
+          Link="/Content/Web Registration/Adding_a_batch.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+          conditions="Default.Not supported in 1261" />
+      </TocEntry>
+    </TocEntry>
   </TocEntry>
   <TocEntry
     Title="CBOE Search"
@@ -1229,7 +1340,7 @@
     </TocEntry>
     <TocEntry
       Title="Retrieving Server Information"
-      Link="/Content/CBOE Search/Retrieving Server Information.htm" />
+      Link="/Content/CBOE Search/Retrieving Server Information.htm"></TocEntry>
     <TocEntry
       Title="Home"
       Link="/Content/CBOE Search/Home.htm" />
@@ -1372,7 +1483,7 @@
     </TocEntry>
   </TocEntry>
   <TocEntry
-    Title="E-Notebook 17.1 - COE 17.1 Integration"
+    Title="E-Notebook - COE Integration"
     Link="/Content/ELN2014-COE Integration/E-Notebook - COE Integration.htm">
     <TocEntry
       Title="Retrieving Data from ChemOffice Enterprise Applications"

@@ -1,32 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Web Registration Introduction" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:conditions="Default.Web Registration Only" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Web Registration User guide.xml" MadCap:SearchType="Stem">
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Web Registration User guide.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.Web Registration Only" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Web Registration Introduction">
     <!-- saved from url=(0016)http://localhost -->
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Logging In to Web Registration</title>
-        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
-        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
         <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
-        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
-        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        <script src="../../Resources/Scripts/jquery.min.js">
         </script>
-        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
         </script>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>Web Registration</td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;">
-                        <hr width="100%" size="0" align="center" /><b>User</b><strong>'s Guide</strong>
-                    </td>
-                </tr>
-            </table>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
         </div>
         <h1>Logging In to Web Registration</h1>
         <p>Prior to access the Web Registration, you need to have a user account created in advance in CBOE Manager.
@@ -34,8 +37,7 @@
         <p style="font-weight: bold;">To log in to Web Registration:
 </p>
         <ol>
-            <li value="1">Open a web browser and type in the following URL: <b>http://Servername/Registration.Server/login</b><![CDATA[ 
-]]></li>
+            <li value="1">Open a web browser and type the following URL: <b>http://Servername/Registration.Server/login</b>. It is recommended to use Google Chrome and Firefox browsers, you can use Internet Explorer version 11 only for Inventory integration workflow.</li>
             <li value="2">The Log in page appears. Enter your credentials and click <b>Sign in</b>.
 </li>
         </ol>
@@ -50,6 +52,11 @@
         <p>
             <img src="../Resources/Images/Web Registration images/record matching.gif" />
         </p>
+        <p>If the structure drawing is not clearly visible to you, click on the structure to get it displayed in a separate pop-up dialog as shown below:</p>
+        <p>
+            <img src="../Resources/Images/Web Registration images/structure in details.gif" />
+        </p>
+        <p>To close the Structure pop-up dialog, click on the small close button at the upper-right corner of the dialog.</p>
         <H3>Deleting Records</H3>
         <p style="font-weight: bold;">To delete a record from the list:</p>
         <ol>
@@ -67,15 +74,7 @@
         <p>
             <img src="../Resources/Images/Web Registration images/record detail.gif" />
         </p>
-        <p>From the above page, you can:</p>
-        <ul>
-            <li value="1">Edit the record's information by clicking on Edit button. The editing page appears, make the required edits and click Save or click Cancel to discard any changes and to move back to the record details view.</li>
-            <li value="2"> Delete the record by clicking on Delete button.</li>
-            <li value="3">Approve the record if you have adequate privileges.</li>
-        </ul>
-        <p><b>Note:</b>&#160;The chemical structures are in CDXML format only in edit views. In list and detail views, the chemical structures appear as images, therefore it is not possible for you to copy structures from list and detail view into the chemical drawing tool. You can only copy and paste structures in edit views using the Ctrl+C shortcut or the Copy option from the ChemDraw toolbar.</p>
-        <p>If approval workflow is not enabled on your system, you will see Register button instead of Approve button, you can then directly register the record skipping the approval process.</p>
-        <p><b>Note:</b> Approve and Register buttons appear only when you are granted with registrar privileges.</p>
+        <p>Please refer to <a href="Detail View.htm">Detail View</a> topic for more details.</p>
         <p style="font-weight: bold;">Logging out from Web Registration</p>
         <p>To log out from Web Registration, click on the right-pointed arrow at the upper-right corner of the Web Registration application page.</p>
         <p>
@@ -87,10 +86,9 @@
             <br /><a href="Searching the Registration Records.htm">Searching the Registration Records</a>
         </p>
         <hr style="font-family: Arial;font-size: 10pt;" />
-        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
-            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
-            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
-        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
-        </script>
+        <p style="text-align: right;"><b><span style="color: #404040;">PerkinElmer Inc.</span> <span style="color: #0055a6;">| For the Better</span></b>
+            <br /><span style="color: #808080;">100 CambridgePark Drive, Cambridge, MA 02140</span>
+            <br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a>
+        </p>
     </body>
 </html>

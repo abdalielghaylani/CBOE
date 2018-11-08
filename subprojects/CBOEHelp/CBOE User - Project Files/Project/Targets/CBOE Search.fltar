@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="New Target"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/CBOE Search.flskn"
+  ConditionTagExpression="include[&quot;Default.CBOE Search&quot;] exclude[&quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or &quot;Default.ELN2014-COE Integration&quot; or Default.Inventory or &quot;Default.Not needed in Web Reg&quot; or &quot;Default.Not supported in 1261&quot; or Default.Registration or &quot;Default.Web Registration Only&quot;] "
+  MasterToc="/Project/TOCs/CBOE Search TOC.fltoc"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true" />
+</CatapultTarget>

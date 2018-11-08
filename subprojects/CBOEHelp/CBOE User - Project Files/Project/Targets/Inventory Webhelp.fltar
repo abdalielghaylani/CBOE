@@ -2,13 +2,13 @@
 <CatapultTarget
   Version="2"
   Comment="Inventory User Guide"
-  Type="WebHelp"
+  Type="WebHelp2"
   Destinations=""
   GlossaryTermConversion="marked"
   ConditionTagExpression="include[Default.Inventory] exclude[Default.BioSAR or &quot;Default.CBOE Search&quot; or &quot;Default.CBV Output Only&quot; or Default.ChemACX or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or &quot;Default.Not supported in 1261&quot; or Default.Registration or &quot;Default.Working with CBOE Applications&quot;] "
-  MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
   MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
-  Skin="/Project/Skins/Inventory Skin.flskn"
+  Skin="/Project/Skins/Inv.flskn"
   MasterToc="/Project/TOCs/Inventory TOC.fltoc"
   DefaultUrl="/Content/Inventory/Inventory Introduction.htm"
   InsertMOTW="true"></CatapultTarget>

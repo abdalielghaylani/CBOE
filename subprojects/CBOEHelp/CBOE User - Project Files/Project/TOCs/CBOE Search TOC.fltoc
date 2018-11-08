@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="CBOE Search"
+    Link="/Content/CBOE Search/CBOE Search Introduction.htm"
+    conditions="Default.CBV and CBOE Search Output Only">
+    <TocEntry
+      Title="Searching Databases"
+      Link="/Content/CBOE Search/Searching Databases.htm">
+      <TocEntry
+        Title="Basic Searching"
+        Link="/Content/CBOE Search/Basic Searching.htm">
+        <TocEntry
+          Title="Clearing the Search Form"
+          Link="/Content/CBOE Search/Clearing the Search Form.htm" />
+        <TocEntry
+          Title="Retrieving All Records"
+          Link="/Content/CBOE Search/Retrieving All Records.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Viewing Search Results"
+        Link="/Content/CBOE Search/Viewing Search Results.htm">
+        <TocEntry
+          Title="Navigating Through Records"
+          Link="/Content/CBOE Search/Navigating Through Records.htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Text Searching"
+        Link="/Content/CBOE Search/Text Searching.htm" />
+      <TocEntry
+        Title="Structure Searching"
+        Link="/Content/CBOE Search/Structure Searching.htm">
+        <TocEntry
+          Title="Substructure"
+          Link="/Content/CBOE Search/Substructure.htm" />
+        <TocEntry
+          Title="Full Structure"
+          Link="/Content/CBOE Search/Full Structure.htm" />
+        <TocEntry
+          Title="Exact Structure"
+          Link="/Content/CBOE Search/Exact Structure.htm" />
+        <TocEntry
+          Title="Similarity (Tanimoto)"
+          Link="/Content/CBOE Search/Similarity (Tanimoto).htm" />
+      </TocEntry>
+      <TocEntry
+        Title="Formula Searching"
+        Link="/Content/CBOE Search/Formula Searching.htm" />
+      <TocEntry
+        Title="Numerical Searching"
+        Link="/Content/CBOE Search/Numerical Searching.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Refining Search Results"
+      Link="/Content/CBOE Search/Refining Search Results.htm">
+      <TocEntry
+        Title="Undoing a Refined Search"
+        Link="/Content/CBOE Search/Undoing a Refined Search.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Setting Search Preferences"
+      Link="/Content/CBOE Search/Setting Search Preferences.htm" />
+    <TocEntry
+      Title="Managing Queries"
+      Link="/Content/CBOE Search/Managing Queries.htm">
+      <TocEntry
+        Title="Saving a Query"
+        Link="/Content/CBOE Search/Saving Queries.htm" />
+      <TocEntry
+        Title="Restoring a Query"
+        Link="/Content/CBOE Search/Restoring Queries.htm" />
+      <TocEntry
+        Title="Editing a Query"
+        Link="/Content/CBOE Search/Editing Query.htm" />
+      <TocEntry
+        Title="Deleting a Query"
+        Link="/Content/CBOE Search/Deleting a Query.htm"></TocEntry>
+      <TocEntry
+        Title="Query History"
+        Link="/Content/CBOE Search/Query History.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Managing Hit Lists"
+      Link="/Content/CBOE Search/Managing Hit Lists.htm">
+      <TocEntry
+        Title="Saving Hit Lists"
+        Link="/Content/CBOE Search/Saving Hit Lists.htm" />
+      <TocEntry
+        Title="Restoring Hit Lists"
+        Link="/Content/CBOE Search/Restoring Hit Lists.htm" />
+      <TocEntry
+        Title="Editing a Hit List"
+        Link="/Content/CBOE Search/Editing a Hit List.htm" />
+      <TocEntry
+        Title="Deleting a Hit List"
+        Link="/Content/CBOE Search/Deleting a Hit List.htm"></TocEntry>
+      <TocEntry
+        Title="Hit List History"
+        Link="/Content/CBOE Search/Hit List History.htm" />
+      <TocEntry
+        Title="Marking Records"
+        Link="/Content/CBOE Search/Marking Records.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Exporting Search Results"
+      Link="/Content/CBOE Search/Exporting Search Results.htm">
+      <TocEntry
+        Title="Creating an Export Template"
+        Link="/Content/CBOE Search/Creating an Export Template.htm" />
+      <TocEntry
+        Title="Printing"
+        Link="/Content/CBOE Search/Printing.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Retrieving Server Information"
+      Link="/Content/CBOE Search/Retrieving Server Information.htm" />
+    <TocEntry
+      Title="Home"
+      Link="/Content/CBOE Search/Home.htm" />
+    <TocEntry
+      Title="Logging Off"
+      Link="/Content/CBOE Search/Logging Off.htm" />
+  </TocEntry>
+</CatapultToc>
