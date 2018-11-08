@@ -5338,8 +5338,8 @@ Set shell = Nothing
 		<col def="S255">ISReleaseFlags</col>
 		<col def="S72">DisplayName</col>
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
-		<row><td>Pkg2</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.0.msi</td><td>{730CDFD0-74B5-4677-AAA0-1DB120211A9A}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>CBOU</td></row>
-		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0_x64.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemScript</td></row>
+		<row><td>Pkg2</td><td>PerkinElmer_ChemOffice_Professional_2017.msi</td><td>{A6DD7E2A-1456-40E9-86B1-C0B25117E153}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2017\"</td><td/><td/><td>CBOU</td></row>
+		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_17.1.msi</td><td>{43625056-479C-4F72-8678-8754A5AA5B29}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2017\"</td><td/><td/><td>ChemScript</td></row>
 	</table>
 
 	<table name="ISChainPackageData">
@@ -5350,8 +5350,8 @@ Set shell = Nothing
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
-		<row><td>Pkg2</td><td>_CD96A6FBD44233041F97FEAAE16BF473</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.0.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.0.msi</td></row>
-		<row><td>Pkg3</td><td>_7B7CC9A8AECA3401DCFB33FF059DE537</td><td>PerkinElmer_ChemScript_18.0_x64.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.0_x64.msi</td></row>
+		<row><td>Pkg2</td><td>_F61611648B31E1A7656831D9555A6F05</td><td>PerkinElmer_ChemOffice_Professional_2017.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemOffice\PerkinElmer_ChemOffice_Professional_2017.msi</td></row>
+		<row><td>Pkg3</td><td>_13E0581122813A8F510F9604A3082AA2</td><td>PerkinElmer_ChemScript_17.1.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\CambridgeSoft\ChemScript\PerkinElmer_ChemScript_17.1.msi</td></row>
 	</table>
 
 	<table name="ISClrWrap">
