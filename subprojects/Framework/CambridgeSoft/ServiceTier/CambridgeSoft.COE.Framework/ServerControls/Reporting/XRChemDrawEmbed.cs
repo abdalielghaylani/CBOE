@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using ChemDrawControl17;
+using ChemDrawControl18;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports;
 using DevExpress.XtraReports.Localization;

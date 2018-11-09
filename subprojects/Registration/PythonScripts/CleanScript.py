@@ -3,7 +3,7 @@
 # Cleans the molecule and rewrites it to the ImputChemistry variable
 
 
-from ChemScript17 import *
+from ChemScript18 import *
 
 m = StructureData()
 m.ReadData(InputChemistry)

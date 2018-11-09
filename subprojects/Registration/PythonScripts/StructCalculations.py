@@ -1,7 +1,7 @@
 from os import *
 from os.path import *
 import sys
-from ChemScript17 import *
+from ChemScript18 import *
 from time import *
 import logging
 

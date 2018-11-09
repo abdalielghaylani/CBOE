@@ -3,7 +3,7 @@
 from sys import *
 from os import *
 from os.path import *
-from ChemScript17 import *
+from ChemScript18 import *
 Success = 'FALSE'
    
 import os.path

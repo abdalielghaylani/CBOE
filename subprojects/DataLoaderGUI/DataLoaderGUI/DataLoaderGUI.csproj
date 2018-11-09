@@ -18,10 +18,14 @@
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -101,8 +105,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v8.2.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.MolServer17">
-      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer17.dll</HintPath>
+    <Reference Include="Interop.MolServer18">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer18.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

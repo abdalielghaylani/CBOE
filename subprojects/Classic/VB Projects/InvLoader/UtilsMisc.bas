@@ -46,6 +46,7 @@ Public Enum EnumMolServerVersion
     eMolServer14
 	eMolServer15
 	eMolServer17
+	eMolServer18
 End Enum
 
 Public Enum PadType

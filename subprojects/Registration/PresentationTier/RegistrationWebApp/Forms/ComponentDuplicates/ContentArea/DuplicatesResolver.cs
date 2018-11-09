@@ -13,7 +13,7 @@ using System.Web.SessionState;
 using Csla.Validation;
 using System.Collections;
 using System.Collections.Generic;
-using ChemDrawControl17;
+using ChemDrawControl18;
 using System.Text;
 using CambridgeSoft.COE.Registration.Services.Common;
 using CambridgeSoft.COE.Registration;

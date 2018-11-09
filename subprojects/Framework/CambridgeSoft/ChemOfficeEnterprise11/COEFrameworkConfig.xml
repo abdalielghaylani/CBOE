@@ -47,7 +47,7 @@
       </searchService>
       <chemDrawEmbed>
         <add name="showPluginDownload" value="YES"/>
-        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_17.1.msi"/>
+        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_18.0.msi"/>
       </chemDrawEmbed>
 	  <caching>
 		<dataview>

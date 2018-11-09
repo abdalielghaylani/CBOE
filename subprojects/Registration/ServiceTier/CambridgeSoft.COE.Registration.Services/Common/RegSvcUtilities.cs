@@ -20,7 +20,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 
-using ChemDrawControl17;
+using ChemDrawControl18;
 
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
 using CambridgeSoft.COE.Framework.Common.Exceptions;

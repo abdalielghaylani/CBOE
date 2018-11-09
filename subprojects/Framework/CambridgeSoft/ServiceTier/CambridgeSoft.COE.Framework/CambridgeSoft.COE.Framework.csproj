@@ -261,9 +261,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl17">
-      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl17.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+    <Reference Include="Interop.ChemDrawControl18">
+      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl18.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -365,7 +365,7 @@
     <Compile Include="Caching\ICacheable.cs" />
     <Compile Include="Caching\OracleCacheDependency.cs" />
     <Compile Include="Caching\ServerCache.cs" />
-    <Compile Include="Caching\TimeoutEnabledObject.cs" />    
+    <Compile Include="Caching\TimeoutEnabledObject.cs" />
     <Compile Include="DataView\COEDataViewManager\ValidCartridgeReadOnlyBO.cs" />
     <Compile Include="ClientConfiguration\AppSettingsManager.cs" />
     <Compile Include="ClientConfiguration\COEClientConfigurationManager.cs" />
@@ -846,7 +846,9 @@
     <Compile Include="Search\BLL\COESearch.cs" />
     <Compile Include="Search\BLL\SearchManager.cs" />
     <Compile Include="Search\DAL\KeepAliveHolder.cs" />
-    <Compile Include="Search\DAL\DAL.cs" />
+    <Compile Include="Search\DAL\DAL.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Search\Enums.cs" />
     <Compile Include="Search\Processors\FormulaProcessor.cs" />
     <Compile Include="Search\Processors\GenericProcessor.cs" />

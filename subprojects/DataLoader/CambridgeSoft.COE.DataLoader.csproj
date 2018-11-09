@@ -104,8 +104,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.MolServer17">
-      <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer17.dll</HintPath>
+    <Reference Include="Interop.MolServer18">
+      <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer18.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp" />

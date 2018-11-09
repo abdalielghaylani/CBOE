@@ -10,6 +10,7 @@ Attribute VB_Name = "DataImporter"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
+Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
@@ -558,6 +559,13 @@ Private Sub Class_Initialize()
     'MolTable = MOL_TABLE
     bSelectMolTable = False
 	
+	' try version 18
+	Err.Clear
+    Set moMS = CreateObject("MolServer18.Document")
+    If Err.Number = 0 Then
+        miStatus = eMolServer18
+        msChemOffice = "Molserver18"
+    Else
 	' try version 17
 	Err.Clear
     Set moMS = CreateObject("MolServer17.Document")
@@ -631,6 +639,7 @@ Private Sub Class_Initialize()
     End If
 	End If
 	End If
+	End If
 	
     
     ' Create the ChemDraw object.
@@ -639,6 +648,12 @@ Private Sub Class_Initialize()
     ' Version 10 of ChemDrawControl seems to cause crashing problems with VB6 and the GDI.  This is
     ' being enabled to fix CSBR-90766, since they are not testing with version 9.  Whether this
     ' breaks or not remains to be seen.
+	Err.Clear
+	Set moChemDraw = CreateObject("ChemDrawControl18.ChemDrawCtl")
+    If Err.Number = 0 Then
+        mbHasChemDraw = True
+        msChemOffice = msChemOffice & "ChemDraw18"
+	Else
 	Err.Clear
 	Set moChemDraw = CreateObject("ChemDrawControl17.ChemDrawCtl")
     If Err.Number = 0 Then
@@ -701,6 +716,7 @@ Private Sub Class_Initialize()
             End If
         End If
     End If
+	End If
 	End If
 	End If	
     
