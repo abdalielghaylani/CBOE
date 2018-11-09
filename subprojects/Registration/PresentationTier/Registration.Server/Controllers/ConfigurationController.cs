@@ -1531,6 +1531,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
+                
+                if (!string.IsNullOrEmpty(configurationBO.GetSaveErrorMessage))
+                {
+                    const string replaceString = ", ";
+                    throw new RegistrationException(configurationBO.GetSaveErrorMessage.Replace(" <br/>", replaceString).Trim(replaceString.ToCharArray()));
+                }
 
                 return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             }, new string[] { Consts.PrivilegeConfigReg, "MANAGE_PROPERTIES" });

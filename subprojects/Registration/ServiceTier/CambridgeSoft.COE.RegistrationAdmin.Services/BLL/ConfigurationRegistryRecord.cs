@@ -877,8 +877,8 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
 
             string existingType = string.Empty;
             string existingPrecision = string.Empty;
-            //string diferentPrecisionMessage = " property can´t be added because already existed on database and their presicion is:"; TODO
-            //string diferentTypeMessage = " property can´t be added because already exist on database and their type is:"; TODO
+            string diferentPrecisionUpdateMessage = " property can´t be updated because already existed on database and their presicion is:";
+            string diferentTypeUpdateMessage = " property can´t be updated because already exist on database and their type is:";
             string diferentPrecisionMessage = " property was added but already existed on database and their presicion is:";
             string diferentTypeMessage = " property was added but already existed on database and their type is:";
 
@@ -1119,6 +1119,128 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
                                             case DIFTYPEERRORCODE:
                                                 existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
                                                 errorBuilder.Append("Structure - " + prop.FriendlyName + diferentTypeMessage + existingType + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchCompPropToDelete.Add(prop);
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                    case "updating":
+                        switch (section)
+                        {
+                            case "MIXTURE":
+                                foreach (Property prop in this._propertyList)
+                                {
+                                    if (prop.Name == field)
+                                    {
+                                        switch (errorCode)
+                                        {
+                                            case DIFPRECISIONERRORCODE:
+                                                existingPrecision = message.Substring(message.IndexOf('(')).Replace("(The data length more big is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Registry - " + prop.FriendlyName + diferentPrecisionUpdateMessage + existingPrecision + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //registriesPropToDelete.Add(prop);
+                                                break;
+                                            case DIFTYPEERRORCODE:
+                                                existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Registry - " + prop.FriendlyName + diferentTypeUpdateMessage + existingType + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //registriesPropToDelete.Add(prop);
+                                                break;
+                                        }
+
+                                    }
+                                }
+                                break;
+                            case "COMPOUND":
+                                foreach (Property prop in this._compoundPropertyList)
+                                {
+                                    if (prop.Name == field)
+                                    {
+                                        switch (errorCode)
+                                        {
+                                            case DIFPRECISIONERRORCODE:
+                                                existingPrecision = existingPrecision = message.Substring(message.IndexOf('(')).Replace("(The data length more big is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Compound - " + prop.FriendlyName + diferentPrecisionUpdateMessage + existingPrecision + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //componentPropToDelete.Add(prop);
+                                                break;
+                                            case DIFTYPEERRORCODE:
+                                                existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Compound - " + prop.FriendlyName + diferentTypeUpdateMessage + existingType + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //componentPropToDelete.Add(prop);
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "BATCH":
+                                foreach (Property prop in this._batchPropertyList)
+                                {
+                                    if (prop.Name == field)
+                                    {
+                                        switch (errorCode)
+                                        {
+                                            case DIFPRECISIONERRORCODE:
+                                                existingPrecision = existingPrecision = message.Substring(message.IndexOf('(')).Replace("(The data length more big is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Batch - " + prop.FriendlyName + diferentPrecisionUpdateMessage + existingPrecision + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchPropToDelete.Add(prop);
+                                                break;
+                                            case DIFTYPEERRORCODE:
+                                                existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Batch - " + prop.FriendlyName + diferentTypeUpdateMessage + existingType + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchPropToDelete.Add(prop);
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "BATCHCOMPONENT":
+                                foreach (Property prop in this._batchComponentList)
+                                {
+                                    if (prop.Name == field)
+                                    {
+                                        switch (errorCode)
+                                        {
+                                            case DIFPRECISIONERRORCODE:
+                                                existingPrecision = existingPrecision = message.Substring(message.IndexOf('(')).Replace("(The data length more big is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Batch Component - " + prop.FriendlyName + diferentPrecisionUpdateMessage + existingPrecision + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchCompPropToDelete.Add(prop);
+                                                break;
+                                            case DIFTYPEERRORCODE:
+                                                existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Batch Component - " + prop.FriendlyName + diferentTypeUpdateMessage + existingType + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchCompPropToDelete.Add(prop);
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case "STRUCTURE":
+                                foreach (Property prop in this._structurePropertyList)
+                                {
+                                    if (prop.Name == field)
+                                    {
+                                        switch (errorCode)
+                                        {
+                                            case DIFPRECISIONERRORCODE:
+                                                existingPrecision = existingPrecision = message.Substring(message.IndexOf('(')).Replace("(The data length more big is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Structure - " + prop.FriendlyName + diferentPrecisionUpdateMessage + existingPrecision + "<br/>");
+                                        IsConfigSavedSuccessfully = false;
+                                                //batchCompPropToDelete.Add(prop);
+                                                break;
+                                            case DIFTYPEERRORCODE:
+                                                existingType = message.Substring(message.IndexOf('(')).Replace("(The type is ", string.Empty).Replace(")", string.Empty);
+                                                errorBuilder.Append("Structure - " + prop.FriendlyName + diferentTypeUpdateMessage + existingType + "<br/>");
                                         IsConfigSavedSuccessfully = false;
                                                 //batchCompPropToDelete.Add(prop);
                                                 break;
