@@ -272,7 +272,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("versionLabelText", Resource.Version_Label_Text),
                 new JProperty("versionContentLabelText", string.Format(Resource.VersionContent_Label_Text,
                     GetFrameworkFileVersion(),
-                    GetRegistrationServicesFileVersion()))
+                    GetRegistrationServicesFileVersion())),
+                new JProperty("CDJSUrl", System.Configuration.ConfigurationManager.AppSettings["CDJSUrl"])
             );
         }
 

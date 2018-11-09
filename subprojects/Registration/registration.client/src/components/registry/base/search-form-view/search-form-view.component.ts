@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { RegFormView } from '../form-view';
 import { RegStructureFormItem } from '../structure-form-item';
+import { CdjsService } from '../../../../services';
 
 @Component({
   selector: 'reg-search-form-view',
@@ -10,7 +11,8 @@ import { RegStructureFormItem } from '../structure-form-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegSearchFormView extends RegFormView {
-  constructor() {
+  constructor(private cdjsService: CdjsService) {
     super();
+    this.cdjsService.loadCdjsScript();
   }
 };

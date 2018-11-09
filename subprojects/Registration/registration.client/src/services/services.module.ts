@@ -5,9 +5,11 @@ import { NgRedux } from '@angular-redux/store';
 import { AuthGuard } from './auth-guard.service';
 import { HttpService } from './http.service';
 import { IAppState } from '../redux';
+import { CdjsService } from './cdjs.service';
 
 export * from './auth-guard.service';
 export * from './http.service';
+export * from './cdjs.service';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ export * from './http.service';
         return new HttpService(backend, options, redux);
       },
       deps: [XHRBackend, RequestOptions, NgRedux]
-    }
+    },
+    CdjsService
   ]
 })
 export class RegServicesModule { }

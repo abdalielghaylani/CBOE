@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import * as crypto from 'crypto';
 import { b64Encode } from '../../common';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../redux';
 
 @Injectable()
 export class CStructureImageService {
@@ -11,7 +13,7 @@ export class CStructureImageService {
 
   private modals: any[] = [];
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private ngRedux: NgRedux<IAppState>) {
   }
 
   generateImage(value: string): Promise<string> {
@@ -33,7 +35,8 @@ export class CStructureImageService {
       Accept: 'image/png'
     });
     let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer });
-    return this.http.post('https://chemdrawdirect.perkinelmer.cloud/rest/generateImage', data, options)
+    let lookups = this.ngRedux.getState().session.lookups;
+    return this.http.post(lookups.systemInformation.CDJSUrl + '/rest/generateImage', data, options)
       .toPromise()
       .then(result => {
         let imageData = 'data:image/png;base64,' + b64Encode(new Uint8Array(result.arrayBuffer()));
