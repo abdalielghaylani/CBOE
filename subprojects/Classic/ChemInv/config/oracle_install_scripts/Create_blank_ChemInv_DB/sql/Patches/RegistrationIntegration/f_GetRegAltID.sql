@@ -6,7 +6,7 @@ is
 begin
 
 		select id into Result from (
-     SELECT ci.id, row_number() over (partition by ci.type order by ci.type) as rn 
+     SELECT ci.id, row_number() over (partition by ci.regid order by ci.type) as rn 
 		FROM &&REGSchemaName..vw_compound_identifier ci
 		WHERE ci.type in (3,4,5)
 					AND ci.id is not null
