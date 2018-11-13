@@ -67,9 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl18">
+    <Reference Include="Interop.ChemDrawControl18, Version=18.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl18.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

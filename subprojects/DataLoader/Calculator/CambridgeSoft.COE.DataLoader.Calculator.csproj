@@ -10,10 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Calculator</RootNamespace>
     <AssemblyName>Calculator</AssemblyName>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <SignManifests>false</SignManifests>
     <ManifestCertificateThumbprint>37CBEA0B417261E2B069B8A8DE05A6BE2DD1DF09</ManifestCertificateThumbprint>
     <ManifestKeyFile>MyPFX.pfx</ManifestKeyFile>

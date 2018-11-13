@@ -10,10 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CambridgeSoft.COE.DataLoader</RootNamespace>
     <AssemblyName>COEDataLoader</AssemblyName>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Framework.snk</AssemblyOriginatorKeyFile>
     <StartupObject>CambridgeSoft.COE.DataLoader.Program</StartupObject>
