@@ -419,9 +419,9 @@
 		<row><td>Assets</td><td>{0E50ED5F-23E3-4E4E-AF3F-573721EFD9D0}</td><td>ASSETS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Bin</td><td>{3BEEDDBD-F52D-4BB0-87EC-FAD24F07DE75}</td><td>BIN16</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CBOEHelp</td><td>{4E0FE0F7-6E5E-45DF-848E-BD8D47ADA1D3}</td><td>CBOEHELP1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CSDO17</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo17.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CSDO17_Server</td><td>{A87714E9-122B-4197-BBBE-7CBF51218429}</td><td>_F2042E99_9D3A_4685_9386_69AF368B7525_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CSDO17_Server_File</td><td>{1108557E-BC27-4949-B533-97CD3074B23B}</td><td>NEW_DIRECTORY15</td><td>8</td><td/><td>csdo17.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CSDO18</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo18.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CSDO18_Server</td><td>{656A7462-E704-4810-8C4C-8FEC15B7AE8C}</td><td>_5AD173F7_1713_48A2_97E0_1E0E6700C762_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CSDO18_Server_File</td><td>{7E512F95-CE5A-4938-8AE4-BB3B207FC2A4}</td><td>NEW_DIRECTORY16</td><td>8</td><td/><td>csdo18.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSWebMenu5.dll</td><td>{C02B3D04-2FEA-4293-867B-982AD147FEC1}</td><td>DLLS</td><td>0</td><td/><td>cswebmenu5.dll</td><td>4</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSWebMenu6.dll</td><td>{072C209D-7ACB-4DCF-BDCD-4A51540DE795}</td><td>DLLS</td><td>0</td><td/><td>cswebmenu6.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td>{FDDCCA6E-86EE-4A64-B2B5-5C24C9B8BA1D}</td><td>RUNTIMELIBRARIES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1292,7 +1292,7 @@
 		<row><td>WindowsFolder</td><td>AllOtherFiles76</td></row>
 		<row><td>WindowsVolume</td><td>AllOtherFiles52</td></row>
 		<row><td>_48FF1F3E_E93A_4B1D_9565_56A26B60B805_</td><td>REPORTQ_Server</td></row>
-		<row><td>_F2042E99_9D3A_4685_9386_69AF368B7525_</td><td>CSDO17_Server</td></row>
+		<row><td>_5AD173F7_1713_48A2_97E0_1E0E6700C762_</td><td>CSDO18_Server</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -2639,6 +2639,7 @@ End If
 		<row><td>NEW_DIRECTORY13</td><td>_8CC30330_EA2C_4F44_8B72_9F85D2CCD0C5_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY14</td><td>_042DE214_1109_41E9_AB1B_300D5DEAC777_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY15</td><td>_F2042E99_9D3A_4685_9386_69AF368B7525_</td><td>.:Server</td><td/><td>0</td><td/></row>
+		<row><td>NEW_DIRECTORY16</td><td>_5AD173F7_1713_48A2_97E0_1E0E6700C762_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY2</td><td>CHEMOFFICE</td><td>config</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY3</td><td>_93C7DCE3_1049_4389_A848_B114738B6DE3_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY4</td><td>_5E699E74_0681_47B6_AF46_24D5B10DF576_</td><td>.:Server</td><td/><td>0</td><td/></row>
@@ -2692,6 +2693,7 @@ End If
 		<row><td>_0FFFDD1F_CDBC_4A5C_A2FD_B0F816ACDD67_</td><td>COMPLUS_APPLICATIONS</td><td>{0FFFD~1|{0FFFDD1F-CDBC-4A5C-A2FD-B0F816ACDD67}</td><td/><td>0</td><td/></row>
 		<row><td>_1D9E94BC_2B52_438D_A2D2_55BD45EA7FD5_</td><td>COMPLUS_APPLICATIONS</td><td>{1D9E9~1|{1D9E94BC-2B52-438D-A2D2-55BD45EA7FD5}</td><td/><td>0</td><td/></row>
 		<row><td>_48FF1F3E_E93A_4B1D_9565_56A26B60B805_</td><td>COMPLUS_APPLICATIONS</td><td>{48FF1~1|{48FF1F3E-E93A-4B1D-9565-56A26B60B805}</td><td/><td>0</td><td/></row>
+		<row><td>_5AD173F7_1713_48A2_97E0_1E0E6700C762_</td><td>COMPLUS_APPLICATIONS</td><td>{5AD17~1|{5AD173F7-1713-48A2-97E0-1E0E6700C762}</td><td/><td>0</td><td/></row>
 		<row><td>_5E699E74_0681_47B6_AF46_24D5B10DF576_</td><td>COMPLUS_APPLICATIONS</td><td>{5E699~1|{5E699E74-0681-47B6-AF46-24D5B10DF576}</td><td/><td>0</td><td/></row>
 		<row><td>_71BED3E7_85CA_4BAC_B418_83777C191D66_</td><td>COMPLUS_APPLICATIONS</td><td>{71BED~1|{71BED3E7-85CA-4BAC-B418-83777C191D66}</td><td/><td>0</td><td/></row>
 		<row><td>_788143FB_42B7_4C15_9AD0_4575CDFAB3CD_</td><td>COMPLUS_APPLICATIONS</td><td>{78814~1|{788143FB-42B7-4C15-9AD0-4575CDFAB3CD}</td><td/><td>0</td><td/></row>
@@ -3451,8 +3453,8 @@ End If
 		<row><td>COE</td><td>AppPoolComponent1</td></row>
 		<row><td>COE</td><td>AppPoolComponent2</td></row>
 		<row><td>COE</td><td>AppPoolComponent3</td></row>
-		<row><td>COE</td><td>CSDO17_Server</td></row>
-		<row><td>COE</td><td>CSDO17_Server_File</td></row>
+		<row><td>COE</td><td>CSDO18_Server</td></row>
+		<row><td>COE</td><td>CSDO18_Server_File</td></row>
 		<row><td>COE</td><td>CambridgeSoft.COE.Framework.dll</td></row>
 		<row><td>COE</td><td>CommonRes</td></row>
 		<row><td>COE</td><td>ISRegistryComponent</td></row>
@@ -3470,7 +3472,7 @@ End If
 		<row><td>Classic</td><td>AllOtherFiles74</td></row>
 		<row><td>Classic</td><td>AllOtherFiles76</td></row>
 		<row><td>Classic</td><td>AllOtherFiles79</td></row>
-		<row><td>Classic</td><td>CSDO17</td></row>
+		<row><td>Classic</td><td>CSDO18</td></row>
 		<row><td>Classic</td><td>CSWebMenu5.dll</td></row>
 		<row><td>Classic</td><td>REPORTQ.dll</td></row>
 		<row><td>Classic</td><td>REPORTQ_Server</td></row>
@@ -3568,8 +3570,8 @@ End If
 		<row><td>coeregistrationservices.asmx</td><td>WebServices</td><td>COEREG~1.ASM|COERegistrationServices.asmx</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\COERegistrationServices.asmx</td><td>17</td><td/></row>
 		<row><td>coeregistrationservicestesti</td><td>WebServices</td><td>COEREG~1.HTM|COERegistrationServicesTesting.htm</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\COERegistrationServicesTesting.htm</td><td>17</td><td/></row>
 		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>5</td><td/></row>
-		<row><td>csdo17.dll</td><td>CSDO17_Server_File</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
-		<row><td>csdo17.dll1</td><td>CSDO17</td><td>CSDO17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO17.dll</td><td>1</td><td/></row>
+		<row><td>csdo18.dll</td><td>CSDO18_Server_File</td><td>CSDO18.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\CSDO\CSDO18\Goods\CSDO18.dll</td><td>1</td><td/></row>
+		<row><td>csdo18.dll1</td><td>CSDO18</td><td>CSDO18.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\CSDO\CSDO18\Goods\CSDO18.dll</td><td>1</td><td/></row>
 		<row><td>csla.compression.dll</td><td>Csla.Compression.dll</td><td>CSLACO~1.DLL|Csla.Compression.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Csla.Compression.dll</td><td>1</td><td/></row>
 		<row><td>csla.dll</td><td>Bin</td><td>Csla.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Csla.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu5.dll</td><td>CSWebMenu5.dll</td><td>CSWEBM~1.DLL|CSWebMenu5.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu5.dll</td><td>1</td><td/></row>
@@ -3752,24 +3754,30 @@ End If
 		<col key="yes" def="s72">ISComCatalogObject_</col>
 		<col key="yes" def="s255">ItemName</col>
 		<col def="S0">ItemValue</col>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>Description</td><td/></row>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>Index</td><td>15</td></row>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>Name</td><td>Start</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>Description</td><td/></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>Index</td><td>12</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>Name</td><td>ADOConnOptions</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>Description</td><td/></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>Name</td><td>_Request</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>QueuingEnabled</td><td>0</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>QueuingSupported</td><td>0</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>Description</td><td/></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>Index</td><td>11</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>Name</td><td>ADOPWD</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>Description</td><td/></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>Index</td><td>10</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>Name</td><td>ADOUID</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>Description</td><td/></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>Index</td><td>8</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>Name</td><td>hitlistRecordCount</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>Description</td><td/></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>Index</td><td>22</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>Name</td><td>CreateFromXML</td></row>
 		<row><td>_1836394A4F8D557689F267C334A9D8B6</td><td>AutoComplete</td><td>0</td></row>
 		<row><td>_1836394A4F8D557689F267C334A9D8B6</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_1836394A4F8D557689F267C334A9D8B6</td><td>Description</td><td/></row>
@@ -3824,210 +3832,154 @@ End If
 		<row><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td><td>IID</td><td>{098B8F20-048F-4947-8489-BFE16D92ADAC}</td></row>
 		<row><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td><td>Index</td><td>7</td></row>
 		<row><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td><td>Name</td><td>MakeReport</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>Description</td><td/></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>Index</td><td>8</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>Name</td><td>ADOConnString</td></row>
-		<row><td>_2DECBD2C7754678FAE841B711F47D7F1</td><td>User</td><td>PERKINELMERNET\jmsayan</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>Description</td><td/></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>Index</td><td>11</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>Name</td><td>NumChemExamined</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>Description</td><td/></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>Index</td><td>22</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>Name</td><td>CreateFromXML</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>3GigSupportEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>AccessChecksLevel</td><td>1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Activation</td><td>1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>AppPartitionID</td><td>{41E90F3E-56C1-4633-81C3-6E8BAC8BDD70}</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ApplicationAccessChecksEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ApplicationDirectory</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ApplicationProxy</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ApplicationProxyServerName</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Authentication</td><td>4</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>AuthenticationCapability</td><td>64</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>CRMEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>CRMLogFile</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Changeable</td><td>-1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>CommandLine</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ConcurrentApps</td><td>1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>CreatedBy</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Deleteable</td><td>-1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Description</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>DumpEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>DumpOnException</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>DumpOnFailfast</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>DumpPath</td><td>%systemroot%\system32\com\dmp</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>EventsEnabled</td><td>-1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ID</td><td>{F2042E99-9D3A-4685-9386-69AF368B7525}</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Identity</td><td>[APPUSERNAME]</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ImpersonationLevel</td><td>3</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>IsEnabled</td><td>-1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>IsSystem</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>MaxDumpCount</td><td>5</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Name</td><td>CSDO17</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Password</td><td>[APPUSERPASSWORD]</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>QCAuthenticateMsgs</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>QCListenerMaxThreads</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>QueueListenerEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>QueuingEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RecycleActivationLimit</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RecycleCallLimit</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RecycleExpirationTimeout</td><td>15</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RecycleLifetimeLimit</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RecycleMemoryLimit</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Replicable</td><td>-1</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>RunForever</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SRPEnabled</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SRPTrustLevel</td><td>262144</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ServiceName</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>ShutdownAfter</td><td>3</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SoapActivated</td><td>0</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SoapBaseUrl</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SoapMailTo</td><td/></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>SoapVRoot</td><td/></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>Description</td><td/></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>Index</td><td>20</td></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>Name</td><td>Execute</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>Description</td><td/></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>Name</td><td>_Connection</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>QueuingEnabled</td><td>0</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>QueuingSupported</td><td>0</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>Description</td><td/></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>Index</td><td>16</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>Name</td><td>ADOConnection</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>Description</td><td/></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>Index</td><td>14</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>Name</td><td>ChemSearchOptions</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>Description</td><td/></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>Index</td><td>20</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>Name</td><td>Execute</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>Description</td><td/></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>Index</td><td>9</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>Name</td><td>Status</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>Description</td><td/></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>Index</td><td>13</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>Name</td><td>ADOOptions</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>AllowInprocSubscribers</td><td>-1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ApplicationID</td><td>{5AD173F7-1713-48A2-97E0-1E0E6700C762}</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>Bitness</td><td>1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>COMTIIntrinsics</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ComponentAccessChecksEnabled</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ComponentTransactionTimeout</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ComponentTransactionTimeoutEnabled</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ConstructionEnabled</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ConstructorString</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>CreationTimeout</td><td>60000</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>DLL</td><td>C:\builds\workspace\TBR-CBOE18.1\subprojects\CSDO\CSDO18\Goods\CSDO18.dll</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>Description</td><td>CSDO18.Connection</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>EventTrackingEnabled</td><td>-1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ExceptionClass</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>FireInParallel</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>IISIntrinsics</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>InitializesServerApplication</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>IsEnabled</td><td>-1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>IsEventClass</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>IsInstalled</td><td>-1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>IsPrivateComponent</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>JustInTimeActivation</td><td>-1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>LoadBalancingSupported</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>MaxPoolSize</td><td>1048576</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>MinPoolSize</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>MultiInterfacePublisherFilterCLSID</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>MustRunInClientContext</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>MustRunInDefaultContext</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ObjectPoolingEnabled</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ProgID</td><td>CSDO18.Connection</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>PublisherID</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>SoapAssemblyName</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>SoapTypeName</td><td/></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>Synchronization</td><td>3</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>ThreadingModel</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>Transaction</td><td>1</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>TxIsolationLevel</td><td>4</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>VersionBuild</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>VersionMajor</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>VersionMinor</td><td>0</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>VersionSubBuild</td><td>0</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>Description</td><td/></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>Index</td><td>18</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>Name</td><td>CSChemLinks</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>Description</td><td/></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>Name</td><td>_Connection</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>QueuingEnabled</td><td>0</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>QueuingSupported</td><td>0</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>Description</td><td/></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>Name</td><td>_Request</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>QueuingEnabled</td><td>0</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>QueuingSupported</td><td>0</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>Description</td><td/></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>Index</td><td>12</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>Name</td><td>ADOConnOptions</td></row>
+		<row><td>_694D1AB3A17189B60F27FF127314BBA7</td><td>User</td><td>PERKINELMERNET\jmsayan</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>Description</td><td/></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>Index</td><td>14</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>Name</td><td>Cancel</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>Description</td><td/></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>IID</td><td>{098B8F20-048F-4947-8489-BFE16D92ADAC}</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>Name</td><td>_CReportQ</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>QueuingEnabled</td><td>0</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>QueuingSupported</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>AllowInprocSubscribers</td><td>-1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ApplicationID</td><td>{F2042E99-9D3A-4685-9386-69AF368B7525}</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>Bitness</td><td>1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>COMTIIntrinsics</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ComponentAccessChecksEnabled</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ComponentTransactionTimeout</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ComponentTransactionTimeoutEnabled</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ConstructionEnabled</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ConstructorString</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>DLL</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOfficeEnterprise\Classic\Common\dlls\CSDO17.dll</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>Description</td><td>CSDO17.Connection</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>EventTrackingEnabled</td><td>-1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ExceptionClass</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>FireInParallel</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>IISIntrinsics</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>InitializesServerApplication</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>IsEnabled</td><td>-1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>IsEventClass</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>IsInstalled</td><td>-1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>IsPrivateComponent</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>JustInTimeActivation</td><td>-1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>LoadBalancingSupported</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>MaxPoolSize</td><td>1048576</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>MinPoolSize</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>MultiInterfacePublisherFilterCLSID</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>MustRunInClientContext</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>MustRunInDefaultContext</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ObjectPoolingEnabled</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ProgID</td><td>CSDO17.Connection</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>PublisherID</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>SoapAssemblyName</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>SoapTypeName</td><td/></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>Synchronization</td><td>3</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>ThreadingModel</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>Transaction</td><td>1</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>TxIsolationLevel</td><td>4</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>VersionBuild</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>VersionMajor</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>VersionMinor</td><td>0</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>VersionSubBuild</td><td>0</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>Description</td><td/></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>Index</td><td>24</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>Name</td><td>OpenConn</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>Description</td><td/></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>Index</td><td>13</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>Name</td><td>ADOOptions</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>Description</td><td/></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>Index</td><td>7</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>Name</td><td>hitlistID</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>Description</td><td/></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>Index</td><td>11</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>Name</td><td>ADOPWD</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>Description</td><td/></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>Index</td><td>18</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>Name</td><td>CSChemLinks</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>Description</td><td/></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>Index</td><td>8</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>Name</td><td>hitlistRecordCount</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>Description</td><td/></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>Index</td><td>14</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>Name</td><td>ChemSearchOptions</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>Description</td><td/></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>Index</td><td>19</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>Name</td><td>MolDocument</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>Description</td><td/></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>Index</td><td>23</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>Name</td><td>OpenMolServerDocument</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>Description</td><td/></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>Index</td><td>12</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>Name</td><td>NumRelHits</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>Description</td><td/></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>Index</td><td>10</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>Name</td><td>NumChemHits</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>Description</td><td/></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>Index</td><td>15</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>Name</td><td>Start</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>Description</td><td/></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>Index</td><td>11</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>Name</td><td>NumChemExamined</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>Description</td><td/></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>Index</td><td>13</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>Name</td><td>Recordset</td></row>
+		<row><td>_C12A2B49105861D985E857C9D10673EF</td><td>Description</td><td/></row>
+		<row><td>_C12A2B49105861D985E857C9D10673EF</td><td>Name</td><td>CreatorOwner</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>AutoComplete</td><td>0</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>Description</td><td/></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>IID</td><td>{098B8F20-048F-4947-8489-BFE16D92ADAC}</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>Index</td><td>10</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>Name</td><td>WriteQueueHTML</td></row>
-		<row><td>_C4DF79301E4521E7D344E00D9E29DBD5</td><td>Description</td><td/></row>
-		<row><td>_C4DF79301E4521E7D344E00D9E29DBD5</td><td>Name</td><td>CreatorOwner</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>Description</td><td/></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>IID</td><td>{F471B9FB-1B9D-4E27-980F-A70E5B17763B}</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>Index</td><td>7</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>Name</td><td>hitlistID</td></row>
 		<row><td>_D053A0A9C49D3104BEBC3453CC26CAB1</td><td>User</td><td>PERKINELMERNET\jmsayan</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>Description</td><td/></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>Index</td><td>10</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>Name</td><td>ADOUID</td></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>3GigSupportEnabled</td><td>0</td></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>AccessChecksLevel</td><td>1</td></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>Activation</td><td>1</td></row>
@@ -4078,90 +4030,140 @@ End If
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>SoapBaseUrl</td><td/></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>SoapMailTo</td><td/></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>SoapVRoot</td><td/></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>Description</td><td/></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>Index</td><td>12</td></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>Name</td><td>NumRelHits</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>Description</td><td/></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>Index</td><td>8</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>Name</td><td>ADOConnString</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>AutoComplete</td><td>0</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>Description</td><td/></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>IID</td><td>{098B8F20-048F-4947-8489-BFE16D92ADAC}</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>Index</td><td>12</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>Name</td><td>GetReportStatus</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>Description</td><td/></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>Index</td><td>14</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>Name</td><td>Cancel</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>AutoComplete</td><td>0</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>Description</td><td/></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>IID</td><td>{098B8F20-048F-4947-8489-BFE16D92ADAC}</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>Index</td><td>8</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>Name</td><td>GenerateReport</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>Description</td><td/></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>Index</td><td>13</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>Name</td><td>Recordset</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>Description</td><td/></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>Index</td><td>9</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>Name</td><td>Status</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>Description</td><td/></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>IID</td><td>{54AF4686-7076-45F4-90CE-C2C1D6CE204B}</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>Index</td><td>10</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>Name</td><td>NumChemHits</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>AllowInprocSubscribers</td><td>-1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ApplicationID</td><td>{F2042E99-9D3A-4685-9386-69AF368B7525}</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>Bitness</td><td>1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>CLSID</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>COMTIIntrinsics</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ComponentAccessChecksEnabled</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ComponentTransactionTimeout</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ComponentTransactionTimeoutEnabled</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ConstructionEnabled</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ConstructorString</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>DLL</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOfficeEnterprise\Classic\Common\dlls\CSDO17.dll</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>Description</td><td>CSDO17.Request</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>EventTrackingEnabled</td><td>-1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ExceptionClass</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>FireInParallel</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>IISIntrinsics</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>InitializesServerApplication</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>IsEnabled</td><td>-1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>IsEventClass</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>IsInstalled</td><td>-1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>IsPrivateComponent</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>JustInTimeActivation</td><td>-1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>LoadBalancingSupported</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>MaxPoolSize</td><td>1048576</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>MinPoolSize</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>MultiInterfacePublisherFilterCLSID</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>MustRunInClientContext</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>MustRunInDefaultContext</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ObjectPoolingEnabled</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ProgID</td><td>CSDO17.Request</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>PublisherID</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>SoapAssemblyName</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>SoapTypeName</td><td/></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>Synchronization</td><td>3</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>ThreadingModel</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>Transaction</td><td>1</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>TxIsolationLevel</td><td>4</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>VersionBuild</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>VersionMajor</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>VersionMinor</td><td>0</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>VersionSubBuild</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>AllowInprocSubscribers</td><td>-1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ApplicationID</td><td>{5AD173F7-1713-48A2-97E0-1E0E6700C762}</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>Bitness</td><td>1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>CLSID</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>COMTIIntrinsics</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ComponentAccessChecksEnabled</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ComponentTransactionTimeout</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ComponentTransactionTimeoutEnabled</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ConstructionEnabled</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ConstructorString</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>CreationTimeout</td><td>60000</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>DLL</td><td>C:\builds\workspace\TBR-CBOE18.1\subprojects\CSDO\CSDO18\Goods\CSDO18.dll</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>Description</td><td>CSDO18.Request</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>EventTrackingEnabled</td><td>-1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ExceptionClass</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>FireInParallel</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>IISIntrinsics</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>InitializesServerApplication</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>IsEnabled</td><td>-1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>IsEventClass</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>IsInstalled</td><td>-1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>IsPrivateComponent</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>JustInTimeActivation</td><td>-1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>LoadBalancingSupported</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>MaxPoolSize</td><td>1048576</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>MinPoolSize</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>MultiInterfacePublisherFilterCLSID</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>MustRunInClientContext</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>MustRunInDefaultContext</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ObjectPoolingEnabled</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ProgID</td><td>CSDO18.Request</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>PublisherID</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>SoapAssemblyName</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>SoapTypeName</td><td/></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>Synchronization</td><td>3</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>ThreadingModel</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>Transaction</td><td>1</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>TxIsolationLevel</td><td>4</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>VersionBuild</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>VersionMajor</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>VersionMinor</td><td>0</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>VersionSubBuild</td><td>0</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>Description</td><td/></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>Index</td><td>19</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>Name</td><td>MolDocument</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>Description</td><td/></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>Index</td><td>16</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>Name</td><td>ADOConnection</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>Description</td><td/></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>Index</td><td>24</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>Name</td><td>OpenConn</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>Description</td><td/></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>Index</td><td>21</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>Name</td><td>PersistToXML</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>3GigSupportEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>AccessChecksLevel</td><td>1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Activation</td><td>1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>AppPartitionID</td><td>{41E90F3E-56C1-4633-81C3-6E8BAC8BDD70}</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ApplicationAccessChecksEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ApplicationDirectory</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ApplicationProxy</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ApplicationProxyServerName</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Authentication</td><td>4</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>AuthenticationCapability</td><td>64</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>CRMEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>CRMLogFile</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Changeable</td><td>-1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>CommandLine</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ConcurrentApps</td><td>1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>CreatedBy</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Deleteable</td><td>-1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Description</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>DumpEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>DumpOnException</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>DumpOnFailfast</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>DumpPath</td><td>%systemroot%\system32\com\dmp</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>EventsEnabled</td><td>-1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ID</td><td>{5AD173F7-1713-48A2-97E0-1E0E6700C762}</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Identity</td><td>[APPUSERNAME]</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ImpersonationLevel</td><td>3</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>IsEnabled</td><td>-1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>IsSystem</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>MaxDumpCount</td><td>5</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Name</td><td>CSDO18</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Password</td><td>[APPUSERPASSWORD]</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>QCAuthenticateMsgs</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>QCListenerMaxThreads</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>QueueListenerEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>QueuingEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RecycleActivationLimit</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RecycleCallLimit</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RecycleExpirationTimeout</td><td>15</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RecycleLifetimeLimit</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RecycleMemoryLimit</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Replicable</td><td>-1</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>RunForever</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SRPEnabled</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SRPTrustLevel</td><td>262144</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ServiceName</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>ShutdownAfter</td><td>3</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SoapActivated</td><td>0</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SoapBaseUrl</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SoapMailTo</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>SoapVRoot</td><td/></row>
 		<row><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>AutoComplete</td><td>0</td></row>
 		<row><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>CLSID</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td></row>
 		<row><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>Description</td><td/></row>
@@ -4170,160 +4172,160 @@ End If
 		<row><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>Name</td><td>GetQueueSize</td></row>
 		<row><td>_F964AFCBF50F81B794CACCF67F46F605</td><td>Description</td><td/></row>
 		<row><td>_F964AFCBF50F81B794CACCF67F46F605</td><td>Name</td><td>CreatorOwner</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>AutoComplete</td><td>0</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>CLSID</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>Description</td><td/></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>IID</td><td>{6C3E6601-BB6F-4459-8D91-85D8E4E457B5}</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>Index</td><td>21</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>Name</td><td>PersistToXML</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>AutoComplete</td><td>0</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>CLSID</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>Description</td><td/></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>IID</td><td>{15BEA445-EA32-448C-B483-3E561A895807}</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>Index</td><td>23</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>Name</td><td>OpenMolServerDocument</td></row>
 	</table>
 
 	<table name="ISComCatalogCollection">
 		<col key="yes" def="s72">ISComCatalogCollection</col>
 		<col def="s72">ISComCatalogObject_</col>
 		<col def="s255">CollectionName</col>
-		<row><td>_08EC794EC9E43D14FA978B2405925428</td><td>_8196A707F05D84183B19FA718325B2E0</td><td>RolesForMethod</td></row>
-		<row><td>_0B58482F3E06D04D8523CDB8018CCEA9</td><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>RolesForMethod</td></row>
-		<row><td>_0F2D26CEE29D4D860227988FA43306EE</td><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>RolesForMethod</td></row>
-		<row><td>_18A3D63E279D593D44F8225B645C2456</td><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>SubscriptionsForComponent</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>MethodsForInterface</td></row>
+		<row><td>_0ABDF66C468C8CD19F6AAE188FB7E998</td><td>_43557777FD644954CBAC397011FCA776</td><td>SubscriptionsForComponent</td></row>
+		<row><td>_13FCD917E4FD79F05ED9E27CD94FA04B</td><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>RolesForMethod</td></row>
+		<row><td>_1623C673C6C5B041613C55D1A2E5FB88</td><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>RolesForMethod</td></row>
+		<row><td>_169228AF94358AF907CA7F52E655D68C</td><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>RolesForMethod</td></row>
 		<row><td>_19835868A089D4B869312C5E69E9B9B8</td><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>RolesForInterface</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>MethodsForInterface</td></row>
-		<row><td>_1E375B376CD87CBC6002DCE52201CE25</td><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>RolesForComponent</td></row>
-		<row><td>_24D8054F768A73CFBE2DC9782BD57BCC</td><td>_BD817D1072281528D6D0196C718B7300</td><td>RolesForMethod</td></row>
-		<row><td>_2D0D1AE1E9D5D42CD7835F1BF4326AB3</td><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>RolesForMethod</td></row>
-		<row><td>_398E38A53985E59B561CC343D258C70A</td><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>RolesForMethod</td></row>
-		<row><td>_3D5E4445BDB66437EEC83B9FDB3EACE2</td><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>RolesForMethod</td></row>
-		<row><td>_3FF06C4C48241EB8E77FEEF47E4F5649</td><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>RolesForMethod</td></row>
+		<row><td>_263B195A36BB60C9682C15AD083924F4</td><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>RolesForMethod</td></row>
+		<row><td>_273F82249BFF610A36ED7787054BE7F5</td><td>_EAB1D6154D35BADE101CF9351310882D</td><td>LegacyComponents</td></row>
+		<row><td>_2DC4994F848F83E726A61909243141BB</td><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>RolesForMethod</td></row>
+		<row><td>_2DCB3667A6CB781F65947C98A1703A8D</td><td>_43557777FD644954CBAC397011FCA776</td><td>InterfacesForComponent</td></row>
+		<row><td>_33444E2FE872B538C2AB9AB17C09F71A</td><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>RolesForMethod</td></row>
+		<row><td>_33BBB8498A456A96FCD67504CC00B46C</td><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>RolesForInterface</td></row>
+		<row><td>_3C510578E66625B4A94A72FC4ABB97EB</td><td>_8C14A15242259913A1C1508DD702B255</td><td>RolesForMethod</td></row>
+		<row><td>_440E7B29662086645C811650495012EB</td><td>_E3214E549F35DCE8EC759E48645463DE</td><td>SubscriptionsForComponent</td></row>
 		<row><td>_468AEADFDA4E2F7440281B8ABE3092BF</td><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>RolesForMethod</td></row>
-		<row><td>_4D1B266D634FEFE2DAF61D378AEDB4D6</td><td>_0A609022F2385803A15B19D9B7C56B87</td><td>RolesForMethod</td></row>
-		<row><td>_4D3D13F950BCA723D3DF67B7DD58C2D1</td><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>LegacyComponents</td></row>
-		<row><td>_4FBCAB4EC783EE26F06890BE78F30310</td><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>InterfacesForComponent</td></row>
+		<row><td>_46B0406E91FC50F84A5F3A7105C640F1</td><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>RolesForMethod</td></row>
+		<row><td>_4CB738FC0BF872BBC33BBDD174B83C5C</td><td>_C12A2B49105861D985E857C9D10673EF</td><td>UsersInRole</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>MethodsForInterface</td></row>
-		<row><td>_612D50AEFB3FA8181FC2F88FF4A56522</td><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>RolesForMethod</td></row>
-		<row><td>_61EE5A681030635F2953A778E401DDC4</td><td>_9B492258F7C02468A7546F3159D470E0</td><td>RolesForMethod</td></row>
+		<row><td>_54FBDBBBA57A9CC1069AF503A3B1DEA4</td><td>_D7D162F69E8BE1A860557535C59DF150</td><td>RolesForMethod</td></row>
+		<row><td>_5685DE2ACB54692C9A06DA415AA364D4</td><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Roles</td></row>
+		<row><td>_57CFE4E274DBC7F041DDB3D5B5091DEE</td><td>_E3214E549F35DCE8EC759E48645463DE</td><td>RolesForComponent</td></row>
+		<row><td>_63E440A604B4B66E7B321B4716C23E04</td><td>_43557777FD644954CBAC397011FCA776</td><td>RolesForComponent</td></row>
 		<row><td>_64242D4C4B0D5338A6C2220EB110689B</td><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>Components</td></row>
-		<row><td>_66474CCB1002073D7444C39FF10ECB3E</td><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>RolesForMethod</td></row>
-		<row><td>_6DEF99F4DC289C3CA6F2BB5559AA1A71</td><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>RolesForMethod</td></row>
-		<row><td>_6F4D75C6CF7349C7DCC7733EA57988E8</td><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>RolesForMethod</td></row>
+		<row><td>_65E4F186FA0AD207351E8953AD0FD2F9</td><td>_E3214E549F35DCE8EC759E48645463DE</td><td>InterfacesForComponent</td></row>
 		<row><td>_71E26FC30013CC18587F4D20EF76AC53</td><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>Roles</td></row>
 		<row><td>_73566464A9FE2EF7F4FC0E7E5EF73025</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>SubscriptionsForComponent</td></row>
-		<row><td>_787969F129198D809194193A069CF411</td><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>SubscriptionsForComponent</td></row>
-		<row><td>_7BC796017BE025F4AF7367814C6069D0</td><td>_5F8B660D5687237170E08F64045BEE11</td><td>RolesForMethod</td></row>
+		<row><td>_74BAC23FCE67138187B13A9DDBF73BDD</td><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>RolesForMethod</td></row>
+		<row><td>_770544FA9A95676B2A3F0197D321D5FE</td><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>RolesForMethod</td></row>
+		<row><td>_81B918C6EC5B9A8C36B29F98D7502DF7</td><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>RolesForMethod</td></row>
+		<row><td>_84B466AF45693E5D0EA1EB62C6B98332</td><td>_EAB1D6154D35BADE101CF9351310882D</td><td>Components</td></row>
+		<row><td>_8562AD634FFCA25B0864C39432F29B73</td><td>_5D909D6E38075E72475681424186D66F</td><td>RolesForMethod</td></row>
+		<row><td>_87C38B39B9A3B694F2AB80D0E7654ED6</td><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>RolesForMethod</td></row>
 		<row><td>_8FCBE09E8F58773E02B755DA0AA7EEFD</td><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>RolesForMethod</td></row>
-		<row><td>_8FF13A1E8F11E7C5ACEEE196AA4C18A4</td><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>RolesForMethod</td></row>
-		<row><td>_9462A03098E27318B841057BE46E88E4</td><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Components</td></row>
-		<row><td>_951FC030F4C9A812F8AB612DDA4A85B8</td><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>RolesForInterface</td></row>
+		<row><td>_91BB1D0F68571E2380C8E152D06A0AD8</td><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>RolesForMethod</td></row>
 		<row><td>_9579B60E8CDE7613131221941FACFF23</td><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>RolesForMethod</td></row>
 		<row><td>_99232840A914A281BD444301C2B72BB9</td><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>RolesForMethod</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_6F187FE3834EC8EFA918A3544429127A</td><td>MethodsForInterface</td></row>
-		<row><td>_B3597CA53F6DF1FA30D0A4FCAB35F5C4</td><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>RolesForMethod</td></row>
-		<row><td>_B40CEC3CE7C745BF3FB1B456CF44CC5C</td><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>Roles</td></row>
-		<row><td>_BA8ED0A8FBA99EAE93569EE88557715A</td><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>RolesForMethod</td></row>
-		<row><td>_C578D896EB27ED0BA0B4B817F4D191C0</td><td>_A90B728ADF46A993F229B7128D98760F</td><td>RolesForMethod</td></row>
-		<row><td>_CB4B82AE21AF8C0CA1FF600481550730</td><td>_4BFB28CDA7276402D929A82C6834992F</td><td>RolesForMethod</td></row>
-		<row><td>_CB9DC51B86E54748DE6AAE7ACAAAD77D</td><td>_6F187FE3834EC8EFA918A3544429127A</td><td>RolesForInterface</td></row>
-		<row><td>_CC462E6DECB8A42FC7FEE43A6AFE9EF6</td><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>RolesForMethod</td></row>
+		<row><td>_9B5C8BA47E9EA6BE5CCB80252A89CD84</td><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>RolesForMethod</td></row>
+		<row><td>_9CBADED49A9954D1CEAEB793E60A5FDC</td><td>_323D697F700D4760333946FC38CCB43C</td><td>RolesForMethod</td></row>
+		<row><td>_A79BE79338E7B3CC5201A91A6CA06AC3</td><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>RolesForMethod</td></row>
+		<row><td>_B93DF8015E4F24744E34E636308E10A2</td><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>RolesForMethod</td></row>
+		<row><td>_C6DEB6AB19F970C192FCC3CDB3C5398C</td><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>RolesForMethod</td></row>
 		<row><td>_CE2173865EAEA35776FA7DC32246194C</td><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>LegacyComponents</td></row>
 		<row><td>_D1960B15DFF64AB121601C278703C895</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>InterfacesForComponent</td></row>
-		<row><td>_D27421E655996AFE93A460E2FFD6C6DA</td><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>RolesForMethod</td></row>
-		<row><td>_D32B9CFB8292A473FDFE49F9BC7F13B2</td><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>RolesForComponent</td></row>
-		<row><td>_D4403AEB3F255F7559979F5674F35BF1</td><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>InterfacesForComponent</td></row>
+		<row><td>_D725561EE053A9122A8052FF866B7640</td><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>RolesForInterface</td></row>
+		<row><td>_DBA305FDB557DDF5D0924D1F14EE155A</td><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>RolesForMethod</td></row>
 		<row><td>_DFD668640E68A1494547207C129E5395</td><td>_F964AFCBF50F81B794CACCF67F46F605</td><td>UsersInRole</td></row>
-		<row><td>_E72393DC0BA3E53047934AA5B3BB2469</td><td>_C4DF79301E4521E7D344E00D9E29DBD5</td><td>UsersInRole</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>MethodsForInterface</td></row>
 		<row><td>_ED782704FF6E5200574494F1353CE11E</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>RolesForComponent</td></row>
+		<row><td>_F74DF3189C647DD115639085730F3BCB</td><td>_9879C06E7EF141D780EBC64AAA415651</td><td>RolesForMethod</td></row>
 		<row><td>_FBC3FD1C80829739085E3D7D2E094013</td><td>_1836394A4F8D557689F267C334A9D8B6</td><td>RolesForMethod</td></row>
-		<row><td>_FC53E65B8324D3D51D41A079A09645DD</td><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>RolesForMethod</td></row>
+		<row><td>_FD702CDE1EEF4843CD433A56792F8215</td><td>_E6604DA93067C96390767808D4316331</td><td>RolesForMethod</td></row>
 		<row><td>_FF136AC495E189D27E11D6FB91829C78</td><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td><td>RolesForMethod</td></row>
 	</table>
 
 	<table name="ISComCatalogCollectionObjects">
 		<col key="yes" def="s72">ISComCatalogCollection_</col>
 		<col key="yes" def="s72">ISComCatalogObject_</col>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_09407AF926ABEE3BEE08D54A97CE8265</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_4BFB28CDA7276402D929A82C6834992F</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_A90B728ADF46A993F229B7128D98760F</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_D6A4B953F3C0AD2F37D6027B50F67983</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_DC919DD3787F059B6B23635E0D441BB9</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_E36D86C6AC2AC0A66A8645F132753BC3</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td></row>
-		<row><td>_1D5F9B32CB38D3AD397C24F8C81B8270</td><td>_E59EF38EDCFCAB003D864EC997C71AA5</td></row>
-		<row><td>_4FBCAB4EC783EE26F06890BE78F30310</td><td>_6F187FE3834EC8EFA918A3544429127A</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_0144C17B712F3E3AF0838C5B050B82A0</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_01B79F5F3D36DCFE621DFD5627AF7754</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_14BA8CC7D6FA656F44B460407F13BB77</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_2919724A2257D4B88EC746DC8A3143DC</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_323D697F700D4760333946FC38CCB43C</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_489B9F698DEB7A6B6ACF97E974053BBE</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_5D909D6E38075E72475681424186D66F</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_D7D162F69E8BE1A860557535C59DF150</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_E644D6E041C4517D34CD970D46AA55AF</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_E6604DA93067C96390767808D4316331</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td></row>
+		<row><td>_02A9083D1461BD4EFBC397F4F6EB4382</td><td>_FC4F7F4BE2506F6EB53688579CD561C4</td></row>
+		<row><td>_2DCB3667A6CB781F65947C98A1703A8D</td><td>_4C02F4D8F05915370FE3637D2A7818D5</td></row>
+		<row><td>_4CB738FC0BF872BBC33BBDD174B83C5C</td><td>_694D1AB3A17189B60F27FF127314BBA7</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_1836394A4F8D557689F267C334A9D8B6</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_DB9196F8860CDCE4BF12137833FABC5D</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td></row>
 		<row><td>_529D3680D17DE34F9C6FD3517F47B5E4</td><td>_F1EE9EBE2F8D0660D9539C036DA27508</td></row>
+		<row><td>_5685DE2ACB54692C9A06DA415AA364D4</td><td>_C12A2B49105861D985E857C9D10673EF</td></row>
 		<row><td>_64242D4C4B0D5338A6C2220EB110689B</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td></row>
+		<row><td>_65E4F186FA0AD207351E8953AD0FD2F9</td><td>_4F8313F998E9F4224CB22A227CA5C65F</td></row>
 		<row><td>_71E26FC30013CC18587F4D20EF76AC53</td><td>_F964AFCBF50F81B794CACCF67F46F605</td></row>
-		<row><td>_9462A03098E27318B841057BE46E88E4</td><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td></row>
-		<row><td>_9462A03098E27318B841057BE46E88E4</td><td>_EFC082E3E843EA4F588488EE9F9088F9</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_0A609022F2385803A15B19D9B7C56B87</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_2DC442CB9D3311DA628C5E3318F225DE</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_5F8B660D5687237170E08F64045BEE11</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_6EF43299752A487DE7C0720E887EB6CA</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_73B49DB843D747B137D4E0CC1CF0AE69</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_7F5194C8546CEB83FB205D8115B3B19F</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_8196A707F05D84183B19FA718325B2E0</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_9B492258F7C02468A7546F3159D470E0</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_BC4208FE3CE5E7829D08B59A2104EB16</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_BD817D1072281528D6D0196C718B7300</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td></row>
-		<row><td>_9F5FCD8AC05B49F88926A6E71E7ABD72</td><td>_FC916547AB6F27B05502E1BBA3A2E18D</td></row>
-		<row><td>_B40CEC3CE7C745BF3FB1B456CF44CC5C</td><td>_C4DF79301E4521E7D344E00D9E29DBD5</td></row>
+		<row><td>_84B466AF45693E5D0EA1EB62C6B98332</td><td>_43557777FD644954CBAC397011FCA776</td></row>
+		<row><td>_84B466AF45693E5D0EA1EB62C6B98332</td><td>_E3214E549F35DCE8EC759E48645463DE</td></row>
 		<row><td>_D1960B15DFF64AB121601C278703C895</td><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td></row>
-		<row><td>_D4403AEB3F255F7559979F5674F35BF1</td><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td></row>
 		<row><td>_DFD668640E68A1494547207C129E5395</td><td>_D053A0A9C49D3104BEBC3453CC26CAB1</td></row>
-		<row><td>_E72393DC0BA3E53047934AA5B3BB2469</td><td>_2DECBD2C7754678FAE841B711F47D7F1</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_10ED1B4A4CD2135166C0340FA61210F3</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_6BEA613C5BA2467D48B5ED8A503C6393</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_8C14A15242259913A1C1508DD702B255</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_9879C06E7EF141D780EBC64AAA415651</td></row>
+		<row><td>_E2448941FB83F2F0C6651B1BF71489D6</td><td>_CB3358D1EF98FA343A565AC4698A61D0</td></row>
 	</table>
 
 	<table name="ISComCatalogObject">
 		<col key="yes" def="s72">ISComCatalogObject</col>
 		<col def="s255">DisplayName</col>
-		<row><td>_09407AF926ABEE3BEE08D54A97CE8265</td><td>Start</td></row>
-		<row><td>_0A609022F2385803A15B19D9B7C56B87</td><td>ADOConnOptions</td></row>
-		<row><td>_171B93E6B5FB55F49D69BEA8E53FEEDE</td><td>_Request</td></row>
+		<row><td>_0144C17B712F3E3AF0838C5B050B82A0</td><td>ADOPWD</td></row>
+		<row><td>_01B79F5F3D36DCFE621DFD5627AF7754</td><td>ADOUID</td></row>
+		<row><td>_10ED1B4A4CD2135166C0340FA61210F3</td><td>hitlistRecordCount</td></row>
+		<row><td>_14BA8CC7D6FA656F44B460407F13BB77</td><td>CreateFromXML</td></row>
 		<row><td>_1836394A4F8D557689F267C334A9D8B6</td><td>ArchiveQueue</td></row>
 		<row><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>ReportQ.CReportQ</td></row>
 		<row><td>_26EA18BC0A80AD801BAAEBB7FACFB27C</td><td>MakeReport</td></row>
-		<row><td>_2DC442CB9D3311DA628C5E3318F225DE</td><td>ADOConnString</td></row>
-		<row><td>_2DECBD2C7754678FAE841B711F47D7F1</td><td>PERKINELMERNET\jmsayan</td></row>
-		<row><td>_4BFB28CDA7276402D929A82C6834992F</td><td>NumChemExamined</td></row>
-		<row><td>_5F8B660D5687237170E08F64045BEE11</td><td>CreateFromXML</td></row>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>CSDO17</td></row>
-		<row><td>_6EF43299752A487DE7C0720E887EB6CA</td><td>Execute</td></row>
-		<row><td>_6F187FE3834EC8EFA918A3544429127A</td><td>_Connection</td></row>
-		<row><td>_73B49DB843D747B137D4E0CC1CF0AE69</td><td>ADOConnection</td></row>
+		<row><td>_2919724A2257D4B88EC746DC8A3143DC</td><td>ChemSearchOptions</td></row>
+		<row><td>_323D697F700D4760333946FC38CCB43C</td><td>Execute</td></row>
+		<row><td>_3A56A75328E598CC921CA5FBF0CCC6CC</td><td>Status</td></row>
+		<row><td>_3DB7E85CA7836BAE3D3E39DAA6E8E583</td><td>ADOOptions</td></row>
+		<row><td>_43557777FD644954CBAC397011FCA776</td><td>CSDO18.Connection</td></row>
+		<row><td>_489B9F698DEB7A6B6ACF97E974053BBE</td><td>CSChemLinks</td></row>
+		<row><td>_4C02F4D8F05915370FE3637D2A7818D5</td><td>_Connection</td></row>
+		<row><td>_4F8313F998E9F4224CB22A227CA5C65F</td><td>_Request</td></row>
+		<row><td>_5D909D6E38075E72475681424186D66F</td><td>ADOConnOptions</td></row>
+		<row><td>_694D1AB3A17189B60F27FF127314BBA7</td><td>PERKINELMERNET\jmsayan</td></row>
+		<row><td>_6BEA613C5BA2467D48B5ED8A503C6393</td><td>Cancel</td></row>
 		<row><td>_7A31C847AFBC5EED0B7CB31D99E27D75</td><td>_CReportQ</td></row>
-		<row><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>CSDO17.Connection</td></row>
-		<row><td>_7F5194C8546CEB83FB205D8115B3B19F</td><td>OpenConn</td></row>
-		<row><td>_8196A707F05D84183B19FA718325B2E0</td><td>ADOOptions</td></row>
-		<row><td>_87ABF30053230E7A6FF6D5D208ABE3B5</td><td>hitlistID</td></row>
-		<row><td>_97A2D23FFF0531D94D6EAE34F8D3DE41</td><td>ADOPWD</td></row>
-		<row><td>_9B492258F7C02468A7546F3159D470E0</td><td>CSChemLinks</td></row>
-		<row><td>_A90B728ADF46A993F229B7128D98760F</td><td>hitlistRecordCount</td></row>
-		<row><td>_B18EB4DC674D4BEE34A0ECAA516CA2F6</td><td>ChemSearchOptions</td></row>
-		<row><td>_BC4208FE3CE5E7829D08B59A2104EB16</td><td>MolDocument</td></row>
-		<row><td>_BD817D1072281528D6D0196C718B7300</td><td>OpenMolServerDocument</td></row>
+		<row><td>_8B85C8AA4FD084B0170F2701DB9F5DED</td><td>NumRelHits</td></row>
+		<row><td>_8C14A15242259913A1C1508DD702B255</td><td>NumChemHits</td></row>
+		<row><td>_8ECCD6202BD2D833EADB4B574C71CCCD</td><td>Start</td></row>
+		<row><td>_8FDDF6307E6F6AF8CF0E3EDDDD1CAA15</td><td>NumChemExamined</td></row>
+		<row><td>_9879C06E7EF141D780EBC64AAA415651</td><td>Recordset</td></row>
+		<row><td>_C12A2B49105861D985E857C9D10673EF</td><td>CreatorOwner</td></row>
 		<row><td>_C4A53DF27929BF2B4E505AB0F200BA1C</td><td>WriteQueueHTML</td></row>
-		<row><td>_C4DF79301E4521E7D344E00D9E29DBD5</td><td>CreatorOwner</td></row>
+		<row><td>_CB3358D1EF98FA343A565AC4698A61D0</td><td>hitlistID</td></row>
 		<row><td>_D053A0A9C49D3104BEBC3453CC26CAB1</td><td>PERKINELMERNET\jmsayan</td></row>
-		<row><td>_D41FF8333BB25DB04F7B4D4ED806C5C8</td><td>ADOUID</td></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>REPORTQ</td></row>
-		<row><td>_D6A4B953F3C0AD2F37D6027B50F67983</td><td>NumRelHits</td></row>
+		<row><td>_D7D162F69E8BE1A860557535C59DF150</td><td>ADOConnString</td></row>
 		<row><td>_DB9196F8860CDCE4BF12137833FABC5D</td><td>GetReportStatus</td></row>
-		<row><td>_DC919DD3787F059B6B23635E0D441BB9</td><td>Cancel</td></row>
 		<row><td>_DF0AB7AF93E0889E763FF4AEDEA903A7</td><td>GenerateReport</td></row>
-		<row><td>_E36D86C6AC2AC0A66A8645F132753BC3</td><td>Recordset</td></row>
-		<row><td>_E4B4C6BCDAE5A94F3A17B82AE42460ED</td><td>Status</td></row>
-		<row><td>_E59EF38EDCFCAB003D864EC997C71AA5</td><td>NumChemHits</td></row>
-		<row><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>CSDO17.Request</td></row>
+		<row><td>_E3214E549F35DCE8EC759E48645463DE</td><td>CSDO18.Request</td></row>
+		<row><td>_E4FC39BFAC47476BD6C0125C7BB31EFF</td><td>MolDocument</td></row>
+		<row><td>_E644D6E041C4517D34CD970D46AA55AF</td><td>ADOConnection</td></row>
+		<row><td>_E6604DA93067C96390767808D4316331</td><td>OpenConn</td></row>
+		<row><td>_EA85BFEC480B76AB9FA3F5C33147C6F8</td><td>PersistToXML</td></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td>CSDO18</td></row>
 		<row><td>_F1EE9EBE2F8D0660D9539C036DA27508</td><td>GetQueueSize</td></row>
 		<row><td>_F964AFCBF50F81B794CACCF67F46F605</td><td>CreatorOwner</td></row>
-		<row><td>_FC916547AB6F27B05502E1BBA3A2E18D</td><td>PersistToXML</td></row>
+		<row><td>_FC4F7F4BE2506F6EB53688579CD561C4</td><td>OpenMolServerDocument</td></row>
 	</table>
 
 	<table name="ISComPlusApplication">
@@ -4332,8 +4334,8 @@ End If
 		<col def="s72">Component_</col>
 		<col def="I2">ISAttributes</col>
 		<col def="S0">DepFiles</col>
-		<row><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td/><td>CSDO17_Server</td><td>1</td><td/></row>
 		<row><td>_D45F9465FA31990DFD26D14BA1B61000</td><td/><td>REPORTQ_Server</td><td>1</td><td/></row>
+		<row><td>_EAB1D6154D35BADE101CF9351310882D</td><td/><td>CSDO18_Server</td><td>1</td><td/></row>
 	</table>
 
 	<table name="ISComPlusApplicationDLL">
@@ -4345,8 +4347,8 @@ End If
 		<col def="S0">DLL</col>
 		<col def="S0">AlterDLL</col>
 		<row><td>_04FAF47C68DFB874AF6AAA60B2C542E4</td><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td><td>ReportQ.CReportQ</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOffice\Common\dlls\REPORTQ.dll</td><td/></row>
-		<row><td>_205799200B3D1C5288E53D3411C0D13C</td><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>_7BFCDFD45CCA1BE6D882DC794363D8B4</td><td>{D94F2BAD-6C23-4FDC-A68F-0D52EBCACA93}</td><td>CSDO17.Connection</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOfficeEnterprise\Classic\Common\dlls\CSDO17.dll</td><td/></row>
-		<row><td>_A0D67E655F7B6E81AB5EEE8D426FCD08</td><td>_6E0F3BD2CD1980FC4FAE7454B87B08D2</td><td>_EFC082E3E843EA4F588488EE9F9088F9</td><td>{F397C7F4-744F-4A94-BB32-F1A86B88273B}</td><td>CSDO17.Request</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOfficeEnterprise\Classic\Common\dlls\CSDO17.dll</td><td/></row>
+		<row><td>_6A6486C1BF523B172E3CE332D09AE204</td><td>_EAB1D6154D35BADE101CF9351310882D</td><td>_E3214E549F35DCE8EC759E48645463DE</td><td>{2D0A8699-8955-4806-B2B1-C558C29BFA8E}</td><td>CSDO18.Request</td><td>C:\builds\workspace\TBR-CBOE18.1\subprojects\CSDO\CSDO18\Goods\CSDO18.dll</td><td/></row>
+		<row><td>_F2707E9CD3B7E5B7EE220BE1515B3E34</td><td>_EAB1D6154D35BADE101CF9351310882D</td><td>_43557777FD644954CBAC397011FCA776</td><td>{1A6B0DBA-863C-4F0E-873D-0FCD38027DCF}</td><td>CSDO18.Connection</td><td>C:\builds\workspace\TBR-CBOE18.1\subprojects\CSDO\CSDO18\Goods\CSDO18.dll</td><td/></row>
 	</table>
 
 	<table name="ISComPlusProxy">
@@ -4377,8 +4379,8 @@ End If
 	<table name="ISComPlusServerFile">
 		<col key="yes" def="s72">File_</col>
 		<col key="yes" def="s72">ISComPlusApplicationDLL_</col>
-		<row><td>csdo17.dll</td><td>_205799200B3D1C5288E53D3411C0D13C</td></row>
-		<row><td>csdo17.dll</td><td>_A0D67E655F7B6E81AB5EEE8D426FCD08</td></row>
+		<row><td>csdo18.dll</td><td>_6A6486C1BF523B172E3CE332D09AE204</td></row>
+		<row><td>csdo18.dll</td><td>_F2707E9CD3B7E5B7EE220BE1515B3E34</td></row>
 		<row><td>reportq.dll1</td><td>_04FAF47C68DFB874AF6AAA60B2C542E4</td></row>
 	</table>
 
@@ -4455,9 +4457,9 @@ End If
 		<row><td>Assets</td><td/><td/><td>_64AD0EAF_8270_4FB3_B795_6D37A8097CF9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Bin</td><td/><td/><td>_5FBC7188_A2DC_4C0E_A3C7_AC4663D7BA52_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CBOEHelp</td><td/><td/><td>_4ABEB334_7F46_4242_B45A_E9328F558268_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CSDO17</td><td/><td/><td>_55F39456_A4D8_4107_9522_8D0123C65F7E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CSDO17_Server</td><td/><td/><td>_92B65B8D_5A15_4E52_9DB3_567593CF7B4F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CSDO17_Server_File</td><td/><td/><td>_8833D279_CEAE_45CB_B2CD_BEB4241BA2C1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CSDO18</td><td/><td/><td>_55F39456_A4D8_4107_9522_8D0123C65F7E_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CSDO18_Server</td><td/><td/><td>_3DB7581E_CF6D_4B7C_901C_09E2775C07B5_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CSDO18_Server_File</td><td/><td/><td>_84131DE8_6A3D_416A_A7D5_4655F73357E5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSWebMenu5.dll</td><td/><td/><td>_6529D650_CB3D_4D02_89CA_8E7D850A4AC4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSWebMenu6.dll</td><td/><td/><td>_8E70FEB0_1495_4B1B_A7C8_24A197DE078C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td/><td/><td>_6BDC8DCC_0162_4B11_B55C_2E7927150B93_FILTER</td><td/><td/><td/><td/></row>
@@ -7587,25 +7589,25 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<col key="yes" def="s255">Name</col>
 		<col def="s255">Value</col>
 		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>Culture</td><td>neutral</td></row>
-		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>FileVersion</td><td>17.1.0.5042</td></row>
+		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>FileVersion</td><td>18.1.0.5065</td></row>
 		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>Name</td><td>CambridgeSoft.COE.Framework</td></row>
 		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>PublicKeyToken</td><td>1E3754866626DFBF</td></row>
-		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>Version</td><td>17.1.0.0</td></row>
+		<row><td>CambridgeSoft.COE.Framework.dll1</td><td>Version</td><td>18.1.0.0</td></row>
 		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>Culture</td><td>neutral</td></row>
-		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>FileVersion</td><td>17.1.0.5042</td></row>
+		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>FileVersion</td><td>18.1.0.5065</td></row>
 		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>Name</td><td>CambridgeSoft.COE.Registration.RegistrationAddins</td></row>
 		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>PublicKeyToken</td><td>F435BA95DA9797DC</td></row>
-		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>Version</td><td>17.1.0.0</td></row>
+		<row><td>CambridgeSoft.COE.Registration.RegistrationAddins.dll1</td><td>Version</td><td>18.1.0.0</td></row>
 		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>Culture</td><td>neutral</td></row>
-		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>FileVersion</td><td>17.1.0.5042</td></row>
+		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>FileVersion</td><td>18.1.0.5065</td></row>
 		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>Name</td><td>CambridgeSoft.COE.Registration.Services</td></row>
 		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>PublicKeyToken</td><td>F435BA95DA9797DC</td></row>
-		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>Version</td><td>17.1.0.0</td></row>
+		<row><td>CambridgeSoft.COE.Registration.Services.dll1</td><td>Version</td><td>18.1.0.0</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>Culture</td><td>neutral</td></row>
-		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>FileVersion</td><td>17.1.0.5042</td></row>
+		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>FileVersion</td><td>18.1.0.5065</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>Name</td><td>CambridgeSoft.COE.RegistrationAdmin.Services</td></row>
 		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>PublicKeyToken</td><td>F435BA95DA9797DC</td></row>
-		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>Version</td><td>17.1.0.0</td></row>
+		<row><td>CambridgeSoft.COE.RegistrationAdmin.Services.dll1</td><td>Version</td><td>18.1.0.0</td></row>
 		<row><td>Csla.Compression.dll</td><td>Culture</td><td>neutral</td></row>
 		<row><td>Csla.Compression.dll</td><td>FileVersion</td><td>1.0.0.0</td></row>
 		<row><td>Csla.Compression.dll</td><td>Name</td><td>Csla.Compression</td></row>
@@ -7636,10 +7638,10 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PyEngine3.dll</td><td>PublicKeyToken</td><td>1E3754866626DFBF</td></row>
 		<row><td>PyEngine3.dll</td><td>Version</td><td>0.0.0.0</td></row>
 		<row><td>Registration.Core.dll</td><td>Culture</td><td>neutral</td></row>
-		<row><td>Registration.Core.dll</td><td>FileVersion</td><td>17.1.0.5042</td></row>
+		<row><td>Registration.Core.dll</td><td>FileVersion</td><td>18.1.0.5065</td></row>
 		<row><td>Registration.Core.dll</td><td>Name</td><td>Registration.Core</td></row>
 		<row><td>Registration.Core.dll</td><td>PublicKeyToken</td><td>F435BA95DA9797DC</td></row>
-		<row><td>Registration.Core.dll</td><td>Version</td><td>17.1.0.0</td></row>
+		<row><td>Registration.Core.dll</td><td>Version</td><td>18.1.0.0</td></row>
 		<row><td>mage.exe</td><td>Culture</td><td>neutral</td></row>
 		<row><td>mage.exe</td><td>FileVersion</td><td>65535.0.0.0</td></row>
 		<row><td>mage.exe</td><td>Name</td><td>mage</td></row>

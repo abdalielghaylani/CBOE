@@ -18,7 +18,8 @@ pipeline
 		  {
 			timestamps()
 			buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '', numToKeepStr: '10'))
-          }
+                      
+          }            
     stages 
 	      {
            stage ('CBOE-Build') 
