@@ -1201,7 +1201,12 @@
   <instrumentationConfiguration performanceCountersEnabled="false" eventLoggingEnabled="false" wmiEnabled="false"/>
   <!--This configuration is used by CambridgeSoft.COE.Core.Common call BLL and DAL classes for coe framework services -->
   <coeHomeSettings gridColumns="3">
-    <groups>
+    <groups>      
+	  <add name="WebRegistration" enabled="true" coeIdentifier="WebRegistration" display="Web Registration Enterprise" newWindow=""  color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
+        <links>
+          <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG||ADD_COMPOUND_TEMP||SEARCH_TEMP||CONFIG_REG" tip="Access all Web Registration System functionality" url="/Registration.Server" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
+        </links>
+      </add>
       <add name="Registration" enabled="true" coeIdentifier="Registration" display="Registration Enterprise" newWindow="scrollbars=1,resizable=1,toolbar=0,location=0,directories=0,status=1,menubar=0,height=650,width=1070px,top=0,left=50" color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
         <links>
           <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG" tip="Access all other Registration System functionality" url="/COERegistration/Forms/Public/ContentArea/Home.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
