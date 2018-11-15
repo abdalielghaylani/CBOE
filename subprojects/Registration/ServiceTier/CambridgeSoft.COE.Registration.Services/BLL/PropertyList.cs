@@ -263,7 +263,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
 
             foreach (Property prop in this)
             {
-                if (prop.Name == name)
+                if (prop.Name.ToLower() == name.ToLower())
                     return index;
                 else
                     index++;
