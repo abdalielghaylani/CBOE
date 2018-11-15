@@ -687,7 +687,7 @@ export class CRegistryRecord {
         let m = n.match(/PropertyList\[@Name='(.*)'/);
         if (m && m.length > 1) {
           let propertyList = nextObject.PropertyList as IPropertyList;
-          if (propertyList != null) {
+          if (propertyList != null && propertyList.Property != null) {
             let p = propertyList.Property.filter(p => p._name === m[1]);
             if (createMissing && p.length === 0) {
               propertyList.Property.push({ _name: m[1] });
