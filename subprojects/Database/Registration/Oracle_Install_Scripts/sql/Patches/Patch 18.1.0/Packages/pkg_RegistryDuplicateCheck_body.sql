@@ -246,7 +246,7 @@ create or replace PACKAGE BODY                               RegistryDuplicateCh
     END;
     -- create the list of compound IDs
     select sq_duplicate_check.nextval into l_id from dual;
-    execute immediate v_sql USING p_property_value;
+    execute immediate v_sql USING l_id, p_property_value;
 
     RETURN l_id;
   END;
