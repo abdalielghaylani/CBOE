@@ -1,38 +1,34 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='list')">
-  <reg-settings-page-header>{{ configTable.window.title }}</reg-settings-page-header>
-  <dx-data-grid id="configTable" [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
-    (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)'
-    (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)" [wordWrapEnabled]="true">
-    <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')"
-      [allowAdding]="hasPrivilege('ADD')" [form]="configTable.editFormOptions">
-    </dxo-editing>
-    <dxo-scrolling mode="infinite"></dxo-scrolling>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image-grid-item  [cdXml]="data.data.STRUCTURE_XML"></reg-structure-image-grid-item>
-    </div>
-    <div *dxTemplate="let data of 'viewTemplate'">
-      {{data.value}}
-    </div>
-    <div *dxTemplate="let data of 'disabledTemplate'">
-      <dx-text-box [(value)]="data.value" [disabled]="!data.row.inserted &amp;&amp; data.row.data.LOCKED === 'T'" (onValueChanged)="onValueChanged($event,data)"></dx-text-box>
-    </div>
-  </dx-data-grid>
+    <reg-settings-page-header>{{ configTable.window.title }}</reg-settings-page-header>
+    <dx-data-grid id="configTable" [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)'
+        (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)" [wordWrapEnabled]="true">
+        <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')" [allowAdding]="hasPrivilege('ADD')" [form]="configTable.editFormOptions">
+        </dxo-editing>
+        <dxo-scrolling mode="infinite"></dxo-scrolling>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+        <div *dxTemplate="let data of 'cellTemplate'">
+            <reg-structure-image-grid-item [cdXml]="data.data.STRUCTURE_XML"></reg-structure-image-grid-item>
+        </div>
+        <div *dxTemplate="let data of 'viewTemplate'">
+            {{data.value}}
+        </div>
+        <div *dxTemplate="let data of 'disabledTemplate'">
+            <dx-text-box [(value)]="data.value" [disabled]="!data.row.inserted &amp;&amp; data.row.data.LOCKED === 'T'" (onValueChanged)="onValueChanged($event,data)"></dx-text-box>
+        </div>
+    </dx-data-grid>
 </div>
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='add'||configTable.window.viewIndex==='edit')">
-  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
-  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='add'" (onClick)="addConfigData($event)" iconName="plus"
-    title="Add {{configTable.editHeaderName}}"></command-button>
-  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='edit'" (onClick)="saveConfigData($event)" iconName="floppy-o"
-    title="Save {{configTable.editHeaderName}}"></command-button>
-  <reg-settings-page-header [isMenu]="false">{{configTable.window.title}}</reg-settings-page-header>
-  <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
-    <dx-form minColWidth=300 [colCount]="1" [formData]="configTable.formData" [items]="configTable.formColumns" labelLocation="top">
-      <div *dxTemplate="let data of 'fragmentStructureTemplate'">
-        <reg-structure-fragment-template id="cdd" (valueUpdated)="refreshDetails($event)"activated="true" editMode="true" [viewModel]="configTable.formData">
-        </reg-structure-fragment-template>
-      </div>
-    </dx-form>
-  </dx-scroll-view>
+    <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+    <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='add'" (onClick)="addConfigData($event)" iconName="plus" title="Add {{configTable.editHeaderName}}"></command-button>
+    <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='edit'" (onClick)="saveConfigData($event)" iconName="floppy-o" title="Save {{configTable.editHeaderName}}"></command-button>
+    <reg-settings-page-header [isMenu]="false">{{configTable.window.title}}</reg-settings-page-header>
+    <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+        <dx-form minColWidth=300 [colCount]="1" [formData]="configTable.formData" [items]="configTable.formColumns" labelLocation="top">
+            <div *dxTemplate="let data of 'fragmentStructureTemplate'">
+                <reg-structure-fragment-template id="cdd" (valueUpdated)="refreshDetails($event)" activated="true" editMode="true" [viewModel]="configTable.formData">
+                </reg-structure-fragment-template>
+            </div>
+        </dx-form>
+    </dx-scroll-view>
 </div>

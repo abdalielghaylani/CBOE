@@ -86,6 +86,13 @@ export class RegConfigTables extends RegConfigBaseComponent {
     }
   }
 
+  onContentReady(e) {
+    e.element.find(`[aria-label='Cancel']`).click(function () {
+      e.component.cancelEditData();
+      e.component.option('editing.allowAdding', true);
+    });
+  }
+
   onInitNewRow(e) {
     let data = e.component.getVisibleRows().filter(i => i.rowType === 'detail')[0];
     if (data && data.data && Object.keys(data.data).length > 1) {
@@ -105,6 +112,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
   }
 
   onEditingStart(e) {
+    e.component.option('editing.allowAdding', false);
     if (this.tableId === 'VW_FRAGMENT') {
       this.configTable.addEdit(e, 'edit');
       e.cancel = true;
