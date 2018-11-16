@@ -263,6 +263,7 @@
 		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>ISSetup.dll</td><td/><td>&lt;ISProductFolder&gt;\redist\language independent\i386\ISSetup.dll</td></row>
 		<row><td>ISSetupFilesHelper</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\SFHelper.dll</td></row>
+		<row><td>ISXMLCFG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isxmlcfg.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
 		<row><td>NewBinary11</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CustomSetupIco.ibd</td></row>
@@ -460,6 +461,7 @@
 		<row><td>Registration.ServerWebServices</td><td>{269570E7-9C7E-43F5-B031-180277522BCA}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SingleSignOnCom.dll</td><td>{67F4FC81-FC9C-4291-8693-A0D90498A703}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.dll</td><td>49</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SingleSignOnCom.tlb</td><td>{21BAF3C6-1CAF-4ABD-9DE4-B495312CC7BB}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.tlb1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Web.config</td><td>{3643FA60-F96A-4DBF-92D6-564E90D0566A}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServiceExtensionComponent</td><td>{709A5C9C-A67F-4772-82EC-8220368C3154}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServices</td><td>{40DE0D1B-7BEA-4F78-9A6C-95280C02BA18}</td><td>WEBSERVICES1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{EF6E2318-0894-44B6-9772-396FDB6C56E5}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1288,6 +1290,7 @@
 		<row><td>PERKINELMER</td><td>AllOtherFiles32</td></row>
 		<row><td>PYTHONSCRIPTS</td><td>AllOtherFiles67</td></row>
 		<row><td>REGISTRATION</td><td>AllOtherFiles5</td></row>
+		<row><td>REGISTRATION.SERVER</td><td>Web.config</td></row>
 		<row><td>RUNTIMELIBRARIES</td><td>CambridgeSoft.COE.Framework.dll</td></row>
 		<row><td>WindowsFolder</td><td>AllOtherFiles76</td></row>
 		<row><td>WindowsVolume</td><td>AllOtherFiles52</td></row>
@@ -1529,6 +1532,11 @@ END FUNCTION</td><td/><td/></row>
 		<row><td>ISSetupFilesCleanup</td><td>257</td><td>ISSetupFilesHelper</td><td>SFCleanupEx</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td>257</td><td>ISSetupFilesHelper</td><td>SFStartupEx</td><td/><td/></row>
 		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
+		<row><td>ISXmlCosting</td><td>1</td><td>ISXMLCFG.DLL</td><td>ISXmlCosting</td><td/><td/></row>
+		<row><td>ISXmlFinalize</td><td>1</td><td>ISXMLCFG.DLL</td><td>ISXmlFinalize</td><td/><td/></row>
+		<row><td>ISXmlInstall</td><td>3073</td><td>ISXMLCFG.DLL</td><td>ISXmlInstall</td><td/><td/></row>
+		<row><td>ISXmlRollback</td><td>3329</td><td>ISXMLCFG.DLL</td><td>ISXmlRollback</td><td/><td/></row>
+		<row><td>ISXmlUnInstall</td><td>3073</td><td>ISXMLCFG.DLL</td><td>ISXmlUnInstall</td><td/><td/></row>
 		<row><td>RESETIIS</td><td>34</td><td>SystemFolder</td><td>Cmd.exe /c "iisreset"</td><td/><td/></row>
 		<row><td>ReadCBVNAppManifest</td><td>38</td><td/><td>Const ForReading = 1
 
@@ -3529,6 +3537,7 @@ End If
 		<row><td>Registration.Server</td><td>Registration.Client</td></row>
 		<row><td>Registration.Server</td><td>Registration.Server</td></row>
 		<row><td>Registration.Server</td><td>Registration.ServerWebServices</td></row>
+		<row><td>Registration.Server</td><td>Web.config</td></row>
 		<row><td>Registration.Server</td><td>WebServices</td></row>
 		<row><td>Security</td><td>AllOtherFiles28</td></row>
 		<row><td>Security</td><td>AllOtherFiles29</td></row>
@@ -4498,6 +4507,7 @@ End If
 		<row><td>Registration.ServerWebServices</td><td/><td/><td>_8C23AB70_D503_4858_B497_F658D10DF99B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SingleSignOnCom.dll</td><td/><td/><td>_FF7B9E4D_8F05_4047_9EF8_9B953DD64F83_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SingleSignOnCom.tlb</td><td/><td/><td>_0CED8E5B_EDAE_44C1_A884_57EEC14D48E3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Web.config</td><td/><td/><td>_6CCBB10E_D688_4096_9B40_4E145D65420C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServiceExtensionComponent</td><td/><td/><td>_80CA2C46_50DA_4DFD_BF0E_5F08D4CE2482_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServices</td><td/><td/><td>_03C56F81_CAC4_408C_9391_1BFD288BEBFC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_78397AD3_C9F2_4418_9568_8B7084F6A600_FILTER</td><td/><td/><td/><td/></row>
@@ -7083,7 +7093,15 @@ End If
 		<row><td>ID_STRING585</td><td>1033</td><td>ChemACX.ini</td><td>0</td><td/><td>1697044965</td></row>
 		<row><td>ID_STRING586</td><td>1033</td><td>GLOBALS</td><td>0</td><td/><td>1697020421</td></row>
 		<row><td>ID_STRING587</td><td>1033</td><td>ABOUT_WINDOW</td><td>0</td><td/><td>1697030661</td></row>
+		<row><td>ID_STRING588</td><td>1033</td><td>Web.config</td><td>0</td><td/><td>-2052699710</td></row>
+		<row><td>ID_STRING589</td><td>1033</td><td>configuration</td><td>0</td><td/><td>-2052699710</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
+		<row><td>ID_STRING590</td><td>1033</td><td>appSettings</td><td>0</td><td/><td>-2052699710</td></row>
+		<row><td>ID_STRING591</td><td>1033</td><td>key</td><td>0</td><td/><td>-2052699710</td></row>
+		<row><td>ID_STRING592</td><td>1033</td><td>CDJSUrl</td><td>0</td><td/><td>-2052699710</td></row>
+		<row><td>ID_STRING593</td><td>1033</td><td>value</td><td>0</td><td/><td>-2052699710</td></row>
+		<row><td>ID_STRING594</td><td>1033</td><td>http://[SERVERNAMEHOST]/cdjs</td><td>0</td><td/><td>-2052717950</td></row>
+		<row><td>ID_STRING595</td><td>1033</td><td>add[@key="CDJSUrl" and @value="http://[SERVERNAMEHOST]/cdjs"]</td><td>0</td><td/><td>-2052664734</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
 		<row><td>ID_STRING60</td><td>1033</td><td>SETUPL~1|Setup Logs</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING61</td><td>1033</td><td>CHEMOF~1|ChemOffice WebServer User's Guide</td><td>0</td><td/><td>-1457540204</td></row>
@@ -7234,6 +7252,9 @@ End If
 		<col def="L0">XPath</col>
 		<col def="L0">Content</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>ISXmlElement1</td><td>ISXmlFile1</td><td/><td>##ID_STRING589##</td><td/><td>9</td></row>
+		<row><td>ISXmlElement2</td><td>ISXmlFile1</td><td>ISXmlElement1</td><td>##ID_STRING590##</td><td/><td>9</td></row>
+		<row><td>ISXmlElement3</td><td>ISXmlFile1</td><td>ISXmlElement2</td><td>##ID_STRING595##</td><td/><td>9</td></row>
 	</table>
 
 	<table name="ISXmlElementAttrib">
@@ -7242,6 +7263,8 @@ End If
 		<col def="L255">Name</col>
 		<col def="L0">Value</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>ISXmlElementAttrib1</td><td>ISXmlElement3</td><td>##ID_STRING591##</td><td>##ID_STRING592##</td><td>5</td></row>
+		<row><td>ISXmlElementAttrib2</td><td>ISXmlElement3</td><td>##ID_STRING593##</td><td>##ID_STRING594##</td><td>5</td></row>
 	</table>
 
 	<table name="ISXmlFile">
@@ -7252,6 +7275,7 @@ End If
 		<col def="I4">ISAttributes</col>
 		<col def="S0">SelectionNamespaces</col>
 		<col def="S255">Encoding</col>
+		<row><td>ISXmlFile1</td><td>##ID_STRING588##</td><td>Web.config</td><td>REGISTRATION.SERVER</td><td>1</td><td/><td/></row>
 	</table>
 
 	<table name="ISXmlLocator">
@@ -7361,6 +7385,11 @@ End If
 		<row><td>ISSetupFilesCleanup</td><td/><td>6637</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td/><td>3</td><td/><td/></row>
 		<row><td>ISUnSelfRegisterFiles</td><td/><td>2202</td><td/><td/></row>
+		<row><td>ISXmlCosting</td><td/><td>1503</td><td>This action is required for XML configuration to function properly.</td><td/></row>
+		<row><td>ISXmlFinalize</td><td/><td>6607</td><td>This action is required for XML configuration to function properly.</td><td/></row>
+		<row><td>ISXmlInstall</td><td/><td>4001</td><td>This action is required for XML configuration to function properly.</td><td/></row>
+		<row><td>ISXmlRollback</td><td/><td>1504</td><td>This action is required for XML configuration to function properly.</td><td/></row>
+		<row><td>ISXmlUnInstall</td><td/><td>3503</td><td>This action is required for XML configuration to function properly.</td><td/></row>
 		<row><td>InstallFiles</td><td/><td>4000</td><td>InstallFiles</td><td/></row>
 		<row><td>InstallFinalize</td><td/><td>6600</td><td>InstallFinalize</td><td/></row>
 		<row><td>InstallInitialize</td><td/><td>1502</td><td>InstallInitialize</td><td/></row>
