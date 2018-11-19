@@ -138,7 +138,7 @@ pipeline
 				    "${MSBUILD}" ${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server.2013.Build.sln /p:CreatePackageOnPublish=true /p:DeployOnBuild=true /p:PublishProfile="" 
 				    xcopy /Y "${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				    xcopy /Y "${WORKSPACE}\\CBOE17.1\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
-				    xcopy /Y "${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl17.dll" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl18.dll" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 				    set WORKSPACE_PATH_ROOT=${WORKSPACE}
 				    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=18.1.0.5%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=18.1.0.5%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=18_1_0_5%BUILD_NUMBER%" -z "BUILDVERSION=18_1_0_5%BUILD_NUMBER%"
 				    MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"

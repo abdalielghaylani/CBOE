@@ -3626,7 +3626,7 @@ End If
 		<row><td>infragistics2.webui.websched</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebSchedule.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebSchedule.v11.1.dll</td><td>1</td><td/></row>
 		<row><td>infragistics2.webui.websched1</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</td><td>1</td><td/></row>
 		<row><td>infragistics2.webui.webspell</td><td>Bin</td><td>INFRAG~1.DLL|Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</td><td>1</td><td/></row>
-		<row><td>interop.chemdrawcontrol17.dl</td><td>Bin</td><td>INTERO~1.DLL|Interop.ChemDrawControl17.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Interop.ChemDrawControl17.dll</td><td>1</td><td/></row>
+		<row><td>interop.chemdrawcontrol18.dl</td><td>Bin</td><td>INTERO~1.DLL|Interop.ChemDrawControl18.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Interop.ChemDrawControl18.dll</td><td>1</td><td/></row>
 		<row><td>invconfig.ini</td><td>invconfig</td><td>INVCON~1.INI|invconfig.ini</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\config\invconfig.ini</td><td>1</td><td/></row>
 		<row><td>invloadersetup.exe</td><td>InvLoaderSetup.exe</td><td>INVLOA~1.EXE|InvLoaderSetup.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\ChemOffice\ChemInv\Installation\InvLoader\InvLoaderSetup.exe</td><td>17</td><td/></row>
 		<row><td>ironmath.dll</td><td>Bin</td><td>IronMath.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\IronMath.dll</td><td>1</td><td/></row>
@@ -7101,7 +7101,8 @@ End If
 		<row><td>ID_STRING592</td><td>1033</td><td>CDJSUrl</td><td>0</td><td/><td>-2052699710</td></row>
 		<row><td>ID_STRING593</td><td>1033</td><td>value</td><td>0</td><td/><td>-2052699710</td></row>
 		<row><td>ID_STRING594</td><td>1033</td><td>http://[SERVERNAMEHOST]/cdjs</td><td>0</td><td/><td>-2052717950</td></row>
-		<row><td>ID_STRING595</td><td>1033</td><td>add[@key="CDJSUrl" and @value="http://[SERVERNAMEHOST]/cdjs"]</td><td>0</td><td/><td>-2052664734</td></row>
+		<row><td>ID_STRING595</td><td>1033</td><td>add[@key="CDJSUrl" and @value="http://localhost/cdjs"]</td><td>0</td><td/><td>-1784240906</td></row>
+		<row><td>ID_STRING596</td><td>1033</td><td>add[@key="CDJSUrl" and @value="http://[SERVERNAMEHOST]/cdjs"]</td><td>0</td><td/><td>-1784274090</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
 		<row><td>ID_STRING60</td><td>1033</td><td>SETUPL~1|Setup Logs</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING61</td><td>1033</td><td>CHEMOF~1|ChemOffice WebServer User's Guide</td><td>0</td><td/><td>-1457540204</td></row>
@@ -7254,7 +7255,7 @@ End If
 		<col def="I4">ISAttributes</col>
 		<row><td>ISXmlElement1</td><td>ISXmlFile1</td><td/><td>##ID_STRING589##</td><td/><td>9</td></row>
 		<row><td>ISXmlElement2</td><td>ISXmlFile1</td><td>ISXmlElement1</td><td>##ID_STRING590##</td><td/><td>9</td></row>
-		<row><td>ISXmlElement3</td><td>ISXmlFile1</td><td>ISXmlElement2</td><td>##ID_STRING595##</td><td/><td>9</td></row>
+		<row><td>ISXmlElement3</td><td>ISXmlFile1</td><td>ISXmlElement2</td><td>##ID_STRING595##</td><td>##ID_STRING596##</td><td>9</td></row>
 	</table>
 
 	<table name="ISXmlElementAttrib">

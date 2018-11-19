@@ -749,7 +749,7 @@ end;
 function InstallPatch(hMSI)
     // To Do:  Declare local variables.
     STRING  szVirtualName,strProgram,strInstallDir,strMSI,strWebSite,strCBOE,strComuser,strAppPass,strMSICBOE,strMSICDJS;
-    STRING strCDJSParameter,strCDJS;
+    STRING strCDJSParameter,strCDJS,strMSIChem;
     NUMBER nBuf;
  begin            
    
@@ -760,6 +760,20 @@ function InstallPatch(hMSI)
         MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
         MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);
+        
+        
+        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.0.msi";                 
+        LongPathFromShortPath(strMSIChem);
+        LongPathToQuote(strMSIChem,TRUE); 
+        
+        strMSIChem ="/i " +strMSIChem + " /qb";
+            
+          
+        LaunchAppAndWait("msiexec",strMSIChem,WAIT);        
+        
+        
+        
+        
         strMSICBOE=strMSI + "\\CBOE 18.1.0.msi";        
         LongPathFromShortPath(strMSICBOE);
         LongPathToQuote(strMSICBOE,TRUE);
