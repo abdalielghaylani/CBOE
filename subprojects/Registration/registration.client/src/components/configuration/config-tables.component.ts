@@ -92,6 +92,14 @@ export class RegConfigTables extends RegConfigBaseComponent {
     });
   }
 
+  onRowUpdated(e) {
+    e.component.option('editing.allowAdding', true);
+  }
+
+  onRowInserted(e) {
+    e.component.option('editing.allowAdding', true);
+  }
+
   onInitNewRow(e) {
     e.component.option('editing.allowAdding', false);
     let data = e.component.getVisibleRows().filter(i => i.rowType === 'detail')[0];
@@ -121,6 +129,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
 
   cancel(e) {
     this.configTable.cancel(e);
+    this.grid.instance.option('editing.allowAdding', true);
     this.grid.instance.cancelEditData();
     this.grid.instance.refresh();
   }
@@ -135,6 +144,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
     }
 
     if (res.isValid) {
+      this.grid.instance.option('editing.allowAdding', true);
       if (this.tableId === 'VW_FRAGMENT') {
         this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
       }
@@ -158,6 +168,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
       return;
     }
     if (res.isValid) {
+      this.grid.instance.option('editing.allowAdding', true);
       if (this.tableId === 'VW_FRAGMENT') {
         this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
       }
