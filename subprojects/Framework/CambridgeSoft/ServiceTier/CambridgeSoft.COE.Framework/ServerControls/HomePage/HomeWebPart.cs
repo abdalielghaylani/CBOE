@@ -280,8 +280,10 @@ namespace CambridgeSoft.COE.Framework.Controls.WebParts
                                 //if you are here then it means that value is neither true or false and thus shoudl be treated as an options list.
                                 _windowProps = _group.NewWindow;
                             }                           
-                            _hyperLink.NavigateUrl = this.Page.ResolveUrl(linkData.URL);
-                            _hyperLink.Target = "_blank";                            
+                            _windowjs = "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
+                            _windowjs += ";event.returnValue = false; return false;";
+                            _hyperLink.NavigateUrl = "#";
+                            _hyperLink.Attributes.Add("onClick", _windowjs);                            
                         }
                         else
                         {
@@ -292,8 +294,10 @@ namespace CambridgeSoft.COE.Framework.Controls.WebParts
                                 {
                                     _windowProps = linkData.NewWindow;
                                 }                               
-                               _hyperLink.NavigateUrl = this.Page.ResolveUrl(linkData.URL);
-                               _hyperLink.Target = "_blank";                                
+                               _windowjs = "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
+                            _windowjs += ";event.returnValue = false; return false;";
+                            _hyperLink.NavigateUrl = "#";
+                            _hyperLink.Attributes.Add("onClick", _windowjs);                                
                             }
                             else
                                 _hyperLink.NavigateUrl = linkData.URL;
