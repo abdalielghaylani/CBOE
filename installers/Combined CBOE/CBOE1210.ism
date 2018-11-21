@@ -2687,6 +2687,7 @@ myMIMEs(i).Extension=".application"
 myMIMEs(i).MimeType="application/x-ms-application"
 MIMEobj.PutEx ADS_PROPERTY_UPDATE,"MimeMap",myMIMEs
 MIMEobj.SetInfo </td><td/><td/></row>
+		<row><td>InstallCDJS</td><td>1</td><td>ISSetup.dll</td><td>f20</td><td/><td/></row>
 		<row><td>InstallCOESSOComComponent</td><td>38</td><td/><td>On Error Resume Next
 Dim dll
 Dim cat
@@ -7442,6 +7443,7 @@ Set shell = Nothing
 		<row><td>f18</td><td>0</td><td>InstallAbsent</td><td/></row>
 		<row><td>f19</td><td>0</td><td>InstallPatch</td><td/></row>
 		<row><td>f2</td><td>0</td><td>EditDataLoaderMageBatchFile</td><td/></row>
+		<row><td>f20</td><td>0</td><td>InstallCDJS</td><td/></row>
 		<row><td>f3</td><td>0</td><td>LaunchUserSetup</td><td/></row>
 		<row><td>f4</td><td>0</td><td>ValidateUser</td><td/></row>
 		<row><td>f5</td><td>0</td><td>CreateTlb</td><td/></row>
@@ -9947,7 +9949,7 @@ Set shell = Nothing
 		<row><td>ISComponentServiceUninstall</td><td/><td>2102</td><td/><td/></row>
 		<row><td>ISIISCleanup</td><td/><td>6636</td><td/><td/></row>
 		<row><td>ISIISCosting</td><td/><td>1500</td><td/><td/></row>
-		<row><td>ISIISInstall</td><td>REMOVE&lt;&gt;"ALL"</td><td>4001</td><td/><td/></row>
+		<row><td>ISIISInstall</td><td>REMOVE&lt;&gt;"ALL"</td><td>4002</td><td/><td/></row>
 		<row><td>ISIISRollback</td><td/><td>3501</td><td/><td/></row>
 		<row><td>ISIISUninstall</td><td>Installed</td><td>3502</td><td/><td/></row>
 		<row><td>ISLockPermissionsCost</td><td/><td>1401</td><td/><td/></row>
@@ -10098,9 +10100,10 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>GetUserDomain</td><td>Not Installed And Not PATCH</td><td>1100</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
 		<row><td>ISSetAllUsers</td><td>Not Installed</td><td>10</td><td/><td/></row>
-		<row><td>ISSetupFilesCleanup</td><td/><td>1302</td><td/><td/></row>
+		<row><td>ISSetupFilesCleanup</td><td/><td>1303</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td/><td>3</td><td/><td/></row>
-		<row><td>InstallPatchFresh</td><td>Not Installed</td><td>1301</td><td/><td/></row>
+		<row><td>InstallCDJS</td><td>Not Installed</td><td>1270</td><td/><td/></row>
+		<row><td>InstallPatchFresh</td><td>Not Installed</td><td>1302</td><td/><td/></row>
 		<row><td>InstallWelcome</td><td>Not Installed</td><td>1210</td><td>InstallWelcome</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
 		<row><td>LaunchConditions</td><td>Installed</td><td>487</td><td>LaunchConditions</td><td/></row>
