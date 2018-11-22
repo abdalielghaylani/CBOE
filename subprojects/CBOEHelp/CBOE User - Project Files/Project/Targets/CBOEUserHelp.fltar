@@ -8,7 +8,7 @@
   OutputFile="ChemBioOffice Enterprise Applications User Guide"
   AliasFile="/Project/Advanced/Reg Alias.flali"
   MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
-  ConditionTagExpression="include[&quot;Default.CBOE Search&quot; or Default.ChemACX or Default.Inventory or &quot;Default.Logging In to CBOE Manager&quot; or Default.Registration or &quot;Default.Using the WebHelp&quot; or &quot;Default.Working with CBOE Applications&quot;] exclude[Default.BioSAR or &quot;Default.CBV Output Only&quot; or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or &quot;Default.Not supported in 1261&quot;] "
+  ConditionTagExpression="include[&quot;Default.CBOE Search&quot; or Default.ChemACX or Default.Inventory or &quot;Default.Logging In to CBOE Manager&quot; or Default.Registration or &quot;Default.Using the WebHelp&quot; or &quot;Default.Web Registration Only&quot; or &quot;Default.Working with CBOE Applications&quot;] exclude[Default.BioSAR or &quot;Default.CBV Output Only&quot; or &quot;Default.ChemBioViz Excel&quot; or &quot;Default.COE-ELN Integration&quot; or &quot;Default.Doc Manager&quot; or &quot;Default.Drug Deg&quot; or &quot;Default.Not supported in 1261&quot;] "
   MasterToc="/Project/TOCs/Master.fltoc"
   Skin="/Project/Skins/Main_HTML5.flskn"
   InsertMOTW="true"></CatapultTarget>
