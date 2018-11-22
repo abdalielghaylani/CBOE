@@ -198,7 +198,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.invIntegrationEnabled = ss.isInventoryIntegrationEnabled
       && !this.temporary
       && !this.isNewRecord
-      && !editMode;    
+      && !editMode;
     this.createContainerButtonEnabled = this.invIntegrationEnabled
       && ss.isSendToInventoryEnabled
       && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges);
@@ -348,6 +348,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
           // view should be refreshed with new record details in this case
           this.displayMode = 'view';
           this.id = data.id;
+          this.temporary = data.temporary;
           // show load indicator while view is refreshing
           this.loadingVisible = true;
           return;
