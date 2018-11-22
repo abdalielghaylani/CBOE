@@ -3214,7 +3214,7 @@ shell.run "cscript RegSvr32AS.vbs " &amp; uName &amp; " " &amp; password&amp; " 
 'shell.run("%comspec% /c InstallServices.bat"),Hidden,True
 Set shell = Nothing </td><td/><td/></row>
 		<row><td>RemoveChemDraw</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal
+Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 
@@ -3357,12 +3357,14 @@ Set objWebServer = GetObject("IIS://localhost/W3SVC/1/Root")
 Set objVirtualDir = objWebServer.Delete("IISWebVirtualDir", "CBOEHelp")
 
 
-
+dteWait = DateAdd("s", 10, Now())
+Do Until (Now() &gt; dteWait)
+Loop
 </td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>38</td><td/><td>On error resume next
 
 
-Dim strK ,strorVal
+Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer="."
@@ -3386,7 +3388,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 
 	If GUID&lt;&gt;"" then
      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
+            Sleep(3000000)
                  Exit For
 	End If
       End If
@@ -3402,7 +3404,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 
 	If GUID&lt;&gt;"" then
      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
+            Sleep(3000000)
                  Exit For
 	End If
       End If
@@ -3527,18 +3529,22 @@ For Each strSubkey In arrSubkeys
              GUID =  Mid(str, instr(str, "{"), 38)
              If GUID&lt;&gt;"" then
       	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
+            Sleep(30000)
 	    Exit For
            End If
      End If
 Next
 
 
+dteWait = DateAdd("s", 10, Now())
+Do Until (Now() &gt; dteWait)
+Loop
+
 
 
 </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal
+Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer = "."
@@ -3593,7 +3599,9 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
         End If   
     Next
 
-</td><td/><td/></row>
+dteWait = DateAdd("s", 15, Now())
+Do Until (Now() &gt; dteWait)
+Loop</td><td/><td/></row>
 		<row><td>RemovePython</td><td>38</td><td/><td>On Error resume next
 Dim strK ,strorVal
 Dim WSHShell
@@ -3737,7 +3745,7 @@ For Each strSubkey In arrSubkeys
 
 Next</td><td/><td/></row>
 		<row><td>Removechemscript</td><td>38</td><td/><td>On Error resume next
-Dim strK ,strorVal
+Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 
@@ -3823,7 +3831,11 @@ For Each strSubkey In arrSubkeys
       
      
 
-Next</td><td/><td/></row>
+Next
+
+dteWait = DateAdd("s", 10, Now())
+Do Until (Now() &gt; dteWait)
+Loop</td><td/><td/></row>
 		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework\v2.0.50727</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
 		<row><td>RunCBVNBatchMageFile</td><td>38</td><td/><td>dim strSource,strSourcePath       
 strSource = Session.Property("INSTALLDIR")
@@ -7991,6 +8003,7 @@ Set shell = Nothing
 		<row><td>_C66BA029_26A0_4B75_9C7E_18F58E6E79AB_</td><td>Windows Installer 4.5 for Windows Server 2008 (x86).prq</td><td>4</td><td/><td/></row>
 		<row><td>_EE3D4CF7_25D4_479D_944B_F787E0FB315D_</td><td>Microsoft Visual C++ 2017 Redistributable Package (x64).prq</td><td/><td/><td/></row>
 		<row><td>_F8BC7B6B_CC8D_4110_9242_9F9F6DBB18D4_</td><td>URL Rewrite Extension.prq</td><td/><td/><td/></row>
+		<row><td>_FAF77BD1_0AF4_47F6_BD3B_530E05520930_</td><td>Microsoft Visual C++ 2017 Redistributable Package (x86).prq</td><td/><td/><td/></row>
 	</table>
 
 	<table name="ISSetupType">
