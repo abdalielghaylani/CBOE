@@ -32,6 +32,11 @@ update &&securitySchemaName..COECONFIGURATION set
 classname = replace(classname, 'Version=17.1.1.0','Version=18.1.0.0')
 where description = 'Registration';
 
+--CBOE-8264
+update coedb.coedataview set coedataview =xmltype(
+replace((coedataview).getclobval(),'<relationship parentkey="212" childkey="201" parent="209" child="1" jointype="OUTER"/>'
+,'<relationship parentkey="212" childkey="201" parent="209" child="2" jointype="OUTER"/>')) where id=4004;
+--CBOE-8264. End
 
 Connect &&schemaName/&&schemaPass@&&serverName
 
