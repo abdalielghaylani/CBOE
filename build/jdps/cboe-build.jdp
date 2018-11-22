@@ -83,6 +83,8 @@ pipeline
 				"""		// Batch build step
 				bat """ 
 					${REGASM} ${WORKSPACE}\\subprojects\\Classic\\Common\\Dlls\\SingleSignoncom.dll /tlb:SingleSignOnCom.tlb /codebase
+					RD /S /Q "${WORKSPACE}\\subprojects\\CBOEHelp\\CBOE Admin - Project Files"
+					RD /S /Q "${WORKSPACE}\\subprojects\\CBOEHelp\\CBOE User - Project Files"
 					RD /S /Q "${WORKSPACE}\\ChemOffice\\BioSAR_Browser"
 					RD /S /Q "${WORKSPACE}\\ChemOffice\\DocManager"
 					RD /S /Q "${WORKSPACE}\\ChemOffice\\VB Projects"

@@ -419,7 +419,7 @@
 		<row><td>App_GlobalResources</td><td>{517C71F0-DB9A-40F8-993B-B7C0FD4C0698}</td><td>APP_GLOBALRESOURCES4</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Assets</td><td>{0E50ED5F-23E3-4E4E-AF3F-573721EFD9D0}</td><td>ASSETS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Bin</td><td>{3BEEDDBD-F52D-4BB0-87EC-FAD24F07DE75}</td><td>BIN16</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CBOEHelp</td><td>{4E0FE0F7-6E5E-45DF-848E-BD8D47ADA1D3}</td><td>CBOEHELP1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CBOEHelp</td><td>{4E0FE0F7-6E5E-45DF-848E-BD8D47ADA1D3}</td><td>CBOEHELP1</td><td>8</td><td/><td>web_registration_qsg.pdf</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO18</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo18.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO18_Server</td><td>{656A7462-E704-4810-8C4C-8FEC15B7AE8C}</td><td>_5AD173F7_1713_48A2_97E0_1E0E6700C762_</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO18_Server_File</td><td>{7E512F95-CE5A-4938-8AE4-BB3B207FC2A4}</td><td>NEW_DIRECTORY16</td><td>8</td><td/><td>csdo18.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -462,6 +462,8 @@
 		<row><td>SingleSignOnCom.dll</td><td>{67F4FC81-FC9C-4291-8693-A0D90498A703}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.dll</td><td>49</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SingleSignOnCom.tlb</td><td>{21BAF3C6-1CAF-4ABD-9DE4-B495312CC7BB}</td><td>DLLS</td><td>0</td><td/><td>singlesignoncom.tlb1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Web.config</td><td>{3643FA60-F96A-4DBF-92D6-564E90D0566A}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>WebRegAdminGuide</td><td>{78764EF0-BDFC-4D5F-A5B8-D3E5362149A4}</td><td>WEB_REGISTRATION_ADMIN_GUIDE</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>WebRegUserGuide</td><td>{9143D157-1AC5-4128-BAC4-595AB33C69AE}</td><td>WEB_REGISTRATION_USER_GUIDE</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServiceExtensionComponent</td><td>{709A5C9C-A67F-4772-82EC-8220368C3154}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebServices</td><td>{40DE0D1B-7BEA-4F78-9A6C-95280C02BA18}</td><td>WEBSERVICES1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WebsiteComponent</td><td>{EF6E2318-0894-44B6-9772-396FDB6C56E5}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -2693,6 +2695,8 @@ End If
 		<row><td>WEBSERVICEHOST</td><td>CHEMOFFICEENTERPRISE</td><td>WEBSER~1|WebServiceHost</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVICES</td><td>WEBAPP</td><td>WEBSER~1|Webservices</td><td/><td>0</td><td/></row>
 		<row><td>WEBSERVICES1</td><td>REGISTRATION.SERVER</td><td>WEBSER~1|WebServices</td><td/><td>0</td><td/></row>
+		<row><td>WEB_REGISTRATION_ADMIN_GUIDE</td><td>CBOEHELP1</td><td>WEBREG~1|Web Registration Admin Guide</td><td/><td>0</td><td/></row>
+		<row><td>WEB_REGISTRATION_USER_GUIDE</td><td>CBOEHELP1</td><td>WEBREG~1|Web Registration User Guide</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>_042DE214_1109_41E9_AB1B_300D5DEAC777_</td><td>COMPLUS_APPLICATIONS</td><td>{042DE~1|{042DE214-1109-41E9-AB1B-300D5DEAC777}</td><td/><td>0</td><td/></row>
@@ -3538,6 +3542,8 @@ End If
 		<row><td>Registration.Server</td><td>Registration.Server</td></row>
 		<row><td>Registration.Server</td><td>Registration.ServerWebServices</td></row>
 		<row><td>Registration.Server</td><td>Web.config</td></row>
+		<row><td>Registration.Server</td><td>WebRegAdminGuide</td></row>
+		<row><td>Registration.Server</td><td>WebRegUserGuide</td></row>
 		<row><td>Registration.Server</td><td>WebServices</td></row>
 		<row><td>Security</td><td>AllOtherFiles28</td></row>
 		<row><td>Security</td><td>AllOtherFiles29</td></row>
@@ -3692,6 +3698,7 @@ End If
 		<row><td>web.config3</td><td>AllOtherFiles6</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config4</td><td>AllOtherFiles59</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
 		<row><td>web.config5</td><td>Registration.Server</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\Web.config</td><td>1</td><td/></row>
+		<row><td>web_registration_qsg.pdf</td><td>CBOEHelp</td><td>WEBREG~1.PDF|Web Registration QSG.pdf</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp\Web Registration QSG.pdf</td><td>1</td><td/></row>
 		<row><td>webactivatorex.dll</td><td>Bin</td><td>WEBACT~1.DLL|WebActivatorEx.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\WebActivatorEx.dll</td><td>1</td><td/></row>
 	</table>
 
@@ -4508,6 +4515,8 @@ End If
 		<row><td>SingleSignOnCom.dll</td><td/><td/><td>_FF7B9E4D_8F05_4047_9EF8_9B953DD64F83_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SingleSignOnCom.tlb</td><td/><td/><td>_0CED8E5B_EDAE_44C1_A884_57EEC14D48E3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Web.config</td><td/><td/><td>_6CCBB10E_D688_4096_9B40_4E145D65420C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>WebRegAdminGuide</td><td/><td/><td>_41149DF6_D554_41AB_B484_A06485601E4B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>WebRegUserGuide</td><td/><td/><td>_1827DA59_ABBE_4E8D_A029_79E0029CCD82_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServiceExtensionComponent</td><td/><td/><td>_80CA2C46_50DA_4DFD_BF0E_5F08D4CE2482_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebServices</td><td/><td/><td>_03C56F81_CAC4_408C_9391_1BFD288BEBFC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WebsiteComponent</td><td/><td/><td>_78397AD3_C9F2_4418_9568_8B7084F6A600_FILTER</td><td/><td/><td/><td/></row>
@@ -4637,15 +4646,16 @@ End If
 		<row><td>AllOtherFiles68</td><td>&lt;BUILDPROJECTROOT&gt;\Database\Registration\Oracle_Install_Scripts</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles69</td><td>&lt;BUILDPROJECTROOT&gt;\Database\CoeDB\Oracle_Install_Scripts</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>AllOtherFiles70</td><td>&lt;BUILDPROJECTROOT&gt;\Database\CoeDB\Documents</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>AllOtherFiles75</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp</td><td>4</td><td/><td/><td>10</td></row>
+		<row><td>AllOtherFiles75</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp</td><td>4</td><td/><td>Web Registration QSG.pdf</td><td>10</td></row>
 		<row><td>AllOtherFiles77</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\ServiceTier\RLSConfigurationTool\RLSConfigurationTool\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
-		<row><td>CBOEHelp</td><td>&lt;WORKSPACEPATH&gt;\Documentation</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>CommonRes</td><td>&lt;BUILDPROJECTROOT&gt;\Framework\CambridgeSoft\CommonResources</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent2</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Forms</td><td>4</td><td/><td>*.cs</td><td>10</td></row>
 		<row><td>NewComponent3</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\Config</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent4</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PythonScripts</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>NewComponent5</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\App_Themes</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>Registration.Client</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist</td><td>4</td><td/><td/><td>8</td></row>
+		<row><td>WebRegAdminGuide</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp\Web Registration Admin Guide</td><td>4</td><td/><td/><td>10</td></row>
+		<row><td>WebRegUserGuide</td><td>&lt;BUILDPROJECTROOT&gt;\CBOEHelp\Web Registration User Guide</td><td>4</td><td/><td/><td>10</td></row>
 	</table>
 
 	<table name="ISFeatureDIMReferences">

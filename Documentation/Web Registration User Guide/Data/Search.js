@@ -1,1 +1,0 @@
-define({r:0.5,st:'Stem',n:1,t:[0],u:['../Content/Logging In to CBOE Manager.htm'],s:['+','to'],p:[['+',20],['ctrl+u',20],['management',17],['search',12],['you',6]]});
