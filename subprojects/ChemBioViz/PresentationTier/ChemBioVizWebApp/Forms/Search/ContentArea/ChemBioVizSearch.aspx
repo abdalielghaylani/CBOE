@@ -150,8 +150,8 @@
                                         }
 
                                         function ShowModalFrame(url, headerText) {
-                                            if (typeof(InitModalIframeControl_ <%= this.MoldalIFrame.ClientID %>) == 'function')
-                                                InitModalIframeControl_ <%= this.MoldalIFrame.ClientID %> (url, headerText, true);
+                                            if (typeof(InitModalIframeControl_<%= this.MoldalIFrame.ClientID %>) == 'function')
+                                                InitModalIframeControl_<%= this.MoldalIFrame.ClientID %> (url, headerText, true);
                                         }
 
                                         function CloseModal(refresh) {
