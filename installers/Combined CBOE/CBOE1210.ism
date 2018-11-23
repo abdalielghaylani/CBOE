@@ -3561,8 +3561,17 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
              WSHShell.RegDelete strK
               
          End If 
-    Next
+           If strValue1="ChemBioOffice Enterprise 17.1.1" then
+         
+             Set WSHShell = CreateObject("WScript.Shell")
+             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
+             WSHShell.RegDelete strK
               
+         End If 
+    Next
+dteWait = DateAdd("s", 15, Now())
+Do Until (Now() &gt; dteWait)
+Loop             
   
 
 strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
@@ -3576,7 +3585,15 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
         End If   
+         If strValue1="ChemBioOffice Enterprise 17.1.1" then        
+            Set WSHShell = CreateObject("WScript.Shell")
+            strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
+            WSHShell.RegDelete strK
+        End If 
    Next
+dteWait = DateAdd("s", 15, Now())
+Do Until (Now() &gt; dteWait)
+Loop
 
 strKey = "SOFTWARE\Classes\Installer\Products\"
 strEntry1a = "ProductName"
@@ -3586,6 +3603,18 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
         If strValue1="ChemBioOffice Enterprise 17.1" then         
+                      
+            Set WSHShell = CreateObject("WScript.Shell")
+            strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
+            strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
+			strMedia="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\Media\"
+			strNet="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\Net\"
+			WSHShell.RegDelete strMedia
+			WSHShell.RegDelete strNet
+			WSHShell.RegDelete strSource 
+            WSHShell.RegDelete strK
+        End If 
+          If strValue1="ChemBioOffice Enterprise 17.1.1" then         
                       
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
