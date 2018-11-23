@@ -516,7 +516,8 @@ Set ListView = Server.CreateObject("VASPLV.ASPListView")
                             if detectModernBrowser = true then
                                 regIdParameter = rsCompound("Reg_ID_FK")
                             else
-						    regBatchIDText = regBatchIDText & RegBatchDetailsURL & regIdParameter & "'>" & rsCompound("Reg_Batch_ID") & "</a><BR>"
+								regBatchIDText = regBatchIDText & RegBatchDetailsURL & regIdParameter & "'>" & rsCompound("Reg_Batch_ID") & "</a><BR>"
+							end if
 						else
 						    regBatchIDText = regBatchIDText & "<br>"
 						end if
