@@ -3550,42 +3550,38 @@ Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer = "."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
+strCBOE17.1="ChemBioOffice Enterprise 17.1"
+strCBOE17.1.1="ChemOffice Enterprise 17.1.1"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
     objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1="ChemBioOffice Enterprise 17.1" then
-         
+        If strValue1=strCBOE17.1 then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
-             WSHShell.RegDelete strK
-              
+             WSHShell.RegDelete strK              
          End If 
-           If strValue1="ChemBioOffice Enterprise 17.1.1" then
-         
+           If strValue1=strCBOE17.1.1 then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
-             WSHShell.RegDelete strK
-              
+             WSHShell.RegDelete strK              
          End If 
     Next
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
 Loop             
-  
-
 strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)              
-        If strValue1="ChemBioOffice Enterprise 17.1" then        
+        If strValue1=strCBOE17.1 then        
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
         End If   
-         If strValue1="ChemBioOffice Enterprise 17.1.1" then        
+         If strValue1=strCBOE17.1.1 then        
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
@@ -3594,7 +3590,6 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
 Loop
-
 strKey = "SOFTWARE\Classes\Installer\Products\"
 strEntry1a = "ProductName"
 strEntry1b = "QuietDisplayName"
@@ -3602,8 +3597,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1="ChemBioOffice Enterprise 17.1" then         
-                      
+        If strValue1=strCBOE17.1 then 
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -3614,8 +3608,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 			WSHShell.RegDelete strSource 
             WSHShell.RegDelete strK
         End If 
-          If strValue1="ChemBioOffice Enterprise 17.1.1" then         
-                      
+          If strValue1=strCBOE17.1.1 then                           
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -3627,7 +3620,6 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
             WSHShell.RegDelete strK
         End If   
     Next
-
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
 Loop</td><td/><td/></row>
@@ -3801,7 +3793,7 @@ For Each strSubkey In arrSubkeys
 					Exit For
 			   End If
 		End If
-		If strValue1 = "CambridgeSoft ChemScript 14.0" then
+		If strValue1 = "PerkinElmer ChemScript 17.1" then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
@@ -3843,7 +3835,7 @@ For Each strSubkey In arrSubkeys
 	        End If
       End If
       
-     If strValue1 = "CambridgeSoft ChemScript 14.0" then
+     If strValue1 = "PerkinElmer ChemScript 17.1" then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
@@ -9983,12 +9975,12 @@ Set shell = Nothing
 		<row><td>IISACCOUNT</td><td>Not Installed And Not PATCH And CBOE="no"</td><td>1019</td><td/><td/></row>
 		<row><td>ISChainPackageCommit</td><td>1</td><td>1504</td><td/><td/></row>
 		<row><td>ISChainPackagePrepare</td><td>1</td><td>1499</td><td/><td/></row>
-		<row><td>ISChainPackageRollback</td><td>1</td><td>1502</td><td/><td/></row>
+		<row><td>ISChainPackageRollback</td><td>1</td><td>1503</td><td/><td/></row>
 		<row><td>ISComponentServiceCosting</td><td/><td>2099</td><td/><td/></row>
 		<row><td>ISComponentServiceFinalize</td><td>CBOE="no"</td><td>6607</td><td/><td/></row>
 		<row><td>ISComponentServiceInstall</td><td/><td>5701</td><td/><td/></row>
-		<row><td>ISComponentServiceRollback</td><td/><td>2101</td><td/><td/></row>
-		<row><td>ISComponentServiceUninstall</td><td/><td>2102</td><td/><td/></row>
+		<row><td>ISComponentServiceRollback</td><td/><td>2102</td><td/><td/></row>
+		<row><td>ISComponentServiceUninstall</td><td/><td>2103</td><td/><td/></row>
 		<row><td>ISIISCleanup</td><td/><td>6636</td><td/><td/></row>
 		<row><td>ISIISCosting</td><td/><td>1500</td><td/><td/></row>
 		<row><td>ISIISInstall</td><td>REMOVE&lt;&gt;"ALL"</td><td>4002</td><td/><td/></row>
@@ -10144,7 +10136,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>ISSetAllUsers</td><td>Not Installed</td><td>10</td><td/><td/></row>
 		<row><td>ISSetupFilesCleanup</td><td/><td>1303</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td/><td>3</td><td/><td/></row>
-		<row><td>InstallCDJS</td><td>Not Installed</td><td>1270</td><td/><td/></row>
+		<row><td>InstallCDJS</td><td>Not Installed</td><td>1235</td><td/><td/></row>
 		<row><td>InstallPatchFresh</td><td>Not Installed</td><td>1302</td><td/><td/></row>
 		<row><td>InstallWelcome</td><td>Not Installed</td><td>1210</td><td>InstallWelcome</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
