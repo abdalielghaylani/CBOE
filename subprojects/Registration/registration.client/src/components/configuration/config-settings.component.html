@@ -3,7 +3,7 @@
   <dx-data-grid [dataSource]="dataSource" [columns]="columns" [paging]="{enabled: false}"
     [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
     [grouping]="{ autoExpandAll: true }" [wordWrapEnabled]="true"
-    rowAlternationEnabled="true" (onInitialized)="onInitialized($event)"
+    rowAlternationEnabled="true" (onContentReady)="onInitialized($event)"
     (onCellPrepared)="onCellPrepared($event)" (onRowCollapsing)="onRowCollapsing($event)" (onRowClick)="onRowClick($event)">
     <dxo-editing mode="row" [allowUpdating]="true"></dxo-editing>
     <div *dxTemplate="let d of 'valueEditTemplate'">

@@ -1,7 +1,7 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
   <reg-settings-page-header [isMenu]='true'>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [paging]="{enabled: false}" [height]="gridHeight"
-    [rowAlternationEnabled]="true" (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
+    [rowAlternationEnabled]="true" (onContentReady)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
     (onEditingStart)="onEditingStart($event)" (onRowClick)="onRowClick($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [texts]="{addRow:'Add a property',confirmDeleteMessage: 'Are you sure you want to delete this property?'}"></dxo-editing>
     <dxo-sorting mode="single"></dxo-sorting>

@@ -3,7 +3,7 @@
   <dx-data-grid [columns]="configForms.columns" [dataSource]="dataSource" [paging]='{enabled: false}'
     [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true"
     [grouping]="{ autoExpandAll: true }" [wordWrapEnabled]="true"
-    (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onRowClick)="onRowClick($event)">
+    (onContentReady)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onRowClick)="onRowClick($event)">
     <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
     <div *dxTemplate="let data of 'controlTypeTemplate'">
       {{ data.value.replace('CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COE','') }}
