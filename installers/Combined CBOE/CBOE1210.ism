@@ -3357,9 +3357,7 @@ Set objWebServer = GetObject("IIS://localhost/W3SVC/1/Root")
 Set objVirtualDir = objWebServer.Delete("IISWebVirtualDir", "CBOEHelp")
 
 
-dteWait = DateAdd("s", 10, Now())
-Do Until (Now() &gt; dteWait)
-Loop
+
 </td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>38</td><td/><td>On error resume next
 
@@ -3544,24 +3542,24 @@ Loop
 
 </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer = "."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
-strCBOE17.1="ChemBioOffice Enterprise 17.1"
-strCBOE17.1.1="ChemOffice Enterprise 17.1.1"
+strCBOE17="ChemBioOffice Enterprise 17.1"
+strCBOE1711="ChemOffice Enterprise 17.1.1"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
     objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1=strCBOE17.1 then         
+        If strValue1=strCBOE17 then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
              WSHShell.RegDelete strK              
          End If 
-           If strValue1=strCBOE17.1.1 then         
+           If strValue1=strCBOE1711 then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
              WSHShell.RegDelete strK              
@@ -3576,12 +3574,12 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)              
-        If strValue1=strCBOE17.1 then        
+        If strValue1=strCBOE17 then        
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
         End If   
-         If strValue1=strCBOE17.1.1 then        
+         If strValue1=strCBOE1711 then        
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
@@ -3597,7 +3595,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1=strCBOE17.1 then 
+        If strValue1=strCBOE17 then 
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -3608,7 +3606,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 			WSHShell.RegDelete strSource 
             WSHShell.RegDelete strK
         End If 
-          If strValue1=strCBOE17.1.1 then                           
+          If strValue1=strCBOE1711 then                           
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -3622,7 +3620,8 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
     Next
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
-Loop</td><td/><td/></row>
+Loop
+</td><td/><td/></row>
 		<row><td>RemovePython</td><td>38</td><td/><td>On Error resume next
 Dim strK ,strorVal
 Dim WSHShell
@@ -3830,7 +3829,7 @@ For Each strSubkey In arrSubkeys
             GUID =  Mid(str, instr(str, "{"), 38)
          	If GUID&lt;&gt;"" then
 				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-                Sleep(30000000)          
+                Sleep(300000000)          
                 Exit For
 	        End If
       End If
@@ -3845,7 +3844,7 @@ For Each strSubkey In arrSubkeys
 
 				If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)          
+					Sleep(300000000)          
 					Exit For
 				End If
       End If
@@ -5372,7 +5371,7 @@ Set shell = Nothing
 		<col def="S255">ISReleaseFlags</col>
 		<col def="S72">DisplayName</col>
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
-		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0_x64.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemScript</td></row>
+		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemScript</td></row>
 		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{D324F12F-1C49-4A32-A6A1-40741CB72D72}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemOffice</td></row>
 	</table>
 
@@ -5384,7 +5383,7 @@ Set shell = Nothing
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
-		<row><td>Pkg3</td><td>_7B7CC9A8AECA3401DCFB33FF059DE537</td><td>PerkinElmer_ChemScript_18.0_x64.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.0_x64.msi</td></row>
+		<row><td>Pkg3</td><td>_66BFBCECDB61D4C95D0550237A8B83EF</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.0.msi</td></row>
 		<row><td>Pkg4</td><td>_AEE8E3AB14D1579B20EB0E51F8BED7AD</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_Suite_2018.msi</td></row>
 	</table>
 
@@ -10136,7 +10135,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>ISSetAllUsers</td><td>Not Installed</td><td>10</td><td/><td/></row>
 		<row><td>ISSetupFilesCleanup</td><td/><td>1303</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td/><td>3</td><td/><td/></row>
-		<row><td>InstallCDJS</td><td>Not Installed</td><td>1235</td><td/><td/></row>
+		<row><td>InstallCDJS</td><td>Not Installed</td><td>1270</td><td/><td/></row>
 		<row><td>InstallPatchFresh</td><td>Not Installed</td><td>1302</td><td/><td/></row>
 		<row><td>InstallWelcome</td><td>Not Installed</td><td>1210</td><td>InstallWelcome</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
