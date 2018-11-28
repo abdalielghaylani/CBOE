@@ -1202,12 +1202,7 @@
   <!--This configuration is used by CambridgeSoft.COE.Core.Common call BLL and DAL classes for coe framework services -->
   <coeHomeSettings gridColumns="3">
     <groups>      
-	  <add name="WebRegistration" enabled="true" coeIdentifier="WebRegistration" display="Web Registration Enterprise" newWindow=""  color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
-        <links>
-          <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG||ADD_COMPOUND_TEMP||SEARCH_TEMP||CONFIG_REG" tip="Access all Web Registration System functionality" url="/Registration.Server" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
-        </links>
-      </add>
-      <add name="Registration" enabled="true" coeIdentifier="Registration" display="Registration Enterprise" newWindow="scrollbars=1,resizable=1,toolbar=0,location=0,directories=0,status=1,menubar=0,height=650,width=1070px,top=0,left=50" color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
+	  <add name="Registration" enabled="true" coeIdentifier="Registration" display="Registration Enterprise" newWindow="scrollbars=1,resizable=1,toolbar=0,location=0,directories=0,status=1,menubar=0,height=650,width=1070px,top=0,left=50" color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
         <links>
           <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG" tip="Access all other Registration System functionality" url="/COERegistration/Forms/Public/ContentArea/Home.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
           <add name="SubmitComponent"  display="Submit New Component" tip="Submit a new component registry" privilege="ADD_COMPOUND_TEMP" url="/COERegistration/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx?registrytype=component" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
@@ -1216,6 +1211,11 @@
           <add name="SearchTemp" display="Search Temp" tip="Search for temporary registries" privilege="SEARCH_TEMP" url="/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ST" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_temp.png"/>
           <add name="SearchRegistry" display="Search Registry" tip="Search for registered registries" privilege="SEARCH_REG" url="/COERegistration/Forms/ViewMixture/ContentArea/ViewMixtureSearch.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
           <add name="RegAdmin" display="Customize Registration" tip="Customize your Registration system adding new properties" privilege="CONFIG_REG" url="/COERegistration/Forms/RegistrationAdmin/ContentArea/Default.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+        </links>
+      </add>
+      <add name="WebRegistration" enabled="true" coeIdentifier="WebRegistration" display="Web Registration Enterprise" newWindow=""  color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
+        <links>
+          <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG||ADD_COMPOUND_TEMP||SEARCH_TEMP||CONFIG_REG" tip="Access all Web Registration System functionality" url="WebRegistration.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
         </links>
       </add>
       <add name="Inventory" coeIdentifier="Inventory" enabled="true" display="Inventory Enterprise" newWindow="true" color="green" helpText="Manage and track chemical and biological reagents in laboratories and research centers in multiple contexts. ">

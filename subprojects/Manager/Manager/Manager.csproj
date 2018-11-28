@@ -186,7 +186,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.es-AR.resx</DependentUpon>
-    </Compile>    
+    </Compile>
     <Compile Include="Forms\ConfigControlSettings\ContentArea\ConfigControlSettings.aspx.cs">
       <DependentUpon>ConfigControlSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -200,7 +200,7 @@
     </Compile>
     <Compile Include="Forms\DataViewManager\ContentArea\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
-    </Compile>    
+    </Compile>
     <Compile Include="Forms\DataViewManager\ContentArea\AddSchema.aspx.cs">
       <DependentUpon>AddSchema.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -322,7 +322,7 @@
     </Compile>
     <Compile Include="Forms\DataViewManager\ContentArea\ValidationSummary.aspx.designer.cs">
       <DependentUpon>ValidationSummary.aspx</DependentUpon>
-    </Compile>    
+    </Compile>
     <Compile Include="Forms\DataViewManager\UserControls\AddSchemas.ascx.cs">
       <DependentUpon>AddSchemas.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -525,6 +525,13 @@
     </Compile>
     <Compile Include="Forms\Public\ContentArea\Messages.aspx.designer.cs">
       <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\WebRegistration.aspx.cs">
+      <DependentUpon>WebRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\WebRegistration.aspx.designer.cs">
+      <DependentUpon>WebRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Public\UserControls\ConfirmationArea.ascx.cs">
       <DependentUpon>ConfirmationArea.ascx</DependentUpon>
@@ -782,7 +789,7 @@
     <Compile Include="Logoff.aspx.designer.cs">
       <DependentUpon>Logoff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />    
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Blue\SkinFile.skin" />
@@ -820,6 +827,7 @@
     <Content Include="App_Themes\GREEN\StyleSheet.css" />
     <Content Include="Default.aspx" />
     <Content Include="Forms\Public\ContentArea\JScripts\CommonScripts.js" />
+    <Content Include="Forms\Public\ContentArea\WebRegistration.aspx" />
     <Content Include="Forms\SecurityManager\ContentArea\EditRole.aspx" />
     <Content Include="Forms\SecurityManager\ContentArea\EditRoleRoles.aspx" />
     <Content Include="Forms\SecurityManager\ContentArea\EditRoleUsers.aspx" />
