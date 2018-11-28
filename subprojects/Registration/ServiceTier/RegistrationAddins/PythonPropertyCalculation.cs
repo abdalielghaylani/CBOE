@@ -222,7 +222,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
             {
                 if (chemCompound.PropertyList.Count > 0)
                 {
-                    if (chemCompound.PropertyList[name] != null)
+                    if (chemCompound.PropertyList[name.ToUpper()] != null)
                         retVal = true;
                 }
             }
@@ -307,7 +307,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                                         strValue = pythonEngine.GetVar(calcParams.PropertyName);
                                     if (!string.IsNullOrEmpty(strValue))
                                         //property name as set in COE
-                                        component.Compound.PropertyList[calcParams.PropertyName].Value = strValue;
+                                        component.Compound.PropertyList[calcParams.PropertyName.ToUpper()].Value = strValue;
 
                                     //((CambridgeSoft.COE.Registration.Services.Types.RegistryRecord)(oRegistryRecord)).PropertyList[calcParams.PropertyName.ToUpper()].Value = cLogP;
                                 }
