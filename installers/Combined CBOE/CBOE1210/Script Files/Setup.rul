@@ -750,7 +750,7 @@ end;
 function InstallPatch(hMSI)
     // To Do:  Declare local variables.
     STRING  szVirtualName,strProgram,strInstallDir,strMSI,strWebSite,strCBOE,strComuser,strAppPass,strMSICBOE,strMSICDJS;
-    STRING strCDJSParameter,strCDJS,strMSIChem;
+    STRING strCDJSParameter,strCDJS,strMSIChem,strInstall;
     NUMBER nBuf;
  begin            
    
@@ -760,38 +760,27 @@ function InstallPatch(hMSI)
         MsiGetProperty(hMSI,"WEBSITENAME",strWebSite,nBuf);
         MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
-        MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);
-        
-        
+        MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);      
         strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.0.msi";                 
         LongPathFromShortPath(strMSIChem);
-        LongPathToQuote(strMSIChem,TRUE); 
-        
-        strMSIChem ="/i " +strMSIChem + " /qb";
-            
-          
-        LaunchAppAndWait("msiexec",strMSIChem,WAIT);        
-        
-        
-        
-        
+        LongPathToQuote(strMSIChem,TRUE);         
+        strMSIChem ="/i " +strMSIChem + " /qb";      
+        LaunchAppAndWait("msiexec",strMSIChem,WAIT);                         
         strMSICBOE=strMSI + "\\CBOE 18.1.0.msi";        
         LongPathFromShortPath(strMSICBOE);
         LongPathToQuote(strMSICBOE,TRUE);
         LongPathToQuote(strInstallDir,TRUE);        
-        //Change
-        
+        //Change        
         if (strCBOE="yes") then
-		  strProgram=  " /i " +strMSICBOE+" /qb" + " INSTALLDIR="+strInstallDir;
+          MsiGetProperty(hMSI,"CBOEDIR",strInstall,nBuf);
+          LongPathToQuote(strInstall,TRUE);
+		  strProgram=  " /i " +strMSICBOE+" /qb" + " INSTALLDIR="+strInstall;
 	    else
 		  strProgram=  " /i " +strMSICBOE+" /qb" + " INSTALLDIR="+strInstallDir +" APPUSERNAME="+strComuser+" APPUSERPASSWORD="+strAppPass;
 	    endif;  	
-		
 		//Change      
-        LaunchAppAndWait ("msiexec", strProgram, WAIT);        
-       
-   
-end;
+        LaunchAppAndWait ("msiexec", strProgram, WAIT);  
+ end;
 
   
 function InstallAbsent(hMSI)
