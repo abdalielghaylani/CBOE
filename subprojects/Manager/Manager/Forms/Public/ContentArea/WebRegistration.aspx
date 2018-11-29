@@ -8,7 +8,7 @@
     <script type="text/javascript">
         var isChrome = !!window.chrome && !!window.chrome.webstore;
         if (!isChrome) {
-            alert("We usually recommended to use Google Chrome browser for accessing WebRegistration.");
+            alert("Recommended to Use Google Chrome Browser For Accessing Web Registration.");
             window.location.href = "/Registration.Server";
         } else {
             window.location.href = "/Registration.Server";
