@@ -6,7 +6,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import { CConfigTable } from './config.types';
 import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ILookupData } from '../../redux';
+import { ILookupData, ICustomTableData } from '../../redux';
 import { HttpService } from '../../services';
 import { PrivilegeUtils } from '../../common';
 import { RegConfigBaseComponent } from './config-base';
@@ -41,24 +41,21 @@ export class RegConfigTables extends RegConfigBaseComponent {
     }
   }
 
+  createColumns(customTableData: ICustomTableData) {
+    this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData);
+    if (this.tableId === 'VW_SEQUENCE') { this.configTable.columns.forEach((i) => i.alignment = 'center'); }
+    this.changeDetector.markForCheck();
+  }
+
   loadData(lookups: ILookupData) {
     this.route.params.subscribe((params => {
       const paramLabel = 'tableId';
       const tableId = params[paramLabel];
       if (this.tableId !== tableId) {
-        this.http.get(`${apiUrlPrefix}custom-tables/${tableId}?configOnly=true`)
-          .subscribe((r => {
-            this.tableId = tableId;
-            this.configTable = new CConfigTable(this.tableId, this.tableName(), r.json());
-            if (this.tableId === 'VW_SEQUENCE') { this.configTable.columns.forEach((i) => i.alignment = 'center'); }
-            this.dataSource = this.createCustomStore();
-            this.gridHeight = this.getGridHeight();
-            this.changeDetector.markForCheck();
-          }).bind(this), err => {
-            if (err.status == null || (err.status !== 404 && err.status !== 302 && err.status !== 200)) {
-              notifyError(err, 5000);
-            }
-          });
+        this.tableId = tableId;
+        this.dataSource = this.createCustomStore();        
+        this.gridHeight = this.getGridHeight();
+        this.changeDetector.markForCheck();
       }
     }).bind(this));
   }
@@ -86,7 +83,8 @@ export class RegConfigTables extends RegConfigBaseComponent {
     }
   }
 
-  onContentReady(e) {
+  onInitialized(e) {
+    super.onInitialized(e);
     e.element.find(`[aria-label='Cancel']`).click(function () {
       e.component.option('editing.allowAdding', true);
     });
@@ -248,6 +246,10 @@ export class RegConfigTables extends RegConfigBaseComponent {
             .toPromise()
             .then(result => {
               let rows = result.json().rows;
+              this.createColumns(result.json());
+              if (this.grid.instance) {
+                this.grid.instance.option('columns', this.configTable.columns);
+              }
               resolve(rows);
             })
             .catch(error => {

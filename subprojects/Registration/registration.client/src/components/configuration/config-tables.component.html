@@ -1,6 +1,6 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='list')">
     <reg-settings-page-header>{{ configTable.window.title }}</reg-settings-page-header>
-    <dx-data-grid id="configTable" [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)'
+    <dx-data-grid id="configTable" [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true" (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onInitialized($event)'
         (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)" (onRowInserted)='onRowInserted($event)' (onRowUpdated)='onRowUpdated($event)' [wordWrapEnabled]="true">
         <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')" [allowAdding]="hasPrivilege('ADD')" [form]="configTable.editFormOptions">
         </dxo-editing>
