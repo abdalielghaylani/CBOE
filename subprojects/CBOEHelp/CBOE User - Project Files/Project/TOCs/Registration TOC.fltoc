@@ -229,7 +229,8 @@
           Link="/Content/Reg 1104/Moving_a_batch.htm" />
         <TocEntry
           Title="Batch Highlighting"
-          Link="/Content/Reg 1104/Batch Highlighting.htm" />
+          Link="/Content/Reg 1104/Batch Highlighting.htm"
+          conditions="Default.Not supported in 1261" />
       </TocEntry>
     </TocEntry>
   </TocEntry>

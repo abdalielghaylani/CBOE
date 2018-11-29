@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UrlList>
+    <Url Source="Resources/Images/Inventory images/label print.gif" />
+    <Url Source="Resources/Images/ChemACX images/ChemACX DB.gif" />
+    <Url Source="Resources/Images/Reg 1104 images/move batch2.gif" />
+    <Url Source="Resources/Images/Reg 1104 images/move batch.gif" />
     <Url Source="Resources/Images/Web Registration images/Approve marked.gif" />
     <Url Source="Resources/Images/Inventory images/plate inv text file.gif" />
     <Url Source="Resources/Images/Inventory images/plate from excel.gif" />
@@ -16,8 +20,4 @@
     <Url Source="Resources/Images/previous topic button.gif" />
     <Url Source="Resources/Images/Inventory images/database creation guide.gif" />
     <Url Source="Resources/Images/COE-ELN Integration/ELN container push.gif" />
-    <Url Source="Resources/Images/COE-ELN Integration/barcodes populated.gif" />
-    <Url Source="Resources/Images/COE-ELN Integration/barcodes created.gif" />
-    <Url Source="Resources/Images/COE-ELN Integration/bulkcont creation.gif" />
-    <Url Source="Resources/Images/COE-ELN Integration/create containers option.gif" />
 </UrlList>

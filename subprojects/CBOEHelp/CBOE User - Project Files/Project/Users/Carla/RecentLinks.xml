@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RecentLinks>
     <Dialog Name="B3.XmlMdiEditorKit.ImageGeneralDialogPage">
-        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Resources\Images\Web Registration images\Approve marked.gif" />
+        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Resources\Images\Inventory images\label print.gif" />
     </Dialog>
     <Dialog Name="B3.XmlTextKit.InsertHyperlinkDialog">
-        <Link Value="C:\CBOE_17.1\ChemOfficeEnterprise\CBOEHelp\CBOE User - Project Files\Content\Web Registration\Detail View.htm" />
+        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Reg 1104\Moving_a_batch.htm" />
     </Dialog>
     <Dialog Name="B3.XmlTextKit.InsertCrossReferenceDialog">
-        <Link Value="C:\CBOE_17.1\ChemOfficeEnterprise\CBOEHelp\CBOE User - Project Files\Content\ELN2014-COE Integration\E-Notebook - COE Integration.htm" />
+        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Reg 1104\ChemDraw Chemical Warning.htm" />
     </Dialog>
 </RecentLinks>
