@@ -15,6 +15,7 @@ import { RegFormGroupItemBase } from '../form-group-item-base';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { ElementRef } from '@angular/core/src/linker/element_ref';
+import { DxLoadPanelComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'reg-form-group-item-view',
@@ -42,6 +43,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private loadingVisible: boolean = false;
   private invHandler = new RegInvContainerHandler();
   private showRequestMaterialButton: boolean = false;
+  @ViewChild(DxLoadPanelComponent) loading;
 
   constructor(private ngRedux: NgRedux<IAppState>,
     private http: HttpService,
@@ -236,6 +238,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   private setLoadingVisible(visible: boolean) {
     this.loadingVisible = visible;
+    this.loading.visible = visible;
     this.changeDetector.markForCheck();
   }
 
