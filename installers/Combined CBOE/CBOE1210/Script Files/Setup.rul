@@ -836,13 +836,10 @@ function InstallCDJS(hMSI)
         strMSICDJS=strMSI + "\\ChemDraw-JS-Setup-18.0.exe";                 
         LongPathFromShortPath(strMSICDJS);
         LongPathToQuote(strMSICDJS,TRUE);         
-        strCDJSParameter="\""+"/qb SERVER_PORT=80 SERVER_VIRPATH=cdjs INSTALLDIR=" ^ strInstallDir + "\"";   
+        strCDJSParameter="\""+"/qb SERVER_PORT=80 SERVER_VIRPATH=cdjs";   
         strCDJS= " /s /v" + strCDJSParameter;      
-        LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);
-        
-
-   
-end;
+        LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);    
+ end;
 
 
 

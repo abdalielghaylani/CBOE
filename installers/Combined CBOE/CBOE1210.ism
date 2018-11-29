@@ -3768,7 +3768,8 @@ Next</td><td/><td/></row>
 Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
-
+Set filesys = CreateObject("Scripting.FileSystemObject")                  
+set oShell = CreateObject("wscript.shell")
 strComputer="."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
@@ -3847,15 +3848,16 @@ For Each strSubkey In arrSubkeys
 					Sleep(300000000)          
 					Exit For
 				End If
-      End If
-      
-     
-
-Next
-
+      End If   
+Next 
 dteWait = DateAdd("s", 10, Now())
 Do Until (Now() &gt; dteWait)
-Loop</td><td/><td/></row>
+Loop
+strPath= Session.Property("CBOEDIR") &amp; "ChemOffice2017\"
+If filesys.FolderExists(strPath) Then  
+	str = "cmd /c rmdir /S /Q " &amp; Chr(34) &amp;  strPath &amp; Chr(34)
+	oShell.Run str
+End If</td><td/><td/></row>
 		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework\v2.0.50727</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
 		<row><td>RunCBVNBatchMageFile</td><td>38</td><td/><td>dim strSource,strSourcePath       
 strSource = Session.Property("INSTALLDIR")
@@ -5371,8 +5373,8 @@ Set shell = Nothing
 		<col def="S255">ISReleaseFlags</col>
 		<col def="S72">DisplayName</col>
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
-		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemScript</td></row>
-		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{D324F12F-1C49-4A32-A6A1-40741CB72D72}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]ChemOffice2018\"</td><td/><td/><td>ChemOffice</td></row>
+		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemScript</td></row>
+		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{D324F12F-1C49-4A32-A6A1-40741CB72D72}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemOffice</td></row>
 	</table>
 
 	<table name="ISChainPackageData">
