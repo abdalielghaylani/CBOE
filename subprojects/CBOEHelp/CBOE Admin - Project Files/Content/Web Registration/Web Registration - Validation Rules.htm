@@ -1,21 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="3664" MadCap:lastWidth="1231">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
-                        <p>Web Registration</p>
-                    </td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Web Registration - Validation Rules</h1>
         <p>The Validation Rule allows you to set the validation rule for every property. </p>
         <p style="font-weight: bold;">To add a new validation rule to a particular property:</p>
@@ -24,25 +11,17 @@
         </ol>
         <p>The Manage Data Properties window appears.</p>
         <ol MadCap:continue="true">
-            <li>Click on the <b>Validation Rules</b> check sign corresponding to the property to which you want to add a validation rule</li>
+            <li>Click on the <b>Validation Rules</b> check sign corresponding to the property to which you want to add a validation rule<p><img src="../Resources/Images/Web Registration/Validation rule check sign.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" /></p><p><img src="../Resources/Images/Web Registration/Validation rule window.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" /></p></li>
         </ol>
-        <p>
-            <img src="../Resources/Images/Web Registration/Validation rule check sign.gif" />
-        </p>
         <p>The Validation Rule window appears showing the list of existing validation rules</p>
-        <p>
-            <img src="../Resources/Images/Web Registration/Validation rule window.gif" />
-        </p>
         <ol MadCap:continue="true">
-            <li>Click on <b>Add Rule</b> button, the following window appears:</li>
+            <li>Click on <b>Add Rule</b> button, the following window appears:<p><img src="../Resources/Images/Web Registration/New validation rule.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" /></p></li>
         </ol>
-        <p>
-            <img src="../Resources/Images/Web Registration/New validation rule.gif" />
-        </p>
         <ol MadCap:continue="true">
             <li>Select the validation rule type from the <b>Type</b> dropdown list and fill in the corresponding fields</li>
             <li>Click <b>Save Rule</b>.</li>
         </ol>
+        <p style="font-style: italic;"><b>Note</b>: You need to configure proper validation rule for the Scientist name property to avoid submitting /registering a record without the scientist name.</p>
         <p><b style="font-size: 14pt;">Validation Rule Types</b>
         </p>
         <p style="font-weight: bold;">RequiredField</p>
@@ -51,13 +30,13 @@
         <p>Default value "Property Type":&#160;When the property is required, enter a value to be displayed by default in the property field for the existing records. Note that when a property is required and there is no default value selected, this will create a data exception when the user edits old records because it is not possible to have Null value in a required field.</p>
         <p style="font-weight: bold;">Text Length</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Text length.gif" />
+            <img src="../Resources/Images/Web Registration/Text length.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p>Error: Enter in the Error text box, the message that you want to be displayed when the validation rule is not respected</p>
         <p>Add Parameters: type the minimum and maximum text length values.</p>
         <p style="font-weight: bold;">Word List Enumeration</p>
         <p style="font-weight: bold;">
-            <img src="../Resources/Images/Web Registration/Word list enumeration.gif" />
+            <img src="../Resources/Images/Web Registration/Word list enumeration.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p style="font-weight: bold;"><span style="font-weight: normal;">Use this type to pre-define a specific list of words that can be used by the user in a text field while submitting a record.</span>
         </p>
@@ -66,19 +45,19 @@
         <p style="font-weight: bold;" MadCap:conditions="Default.Not supported">Not Empty Structure</p>
         <p style="font-weight: normal;" MadCap:conditions="Default.Not supported">Used to make sure the structure field is not empty.</p>
         <p style="font-weight: normal;" MadCap:conditions="Default.Not supported">
-            <img src="../Resources/Images/Web Registration/Not empty structure.gif" />
+            <img src="../Resources/Images/Web Registration/Not empty structure.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p MadCap:conditions="Default.Not supported">Error: Enter in the Error text box, the message that you want to be displayed when the validation rule is not respected.</p>
         <p style="font-weight: bold;" MadCap:conditions="Default.Not supported">Not Empty Structure and No&#160;Text</p>
         <p MadCap:conditions="Default.Not supported">
-            <img src="../Resources/Images/Web Registration/Not empty structure and no text.gif" />
+            <img src="../Resources/Images/Web Registration/Not empty structure and no text.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p MadCap:conditions="Default.Not supported">Error: Enter in the Error text box, the message that you want to be displayed when the validation rule is not respected.</p>
         <p><b>Custom</b>
         </p>
         <p>Used for custom validation rules.</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Custom.gif" />
+            <img src="../Resources/Images/Web Registration/Custom.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p>Error: Enter in the Error text box, the message that you want to be displayed when the validation rule is not respected.</p>
         <p>Client Script: Enter the validation script. For example: </p>

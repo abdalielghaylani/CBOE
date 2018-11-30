@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="681" MadCap:lastWidth="891">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="648" MadCap:lastWidth="855">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Chemical Structure Duplicate Check</h1>
         <p>This is the key step required to ensure that registered records are chemically de-duplicated.  The step involves a query matching the incoming chemical structure against the contents of the REGDB.STRUCTURES.STRUCTURE database column.  The query is performed by the CSCartridge.  It is critical that a property maintained CSCartridge Index exist on the above column.  This step is expected to get gradually slower as the number of records present in the database increases.  The time required to perform the structure match is dependent on the duplicate check parameters configured in the Registration System.  The duplicate search settings determine whether factors such as stereochemistry, charge, isotopic differences, and tautomerism should be examined in determining potential chemical matches. The default duplicate check settings for the web based Registration application are fairly broad.  They may typically flag several existing database records (different stereoisomer, isotopically substituted variation, differently charged structures), which the Registrar will visually inspect in order to choose the most optimal match.  These broad duplicate check settings will result in longer query times.  For bulk loading scenarios, where the data has already been de-duplicated in the originating system, and where there is no manual intervention by the Registrar to review the potential duplicates, it is better to use narrower match parameters that will result in faster and more targeted matches.  In particular, enabling the IDENTITY search parameter will result in the fastest possible load performance.
 </p>

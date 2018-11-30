@@ -1,25 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1826" MadCap:lastWidth="1245">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1855" MadCap:lastWidth="900">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
-                        <p>Web Registration</p>
-                    </td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Web Registration - Picklist Domains and Picklist Values</h1>
-        <p>Picklists are dropdown lists that provide users a list of all possible values for a field. 
+        <p>Picklists are drop-down lists that provide users a list of all possible values for a field. 
 
-From the Table Editor, administrator can create a list of values to make a dropdown list field.
+From the Table Editor, administrator can create a list of values to make a drop-down list field.
 
 The list of values are grouped in a Domain as shown in the example below:</p>
         <table style="width: 100%;">
@@ -73,15 +60,12 @@ The list of values are grouped in a Domain as shown in the example below:</p>
         </p>
         <p>To add a new Picklist Domain:</p>
         <ol>
-            <li value="1">In the Web Registration Admin window, select <b>Picklist Domains</b> from the <b>Custom Tables</b> dropdown list</li>
-            <li>Click on the plus sign , a new row gets added to the table</li>
+            <li value="1">In the Web Registration Admin window, select <b>Picklist Domains</b> from the <b>Custom Tables</b> drop-down list</li>
+            <li>Click on the plus icon, a new form pops up as shown below.<p><img src="../Resources/Images/Web Registration/New picklist domain.gif" style="mc-thumbnail: popup;mc-thumbnail-max-height: auto;mc-thumbnail-max-width: 900px;" /></p></li>
         </ol>
-        <p>
-            <img src="../Resources/Images/Web Registration/New picklist domain.gif" />
-        </p>
         <ol MadCap:continue="true">
-            <li value="3">If only a list of values is needed, enter the domain description and then click on <b>Save</b> icon.</li>
-            <li value="4">If values come from another Table, enter the following information to build your own SQL and then click on <b>Save</b> icon: 
+            <li value="3">If only a list of values is needed, enter the domain description and then click on <b>Save</b> button.</li>
+            <li value="4">If values come from another Table, enter the following information to build your own SQL and then click on <b>Save</b> button: 
  
 </li>
         </ol>
@@ -98,20 +82,31 @@ The list of values are grouped in a Domain as shown in the example below:</p>
                 <li><b>Is Locked?:</b> Select Yes to make the row read-only, and select No to make the row editable. </li>
             </ul>
         </blockquote>
-        <p><b>Note:</b> when a domain is used while registering a compound, it becomes automatically read-only in the Picklist Domains table.</p>
+        <p><b>Note:</b> When a domain is used while registering a compound, it becomes automatically read-only in the Picklist Domains table.</p>
         <p><b style="font-size: 14pt;">Entering a List of Values</b>
         </p>
         <p>To enter a list of values:</p>
         <ol>
-            <li value="1">In the Web Registration Admin window, select <b>Picklist Values</b> from the <b>Custom Tables</b> dropdown list.</li>
-            <li value="2">Click on the plus sign, a new row gets added to the table.</li>
-            <li> Select the Picklist Domain from the dropdown list and enter the value for the new Picklist value.</li>
+            <li value="1">In the Web Registration Admin window, select <b>Picklist Values</b> from the <b>Custom Tables</b> drop-down list.</li>
+            <li>Click on the plus icon, a new form pops up as shown below.</li>
+            <p>
+                <img src="../Resources/Images/Web Registration/New picklist value.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
+            </p>
         </ol>
-        <p>
-            <img src="../Resources/Images/Web Registration/New picklist value.gif" />
-        </p>
         <ol MadCap:continue="true">
-            <li>Click <b>Save</b> icon. The new value gets added to the Picklist table.</li>
+            <li> Enter the following details.</li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"><b>Picklist Domain:</b> Select a picklist domain from the drop-down list. </li>
+                <li value="2"><b>Picklist Value:</b> Enter a value for the new picklist.
+ </li>
+                <li value="5"><b>Sort Order:</b> Enter an integer value to specify the order of values to appear in the property's dropdown list.</li>
+                <li><b>Is Active?:</b> Select <b>Yes</b> to make the new picklist active. Otherwise, select <b>No</b>. </li>
+            </ul>
+        </blockquote>
+        <ol MadCap:continue="true">
+            <li>Click the <b>Save</b> button. The new value gets added to the Picklist table.</li>
         </ol>
         <p><b style="text-decoration: underline;">Related Topics:</b>
             <br /><a href="Manage Custom Tables.htm">Manage Custom Tables</a>

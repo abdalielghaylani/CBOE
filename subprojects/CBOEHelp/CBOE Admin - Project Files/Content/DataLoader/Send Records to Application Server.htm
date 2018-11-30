@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="555" MadCap:lastWidth="689">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="467" MadCap:lastWidth="868">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Send Records to Application Server</h1>
         <p>After validation, the prepared Registry Records are transferred from the client to the application server.  A fraction of the record load time is consumed by this data transfer step.  The highest gain in this step can be achieved by avoiding the cost of moving data between a remote client system and the application server.  This can be accomplished by executing the bulk load client from the application server.  
 If the bulk load must be performed from a remote client, there can be modest performance gains by adjusting the ChunkSize parameter in the COEDataLoader application configuration file.  This settings determines how name registry records are packaged by the client they are sent to the server.  A value of up to 200 may beneficial for client systems that have a high latency connection to the application server.  Increasing to a very high value can cause a  very large data packet to be sent and could result in errors if the HTTP message size limits established by the application server are exceeded. 

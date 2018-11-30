@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UrlList>
+    <Url Source="Resources/Images/CBOE applications.gif" />
+    <Url Source="Resources/Images/Web Registration/delete_icon.png" />
+    <Url Source="Resources/Images/Web Registration/edit_icon.png" />
+    <Url Source="Resources/Images/Web Registration/edit_table.gif" />
+    <Url Source="Resources/Images/footer_logo.png" />
+    <Url Source="Resources/Images/Web Registration/System Settings.gif" />
+    <Url Source="Resources/Images/Web Registration/XML script.gif" />
+    <Url Source="Resources/Images/Web Registration/Edit form xml.gif" />
+    <Url Source="Resources/Images/Web Registration/CD chemical warning.gif" />
+    <Url Source="Resources/Images/Web Registration/Salt stripping addin.gif" />
+    <Url Source="Resources/Images/Web Registration/Find Custom Field Duplicates Addin.gif" />
+    <Url Source="Resources/Images/Web Registration/ChemDraw Calculations.gif" />
+    <Url Source="Resources/Images/Web Registration/Aggregate structures.gif" />
+    <Url Source="Resources/Images/Web Registration/Structure normalization.gif" />
+    <Url Source="Resources/Images/Web Registration/Add Addins window.gif" />
+    <Url Source="Resources/Images/Web Registration/Manage addins.gif" />
+    <Url Source="Resources/Images/Web Registration/Customize Forms.gif" />
+    <Url Source="Resources/Images/Web Registration/Custom.gif" />
+    <Url Source="Resources/Images/Web Registration/Not empty structure and no text.gif" />
+    <Url Source="Resources/Images/Web Registration/Not empty structure.gif" />
+</UrlList>

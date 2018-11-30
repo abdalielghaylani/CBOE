@@ -3,7 +3,9 @@
   Version="1">
   <TocEntry
     Title="Using the WebHelp"
-    Link="/Content/Using the WebHelp.htm" />
+    Link="/Content/Using the WebHelp.htm"
+    conditions="Default.Not supported"
+    ReplaceMergeNode="false" />
   <TocEntry
     Title="ChemBioOffice Enterprise"
     Link="/Content/ChemBioOffice Enterprise.htm">
@@ -86,7 +88,9 @@
     </TocEntry>
     <TocEntry
       Title="Security Vulnerability in CBOE Manager"
-      Link="/Content/Security Vulnerability in CBOE Manager.htm" />
+      Link="/Content/Security Vulnerability in CBOE Manager.htm"
+      conditions="Default.Not supported"
+      StartSection="false" />
     <TocEntry
       Title="Enabling Application Tracing"
       Link="/Content/Application Tracing.htm" />
@@ -1343,8 +1347,14 @@
         Title="Customizing Forms"
         Link="/Content/Web Registration/Customizing Forms.htm" />
       <TocEntry
+        Title="Specifying START_BATCH_NUMBER in Web Registration"
+        Link="/Content/Web Registration/Specifying START_BATCH_NUMBER in Web Registration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
         Title="Web Registration - System Settings"
         Link="/Content/Web Registration/Web Registration - System Settings.htm" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Web Registration/Error Logging in Web Registration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
     </TocEntry>
   </TocEntry>
   <TocEntry

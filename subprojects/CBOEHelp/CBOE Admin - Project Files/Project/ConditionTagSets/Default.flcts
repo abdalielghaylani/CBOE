@@ -48,4 +48,8 @@
     BackgroundColor="#008b8b"
     Name="Web Reg Only"
     Comment="" />
+  <ConditionTag
+    BackgroundColor="#00ff00"
+    Name="CBOE"
+    Comment="" />
 </CatapultConditionTagSet>

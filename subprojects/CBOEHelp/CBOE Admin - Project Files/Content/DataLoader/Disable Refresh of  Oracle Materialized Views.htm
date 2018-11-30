@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="751" MadCap:lastWidth="689">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="680" MadCap:lastWidth="868">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Disable Refresh of  Oracle Materialized Views</h1>
         <p>In systems where the integration between the Chemical Inventory and Registration modules has been enabled, there may be Materialized Views of data inserted into the REGDB tables.  By default, these views are configured to update as each row is committed to the database.  The process of keeping Materialized Views up-to-date can significantly slow down performance of bulk load operations.  It is therefore beneficial to suspend the maintenance of Materialized Views that depend on REGDB data and to refresh them at the end of the load.
 </p>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="Registration Administrator Guide"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  OutputFile="Registration Administrator Guide"
+  MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
+  Skin="/Project/Skins/New_Reg_HTML5.flskn"
+  ConditionTagExpression="include[&quot;Default.Web Reg Only&quot;] exclude[&quot;Default.BioSAR Browser only&quot; or Default.CBOE or &quot;Default.COE Webserver only&quot; or &quot;Default.Config Loader only&quot; or &quot;Default.DataLoader Only&quot; or &quot;Default.DataView Manager only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot; or Default.PrintOnly or &quot;Default.Registration only&quot; or Default.ScreenOnly] "
+  InsertMOTW="true"
+  GetLatestBeforeCompile="true"
+  MasterToc="/Project/TOCs/Web Registration.fltoc"
+  Medium="non-print"></CatapultTarget>

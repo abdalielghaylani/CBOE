@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="Web Registration"
+    Link="/Content/Web Registration/Web Registration.htm"
+    conditions="Default.Web Reg Only"></TocEntry>
+  <TocEntry
+    Title="Manage Custom Tables"
+    Link="/Content/Web Registration/Manage Custom Tables.htm"
+    conditions="Default.Web Reg Only">
+    <TocEntry
+      Title="Picklist Domains and Picklist Values"
+      Link="/Content/Web Registration/Web Registration - Picklist Domains and Picklist Values.htm" />
+    <TocEntry
+      Title="Project Table"
+      Link="/Content/Web Registration/Web Registration - Project Table.htm" />
+    <TocEntry
+      Title="Fragments and Fragment Types"
+      Link="/Content/Web Registration/Web Registration - Fragments and Fragment Types.htm" />
+    <TocEntry
+      Title="Sequences"
+      Link="/Content/Web Registration/Web Registration - Sequences.htm" />
+    <TocEntry
+      Title="Notebooks"
+      Link="/Content/Web Registration/Web Registration - Notebooks.htm" />
+    <TocEntry
+      Title="Identifier Types"
+      Link="/Content/Web Registration/Web Registration - Identifier Types.htm" />
+    <TocEntry
+      Title="Sites Table"
+      Link="/Content/Web Registration/Web Registration - Sites Table.htm" />
+  </TocEntry>
+  <TocEntry
+    Title="System Behaviors"
+    Link="/Content/Web Registration/Web Registration - System Behaviors.htm"
+    conditions="Default.Web Reg Only">
+    <TocEntry
+      Title="Manage Data Properties"
+      Link="/Content/Web Registration/Web Registration - Manage Data Properties.htm">
+      <TocEntry
+        Title="Edit a Property"
+        Link="/Content/Web Registration/Web Registration - Edit a Property.htm"></TocEntry>
+      <TocEntry
+        Title="Delete a Property"
+        Link="/Content/Web Registration/Web Registration - Delete a Property.htm"></TocEntry>
+      <TocEntry
+        Title="Sort Properties Order"
+        Link="/Content/Web Registration/Web Registration - Sort Properties Order.htm" />
+      <TocEntry
+        Title="Validation Rules"
+        Link="/Content/Web Registration/Web Registration - Validation Rules.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Forms Customization"
+      Link="/Content/Web Registration/Web Registration - Forms Customization.htm">
+      <TocEntry
+        Title="Control Types"
+        Link="/Content/Web Registration/Control Types.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Manage Addins"
+      Link="/Content/Web Registration/Manage Addins.htm">
+      <TocEntry
+        Title="Structure Normalization Addin"
+        Link="/Content/Web Registration/Web Registration - Structure Normalization Addin.htm" />
+      <TocEntry
+        Title="Aggregate Structures Addin"
+        Link="/Content/Web Registration/Web Registration - Aggregate Structures Addin.htm" />
+      <TocEntry
+        Title="ChemDraw Calculations Addin"
+        Link="/Content/Web Registration/Web Registration - ChemDraw Calculations Addin.htm" />
+      <TocEntry
+        Title="Find Custom Field Duplicates Addin"
+        Link="/Content/Web Registration/Web Registration - Find Custom Field Duplicates Addin.htm" />
+      <TocEntry
+        Title="Salt Stripping Addin"
+        Link="/Content/Web Registration/Web Registration - Salt Stripping Addin.htm" />
+      <TocEntry
+        Title="ChemDraw Chemical Warning Checker Addin"
+        Link="/Content/Web Registration/Web Registration - ChemDraw Chemical Warning Checker Addin.htm" />
+    </TocEntry>
+    <TocEntry
+      Title="Customizing Forms"
+      Link="/Content/Web Registration/Customizing Forms.htm" />
+    <TocEntry
+      Title="System Settings"
+      Link="/Content/Web Registration/Web Registration - System Settings.htm" />
+    <TocEntry
+      Title="Specifying START_BATCH_NUMBER in Web Registration"
+      Link="/Content/Web Registration/Specifying START_BATCH_NUMBER in Web Registration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Error Logging in Web Registration"
+      Link="/Content/Web Registration/Error Logging in Web Registration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+  </TocEntry>
+</CatapultToc>

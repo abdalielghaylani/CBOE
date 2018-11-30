@@ -9,5 +9,5 @@
   MasterStylesheet="/Content/Resources/Stylesheets/help_ie.css"
   MasterPage="/Content/Resources/MasterPages/NewPage2.flmsp"
   Skin="/Project/Skins/Default.flskn"
-  ConditionTagExpression="exclude[&quot;Default.BioSAR Browser only&quot; or &quot;Default.DataView Manager only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot; or &quot;Default.Web Reg Only&quot;] "
+  ConditionTagExpression="exclude[&quot;Default.BioSAR Browser only&quot; or &quot;Default.DataView Manager only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot;] "
   InsertMOTW="true"></CatapultTarget>

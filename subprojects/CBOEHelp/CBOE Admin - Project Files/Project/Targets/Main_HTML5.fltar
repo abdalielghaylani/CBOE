@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="ChemBioOffice Enterprise Administrator Guide"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/Main_HTML5.flskn"
+  ConditionTagExpression="include[Default.CBOE] exclude[&quot;Default.BioSAR Browser only&quot; or &quot;Default.DataView Manager only&quot; or &quot;Default.Doc Manager Enterprise&quot; or &quot;Default.Drug Degradation only&quot; or &quot;Default.Not supported&quot;] "
+  MasterToc="/Project/TOCs/Master.fltoc"
+  MasterPage="/Content/Resources/MasterPages/NewMasterPage.flmsp"
+  Medium="non-print"
+  OutputFile="ChemBioOffice Enterprise Administrator Guide">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true" />
+</CatapultTarget>

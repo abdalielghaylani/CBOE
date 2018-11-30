@@ -1,51 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2553" MadCap:lastWidth="1205">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <div class="navigation">
-            <table style="WIDTH: 100%;" width="100%">
-                <tr valign="bottom">
-                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;">
-                        <p>Web Registration</p>
-                    </td>
-                </tr>
-                <tr align="left" valign="top">
-                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
-                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
-                </tr>
-            </table>
-        </div>
         <h1>Web Registration - Manage Data Properties</h1>
         <p>Manage Data Properties allows you to add, edit, or delete custom properties.&#160; From this menu you can also create or delete Validation Rules.
 </p>
         <ol>
-            <li>In the Registration Admin window, click on <b>System Behaviors</b> button and select <b>Manage Data Properties</b> option from the menu. </li>
+            <li>In the Registration Admin window, click on <b>System Behaviors</b> button and select <b>Manage Data Properties</b> option from the menu. The <i>Manage Data Properties</i> window appears.</li>
         </ol>
-        <p>The Manage Data Properties window appears.</p>
         <ol MadCap:continue="true">
-            <li>To Add a new property, click on the plus sign</li>
+            <li>To Add a new property, click on the plus icon.<p><img src="../Resources/Images/Web Registration/Add new property.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" /></p></li>
         </ol>
-        <p>
-            <img src="../Resources/Images/Web Registration/Add new property.gif" />
-        </p>
         <p>The Add New Property window appears:</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Add new property window.gif" />
+            <img src="../Resources/Images/Web Registration/Add new property window.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <ul>
-            <li>Group Name: to select at which level you want to create the new properties. Five different levels are available:<ul><li>Batch</li><li>Batch Component</li><li>Compound</li><li>Registry</li><li>Base Fragment</li></ul></li>
+            <li>Group Name: to select at which level you want to create the new properties. Five different levels are available:<ul><li>Batch</li><li>Compound</li><li>Registry</li><li>Base Fragment</li></ul></li>
             <li>Name: This is the real Oracle Field Name (Spaces and other special character are not 	allowed)</li>
             <li>Label: Display Name that will appear in all Registration Forms</li>
-            <li>Type: Property Type<ul><li value="1">TEXT: —&gt;VARCHAR2
-</li><li value="2"> DATE —&gt; DATE
- </li><li value="3">BOOLEAN —&gt; NCHAR(1) 
+            <li>Type: Property Type<ul><li>BOOLEAN —&gt; NCHAR(1) </li><li value="2"> DATE —&gt; DATE
+</li><li>FLOAT —&gt; NUMBER(14,6)</li><li>INTEGER —&gt; NUMBER(9)
  </li><li value="4">NUMBER —&gt; NUMBER(X,Y)
-</li><li value="5">PICKLISTDOMAIN —&gt; </li><li value="6">INTEGER —&gt; NUMBER(9)
- </li><li value="7">FLOAT —&gt; NUMBER(14,6)
- </li><li value="8">URL
-
- </li></ul></li>
+</li><li value="5">PICKLISTDOMAIN —&gt; VARCHAR2</li><li value="6"> TEXT: —&gt;VARCHAR2
+</li><li value="8">URL: —&gt;VARCHAR2 </li></ul></li>
         </ul>
         <ol MadCap:continue="true">
             <li>Click <b>Add Property</b> button.</li>
@@ -53,15 +32,17 @@
         <p>The new property gets added to the Properties table under the specified group.</p>
         <p>Only for Text type, the Length field is active, as shown in the example below:</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Length value.gif" />
+            <img src="../Resources/Images/Web Registration/Length value.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
+        </p>
+        <p><i><b>Note</b>: The precision of a property can be updated to any value higher than the maximum precision of the data already set in the database. For example, if some record has a STRUCTURE_NAME property with the value length of 200, you cannot change the property precision to a value less than 200.</i>
         </p>
         <p>Only for the Number type, the Precision field is active, as shown in the example below:</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Precision value.gif" />
+            <img src="../Resources/Images/Web Registration/Precision value.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p>Only for the Picklist Domain type, the Picklist field is active, as shown in the example below:</p>
         <p>
-            <img src="../Resources/Images/Web Registration/Picklist value.gif" />
+            <img src="../Resources/Images/Web Registration/Picklist value.gif" style="mc-thumbnail: popup;mc-thumbnail-max-width: 900px;mc-thumbnail-max-height: auto;" />
         </p>
         <p><b style="text-decoration: underline;">Related Topics:</b>
             <br /><a href="Web Registration - Edit a Property.htm">Edit a Property</a>
