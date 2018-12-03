@@ -1,0 +1,312 @@
+pipeline 
+{
+    agent {
+        node {
+				label 'ABSVS_2017'
+				customWorkspace "CBOE/ReleaseBuild"
+             }
+          }
+    environment 
+		  {
+            PROD_VERSION = '18.1.0'
+	        VERSION_STRING = "${PROD_VERSION}.0${BUILD_NUMBER}"
+	        STAGING_DIR = "staging"
+	        PUBLISH_PATH='"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1"'
+            NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"		      
+          }
+    options 
+		  {
+			timestamps()
+			buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '', numToKeepStr: '10'))
+                      
+          }            
+    stages 
+	      {
+           stage ('CBOE-Build') 
+			{	
+              steps
+			   {
+ 	            bat """ 
+				    ${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Security\\SingleSignOn\\SingleSignOn\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}		  
+                    ${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+			        ${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\SQLGenerator.NUnitTest\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.NUnitTests\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.UnitTests\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Manager\\Manager\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}                  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}                  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\ServiceTier\\RegistrationAddins\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}                  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}                  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\ServiceTier\\CambridgeSoft.COE.RegistrationAdmin.Services\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}                  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Core\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebServices\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			     
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Manager\\COEConfigurationPublishTool\\COEConfigurationPublishTool\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\CBVN\\ChemBioViz.Net\\ChemControls\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}			      
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataLoaderGUI\\DataLoaderGUI\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataUploader\\DataPreviewer\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataUploader\\DataUploader.Core\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataUploader\\DataUploader\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataUploader\\DataUploader.UnitTests\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataLoader\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataLoader\\Calculation\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataLoader\\Calculator\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\DataLoader\\Common\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\ConfigLoader\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\Patcher\\Patcher\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				  
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\ServiceTier\\RLSConfigurationTool\\RLSConfigurationTool\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING}				 
+					${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\Properties\\AssemblyInfo.cs" -fileversion=${VERSION_STRING} 
+				"""
+		       	bat """ 
+					xcopy /Y  "C:\\Users\\jmsayan\\Desktop\\Test\\DataLoader\\*.*" "${WORKSPACE}\\subprojects\\DataLoader" 
+					cd ${WORKSPACE}\\Installers\\InstallSupportFiles
+					EditDataLoaderProj1261.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj 0${BUILD_NUMBER} 
+				"""
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Security\\SingleSignOn\\SingleSignOn.sln /t:Build /p:Configuration=Release"
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.sln /t:Build /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp.sln  /t:Build /p:Configuration=Release"
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.sln /t:Build /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.sln /t:Publish /p:Configuration=Release"
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\ConfigLoader\\CambridgeSoft.COE.ConfigLoader.sln /t:Publish /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\CambridgeSoft.COE.ChemBioViz.sln /t:Build /p:Configuration=Release"
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Manager\\Manager.sln /t:Build /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\DataUploader\\DataUploader.sln /t:Build /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Registration\\ServiceTier\\RLSConfigurationTool\\RLSConfigurationTool.sln /t:Build /p:Configuration=Release" 
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\Patcher\\Patcher.sln  /t:Publish /p:Configuration=Release"
+				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\COELogViewer.sln /t:Publish /p:Configuration=Release"	
+				bat """ 
+					MD "${WORKSPACE}//ChemOffice"
+	            	MD "${WORKSPACE}//Base/ChemOffice"
+					"${BC}" "@${WORKSPACE}\\Installers\\InstallSupportFiles\\bc.txt" "${WORKSPACE}\\subprojects\\Classic" "${WORKSPACE}\\Base\\ChemOffice" "${WORKSPACE}\\ChemOffice" /silent 
+				"""		// Batch build step
+				bat """ 
+					${REGASM} ${WORKSPACE}\\subprojects\\Classic\\Common\\Dlls\\SingleSignoncom.dll /tlb:SingleSignOnCom.tlb /codebase
+					RD /S /Q "${WORKSPACE}\\subprojects\\CBOEHelp\\CBOE Admin - Project Files"
+					RD /S /Q "${WORKSPACE}\\subprojects\\CBOEHelp\\CBOE User - Project Files"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\BioSAR_Browser"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\DocManager"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\VB Projects"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\cs_security"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Consulting"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\ChemInv_9SR"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Chem_Reg"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\ChemACXOra"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\D3"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\DrugDeg"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Installers"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Excel SAR Viewer"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Inventory"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\Project_Doc"
+					RD /S /Q "${WORKSPACE}\\ChemOffice\\wwwroot"
+					${VB} /m "${WORKSPACE}\\subprojects\\Classic\\VB Projects\\InvLoader\\PlateImporter.vbp"
+					xcopy /Y "${WORKSPACE}\\subprojects\\Classic\\VB Projects\\InvLoader\\Inno Installer\\Output\\InvLoaderSetup.exe" "${WORKSPACE}\\ChemOffice\\ChemInv\\Installation\\InvLoader"
+				"""
+			   }
+			}               
+			stage ('Registration-Build')
+			  {	
+               steps
+			    {
+				bat """ 
+				    cd "${WORKSPACE}\\subprojects\\Registration\\registration.client"
+				    npm install
+				    npm run build 
+				"""		// Batch build step
+				bat """ 
+				    MD "${WORKSPACE}\\CBOE17.1"
+				    MD "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Test" 
+				    MD "${WORKSPACE}\\Install\\install9" 
+				    MD "${WORKSPACE}\\Install\\install9\\UserInterface" 
+				    xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\Test\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Test\\"
+				    xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\Install\\install9\\UserInterface\\*.*" "${WORKSPACE}\\Install\\install9\\UserInterface\\"
+				    xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\ChemOffice\\webserver_source\\cfserveradmin\\AdminSource\\mswcrun.dll" "${WORKSPACE}\\ChemOffice\\webserver_source\\cfserveradmin\\AdminSource\\"
+				    ${WORKSPACE}\\installers\\InstallSupportFiles\\setversionstring.pl -file="${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\Properties\\AssemblyInfo.cs"  -fileversion=${VERSION_STRING}
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Test\\Registration.Server.2013.Build.sln"  "${WORKSPACE}\\subprojects\\Registration\\PresentationTier"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Test\\Registration.Server.csproj"   "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\CambridgeSoft.COE.ChemBioViz.Services.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Framework.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Registration.RegistrationAddins.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Registration.Services.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationAdmin.Services.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationWebApp.dll" "${WORKSPACE}\\CBOE17.1"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\Registration.Core.dll" "${WORKSPACE}\\CBOE17.1" 
+				    MD "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\packages"
+				    MD "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages"
+				    xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\packages\\"
+				    xcopy /Y/S "C:\\builds\\workspace\\CBOE18.1_Pipeline\\subprojects\\Registration\\PresentationTier\\packages\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\packages\\"
+				    "${MSBUILD}" ${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server.2013.Build.sln /p:CreatePackageOnPublish=true /p:DeployOnBuild=true /p:PublishProfile="" 
+				    xcopy /Y "${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
+				    xcopy /Y "${WORKSPACE}\\CBOE17.1\\*.*" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
+				    xcopy /Y "${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl18.dll" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
+					
+				"""					
+				bat """
+				    call ${SIGNTOOL} "%WORKSPACE%\\subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.DataLoader.Calculation.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.DataLoader.Common.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.DataLoader.Core.dll"
+					call ${SIGNTOOL}  "WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\bin\\Release\\CambridgeSoft.COE.Framework.Web.COEFrameworkServices.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\Manager\\bin\\CambridgeSoft.COE.Manager.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Registration.RegistrationAddins.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Registration.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationAdmin.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.RegistrationWebApp.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\Registration.Core.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Security\\SingleSignOn\\SingleSignOn\\bin\\SingleSignOn.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\bin\\Release\\COELogViewer.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\ServiceTier\\RLSConfigurationTool\\RLSConfigurationTool\\bin\\Release\\CambridgeSoft.COE.RLSConfigurationTool.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ConfigLoader\\bin\\Release\\ConfigLoader.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\COEDataLoader.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\DataLoader.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\CSDO17.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\REPORTQ.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\COEHeaderServer.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\CSSecurityLDAP.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\CSDO14.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\CSDO15.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\ENLDAPProxy.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\Patcher\\Patcher\\bin\\Release\\COEPatcher.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ConfigLoader\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\PyEngine3.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\PyEngine3.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\PyEngine3.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\CommonRuntimeLibraries\\AssemblySettings.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.Web\\bin\\Release\\CambridgeSoft.COE.Framework.Web.COEFrameworkServices.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\Manager\\bin\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\Manager\\bin\\CambridgeSoft.COE.Manager.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\ServiceTier\\RLSConfigurationTool\\RLSConfigurationTool\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.WebServiceHost\\Bin\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.WebServiceHost\\Bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Registration.RegistrationAddins.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\COEConfigurationPublishTool\\COEConfigurationPublishTool\\bin\\Release\\COEConfigurationPublishTool.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\Manager\\bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.DataLoader.Common.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.Registration.RegistrationAddins.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.Registration.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\DataLoaderGUI.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\Registration.Core.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.Registration.RegistrationAddins.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\CambridgeSoft.COE.Registration.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataLoader\\bin\\Release\\Registration.Core.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\bin\\CambridgeSoft.COE.ChemBioViz.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\bin\\CambridgeSoft.COE.ChemBioVizWebApp.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\bin\\CambridgeSoft.COE.Framework.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ChemBioViz\\PresentationTier\\ChemBioVizWebApp\\bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\ChemOffice\\ChemInv\\Installation\\InvLoader\\InvLoaderSetup.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\ChemControls.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.DataLoader.Calculation.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\DataUploader\\DataUploader\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\COELogViewer\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\ConfigLoader\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.WebServiceHost\\Bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\ServiceTier\\RLSConfigurationTool\\RLSConfigurationTool\\bin\\Release\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\CambridgeSoft.COE.Framework.XmlSerializers.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Registration\\PresentationTier\\RegistrationWebApp\\Bin\\App_Licenses.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Manager\\Manager\\Forms\\Master\\UserControls\\Custom\\MyCustomControlsLib.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Framework\\CambridgeSoft\\CommonResources\\infragistics\\20111CLR20\\Forms\\WebSchedule\\Bin\\App_Licenses.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Subprojects\\Classic\\Common\\dlls\\SingleSignOnCom.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\Informatics\\Classic\\DocManager\\8.0\\Components\\FileBatchLoad.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\Informatics\\Classic\\DocManager\\8.0\\Components\\dcomperm.exe"
+					call ${SIGNTOOL} "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin\\PerkinElmer.COE.Registration.Server.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\ subprojects\\Registration\\PresentationTier\\Registration.Server\\bin \\CambridgeSoft.COE.ChemBioViz.Services.dll"
+					call ${SIGNTOOL} "%WORKSPACE%\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin\\CambridgeSoft.COE.ChemBioViz.Services.dll"					
+				    set WORKSPACE_PATH_ROOT=${WORKSPACE}
+				    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=18.1.0.0%BUILD_NUMBER%" -z "CBVNBUILDNUMBER=18.1.0.0%BUILD_NUMBER%" -z "CBVNFOLDERVERSION=18_1_0_0%BUILD_NUMBER%" -z "BUILDVERSION=18_1_0_0%BUILD_NUMBER%"
+				    MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
+				    xcopy /Y "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${PUBLISH_PATH}\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
+				    cd "${WORKSPACE}\\subprojects\\Registration\\registration.client"
+				    npm run test:ci
+				"""	
+                }
+			}
+            stage('Report')
+    		{
+	       		steps 
+				{              
+                    junit 'subprojects/Registration/registration.client/test-output/test-results.xml' 
+                    publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: 'subprojects/Registration/registration.client/test-coverage/headlesschrome',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage Registration Web Client',
+                    reportTitles: ''
+                    ]
+               
+                }
+            }		
+		    stage ('Installer')
+			{
+		     
+				agent
+				{
+					node 
+					{
+						label 'INST_2013'
+						customWorkspace "CBOE/ReleaseBuild"
+                        
+					}
+				}
+				steps
+				{
+					bat """ 
+						del /Q ${DISKLOCATION}
+						xcopy /Y "${PUBLISH_PATH}\\Dev\\Server\\CBOEServerInstaller_${VERSION_STRING}\\*.*" ${DISKLOCATION}
+						"${INST_2013}" -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=18.1.0.0%BUILD_NUMBER%"
+						xcopy "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_18.1.0.0${BUILD_NUMBER}" /I /Y /S
+					""" 
+				}		          
+			}      
+			stage ('JIRA Updation')
+			{
+				
+				steps
+				{
+					script 
+					{
+						// Get the list of solved issues and loop over it
+						jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+						.each
+						{
+							// jiraComment is provided by Jira-plugin
+							id -> jiraComment(issueKey: id,
+							body: "SUCCESS: Integrated in Jenkins CBOE [${VERSION_STRING}|${currentBuild.absoluteUrl}]")
+						}
+					}
+				} 
+			}
+			stage ('Clean Workspace') 
+			{	
+				steps
+				{
+					deleteDir()
+				}
+			}
+		}
+    post
+	{
+        always 
+		{
+            emailext attachLog:true, body: '''${SCRIPT, template="groovy-html.template"}''',	mimeType: 'text/html',subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",to: "${NOTIFY_LIST}",replyTo: "${NOTIFY_LIST}",recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+            deleteDir()
+        }
+    }       
+
+}
+    
+    
+    
