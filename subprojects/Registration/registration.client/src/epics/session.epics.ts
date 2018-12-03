@@ -74,7 +74,7 @@ export class SessionEpics {
     return action$.filter(({ type }) => type === SessionActions.LOGOUT_USER)
       .mergeMap(() => {
         return this.http.get(`${apiUrlPrefix}auth/logout`)
-          .map(result => createAction(UPDATE_LOCATION)('login'))
+          .map(result => createAction(UPDATE_LOCATION)('logout'))
           .catch(error => Observable.of(RegActions.ignoreAction()));
       });
   }

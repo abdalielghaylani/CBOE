@@ -68,7 +68,8 @@ public partial class Forms_Public_UserControls_Login : System.Web.UI.UserControl
 			//sending return url to DestinationPageUrl as parameter, so that return url will
 			//open in new window and DestinationPageUrl will continue execution.
             string ReturnURL = Request.QueryString.ToString();
-            Response.Redirect(Login1.DestinationPageUrl + "?" + ReturnURL);
+            ReturnURL = ReturnURL.Contains("logoff.aspx") ? "" : "?"+ReturnURL;
+            Response.Redirect(Login1.DestinationPageUrl + ReturnURL);
         }
         else
         {

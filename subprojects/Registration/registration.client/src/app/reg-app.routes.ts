@@ -125,6 +125,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'login',
   component: RegLoginPage
+}, {
+  path: 'logout',
+  component: RegLoginPage
 },
 {
   path: 'unauthorized',

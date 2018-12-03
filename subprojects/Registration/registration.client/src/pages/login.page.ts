@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionActions } from '../redux';
 import { RegContainer } from '../components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'reg-login-page',
@@ -9,8 +10,13 @@ import { RegContainer } from '../components';
   `
 })
 export class RegLoginPage {
-  constructor(private sessionActions: SessionActions) {
-    this.checkLogin();
+  constructor(private router: Router, private sessionActions: SessionActions) {
+    let urlSegments = router.url.split('/');
+    if (!!urlSegments.find(s => s === 'logout')) {
+      window.location.href = location.protocol + '//' + location.host + `/COEManager/logoff.aspx`;
+    } else {
+      this.checkLogin();
+    }
   }
 
   checkLogin() {
