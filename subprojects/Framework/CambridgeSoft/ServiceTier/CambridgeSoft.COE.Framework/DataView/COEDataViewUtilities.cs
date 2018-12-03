@@ -62,6 +62,14 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             {
                 foreach (COEDataView.Field fld in tbl.Fields)
                 {
+                    if (fld.Id == -1)
+                    {
+                        tbl.Fields.Remove(fld);
+                        break;
+                    }
+                }
+                foreach (COEDataView.Field fld in tbl.Fields)
+                {
                     fld.ParentTableId = tbl.Id;
                 }
             }
