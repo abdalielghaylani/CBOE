@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RecentLinks>
     <Dialog Name="B3.XmlMdiEditorKit.ImageGeneralDialogPage">
-        <Link Value="E:\WORKING\CBOE18.1\CBOE Admin - Project Files\Content\Resources\Images\Registration\python scripts properties.gif" />
+        <Link Value="E:\WORKING\CBOE18.1\CBOE Admin - Project Files\Content\Resources\Images\ConfigLoader\data loader1.gif" />
     </Dialog>
+    <Dialog Name="B3.XmlTextKit.InsertHyperlinkDialog" />
 </RecentLinks>
