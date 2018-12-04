@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultFileLinkSet
+  FileSearchable="true"
+  OnlyLocalStylesheets="false"
+  FileTimeEstimate="0"
+  FilePriority="0">
+  <Links>
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/Reg 1104/Registration Introduction.htm" />
+    <Link
+      Url="Content/Inventory/Inventory Introduction.htm" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+    <Link
+      Url="Content/BioSARBrowser/BioSARBrowser Introduction.htm" />
+    <Link
+      Url="Content/Doc Manager/Doc Manager Introduction.htm" />
+    <Link
+      Url="Content/Drug Degradation Database/Drug Degradation Database Introduction.htm" />
+    <Link
+      Url="Content/ChemACX/ChemACX Introduction.htm" />
+    <Link
+      Url="Content/CBOE Search/CBOE Search Introduction.htm" />
+    <Link
+      Url="Content/ChemBioViz/ChemBioViz Introduction.htm" />
+    <Link
+      Url="Content/ChemBioViz Excel/ChemBioViz Excel Introduction.htm" />
+    <Link
+      Url="Content/Logging In to CBOE Manager.htm" />
+  </Links>
+  <LongLinks>
+    <Link
+      Url="Content/Resources/Stylesheets/help_ie.css" />
+    <Link
+      Url="Content/Reg 1104/Registration Introduction.htm" />
+    <Link
+      Url="Content/Inventory/Inventory Introduction.htm" />
+    <Link
+      Url="Project/ConditionTagSets/Default.flcts" />
+    <Link
+      Url="Content/BioSARBrowser/BioSARBrowser Introduction.htm" />
+    <Link
+      Url="Content/Doc Manager/Doc Manager Introduction.htm" />
+    <Link
+      Url="Content/Drug Degradation Database/Drug Degradation Database Introduction.htm" />
+    <Link
+      Url="Content/ChemACX/ChemACX Introduction.htm" />
+    <Link
+      Url="Content/CBOE Search/CBOE Search Introduction.htm" />
+    <Link
+      Url="Content/ChemBioViz/ChemBioViz Introduction.htm" />
+    <Link
+      Url="Content/ChemBioViz Excel/ChemBioViz Excel Introduction.htm" />
+    <Link
+      Url="Content/Logging In to CBOE Manager.htm" />
+  </LongLinks>
+  <Anchors />
+  <Keywords />
+  <Concepts />
+  <ConceptControlNames />
+  <IndexControlNames />
+  <Variables />
+  <FileConditions />
+  <FileTags />
+  <AllConditions>
+    <Condition
+      Tag="Default.Not supported in 1261" />
+  </AllConditions>
+  <Stylesheets>
+    <Url
+      Source="Content/Resources/Stylesheets/help_ie.css" />
+  </Stylesheets>
+</CatapultFileLinkSet>

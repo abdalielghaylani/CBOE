@@ -1,1 +1,1 @@
-define({r:0.5,st:'Stem',n:1,t:[0,69],u:['../Content/ChemACX/Accessing MSDX Data.htm'],s:['+','section'],p:[['+',50],['chemdraw',31],['exactly',94],['laboratories',65],['project',75],['sending',53],['tool',39]]});
+define({r:0.5,st:'Stem',n:1,t:[0,69],u:['../Content/ChemACX/Accessing MSDX Data.htm'],s:['+','section'],p:[['+',50],['chemdraw',41],['example',29],['later',6],['properties',41],['sending',73],['tool',65]]});
