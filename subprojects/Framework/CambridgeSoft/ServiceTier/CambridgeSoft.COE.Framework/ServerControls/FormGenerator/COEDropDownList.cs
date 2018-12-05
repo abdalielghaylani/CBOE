@@ -264,6 +264,8 @@ namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
                 //JHS 9/23/2008 - Adding this new node to allow the drop down to be built from a select statement
                 XmlNode dropdownItemsSelect = xmlData.SelectSingleNode("//COE:dropDownItemsSelect", manager);
                 XmlNode pickListDomain = xmlData.SelectSingleNode("//COE:PickListDomain", manager);
+                if(pickListDomain == null)
+                    pickListDomain = xmlData.SelectSingleNode("//PickListDomain", manager);
                 bool usePicklistList = false;
 
                 if (pickListDomain != null && int.TryParse(pickListDomain.InnerText, out _picklistDomain))
