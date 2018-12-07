@@ -4,7 +4,7 @@
         <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Resources\Images\Inventory images\label print.gif" />
     </Dialog>
     <Dialog Name="B3.XmlTextKit.InsertHyperlinkDialog">
-        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Reg 1104\Moving_a_batch.htm" />
+        <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Web Registration\Web Registration Introduction.htm" />
     </Dialog>
     <Dialog Name="B3.XmlTextKit.InsertCrossReferenceDialog">
         <Link Value="C:\Users\Carla\Documents\GitHub\cboe\subprojects\CBOEHelp\CBOE User - Project Files\Content\Reg 1104\ChemDraw Chemical Warning.htm" />
