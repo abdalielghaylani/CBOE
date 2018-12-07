@@ -31,6 +31,7 @@ Source: ..\Installer\MolServer11.dll; Destdir: {app}; Flags: regserver sharedfil
 Source: ..\Installer\MolServer14.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\MolServer15.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\MolServer17.dll; Destdir: {app}; Flags: regserver sharedfile
+Source: ..\Installer\MolServer18.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\InvLoader.exe; DestDir: {app}; Flags: ignoreversion
 Source: ..\Installer\invloader.pdf; DestDir: {app}
 Source: ..\Installer\reg_fields.xls; DestDir: {app}
