@@ -1,0 +1,898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="INV_CONTAINER_STATUS">
+          <Key>
+            <PropertyRef Name="CONTAINER_STATUS_ID" />
+          </Key>
+          <Property Name="CONTAINER_STATUS_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CONTAINER_STATUS_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CONTAINER_STATUS_DESC" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="INV_CONTAINER_TYPES">
+          <Key>
+            <PropertyRef Name="CONTAINER_TYPE_ID" />
+          </Key>
+          <Property Name="CONTAINER_TYPE_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CONTAINER_TYPE_NAME" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="INV_CONTAINERS">
+          <Key>
+            <PropertyRef Name="CONTAINER_ID" />
+          </Key>
+          <Property Name="CONTAINER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="LOCATION_ID_FK" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="COMPOUND_ID_FK" Type="number" Precision="9" Scale="0" />
+          <Property Name="PARENT_CONTAINER_ID_FK" Type="number" Precision="9" Scale="0" />
+          <Property Name="REG_ID_FK" Type="number" Precision="9" Scale="0" />
+          <Property Name="BATCH_NUMBER_FK" Type="number" Precision="9" Scale="0" />
+          <Property Name="FAMILY" Type="number" Precision="9" Scale="0" />
+          <Property Name="BATCH_ID_FK" Type="number" Precision="38" Scale="0" />
+          <Property Name="CONTAINER_NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTAINER_DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="QTY_MAX" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QTY_INITIAL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QTY_REMAINING" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QTY_MINSTOCK" Type="number" Precision="38" Scale="0" />
+          <Property Name="QTY_MAXSTOCK" Type="number" Precision="38" Scale="0" />
+          <Property Name="WELL_NUMBER" Type="number" Precision="4" Scale="0" />
+          <Property Name="WELL_ROW" Type="varchar2" MaxLength="3" />
+          <Property Name="WELL_COLUMN" Type="varchar2" MaxLength="3" />
+          <Property Name="DATE_EXPIRES" Type="date" />
+          <Property Name="DATE_CREATED" Type="date" Nullable="false" />
+          <Property Name="CONTAINER_TYPE_ID_FK" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="PURITY" Type="number" Precision="38" Scale="0" />
+          <Property Name="SOLVENT_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="CONCENTRATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_MEAS_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="UNIT_OF_WGHT_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="UNIT_OF_CONC_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="GRADE" Type="varchar2" MaxLength="255" />
+          <Property Name="WEIGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_PURITY_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="TARE_WEIGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="OWNER_ID_FK" Type="varchar2" MaxLength="50" />
+          <Property Name="CONTAINER_COMMENTS" Type="varchar2" MaxLength="2000" />
+          <Property Name="STORAGE_CONDITIONS" Type="varchar2" MaxLength="2000" />
+          <Property Name="HANDLING_PROCEDURES" Type="varchar2" MaxLength="2000" />
+          <Property Name="ORDERED_BY_ID_FK" Type="varchar2" MaxLength="50" />
+          <Property Name="DATE_ORDERED" Type="date" />
+          <Property Name="DATE_RECEIVED" Type="date" />
+          <Property Name="DATE_CERTIFIED" Type="date" />
+          <Property Name="DATE_APPROVED" Type="date" />
+          <Property Name="LOT_NUM" Type="varchar2" MaxLength="50" />
+          <Property Name="CONTAINER_STATUS_ID_FK" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="RECEIVED_BY_ID_FK" Type="varchar2" MaxLength="50" />
+          <Property Name="FINAL_WGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="NET_WGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="QTY_AVAILABLE" Type="number" Precision="38" Scale="0" />
+          <Property Name="QTY_RESERVED" Type="number" Precision="38" Scale="0" />
+          <Property Name="PHYSICAL_STATE_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="CURRENT_USER_ID_FK" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SUPPLIER_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="SUPPLIER_CATNUM" Type="varchar2" MaxLength="50" />
+          <Property Name="DATE_PRODUCED" Type="date" />
+          <Property Name="CONTAINER_COST" Type="number" Precision="9" Scale="2" />
+          <Property Name="UNIT_OF_COST_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="DEF_LOCATION_ID_FK" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="BARCODE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PO_NUMBER" Type="varchar2" MaxLength="50" />
+          <Property Name="REQ_NUMBER" Type="varchar2" MaxLength="50" />
+          <Property Name="DENSITY" Type="number" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_DENSITY_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="PO_LINE_NUMBER" Type="number" Precision="4" Scale="0" />
+          <Property Name="FIELD_1" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_2" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_3" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_4" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_5" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_6" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_7" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_8" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_9" Type="varchar2" MaxLength="2000" />
+          <Property Name="FIELD_10" Type="varchar2" MaxLength="2000" />
+          <Property Name="DATE_1" Type="date" />
+          <Property Name="DATE_2" Type="date" />
+          <Property Name="DATE_3" Type="date" />
+          <Property Name="DATE_4" Type="date" />
+          <Property Name="DATE_5" Type="date" />
+          <Property Name="RID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATOR" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="date" Nullable="false" />
+          <Property Name="PRINCIPAL_ID_FK" Type="number" Precision="8" Scale="0" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="BATCH_ID2_FK" Type="number" Precision="38" Scale="0" />
+          <Property Name="BATCH_ID3_FK" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="INV_LOCATIONS">
+          <Key>
+            <PropertyRef Name="LOCATION_ID" />
+          </Key>
+          <Property Name="LOCATION_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="PARENT_ID" Type="number" Precision="9" Scale="0" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="LOCATION_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="LOCATION_DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="LOCATION_BARCODE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="OWNER_ID_FK" Type="varchar2" MaxLength="30" />
+          <Property Name="ALLOWS_CONTAINERS" Type="varchar2" MaxLength="1" />
+          <Property Name="ADDRESS_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="COLLAPSE_CHILD_NODES" Type="number" Precision="1" Scale="0" />
+          <Property Name="RID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATOR" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="date" Nullable="false" />
+          <Property Name="PRINCIPAL_ID_FK" Type="number" Precision="8" Scale="0" />
+          <Property Name="ISPUBLIC" Type="number" Precision="2" Scale="0" />
+        </EntityType>
+        <EntityType Name="INV_SUPPLIERS">
+          <Key>
+            <PropertyRef Name="SUPPLIER_ID" />
+          </Key>
+          <Property Name="SUPPLIER_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="SUPPLIER_NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="SUPPLIER_SHORT_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SUPPLIER_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="SUPPLIER_FACILITY_NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="SUPPLIER_ADDRESS_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="IS_OFFICIAL_SUPPLIER" Type="number" Precision="1" Scale="0" />
+          <Property Name="RID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATOR" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INV_UNITS">
+          <Key>
+            <PropertyRef Name="UNIT_ID" />
+          </Key>
+          <Property Name="UNIT_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="UNIT_TYPE_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="CONVERSION_RATIO" Type="number" Precision="38" Scale="0" />
+          <Property Name="UNIT_ABREVIATION" Type="varchar2" MaxLength="50" />
+          <Property Name="UNIT_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
+          <Property Name="SORTORDER" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <Association Name="INV_CONT_CONT_STATUS_FK">
+          <End Role="INV_CONTAINER_STATUS" Type="Self.INV_CONTAINER_STATUS" Multiplicity="1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINER_STATUS">
+              <PropertyRef Name="CONTAINER_STATUS_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_STATUS_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_CONT_TYPES_FK">
+          <End Role="INV_CONTAINER_TYPES" Type="Self.INV_CONTAINER_TYPES" Multiplicity="1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINER_TYPES">
+              <PropertyRef Name="CONTAINER_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_DEFLOCATION_FK">
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="DEF_LOCATION_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_LOCATIONS_FK">
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="LOCATION_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_PARENTCONT_FK">
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS1" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS1">
+              <PropertyRef Name="PARENT_CONTAINER_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_SUPPLIERS_FK">
+          <End Role="INV_SUPPLIERS" Type="Self.INV_SUPPLIERS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_SUPPLIERS">
+              <PropertyRef Name="SUPPLIER_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="SUPPLIER_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFCONC_FK">
+          <End Role="INV_UNITS" Type="Self.INV_UNITS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_CONC_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFMEAS_FK">
+          <End Role="INV_UNITS" Type="Self.INV_UNITS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_MEAS_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFPURITY_FK">
+          <End Role="INV_UNITS" Type="Self.INV_UNITS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_PURITY_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFWGHT_FK">
+          <End Role="INV_UNITS" Type="Self.INV_UNITS" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_WGHT_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_LOC_LOC_FK">
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INV_LOCATIONS1" Type="Self.INV_LOCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_LOCATIONS1">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Self.INV_CONTAINER_STATUS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_CONTAINER_TYPES" EntityType="Self.INV_CONTAINER_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_CONTAINERS" EntityType="Self.INV_CONTAINERS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_SUPPLIERS" EntityType="Self.INV_SUPPLIERS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_UNITS" EntityType="Self.INV_UNITS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <AssociationSet Name="INV_CONT_CONT_STATUS_FK" Association="Self.INV_CONT_CONT_STATUS_FK">
+            <End Role="INV_CONTAINER_STATUS" EntitySet="INV_CONTAINER_STATUS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_CONT_TYPES_FK" Association="Self.INV_CONT_CONT_TYPES_FK">
+            <End Role="INV_CONTAINER_TYPES" EntitySet="INV_CONTAINER_TYPES" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_DEFLOCATION_FK" Association="Self.INV_CONT_DEFLOCATION_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_LOCATIONS_FK" Association="Self.INV_CONT_LOCATIONS_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_PARENTCONT_FK" Association="Self.INV_CONT_PARENTCONT_FK">
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+            <End Role="INV_CONTAINERS1" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_SUPPLIERS_FK" Association="Self.INV_CONT_SUPPLIERS_FK">
+            <End Role="INV_SUPPLIERS" EntitySet="INV_SUPPLIERS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFCONC_FK" Association="Self.INV_CONT_UNITOFCONC_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFMEAS_FK" Association="Self.INV_CONT_UNITOFMEAS_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFPURITY_FK" Association="Self.INV_CONT_UNITOFPURITY_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFWGHT_FK" Association="Self.INV_CONT_UNITOFWGHT_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_LOC_LOC_FK" Association="Self.INV_LOC_LOC_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_LOCATIONS1" EntitySet="INV_LOCATIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="INV_LOCATIONS">
+          <Key>
+            <PropertyRef Name="LOCATION_ID" />
+          </Key>
+          <Property Name="LOCATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PARENT_ID" Type="Int32" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION_BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OWNER_ID_FK" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ALLOWS_CONTAINERS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_ID_FK" Type="Int16" />
+          <Property Name="COLLAPSE_CHILD_NODES" Type="Boolean" />
+          <Property Name="RID" Type="Int32" Nullable="false" />
+          <Property Name="CREATOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" />
+          <Property Name="PRINCIPAL_ID_FK" Type="Int32" />
+          <Property Name="ISPUBLIC" Type="Byte" />
+          <NavigationProperty Name="INV_LOCATIONS1" Relationship="Self.INV_LOC_LOC_FK" FromRole="INV_LOCATIONS" ToRole="INV_LOCATIONS1" />
+          <NavigationProperty Name="INV_LOCATIONS2" Relationship="Self.INV_LOC_LOC_FK" FromRole="INV_LOCATIONS1" ToRole="INV_LOCATIONS" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Model.INV_CONT_DEFLOCATION_FK" FromRole="INV_LOCATIONS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINERS1" Relationship="Model.INV_CONT_LOCATIONS_FK" FromRole="INV_LOCATIONS" ToRole="INV_CONTAINERS" />
+        </EntityType>
+        <Association Name="INV_LOC_LOC_FK">
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INV_LOCATIONS1" Type="Self.INV_LOCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_LOCATIONS1">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" />
+          <AssociationSet Name="INV_LOC_LOC_FK" Association="Self.INV_LOC_LOC_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_LOCATIONS1" EntitySet="INV_LOCATIONS" />
+          </AssociationSet>
+          <EntitySet Name="INV_CONTAINERS" EntityType="Model.INV_CONTAINERS" />
+          <AssociationSet Name="INV_CONT_DEFLOCATION_FK" Association="Model.INV_CONT_DEFLOCATION_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_LOCATIONS_FK" Association="Model.INV_CONT_LOCATIONS_FK">
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_PARENTCONT_FK" Association="Model.INV_CONT_PARENTCONT_FK">
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+            <End Role="INV_CONTAINERS1" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Model.INV_CONTAINER_STATUS" />
+          <EntitySet Name="INV_CONTAINER_TYPES" EntityType="Model.INV_CONTAINER_TYPES" />
+          <EntitySet Name="INV_SUPPLIERS" EntityType="Model.INV_SUPPLIERS" />
+          <EntitySet Name="INV_UNITS" EntityType="Model.INV_UNITS" />
+          <AssociationSet Name="INV_CONT_CONT_STATUS_FK" Association="Model.INV_CONT_CONT_STATUS_FK">
+            <End Role="INV_CONTAINER_STATUS" EntitySet="INV_CONTAINER_STATUS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_CONT_TYPES_FK" Association="Model.INV_CONT_CONT_TYPES_FK">
+            <End Role="INV_CONTAINER_TYPES" EntitySet="INV_CONTAINER_TYPES" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_SUPPLIERS_FK" Association="Model.INV_CONT_SUPPLIERS_FK">
+            <End Role="INV_SUPPLIERS" EntitySet="INV_SUPPLIERS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFCONC_FK" Association="Model.INV_CONT_UNITOFCONC_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFMEAS_FK" Association="Model.INV_CONT_UNITOFMEAS_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFPURITY_FK" Association="Model.INV_CONT_UNITOFPURITY_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFWGHT_FK" Association="Model.INV_CONT_UNITOFWGHT_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="INV_CONTAINERS">
+          <Key>
+            <PropertyRef Name="CONTAINER_ID" />
+          </Key>
+          <Property Name="CONTAINER_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="COMPOUND_ID_FK" Type="Int32" />
+          <Property Name="PARENT_CONTAINER_ID_FK" Type="Int32" />
+          <Property Name="REG_ID_FK" Type="Int32" />
+          <Property Name="BATCH_NUMBER_FK" Type="Int32" />
+          <Property Name="FAMILY" Type="Int32" />
+          <Property Name="BATCH_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CONTAINER_NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CONTAINER_DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="QTY_MAX" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="QTY_INITIAL" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="QTY_REMAINING" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="QTY_MINSTOCK" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="QTY_MAXSTOCK" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="WELL_NUMBER" Type="Int16" />
+          <Property Name="WELL_ROW" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="WELL_COLUMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_EXPIRES" Type="DateTime" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" />
+          <Property Name="CONTAINER_TYPE_ID_FK" Type="Int16" Nullable="false" />
+          <Property Name="PURITY" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SOLVENT_ID_FK" Type="Int16" />
+          <Property Name="CONCENTRATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_MEAS_ID_FK" Type="Int16" />
+          <Property Name="UNIT_OF_WGHT_ID_FK" Type="Int16" />
+          <Property Name="UNIT_OF_CONC_ID_FK" Type="Int16" />
+          <Property Name="GRADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WEIGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_PURITY_ID_FK" Type="Int16" />
+          <Property Name="TARE_WEIGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="OWNER_ID_FK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTAINER_COMMENTS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="STORAGE_CONDITIONS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="HANDLING_PROCEDURES" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERED_BY_ID_FK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_ORDERED" Type="DateTime" />
+          <Property Name="DATE_RECEIVED" Type="DateTime" />
+          <Property Name="DATE_CERTIFIED" Type="DateTime" />
+          <Property Name="DATE_APPROVED" Type="DateTime" />
+          <Property Name="LOT_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTAINER_STATUS_ID_FK" Type="Int16" Nullable="false" />
+          <Property Name="RECEIVED_BY_ID_FK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FINAL_WGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="NET_WGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="QTY_AVAILABLE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="QTY_RESERVED" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="PHYSICAL_STATE_ID_FK" Type="Int16" />
+          <Property Name="CURRENT_USER_ID_FK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLIER_ID_FK" Type="Int16" />
+          <Property Name="SUPPLIER_CATNUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_PRODUCED" Type="DateTime" />
+          <Property Name="CONTAINER_COST" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="UNIT_OF_COST_ID_FK" Type="Int16" />
+          <Property Name="DEF_LOCATION_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="BARCODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PO_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REQ_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DENSITY" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="UNIT_OF_DENSITY_ID_FK" Type="Int16" />
+          <Property Name="PO_LINE_NUMBER" Type="Int16" />
+          <Property Name="FIELD_1" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_2" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_3" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_4" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_5" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_6" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_7" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_8" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_9" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FIELD_10" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_1" Type="DateTime" />
+          <Property Name="DATE_2" Type="DateTime" />
+          <Property Name="DATE_3" Type="DateTime" />
+          <Property Name="DATE_4" Type="DateTime" />
+          <Property Name="DATE_5" Type="DateTime" />
+          <Property Name="RID" Type="Int32" Nullable="false" />
+          <Property Name="CREATOR" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" />
+          <Property Name="PRINCIPAL_ID_FK" Type="Int32" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="Int16" />
+          <Property Name="BATCH_ID2_FK" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="BATCH_ID3_FK" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INV_LOCATIONS" Relationship="Model.INV_CONT_DEFLOCATION_FK" FromRole="INV_CONTAINERS" ToRole="INV_LOCATIONS" />
+          <NavigationProperty Name="INV_LOCATIONS1" Relationship="Model.INV_CONT_LOCATIONS_FK" FromRole="INV_CONTAINERS" ToRole="INV_LOCATIONS" />
+          <NavigationProperty Name="INV_CONTAINERS1" Relationship="Model.INV_CONT_PARENTCONT_FK" FromRole="INV_CONTAINERS" ToRole="INV_CONTAINERS1" />
+          <NavigationProperty Name="INV_CONTAINERS2" Relationship="Model.INV_CONT_PARENTCONT_FK" FromRole="INV_CONTAINERS1" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINER_STATUS" Relationship="Model.INV_CONT_CONT_STATUS_FK" FromRole="INV_CONTAINERS" ToRole="INV_CONTAINER_STATUS" />
+          <NavigationProperty Name="INV_CONTAINER_TYPES" Relationship="Model.INV_CONT_CONT_TYPES_FK" FromRole="INV_CONTAINERS" ToRole="INV_CONTAINER_TYPES" />
+          <NavigationProperty Name="INV_SUPPLIERS" Relationship="Model.INV_CONT_SUPPLIERS_FK" FromRole="INV_CONTAINERS" ToRole="INV_SUPPLIERS" />
+          <NavigationProperty Name="INV_UNITS" Relationship="Model.INV_CONT_UNITOFCONC_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
+          <NavigationProperty Name="INV_UNITS1" Relationship="Model.INV_CONT_UNITOFMEAS_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
+          <NavigationProperty Name="INV_UNITS2" Relationship="Model.INV_CONT_UNITOFPURITY_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
+          <NavigationProperty Name="INV_UNITS3" Relationship="Model.INV_CONT_UNITOFWGHT_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
+        </EntityType>
+        <Association Name="INV_CONT_DEFLOCATION_FK">
+          <End Type="Model.INV_LOCATIONS" Role="INV_LOCATIONS" Multiplicity="1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="DEF_LOCATION_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_LOCATIONS_FK">
+          <End Type="Model.INV_LOCATIONS" Role="INV_LOCATIONS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="LOCATION_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_PARENTCONT_FK">
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS1">
+              <PropertyRef Name="PARENT_CONTAINER_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="INV_CONTAINER_STATUS">
+          <Key>
+            <PropertyRef Name="CONTAINER_STATUS_ID" />
+          </Key>
+          <Property Name="CONTAINER_STATUS_ID" Type="Int16" Nullable="false" />
+          <Property Name="CONTAINER_STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTAINER_STATUS_DESC" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Model.INV_CONT_CONT_STATUS_FK" FromRole="INV_CONTAINER_STATUS" ToRole="INV_CONTAINERS" />
+        </EntityType>
+        <EntityType Name="INV_CONTAINER_TYPES">
+          <Key>
+            <PropertyRef Name="CONTAINER_TYPE_ID" />
+          </Key>
+          <Property Name="CONTAINER_TYPE_ID" Type="Int16" Nullable="false" />
+          <Property Name="CONTAINER_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Model.INV_CONT_CONT_TYPES_FK" FromRole="INV_CONTAINER_TYPES" ToRole="INV_CONTAINERS" />
+        </EntityType>
+        <EntityType Name="INV_SUPPLIERS">
+          <Key>
+            <PropertyRef Name="SUPPLIER_ID" />
+          </Key>
+          <Property Name="SUPPLIER_ID" Type="Int16" Nullable="false" />
+          <Property Name="SUPPLIER_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLIER_SHORT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLIER_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLIER_FACILITY_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLIER_ADDRESS_ID_FK" Type="Int16" />
+          <Property Name="IS_OFFICIAL_SUPPLIER" Type="Boolean" />
+          <Property Name="RID" Type="Int32" Nullable="false" />
+          <Property Name="CREATOR" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Model.INV_CONT_SUPPLIERS_FK" FromRole="INV_SUPPLIERS" ToRole="INV_CONTAINERS" />
+        </EntityType>
+        <EntityType Name="INV_UNITS">
+          <Key>
+            <PropertyRef Name="UNIT_ID" />
+          </Key>
+          <Property Name="UNIT_ID" Type="Int16" Nullable="false" />
+          <Property Name="UNIT_TYPE_ID_FK" Type="Int16" />
+          <Property Name="CONVERSION_RATIO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="UNIT_ABREVIATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UNIT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="SORTORDER" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Model.INV_CONT_UNITOFCONC_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINERS1" Relationship="Model.INV_CONT_UNITOFMEAS_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINERS2" Relationship="Model.INV_CONT_UNITOFPURITY_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINERS3" Relationship="Model.INV_CONT_UNITOFWGHT_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+        </EntityType>
+        <Association Name="INV_CONT_CONT_STATUS_FK">
+          <End Type="Model.INV_CONTAINER_STATUS" Role="INV_CONTAINER_STATUS" Multiplicity="1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINER_STATUS">
+              <PropertyRef Name="CONTAINER_STATUS_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_STATUS_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_CONT_TYPES_FK">
+          <End Type="Model.INV_CONTAINER_TYPES" Role="INV_CONTAINER_TYPES" Multiplicity="1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CONTAINER_TYPES">
+              <PropertyRef Name="CONTAINER_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="CONTAINER_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_SUPPLIERS_FK">
+          <End Type="Model.INV_SUPPLIERS" Role="INV_SUPPLIERS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_SUPPLIERS">
+              <PropertyRef Name="SUPPLIER_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="SUPPLIER_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFCONC_FK">
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_CONC_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFMEAS_FK">
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_MEAS_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFPURITY_FK">
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_PURITY_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CONT_UNITOFWGHT_FK">
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_WGHT_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="InventoryDB">
+          <EntitySetMapping Name="INV_LOCATIONS">
+            <EntityTypeMapping TypeName="Model.INV_LOCATIONS">
+              <MappingFragment StoreEntitySet="INV_LOCATIONS">
+                <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="LOCATION_TYPE_ID_FK" ColumnName="LOCATION_TYPE_ID_FK" />
+                <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+                <ScalarProperty Name="LOCATION_DESCRIPTION" ColumnName="LOCATION_DESCRIPTION" />
+                <ScalarProperty Name="LOCATION_BARCODE" ColumnName="LOCATION_BARCODE" />
+                <ScalarProperty Name="OWNER_ID_FK" ColumnName="OWNER_ID_FK" />
+                <ScalarProperty Name="ALLOWS_CONTAINERS" ColumnName="ALLOWS_CONTAINERS" />
+                <ScalarProperty Name="ADDRESS_ID_FK" ColumnName="ADDRESS_ID_FK" />
+                <ScalarProperty Name="COLLAPSE_CHILD_NODES" ColumnName="COLLAPSE_CHILD_NODES" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="PRINCIPAL_ID_FK" ColumnName="PRINCIPAL_ID_FK" />
+                <ScalarProperty Name="ISPUBLIC" ColumnName="ISPUBLIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CONTAINERS">
+            <EntityTypeMapping TypeName="Model.INV_CONTAINERS">
+              <MappingFragment StoreEntitySet="INV_CONTAINERS">
+                <ScalarProperty Name="BATCH_ID3_FK" ColumnName="BATCH_ID3_FK" />
+                <ScalarProperty Name="BATCH_ID2_FK" ColumnName="BATCH_ID2_FK" />
+                <ScalarProperty Name="LOCATION_TYPE_ID_FK" ColumnName="LOCATION_TYPE_ID_FK" />
+                <ScalarProperty Name="PRINCIPAL_ID_FK" ColumnName="PRINCIPAL_ID_FK" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="DATE_5" ColumnName="DATE_5" />
+                <ScalarProperty Name="DATE_4" ColumnName="DATE_4" />
+                <ScalarProperty Name="DATE_3" ColumnName="DATE_3" />
+                <ScalarProperty Name="DATE_2" ColumnName="DATE_2" />
+                <ScalarProperty Name="DATE_1" ColumnName="DATE_1" />
+                <ScalarProperty Name="FIELD_10" ColumnName="FIELD_10" />
+                <ScalarProperty Name="FIELD_9" ColumnName="FIELD_9" />
+                <ScalarProperty Name="FIELD_8" ColumnName="FIELD_8" />
+                <ScalarProperty Name="FIELD_7" ColumnName="FIELD_7" />
+                <ScalarProperty Name="FIELD_6" ColumnName="FIELD_6" />
+                <ScalarProperty Name="FIELD_5" ColumnName="FIELD_5" />
+                <ScalarProperty Name="FIELD_4" ColumnName="FIELD_4" />
+                <ScalarProperty Name="FIELD_3" ColumnName="FIELD_3" />
+                <ScalarProperty Name="FIELD_2" ColumnName="FIELD_2" />
+                <ScalarProperty Name="FIELD_1" ColumnName="FIELD_1" />
+                <ScalarProperty Name="PO_LINE_NUMBER" ColumnName="PO_LINE_NUMBER" />
+                <ScalarProperty Name="UNIT_OF_DENSITY_ID_FK" ColumnName="UNIT_OF_DENSITY_ID_FK" />
+                <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
+                <ScalarProperty Name="REQ_NUMBER" ColumnName="REQ_NUMBER" />
+                <ScalarProperty Name="PO_NUMBER" ColumnName="PO_NUMBER" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="DEF_LOCATION_ID_FK" ColumnName="DEF_LOCATION_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_COST_ID_FK" ColumnName="UNIT_OF_COST_ID_FK" />
+                <ScalarProperty Name="CONTAINER_COST" ColumnName="CONTAINER_COST" />
+                <ScalarProperty Name="DATE_PRODUCED" ColumnName="DATE_PRODUCED" />
+                <ScalarProperty Name="SUPPLIER_CATNUM" ColumnName="SUPPLIER_CATNUM" />
+                <ScalarProperty Name="SUPPLIER_ID_FK" ColumnName="SUPPLIER_ID_FK" />
+                <ScalarProperty Name="CURRENT_USER_ID_FK" ColumnName="CURRENT_USER_ID_FK" />
+                <ScalarProperty Name="PHYSICAL_STATE_ID_FK" ColumnName="PHYSICAL_STATE_ID_FK" />
+                <ScalarProperty Name="QTY_RESERVED" ColumnName="QTY_RESERVED" />
+                <ScalarProperty Name="QTY_AVAILABLE" ColumnName="QTY_AVAILABLE" />
+                <ScalarProperty Name="NET_WGHT" ColumnName="NET_WGHT" />
+                <ScalarProperty Name="FINAL_WGHT" ColumnName="FINAL_WGHT" />
+                <ScalarProperty Name="RECEIVED_BY_ID_FK" ColumnName="RECEIVED_BY_ID_FK" />
+                <ScalarProperty Name="CONTAINER_STATUS_ID_FK" ColumnName="CONTAINER_STATUS_ID_FK" />
+                <ScalarProperty Name="LOT_NUM" ColumnName="LOT_NUM" />
+                <ScalarProperty Name="DATE_APPROVED" ColumnName="DATE_APPROVED" />
+                <ScalarProperty Name="DATE_CERTIFIED" ColumnName="DATE_CERTIFIED" />
+                <ScalarProperty Name="DATE_RECEIVED" ColumnName="DATE_RECEIVED" />
+                <ScalarProperty Name="DATE_ORDERED" ColumnName="DATE_ORDERED" />
+                <ScalarProperty Name="ORDERED_BY_ID_FK" ColumnName="ORDERED_BY_ID_FK" />
+                <ScalarProperty Name="HANDLING_PROCEDURES" ColumnName="HANDLING_PROCEDURES" />
+                <ScalarProperty Name="STORAGE_CONDITIONS" ColumnName="STORAGE_CONDITIONS" />
+                <ScalarProperty Name="CONTAINER_COMMENTS" ColumnName="CONTAINER_COMMENTS" />
+                <ScalarProperty Name="OWNER_ID_FK" ColumnName="OWNER_ID_FK" />
+                <ScalarProperty Name="TARE_WEIGHT" ColumnName="TARE_WEIGHT" />
+                <ScalarProperty Name="UNIT_OF_PURITY_ID_FK" ColumnName="UNIT_OF_PURITY_ID_FK" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="UNIT_OF_CONC_ID_FK" ColumnName="UNIT_OF_CONC_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_WGHT_ID_FK" ColumnName="UNIT_OF_WGHT_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_MEAS_ID_FK" ColumnName="UNIT_OF_MEAS_ID_FK" />
+                <ScalarProperty Name="CONCENTRATION" ColumnName="CONCENTRATION" />
+                <ScalarProperty Name="SOLVENT_ID_FK" ColumnName="SOLVENT_ID_FK" />
+                <ScalarProperty Name="PURITY" ColumnName="PURITY" />
+                <ScalarProperty Name="CONTAINER_TYPE_ID_FK" ColumnName="CONTAINER_TYPE_ID_FK" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="DATE_EXPIRES" ColumnName="DATE_EXPIRES" />
+                <ScalarProperty Name="WELL_COLUMN" ColumnName="WELL_COLUMN" />
+                <ScalarProperty Name="WELL_ROW" ColumnName="WELL_ROW" />
+                <ScalarProperty Name="WELL_NUMBER" ColumnName="WELL_NUMBER" />
+                <ScalarProperty Name="QTY_MAXSTOCK" ColumnName="QTY_MAXSTOCK" />
+                <ScalarProperty Name="QTY_MINSTOCK" ColumnName="QTY_MINSTOCK" />
+                <ScalarProperty Name="QTY_REMAINING" ColumnName="QTY_REMAINING" />
+                <ScalarProperty Name="QTY_INITIAL" ColumnName="QTY_INITIAL" />
+                <ScalarProperty Name="QTY_MAX" ColumnName="QTY_MAX" />
+                <ScalarProperty Name="CONTAINER_DESCRIPTION" ColumnName="CONTAINER_DESCRIPTION" />
+                <ScalarProperty Name="CONTAINER_NAME" ColumnName="CONTAINER_NAME" />
+                <ScalarProperty Name="BATCH_ID_FK" ColumnName="BATCH_ID_FK" />
+                <ScalarProperty Name="FAMILY" ColumnName="FAMILY" />
+                <ScalarProperty Name="BATCH_NUMBER_FK" ColumnName="BATCH_NUMBER_FK" />
+                <ScalarProperty Name="REG_ID_FK" ColumnName="REG_ID_FK" />
+                <ScalarProperty Name="PARENT_CONTAINER_ID_FK" ColumnName="PARENT_CONTAINER_ID_FK" />
+                <ScalarProperty Name="COMPOUND_ID_FK" ColumnName="COMPOUND_ID_FK" />
+                <ScalarProperty Name="LOCATION_ID_FK" ColumnName="LOCATION_ID_FK" />
+                <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CONTAINER_STATUS">
+            <EntityTypeMapping TypeName="Model.INV_CONTAINER_STATUS">
+              <MappingFragment StoreEntitySet="INV_CONTAINER_STATUS">
+                <ScalarProperty Name="CONTAINER_STATUS_DESC" ColumnName="CONTAINER_STATUS_DESC" />
+                <ScalarProperty Name="CONTAINER_STATUS_NAME" ColumnName="CONTAINER_STATUS_NAME" />
+                <ScalarProperty Name="CONTAINER_STATUS_ID" ColumnName="CONTAINER_STATUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CONTAINER_TYPES">
+            <EntityTypeMapping TypeName="Model.INV_CONTAINER_TYPES">
+              <MappingFragment StoreEntitySet="INV_CONTAINER_TYPES">
+                <ScalarProperty Name="CONTAINER_TYPE_NAME" ColumnName="CONTAINER_TYPE_NAME" />
+                <ScalarProperty Name="CONTAINER_TYPE_ID" ColumnName="CONTAINER_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_SUPPLIERS">
+            <EntityTypeMapping TypeName="Model.INV_SUPPLIERS">
+              <MappingFragment StoreEntitySet="INV_SUPPLIERS">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="IS_OFFICIAL_SUPPLIER" ColumnName="IS_OFFICIAL_SUPPLIER" />
+                <ScalarProperty Name="SUPPLIER_ADDRESS_ID_FK" ColumnName="SUPPLIER_ADDRESS_ID_FK" />
+                <ScalarProperty Name="SUPPLIER_FACILITY_NAME" ColumnName="SUPPLIER_FACILITY_NAME" />
+                <ScalarProperty Name="SUPPLIER_CODE" ColumnName="SUPPLIER_CODE" />
+                <ScalarProperty Name="SUPPLIER_SHORT_NAME" ColumnName="SUPPLIER_SHORT_NAME" />
+                <ScalarProperty Name="SUPPLIER_NAME" ColumnName="SUPPLIER_NAME" />
+                <ScalarProperty Name="SUPPLIER_ID" ColumnName="SUPPLIER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_UNITS">
+            <EntityTypeMapping TypeName="Model.INV_UNITS">
+              <MappingFragment StoreEntitySet="INV_UNITS">
+                <ScalarProperty Name="SORTORDER" ColumnName="SORTORDER" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="UNIT_NAME" ColumnName="UNIT_NAME" />
+                <ScalarProperty Name="UNIT_ABREVIATION" ColumnName="UNIT_ABREVIATION" />
+                <ScalarProperty Name="CONVERSION_RATIO" ColumnName="CONVERSION_RATIO" />
+                <ScalarProperty Name="UNIT_TYPE_ID_FK" ColumnName="UNIT_TYPE_ID_FK" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

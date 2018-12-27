@@ -110,6 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inventory.API.Model\Inventory.Model.csproj">
+      <Project>{e93d6468-4687-4d4d-88ef-f49911b7884c}</Project>
+      <Name>Inventory.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.API\Inventory.API.csproj">
       <Project>{C8A13E5D-507C-46FE-9DCD-EA5976A1A879}</Project>
       <Name>Inventory.API</Name>

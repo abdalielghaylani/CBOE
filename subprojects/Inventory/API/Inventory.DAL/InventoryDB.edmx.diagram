@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0d1b561c07a4e919378f0e69ca72fe8" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.INV_LOCATIONS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.INV_LOC_LOC_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.INV_CONTAINERS" Width="1.5" PointX="3" PointY="21.625" />
+        <AssociationConnector Association="Model.INV_CONT_DEFLOCATION_FK" />
+        <AssociationConnector Association="Model.INV_CONT_LOCATIONS_FK" />
+        <AssociationConnector Association="Model.INV_CONT_PARENTCONT_FK" />
+        <EntityTypeShape EntityType="Model.INV_CONTAINER_STATUS" Width="1.5" PointX="0.75" PointY="35.375" />
+        <EntityTypeShape EntityType="Model.INV_CONTAINER_TYPES" Width="1.5" PointX="0.75" PointY="29.125" />
+        <EntityTypeShape EntityType="Model.INV_SUPPLIERS" Width="1.5" PointX="0.75" PointY="31.5" />
+        <EntityTypeShape EntityType="Model.INV_UNITS" Width="1.5" PointX="0.75" PointY="25.25" />
+        <AssociationConnector Association="Model.INV_CONT_CONT_STATUS_FK" />
+        <AssociationConnector Association="Model.INV_CONT_CONT_TYPES_FK" />
+        <AssociationConnector Association="Model.INV_CONT_SUPPLIERS_FK" />
+        <AssociationConnector Association="Model.INV_CONT_UNITOFCONC_FK" />
+        <AssociationConnector Association="Model.INV_CONT_UNITOFMEAS_FK" />
+        <AssociationConnector Association="Model.INV_CONT_UNITOFPURITY_FK" />
+        <AssociationConnector Association="Model.INV_CONT_UNITOFWGHT_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -9,7 +9,8 @@ using System.Web.Http;
 using Microsoft.Web.Http;
 using Oracle.DataAccess.Client;
 using PerkinElmer.COE.Inventory.API.Code;
-using PerkinElmer.COE.Inventory.API.Models;
+using PerkinElmer.COE.Inventory.Model;
+using PerkinElmer.COE.Inventory.DAL;
 using Swashbuckle.Swagger.Annotations;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
@@ -20,13 +21,20 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class LocationController : InvApiController
     {
-        private LocationData BuildLocationData(OracleDataReader reader)
+        private LocationDAL _locationDAL;
+
+        /// <summary>
+        /// DAL for locations
+        /// </summary>
+        protected LocationDAL locationDAL
         {
-            return new LocationData
+            get
             {
-                Id = (int)reader["location_id"],
-                Name = (string)reader["location_name"]
-            };
+                if (_locationDAL == null) {
+                    _locationDAL = new LocationDAL();
+                }
+                return _locationDAL;
+            }
         }
 
         /// <summary>
@@ -47,16 +55,11 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             {
                 // TODO: Should check authentication and authorization
                 var statusCode = HttpStatusCode.OK;
-                // TODO: This should be moved to service and DAL
-                var connectionString = ConfigurationManager.ConnectionStrings["InvDB"];
+
                 var locations = new List<LocationData>();
-                using (var command = new OracleCommand("select * from inv_locations", Connection))
-                using (var reader = command.ExecuteReader())
+                foreach (var location in locationDAL.GetLocations())
                 {
-                    while (reader.Read())
-                    {
-                        locations.Add(BuildLocationData(reader));
-                    }
+                    locations.Add(location);
                 }
                 responseMessage = Request.CreateResponse(statusCode, locations);
             }
@@ -87,18 +90,8 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             {
                 // TODO: Should check authentication and authorization
                 var statusCode = HttpStatusCode.OK;
-                LocationData location = null;
-                using (var command = new OracleCommand("select * from inv_locations where location_id=:id", Connection))
-                {
-                    command.Parameters.Add(new OracleParameter("id", OracleDbType.Int32, id, ParameterDirection.Input));
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            location = BuildLocationData(reader);
-                        }
-                    }
-                }
+
+                LocationData location = locationDAL.GetLocation(id);
                 if (location == null)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the location, {0}", id));
                 responseMessage = Request.CreateResponse(statusCode, location);

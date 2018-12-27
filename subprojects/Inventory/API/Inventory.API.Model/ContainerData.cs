@@ -1,24 +1,21 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace PerkinElmer.COE.Inventory.API.Models
+namespace PerkinElmer.COE.Inventory.Model
 {
     public class ContainerData
     {
         /// <summary>
         /// Gets or sets the internal identifier of the container.
         /// </summary>
-        [JsonProperty(PropertyName = "ID")]
-        public int Id { get; set; }
+        [JsonProperty(PropertyName = "Container ID")]
+        public int ContainerId { get; set; }
 
         /// <summary>
-        /// Gets or sets the container id of the container.
+        /// Gets or sets the barcode of the container.
         /// </summary>
-        [JsonProperty(PropertyName = "Container ID")]
-        public string ContainerId { get; set; }
+        [JsonProperty(PropertyName = "Barcode")]
+        public string Barcode { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the container.
@@ -48,7 +45,7 @@ namespace PerkinElmer.COE.Inventory.API.Models
         /// Gets or sets the size of the container.
         /// </summary>
         [JsonProperty(PropertyName = "Container Size")]
-        public string ContainerSize { get; set; }
+        public decimal ContainerSize { get; set; }
 
         /// <summary>
         /// Gets or sets the date created.
@@ -72,6 +69,12 @@ namespace PerkinElmer.COE.Inventory.API.Models
         /// Gets or sets the qualtity available.
         /// </summary>
         [JsonProperty(PropertyName = "Quantity Available")]
-        public string QuantityAvailable { get; set; }
+        public decimal QuantityAvailable { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty(PropertyName = "Unit")]
+        public string Unit { get; set; }
     }
 }
