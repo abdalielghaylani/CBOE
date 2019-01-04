@@ -1811,7 +1811,7 @@ namespace CambridgeSoft.COE.Framework.GUIShell
             jsText.Append("}");
             jsText.Append("YAHOO.namespace(\"ChemOfficeEnterprise.ProgressModal\");");
             jsText.Append("function initProgressModal() {");
-            jsText.Append("YAHOO.ChemOfficeEnterprise.ProgressModal." + JSId + " = new YAHOO.widget.Panel(\"" + JSId + "\", { width:\"240px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true,zIndex:17000});");
+            jsText.Append("YAHOO.ChemOfficeEnterprise.ProgressModal." + JSId + " = new YAHOO.widget.Panel(\"" + JSId + "\", { width:\"240px\",fixedcenter:false,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true,zIndex:17000});");
             jsText.Append("YAHOO.ChemOfficeEnterprise.ProgressModal." + JSId + ".setBody(\"<img id='MasterProgressModalImage' alt='Searching...' src='/COECommonResources/blank.gif' /> \" );");
             jsText.Append("YAHOO.ChemOfficeEnterprise.ProgressModal." + JSId + ".setHeader(\"<span id='MasterProgressModalSpan' style='font-size:10px;'>Searching...</span>\");");
             jsText.Append("YAHOO.ChemOfficeEnterprise.ProgressModal." + JSId + ".render(document.body);");
