@@ -4,9 +4,9 @@
   <configSections>
     <section name="instrumentationConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.Configuration.InstrumentationConfigurationSection, Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72"/>
     <!--This indicates the type that will handle the coeConfiguration -->
-    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-    <section name="coeHomeSettings" type="CambridgeSoft.COE.Framework.Common.COEHomeSettings, CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="coeHomeSettings" type="CambridgeSoft.COE.Framework.Common.COEHomeSettings, CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
     <sectionGroup name="SSOConfiguration">
       <section name="ProviderConfiguration" type="CambridgeSoft.COE.Security.Services.SSOConfigurationProvider,SingleSignOn"/>
       <section name="COELDAPConfiguration" type="CambridgeSoft.COE.Security.Services.COELDAPConfiguration,SingleSignOn"/>
@@ -997,35 +997,35 @@
       <add name="DOCMANAGER" database="DOCMGR"/>
     </applications>
     <services>
-      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" partialHitlistCommitSize="1000">
+      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" partialHitlistCommitSize="1000">
         <searchServiceData>
           <add name="useRealTableNames" value="false"/>
         </searchServiceData>
       </add>
-      <add name="COEDatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEPageControlSettings" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COERegistration" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=18.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COEPickListPicker" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEExport" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEChemBioViz" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemBioViz.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemBioViz.Services, Version=18.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COERegistrationAdmin" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=18.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COEConfiguration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEPageControlSettings" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COERegistration" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=18.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEPickListPicker" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEExport" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEChemBioViz" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemBioViz.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemBioViz.Services, Version=18.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COERegistrationAdmin" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=18.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEConfiguration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
       <add name="COEChemSource" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemSource.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemSource.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9d035f61f7ed8bd6"/>
-      <add name="COEReporting" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEReporting" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
     </services>
     <exportFormatters>
-      <add name="SDFFlatFileUncorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileUncorrelated" assembly="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="SDFFlatFileCorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileCorrelated" assembly="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="SDFNested" type="CambridgeSoft.COE.Framework.COEExportService.SDFNested" assembly="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-	<add name="CBVExcel" type="CambridgeSoft.COE.Framework.COEExportService.CBVExcelFormatter" assembly="CambridgeSoft.COE.Framework, Version=18.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/> 
+      <add name="SDFFlatFileUncorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileUncorrelated" assembly="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFFlatFileCorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileCorrelated" assembly="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFNested" type="CambridgeSoft.COE.Framework.COEExportService.SDFNested" assembly="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+	<add name="CBVExcel" type="CambridgeSoft.COE.Framework.COEExportService.CBVExcelFormatter" assembly="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/> 
     </exportFormatters>
   </coeConfiguration>
   <SSOConfiguration>

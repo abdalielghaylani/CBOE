@@ -7,5 +7,5 @@ SET verify off
 -- SCRIPT VARIABLES
 --######################################################### 
 
-DEFINE LastPatch = 18.1.0
+DEFINE LastPatch = 18.1.1
 DEFINE toVersion = &&LastPatch
