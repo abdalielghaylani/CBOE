@@ -766,7 +766,7 @@ function InstallPatch(hMSI)
         LongPathToQuote(strMSIChem,TRUE);         
         strMSIChem ="/i " +strMSIChem + " /qb";      
         LaunchAppAndWait("msiexec",strMSIChem,WAIT);                         
-        strMSICBOE=strMSI + "\\CBOE 18.1.0.msi";        
+        strMSICBOE=strMSI + "\\CBOE 18.1.1.msi";        
         LongPathFromShortPath(strMSICBOE);
         LongPathToQuote(strMSICBOE,TRUE);
         LongPathToQuote(strInstallDir,TRUE);        

@@ -58,7 +58,7 @@
 		<comments>Contact:  Your local administrator</comments>
 		<template>Intel;1033</template>
 		<lastauthor>Administrator</lastauthor>
-		<revnumber>{04AD4E97-3714-4AD4-AE52-3D5A881549D3}</revnumber>
+		<revnumber>{DF128001-EAB4-4AB8-8180-9ABC187D8584}</revnumber>
 		<lastprinted/>
 		<createdtm>06/21/1999 09:00</createdtm>
 		<lastsavedtm>07/14/2000 12:50</lastsavedtm>
@@ -1385,6 +1385,10 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                      Session.Property("CBOE")="yes"
                      
                  End If 
+                   If strValue1="ChemOffice Enterprise 18.1" then
+                     Session.Property("CBOE")="yes"
+                     
+                 End If 
                            
     Next 
 
@@ -1407,6 +1411,10 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                      
                  End If  
                  If strValue1="ChemOffice Enterprise 17.1.1" then
+                     Session.Property("CBOE")="yes"
+                     
+                 End If  
+                  If strValue1="ChemOffice Enterprise 18.1" then
                      Session.Property("CBOE")="yes"
                      
                  End If    
@@ -7722,7 +7730,7 @@ Set shell = Nothing
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
 		<row><td>Product Configuration 1</td><td>IncludeActionHelp</td><td>1</td></row>
-		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1</td></row>
+		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1.1</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -7756,8 +7764,8 @@ Set shell = Nothing
 		<col def="S255">DotNetBuildConfiguration</col>
 		<col def="S255">MsiCommandLine</col>
 		<col def="I4">ISSetupPrerequisiteLocation</col>
-		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>\\165.88.210.101\c$\Users\Administrator\Desktop</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2017 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2018 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
+		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>\\165.88.210.101\c$\Users\Administrator\Desktop</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2019 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2019 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
 	</table>
 
 	<table name="ISReleaseASPublishInfo">
@@ -7808,9 +7816,9 @@ Set shell = Nothing
 		<col key="yes" def="s72">Name</col>
 		<col def="s0">Value</col>
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
-		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemBioOffice Enterprise 17.1</td></row>
+		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemBioOffice Enterprise 18.1.1</td></row>
 		<row><td>Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemOffice Enterprise 18.1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemOffice Enterprise 18.1.1</td></row>
 	</table>
 
 	<table name="ISReleasePublishInfo">
@@ -8011,8 +8019,8 @@ Set shell = Nothing
 		<row><td>SetupFile5</td><td>logAsSvc.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\LogasSvc\logAsSvc.exe</td></row>
 		<row><td>SetupFile6</td><td>RegSvr32AS.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\Scripts\RegSvr32AS.vbs</td></row>
 		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\0x0409.ini</td></row>
-		<row><td>SetupFile8</td><td>CBOE 17.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.0.exe</td></row>
-		<row><td>SetupFile9</td><td>CBOE 17.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.0.msi</td></row>
+		<row><td>SetupFile8</td><td>CBOE 17.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.1.exe</td></row>
+		<row><td>SetupFile9</td><td>CBOE 17.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.1.msi</td></row>
 	</table>
 
 	<table name="ISSetupPrerequisites">
@@ -10085,8 +10093,8 @@ Set shell = Nothing
 		<col def="S0">Value</col>
 		<row><td>ActiveLanguage</td><td>1033</td></row>
 		<row><td>Comments</td><td/></row>
-		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="b491486f2ea923dc16dc8132d9c8c265">
-UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8AbgAgADEA
+		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="c63708097c5933ac92bcd0f9e5401a43">
+QwBvAHAAeQAgAG8AZgAgAFIAZQBsAGUAYQBzAGUAIAAxAAEAUAByAG8AZAB1AGMAdAAgAEMAbwBuAGYAaQBnAHUAcgBhAHQAaQBvAG4AIAAxAA==
 			</td></row>
 		<row><td>DefaultProductConfiguration</td><td>Product Configuration 2</td></row>
 		<row><td>ISCompilerOption_CompileBeforeBuild</td><td>1</td></row>
@@ -10513,11 +10521,11 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{65BC3D6D-E448-4586-9C2C-F45E8A322A48}</td><td/></row>
+		<row><td>ProductCode</td><td>{ED0D8CF3-B7AD-4355-92C1-C0DE3C54FD80}</td><td/></row>
 		<row><td>ProductID</td><td>none</td><td/></row>
 		<row><td>ProductLanguage</td><td>1033</td><td/></row>
-		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1</td><td/></row>
-		<row><td>ProductVersion</td><td>18.1.0</td><td/></row>
+		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1.1</td><td/></row>
+		<row><td>ProductVersion</td><td>18.1.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -10536,7 +10544,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>
 		<row><td>USERFULLNAME</td><td>CambridgeSoft Administrator</td><td/></row>
-		<row><td>UpgradeCode</td><td>{B460D80E-DF46-4AA3-A0E6-AC4215F1C5A5}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{F4384290-27E6-4A91-AC43-F553686826F7}</td><td/></row>
 		<row><td>WEBPROPERTY</td><td/><td/></row>
 		<row><td>WEBSITE</td><td>1#80#Default Web Site</td><td/></row>
 		<row><td>WEBSITEN</td><td>ChemOfficeEnterprise</td><td/></row>

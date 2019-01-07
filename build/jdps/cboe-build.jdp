@@ -8,10 +8,10 @@ pipeline
           }
     environment 
 		  {
-            			PROD_VERSION = '18.1.0'
-			        VERSION_STRING ="${env.BRANCH_NAME.startsWith('release/v') ? "${PROD_VERSION}.0${BUILD_NUMBER}" : "${PROD_VERSION}.5${BUILD_NUMBER}"}"			
+            			PROD_VERSION = '18.1.1'
+			        VERSION_STRING ="${env.BRANCH_NAME.startsWith('release/v') ? "${PROD_VERSION}.0${BUILD_NUMBER}" : "${PROD_VERSION}.500${BUILD_NUMBER}"}"			
 			        STAGING_DIR = "staging"
-  	                        PUBLISH_PATH='"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1"'
+  	                        PUBLISH_PATH='"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1.1"'
                                 NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"		      
                   }
     options 
@@ -142,12 +142,8 @@ pipeline
 				    xcopy /Y "${WORKSPACE}\\subprojects\\ChemBioViz\\ServiceTier\\ChemBioViz.Services\\bin\\Release\\Interop.ChemDrawControl18.dll" "${WORKSPACE}\\subprojects\\Registration\\PresentationTier\\Registration.Server\\bin"
 					"""
 				bat """
-					 cd "${WORKSPACE}"
-					call "${WORKSPACE}\\build\\jdps\\SigningFiles.bat" ${SIGNTOOL} ${WORKSPACE}
-				"""
-				bat """
 				    set WORKSPACE_PATH_ROOT=${WORKSPACE}
-				    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${PROD_VERSION}.0${BUILD_NUMBER}" -z "CBVNBUILDNUMBER=${PROD_VERSION}.0${BUILD_NUMBER}" -z "CBVNFOLDERVERSION=18_1_0_0%BUILD_NUMBER%" -z "BUILDVERSION=18_1_0_0${BUILD_NUMBER}"
+				    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${VERSION_STRING}" -z "CBVNBUILDNUMBER=${VERSION_STRING}" -z "CBVNFOLDERVERSION=18_1_1_500%BUILD_NUMBER%" -z "BUILDVERSION=18_1_1_500${BUILD_NUMBER}"
 				    MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
 				    xcopy /Y "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${PUBLISH_PATH}\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
 				    cd "${WORKSPACE}\\subprojects\\Registration\\registration.client"
@@ -195,8 +191,8 @@ pipeline
 					bat """ 
 						del /Q ${DISKLOCATION}
 						xcopy /Y "${PUBLISH_PATH}\\Dev\\Server\\CBOEServerInstaller_${VERSION_STRING}\\*.*" ${DISKLOCATION}
-						"${INST_2013}" -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${PROD_VERSION}.0${BUILD_NUMBER}"
-						xcopy "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${PROD_VERSION}.0${BUILD_NUMBER}" /I /Y /S
+						"${INST_2013}" -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${VERSION_STRING}"
+						xcopy "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${VERSION_STRING}" /I /Y /S
 					""" 
 				}		          
 			}      
