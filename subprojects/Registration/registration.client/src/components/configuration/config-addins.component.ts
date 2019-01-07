@@ -24,6 +24,7 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   private dataSource: CustomStore;
   private configAddIn: CConfigAddIn;
   private loadingVisible = false;
+  private addinsList;
 
   constructor(elementRef: ElementRef, http: HttpService, private changeDetecter: ChangeDetectorRef) {
     super(elementRef, http);
@@ -54,21 +55,26 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
         case 'edit':
           this.dataSource.update(this.configAddIn.editRow, []).done(result => {
             this.cancel();
-          }).fail(err => {
-            notifyError(err, 5000);
           });
           break;
         case 'add':
-          if (this.forms._results[0].instance.validate().isValid) {
+          if (this.validate()) {
             this.dataSource.insert(this.configAddIn.editRow).done(result => {
               this.cancel();
-            }).fail(err => {
-              notifyError(err, 5000);
             });
           }
           break;
       }
     }
+  }
+
+  validate() {
+    let result = this.addinsList.find(i => i.name === this.configAddIn.editRow.name);
+    if (result) {
+      notifyError(`The addin with same name already exists!!`, 5000);
+      return false;
+    }
+    return this.forms._results[0].instance.validate().isValid;
   }
 
   cancel() {
@@ -87,6 +93,7 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
             .toPromise()
             .then(result => {
               let rows = result.json();
+              this.addinsList = rows;
               resolve(rows);
             })
             .catch(error => {
