@@ -32,6 +32,10 @@ If Len(Request.QueryString) = 0 AND Len(Request.Form)= 0 then
 	Response.end
 End if
 
+If Len(useWellCoordinates) = 0 then
+	useWellCoordinates = 0
+End If
+
 'Echo the input parameters if requested
 If NOT isEmpty(Request.QueryString("Echo")) then
 	Response.Write "FormData = " & Request.form & "<BR>QueryString = " & Request.QueryString
