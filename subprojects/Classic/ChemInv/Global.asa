@@ -2168,23 +2168,55 @@ Sub LoadRegFieldsDict()
 	Set Conn = Server.CreateObject("ADODB.Connection")
 	Conn.Open ConnStr
 	
-	SQL = "Select column_name, comments from USER_COL_COMMENTS Where table_name='INV_VW_REG_STRUCTURES' OR table_name='INV_VW_REG_BATCHES'"
+	SQL = "Select column_name, comments from USER_COL_COMMENTS " _
+	& "Where (table_name='INV_VW_REG_STRUCTURES' OR table_name='INV_VW_REG_BATCHES') and lower(comments) like '%::on' " _
+	& "order by case table_name||','||column_name " _
+		& "when 'INV_VW_REG_BATCHES,BATCHNUMBER' then 4 " _
+		& "when 'INV_VW_REG_BATCHES,BROWID' then 18 " _
+		& "when 'INV_VW_REG_BATCHES,CHIRAL' then 16 " _
+		& "when 'INV_VW_REG_BATCHES,CLOGP' then 22 " _
+		& "when 'INV_VW_REG_BATCHES,COMPOUND_TYPE' then 17 " _
+		& "when 'INV_VW_REG_BATCHES,H_BOND_ACCEPTORS' then 23 " _
+		& "when 'INV_VW_REG_BATCHES,H_BOND_DONORS' then 24 " _
+		& "when 'INV_VW_REG_BATCHES,MF_TEXT' then 20 " _
+		& "when 'INV_VW_REG_BATCHES,MOL_ID' then 26 " _
+		& "when 'INV_VW_REG_BATCHES,MROWID' then 34 " _
+		& "when 'INV_VW_REG_BATCHES,MW_TEXT' then 19 " _
+		& "when 'INV_VW_REG_BATCHES,PRODUCT_TYPE' then 25 " _
+		& "when 'INV_VW_REG_BATCHES,REGALTID' then 28 " _
+		& "when 'INV_VW_REG_BATCHES,REGAMOUNT' then 10 " _
+		& "when 'INV_VW_REG_BATCHES,REGAMOUNTUNITS' then 15 " _
+		& "when 'INV_VW_REG_BATCHES,REGBATCHID' then 3 " _
+		& "when 'INV_VW_REG_BATCHES,REGCAS' then 5 " _
+		& "when 'INV_VW_REG_BATCHES,REGID' then 2 " _
+		& "when 'INV_VW_REG_BATCHES,REGNAME' then 11 " _
+		& "when 'INV_VW_REG_BATCHES,REGNOTEBOOK' then 8 " _
+		& "when 'INV_VW_REG_BATCHES,REGNOTEBOOKID' then 21 " _
+		& "when 'INV_VW_REG_BATCHES,REGNUMBER' then 1 " _
+		& "when 'INV_VW_REG_BATCHES,REGPAGE' then 6 " _
+		& "when 'INV_VW_REG_BATCHES,REGPURITY' then 7 " _
+		& "when 'INV_VW_REG_BATCHES,REGSALTNAME' then 12 " _
+		& "when 'INV_VW_REG_BATCHES,REGSCIENTIST' then 9 " _
+		& "when 'INV_VW_REG_BATCHES,REGSEQUENCE' then 27 " _
+		& "when 'INV_VW_REG_BATCHES,REGSOLVATENAME' then 13 " _
+		& "when 'INV_VW_REG_BATCHES,RNROWID' then 29 " _
+		& "when 'INV_VW_REG_BATCHES,ROOT_NUMBER' then 30 " _
+		& "when 'INV_VW_REG_BATCHES,ROOT_REG_DATE' then 31" _
+		& "when 'INV_VW_REG_BATCHES,SEQUENCE_INTERNAL_ID' then 32 " _
+		& "when 'INV_VW_REG_BATCHES,STRUCTURE_COMMENTS_TXT' then 33 " _
+		& "when 'INV_VW_REG_STRUCTURES,BASE64_CDX' then 14 " _
+		& "when 'INV_VW_REG_STRUCTURES,LASTUPDATEDDATE' then 35 " _
+		& "when 'INV_VW_REG_STRUCTURES,REGID' then 36 " _
+	& "else 36+ rownum end"
+	
+	
 	Set RS = Conn.Execute(SQL)
 	While NOT RS.EOF
 			'-- Stores Field Name, Display Name::[on/off] in dictionary
 			delmtr = "::on"
 			dictKey = RS("column_name")
 			dictValue = RS("comments")
-			keyPos = InStr(lCase(dictValue),delmtr)
 			
-			if keyPos > 1 then
-				dictValue = left(dictValue, len(dictValue)-len(delmtr))
-				if reg_fields_dict.Exists(dictKey) then
-					reg_fields_dict.Remove(dictValue)
-				end if
-				reg_fields_dict.Add dictKey, dictValue
-				end if
-
 		RS.MoveNext
 	Wend
 	Conn.Close

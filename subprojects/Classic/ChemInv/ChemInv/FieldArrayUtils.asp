@@ -95,13 +95,13 @@ Sub WriteTableHeaderFromFieldArray2(fieldArray,  byref fieldMapArray, firstColum
 	'Response.Write "</td></TR>"
 	Response.Write "	<TR>"
 	Response.Write "	<Th CLASS=ListView  ALIGN=CENTER NOWRAP width=""" & CInt(columnWidthMultiplier * FirstColWidth) & """>"
-	Response.Write			"<a class=MenuLink href=# onclick=""SortReport('" & defaultField & "'); return false;""><font color=black>" & FirstColName & "</font></a>"
+	Response.Write			"<a class=MenuLink href=# onclick=""SortReport('" & defaultField & "'); return false;""><span style=""white-space:nowrap""><font color=""black"">" & FirstColName & "</font></span></a>"
 	if SortByFieldName = defaultField then Response.Write arrowImage
 	Response.Write "	</Th>"
 	For i = 0 to Ubound(fieldArray)
 		if NOT (Cstr(fieldArray(i,1)) = "RegBatchID" AND Application("RegServerName") = "NULL")  then
 			Response.Write "	<Th CLASS=ListView  ALIGN=CENTER NOWRAP width=" & columnWidthMultiplier * fieldArray(i,2) & ">"
-			Response.Write			"<a class=MenuLink href=# onclick=""SortReport('" & fieldArray(i,0) &"'); return false;""><font color=black>" & fieldArray(i,1) &  "</font></a>"
+			Response.Write			"<a class=MenuLink href=# onclick=""SortReport('" & fieldArray(i,0) &"'); return false;""><span style=""white-space:nowrap""><font color=""black"">" & fieldArray(i,1) &  "</font></span></a>"
 			if SortByFieldName = fieldArray(i,0) then
 				Response.Write arrowImage
 			End if
