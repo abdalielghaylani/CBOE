@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectorRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectorRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation, NgZone } from '@angular/core';
 import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import { CStructureImageService } from '../structure-image.service';
 
@@ -19,7 +19,7 @@ export class RegStructureImageColumnItem {
   private imageId;
   private spinnerImage = require('../assets/spinner.gif');
   
-  constructor(private imageService: CStructureImageService, private changeDetector: ChangeDetectorRef) {
+  constructor(private imageService: CStructureImageService, private changeDetector: ChangeDetectorRef, private ngZone: NgZone) {
     this.image = nonStructureImage;
     this.imageId = '0';
   }
@@ -37,8 +37,7 @@ export class RegStructureImageColumnItem {
     } else {
       this.imageService.generateImage(value)
         .then(result => {
-          self.image = result;
-          self.changeDetector.markForCheck();
+          self.ngZone.run(() => self.setStructureImage(result));
         })
         .catch(error => {
           this.image = nonStructureImage;
@@ -61,5 +60,10 @@ export class RegStructureImageColumnItem {
 
   private structureClicked(e) {
     this.onClick.emit(this.structureValue);
+  }
+
+  setStructureImage(result) {
+    this.image = result;
+    this.changeDetector.markForCheck();
   }
 };
