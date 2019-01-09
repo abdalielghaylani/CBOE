@@ -231,7 +231,7 @@ Select Case strDataAction
 		'Session("hitlistRecordCount" & dbkey & formgroup) =""
 		SetSessionVars dbkey, formgroup, "new_search"
 		rememberLastHitlist dbkey, formgroup
-		ReturnInputForm dbkey, formgroup, "search"
+		ReturnInputForm dbkey, formgroup, "new_search"
 		
 	Case "edit_query"	'Code for EditQuery button
 		If not formgroupflag = "GLOBAL_SEARCH" then	dbkey = SetDBkey(dbkey, formgroup)

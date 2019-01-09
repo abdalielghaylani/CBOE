@@ -5807,6 +5807,10 @@ Sub ReturnInputForm(ByVal dbkey, ByVal formgroup, ByVal stype)
 		Case "search"
 			special = ""
 			formmode = GetFormGroupVal(dbkey, formgroup,kInputFormMode)
+		Case "new_search"
+			special = ""
+			formmode = GetFormGroupVal(dbkey, formgroup,kInputFormMode)
+			special = "&special=clear_previous_query"
 		Case "add_record"
 			special = ""
 			formmode = GetFormGroupVal(dbkey, formgroup,kInputFormMode)

@@ -217,6 +217,7 @@ function UpdateLocationPickerFromBarCode(barCode, formelm, elm1, elm2, elm3) {
 		formelm[elm2].value = "";
 		formelm[elm3].value = "";
 		formelm["isRack"].value = "0";
+		if (!barCode) { return;}
 		alert("Could not a find a location for barcode= " + barCode);
 	} else {
 		var temp = httpResponse.split(",");

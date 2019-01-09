@@ -1769,11 +1769,16 @@ removed after fixing core bug CSBR-97594.-->
 			//DJP: this doesn't need to be set b/c core will do it and this is resetting what core is doing
 			//document.cows_input_form.onsubmit = function(){getAction("search"); return false;}
 		}
-		 <%'if Session("ExcludeChecked") <> "" then%>
-		//if (document.cows_input_form["ExcludeSpecialLocations"]) {
-		//	document.cows_input_form["ExcludeSpecialLocations"].click();	
-		//}
-		<%'end if%>-->
+		
+		// basic code to support IE document model 5.
+		var parameters = window.location.href.split("&");
+		for (var item = 0; item < parameters.length; item++) {
+			var pair = parameters[item].split("=");
+			if (pair[0] == "special" && pair[1] == "clear_previous_query") {
+				clearAllFields();
+				break;
+			}
+        }
 		
 	</script>
 	
