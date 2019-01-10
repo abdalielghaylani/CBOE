@@ -2,7 +2,7 @@
     <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
     <div>
         <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="marksShown ? markedHitListId : hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
-        <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
+        <command-button *ngIf="isQueryManagementVisible" testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
         <command-button *ngIf="!!hitListId &amp;&amp; !marksShown" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
         <command-button *ngIf="!marksShown" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
         <command-button *ngIf="!marksShown" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>

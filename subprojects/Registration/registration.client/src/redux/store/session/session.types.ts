@@ -206,4 +206,8 @@ export class CSystemSettings {
   public get markedHitsMax(): number {
     return this.getNumberSetting('Search', 'MarkedHitsMax');
   }
+
+  public get allowQueryManagement(): boolean {
+    return this.isSettingTrue('Advanced', 'AllowQueryManagement');
+  }
 }

@@ -90,6 +90,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private structureData: string;
   private noDataText: string;
   private url: string;
+  private isQueryManagementVisible: boolean = true;
 
   constructor(
     private router: Router,
@@ -221,7 +222,7 @@ export class RegRecords implements OnInit, OnDestroy {
       ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, systemSettings)
       : new CViewGroupColumns();
     this.markedHitsMax = systemSettings.markedHitsMax;
-
+    this.isQueryManagementVisible = systemSettings.allowQueryManagement;
     if (this.restore) {
       this.restoreHitlist();
     } else {
