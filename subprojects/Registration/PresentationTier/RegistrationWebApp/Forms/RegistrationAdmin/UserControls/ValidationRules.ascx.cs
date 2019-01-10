@@ -974,6 +974,8 @@ namespace CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.User
                             // RAG : CBOE-1423,  Saves default value for type date, text
                             if (SelectedProperty.Type.ToUpperInvariant() == "DATE")
                                 ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.dateDefaultValue.Text;
+                            else if (SelectedProperty.Type.ToUpperInvariant() == "PICKLISTDOMAIN")
+                                ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.DdlDefaultValue.SelectedItem.Text;
                             else
                                 ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.TxtDefaultValue.Text;
 
