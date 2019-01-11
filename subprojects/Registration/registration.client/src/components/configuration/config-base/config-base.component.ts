@@ -1,8 +1,6 @@
 import { Component, OnDestroy, ElementRef, ViewChild, ViewChildren } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subject ,  Subscription } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { HttpService } from '../../../services';
 import { IAppState, ILookupData } from '../../../redux';

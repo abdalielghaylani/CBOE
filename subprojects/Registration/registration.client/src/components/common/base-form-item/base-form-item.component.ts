@@ -63,4 +63,4 @@ export class RegBaseFormItem implements IFormItemTemplate, OnChanges {
   protected validate(e): boolean {
     return CValidator.validate(e);
   }
-};
+}

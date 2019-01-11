@@ -62,4 +62,4 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
   protected validate(options) {
     return true;
   }
-};
+}

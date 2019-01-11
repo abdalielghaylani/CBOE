@@ -15,4 +15,4 @@ export class RegButton {
   handleClick(event) {
     this.onClick.emit(event);
   }
-};
+}

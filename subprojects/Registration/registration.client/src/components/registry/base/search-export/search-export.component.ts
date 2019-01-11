@@ -7,8 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { apiUrlPrefix } from '../../../../configuration';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { HttpService } from '../../../../services';
 import {
   IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, getExceptionMessage,
@@ -454,4 +453,4 @@ export class RegSearchExport implements OnInit, OnDestroy {
     this.loadIndicatorVisible = false;
     this.changeDetector.markForCheck();
   }
-};
+}

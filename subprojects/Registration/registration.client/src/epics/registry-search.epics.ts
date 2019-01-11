@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
-import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mergeMap';
+import { Epic, ActionsObservable, combineEpics, StateObservable } from 'redux-observable';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { HttpService } from '../services';
@@ -19,12 +17,12 @@ import { HitlistType } from '../redux/store/registry/registry-search.types';
 export class RegistrySearchEpics {
   constructor(private http: HttpService) { }
 
-  handleRegistrySearchActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
+  handleRegistrySearchActions: Epic = (action$: ActionsObservable<any>, state$: StateObservable<any>, dependencies: any) => {
     return combineEpics(
       this.handleOpenHitlists,
       this.handleDeleteHitlist,
       this.handleUpdateHitlist
-    )(action$, store);
+    )(action$, state$, dependencies);
   }
 
   private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean }>>) => {
@@ -34,7 +32,7 @@ export class RegistrySearchEpics {
           .map(result => {
             return RegistrySearchActions.openHitlistsSuccessAction(result.json());
           })
-          .catch(error => Observable.of(RegistrySearchActions.openHitlistsErrorAction(error)));
+          .catch(error => of(RegistrySearchActions.openHitlistsErrorAction(error)));
       });
   }
 
@@ -46,7 +44,7 @@ export class RegistrySearchEpics {
             notifySuccess('The selected hitlist was deleted successfully!', 5000);
             return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
-          .catch(error => Observable.of(RegistrySearchActions.deleteHitlistErrorAction(error)));
+          .catch(error => of(RegistrySearchActions.deleteHitlistErrorAction(error)));
       });
   }
 
@@ -58,7 +56,7 @@ export class RegistrySearchEpics {
             notifySuccess(`The selected hitlist was ${payload.data.hitlistType === HitlistType.SAVED ? 'saved' : 'updated'} successfully!`, 5000);
             return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
-          .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
+          .catch(error => of(RegistrySearchActions.updateHitlistErrorAction()));
       });
   }
 

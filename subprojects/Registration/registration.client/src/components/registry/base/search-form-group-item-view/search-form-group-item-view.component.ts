@@ -21,4 +21,4 @@ export class RegSearchFormGroupItemView extends RegFormGroupItemBase {
     let validItems = this.getValidItems().map(i => i.dataField);
     (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems);
   }
-};
+}

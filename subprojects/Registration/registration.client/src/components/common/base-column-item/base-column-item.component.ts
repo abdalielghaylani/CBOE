@@ -27,4 +27,4 @@ export class RegBaseColumnItem implements OnChanges {
       this.value = this.deserializeValue(this.viewModel.value);
     }
   }
-};
+}

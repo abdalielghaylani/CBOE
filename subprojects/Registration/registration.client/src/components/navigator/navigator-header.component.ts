@@ -17,4 +17,4 @@ import { Input, Component } from '@angular/core';
 })
 export class RegNavigatorHeader {
   @Input() testid: string;
-};
+}

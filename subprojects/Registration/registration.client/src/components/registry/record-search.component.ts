@@ -8,8 +8,7 @@ import {
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList, ViewChild
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
@@ -191,4 +190,4 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private onOptionChanged(e) {
     this.actions.seachOptionChanged(this.optionData.isHighLightSubstructure);
   }
-};
+}

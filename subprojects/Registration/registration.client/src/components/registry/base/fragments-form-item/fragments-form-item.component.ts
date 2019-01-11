@@ -228,4 +228,4 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       }
     }
   }
-};
+}

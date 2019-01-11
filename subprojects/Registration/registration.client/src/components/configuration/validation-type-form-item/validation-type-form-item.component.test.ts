@@ -3,7 +3,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../test/test.module';
 import { RegValidationFormItem } from './validation-type-form-item.component';
 import { DevExtremeModule } from 'devextreme-angular';
-import { NgReduxModule } from '@angular-redux/store/lib';
+import { NgReduxModule } from '@angular-redux/store';
 
 describe('Component : Validation Type Form Item', () => {
 

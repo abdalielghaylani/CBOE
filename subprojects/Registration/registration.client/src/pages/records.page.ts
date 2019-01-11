@@ -1,7 +1,7 @@
 import { Component, Inject, ApplicationRef, Input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { select } from '@angular-redux/store';
 import { RegContainer, RegRecords } from '../components';
 import { RecordDetailActions, RegistryActions, IRegistry } from '../redux';

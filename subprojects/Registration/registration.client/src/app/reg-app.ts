@@ -1,15 +1,13 @@
 import { PrivilegeUtils } from './../common/utils/privilege.utils';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject ,  Subscription } from 'rxjs';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } from '../epics';
 import { IAppState, ISession, rootReducer, ILookupData, RegistryActions, SessionActions } from '../redux';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../redux';
-import { Subscription } from 'rxjs/Subscription';
 
 import { dev, helpLinkUserGuide, helpLinkAdminGuide, basePath } from '../configuration';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -62,7 +60,7 @@ export class RegApp {
     private registrySearchEpics: RegistrySearchEpics,
     private sessionEpics: SessionEpics) {
 
-    middleware.push(createEpicMiddleware(combineEpics(
+    let rootEpic = combineEpics(
       configEpics.handleOpenTable,
       registryEpics.handleRegistryActions,
       registrySearchEpics.handleRegistrySearchActions,
@@ -70,7 +68,11 @@ export class RegApp {
       sessionEpics.handleLoginUserSuccess,
       sessionEpics.handleLogoutUser,
       sessionEpics.handleCheckLogin
-    )));
+    );
+
+    let epicMiddleware = createEpicMiddleware();
+
+    middleware.push(epicMiddleware);
 
     ngRedux.configureStore(
       rootReducer,
@@ -79,6 +81,8 @@ export class RegApp {
       devTools.isEnabled() ?
         [...enhancers, devTools.enhancer()] :
         enhancers);
+
+    epicMiddleware.run(rootEpic);
 
     ngReduxRouter.initialize();
   }
@@ -125,4 +129,4 @@ export class RegApp {
   openAboutPopup() {
     this.isAboutPopupVisible = true;
   }
-};
+}

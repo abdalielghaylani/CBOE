@@ -7,4 +7,4 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class RegHeader {
   @Input() testid: string;
   @Input() id: string;
-};
+}

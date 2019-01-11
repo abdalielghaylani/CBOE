@@ -5,14 +5,20 @@ import { RegBaseComponentModule, RegSearchFormView } from '..';
 import { CdjsService } from '../../../../services';
 import { HttpModule } from '@angular/http';
 import { IAppState } from '../../../../redux/index';
-import { NgRedux } from '@angular-redux/store/lib';
+import { NgRedux } from '@angular-redux/store';
 
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 describe('Component : Search Form View', () => {

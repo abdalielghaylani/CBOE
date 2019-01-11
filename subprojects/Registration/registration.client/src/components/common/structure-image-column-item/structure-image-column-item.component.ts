@@ -66,4 +66,4 @@ export class RegStructureImageColumnItem {
     this.image = result;
     this.changeDetector.markForCheck();
   }
-};
+}

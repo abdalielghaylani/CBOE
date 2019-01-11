@@ -49,7 +49,7 @@ import { RegCommonComponentModule } from '../../common';
 import { InventoryContainersFormGroup } from './inventory-containers-form-group-view/inventory-containers-form-group-view.component';
 import { InventoryContainersFormGroupItemView } from './inventory-containers-form-group-item-view/inventory-containers-form-group-item-view.component';
 
-export * from './fragments-form-item'
+export * from './fragments-form-item';
 export * from './id-list-form-item';
 export * from './projects-form-item';
 export * from './structure-form-item';

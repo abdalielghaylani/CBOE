@@ -10,4 +10,4 @@ import { Component, Input } from '@angular/core';
 })
 export class RegLabel {
   @Input() qaid: string;
-};
+}

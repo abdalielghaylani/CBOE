@@ -6,8 +6,7 @@ import {
 import { NgRedux, select } from '@angular-redux/store';
 import { IFormGroup, prepareFormGroupData, FormGroupType, PrivilegeUtils, notifyError } from '../../../../common';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData, CSystemSettings, IRecordSaveData, IInventoryContainerList } from '../../../../redux';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription ,  Observable } from 'rxjs';
 import { CFragment } from '../../../common';
 import { CRegistryRecord, CViewGroup, CViewGroupContainer } from '../../base';
 import { RegFormGroupView } from '../form-group-view';
@@ -221,12 +220,13 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       // exclude structure field required validation for `Save as Template` feature.     
       let structureFieldValid: boolean = true;
       result.brokenRules.forEach(element => {
-        if (element.validator.errorMessage) {
-          if (element.validator.peer.viewModel.dataField === 'BaseFragmentStructure') {
+        let validationRule = element as any;
+        if (validationRule.validator.errorMessage) {
+          if (validationRule.validator.peer.viewModel.dataField === 'BaseFragmentStructure') {
             // dot not display structure field required validation message in UI 
             structureFieldValid = false;
           } else {
-            this.validationError.errorMessages.push(element.validator.errorMessage);
+            this.validationError.errorMessages.push(validationRule.validator.errorMessage);
           }
         }
       });
@@ -240,8 +240,9 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       }
     } else {
       result.brokenRules.forEach(element => {
-        if (element.validator.errorMessage) {
-          this.validationError.errorMessages.push(element.validator.errorMessage);
+        let validationRule = element as any;
+        if (validationRule.validator.errorMessage) {
+          this.validationError.errorMessages.push(validationRule.validator.errorMessage);
         }
       });
     }

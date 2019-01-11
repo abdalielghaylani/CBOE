@@ -25,4 +25,4 @@ export class RegValidationFormItem extends RegBaseFormItem {
     let options = this.viewModel.editorOptions;
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
   }
-};
+}

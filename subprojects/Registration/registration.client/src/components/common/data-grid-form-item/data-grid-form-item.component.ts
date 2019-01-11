@@ -174,4 +174,4 @@ export class RegDataGridFormItem extends RegBaseFormItem {
       e.column.items.find(i => i[e.column.lookup.valueExpr] === e.value)[e.column.lookup.displayExpr] : '';
   }
 
-};
+}

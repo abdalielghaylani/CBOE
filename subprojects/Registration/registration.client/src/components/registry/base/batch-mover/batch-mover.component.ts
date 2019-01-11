@@ -87,7 +87,7 @@ export class RegBatchMover implements OnInit {
     // Close popup
     this.formVisible = false;
   }
-};
+}
 
 class BatchData {
   targetRegNum: string;

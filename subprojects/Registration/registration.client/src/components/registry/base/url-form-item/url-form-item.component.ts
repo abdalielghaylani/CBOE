@@ -65,4 +65,4 @@ export class RegUrlFormItem extends RegBaseFormItem {
     }
     return false;
   }
-};
+}

@@ -2,8 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgReduxRouter } from '@angular-redux/router';
 import { ILookupData } from '../../redux';
 import { PrivilegeUtils } from '../../common';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { select, NgRedux } from '@angular-redux/store';
 
 @Component({
@@ -63,4 +62,4 @@ export class RegSettingsPageHeader {
   private get customTableButtonEnabled(): boolean {
     return PrivilegeUtils.hasCustomTablePrivilege(this.lookups.userPrivileges);
   }
-};
+}

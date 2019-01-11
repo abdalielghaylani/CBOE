@@ -45,4 +45,4 @@ export class RegFormView implements IViewControl, OnChanges {
       this.structureDataVisible = true;
     }
   }
-};
+}

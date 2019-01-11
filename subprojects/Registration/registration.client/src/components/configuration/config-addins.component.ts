@@ -177,4 +177,4 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
     d.setValue(e.value, d.column.dataField);
   }
 
-};
+}

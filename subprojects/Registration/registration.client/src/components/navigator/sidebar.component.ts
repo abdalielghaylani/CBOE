@@ -13,4 +13,4 @@ import { Component, Input } from '@angular/core';
 export class RegSidebar {
   @Input() id: string;
   @Input() cssClass: string;
-};
+}

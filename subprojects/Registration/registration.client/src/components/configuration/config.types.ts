@@ -285,7 +285,7 @@ export class CConfigPropertiesFormData {
   precision: string;
   pickListDomainId: string;
   validationRules: any[];
-};
+}
 
 export class CPropertiesValidationFormData implements IValidationRuleData {
   name: string = '';

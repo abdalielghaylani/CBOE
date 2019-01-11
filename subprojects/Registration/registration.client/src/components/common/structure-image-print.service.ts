@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import * as crypto from 'crypto';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
+import { Observable, forkJoin } from 'rxjs';
+
 import { b64Encode } from '../../common';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../redux';
@@ -23,7 +23,7 @@ export class CStructureImagePrintService {
      return this.generateSingleImage(value);
   });
 
-   return Observable.forkJoin(singleObservables);
+   return forkJoin(singleObservables);
   }
 
   getImage(value: string) {

@@ -64,4 +64,4 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
       this.onValueUpdated(this);
     }
   }
-};
+}

@@ -40,4 +40,4 @@ export class RegDuplicatePopup implements OnInit, OnDestroy {
     this.popupClick.emit(e);
   }
 
-};
+}

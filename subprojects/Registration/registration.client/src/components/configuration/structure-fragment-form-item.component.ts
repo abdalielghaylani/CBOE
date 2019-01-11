@@ -58,4 +58,4 @@ export class RegStructureFragmentFormItem extends ChemDrawWeb {
       }
     });
   }
-};
+}

@@ -110,4 +110,4 @@ export class RegConfigSettings extends RegConfigBaseComponent {
       }
     });
   }
-};
+}

@@ -1,9 +1,9 @@
 import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
 import { HttpModule, XHRBackend, RequestOptions, ResponseOptions, Response } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable, of } from 'rxjs';
+
 import { ConfigurationEpics } from './configuration.epics';
 import { TestModule } from '../test';
 import { HttpService } from '../services';
@@ -40,7 +40,7 @@ describe('configuration : epics', () => {
       });
 
       const tableId = 'table1';
-      const action$ = Observable.of(ConfigurationActions.openTableAction(tableId));
+      const action$ = of(ConfigurationActions.openTableAction(tableId));
       configureEpics.handleOpenTable(action$).subscribe(action =>
         expect(action).toEqual(ConfigurationActions.openTableSuccessAction({ tableId, data }))
       );
@@ -55,7 +55,7 @@ describe('configuration : epics', () => {
       });
 
       const tableId = 'table1';
-      const action$ = Observable.of(ConfigurationActions.openTableAction(tableId));
+      const action$ = of(ConfigurationActions.openTableAction(tableId));
       configureEpics.handleOpenTable(action$).subscribe(action =>
         expect(action).toEqual(ConfigurationActions.openTableErrorAction({ tableId, error }))
       );

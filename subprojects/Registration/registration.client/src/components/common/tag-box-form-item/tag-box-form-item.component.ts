@@ -24,4 +24,4 @@ export class RegTagBoxFormItem extends RegBaseFormItem {
       this.valueExpr = options.valueExpr;
     }
   }
-};
+}

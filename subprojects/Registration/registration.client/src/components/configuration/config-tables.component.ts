@@ -323,4 +323,4 @@ export class RegConfigTables extends RegConfigBaseComponent {
   private refreshDetails(e) {
     this.changeDetector.markForCheck();
   }
-};
+}

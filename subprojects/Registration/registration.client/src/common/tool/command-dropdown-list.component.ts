@@ -29,4 +29,4 @@ export class CommandDropdownList {
   @Input() iconName: string = 'exclamation';
   @Input() items: string[];
   
-};
+}

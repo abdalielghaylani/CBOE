@@ -9,8 +9,7 @@ import {
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, of, Subscription } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 import { notifyError, notifyException, notifySuccess } from '../../common';
@@ -116,7 +115,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
         this.selectedHitlist = { id: res.json().id, type: HitlistType.SAVED };
         this.actions.openHitlists(this.temporary);
       })
-      .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
+      .catch(error => of(RegistrySearchActions.updateHitlistErrorAction()));
   }
 
   onEditorPreparing(e) {
@@ -186,4 +185,4 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   private cancel(e) {
     this.onClose.emit(e);
   }
-};
+}

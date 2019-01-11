@@ -36,5 +36,5 @@ export class TestModule {
     configure(testBed);
 
     return testBed.compileComponents().then(() => testBed);
-  };
+  }
 }

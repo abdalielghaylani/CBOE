@@ -29,4 +29,4 @@ export class RegInputLogin {
   @Input() classname: string;
   @Input() groupid: string;
   @Input() groupname: string;
-};
+}

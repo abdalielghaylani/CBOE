@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mergeMap';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
+
 import { apiUrlPrefix } from '../configuration';
 import { HttpService } from '../services';
 import { IPayloadAction, ConfigurationActions, SessionActions, IGridPullAction } from '../redux';
@@ -23,7 +24,7 @@ export class ConfigurationEpics {
               data: result.json()
             });
           })
-          .catch(error => Observable.of(ConfigurationActions.openTableErrorAction({ tableId, error })));
+          .catch(error => of(ConfigurationActions.openTableErrorAction({ tableId, error })));
       });
   }
 }

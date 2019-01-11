@@ -4,7 +4,7 @@ export interface IColumnConfig {
   type?: string;
   idField?: boolean;
   lookup?: any[];
-};
+}
 
 /**
  * Returns the view compatible column list from the column configuration list from the server

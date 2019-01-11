@@ -23,4 +23,4 @@ export class BadgeCount {
   @Input() icon: string = 'book';
   @Input() text: string = '';
   @Input() count: string = '';
-};
+}

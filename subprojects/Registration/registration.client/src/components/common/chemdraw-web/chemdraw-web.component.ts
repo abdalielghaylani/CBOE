@@ -98,7 +98,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
-  };
+  }
 
   private loadData(value: string) {
     if (value) {
@@ -137,4 +137,4 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     setTimeout( () => { this.cdd.fitToContainer(); }, 500);
     // Timing given to auto center structure once loading stabilises
   }
-};
+}

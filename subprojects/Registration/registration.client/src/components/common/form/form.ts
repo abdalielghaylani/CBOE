@@ -13,4 +13,4 @@ import { FormGroup } from '@angular/forms';
 export class RegForm {
   @Input() group: FormGroup;
   @Output() onSubmit = new EventEmitter<Event>();
-};
+}

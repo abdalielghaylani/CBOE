@@ -12,4 +12,4 @@ import { Input, Component } from '@angular/core';
 })
 export class RegNavigatorItems {
   @Input() testid: string;
-};
+}

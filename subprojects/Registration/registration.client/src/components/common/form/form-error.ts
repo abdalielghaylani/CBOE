@@ -16,4 +16,4 @@ export class RegFormError {
   @Input() visible: boolean;
   @Input() qaid: string;
   @Input() testid: string = 'form-error';
-};
+}

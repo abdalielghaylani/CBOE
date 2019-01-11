@@ -9,7 +9,8 @@ export interface IAppState {
   configuration?: configuration.IConfiguration;
   registry?: registry.IRegistry;
   registrysearch?: registry.IRegistrySearch;
-};
+  router?: any;
+}
 
 export const rootReducer = combineReducers<IAppState>({
   session: session.sessionReducer,

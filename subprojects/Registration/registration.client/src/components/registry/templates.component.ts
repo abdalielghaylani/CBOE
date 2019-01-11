@@ -6,8 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration, IAppState } from '../../redux';
@@ -185,4 +184,4 @@ export class RegTemplates implements OnInit, OnDestroy {
     this.onClose.emit();
     this.router.navigate([`records/new/${templateId}`]);
   }
-};
+}

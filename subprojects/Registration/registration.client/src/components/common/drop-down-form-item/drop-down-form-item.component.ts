@@ -106,7 +106,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
           let lookups = this.ngRedux.getState().session.lookups;
           if (lookups) {
             let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
-            let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+            let user = lookups.users.find(u => u.USERID.toUpperCase() === loggedInUserName);
             options.value = user.PERSONID;
             isDefaultValueSet = true;
           }
@@ -143,4 +143,4 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       })
       .catch(error => deferred.resolve(true));
   }
-};
+}

@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { apiUrlPrefix } from '../../../configuration';
 import { HttpService } from '../../../services';
 import { CStructureImageService } from '../structure-image.service';
@@ -46,4 +46,4 @@ export class RegStructureImageGridItem {
         self.changeDetector.markForCheck();
       });
   }
-};
+}

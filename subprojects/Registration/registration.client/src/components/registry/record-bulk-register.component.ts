@@ -6,8 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { IAppState, ILookupData, RegistryActions } from '../../redux';
@@ -214,4 +213,4 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     this.router.navigate([`records/temp`]);
   }
 
-};
+}

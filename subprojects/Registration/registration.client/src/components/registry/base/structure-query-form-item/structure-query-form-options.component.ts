@@ -30,4 +30,4 @@ export class RegStructureQueryOptions {
   onFieldDataChanged(e) {
     this.optionUpdated.emit(e);
   }
-};
+}

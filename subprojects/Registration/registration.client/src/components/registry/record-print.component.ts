@@ -9,8 +9,7 @@ import {
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { HttpService } from '../../services';
 import { CStructureImagePrintService } from '../common/structure-image-print.service';
 import { IAppState, ILookupData, CSystemSettings } from '../../redux';

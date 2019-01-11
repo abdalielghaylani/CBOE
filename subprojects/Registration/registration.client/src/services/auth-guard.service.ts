@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild } from '@angular/router';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription ,  Observable } from 'rxjs';
 import { ILookupData, SessionActions, IAppState } from '../redux';
 import { NgRedux, select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../services';
 
 @Injectable()

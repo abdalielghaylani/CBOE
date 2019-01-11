@@ -1,6 +1,7 @@
 import { rootReducer, deimmutify, reimmutify } from './store';
 import { dev } from '../../configuration';
-const createLogger = require('redux-logger');
+import { createLogger } from 'redux-logger';
+// const createLogger = require('redux-logger').default;
 const persistState = require('redux-localstorage');
 
 export * from './configuration';

@@ -518,7 +518,7 @@ export class CViewGroup implements IViewGroup {
               }
               index++;
             });
-          };
+          }
         });
       }
     });
@@ -688,10 +688,10 @@ export class CRegistryRecord {
         if (m && m.length > 1) {
           let propertyList = nextObject.PropertyList as IPropertyList;
           if (propertyList != null && propertyList.Property != null) {
-            let p = propertyList.Property.filter(p => p._name === m[1]);
+            let p = propertyList.Property.filter(pt => pt._name === m[1]);
             if (createMissing && p.length === 0) {
               propertyList.Property.push({ _name: m[1] });
-              p = propertyList.Property.filter(p => p._name === m[1]);
+              p = propertyList.Property.filter(pt => pt._name === m[1]);
             }
             if (p.length > 0) {
               foundObject.obj = p[0];

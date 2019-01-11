@@ -8,7 +8,7 @@ import {
   RegDateFormItem, RegDropDownFormItem, RegStructureImageFormItem, RegTextFormItem,
   RegDropDownColumnItem, RegStructureColumnItem
 } from '../../../index';
-import { NgReduxModule } from '@angular-redux/store/lib';
+import { NgReduxModule } from '@angular-redux/store';
 import { RegToolModule } from '../../../../common/tool';
 
 describe('Component : Form Group View', () => {

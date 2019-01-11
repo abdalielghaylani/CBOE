@@ -132,4 +132,4 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
       }
     }
   }
-};
+}

@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { createAction } from 'redux-actions';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
+import { Observable, of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
+
+
 import { apiUrlPrefix } from '../configuration';
 import { HttpService } from '../services';
 import { IPayloadAction, SessionActions, RegActions, ILookupData } from '../redux';
@@ -25,7 +25,7 @@ export class SessionEpics {
             }
             return SessionActions.loginUserSuccessAction(result.json().meta);
           })
-          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+          .catch(error => of(SessionActions.loginUserErrorAction()));
       });
   }
 
@@ -37,7 +37,7 @@ export class SessionEpics {
             this.navigateToHomePage(result.json());
             return SessionActions.loadLookupsSuccessAction(result.json());
           })
-          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+          .catch(error => of(SessionActions.loginUserErrorAction()));
       });
   }
 
@@ -75,24 +75,24 @@ export class SessionEpics {
       .mergeMap(() => {
         return this.http.get(`${apiUrlPrefix}auth/logout`)
           .map(result => createAction(UPDATE_LOCATION)('logout'))
-          .catch(error => Observable.of(RegActions.ignoreAction()));
+          .catch(error => of(RegActions.ignoreAction()));
       });
   }
 
   handleCheckLogin = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.CHECK_LOGIN)
       .mergeMap(({ payload }) => {
-        return !payload ? Observable.of(RegActions.ignoreAction()) :
+        return !payload ? of(RegActions.ignoreAction()) :
           this.http.get(`${apiUrlPrefix}auth/validate/${payload}`)
             // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
-            // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+            // .catch(error => of(SessionActions.loginUserErrorAction()));
             .map(result => {
               let validationData = result.json();
               return validationData.isValid ?
                 SessionActions.loginUserSuccessAction(validationData.meta) :
                 RegActions.ignoreAction();
             })
-            .catch(error => Observable.of(RegActions.ignoreAction()));
+            .catch(error => of(RegActions.ignoreAction()));
       });
   }
 }

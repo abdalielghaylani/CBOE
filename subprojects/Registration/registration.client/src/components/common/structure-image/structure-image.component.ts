@@ -5,7 +5,8 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 import { apiUrlPrefix } from '../../../configuration';
 import { HttpService } from '../../../services';
 
@@ -52,4 +53,4 @@ export class RegStructureImage {
       this.srcUrl$ = this.http.get(url).map(res => res.text().replace(/\"/g, ''));
     }
   }
-};
+}

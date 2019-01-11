@@ -22,4 +22,4 @@ import { ToolPanel } from './tool-panel.component';
 })
 export class PageWithTools {
   @Input() testid: string;
-};
+}

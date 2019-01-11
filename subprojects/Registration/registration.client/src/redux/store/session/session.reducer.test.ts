@@ -19,7 +19,7 @@ describe('Session Reducer', () => {
     const nextState = sessionReducer(
       initState,
       { type: SessionActions.LOGIN_USER });
-    expect(nextState.get('isLoading')).toBeTruthy;
+    expect(nextState.get('isLoading')).toBeTruthy(null);
     expect(nextState.get('token')).toEqual(null);
   });
 
@@ -31,8 +31,8 @@ describe('Session Reducer', () => {
         payload: { token: 1234 }
       }
     );
-    expect(nextState.get('isLoading')).toBeFalsy;
-    expect(nextState.get('hasError')).toBeFalsy;
+    expect(nextState.get('isLoading')).toBeFalsy(null);
+    expect(nextState.get('hasError')).toBeFalsy(null);
     expect(nextState.get('token')).toEqual(1234);
   });
 
@@ -40,16 +40,16 @@ describe('Session Reducer', () => {
     const nextState = sessionReducer(
       initState,
       { type: SessionActions.LOGIN_USER_ERROR });
-    expect(nextState.get('isLoading')).toBeFalsy;
-    expect(nextState.get('hasError')).toBeTruthy;
+    expect(nextState.get('isLoading')).toBeFalsy(null);
+    expect(nextState.get('hasError')).toBeTruthy(null);
   });
 
   it('should clear user data on LOGOUT_USER', () => {
     const nextState = sessionReducer(
       initState,
       { type: SessionActions.LOGOUT_USER });
-    expect(nextState.get('isLoading')).toBeTruthy;
-    expect(nextState.get('hasError')).toBeFalsy;
+    expect(nextState.get('isLoading')).toBeTruthy(null);
+    expect(nextState.get('hasError')).toBeFalsy(null);
     expect(nextState.get('token')).toEqual(null);
   });
 

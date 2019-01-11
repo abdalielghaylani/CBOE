@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store/lib';
+import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux/index';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
@@ -10,10 +10,16 @@ import { idListTestData } from './id-list-form-item.component.data.test';
 // Mock out the NgRedux class with just enough to test what we want.
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 

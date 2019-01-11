@@ -10,10 +10,9 @@ import {
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/filter';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { CViewGroup, CViewGroupColumns } from './base';
 import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, notify, notifyError, notifySuccess, notifyException } from '../../common';
@@ -103,9 +102,9 @@ export class RegRecords implements OnInit, OnDestroy {
     private changeDetector: ChangeDetectorRef,
     private ngZone: NgZone) {
     this.routerSubscription = router.events.filter(e => e instanceof NavigationEnd).subscribe(value => {
-      const match = value.url.match(/\/hits\/(\d+)$/);
-      if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown && this.url !== value.url) {
-        this.url = value.url;
+      const match = (value as NavigationEnd).url.match(/\/hits\/(\d+)$/);
+      if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown && this.url !== (value as NavigationEnd).url) {
+        this.url = (value as NavigationEnd).url;
         this.hitListId = +match[1];
         this.loadIndicatorVisible = true;
         this.currentIndex = 0;
@@ -947,5 +946,5 @@ export class RegRecords implements OnInit, OnDestroy {
       this.structureDataVisible = true;
     }
   }
-};
+}
 

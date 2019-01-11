@@ -21,4 +21,4 @@ export class RegSettingValueFormItem extends RegBaseColumnItem {
   private onValueChanged(e) {
     this.viewModel.setValue(this.value);
   }
-};
+}

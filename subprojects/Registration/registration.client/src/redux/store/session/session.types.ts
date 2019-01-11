@@ -2,10 +2,10 @@ import { TypedRecord } from 'typed-immutable-record';
 
 export interface IUser {
   fullName: string;
-};
+}
 
 export interface IUserRecord extends TypedRecord<IUserRecord>, IUser {
-};
+}
 
 export interface ISettingData {
   groupName: string;
@@ -52,10 +52,10 @@ export interface ISession {
   hasError: boolean;
   isLoading: boolean;
   lookups: ILookupData;
-};
+}
 
 export interface ISessionRecord extends TypedRecord<ISessionRecord>, ISession {
-};
+}
 
 export class CSystemSettings {
   static REG_GROUP = 'Registration';

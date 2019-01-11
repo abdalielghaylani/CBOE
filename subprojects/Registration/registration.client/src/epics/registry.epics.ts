@@ -4,12 +4,10 @@ import { UPDATE_LOCATION } from '@angular-redux/router';
 import { NgRedux } from '@angular-redux/store';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
-import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mergeMap';
+import { Epic, ActionsObservable, combineEpics, StateObservable } from 'redux-observable';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess, notifyError, PrivilegeUtils } from '../common';
@@ -22,14 +20,14 @@ import { HttpService } from '../services';
 export class RegistryEpics {
   constructor(private http: HttpService, private ngRedux: NgRedux<IAppState>) { }
 
-  handleRegistryActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
+  handleRegistryActions: Epic = (action$: ActionsObservable<any>, state$: StateObservable<any>, dependencies: any) => {
     return combineEpics(
       this.handleRetrieveRecord,
       this.handleSaveRecord,
       this.createDuplicateRecord,
       this.handleLoadStructure,
       this.bulkRegisterRecord,
-    )(action$, store);
+    )(action$, state$, dependencies);
   }
 
   private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, template: boolean, id: number }>>) => {
@@ -52,7 +50,7 @@ export class RegistryEpics {
               inventoryContainers: result.json().inventoryContainers
             } as IRecordDetail);
           })
-          .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));
+          .catch(error => of(RecordDetailActions.retrieveRecordErrorAction(error)));
       });
   }
 
@@ -103,7 +101,7 @@ export class RegistryEpics {
               return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
             }
           })
-          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(new CSaveResponseData(id, temporary, error))));
+          .catch(error => of(RecordDetailActions.saveRecordErrorAction(new CSaveResponseData(id, temporary, error))));
       });
   }
 
@@ -126,7 +124,7 @@ export class RegistryEpics {
             this.ngRedux.dispatch(RecordDetailActions.duplicateRecordSuccessAction(new CSaveResponseData(recordId, false, null, true)));
             return createAction(UPDATE_LOCATION)(`records/${recordId}`);
           })
-          .catch(error => Observable.of(RecordDetailActions.duplicateRecordErrorAction(error)));
+          .catch(error => of(RecordDetailActions.duplicateRecordErrorAction(error)));
       });
   }
 
@@ -143,7 +141,7 @@ export class RegistryEpics {
               return RegistryActions.bulkRegisterRecordSuccessAction(responseData.data.records);
             }
           })
-          .catch(error => Observable.of(RegistryActions.bulkRegisterRecordErrorAction(error)));
+          .catch(error => of(RegistryActions.bulkRegisterRecordErrorAction(error)));
       });
   }
 
@@ -159,7 +157,7 @@ export class RegistryEpics {
           .map(result => {
             return RecordDetailActions.loadStructureSuccessAction(result.json());
           })
-          .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction(error)));
+          .catch(error => of(RecordDetailActions.loadStructureErrorAction(error)));
       });
   }
 }

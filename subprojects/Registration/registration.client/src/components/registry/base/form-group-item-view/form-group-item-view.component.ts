@@ -13,8 +13,7 @@ import { notifyError, notifyException, notifySuccess } from '../../../../common'
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 import { RegFormGroupItemBase } from '../form-group-item-base';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
-import { ViewChild } from '@angular/core/src/metadata/di';
-import { ElementRef } from '@angular/core/src/linker/element_ref';
+import { ViewChild, ElementRef } from '@angular/core';
 import { DxLoadPanelComponent } from 'devextreme-angular';
 
 @Component({
@@ -320,7 +319,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
       let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
-      let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+      let user = lookups.users.find(u => u.USERID.toUpperCase() === loggedInUserName);
       if (+batch.PersonCreated.__text === user.PERSONID) {
         return true;
       }
@@ -332,9 +331,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
       let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
-      let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+      let user = lookups.users.find(u => u.USERID.toUpperCase() === loggedInUserName);
       let batchOwnerId = +batch.PersonCreated.__text;
-      let batchOwner = lookups.users.find(user => user.PERSONID === batchOwnerId);
+      let batchOwner = lookups.users.find(u => u.PERSONID === batchOwnerId);
       if (batchOwner && batchOwner.SUPERVISORID && batchOwner.SUPERVISORID === user.PERSONID) {
         return true;
       }
@@ -351,4 +350,4 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   requestMaterial() {
     this.invHandler.openContainerPopup(this.batchContainers[this.batchContainers.length - 1].requestURL + `&RequestType=R`, null);
   }
-};
+}

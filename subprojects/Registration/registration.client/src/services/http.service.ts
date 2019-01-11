@@ -3,9 +3,11 @@ import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { Observable, ObservableInput } from 'rxjs/Observable';
+import { Observable, ObservableInput } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+
 import { SessionActions, IAppState } from '../redux';
 import { notify, notifyError, notifySuccess } from '../common';
 

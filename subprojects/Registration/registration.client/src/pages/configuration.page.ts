@@ -1,7 +1,6 @@
 import { PrivilegeUtils } from '../common/utils/privilege.utils';
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { ILookupData } from './../redux/store/session/session.types';
 import { Component, Inject, ApplicationRef } from '@angular/core';
 import { RegContainer } from '../components';

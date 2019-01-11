@@ -14,4 +14,4 @@ import { Component, Input } from '@angular/core';
 export class RegNavigator {
   @Input() testid: string;
   @Input() cssClass: string;
-};
+}

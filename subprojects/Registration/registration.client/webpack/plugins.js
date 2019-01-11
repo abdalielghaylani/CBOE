@@ -7,6 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const postcss = require('./postcss');
 
+const path = require('path');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+
 const sourceMap = process.env.TEST
   ? [new webpack.SourceMapDevToolPlugin({ filename: null, test: /\.ts$/ })]
   : [ ];
@@ -28,7 +31,7 @@ const basePlugins = [
     minify: false,
     chunksSortMode: 'dependency',
   }),
-  new webpack.NoEmitOnErrorsPlugin(),
+  // new webpack.NoEmitOnErrorsPlugin(),
   new CopyWebpackPlugin([
     { from: 'src/assets', to: 'assets' },
   ]),
@@ -40,6 +43,11 @@ const basePlugins = [
   }),
   new webpack.ContextReplacementPlugin(
     /angular[\/\\]core[\/\\](esm\/src|src)[\/\\]linker/, __dirname),
+  new webpack.ContextReplacementPlugin(
+    /\@angular(\\|\/)core(\\|\/)fesm5/, path.join(__dirname, './src')),
+  new FilterWarningsPlugin({
+    exclude: /System.import/,
+  }),
 ].concat(sourceMap);
 
 const devPlugins = [
@@ -48,6 +56,7 @@ const devPlugins = [
     files: 'src/**/*.css',
     failOnError: false,
   }),
+  /*
   // since polyfills are in a non-imported entry file
   new webpack.optimize.CommonsChunkPlugin({
     name: ['polyfills'],
@@ -59,10 +68,11 @@ const devPlugins = [
     filename: 'inline.js',
     sourceMapFilename: 'inline.map',
   }),
+  */
 ];
 
 const prodPlugins = [
-  new webpack.optimize.CommonsChunkPlugin({
+  /* new webpack.optimize.CommonsChunkPlugin({
     name: [
       'vendor',
       'polyfills',
@@ -75,12 +85,14 @@ const prodPlugins = [
     filename: 'inline.js',
     sourceMapFilename: 'inline.map',
   }),
+  
   new webpack.optimize.UglifyJsPlugin({
     mangle: { keep_fnames: true },
     compress: {
       warnings: false,
     },
   }),
+  */
 ];
 
 module.exports = basePlugins

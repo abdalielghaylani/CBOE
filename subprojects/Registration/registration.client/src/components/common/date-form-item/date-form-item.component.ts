@@ -53,4 +53,4 @@ export class RegDateFormItem extends RegBaseFormItem {
       this.updateViewModel();
     }
   }
-};
+}

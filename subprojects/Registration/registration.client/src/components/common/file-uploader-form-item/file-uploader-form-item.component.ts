@@ -13,7 +13,7 @@ export class RegFileUploaderFormItem extends RegBaseFormItem {
   protected onValueChanged(e) {
     let reader = new FileReader();
     reader.onload = (() => {
-      let mols = reader.result.trim(null).split('$$$$\r\n');
+      let mols = (reader.result as string).trim().split('$$$$\r\n');
       this.sdfFiles = [];
       for (let i = 0; i < mols.length; i++) {
         if (mols[i] && mols[i] !== '') {
@@ -31,4 +31,4 @@ export class RegFileUploaderFormItem extends RegBaseFormItem {
     }).bind(this);
     reader.readAsText(e.value[0]);
   }
-};
+}

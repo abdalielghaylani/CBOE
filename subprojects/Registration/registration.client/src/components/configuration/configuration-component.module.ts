@@ -48,7 +48,7 @@ export * from './config.types';
 export * from './settings-page-header.component';
 export * from './setting-value-form-item';
 export * from './validation-type-form-item';
-export * from './addin-events.component'
+export * from './addin-events.component';
 
 @NgModule({
   imports: [

@@ -24,4 +24,4 @@ export class RegStructureColumnItem extends RegBaseColumnItem {
       this.value = this.deserializeValue(this.viewModel.value);
     }
   }
-};
+}

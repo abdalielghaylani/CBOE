@@ -57,4 +57,4 @@ export class RegFormGroupView implements IViewControl, OnChanges {
       && this.invContainers && this.invContainers.containers
       && this.invContainers.containers.length > 0 ? true : false;
   }
-};
+}

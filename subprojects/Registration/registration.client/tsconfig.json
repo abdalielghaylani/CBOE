@@ -13,6 +13,11 @@
     "sourceMap": false,
     "inlineSourceMap": true
   },
+  "lib": [
+    "dom",
+    "es6",
+    "es7"
+  ],
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
     "useCache": false,

@@ -1,3 +1,5 @@
+import './polyfills.ts';
+
 // The browser platform with a compiler
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
@@ -12,6 +14,7 @@ import './extensions';
 if (production) {
   enableProdMode();
 } else {
+  require('zone.js/dist/zone');
   require('zone.js/dist/long-stack-trace-zone');
 }
 

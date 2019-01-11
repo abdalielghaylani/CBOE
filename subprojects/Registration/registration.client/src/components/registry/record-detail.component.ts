@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { select, NgRedux } from '@angular-redux/store';
 import * as X2JS from 'x2js';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
@@ -614,4 +613,4 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   refreshRecordDetails() {
     this.ngZone.run(() => this.refreshDetailView(null, true));
   }
-};
+}

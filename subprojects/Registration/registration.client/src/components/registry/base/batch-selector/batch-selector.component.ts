@@ -49,4 +49,4 @@ export class RegBatchSelector {
     this.formVisible = false;
     this.onSelected.emit(value);
   }
-};
+}

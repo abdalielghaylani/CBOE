@@ -23,4 +23,4 @@ export class RegInput {
   @Input() control: FormControl = new FormControl();
   @Input() qaid: string;
   @Input() classname: string;
-};
+}

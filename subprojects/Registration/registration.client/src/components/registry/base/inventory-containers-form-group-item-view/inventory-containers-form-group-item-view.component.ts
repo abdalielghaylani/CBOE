@@ -138,4 +138,4 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
     let invHandler = new RegInvContainerHandler();
     invHandler.openContainerPopup(url, null);
   }
-};
+}

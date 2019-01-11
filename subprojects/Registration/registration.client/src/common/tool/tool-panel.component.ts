@@ -17,4 +17,4 @@ import { CircleIcon } from './circle-icon.component';
 })
 export class ToolPanel {
   @Input() testid: string;
-};
+}

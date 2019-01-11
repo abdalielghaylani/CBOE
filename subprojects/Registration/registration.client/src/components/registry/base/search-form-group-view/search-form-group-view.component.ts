@@ -14,4 +14,4 @@ export class RegSearchFormGroupView extends RegFormGroupView {
   constructor(ngRedux: NgRedux<IAppState>) {
     super(ngRedux);
   }
-};
+}

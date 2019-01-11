@@ -28,4 +28,4 @@ export class RegAlert {
   @Input() qaid: string;
   @Input() testid: string;
   @Input() class: string = 'text-center';
-};
+}

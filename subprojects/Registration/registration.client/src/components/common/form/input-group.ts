@@ -9,4 +9,4 @@ import { FormControl } from '@angular/forms';
   template: `<ng-content></ng-content>`
 })
 export class RegInputGroup {
-};
+}

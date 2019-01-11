@@ -1,6 +1,6 @@
 import * as X2JS from 'x2js';
 import { IShareableObject, CShareableObject, FormGroupType, IFormGroup, IFormElement } from '../../common';
-import { IAppState, ILookupData } from '../../redux';
+import { IAppState, ILookupData, IHitlistData } from '../../redux';
 
 export const HITLIST_GRID_COLUMNS = [{
   dataField: 'name',
@@ -49,7 +49,7 @@ export const HITLIST_GRID_COLUMNS = [{
 
 export class CQueryManagementVM {
   gridColumns?: any[];
-  queriesList?: CQueries[];
+  queriesList?: IHitlistData[];
   advancedRestoreType?: string;
   saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {

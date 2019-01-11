@@ -36,4 +36,4 @@ export class RegCheckBoxFormItem extends RegBaseFormItem {
       this.updateViewModel();
     }
   }
-};
+}

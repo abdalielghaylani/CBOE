@@ -3,7 +3,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { DevExtremeModule } from 'devextreme-angular';
 import { RegDropDownColumnItem, RegStructureColumnItem } from '../../../index';
-import { NgRedux } from '@angular-redux/store/lib';
+import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux/index';
 import { HttpService } from '../../../../services/http.service';
 import { XHRBackend, RequestOptions } from '@angular/http';
@@ -12,10 +12,16 @@ import { fragmentsTestData } from './fragments-form-item.component.data.test';
 // Mock out the NgRedux class with just enough to test what we want.
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 

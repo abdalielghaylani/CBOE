@@ -10,7 +10,7 @@ function fixStructureElement(element: Element) {
   }
 }
 
-function fixStructureElements(elements: NodeListOf<Element>) {
+function fixStructureElements(elements: HTMLCollectionOf<Element>) {
   for (let i = 0; i < elements.length; ++i) {
     fixStructureElement(elements.item(i));
   }

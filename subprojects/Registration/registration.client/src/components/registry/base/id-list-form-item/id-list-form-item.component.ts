@@ -128,4 +128,4 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     this.allowDeleting = true;
     this.allowAdding = true;
   }
-};
+}

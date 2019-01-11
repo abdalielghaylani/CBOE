@@ -17,4 +17,4 @@ export class RegLogo {
     return RegLogo.Image;
   }
   public static Image = require('./registration.svg');
-};
+}

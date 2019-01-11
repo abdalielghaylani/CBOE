@@ -13,7 +13,7 @@ export interface IValidationRuleData {
 export interface ICustomTableData {
   config?: any;
   rows: any[];
-};
+}
 
 export class CCustomTableData implements ICustomTableData {
   config: any;
@@ -27,7 +27,7 @@ export class CCustomTableData implements ICustomTableData {
 export interface IConfiguration {
   customTables: any;
   formGroups: any;
-};
+}
 
 export interface IConfigurationRecord extends TypedRecord<IConfigurationRecord>, IConfiguration {
-};
+}

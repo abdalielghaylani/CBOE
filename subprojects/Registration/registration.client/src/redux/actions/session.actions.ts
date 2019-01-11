@@ -29,9 +29,9 @@ export class SessionActions {
 
   loginUser(credentials) {
     this.ngRedux.dispatch(SessionActions.loginUserAction(credentials));
-  };
+  }
 
   logoutUser() {
     this.ngRedux.dispatch(SessionActions.logoutUserAction());
-  };
+  }
 } 

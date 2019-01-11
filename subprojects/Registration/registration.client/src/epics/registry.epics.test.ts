@@ -1,9 +1,9 @@
 import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { HttpModule, XHRBackend, RequestOptions, ResponseOptions, Response } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Observable } from 'rxjs';
+
 import { ActionsObservable } from 'redux-observable';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';

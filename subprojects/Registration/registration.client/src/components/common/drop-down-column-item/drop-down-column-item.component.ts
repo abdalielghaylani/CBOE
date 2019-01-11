@@ -63,4 +63,4 @@ export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterVie
     this.valueUpdated.emit(this.value);
     this.ddb.instance.close();
   }
-};
+}

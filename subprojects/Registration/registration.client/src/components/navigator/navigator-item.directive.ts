@@ -6,4 +6,4 @@ import { Directive, ElementRef, HostListener, HostBinding, Input } from '@angula
 export class RegNavigatorItem {
   constructor(private el: ElementRef) { }
   @Input() testid: string;
-};
+}

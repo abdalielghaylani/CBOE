@@ -3,9 +3,16 @@ import { ConfigurationActions } from './configuration.actions';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
-    super(null);
+    super();
   }
-  dispatch: () => {};
+  dispatch = () => undefined;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
+  getState = () => undefined;
 }
 
 describe('configuration action creators', () => {

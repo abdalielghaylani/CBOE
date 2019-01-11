@@ -8,8 +8,7 @@ import { IAppState, RecordDetailActions, IRecordDetail } from '../../../../redux
 import { IBatch, CBatch } from '../../../common';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../../../common';
 import { CViewGroupContainer, CRegistryRecord } from '../registry-base.types';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import * as registryUtils from '../../registry.utils';
 
 
@@ -130,8 +129,9 @@ export class RegBatchEditor implements OnChanges {
     this.errorMessages = [];
     if (result.brokenRules) {
       result.brokenRules.forEach(element => {
-        if (element.validator.errorMessage) {
-          this.errorMessages.push(element.validator.errorMessage);
+        let validationRule = element as any;
+        if (validationRule.validator.errorMessage) {
+          this.errorMessages.push(validationRule.validator.errorMessage);
         }
       });
     }
@@ -141,4 +141,4 @@ export class RegBatchEditor implements OnChanges {
   protected cancel(e) {
     this.formVisible = false;
   }
-};
+}

@@ -49,7 +49,8 @@ export interface ICopyActions {
   caption: string;
   message: string;
   action: string;
-};
+}
+
 export interface IRegMarkedPopupModel {
   description: string; 
   option: string; 

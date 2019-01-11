@@ -75,4 +75,4 @@ export class RegAddinEventsListItem extends RegConfigBaseComponent implements On
     this.valueUpdated.emit(
       (e.component && e.component.getDataSource()._items) ? e.component.getDataSource()._items : []);
   }
-};
+}

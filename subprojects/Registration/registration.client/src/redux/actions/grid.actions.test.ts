@@ -1,12 +1,19 @@
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux, dispatch } from '@angular-redux/store';
 import { GridActions } from './grid.actions';
 import { } from 'jasmine';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
-    super(null);
+    super();
   }
-  dispatch: () => {};
+  dispatch = () => undefined;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
+  getState = () => undefined;
 }
 
 describe('grid action creators', () => {

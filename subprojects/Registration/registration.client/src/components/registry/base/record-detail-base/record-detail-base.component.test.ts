@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store/lib';
+import { NgRedux } from '@angular-redux/store';
 import { IAppState, RecordDetailActions } from '../../../../redux/index';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
@@ -8,16 +8,22 @@ import { recordDetailBaseTestData } from './record-detail-base.component.data.te
 import { RegFormGroupItemView } from '../form-group-item-view/form-group-item-view.component';
 import { CommandButton } from '../../../../common/tool/command-button.component';
 import { DevExtremeModule } from 'devextreme-angular';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import * as registryUtils from '../../registry.utils';
 
 // Mock out the NgRedux class with just enough to test what we want.
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 describe('Component : Record Detail Base', () => {

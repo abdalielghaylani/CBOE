@@ -12,13 +12,13 @@ import {
 } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable, of } from 'rxjs';
+
 import { SessionEpics } from './session.epics';
 import {
     MockBackend,
     MockConnection
-} from '@angular/http/testing/mock_backend';
+} from '@angular/http/testing';
 import { TestModule } from '../test';
 import { HttpService } from '../services';
 import { SessionActions, IAppState } from '../redux';
@@ -55,7 +55,7 @@ describe('SessionEpics', () => {
                 connection.mockRespond(response);
             });
 
-            const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+            const action$ = of({ type: SessionActions.LOGIN_USER });
             sessionEpics.handleLoginUser(action$).subscribe(action =>
                 expect(action).toEqual({ type: SessionActions.LOGIN_USER_SUCCESS, payload: data })
             );
@@ -68,7 +68,7 @@ describe('SessionEpics', () => {
                 connection.mockError(new Error('some error'));
             });
 
-            const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+            const action$ = of({ type: SessionActions.LOGIN_USER });
             sessionEpics.handleLoginUser(action$).subscribe(action =>
                 expect(action).toEqual({ type: SessionActions.LOGIN_USER_ERROR })
             );

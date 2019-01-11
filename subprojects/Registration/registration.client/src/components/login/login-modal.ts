@@ -22,4 +22,4 @@ export class RegLoginModal {
   handleSubmit(login) {
     this.onSubmit.emit(login);
   }
-};
+}

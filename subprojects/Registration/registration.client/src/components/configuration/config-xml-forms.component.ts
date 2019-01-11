@@ -97,4 +97,4 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
     this.popup.visible = false;
   }
 
-};
+}

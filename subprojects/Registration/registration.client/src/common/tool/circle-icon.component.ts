@@ -48,4 +48,4 @@ export class CircleIcon {
   getCircleType(): string {
     return (this.isSelected.trim() === 'true' ? '' : '-o');
   }
-};
+}

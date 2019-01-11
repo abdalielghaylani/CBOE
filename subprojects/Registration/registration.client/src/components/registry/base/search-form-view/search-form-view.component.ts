@@ -15,4 +15,4 @@ export class RegSearchFormView extends RegFormView {
     super();
     this.cdjsService.loadCdjsScript();
   }
-};
+}

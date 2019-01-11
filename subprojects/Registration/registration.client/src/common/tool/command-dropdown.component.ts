@@ -39,4 +39,4 @@ export class CommandDropdown {
     this.onSelected.emit(e);
   }
   
-};
+}

@@ -64,5 +64,5 @@ export class RegistrySearchActions {
 
   updateHitlist(temporary: boolean, data: IHitlistData) {
     this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(temporary, data));
-  };
+  }
 }

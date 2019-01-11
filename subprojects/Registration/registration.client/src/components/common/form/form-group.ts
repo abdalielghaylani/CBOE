@@ -12,4 +12,4 @@ import { Component, Input } from '@angular/core';
 })
 export class RegFormGroup {
     @Input() testid: string;
-};
+}

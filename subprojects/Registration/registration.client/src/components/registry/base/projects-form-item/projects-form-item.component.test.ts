@@ -2,7 +2,7 @@
 
 // Mock out the NgRedux class with just enough to test what we want.
 import { RegProjectsFormItem } from './projects-form-item.component';
-import { NgRedux } from '@angular-redux/store/lib';
+import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux/index';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
@@ -11,10 +11,16 @@ import { projectsFormItemTestData } from './projects-form-item.component.data.te
 
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 class MockDxForm extends DevExtremeModule {

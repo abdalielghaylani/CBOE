@@ -71,4 +71,4 @@ export class RegFormGroupItemBase implements IViewControl, OnChanges {
     });
     return validItems;
   }
-};
+}

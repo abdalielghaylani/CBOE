@@ -21,4 +21,4 @@ export class RegInvContainerHandler {
     window.open((invIntegrationBasePath + url), '_blank', windowParams);
   }
 
-};
+}

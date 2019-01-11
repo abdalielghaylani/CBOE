@@ -23,4 +23,4 @@ export class CommandButton {
   handleClick(event) {
     this.onClick.emit(event);
   }
-};
+}

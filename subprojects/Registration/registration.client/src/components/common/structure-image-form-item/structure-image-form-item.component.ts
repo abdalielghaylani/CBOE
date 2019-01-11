@@ -55,4 +55,4 @@ export class RegStructureImageFormItem extends RegBaseFormItem {
   private structureClicked(e) {
     this.onClick.emit(this.structureValue);
   }
-};
+}

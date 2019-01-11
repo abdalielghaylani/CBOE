@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, Http, XHRBackend, BaseRequestOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing/mock_backend';
-import { NgReduxModule, NgRedux } from '@angular-redux/store/lib';
+import { MockBackend } from '@angular/http/testing';
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { TestModule } from '../../test/test.module';
 import { IAppState } from '../../redux';
 import { HttpService } from '../../services';
@@ -13,10 +13,16 @@ import { RegistryModule, RegTemplates } from '.';
 // Mock out the NgRedux class with just enough to test what we want.
 class MockRedux extends NgRedux<IAppState> {
   constructor(private state: IAppState) {
-    super(null);
+    super();
   }
   dispatch = () => undefined;
   getState = () => this.state;
+  configureStore = () => undefined;
+  configureSubStore = () => undefined;
+  provideStore = () => undefined;
+  replaceReducer = () => undefined;
+  select = () => undefined;
+  subscribe = () => undefined;
 }
 
 

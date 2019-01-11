@@ -61,4 +61,4 @@ export class RegLoginForm {
       password: this.password
     });
   }
-};
+}

@@ -285,4 +285,4 @@ export class RegConfigProperties extends RegConfigBaseComponent {
     const match = this.configProperties ? this.configProperties.formDataValidation.parameters.find(p => p.name === name) : undefined;
     return match ? match.value : undefined;
   }
-};
+}

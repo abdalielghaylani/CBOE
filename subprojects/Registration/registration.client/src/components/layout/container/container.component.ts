@@ -6,4 +6,4 @@ import { Component, Input } from '@angular/core';
 })
 export class RegContainer {
   @Input() testid: string;
-};
+}

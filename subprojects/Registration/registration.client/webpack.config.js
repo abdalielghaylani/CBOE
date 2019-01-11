@@ -5,6 +5,7 @@ const path = require('path');
 const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 /*
  * Dev Config
@@ -19,7 +20,7 @@ const plugins = require('./webpack/plugins');
 const devConfig = {
   entry: {
     app: './src/index.ts',
-    polyfills: './src/polyfills.ts',
+    // polyfills: './src/polyfills.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -53,7 +54,7 @@ const prodConfig = {
   entry: {
     app: './src/index.ts',
     // keep polyfills
-    polyfills: './src/polyfills.ts',
+    // polyfills: './src/polyfills.ts',
     // and vendor files separate
     vendor: [
       '@angular/core',
@@ -116,6 +117,30 @@ const baseConfig = {
 
   plugins: plugins,
 
+  optimization: {
+    runtimeChunk: 'single', // enable "runtime" chunk
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+    minimizer: [
+      new UglifyJSPlugin({
+        sourceMap: true,
+        uglifyOptions: {
+          mangle: { keep_fnames: true },
+          compress: {
+            warnings: false,
+          },
+        },
+      }),
+    ],
+  },
+
   devServer: {
     historyApiFallback: {
       index: basePath,
@@ -139,7 +164,7 @@ const baseConfig = {
       loaders.woff,
       loaders.woff2,
       loaders.ttf,
-      loaders.json,
+      // loaders.json,
     ],
     noParse: [ /zone\.js\/dist\/.+/, /angular2\/bundles\/.+/ ],
   },
