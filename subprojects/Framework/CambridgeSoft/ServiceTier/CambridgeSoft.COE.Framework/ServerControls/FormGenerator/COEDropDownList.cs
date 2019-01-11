@@ -153,8 +153,10 @@ namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
                 ListItem listItem = this.Items.FindByText(this.ConvertToken(data.ToString()));
                 if (bValidToken && listItem != null)
                     this.SelectedValue = listItem.Value;
-                else if (this.SelectedItem != null)
+                else if (this.SelectedItem != null && this.DisplayMode == FormGroup.DisplayMode.Add)
                     this.SelectedItem.Text = Convert.ToString(data);
+                else
+                    this.SelectedValue = Convert.ToString(data);
 
                 if (this.DisplayMode != FormGroup.DisplayMode.Add && _picklistDomain != -1 && !bValidToken && !IsItemAvailable(data.ToString()))
                 {
