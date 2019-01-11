@@ -9,7 +9,7 @@ pipeline
     environment 
 		  {
             			PROD_VERSION = '18.1.1'
-			        VERSION_STRING ="${env.BRANCH_NAME.startsWith('release/v') ? "${PROD_VERSION}.0${BUILD_NUMBER}" : "${PROD_VERSION}.500${BUILD_NUMBER}"}"			
+			        VERSION_STRING ="${env.BRANCH_NAME.startsWith('release/v') ? "${PROD_VERSION}.0${BUILD_NUMBER}" : "${PROD_VERSION}.50${BUILD_NUMBER}"}"			
 			        STAGING_DIR = "staging"
   	                        PUBLISH_PATH='"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1.1"'
                                 NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"		      
@@ -61,7 +61,7 @@ pipeline
 		      bat """ 
 				xcopy /Y  "C:\\Users\\jmsayan\\Desktop\\Test\\DataLoader\\*.*" "${WORKSPACE}\\subprojects\\DataLoader" 
 				cd ${WORKSPACE}\\Installers\\InstallSupportFiles
-				EditDataLoaderProj1261.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj 0${BUILD_NUMBER} 
+				EditDataLoaderProj1261.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj 50${BUILD_NUMBER} 
 			  """
 				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Security\\SingleSignOn\\SingleSignOn.sln /t:Build /p:Configuration=Release"
 				bat "${MSBUILD_PATH} ${WORKSPACE}\\subprojects\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework.sln /t:Build /p:Configuration=Release" 
