@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDAL.cs" />
     <Compile Include="ContainerDAL.cs" />
+    <Compile Include="IInventoryDBContext.cs" />
     <Compile Include="InventoryDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +73,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryDBContext.cs" />
+    <Compile Include="INV_COMPOUNDS.cs">
+      <DependentUpon>InventoryDB.tt</DependentUpon>
     </Compile>
     <Compile Include="INV_CONTAINERS.cs">
       <DependentUpon>InventoryDB.tt</DependentUpon>
@@ -91,6 +97,7 @@
       <DependentUpon>InventoryDB.tt</DependentUpon>
     </Compile>
     <Compile Include="LocationDAL.cs" />
+    <Compile Include="Mapper\CompoundMapper.cs" />
     <Compile Include="Mapper\ContainerMapper.cs" />
     <Compile Include="Mapper\LocationMapper.cs" />
     <Compile Include="Mapper\MapperBase.cs" />
@@ -108,6 +115,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory.API.Model\Inventory.Model.csproj">
+      <Project>{e93d6468-4687-4d4d-88ef-f49911b7884c}</Project>
+      <Name>Inventory.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="InventoryDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InventoryDB.edmx</DependentUpon>
@@ -118,15 +134,6 @@
       <DependentUpon>InventoryDB.edmx</DependentUpon>
       <LastGenOutput>InventoryDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Inventory.API.Model\Inventory.Model.csproj">
-      <Project>{e93d6468-4687-4d4d-88ef-f49911b7884c}</Project>
-      <Name>Inventory.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

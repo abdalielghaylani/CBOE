@@ -25,10 +25,11 @@ namespace PerkinElmer.COE.Inventory.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<INV_LOCATIONS> INV_LOCATIONS { get; set; }
-        public virtual DbSet<INV_CONTAINERS> INV_CONTAINERS { get; set; }
+        public virtual DbSet<INV_COMPOUNDS> INV_COMPOUNDS { get; set; }
         public virtual DbSet<INV_CONTAINER_STATUS> INV_CONTAINER_STATUS { get; set; }
         public virtual DbSet<INV_CONTAINER_TYPES> INV_CONTAINER_TYPES { get; set; }
+        public virtual DbSet<INV_CONTAINERS> INV_CONTAINERS { get; set; }
+        public virtual DbSet<INV_LOCATIONS> INV_LOCATIONS { get; set; }
         public virtual DbSet<INV_SUPPLIERS> INV_SUPPLIERS { get; set; }
         public virtual DbSet<INV_UNITS> INV_UNITS { get; set; }
     }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompoundData.cs" />
     <Compile Include="ContainerData.cs" />
     <Compile Include="LocationData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,7 +21,10 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class LocationController : InvApiController
     {
-        private LocationDAL _locationDAL;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected LocationDAL internalLocationDAL;
 
         /// <summary>
         /// DAL for locations
@@ -30,11 +33,28 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         {
             get
             {
-                if (_locationDAL == null) {
-                    _locationDAL = new LocationDAL();
+                if (internalLocationDAL == null)
+                {
+                    internalLocationDAL = new LocationDAL();
                 }
-                return _locationDAL;
+                return internalLocationDAL;
             }
+        }
+
+        /// <summary>
+        /// Constructor for LocationController
+        /// </summary>
+        public LocationController()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor for LocationController
+        /// </summary>
+        public LocationController(IInventoryDBContext context)
+        {
+            internalLocationDAL = new LocationDAL(context);
         }
 
         /// <summary>

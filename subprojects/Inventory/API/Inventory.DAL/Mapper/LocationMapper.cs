@@ -22,7 +22,11 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
             return new LocationData
             {
                 Id = element.LOCATION_ID,
-                Name = element.LOCATION_NAME
+                ParentId = element.PARENT_ID,
+                Name = element.LOCATION_NAME,
+                Description = element.LOCATION_DESCRIPTION,
+                Barcode = element.LOCATION_BARCODE,
+                // Type = element.LOCATION_TYPE_ID_FK
             };
         }
     }

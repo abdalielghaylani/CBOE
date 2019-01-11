@@ -103,14 +103,14 @@ namespace PerkinElmer.COE.Inventory.DAL
         public Nullable<short> LOCATION_TYPE_ID_FK { get; set; }
         public Nullable<decimal> BATCH_ID2_FK { get; set; }
         public Nullable<decimal> BATCH_ID3_FK { get; set; }
-    
+        public virtual INV_COMPOUNDS INV_COMPOUNDS { get; set; }
+        public virtual INV_CONTAINER_STATUS INV_CONTAINER_STATUS { get; set; }
+        public virtual INV_CONTAINER_TYPES INV_CONTAINER_TYPES { get; set; }
         public virtual INV_LOCATIONS INV_LOCATIONS { get; set; }
         public virtual INV_LOCATIONS INV_LOCATIONS1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS1 { get; set; }
         public virtual INV_CONTAINERS INV_CONTAINERS2 { get; set; }
-        public virtual INV_CONTAINER_STATUS INV_CONTAINER_STATUS { get; set; }
-        public virtual INV_CONTAINER_TYPES INV_CONTAINER_TYPES { get; set; }
         public virtual INV_SUPPLIERS INV_SUPPLIERS { get; set; }
         public virtual INV_UNITS INV_UNITS { get; set; }
         public virtual INV_UNITS INV_UNITS1 { get; set; }

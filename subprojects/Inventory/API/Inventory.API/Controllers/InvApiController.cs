@@ -14,33 +14,11 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
     /// </summary>
     public class InvApiController : ApiController
     {
-        private OracleConnection connection;
-
-        protected OracleConnection Connection
-        {
-            get
-            {
-                if (connection == null)
-                {
-                    connection = new OracleConnection(ConfigurationManager.ConnectionStrings["InvDB"].ConnectionString);
-                    connection.Open();
-                }
-                return connection;
-            }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (connection != null)
-                {
-                    connection.Dispose();
-                }
-            }
-            base.Dispose(disposing);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         protected HttpResponseMessage CreateErrorResponse(Exception ex)
         {
             var message = ex.Message;

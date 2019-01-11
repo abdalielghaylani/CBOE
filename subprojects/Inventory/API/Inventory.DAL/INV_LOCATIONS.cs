@@ -17,9 +17,9 @@ namespace PerkinElmer.COE.Inventory.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public INV_LOCATIONS()
         {
-            this.INV_LOCATIONS1 = new HashSet<INV_LOCATIONS>();
             this.INV_CONTAINERS = new HashSet<INV_CONTAINERS>();
             this.INV_CONTAINERS1 = new HashSet<INV_CONTAINERS>();
+            this.INV_LOCATIONS1 = new HashSet<INV_LOCATIONS>();
         }
     
         public int LOCATION_ID { get; set; }
@@ -40,11 +40,11 @@ namespace PerkinElmer.COE.Inventory.DAL
         public Nullable<byte> ISPUBLIC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INV_LOCATIONS> INV_LOCATIONS1 { get; set; }
-        public virtual INV_LOCATIONS INV_LOCATIONS2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INV_LOCATIONS> INV_LOCATIONS1 { get; set; }
+        public virtual INV_LOCATIONS INV_LOCATIONS2 { get; set; }
     }
 }

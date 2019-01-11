@@ -8,24 +8,27 @@ using PerkinElmer.COE.Inventory.DAL.Mapper;
 
 namespace PerkinElmer.COE.Inventory.DAL
 {
-    public class LocationDAL
+    public class LocationDAL : BaseDAL
     {
+
         MapperBase<INV_LOCATIONS, LocationData> locationMapper = new LocationMapper();
+
+        public LocationDAL()
+        {
+        }
+
+        public LocationDAL(IInventoryDBContext context) : base(context)
+        {
+        }
 
         public List<LocationData> GetLocations()
         {
-            using (InventoryDB invDB = new InventoryDB())
-            {
-                return locationMapper.Map(invDB.INV_LOCATIONS.ToList());
-            }
+            return locationMapper.Map(db.INV_LOCATIONS.ToList());
         }
 
         public LocationData GetLocation(int locationId)
         {
-            using (InventoryDB invDB = new InventoryDB())
-            {
-                return locationMapper.Map(invDB.INV_LOCATIONS.SingleOrDefault(l => l.LOCATION_ID == locationId));
-            }
+            return locationMapper.Map(db.INV_LOCATIONS.SingleOrDefault(l => l.LOCATION_ID == locationId));
         }
     }
 }

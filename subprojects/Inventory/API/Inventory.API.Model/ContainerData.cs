@@ -24,12 +24,6 @@ namespace PerkinElmer.COE.Inventory.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the location of the container.
-        /// </summary>
-        [JsonProperty(PropertyName = "Location")]
-        public string Location { get; set; }
-
-        /// <summary>
         /// Gets or sets the supplier of the container.
         /// </summary>
         [JsonProperty(PropertyName = "Supplier")]
@@ -72,9 +66,21 @@ namespace PerkinElmer.COE.Inventory.Model
         public decimal QuantityAvailable { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the unit
         /// </summary>
         [JsonProperty(PropertyName = "Unit")]
         public string Unit { get; set; }
+
+        /// <summary>
+        /// Gets or sets the compound
+        /// </summary>
+        [JsonProperty(PropertyName = "Compound")]
+        public CompoundData Compound { get; set; }
+
+        /// <summary>
+        /// Gets or sets the location
+        /// </summary>
+        [JsonProperty(PropertyName = "Location")]
+        public LocationData Location { get; set; }
     }
 }

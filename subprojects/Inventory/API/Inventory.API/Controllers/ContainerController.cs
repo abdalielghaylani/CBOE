@@ -21,23 +21,41 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class ContainerController : InvApiController
     {
-        private ContainerDAL _containerDAL;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ContainerDAL internalContainerDAL;
 
         /// <summary>
-        /// DAL for locations
+        /// DAL for containers
         /// </summary>
         protected ContainerDAL containerDAL
         {
             get
             {
-                if (_containerDAL == null)
+                if (internalContainerDAL == null)
                 {
-                    _containerDAL = new ContainerDAL();
+                    internalContainerDAL = new ContainerDAL();
                 }
-                return _containerDAL;
+                return internalContainerDAL;
             }
         }
-		
+
+        /// <summary>
+        /// Constructor for ContainerController
+        /// </summary>
+        public ContainerController()
+        {
+        }
+
+        /// <summary>
+        /// Constructor for ContainerController
+        /// </summary>
+        public ContainerController(IInventoryDBContext context)
+        {
+            internalContainerDAL = new ContainerDAL(context);
+        }
+
         /// <summary>
         /// Get container by internal id
         /// </summary>

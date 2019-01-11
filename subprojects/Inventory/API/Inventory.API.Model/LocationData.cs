@@ -15,7 +15,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the internal identifier of the parent location.
         /// </summary>
         [JsonProperty(PropertyName = "Parent ID")]
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the location.
@@ -34,5 +34,11 @@ namespace PerkinElmer.COE.Inventory.Model
         /// </summary>
         [JsonProperty(PropertyName = "Type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the barcode of the location.
+        /// </summary>
+        [JsonProperty(PropertyName = "Barcode")]
+        public string Barcode { get; set; }
     }
 }
