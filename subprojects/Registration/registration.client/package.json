@@ -12,6 +12,7 @@
     "node": "6"
   },
   "scripts": {
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production webpack",
     "clean": "rimraf dist/",
@@ -135,7 +136,8 @@
     "webpack-split-by-path": "^2.0.0",
     "x2js": "3.1.0",
     "xmldom": "^0.1.27",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "increase-memory-limit": "^1.0.6"
   },
   "dependencies": {
     "@angular/cli": "^7.1.4",
