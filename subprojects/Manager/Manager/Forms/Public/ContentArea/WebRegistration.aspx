@@ -6,8 +6,11 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript">
-        var isChrome = !!window.chrome && !!window.chrome.webstore;
-        if (!isChrome) {
+		function isIE() {
+			ua = navigator.userAgent;
+			return ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1; 
+		}
+        if (isIE()) {
             alert("Recommended to Use Google Chrome Browser For Accessing Web Registration.");
             window.location.href = "/Registration.Server";
         } else {
