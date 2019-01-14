@@ -43,7 +43,11 @@ var userListToolBarID;
      case "click": 
        // If we've just had a doubleclick then ignore it
        if (hadDoubleClick()) return false;
-         
+       
+       var selectBox = document.getElementById('<%= this.RoleListControl.ClientID %>');
+       if (!selectBox || selectBox.selectedIndex == -1) {
+         return false;
+       }       
        // Otherwise set timer to act.  It may be preempted by a doubleclick.
        savEvent = eventName;
        d = new Date();
