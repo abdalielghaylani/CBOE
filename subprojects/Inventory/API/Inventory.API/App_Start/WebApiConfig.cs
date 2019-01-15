@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.Http.Routing;
+using PerkinElmer.COE.Inventory.API.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace PerkinElmer.COE.Inventory.API
                 routeTemplate: "api/v{version:apiVersion}/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // config.Filters.Add(new ApiKeyAuthenticationFilter());
         }
     }
 }

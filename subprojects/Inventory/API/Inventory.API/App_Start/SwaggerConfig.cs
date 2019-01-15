@@ -19,6 +19,11 @@ namespace PerkinElmer.COE.Inventory.API
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
+            var project = "Inventory.API";
+            var path = "Scripts";
+            var file = "api-key-header-auth.js";
+            var javascriptResourceLocation = $"{project}.{path}.{file}";
+
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
@@ -65,11 +70,11 @@ namespace PerkinElmer.COE.Inventory.API
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
-                        //c.ApiKey("apiKey")
-                        //    .Description("API Key Authentication")
-                        //    .Name("apiKey")
-                        //    .In("header");
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        c.ApiKey("API Key")
+                            .Description("API Key Authentication")
+                            .Name("api-key")
+                            .In("header");
                         //
                         //c.OAuth2("oauth2")
                         //    .Description("OAuth2 Implicit Grant")
@@ -197,6 +202,7 @@ namespace PerkinElmer.COE.Inventory.API
                         // "Logical Name" is passed to the method as shown above.
                         //
                         //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
+                        c.InjectJavaScript(thisAssembly, javascriptResourceLocation);
 
                         // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
                         // strings as the possible choices. You can use this option to change these to something else,
@@ -249,7 +255,7 @@ namespace PerkinElmer.COE.Inventory.API
                         // If your API supports ApiKey, you can override the default values.
                         // "apiKeyIn" can either be "query" or "header"
                         //
-                        //c.EnableApiKeySupport("apiKey", "header");
+                        c.EnableApiKeySupport("api-key", "header");
                     });
         }
         private static string GetXmlCommentsPath()

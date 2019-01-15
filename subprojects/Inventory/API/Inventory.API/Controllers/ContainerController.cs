@@ -12,6 +12,7 @@ using PerkinElmer.COE.Inventory.API.Code;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL;
 using Swashbuckle.Swagger.Annotations;
+using PerkinElmer.COE.Inventory.API.Filters;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
@@ -62,6 +63,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <param name="id">Internal id</param>
         /// <returns>Container</returns>
         [HttpGet]
+        [ApiKeyAuthenticationFilter]
         [Route(Consts.apiPrefix + "containers/{id:int}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(200, type: typeof(ContainerData))]
@@ -73,7 +75,6 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             HttpResponseMessage responseMessage;
             try
             {
-                // TODO: Should check authentication and authorization
                 var statusCode = HttpStatusCode.OK;
 
                 ContainerData container = containerDAL.GetContainerById(id);
@@ -95,6 +96,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <param name="barcode">Barcode</param>
         /// <returns>Container</returns>
         [HttpGet]
+        [ApiKeyAuthenticationFilter]
         [Route(Consts.apiPrefix + "containers/barcode/{barcode}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(200, type: typeof(ContainerData))]

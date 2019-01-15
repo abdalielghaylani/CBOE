@@ -12,6 +12,7 @@ using PerkinElmer.COE.Inventory.API.Code;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL;
 using Swashbuckle.Swagger.Annotations;
+using PerkinElmer.COE.Inventory.API.Filters;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
@@ -62,6 +63,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// </summary>
         /// <returns>List of locations</returns>
         [HttpGet]
+        [ApiKeyAuthenticationFilter]
         [Route(Consts.apiPrefix + "locations")]
         [SwaggerOperation("Locations")]
         [SwaggerResponse(200, type: typeof(List<LocationData>))]
@@ -97,6 +99,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <param name="id">Location id</param>
         /// <returns>Location</returns>
         [HttpGet]
+        [ApiKeyAuthenticationFilter]
         [Route(Consts.apiPrefix + "locations/{id}")]
         [SwaggerOperation("Locations")]
         [SwaggerResponse(200, type: typeof(LocationData))]
