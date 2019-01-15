@@ -288,6 +288,7 @@
     <Compile Include="Target18.1.0\CBOE8160.cs" />
     <Compile Include="Target18.1.0\CBOE8211.cs" />
     <Compile Include="Target18.1.0\CBOE8242.cs" />
+    <Compile Include="Target18.1.1\CBOE8447.cs" />
     <Compile Include="Target18.1.1\CBOE8455.cs" />
     <Compile Include="Target18.1.1\CBOE8456.cs" />
     <Compile Include="Utilities\PatcherUtility.cs" />

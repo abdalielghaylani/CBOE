@@ -222,7 +222,7 @@ namespace CambridgeSoft.COE.Patcher
                             break;
                         case "18.1.0":                            
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\18.1.1.txt");
-                            break;                       
+                            break;                        
                     }
                 }
                 else
