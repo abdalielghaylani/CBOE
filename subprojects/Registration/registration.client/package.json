@@ -13,7 +13,7 @@
   },
   "scripts": {
     "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run fix-memory-limit",
     "build": "cross-env NODE_ENV=production webpack",
     "clean": "rimraf dist/",
     "cover": "istanbul report --include=**/chrome/coverage-final.json text text-summary",
