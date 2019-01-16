@@ -12,8 +12,7 @@
     "node": "6"
   },
   "scripts": {
-    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
-    "prebuild": "npm run clean && npm run fix-memory-limit",
+    "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production webpack",
     "clean": "rimraf dist/",
     "cover": "istanbul report --include=**/chrome/coverage-final.json text text-summary",
@@ -128,7 +127,7 @@
     "typed-immutable-record": "0.0.3",
     "typescript": "3.2.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.28.3",
+    "webpack": "^3.12.0",
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.14",
     "webpack-filter-warnings-plugin": "^1.2.1",
@@ -136,8 +135,7 @@
     "webpack-split-by-path": "^2.0.0",
     "x2js": "3.1.0",
     "xmldom": "^0.1.27",
-    "zone.js": "0.8.26",
-    "increase-memory-limit": "^1.0.6"
+    "zone.js": "0.8.26"
   },
   "dependencies": {
     "@angular/cli": "^7.1.4",

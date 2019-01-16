@@ -117,7 +117,7 @@ const baseConfig = {
 
   plugins: plugins,
 
-  optimization: {
+  /* optimization: {
     runtimeChunk: 'single', // enable "runtime" chunk
     splitChunks: {
       cacheGroups: {
@@ -139,7 +139,7 @@ const baseConfig = {
         },
       }),
     ],
-  },
+  }, */
 
   devServer: {
     historyApiFallback: {
