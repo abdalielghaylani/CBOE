@@ -282,10 +282,10 @@ namespace CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.User
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "CallConfirmBox", ConfirmBox, true);
                     }
                     SetControlsAttributes();
-                    FillValidationRulesList();
                     FillValidationRuleTypeDdl();
                     this.SetSelectedPropertyName = this.SelectedProperty.FriendlyName;
                     CheckDBToProceedForValidations(this.ConfigurationBO.SelectedPropertyList, (Property)SelectedProperty);
+                    FillValidationRulesList();
                 }
                  SetProgressModal();
                 _masterPage.SetDefaultAction(this.BtnSave.UniqueID);
@@ -619,7 +619,17 @@ namespace CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.User
                     {
                         // CBOE-1251, validation rules info having no parameters should be displayed
                         if (!string.IsNullOrEmpty(SelectedProperty.ValRuleList[i].DefaultValue))
-                            this.UltraWebTree_Rules.Nodes[i].Nodes.Add("Default: = " + SelectedProperty.ValRuleList[i].DefaultValue);
+                        {
+                            if (SelectedProperty.Type.ToUpperInvariant() == "PICKLISTDOMAIN" && this.DdlDefaultValue.SelectedItem != null)
+                            {
+                                this.DdlDefaultValue.SelectedValue = SelectedProperty.ValRuleList[i].DefaultValue;
+                                this.UltraWebTree_Rules.Nodes[i].Nodes.Add("Default: = " + this.DdlDefaultValue.SelectedItem.Text);
+                            }
+                            else
+                            {
+                                this.UltraWebTree_Rules.Nodes[i].Nodes.Add("Default: = " + SelectedProperty.ValRuleList[i].DefaultValue);
+                            }
+                        }
                         if (!string.IsNullOrEmpty(SelectedProperty.ValRuleList[i].Error))
                             this.UltraWebTree_Rules.Nodes[i].Nodes.Add("Error: = " + SelectedProperty.ValRuleList[i].Error);
                     }
@@ -974,8 +984,8 @@ namespace CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.User
                             // RAG : CBOE-1423,  Saves default value for type date, text
                             if (SelectedProperty.Type.ToUpperInvariant() == "DATE")
                                 ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.dateDefaultValue.Text;
-                            else if (SelectedProperty.Type.ToUpperInvariant() == "PICKLISTDOMAIN")
-                                ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.DdlDefaultValue.SelectedItem.Text;
+                            else if (SelectedProperty.Type.ToUpperInvariant() == "PICKLISTDOMAIN" && this.DdlDefaultValue.SelectedItem != null)
+                                ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.DdlDefaultValue.Text;
                             else
                                 ConfigurationBO.GetSelectedPropertyList[SelectedProperty.Name].DefaultValue = this.TxtDefaultValue.Text;
 
