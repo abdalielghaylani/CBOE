@@ -2216,6 +2216,11 @@ Sub LoadRegFieldsDict()
 			delmtr = "::on"
 			dictKey = RS("column_name")
 			dictValue = RS("comments")
+			dictValue = left(dictValue, len(dictValue)-len(delmtr))
+			if reg_fields_dict.Exists(dictKey) then
+				reg_fields_dict.Remove(dictValue)
+			end if
+			reg_fields_dict.Add dictKey, dictValue
 			
 		RS.MoveNext
 	Wend
