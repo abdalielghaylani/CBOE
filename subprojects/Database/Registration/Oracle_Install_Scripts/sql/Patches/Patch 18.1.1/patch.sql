@@ -21,6 +21,7 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --#########################################################
 --TABLES
 --######################################################### 
+alter table log add (run_seq number);
 
 update &&schemaName..coeobjectconfig
 set xml = replace(xml, 'Version=18.1.0.0','Version=18.1.1.0')
@@ -38,6 +39,7 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --#########################################################
 --SEQUENCES
 --#########################################################
+create Sequence run_for_log_seq;
 
 --#########################################################
 --INDEXES
@@ -74,7 +76,11 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --#########################################################
 --PACKAGES
 --#########################################################
-
+Connect &&schemaName/&&schemaPass@&&serverName
+set define off
+@"sql\Patches\Patch 18.1.1\Packages\pkg_CompoundRegistry_def.sql"
+@"sql\Patches\Patch 18.1.1\Packages\pkg_CompoundRegistry_body.sql"
+set define on
 --#########################################################
 --TRIGGERS
 --#########################################################
