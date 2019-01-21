@@ -518,7 +518,7 @@ end if
 <input TYPE="hidden" id="tempCsUserName" name="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
 <input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 
-<table border="0" width="675px">
+<table border="0" width="575px">
 	<tr>
 		<td colspan="2">
             <center>
@@ -712,7 +712,7 @@ end if
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right" width="420"> 
+		<td colspan="2" align="right"> 
 			<a HREF="#" onclick="opener.top.ListFrame.location.reload(); window.close();"><img src="/cheminv/graphics/sq_btn/cancel_dialog_btn.gif" border="0"></a>&nbsp;<a href="#" id="okLink" onclick="ValidateLocation(); return false;"><img id="okBtn" SRC="/cheminv/graphics/sq_btn/ok_dialog_btn.gif" border="0"></a>
 		</td>
 	</tr>
