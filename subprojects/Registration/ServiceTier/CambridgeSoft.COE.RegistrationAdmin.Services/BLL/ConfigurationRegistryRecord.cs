@@ -81,6 +81,7 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
         private string _propertyStatusLog = string.Empty;
         private string _selectedPropertyName = string.Empty;
         private string _defalutValueForProp = string.Empty;
+        private string _validationtype = string.Empty;
         private bool _saveDefaultValue = false;
         private bool _isConfigSavedSuccessfully = true;
 
@@ -153,6 +154,17 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
             this.DefalutValue = string.Empty;
         }
 
+        public string ValidationType
+        {
+            get
+            {
+                return _validationtype;
+            }
+            set
+            {
+                _validationtype = value;
+            }
+        }
         private string PropertyStatusLog
         {
             get
@@ -2666,7 +2678,7 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
 
                 if (!(PropertyStatusLog.Trim().Length > 0))
                 {
-                    PropertyStatusLog = this.RegDal.GetPropertyStatusInDB(proListType, propertyName);
+                    PropertyStatusLog = this.RegDal.GetPropertyStatusInDB(proListType, propertyName, this.ValidationType);
                     _checkPropertyStatusInDB.Add(propertyName, PropertyStatusLog);
                 }
 

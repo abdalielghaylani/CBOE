@@ -262,7 +262,7 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Access
         /// <param name="propertyListType">Property type Ex: Batch, Mixture, Compound</param>
         /// <param name="PropertyName">Property name or column name to which user is trying to add validations</param>
         /// <returns>A xml format log contains details of property or column with its table and datatype </returns>
-        public string GetPropertyStatusInDB(string propertyListType, string PropertyName)
+        public string GetPropertyStatusInDB(string propertyListType, string PropertyName, string ValidationType)
         {
             string errorLog = string.Empty;
             DbCommand dbCommand = DALManager.Database.GetStoredProcCommand("REGDB.ConfigurationCompoundRegistry.ValidateTables");
@@ -272,6 +272,7 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Access
 
                 dbCommand.Parameters.Add(new OracleParameter("APropertyListType", OracleDbType.Varchar2, propertyListType, ParameterDirection.Input));
                 dbCommand.Parameters.Add(new OracleParameter("AField", OracleDbType.Varchar2, PropertyName, ParameterDirection.Input));
+                dbCommand.Parameters.Add(new OracleParameter("AValidationType", OracleDbType.Varchar2, ValidationType, ParameterDirection.Input));
                 BeginTransaction();
                 DALManager.ExecuteNonQuery(dbCommand);
                 errorLog = ((OracleClob)dbCommand.Parameters["AErrorsLog"].Value).Value as string;

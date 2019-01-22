@@ -482,7 +482,7 @@ namespace CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.User
         {
             try
             {
-
+                this.ConfigurationBO.ValidationType = this.DdlType.SelectedItem.Text;
                 if (!ProceedToAddValidation)
                 {
                     divDefaultValue.Visible = true;

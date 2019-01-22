@@ -80,6 +80,8 @@ Connect &&schemaName/&&schemaPass@&&serverName
 set define off
 @"sql\Patches\Patch 18.1.1\Packages\pkg_CompoundRegistry_def.sql"
 @"sql\Patches\Patch 18.1.1\Packages\pkg_CompoundRegistry_body.sql"
+@"sql\Patches\Patch 18.1.1\Packages\pkg_ConfigurationCompoundRegistry_def.sql"
+@"sql\Patches\Patch 18.1.1\Packages\pkg_ConfigurationCompoundRegistry_body.sql"
 set define on
 --#########################################################
 --TRIGGERS
