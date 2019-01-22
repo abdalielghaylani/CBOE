@@ -67,15 +67,7 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 	
 	function CloseModal()
     {
-	<%if sOpenAsModalFrame = "true" then%>
-		if(typeof(parent.CloseModal) == 'function'){
-			parent.CloseModal(false);
-		}
-		else
-			window.close();
-	<%else%>
-		window.close();
-	<%end if%>
+	window.close();
     }
 
 	function ValidateBatch(){
