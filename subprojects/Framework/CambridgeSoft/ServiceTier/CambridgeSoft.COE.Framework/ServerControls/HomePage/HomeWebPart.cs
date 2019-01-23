@@ -279,11 +279,14 @@ namespace CambridgeSoft.COE.Framework.Controls.WebParts
                             {
                                 //if you are here then it means that value is neither true or false and thus shoudl be treated as an options list.
                                 _windowProps = _group.NewWindow;
-                            }                           
-                            _windowjs = "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
-                            _windowjs += ";event.returnValue = false; return false;";
-                            _hyperLink.NavigateUrl = "#";
-                            _hyperLink.Attributes.Add("onClick", _windowjs);                            
+                            }
+                            _windowjs = "if(event.which == 1){";                            
+                            _windowjs += "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
+                            _windowjs += ";event.returnValue = false; return false;}";
+                            //_hyperLink.NavigateUrl = "#";
+                            _hyperLink.Attributes.Add("onClick", _windowjs);
+                            _hyperLink.NavigateUrl = this.Page.ResolveUrl(linkData.URL);
+                            _hyperLink.Target = "_blank";
                         }
                         else
                         {
@@ -293,11 +296,14 @@ namespace CambridgeSoft.COE.Framework.Controls.WebParts
                                 if (_group.NewWindow.ToUpper() != "TRUE")
                                 {
                                     _windowProps = linkData.NewWindow;
-                                }                               
-                               _windowjs = "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
-                            _windowjs += ";event.returnValue = false; return false;";
-                            _hyperLink.NavigateUrl = "#";
-                            _hyperLink.Attributes.Add("onClick", _windowjs);                                
+                                }
+                                _windowjs = "if(event.which == 1){";
+                               _windowjs += "window.open('" + this.Page.ResolveUrl(linkData.URL) + "','" + group.Name + "','" + _windowProps + "')";
+                            _windowjs += ";event.returnValue = false; return false;}";
+                            //_hyperLink.NavigateUrl = "#";
+                            _hyperLink.Attributes.Add("onClick", _windowjs);
+                            _hyperLink.NavigateUrl = this.Page.ResolveUrl(linkData.URL);
+                            _hyperLink.Target = "_blank";
                             }
                             else
                                 _hyperLink.NavigateUrl = linkData.URL;
