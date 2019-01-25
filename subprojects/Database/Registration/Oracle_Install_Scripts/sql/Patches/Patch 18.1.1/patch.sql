@@ -21,6 +21,8 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --#########################################################
 --TABLES
 --######################################################### 
+@"sql\Patches\Patch 18.1.1\updateStatusID.sql"
+
 alter table log add (run_seq number);
 
 update &&schemaName..coeobjectconfig
