@@ -11,7 +11,9 @@
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": false,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "noImplicitReturns": true,
+    "allowUnusedLabels": false
   },
   "lib": [
     "dom",

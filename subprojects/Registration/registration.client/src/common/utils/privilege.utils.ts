@@ -129,6 +129,8 @@ export class PrivilegeUtils {
     if (isLoggedInUserSuperVisor) {
       return this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
+
+    return true;
   }
 
   /**
@@ -174,6 +176,8 @@ export class PrivilegeUtils {
     if (isLoggedInUserSuperVisor) {
       return this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
+
+    return true;
   }
 
   static hasEditRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
@@ -202,6 +206,8 @@ export class PrivilegeUtils {
     if (isLoggedInUserSuperVisor) {
       return this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
+
+    return true;
   }
 
   static hasRegisterPrivilege(userPrivileges: IAppPrivilege[]): boolean {

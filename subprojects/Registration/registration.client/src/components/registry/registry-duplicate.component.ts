@@ -118,6 +118,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
         return false;
       } else { return true; }
     }
+    return false;
   }
 
   loadData(e) {

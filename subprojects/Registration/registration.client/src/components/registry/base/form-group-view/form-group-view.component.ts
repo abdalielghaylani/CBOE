@@ -48,6 +48,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
       let result = validationEngine.validateGroup('vg');
       return result;
     }
+    return true;
   }
 
   private get inventoryContainersViewEnabled(): boolean {

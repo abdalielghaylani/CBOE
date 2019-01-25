@@ -86,6 +86,7 @@ export class RegBatchMover implements OnInit {
     });
     // Close popup
     this.formVisible = false;
+    return true;
   }
 }
 

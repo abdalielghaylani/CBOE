@@ -6,6 +6,7 @@ const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 /*
  * Dev Config
@@ -18,6 +19,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
  * Also, save compilation time by not adding [chunkhash]es to the filenames
  */
 const devConfig = {
+  mode: 'development',
   entry: {
     app: './src/index.ts',
     // polyfills: './src/polyfills.ts',
@@ -51,6 +53,7 @@ const devConfig = {
  * -with-webpack-1ecb139adb95
  */
 const prodConfig = {
+  mode: 'production',
   entry: {
     app: './src/index.ts',
     // keep polyfills
@@ -77,7 +80,7 @@ const prodConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[contenthash].js',
     publicPath: basePath,
     sourceMapFilename: '[name].[chunkhash].js.map',
     chunkFilename: '[id].chunk.js',
@@ -116,21 +119,36 @@ const baseConfig = {
   },
 
   plugins: plugins,
-
-  /* optimization: {
-    runtimeChunk: 'single', // enable "runtime" chunk
+  optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/](devextreme|devextreme-angular)[\\/]/,
           name: 'vendor',
           chunks: 'all',
         },
+        /* vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        }, */
       },
     },
     minimizer: [
       new UglifyJSPlugin({
         sourceMap: true,
+        cache: true,
+        parallel: true,
         uglifyOptions: {
           mangle: { keep_fnames: true },
           compress: {
@@ -138,9 +156,9 @@ const baseConfig = {
           },
         },
       }),
+      new OptimizeCSSAssetsPlugin({}),
     ],
-  }, */
-
+  },
   devServer: {
     historyApiFallback: {
       index: basePath,
@@ -164,7 +182,7 @@ const baseConfig = {
       loaders.woff,
       loaders.woff2,
       loaders.ttf,
-      // loaders.json,
+      loaders.json,
     ],
     noParse: [ /zone\.js\/dist\/.+/, /angular2\/bundles\/.+/ ],
   },

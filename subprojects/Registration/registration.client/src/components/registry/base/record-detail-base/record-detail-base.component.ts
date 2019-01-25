@@ -13,6 +13,7 @@ import { RegFormGroupView } from '../form-group-view';
 import { RegFormGroupItemBase } from '../form-group-item-base';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';
+import DevExpress from 'devextreme/bundles/dx.all';
 
 @Component({
   selector: 'reg-record-detail-base',
@@ -213,13 +214,13 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   validate(excludeStructureField?: boolean): boolean {
     let result = this.formGroupView.validate();
-    this.validationError.isValid = !result || result.isValid;
+    this.validationError.isValid = !result || (result as DevExpress.ui.dxValidationGroupResult).isValid;
     this.validationError.errorMessages = [];
 
     if (excludeStructureField) {
       // exclude structure field required validation for `Save as Template` feature.     
       let structureFieldValid: boolean = true;
-      result.brokenRules.forEach(element => {
+      (result as DevExpress.ui.dxValidationGroupResult). brokenRules.forEach(element => {
         let validationRule = element as any;
         if (validationRule.validator.errorMessage) {
           if (validationRule.validator.peer.viewModel.dataField === 'BaseFragmentStructure') {
@@ -231,7 +232,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
         }
       });
 
-      if (!structureFieldValid && result.brokenRules.length === 1 && this.validationError.errorMessages.length === 0) {
+      if (!structureFieldValid &&
+         (result as DevExpress.ui.dxValidationGroupResult).brokenRules.length === 1 && this.validationError.errorMessages.length === 0) {
         // if structure field is empty and there is no other field validation errors,
         // then skip stucture field validation and return true
         this.validationError.isValid = true;
@@ -239,7 +241,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
         return true;
       }
     } else {
-      result.brokenRules.forEach(element => {
+      (result as DevExpress.ui.dxValidationGroupResult).brokenRules.forEach(element => {
         let validationRule = element as any;
         if (validationRule.validator.errorMessage) {
           this.validationError.errorMessages.push(validationRule.validator.errorMessage);
@@ -247,7 +249,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       });
     }
     this.changeDetector.markForCheck();
-    return !result || result.isValid;
+    return !result || (result as DevExpress.ui.dxValidationGroupResult).isValid;
   }
 
   public save(type?: string): boolean {

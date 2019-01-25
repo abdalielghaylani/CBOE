@@ -52,6 +52,7 @@ exports.rawcss = {
 
 // Needed this since webpack was choking on json files within node_modules
 exports.json = {
+  type: 'javascript/auto',
   test: /\.json$/,
   loader: 'json-loader',
 };

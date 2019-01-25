@@ -1,9 +1,11 @@
 'use strict';
 
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const postcss = require('./postcss');
 
@@ -15,6 +17,8 @@ const sourceMap = process.env.TEST
   : [ ];
 
 const basePlugins = [
+  new CleanWebpackPlugin(['dist']),
+  new webpack.HashedModuleIdsPlugin(),
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
@@ -31,7 +35,6 @@ const basePlugins = [
     minify: false,
     chunksSortMode: 'dependency',
   }),
-  // new webpack.NoEmitOnErrorsPlugin(),
   new CopyWebpackPlugin([
     { from: 'src/assets', to: 'assets' },
   ]),
@@ -48,6 +51,12 @@ const basePlugins = [
   new FilterWarningsPlugin({
     exclude: /System.import/,
   }),
+  new MiniCssExtractPlugin({
+    // Options similar to the same options in webpackOptions.output
+    // both options are optional
+    filename: process.env.NODE_ENV === 'production' ?  '[name].[hash].css' : '[name].css',
+    chunkFilename: process.env.NODE_ENV === 'production' ?  '[id].[hash].css' : '[id].css',
+  }),
 ].concat(sourceMap);
 
 const devPlugins = [
@@ -56,43 +65,9 @@ const devPlugins = [
     files: 'src/**/*.css',
     failOnError: false,
   }),
-  /*
-  // since polyfills are in a non-imported entry file
-  new webpack.optimize.CommonsChunkPlugin({
-    name: ['polyfills'],
-  }),
-  // extract webpack bootstrap
-  new webpack.optimize.CommonsChunkPlugin({
-    minChunks: Infinity,
-    name: 'inline',
-    filename: 'inline.js',
-    sourceMapFilename: 'inline.map',
-  }),
-  */
 ];
 
 const prodPlugins = [
-  /* new webpack.optimize.CommonsChunkPlugin({
-    name: [
-      'vendor',
-      'polyfills',
-    ],
-  }),
-  // extract webpack bootstrap
-  new webpack.optimize.CommonsChunkPlugin({
-    minChunks: Infinity,
-    name: 'inline',
-    filename: 'inline.js',
-    sourceMapFilename: 'inline.map',
-  }),
-  
-  new webpack.optimize.UglifyJsPlugin({
-    mangle: { keep_fnames: true },
-    compress: {
-      warnings: false,
-    },
-  }),
-  */
 ];
 
 module.exports = basePlugins

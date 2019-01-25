@@ -140,6 +140,7 @@ export class RegistryEpics {
             if ((responseData.data) && (responseData.data.records)) {
               return RegistryActions.bulkRegisterRecordSuccessAction(responseData.data.records);
             }
+            return null;
           })
           .catch(error => of(RegistryActions.bulkRegisterRecordErrorAction(error)));
       });
