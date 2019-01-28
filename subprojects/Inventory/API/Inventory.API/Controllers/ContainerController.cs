@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Web.Http;
-using Oracle.DataAccess.Client;
 using PerkinElmer.COE.Inventory.API.Code;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL;
