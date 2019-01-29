@@ -425,7 +425,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 try
                 {
                     command = BulkDelete.Execute(markedHitList.ID, temp, string.Empty);
-                    if (command.Result)
+                    if (command.Result || command.FailedRecords.Length > 0)
                     {
                         if (command.FailedRecords.Length > 0)
                         {

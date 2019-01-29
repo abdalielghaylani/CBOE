@@ -2559,7 +2559,7 @@
     <value>The source and destination registrations are the same. Please specify a different destination registration.</value>
   </data>
   <data name="FollowingRecordsNotDeleted_Label_Text" xml:space="preserve">
-    <value>The following records were not deleted: {0}</value>
+    <value>The following records cannot be deleted: {0}</value>
   </data>
   <data name="NoRecordWasDeleted_Label_Text" xml:space="preserve">
     <value>No record was deleted.</value>
