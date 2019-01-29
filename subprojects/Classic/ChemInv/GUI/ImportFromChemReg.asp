@@ -67,6 +67,9 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 	
 	function CloseModal()
     {
+	if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+	window.parent.CloseModal();}
+	else
 	window.close();
     }
 
