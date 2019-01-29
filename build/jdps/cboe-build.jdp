@@ -144,7 +144,7 @@ pipeline
 				bat """
 				    set WORKSPACE_PATH_ROOT=${WORKSPACE}
 				    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${VERSION_STRING}" -z "CBVNBUILDNUMBER=${VERSION_STRING}" -z "CBVNFOLDERVERSION=18_1_1_500%BUILD_NUMBER%" -z "BUILDVERSION=18_1_1_500${BUILD_NUMBER}"
-				    MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
+				    MD "\\\\AMERCMBDEVFS01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\18.1.1\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
 				    xcopy /Y "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${PUBLISH_PATH}\\Dev\\server\\CBOEServerInstaller_${VERSION_STRING}"
 				    cd "${WORKSPACE}\\subprojects\\Registration\\registration.client"
 				    npm run test:ci
@@ -198,6 +198,13 @@ pipeline
 			}      
 			stage ('JIRA Updation')
 			{
+			 when 
+			    {
+                             expression
+			     {
+                                    return env.BRANCH_NAME.startsWith('release/v') || env.BRANCH_NAME == "master"
+                  }
+                  }
 				steps
 				{
 					script 

@@ -5381,8 +5381,8 @@ Set shell = Nothing
 		<col def="S255">ISReleaseFlags</col>
 		<col def="S72">DisplayName</col>
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
-		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>{DB4F7551-4CCF-4E51-A330-04C79483FFED}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemScript</td></row>
-		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{D324F12F-1C49-4A32-A6A1-40741CB72D72}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemOffice</td></row>
+		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.1.msi</td><td>{27DBCD9A-46A5-4F78-9751-4BECCF698DC0}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemScript</td></row>
+		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{58CD6304-94CB-4547-BA5E-39BA1CD6E9F8}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemOffice</td></row>
 	</table>
 
 	<table name="ISChainPackageData">
@@ -5393,7 +5393,7 @@ Set shell = Nothing
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
-		<row><td>Pkg3</td><td>_66BFBCECDB61D4C95D0550237A8B83EF</td><td>PerkinElmer_ChemScript_18.0.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.0.msi</td></row>
+		<row><td>Pkg3</td><td>_69E0E66C5389C57724EB6D1673E79E66</td><td>PerkinElmer_ChemScript_18.1.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.1.msi</td></row>
 		<row><td>Pkg4</td><td>_AEE8E3AB14D1579B20EB0E51F8BED7AD</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_Suite_2018.msi</td></row>
 	</table>
 
@@ -8012,7 +8012,7 @@ Set shell = Nothing
 		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Data1.cab</td></row>
 		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Setup.ini</td></row>
 		<row><td>SetupFile12</td><td>ChemDraw-JS-Setup-18.0.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\CDJS18.1\ChemDraw-JS-Setup-18.0.exe</td></row>
-		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.0.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.0.msi</td></row>
+		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td></row>
 		<row><td>SetupFile2</td><td>ScriptMaps.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ScriptMaps.vbs</td></row>
 		<row><td>SetupFile3</td><td>ssplogon.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ssplogon.exe</td></row>
 		<row><td>SetupFile4</td><td>usersetup.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\usersetup\usersetup.exe</td></row>
