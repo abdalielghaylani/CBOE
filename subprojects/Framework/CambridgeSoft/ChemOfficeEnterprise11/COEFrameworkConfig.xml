@@ -1243,9 +1243,9 @@
           <add name="Search" display="Search" tip="Search ChemACX" url="/chemacx/default.asp?formgroup=base_form_group&amp;dbname=chemacx&amp;dataaction=db" privilege="BROWSE_ACX||BUY_ACX" linkIconSize="small" linkIconBasePath="Icon_Library/windows_Collection/windows_png/PNG" linkIconFileName="search.png"/>
         </links>
       </add>
-      <add name="Databases" coeIdentifier="Databases" enabled="true" display="Chemical Databases" newWindow="true" color="darkBlue" helpText="Search content from CambridgeSoft and custom databases.">
+      <add name="Databases" coeIdentifier="Databases" enabled="true" display="Chemical Databases" newWindow="true" color="darkBlue" helpText="Search content from PerkinElmer and custom databases.">
         <links>
-          <add name="Databases" display="Search Databases" tip="Search CambridgeSoft and Custom Databases" privilege="" url="/chemoffice.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
+          <add name="Databases" display="Search Databases" tip="Search PerkinElmer and Custom Databases" privilege="" url="/chemoffice.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
         </links>
       </add>
       <add name="COE" coeIdentifier="COE" enabled="true" display="Security" newWindow="false" color="darkBlue" helpText="Manage access to applications including creation of users and roles.">
