@@ -842,7 +842,7 @@
 	End function
 	
 	Sub SaveConfig()
-	    Dim tmpVal, tmpVal2
+	    Dim tmpVal, tmpVal2, tmpValNewReg
 	    Dim secPwd
 	    Dim acxPwd
 	    Dim invPwd
@@ -983,16 +983,19 @@
 			if isInvInstalled then
 				SetAppIniValue "ChemInv", "invconfig.ini","APPLICATION", "INV_SERVER_NAME", COEHTTPHostName & currHttpPort      
 				tmpVal = "NULL"
+				tmpValNewReg = "NULL"
 				tmpVal2 = "False"
 				if document.all.chkInvACX.checked then
-					tmpVal = COEHTTPHostName & currHttpPort
+					tmpVal = COEHTTPHostName & currHttpPort					
 					tmpVal2 = "True"
 				End if
 				SetAppIniValue "ChemACX", "acxconfig.ini", "SHOPPINGCART", "EXPORT_TO_CHEMINV", "True"     		
 				SetAppIniValue "ChemInv", "invconfig.ini","CHEMACX","ACX_SERVER_NAME", tmpVal	
 				tmpVal = "NULL"
 				if document.all.chkInvReg.checked then tmpVal = COEHTTPHostName & currHttpPort
+				tmpValNewReg = COEHTTPHostName & currHttpPort & "/Registration.Server"
 				SetAppIniValue "ChemInv", "invconfig.ini","CHEMREG", "REG_SERVER_NAME", tmpVal
+				SetAppIniValue "ChemInv", "invconfig.ini","CHEMREG", "NEWREG_SERVER_URL", tmpValNewReg
 				'CSBR-159263: In case of inv-reg integration, take care to set USE_REGISTRATION_MAP to true
 				tmpVal = "False"
 				if document.all.chkInvReg.checked then tmpVal = "True"
