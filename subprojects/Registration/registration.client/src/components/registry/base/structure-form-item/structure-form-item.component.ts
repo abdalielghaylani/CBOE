@@ -34,11 +34,10 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     let mode = this.extractMode(value.DrawingType);
     this.structureData = undefined;
     if (value.Structure) {
-      if ((mode in DrawingType) && (mode !== DrawingType.Chemical)
-        && (typeof value.Structure.__text === 'undefined')) {
-        let title = value.DrawingType.__text === DrawingType.NoStructure.toString() ? 'No Structure'
-          : value.DrawingType.__text === DrawingType.Unknown.toString() ? 'Unknown Structure'
-            : value.DrawingType.__text === DrawingType.NonChemicalContent.toString() ? 'Non-Chemical Content' : undefined;
+      if (mode in DrawingType && mode !== DrawingType.Chemical) {
+        let title = value.DrawingType === DrawingType.NoStructure.toString() ? 'No Structure'
+          : value.DrawingType === DrawingType.Unknown.toString() ? 'Unknown Structure'
+          : value.DrawingType === DrawingType.NonChemicalContent.toString() ? 'Non-Chemical Content' : undefined;
         value.Structure.__text = this.titleCdxml.replace('{{title}}', title);
       }
       this.structureData = value;
