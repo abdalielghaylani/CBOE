@@ -30,6 +30,7 @@ namespace PerkinElmer.COE.Inventory.DAL
                 .Include(c => c.INV_UNITS)
                 .Include(c => c.INV_LOCATIONS)
                 .Include(c => c.INV_COMPOUNDS)
+                .Include(c => c.INV_LOCATION_TYPES)
                 .SingleOrDefault(c => c.CONTAINER_ID == containerId));
         }
 
@@ -42,6 +43,7 @@ namespace PerkinElmer.COE.Inventory.DAL
                 .Include(c => c.INV_UNITS)
                 .Include(c => c.INV_LOCATIONS)
                 .Include(c => c.INV_COMPOUNDS)
+                .Include(c => c.INV_LOCATION_TYPES)
                 .SingleOrDefault(c => c.BARCODE == barcode));
         }
     }

@@ -45,8 +45,9 @@ namespace PerkinElmer.COE.Inventory.DAL
         public Nullable<int> REG_ID_FK { get; set; }
         public Nullable<int> BATCH_NUMBER_FK { get; set; }
         public Nullable<int> CPD_INTERNAL_ID_FK { get; set; }
-        public Nullable<short> LOCATION_TYPE_ID_FK { get; set; }
+        public Nullable<int> LOCATION_TYPE_ID_FK { get; set; }
     
+        public virtual INV_LOCATION_TYPES INV_LOCATION_TYPES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS { get; set; }
     }

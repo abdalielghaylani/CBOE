@@ -43,6 +43,7 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS1 { get; set; }
+        public virtual INV_LOCATION_TYPES INV_LOCATION_TYPES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_LOCATIONS> INV_LOCATIONS1 { get; set; }
         public virtual INV_LOCATIONS INV_LOCATIONS2 { get; set; }

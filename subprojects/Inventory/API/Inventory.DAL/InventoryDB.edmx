@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="INV_COMPOUNDS">
           <Key>
             <PropertyRef Name="COMPOUND_ID" />
@@ -34,7 +34,7 @@
           <Property Name="REG_ID_FK" Type="number" Precision="9" Scale="0" />
           <Property Name="BATCH_NUMBER_FK" Type="number" Precision="9" Scale="0" />
           <Property Name="CPD_INTERNAL_ID_FK" Type="number" Precision="9" Scale="0" />
-          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="9" Scale="0" />
         </EntityType>
         <EntityType Name="INV_CONTAINER_STATUS">
           <Key>
@@ -135,9 +135,17 @@
           <Property Name="CREATOR" Type="varchar2" MaxLength="30" Nullable="false" />
           <Property Name="TIMESTAMP" Type="date" Nullable="false" />
           <Property Name="PRINCIPAL_ID_FK" Type="number" Precision="8" Scale="0" />
-          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="9" Scale="0" />
           <Property Name="BATCH_ID2_FK" Type="number" Precision="38" Scale="0" />
           <Property Name="BATCH_ID3_FK" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="INV_LOCATION_TYPES">
+          <Key>
+            <PropertyRef Name="LOCATION_TYPE_ID" />
+          </Key>
+          <Property Name="LOCATION_TYPE_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="LOCATION_TYPE_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="GRAPHIC_ID_FK" Type="number" Precision="4" Scale="0" />
         </EntityType>
         <EntityType Name="INV_LOCATIONS">
           <Key>
@@ -187,6 +195,18 @@
           <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
           <Property Name="SORTORDER" Type="number" Precision="38" Scale="0" />
         </EntityType>
+        <Association Name="INV_COMP_LOC_TYPES_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
+          <End Role="INV_COMPOUNDS" Type="Self.INV_COMPOUNDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_COMPOUNDS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="INV_CONT_COMPOUNDS_FK">
           <End Role="INV_COMPOUNDS" Type="Self.INV_COMPOUNDS" Multiplicity="0..1" />
           <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
@@ -321,6 +341,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INV_CONTAINERS_LOC_TYPE_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="INV_LOC_LOC_FK">
           <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -335,14 +367,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INV_LOC_LOC_TYPES_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="1" />
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="INV_COMPOUNDS" EntityType="Self.INV_COMPOUNDS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Self.INV_CONTAINER_STATUS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINER_TYPES" EntityType="Self.INV_CONTAINER_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINERS" EntityType="Self.INV_CONTAINERS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_LOCATION_TYPES" EntityType="Self.INV_LOCATION_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_SUPPLIERS" EntityType="Self.INV_SUPPLIERS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_UNITS" EntityType="Self.INV_UNITS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <AssociationSet Name="INV_COMP_LOC_TYPES_FK" Association="Self.INV_COMP_LOC_TYPES_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_COMPOUNDS" EntitySet="INV_COMPOUNDS" />
+          </AssociationSet>
           <AssociationSet Name="INV_CONT_COMPOUNDS_FK" Association="Self.INV_CONT_COMPOUNDS_FK">
             <End Role="INV_COMPOUNDS" EntitySet="INV_COMPOUNDS" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
@@ -387,9 +436,17 @@
             <End Role="INV_UNITS" EntitySet="INV_UNITS" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
           </AssociationSet>
+          <AssociationSet Name="INV_CONTAINERS_LOC_TYPE_FK" Association="Self.INV_CONTAINERS_LOC_TYPE_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
           <AssociationSet Name="INV_LOC_LOC_FK" Association="Self.INV_LOC_LOC_FK">
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
             <End Role="INV_LOCATIONS1" EntitySet="INV_LOCATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_LOC_LOC_TYPES_FK" Association="Self.INV_LOC_LOC_TYPES_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -426,7 +483,8 @@
           <Property Name="REG_ID_FK" Type="Int32" />
           <Property Name="BATCH_NUMBER_FK" Type="Int32" />
           <Property Name="CPD_INTERNAL_ID_FK" Type="Int32" />
-          <Property Name="LOCATION_TYPE_ID_FK" Type="Int16" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="Int32" />
+          <NavigationProperty Name="INV_LOCATION_TYPES" Relationship="Self.INV_COMP_LOC_TYPES_FK" FromRole="INV_COMPOUNDS" ToRole="INV_LOCATION_TYPES" />
           <NavigationProperty Name="INV_CONTAINERS" Relationship="Self.INV_CONT_COMPOUNDS_FK" FromRole="INV_COMPOUNDS" ToRole="INV_CONTAINERS" />
         </EntityType>
         <EntityType Name="INV_CONTAINER_STATUS">
@@ -530,7 +588,7 @@
           <Property Name="CREATOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" />
           <Property Name="PRINCIPAL_ID_FK" Type="Int32" />
-          <Property Name="LOCATION_TYPE_ID_FK" Type="Int16" />
+          <Property Name="LOCATION_TYPE_ID_FK" Type="Int32" />
           <Property Name="BATCH_ID2_FK" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="BATCH_ID3_FK" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="INV_COMPOUNDS" Relationship="Self.INV_CONT_COMPOUNDS_FK" FromRole="INV_CONTAINERS" ToRole="INV_COMPOUNDS" />
@@ -545,6 +603,18 @@
           <NavigationProperty Name="INV_UNITS1" Relationship="Self.INV_CONT_UNITOFMEAS_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
           <NavigationProperty Name="INV_UNITS2" Relationship="Self.INV_CONT_UNITOFPURITY_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
           <NavigationProperty Name="INV_UNITS3" Relationship="Self.INV_CONT_UNITOFWGHT_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
+          <NavigationProperty Name="INV_LOCATION_TYPES" Relationship="Self.INV_CONTAINERS_LOC_TYPE_FK" FromRole="INV_CONTAINERS" ToRole="INV_LOCATION_TYPES" />
+        </EntityType>
+        <EntityType Name="INV_LOCATION_TYPES">
+          <Key>
+            <PropertyRef Name="LOCATION_TYPE_ID" />
+          </Key>
+          <Property Name="LOCATION_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GRAPHIC_ID_FK" Type="Int16" />
+          <NavigationProperty Name="INV_COMPOUNDS" Relationship="Self.INV_COMP_LOC_TYPES_FK" FromRole="INV_LOCATION_TYPES" ToRole="INV_COMPOUNDS" />
+          <NavigationProperty Name="INV_CONTAINERS" Relationship="Self.INV_CONTAINERS_LOC_TYPE_FK" FromRole="INV_LOCATION_TYPES" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_LOCATIONS" Relationship="Self.INV_LOC_LOC_TYPES_FK" FromRole="INV_LOCATION_TYPES" ToRole="INV_LOCATIONS" />
         </EntityType>
         <EntityType Name="INV_LOCATIONS">
           <Key>
@@ -568,6 +638,7 @@
           <Property Name="ISPUBLIC" Type="Byte" />
           <NavigationProperty Name="INV_CONTAINERS" Relationship="Self.INV_CONT_DEFLOCATION_FK" FromRole="INV_LOCATIONS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS1" Relationship="Self.INV_CONT_LOCATIONS_FK" FromRole="INV_LOCATIONS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_LOCATION_TYPES" Relationship="Self.INV_LOC_LOC_TYPES_FK" FromRole="INV_LOCATIONS" ToRole="INV_LOCATION_TYPES" />
           <NavigationProperty Name="INV_LOCATIONS1" Relationship="Self.INV_LOC_LOC_FK" FromRole="INV_LOCATIONS" ToRole="INV_LOCATIONS1" />
           <NavigationProperty Name="INV_LOCATIONS2" Relationship="Self.INV_LOC_LOC_FK" FromRole="INV_LOCATIONS1" ToRole="INV_LOCATIONS" />
         </EntityType>
@@ -603,6 +674,18 @@
           <NavigationProperty Name="INV_CONTAINERS2" Relationship="Self.INV_CONT_UNITOFPURITY_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS3" Relationship="Self.INV_CONT_UNITOFWGHT_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
         </EntityType>
+        <Association Name="INV_COMP_LOC_TYPES_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
+          <End Role="INV_COMPOUNDS" Type="Self.INV_COMPOUNDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_COMPOUNDS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="INV_CONT_COMPOUNDS_FK">
           <End Role="INV_COMPOUNDS" Type="Self.INV_COMPOUNDS" Multiplicity="0..1" />
           <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
@@ -737,6 +820,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INV_CONTAINERS_LOC_TYPE_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
+          <End Role="INV_CONTAINERS" Type="Self.INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_LOC_LOC_TYPES_FK">
+          <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="1" />
+          <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_LOCATION_TYPES">
+              <PropertyRef Name="LOCATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_LOCATIONS">
+              <PropertyRef Name="LOCATION_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="INV_LOC_LOC_FK">
           <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -756,9 +863,14 @@
           <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Self.INV_CONTAINER_STATUS" />
           <EntitySet Name="INV_CONTAINER_TYPES" EntityType="Self.INV_CONTAINER_TYPES" />
           <EntitySet Name="INV_CONTAINERS" EntityType="Self.INV_CONTAINERS" />
+          <EntitySet Name="INV_LOCATION_TYPES" EntityType="Self.INV_LOCATION_TYPES" />
           <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" />
           <EntitySet Name="INV_SUPPLIERS" EntityType="Self.INV_SUPPLIERS" />
           <EntitySet Name="INV_UNITS" EntityType="Self.INV_UNITS" />
+          <AssociationSet Name="INV_COMP_LOC_TYPES_FK" Association="Self.INV_COMP_LOC_TYPES_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_COMPOUNDS" EntitySet="INV_COMPOUNDS" />
+          </AssociationSet>
           <AssociationSet Name="INV_CONT_COMPOUNDS_FK" Association="Self.INV_CONT_COMPOUNDS_FK">
             <End Role="INV_COMPOUNDS" EntitySet="INV_COMPOUNDS" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
@@ -802,6 +914,14 @@
           <AssociationSet Name="INV_CONT_UNITOFWGHT_FK" Association="Self.INV_CONT_UNITOFWGHT_FK">
             <End Role="INV_UNITS" EntitySet="INV_UNITS" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CONTAINERS_LOC_TYPE_FK" Association="Self.INV_CONTAINERS_LOC_TYPE_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_LOC_LOC_TYPES_FK" Association="Self.INV_LOC_LOC_TYPES_FK">
+            <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
+            <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
           </AssociationSet>
           <AssociationSet Name="INV_LOC_LOC_FK" Association="Self.INV_LOC_LOC_FK">
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
@@ -949,6 +1069,15 @@
                 <ScalarProperty Name="LOCATION_TYPE_ID_FK" ColumnName="LOCATION_TYPE_ID_FK" />
                 <ScalarProperty Name="BATCH_ID2_FK" ColumnName="BATCH_ID2_FK" />
                 <ScalarProperty Name="BATCH_ID3_FK" ColumnName="BATCH_ID3_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_LOCATION_TYPES">
+            <EntityTypeMapping TypeName="Model.INV_LOCATION_TYPES">
+              <MappingFragment StoreEntitySet="INV_LOCATION_TYPES">
+                <ScalarProperty Name="LOCATION_TYPE_ID" ColumnName="LOCATION_TYPE_ID" />
+                <ScalarProperty Name="LOCATION_TYPE_NAME" ColumnName="LOCATION_TYPE_NAME" />
+                <ScalarProperty Name="GRAPHIC_ID_FK" ColumnName="GRAPHIC_ID_FK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

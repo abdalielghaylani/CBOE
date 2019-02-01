@@ -100,9 +100,10 @@ namespace PerkinElmer.COE.Inventory.DAL
         public string CREATOR { get; set; }
         public System.DateTime TIMESTAMP { get; set; }
         public Nullable<int> PRINCIPAL_ID_FK { get; set; }
-        public Nullable<short> LOCATION_TYPE_ID_FK { get; set; }
+        public Nullable<int> LOCATION_TYPE_ID_FK { get; set; }
         public Nullable<decimal> BATCH_ID2_FK { get; set; }
         public Nullable<decimal> BATCH_ID3_FK { get; set; }
+    
         public virtual INV_COMPOUNDS INV_COMPOUNDS { get; set; }
         public virtual INV_CONTAINER_STATUS INV_CONTAINER_STATUS { get; set; }
         public virtual INV_CONTAINER_TYPES INV_CONTAINER_TYPES { get; set; }
@@ -116,5 +117,6 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual INV_UNITS INV_UNITS1 { get; set; }
         public virtual INV_UNITS INV_UNITS2 { get; set; }
         public virtual INV_UNITS INV_UNITS3 { get; set; }
+        public virtual INV_LOCATION_TYPES INV_LOCATION_TYPES { get; set; }
     }
 }

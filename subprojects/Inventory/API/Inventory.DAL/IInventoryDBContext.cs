@@ -16,5 +16,6 @@ namespace PerkinElmer.COE.Inventory.DAL
         DbSet<INV_CONTAINER_TYPES> INV_CONTAINER_TYPES { get; set; }
         DbSet<INV_SUPPLIERS> INV_SUPPLIERS { get; set; }
         DbSet<INV_UNITS> INV_UNITS { get; set; }
+        DbSet<INV_LOCATION_TYPES> INV_LOCATION_TYPES { get; set; }
     }
 }

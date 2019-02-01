@@ -20,6 +20,7 @@ namespace PerkinElmer.COE.Inventory.API.Tests
             this.INV_SUPPLIERS = new TestDbSet<INV_SUPPLIERS>();
             this.INV_UNITS = new TestDbSet<INV_UNITS>();
             this.INV_COMPOUNDS = new TestDbSet<INV_COMPOUNDS>();
+            this.INV_LOCATION_TYPES = new TestDbSet<INV_LOCATION_TYPES>();
         }
 
         public DbSet<INV_COMPOUNDS> INV_COMPOUNDS { get; set; }
@@ -29,6 +30,7 @@ namespace PerkinElmer.COE.Inventory.API.Tests
         public DbSet<INV_CONTAINER_TYPES> INV_CONTAINER_TYPES { get; set; }
         public DbSet<INV_SUPPLIERS> INV_SUPPLIERS { get; set; }
         public DbSet<INV_UNITS> INV_UNITS { get; set; }
+        public DbSet<INV_LOCATION_TYPES> INV_LOCATION_TYPES { get; set; }
 
         public void Dispose()
         {

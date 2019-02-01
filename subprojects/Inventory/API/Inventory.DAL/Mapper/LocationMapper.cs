@@ -26,7 +26,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Name = element.LOCATION_NAME,
                 Description = element.LOCATION_DESCRIPTION,
                 Barcode = element.LOCATION_BARCODE,
-                // Type = element.LOCATION_TYPE_ID_FK
+                Type = (element.INV_LOCATION_TYPES != null) ? element.INV_LOCATION_TYPES.LOCATION_TYPE_NAME : string.Empty,
             };
         }
     }

@@ -4,14 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4b7852b4e3304b4080bf3f72df39ee11" Name="Diagram1">
+      <Diagram DiagramId="64c6674a24944b34a5cc0650c75b2b45" Name="Diagram1">
         <EntityTypeShape EntityType="Model.INV_COMPOUNDS" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INV_CONTAINER_STATUS" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INV_CONTAINER_TYPES" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_CONTAINER_STATUS" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_CONTAINER_TYPES" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.INV_CONTAINERS" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INV_LOCATIONS" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INV_SUPPLIERS" Width="1.5" PointX="0.75" PointY="27.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.INV_UNITS" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_LOCATION_TYPES" Width="1.5" PointX="1.5" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_LOCATIONS" Width="1.5" PointX="0.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_SUPPLIERS" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INV_UNITS" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="Model.INV_COMP_LOC_TYPES_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_CONT_COMPOUNDS_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_CONT_CONT_STATUS_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_CONT_CONT_TYPES_FK" ManuallyRouted="false" />
@@ -23,6 +25,8 @@
         <AssociationConnector Association="Model.INV_CONT_UNITOFMEAS_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_CONT_UNITOFPURITY_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_CONT_UNITOFWGHT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.INV_CONTAINERS_LOC_TYPE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.INV_LOC_LOC_TYPES_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_LOC_LOC_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
