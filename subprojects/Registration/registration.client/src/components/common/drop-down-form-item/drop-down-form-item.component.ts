@@ -111,6 +111,9 @@ export class RegDropDownFormItem extends RegBaseFormItem {
             isDefaultValueSet = true;
           }
         }
+      } else if (!options.value) {
+        options.value = options.defaultValue;
+        isDefaultValueSet = true;
       }
     }
 
