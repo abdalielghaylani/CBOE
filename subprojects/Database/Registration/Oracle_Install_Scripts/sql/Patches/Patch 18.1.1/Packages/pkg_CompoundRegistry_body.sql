@@ -2026,9 +2026,9 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
       SELECT RegNumber
       FROM VW_RegistryNumber RN,VW_Mixture M,VW_Mixture_Component MC
       WHERE RN.RegID=M.RegID AND M.MixtureID=MC.MixtureID AND MC.CompoundID=ACoumpoundID
-	  --CBOE-8400
+	  --CBOE-8421
       and not exists (select 1 from VW_REGISTRYNUMBER  rn where M.RegID=rn.regid and regnumber = AREGNumber)
-	  --CBOE-8400.End
+	  --CBOE-8421.End
       ORDER BY MC.CompoundID;
     cursor C_REGNUMBERSONLYSINGLEREGISTRY(ACOUMPOUNDID in VW_COMPOUND.COMPOUNDID%type) is
       select REGNUMBER
@@ -2211,7 +2211,7 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
 
 
         IF LResultXML IS NOT NULL THEN  --Save in VW_Duplciated
-            $if CompoundRegistry.Debuging $then InsertLog('VerifyAndAddDuplicateToSave','1?LResultXML->'||LResultXML); $end null;
+            $if CompoundRegistry.Debuging $then InsertLog('VerifyAndAddDuplicateToSave','1LResultXML->'||LResultXML); $end null;
             $if CompoundRegistry.Debuging $then InsertLog('VerifyAndAddDuplicateToSave','LResult->'||LResult); $end null;
 
             IF LXMLRegNumberDuplicated IS NOT NULL THEN
@@ -6421,7 +6421,7 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
                   ,'/MultiCompoundRegistryRecord/BatchList/Batch/BatchComponentList/BatchComponent[ComponentIndex='||LExistentComponentIndex||']/BatchComponentFragmentList'
                 ) INTO LXMLFragmentEquivalent FROM dual;
 
-                LDuplicatedStructures:=ValidateCompoundMulti(LStructureValue,LStructureIDToValidate, AConfigurationID, LXMLCompound,LXMLFragmentEquivalent);
+                LDuplicatedStructures:=ValidateCompoundMulti(LStructureValue,LStructureIDToValidate, AConfigurationID, LXMLCompound,LXMLFragmentEquivalent, LRegNumber);
 
                 IF LDuplicatedStructures IS NOT NULL AND LDuplicatedStructures<>'<REGISTRYLIST></REGISTRYLIST>'THEN
                   SELECT extractValue(LXMLCompound,'/Component/Compound/CompoundID')
