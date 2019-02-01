@@ -84,7 +84,7 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.QuantityAvailable, content.QuantityAvailable);
             Assert.AreEqual(containerTest.Supplier, content.Supplier);
             Assert.AreEqual(containerTest.CurrentUser, content.CurrentUser);
-            Assert.AreEqual(containerTest.Unit, content.Unit);
+            Assert.AreEqual(containerTest.UnitOfMeasure, content.UnitOfMeasure);
             Assert.AreEqual(containerTest.DateCreated, content.DateCreated);
             Assert.AreEqual(containerTest.Status, content.Status);
             Assert.AreEqual(containerTest.Compound.CompoundId, content.Compound.CompoundId);
@@ -144,7 +144,7 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.QuantityAvailable, content.QuantityAvailable);
             Assert.AreEqual(containerTest.Supplier, content.Supplier);
             Assert.AreEqual(containerTest.CurrentUser, content.CurrentUser);
-            Assert.AreEqual(containerTest.Unit, content.Unit);
+            Assert.AreEqual(containerTest.UnitOfMeasure, content.UnitOfMeasure);
             Assert.AreEqual(containerTest.DateCreated, content.DateCreated);
             Assert.AreEqual(containerTest.Status, content.Status);
             Assert.AreEqual(containerTest.Compound.CompoundId, content.Compound.CompoundId);

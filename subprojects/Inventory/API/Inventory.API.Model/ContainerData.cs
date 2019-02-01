@@ -42,6 +42,18 @@ namespace PerkinElmer.COE.Inventory.Model
         public decimal ContainerSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the qualtity available.
+        /// </summary>
+        [JsonProperty(PropertyName = "Quantity Available")]
+        public decimal QuantityAvailable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Unit Of Measure
+        /// </summary>
+        [JsonProperty(PropertyName = "UnitOfMeasure")]
+        public string UnitOfMeasure { get; set; }
+
+        /// <summary>
         /// Gets or sets the date created.
         /// </summary>
         [JsonProperty(PropertyName = "Date Created")]
@@ -57,19 +69,37 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the status of the container.
         /// </summary>
         [JsonProperty(PropertyName = "Status")]
-        public string Status { get; set; }
+        public string Status { get; set; }        
 
         /// <summary>
-        /// Gets or sets the qualtity available.
+        /// Gets or sets the concentration
         /// </summary>
-        [JsonProperty(PropertyName = "Quantity Available")]
-        public decimal QuantityAvailable { get; set; }
+        [JsonProperty(PropertyName = "Concentration")]
+        public decimal? Concentration { get; set; }
 
         /// <summary>
-        /// Gets or sets the unit
+        /// Gets or sets the Unit Of Concentration
         /// </summary>
-        [JsonProperty(PropertyName = "Unit")]
-        public string Unit { get; set; }
+        [JsonProperty(PropertyName = "UnitOfConcentration")]
+        public string UnitOfConcentration { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Unit Of Weight
+        /// </summary>
+        [JsonProperty(PropertyName = "UnitOfWeight")]
+        public string UnitOfWeight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Purity
+        /// </summary>
+        [JsonProperty(PropertyName = "Purity")]
+        public decimal? Purity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Unit Of Purity
+        /// </summary>
+        [JsonProperty(PropertyName = "UnitOfPurity")]
+        public string UnitOfPurity { get; set; }
 
         /// <summary>
         /// Gets or sets the compound
