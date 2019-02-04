@@ -94,7 +94,6 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.Compound.SubstanceName, content.Compound.SubstanceName);
             Assert.AreEqual(containerTest.Compound.Base64Cdx, content.Compound.Base64Cdx);
             Assert.AreEqual(containerTest.Compound.MolecularWeight, content.Compound.MolecularWeight);
-            Assert.AreEqual(containerTest.Compound.Density, content.Compound.Density);
             Assert.AreEqual(containerTest.Location.Id, content.Location.Id);
             Assert.AreEqual(containerTest.Location.ParentId, content.Location.ParentId);
             Assert.AreEqual(containerTest.Location.Name, content.Location.Name);
@@ -154,7 +153,6 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.Compound.SubstanceName, content.Compound.SubstanceName);
             Assert.AreEqual(containerTest.Compound.Base64Cdx, content.Compound.Base64Cdx);
             Assert.AreEqual(containerTest.Compound.MolecularWeight, content.Compound.MolecularWeight);
-            Assert.AreEqual(containerTest.Compound.Density, content.Compound.Density);
             Assert.AreEqual(containerTest.Location.Id, content.Location.Id);
             Assert.AreEqual(containerTest.Location.ParentId, content.Location.ParentId);
             Assert.AreEqual(containerTest.Location.Name, content.Location.Name);

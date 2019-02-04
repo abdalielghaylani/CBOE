@@ -35,6 +35,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Purity = element.PURITY,
                 UnitOfPurity = (element.INV_UNITS2 != null) ? element.INV_UNITS2.UNIT_ABREVIATION : string.Empty,
                 UnitOfWeight = (element.INV_UNITS3 != null) ? element.INV_UNITS3.UNIT_ABREVIATION : string.Empty,
+                Density = element.DENSITY,
                 DateCreated = element.DATE_CREATED,
                 Status = (element.INV_CONTAINER_STATUS != null) ? element.INV_CONTAINER_STATUS.CONTAINER_STATUS_NAME : string.Empty,
                 Compound = new CompoundMapper().Map(element.INV_COMPOUNDS),

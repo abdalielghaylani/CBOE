@@ -28,7 +28,6 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 SubstanceName = element.SUBSTANCE_NAME,
                 Base64Cdx = element.BASE64_CDX,
                 MolecularWeight = element.MOLECULAR_WEIGHT,
-                Density = element.DENSITY
             };
         }
     }
