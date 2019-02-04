@@ -39,7 +39,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 DateCreated = element.DATE_CREATED,
                 Status = (element.INV_CONTAINER_STATUS != null) ? element.INV_CONTAINER_STATUS.CONTAINER_STATUS_NAME : string.Empty,
                 Compound = new CompoundMapper().Map(element.INV_COMPOUNDS),
-                Location = new LocationMapper().Map(element.INV_LOCATIONS)
+                Location = new LocationMapper().Map(element.INV_LOCATIONS1)
             };
         }
     }
