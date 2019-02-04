@@ -8,7 +8,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// <summary>
         /// Gets or sets the internal identifier of the container.
         /// </summary>
-        [JsonProperty(PropertyName = "Container ID")]
+        [JsonProperty(PropertyName = "ContainerId")]
         public int ContainerId { get; set; }
 
         /// <summary>
@@ -32,20 +32,20 @@ namespace PerkinElmer.COE.Inventory.Model
         /// <summary>
         /// Gets or sets the current user.
         /// </summary>
-        [JsonProperty(PropertyName = "Current User")]
+        [JsonProperty(PropertyName = "CurrentUser")]
         public string CurrentUser { get; set; }
 
         /// <summary>
         /// Gets or sets the size of the container.
         /// </summary>
-        [JsonProperty(PropertyName = "Container Size")]
+        [JsonProperty(PropertyName = "ContainerSize")]
         public decimal ContainerSize { get; set; }
 
         /// <summary>
         /// Gets or sets the qualtity available.
         /// </summary>
-        [JsonProperty(PropertyName = "Quantity Available")]
-        public decimal QuantityAvailable { get; set; }
+        [JsonProperty(PropertyName = "QuantityAvailable")]
+        public decimal? QuantityAvailable { get; set; }
 
         /// <summary>
         /// Gets or sets the Unit Of Measure
@@ -56,13 +56,13 @@ namespace PerkinElmer.COE.Inventory.Model
         /// <summary>
         /// Gets or sets the date created.
         /// </summary>
-        [JsonProperty(PropertyName = "Date Created")]
+        [JsonProperty(PropertyName = "DateCreated")]
         public DateTime DateCreated { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the container.
         /// </summary>
-        [JsonProperty(PropertyName = "Container Type")]
+        [JsonProperty(PropertyName = "ContainerType")]
         public string Type { get; set; }
 
         /// <summary>

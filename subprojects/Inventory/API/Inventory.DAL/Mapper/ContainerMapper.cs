@@ -26,7 +26,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Name = element.CONTAINER_NAME,
                 Type = (element.INV_CONTAINER_TYPES != null) ? element.INV_CONTAINER_TYPES.CONTAINER_TYPE_NAME : string.Empty,
                 ContainerSize = element.QTY_MAX,
-                QuantityAvailable = element.QTY_REMAINING,
+                QuantityAvailable = element.QTY_AVAILABLE,
                 Concentration = element.CONCENTRATION,
                 Supplier = (element.INV_SUPPLIERS != null) ? element.INV_SUPPLIERS.SUPPLIER_NAME : string.Empty,
                 CurrentUser = element.CURRENT_USER_ID_FK,
