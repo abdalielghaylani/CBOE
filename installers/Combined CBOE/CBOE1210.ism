@@ -3222,154 +3222,72 @@ shell.run "cscript RegSvr32AS.vbs " &amp; uName &amp; " " &amp; password&amp; " 
 'shell.run("%comspec% /c InstallServices.bat"),Hidden,True
 Set shell = Nothing </td><td/><td/></row>
 		<row><td>RemoveChemDraw</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,CDVersion
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
-
-
-
 strComputer="."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
+CDVersion = "PerkinElmer ChemDraw ActiveX Enterprise Constant NA 18.0"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys 
-
 strValue1=""
-
 For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-        If strValue1 = "CambridgeSoft ChemDraw ActiveX Enterprise Constant NA 12.0" then
-        
-        
+        If strValue1 = CDVersion  then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-
-	If GUID&lt;&gt;"" then
-     	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-                     Sleep(30000000)   
-                 Exit For
-	End If
-      End If
+			   If GUID&lt;&gt;"" then
+					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
+                    Sleep(30000000)   
+               Exit For
+	           End If
+        End If
 Next
-
-strComputer="."
-strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
+strValue1=""
+strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys 
-
-strValue1=""
 For Each strSubkey In arrSubkeys
-  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-        If strValue1 = "CambridgeSoft Activation Client" then
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)
-	If GUID&lt;&gt;"" then
-     	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(300000)
-                 Exit For
-	End If
-      End If
-
- Next
-
-
-strValue1=""
-
-strValue1=""
-
-strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
- strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
- objReg.EnumKey HKLM, strKey, arrSubkeys 
-
-For Each strSubkey In arrSubkeys
-  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-       If strValue1 = "CambridgeSoft ChemDraw ActiveX Enterprise Constant NA 12.0" then
-   	 strEntry1b = "UninstallString"
+     objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
+     Set WSHShell = CreateObject("WScript.Shell")
+     If strValue1 = CDVersion then
+		 strEntry1b = "UninstallString"
        	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
+		 GUID = ""
+         objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
+         GUID =  Mid(str, instr(str, "{"), 38)
+         If GUID&lt;&gt;"" then
       	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
             Sleep(30000000)
-	    Exit For
-           End If
+	     Exit For
+         End If
      End If
-
 Next
-
-
-strValue1=""
-
-strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
- strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
- objReg.EnumKey HKLM, strKey, arrSubkeys 
-
-For Each strSubkey In arrSubkeys
-  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-       If strValue1 = "CambridgeSoft Activation Client" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-	    Exit For
-           End If
-     End If
-
-Next
-
 'Deleting the already exisiting key with CambridgeSoft 
-
 const HKEY_LOCAL_MACHINE = &amp;H80000002
 strComputer = "."
- 
 Set oReg=GetObject("winmgmts:{impersonationLevel=impersonate}!\\" &amp;_ 
 strComputer &amp; "\root\default:StdRegProv")
- 
 strKeyPath = "SOFTWARE\Wow6432Node\CambridgeSoft\FrameworkWebApp"
- 
 oReg.DeleteKey HKEY_LOCAL_MACHINE, strKeyPath
-
-  
 strKeyPath = "SOFTWARE\CambridgeSoft\FrameworkWebApp"
- 
 oReg.DeleteKey HKEY_LOCAL_MACHINE, strKeyPath
-
 'Delete the already exisitng website cboehelp
-
-
-
 Set objWebServer = GetObject("IIS://localhost/W3SVC/1/Root")
-
 Set objVirtualDir = objWebServer.Delete("IISWebVirtualDir", "CBOEHelp")
 
 
 
 </td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>38</td><td/><td>On error resume next
-
-
 Dim strK ,strorVal,dteWait
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
@@ -3380,168 +3298,43 @@ strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys   
  For Each strSubkey In arrSubkeys
- 
         objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-       
-        If strValue1 = "PerkinElmer ChemOffice Professional 2017" then
-        
+        If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018")) then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-
-	If GUID&lt;&gt;"" then
-     	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(3000000)
-                 Exit For
-	End If
-      End If
-      
-      
-        If strValue1 = "CambridgeSoft ChemBioOffice 2014" then
-        
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)
-
-	If GUID&lt;&gt;"" then
-     	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(3000000)
-                 Exit For
-	End If
-      End If
- Next
-
+			   If GUID&lt;&gt;"" then
+					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
+					Sleep(3000000)
+               Exit For
+			   End If
+		End If
+ Next 
 strValue1=""
-
-strComputer="."
-strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
+strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
-objReg.EnumKey HKLM, strKey, arrSubkeys 
-
-
+objReg.EnumKey HKLM, strKey, arrSubkeys   
 For Each strSubkey In arrSubkeys
-  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-       
-        If strValue1 = "PerkinElmer ChemOffice Professional 2017" then
-        
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)
-
-	If GUID&lt;&gt;"" then
-     	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-                 Exit For
-	End If
-      End If
-      
-        
-     If strValue1 = "PerkinElmer ChemOffice Professional 2015" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
+      objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
+      Set WSHShell = CreateObject("WScript.Shell")
+      If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018") Or (strValue1 = "CambridgeSoft ChemDraw Ultra 12.0")) then
+			strEntry1b = "UninstallString"
+			RawGUID = ""
+			GUID = ""
         	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-	   Exit For
-           End If
-     End If
-      
-Next
-
-
-strValue1=""
-
-
-
- strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
- strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
- objReg.EnumKey HKLM, strKey, arrSubkeys   
- For Each strSubkey In arrSubkeys
-        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-       If strValue1 = "PerkinElmer ChemOffice Professional 2017" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-	   Exit For
-           End If
-     End If
-  If strValue1 = "CambridgeSoft ChemBioOffice 2014" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-	   Exit For
-           End If
-     End If
-     
-     If strValue1 = "PerkinElmer ChemOffice Professional 2015" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000000)
-	   Exit For
-           End If
+            GUID =  Mid(str, instr(str, "{"), 38)
+            If GUID&lt;&gt;"" then
+				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
+				Sleep(30000000)
+			Exit For
+			End If
      End If
 Next
-
-
-
-
-strValue1=""
-
-
-strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
- strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
- objReg.EnumKey HKLM, strKey, arrSubkeys 
-For Each strSubkey In arrSubkeys
-  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-       If strValue1 = "CambridgeSoft ChemDraw Ultra 12.0" then
-   	 strEntry1b = "UninstallString"
-       	 RawGUID = ""
-	GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-             GUID =  Mid(str, instr(str, "{"), 38)
-             If GUID&lt;&gt;"" then
-      	    WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-            Sleep(30000)
-	    Exit For
-           End If
-     End If
-Next
-
-
 dteWait = DateAdd("s", 10, Now())
 Do Until (Now() &gt; dteWait)
 Loop
@@ -3558,20 +3351,16 @@ strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strCBOE17="ChemBioOffice Enterprise 17.1"
 strCBOE1711="ChemOffice Enterprise 17.1.1"
+strCBOE18="ChemOffice Enterprise 18.1"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
     objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1=strCBOE17 then         
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
              WSHShell.RegDelete strK              
-         End If 
-           If strValue1=strCBOE1711 then         
-             Set WSHShell = CreateObject("WScript.Shell")
-             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
-             WSHShell.RegDelete strK              
-         End If 
+         End If             
     Next
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
@@ -3582,16 +3371,11 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)              
-        If strValue1=strCBOE17 then        
+       If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
-        End If   
-         If strValue1=strCBOE1711 then        
-            Set WSHShell = CreateObject("WScript.Shell")
-            strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
-            WSHShell.RegDelete strK
-        End If 
+        End If          
    Next
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
@@ -3603,7 +3387,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If strValue1=strCBOE17 then 
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then   
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -3613,18 +3397,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 			WSHShell.RegDelete strNet
 			WSHShell.RegDelete strSource 
             WSHShell.RegDelete strK
-        End If 
-          If strValue1=strCBOE1711 then                           
-            Set WSHShell = CreateObject("WScript.Shell")
-            strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
-            strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
-			strMedia="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\Media\"
-			strNet="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\Net\"
-			WSHShell.RegDelete strMedia
-			WSHShell.RegDelete strNet
-			WSHShell.RegDelete strSource 
-            WSHShell.RegDelete strK
-        End If   
+       End If        
     Next
 dteWait = DateAdd("s", 15, Now())
 Do Until (Now() &gt; dteWait)
@@ -3789,7 +3562,9 @@ strValue1=""
 For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-        If strValue1 = "PerkinElmer ChemScript 17.0" then
+        If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") ) Then
+           
+ MsgBox strValue1
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
@@ -3800,58 +3575,24 @@ For Each strSubkey In arrSubkeys
 					Sleep(30000000)          
 					Exit For
 			   End If
-		End If
-		If strValue1 = "PerkinElmer ChemScript 17.1" then
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)      
-                               
-
-			   If GUID&lt;&gt;"" then
-					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000) 
-                   Exit For
-               End If
-		End If       
-      
-
+		End If 
 Next
-
-
 strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys 
-
 strValue1=""
 For Each strSubkey In arrSubkeys
-	 objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-     Set WSHShell = CreateObject("WScript.Shell")
-     If strValue1 = "PerkinElmer ChemScript 17.0" then
-            strEntry1b = "UninstallString"        
-            RawGUID = ""
-            GUID = ""
-            objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-            GUID =  Mid(str, instr(str, "{"), 38)
-         	If GUID&lt;&gt;"" then
-				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-                Sleep(300000000)          
-                Exit For
-	        End If
-      End If
-      
-     If strValue1 = "PerkinElmer ChemScript 17.1" then
+ objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
+     Set WSHShell = CreateObject("WScript.Shell")        
+      If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") ) then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-             
-
-				If GUID&lt;&gt;"" then
+               If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
 					Sleep(300000000)          
 					Exit For
@@ -3865,7 +3606,8 @@ strPath= Session.Property("CBOEDIR") &amp; "ChemOffice2017\"
 If filesys.FolderExists(strPath) Then  
 	str = "cmd /c rmdir /S /Q " &amp; Chr(34) &amp;  strPath &amp; Chr(34)
 	oShell.Run str
-End If</td><td/><td/></row>
+End If
+</td><td/><td/></row>
 		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework\v2.0.50727</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
 		<row><td>RunCBVNBatchMageFile</td><td>38</td><td/><td>dim strSource,strSourcePath       
 strSource = Session.Property("INSTALLDIR")
