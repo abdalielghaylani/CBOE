@@ -4,7 +4,7 @@
 
 [Setup]
 AppName=InvLoader
-AppVerName=InvLoader 18.1
+AppVerName=InvLoader 18.1.1
 AppPublisher=PerkinElmer Corporation
 AppPublisherURL=http://www.perkinelmer.com
 AppSupportURL=http://www.perkinelmer.com
@@ -12,7 +12,7 @@ AppUpdatesURL=http://www.perkinelmer.com
 DefaultDirName={pf}\PerkinElmer\InvLoader
 DefaultGroupName=InvLoader
 OutputBaseFilename=InvLoaderSetup
-VersionInfoVersion=18.1
+VersionInfoVersion=18.1.1
 [Tasks]
 Name: desktopicon; Description: Create a &desktop icon; GroupDescription: Additional icons:
 
