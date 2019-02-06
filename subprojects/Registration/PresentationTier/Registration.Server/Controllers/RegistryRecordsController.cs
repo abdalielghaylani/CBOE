@@ -651,12 +651,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             structureChanged = false;
             foreach (CambridgeSoft.COE.Registration.Services.Types.Component component in newRegistryRecord.ComponentList)
             {
+                bool isStructureIdentifierListChanged = IsStructureIdentifierListChanged(component);
                 foreach (CambridgeSoft.COE.Registration.Services.Types.Component componentOriginal in originalRegistryRecord.ComponentList)
                 {
                     if (componentOriginal.Compound.RegNumber.RegNum == component.Compound.RegNumber.RegNum)
                     {
                         if (component.IsDirty && (!component.Compound.FragmentList.IsDirty && !component.Compound.IdentifierList.IsDirty && !component.Compound.PropertyList.IsDirty
-                            && !component.Compound.BaseFragment.Structure.IdentifierList.IsDirty && !component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                            && !isStructureIdentifierListChanged && !component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
                         {
                             // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
                             if (!RegUtilities.CheckIfMWAndFormulaMatch(component.Compound.BaseFragment.Structure.Value.ToString(), componentOriginal.Compound.BaseFragment.Structure.Value.ToString()))
@@ -672,9 +673,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 }
                             }
                         }
-
                         if (component.IsDirty && (component.Compound.FragmentList.IsDirty || component.Compound.IdentifierList.IsDirty || component.Compound.PropertyList.IsDirty
-                             || component.Compound.BaseFragment.Structure.IdentifierList.IsDirty || component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                             || isStructureIdentifierListChanged || component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
                         {
                             // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
                             if (component.IsDirty)
@@ -723,6 +723,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
             }
             return affectedRegistries;
+        }
+
+        /// <summary>
+        /// IsStructureIdentifierListChanged method
+        /// </summary>
+        /// <param name="component">component object</param>
+        /// <returns>true or false</returns>
+        private bool IsStructureIdentifierListChanged(CambridgeSoft.COE.Registration.Services.Types.Component component)
+        {
+            if (component.Compound.BaseFragment.Structure.IdentifierList.IsDirty)
+                return true;
+           
+            foreach (CambridgeSoft.COE.Registration.Services.Types.Identifier identifier in component.Compound.BaseFragment.Structure.IdentifierList)
+            {
+                //this is required as any newly added structure identifier don't mark the entire structure identifier list dirty
+                if (identifier.IsNew) // is true in case any identifier is newly added or value modified
+                    return true;
+            }
+
+            return false;           
         }
 
         private string FindRegNumbersLocked(EditAffectsOtherMixturesException editAffextExp)
