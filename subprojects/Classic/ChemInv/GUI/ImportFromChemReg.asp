@@ -271,8 +271,15 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 			OptParams.appendChild(OptElm3);
 			OptParams.appendChild(OptElm4);
 			RootElm.appendChild(ActionElm);
-		}		
-		return (new XMLSerializer()).serializeToString(mydoc);
+		}
+		if ( window.ActiveXObject )
+		{
+			return mydoc.xml;
+		}
+		else if ( window.XMLSerializer )
+		{
+			return (new XMLSerializer()).serializeToString(mydoc);
+		}
 	}
 </script>
 </head>
