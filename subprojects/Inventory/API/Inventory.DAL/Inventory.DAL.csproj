@@ -89,6 +89,15 @@
     <Compile Include="INV_CONTAINER_TYPES.cs">
       <DependentUpon>InventoryDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="INV_CUSTOM_CPD_FIELD_VALUES.cs">
+      <DependentUpon>InventoryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INV_CUSTOM_FIELDS.cs">
+      <DependentUpon>InventoryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INV_CUSTOM_FIELD_GROUPS.cs">
+      <DependentUpon>InventoryDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="INV_LOCATIONS.cs">
       <DependentUpon>InventoryDB.tt</DependentUpon>
     </Compile>
@@ -104,6 +113,7 @@
     <Compile Include="LocationDAL.cs" />
     <Compile Include="Mapper\CompoundMapper.cs" />
     <Compile Include="Mapper\ContainerMapper.cs" />
+    <Compile Include="Mapper\CustomFieldMapper.cs" />
     <Compile Include="Mapper\LocationMapper.cs" />
     <Compile Include="Mapper\MapperBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace PerkinElmer.COE.Inventory.Model
 {
@@ -46,5 +47,11 @@ namespace PerkinElmer.COE.Inventory.Model
         /// </summary>
         [JsonProperty(PropertyName = "molecularWeight")]
         public Nullable<decimal> MolecularWeight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Safety Data of the compound.
+        /// </summary>
+        [JsonProperty(PropertyName = "safetyData")]
+        public List<CustomFieldData> SafetyData { get; set; }
     }
 }

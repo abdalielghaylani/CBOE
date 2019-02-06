@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
         public ContainerControllerTest()
         {
             var INV_LOCATIONS = new INV_LOCATIONS() { LOCATION_ID = 2, LOCATION_NAME = "Disposed", LOCATION_DESCRIPTION = "Disposed Location", LOCATION_BARCODE = "2" };
-            Context.INV_LOCATIONS.Add(INV_LOCATIONS);
+            Context.INV_LOCATIONS1.Add(INV_LOCATIONS);
 
             var INV_COMPOUNDS = new INV_COMPOUNDS() { COMPOUND_ID = 447, MOL_ID = 449, CAS = "462-06-6", ACX_ID = "X1003808-9", SUBSTANCE_NAME = "Fluorobenzene", BASE64_CDX = "VmpDRDAxMDAEAwIBAAAAAAAAAAAAAAAAAAAAAAMAOQAAAENEWCBkcml2ZXIgMS42\r\nIFtmb3IgQ2hlbURyYXcgNitdIC8gSmFuIDEyIDE5OjAxOjMwIDIwMDIEAhAA//87\r\nAAAAPABU/m8A2RqWAAEJCAAAAAAAAAAAAAIJCAAAAKsAAADSAAUIBAAAAB4AAAMy\r\nAAgA////////AAAAAAAA//8AAAAAAAAAAP///////wAAAAD//wAAAAD///////8A\r\nAP//AYACAAAABAIQAP//OwAAADwAVP5vANkalgADgAMAAAAEgAQAAAAAAggAMf9V\r\nAAAAPAACBAIACQA5BAMAAAAwBoAFAAAAAAcNAAEAAAADAGAAyAADAEYAAAAABIAG\r\nAAAAAAIIADH/VQDeFFoAOQQDAAAAMQAABIAHAAAAAAIIAAAAPAC6DWkAOQQDAAAA\r\nMgAABIAIAAAAAAIIAFT+bwC6DWkAOQQDAAAAMwAABIAJAAAAAAIIAAAAPAAMIocA\r\nOQQDAAAANAAABIAKAAAAAAIIAFT+bwAMIocAOQQDAAAANQAABIALAAAAAAIIADH/\r\nVQDZGpYAOQQDAAAANgAABYAMAAAABAYEAAQAAAAFBgQABgAAAAAABYANAAAABAYE\r\nAAYAAAAFBgQABwAAAAAGAgACAAAABYAOAAAABAYEAAYAAAAFBgQACAAAAAAABYAP\r\nAAAABAYEAAcAAAAFBgQACQAAAAAABYAQAAAABAYEAAgAAAAFBgQACgAAAAAGAgAC\r\nAAAABYARAAAABAYEAAkAAAAFBgQACwAAAAAGAgACAAAABYASAAAABAYEAAoAAAAF\r\nBgQACwAAAAAAAAAAAAAA\r\n", MOLECULAR_WEIGHT = null, DENSITY = 1 };
             Context.INV_COMPOUNDS.Add(INV_COMPOUNDS);
@@ -41,15 +42,35 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             var INV_CONTAINERS = new INV_CONTAINERS() { CONTAINER_ID = 1648, BARCODE = "1648", CONTAINER_NAME = "fluorobenzene", LOCATION_ID_FK = 2, CURRENT_USER_ID_FK = "INVADMIN", QTY_MAX = 1, QTY_REMAINING = 1, DATE_CREATED = DateTime.Now, COMPOUND_ID_FK = 447, CONTAINER_TYPE_ID_FK = 1, CONTAINER_STATUS_ID_FK = 1, SUPPLIER_ID_FK = 1, UNIT_OF_WGHT_ID_FK = 1 };
             Context.INV_CONTAINERS.Add(INV_CONTAINERS);
 
+            var INV_CUSTOM_FIELD_GROUPS = new INV_CUSTOM_FIELD_GROUPS() { CUSTOM_FIELD_GROUP_ID = 100, CUSTOM_FIELD_GROUP_NAME = "Hazards", CUSTOM_FIELD_GROUP_TYPE_ID_FK = 1 };
+            Context.INV_CUSTOM_FIELD_GROUPS.Add(INV_CUSTOM_FIELD_GROUPS);
+
+            var INV_CUSTOM_FIELDS = new INV_CUSTOM_FIELDS() { CUSTOM_FIELD_ID = 100, CUSTOM_FIELD_GROUP_ID_FK = 100, CUSTOM_FIELD_NAME = "C" };
+            Context.INV_CUSTOM_FIELDS.Add(INV_CUSTOM_FIELDS);
+
+            var INV_CUSTOM_CPD_FIELD_VALUES = new INV_CUSTOM_CPD_FIELD_VALUES() { CUSTOM_FIELD_ID_FK = 100, COMPOUND_ID_FK = 447 };
+            Context.INV_CUSTOM_CPD_FIELD_VALUES.Add(INV_CUSTOM_CPD_FIELD_VALUES);
+
             containerController = new ContainerController(Context);
 
-            INV_CONTAINERS.INV_LOCATIONS = INV_LOCATIONS;
+            INV_CONTAINERS.INV_LOCATIONS1 = INV_LOCATIONS;
             INV_CONTAINERS.INV_COMPOUNDS = INV_COMPOUNDS;
             INV_CONTAINERS.INV_CONTAINER_TYPES = INV_CONTAINER_TYPES;
             INV_CONTAINERS.INV_CONTAINER_STATUS = INV_CONTAINER_STATUS;
             INV_CONTAINERS.INV_SUPPLIERS = INV_SUPPLIERS;
             INV_CONTAINERS.INV_UNITS = INV_UNITS;
+
             containerTest = new ContainerMapper().Map(INV_CONTAINERS);
+
+            if (containerTest != null && containerTest.Compound != null)
+            {
+                INV_CUSTOM_FIELDS.INV_CUSTOM_FIELD_GROUPS = INV_CUSTOM_FIELD_GROUPS;
+                INV_CUSTOM_CPD_FIELD_VALUES.INV_CUSTOM_FIELDS = INV_CUSTOM_FIELDS;
+
+                var safetyData = new List<CustomFieldData>();
+                safetyData.Add(new CustomFieldMapper().Map(INV_CUSTOM_CPD_FIELD_VALUES));
+                containerTest.Compound.SafetyData = safetyData;
+            }
         }
 
         [TestMethod]
@@ -93,7 +114,10 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.Compound.AcxId, content.Compound.AcxId);
             Assert.AreEqual(containerTest.Compound.SubstanceName, content.Compound.SubstanceName);
             Assert.AreEqual(containerTest.Compound.Base64Cdx, content.Compound.Base64Cdx);
-            Assert.AreEqual(containerTest.Compound.MolecularWeight, content.Compound.MolecularWeight);
+            Assert.AreEqual(containerTest.Compound.SafetyData.Count, content.Compound.SafetyData.Count);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFieldId, content.Compound.SafetyData[0].CustomFieldId);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFielName, content.Compound.SafetyData[0].CustomFielName);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFielGroupName, content.Compound.SafetyData[0].CustomFielGroupName);
             Assert.AreEqual(containerTest.Location.Id, content.Location.Id);
             Assert.AreEqual(containerTest.Location.ParentId, content.Location.ParentId);
             Assert.AreEqual(containerTest.Location.Name, content.Location.Name);
@@ -152,7 +176,10 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.AreEqual(containerTest.Compound.AcxId, content.Compound.AcxId);
             Assert.AreEqual(containerTest.Compound.SubstanceName, content.Compound.SubstanceName);
             Assert.AreEqual(containerTest.Compound.Base64Cdx, content.Compound.Base64Cdx);
-            Assert.AreEqual(containerTest.Compound.MolecularWeight, content.Compound.MolecularWeight);
+            Assert.AreEqual(containerTest.Compound.SafetyData.Count, content.Compound.SafetyData.Count);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFieldId, content.Compound.SafetyData[0].CustomFieldId);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFielName, content.Compound.SafetyData[0].CustomFielName);
+            Assert.AreEqual(containerTest.Compound.SafetyData[0].CustomFielGroupName, content.Compound.SafetyData[0].CustomFielGroupName);
             Assert.AreEqual(containerTest.Location.Id, content.Location.Id);
             Assert.AreEqual(containerTest.Location.ParentId, content.Location.ParentId);
             Assert.AreEqual(containerTest.Location.Name, content.Location.Name);

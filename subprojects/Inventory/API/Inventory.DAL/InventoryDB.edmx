@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="INV_COMPOUNDS">
           <Key>
             <PropertyRef Name="COMPOUND_ID" />
@@ -138,6 +138,35 @@
           <Property Name="LOCATION_TYPE_ID_FK" Type="number" Precision="9" Scale="0" />
           <Property Name="BATCH_ID2_FK" Type="number" Precision="38" Scale="0" />
           <Property Name="BATCH_ID3_FK" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="INV_CUSTOM_CPD_FIELD_VALUES">
+          <Key>
+            <PropertyRef Name="CUSTOM_CPD_FIELD_VALUE_ID" />
+          </Key>
+          <Property Name="CUSTOM_CPD_FIELD_VALUE_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="PICKLIST_ID_FK" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_ID_FK" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="COMPOUND_ID_FK" Type="number" Precision="9" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INV_CUSTOM_FIELD_GROUPS">
+          <Key>
+            <PropertyRef Name="CUSTOM_FIELD_GROUP_ID" />
+          </Key>
+          <Property Name="CUSTOM_FIELD_GROUP_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_NAME" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_TYPE_ID_FK" Type="number" Precision="4" Scale="0" />
+        </EntityType>
+        <EntityType Name="INV_CUSTOM_FIELDS">
+          <Key>
+            <PropertyRef Name="CUSTOM_FIELD_ID" />
+          </Key>
+          <Property Name="CUSTOM_FIELD_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="PICKLIST_TYPE_ID_FK" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_ID_FK" Type="number" Precision="4" Scale="0" />
+          <Property Name="CUSTOM_FIELD_NAME" Type="varchar2" MaxLength="500" Nullable="false" />
+          <Property Name="READONLY" Type="char" MaxLength="1" />
+          <Property Name="NULL_PICKLIST_ID_FK" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="SYMBOL_LINK" Type="varchar2" MaxLength="200" />
         </EntityType>
         <EntityType Name="INV_LOCATION_TYPES">
           <Key>
@@ -353,6 +382,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INV_CUSTOM_CPD_FLD_VAL_FK2">
+          <End Role="INV_CUSTOM_FIELDS" Type="Self.INV_CUSTOM_FIELDS" Multiplicity="1" />
+          <End Role="INV_CUSTOM_CPD_FIELD_VALUES" Type="Self.INV_CUSTOM_CPD_FIELD_VALUES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CUSTOM_FIELDS">
+              <PropertyRef Name="CUSTOM_FIELD_ID" />
+            </Principal>
+            <Dependent Role="INV_CUSTOM_CPD_FIELD_VALUES">
+              <PropertyRef Name="CUSTOM_FIELD_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CUSTOM_FIELDS_FK1">
+          <End Role="INV_CUSTOM_FIELD_GROUPS" Type="Self.INV_CUSTOM_FIELD_GROUPS" Multiplicity="0..1" />
+          <End Role="INV_CUSTOM_FIELDS" Type="Self.INV_CUSTOM_FIELDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CUSTOM_FIELD_GROUPS">
+              <PropertyRef Name="CUSTOM_FIELD_GROUP_ID" />
+            </Principal>
+            <Dependent Role="INV_CUSTOM_FIELDS">
+              <PropertyRef Name="CUSTOM_FIELD_GROUP_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="INV_LOC_LOC_FK">
           <End Role="INV_LOCATIONS" Type="Self.INV_LOCATIONS" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -384,6 +437,9 @@
           <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Self.INV_CONTAINER_STATUS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINER_TYPES" EntityType="Self.INV_CONTAINER_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINERS" EntityType="Self.INV_CONTAINERS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_CUSTOM_CPD_FIELD_VALUES" EntityType="Self.INV_CUSTOM_CPD_FIELD_VALUES" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_CUSTOM_FIELD_GROUPS" EntityType="Self.INV_CUSTOM_FIELD_GROUPS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_CUSTOM_FIELDS" EntityType="Self.INV_CUSTOM_FIELDS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_LOCATION_TYPES" EntityType="Self.INV_LOCATION_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_SUPPLIERS" EntityType="Self.INV_SUPPLIERS" Schema="CHEMINVDB2" store:Type="Tables" />
@@ -440,6 +496,14 @@
             <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
           </AssociationSet>
+          <AssociationSet Name="INV_CUSTOM_CPD_FLD_VAL_FK2" Association="Self.INV_CUSTOM_CPD_FLD_VAL_FK2">
+            <End Role="INV_CUSTOM_FIELDS" EntitySet="INV_CUSTOM_FIELDS" />
+            <End Role="INV_CUSTOM_CPD_FIELD_VALUES" EntitySet="INV_CUSTOM_CPD_FIELD_VALUES" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CUSTOM_FIELDS_FK1" Association="Self.INV_CUSTOM_FIELDS_FK1">
+            <End Role="INV_CUSTOM_FIELD_GROUPS" EntitySet="INV_CUSTOM_FIELD_GROUPS" />
+            <End Role="INV_CUSTOM_FIELDS" EntitySet="INV_CUSTOM_FIELDS" />
+          </AssociationSet>
           <AssociationSet Name="INV_LOC_LOC_FK" Association="Self.INV_LOC_LOC_FK">
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
             <End Role="INV_LOCATIONS1" EntitySet="INV_LOCATIONS" />
@@ -449,8 +513,7 @@
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -927,7 +990,75 @@
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
             <End Role="INV_LOCATIONS1" EntitySet="INV_LOCATIONS" />
           </AssociationSet>
+          <EntitySet Name="INV_CUSTOM_CPD_FIELD_VALUES" EntityType="Model.INV_CUSTOM_CPD_FIELD_VALUES" />
+          <EntitySet Name="INV_CUSTOM_FIELD_GROUPS" EntityType="Model.INV_CUSTOM_FIELD_GROUPS" />
+          <EntitySet Name="INV_CUSTOM_FIELDS" EntityType="Model.INV_CUSTOM_FIELDS" />
+          <AssociationSet Name="INV_CUSTOM_CPD_FLD_VAL_FK2" Association="Model.INV_CUSTOM_CPD_FLD_VAL_FK2">
+            <End Role="INV_CUSTOM_FIELDS" EntitySet="INV_CUSTOM_FIELDS" />
+            <End Role="INV_CUSTOM_CPD_FIELD_VALUES" EntitySet="INV_CUSTOM_CPD_FIELD_VALUES" />
+          </AssociationSet>
+          <AssociationSet Name="INV_CUSTOM_FIELDS_FK1" Association="Model.INV_CUSTOM_FIELDS_FK1">
+            <End Role="INV_CUSTOM_FIELD_GROUPS" EntitySet="INV_CUSTOM_FIELD_GROUPS" />
+            <End Role="INV_CUSTOM_FIELDS" EntitySet="INV_CUSTOM_FIELDS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="INV_CUSTOM_CPD_FIELD_VALUES">
+          <Key>
+            <PropertyRef Name="CUSTOM_CPD_FIELD_VALUE_ID" />
+          </Key>
+          <Property Name="CUSTOM_CPD_FIELD_VALUE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PICKLIST_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_ID_FK" Type="Int16" Nullable="false" />
+          <Property Name="COMPOUND_ID_FK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INV_CUSTOM_FIELDS" Relationship="Model.INV_CUSTOM_CPD_FLD_VAL_FK2" FromRole="INV_CUSTOM_CPD_FIELD_VALUES" ToRole="INV_CUSTOM_FIELDS" />
+        </EntityType>
+        <EntityType Name="INV_CUSTOM_FIELD_GROUPS">
+          <Key>
+            <PropertyRef Name="CUSTOM_FIELD_GROUP_ID" />
+          </Key>
+          <Property Name="CUSTOM_FIELD_GROUP_ID" Type="Int16" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_NAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_TYPE_ID_FK" Type="Int16" />
+          <NavigationProperty Name="INV_CUSTOM_FIELDS" Relationship="Model.INV_CUSTOM_FIELDS_FK1" FromRole="INV_CUSTOM_FIELD_GROUPS" ToRole="INV_CUSTOM_FIELDS" />
+        </EntityType>
+        <EntityType Name="INV_CUSTOM_FIELDS">
+          <Key>
+            <PropertyRef Name="CUSTOM_FIELD_ID" />
+          </Key>
+          <Property Name="CUSTOM_FIELD_ID" Type="Int16" Nullable="false" />
+          <Property Name="PICKLIST_TYPE_ID_FK" Type="Int16" Nullable="false" />
+          <Property Name="CUSTOM_FIELD_GROUP_ID_FK" Type="Int16" />
+          <Property Name="CUSTOM_FIELD_NAME" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="READONLY" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NULL_PICKLIST_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="SYMBOL_LINK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INV_CUSTOM_CPD_FIELD_VALUES" Relationship="Model.INV_CUSTOM_CPD_FLD_VAL_FK2" FromRole="INV_CUSTOM_FIELDS" ToRole="INV_CUSTOM_CPD_FIELD_VALUES" />
+          <NavigationProperty Name="INV_CUSTOM_FIELD_GROUPS" Relationship="Model.INV_CUSTOM_FIELDS_FK1" FromRole="INV_CUSTOM_FIELDS" ToRole="INV_CUSTOM_FIELD_GROUPS" />
+        </EntityType>
+        <Association Name="INV_CUSTOM_CPD_FLD_VAL_FK2">
+          <End Type="Model.INV_CUSTOM_FIELDS" Role="INV_CUSTOM_FIELDS" Multiplicity="1" />
+          <End Type="Model.INV_CUSTOM_CPD_FIELD_VALUES" Role="INV_CUSTOM_CPD_FIELD_VALUES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CUSTOM_FIELDS">
+              <PropertyRef Name="CUSTOM_FIELD_ID" />
+            </Principal>
+            <Dependent Role="INV_CUSTOM_CPD_FIELD_VALUES">
+              <PropertyRef Name="CUSTOM_FIELD_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INV_CUSTOM_FIELDS_FK1">
+          <End Type="Model.INV_CUSTOM_FIELD_GROUPS" Role="INV_CUSTOM_FIELD_GROUPS" Multiplicity="0..1" />
+          <End Type="Model.INV_CUSTOM_FIELDS" Role="INV_CUSTOM_FIELDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_CUSTOM_FIELD_GROUPS">
+              <PropertyRef Name="CUSTOM_FIELD_GROUP_ID" />
+            </Principal>
+            <Dependent Role="INV_CUSTOM_FIELDS">
+              <PropertyRef Name="CUSTOM_FIELD_GROUP_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1129,6 +1260,38 @@
                 <ScalarProperty Name="UNIT_NAME" ColumnName="UNIT_NAME" />
                 <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
                 <ScalarProperty Name="SORTORDER" ColumnName="SORTORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CUSTOM_CPD_FIELD_VALUES">
+            <EntityTypeMapping TypeName="Model.INV_CUSTOM_CPD_FIELD_VALUES">
+              <MappingFragment StoreEntitySet="INV_CUSTOM_CPD_FIELD_VALUES">
+                <ScalarProperty Name="COMPOUND_ID_FK" ColumnName="COMPOUND_ID_FK" />
+                <ScalarProperty Name="CUSTOM_FIELD_ID_FK" ColumnName="CUSTOM_FIELD_ID_FK" />
+                <ScalarProperty Name="PICKLIST_ID_FK" ColumnName="PICKLIST_ID_FK" />
+                <ScalarProperty Name="CUSTOM_CPD_FIELD_VALUE_ID" ColumnName="CUSTOM_CPD_FIELD_VALUE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CUSTOM_FIELD_GROUPS">
+            <EntityTypeMapping TypeName="Model.INV_CUSTOM_FIELD_GROUPS">
+              <MappingFragment StoreEntitySet="INV_CUSTOM_FIELD_GROUPS">
+                <ScalarProperty Name="CUSTOM_FIELD_GROUP_TYPE_ID_FK" ColumnName="CUSTOM_FIELD_GROUP_TYPE_ID_FK" />
+                <ScalarProperty Name="CUSTOM_FIELD_GROUP_NAME" ColumnName="CUSTOM_FIELD_GROUP_NAME" />
+                <ScalarProperty Name="CUSTOM_FIELD_GROUP_ID" ColumnName="CUSTOM_FIELD_GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CUSTOM_FIELDS">
+            <EntityTypeMapping TypeName="Model.INV_CUSTOM_FIELDS">
+              <MappingFragment StoreEntitySet="INV_CUSTOM_FIELDS">
+                <ScalarProperty Name="SYMBOL_LINK" ColumnName="SYMBOL_LINK" />
+                <ScalarProperty Name="NULL_PICKLIST_ID_FK" ColumnName="NULL_PICKLIST_ID_FK" />
+                <ScalarProperty Name="READONLY" ColumnName="READONLY" />
+                <ScalarProperty Name="CUSTOM_FIELD_NAME" ColumnName="CUSTOM_FIELD_NAME" />
+                <ScalarProperty Name="CUSTOM_FIELD_GROUP_ID_FK" ColumnName="CUSTOM_FIELD_GROUP_ID_FK" />
+                <ScalarProperty Name="PICKLIST_TYPE_ID_FK" ColumnName="PICKLIST_TYPE_ID_FK" />
+                <ScalarProperty Name="CUSTOM_FIELD_ID" ColumnName="CUSTOM_FIELD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

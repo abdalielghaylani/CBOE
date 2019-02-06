@@ -28,6 +28,11 @@
         <AssociationConnector Association="Model.INV_CONTAINERS_LOC_TYPE_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_LOC_LOC_TYPES_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.INV_LOC_LOC_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.INV_CUSTOM_CPD_FIELD_VALUES" Width="1.5" PointX="9.875" PointY="1.375" />
+        <EntityTypeShape EntityType="Model.INV_CUSTOM_FIELD_GROUPS" Width="1.5" PointX="5.375" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.INV_CUSTOM_FIELDS" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="Model.INV_CUSTOM_CPD_FLD_VAL_FK2" />
+        <AssociationConnector Association="Model.INV_CUSTOM_FIELDS_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

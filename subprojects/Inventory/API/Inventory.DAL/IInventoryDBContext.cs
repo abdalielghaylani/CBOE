@@ -17,5 +17,8 @@ namespace PerkinElmer.COE.Inventory.DAL
         DbSet<INV_SUPPLIERS> INV_SUPPLIERS { get; set; }
         DbSet<INV_UNITS> INV_UNITS { get; set; }
         DbSet<INV_LOCATION_TYPES> INV_LOCATION_TYPES { get; set; }
+        DbSet<INV_CUSTOM_CPD_FIELD_VALUES> INV_CUSTOM_CPD_FIELD_VALUES { get; set; }
+        DbSet<INV_CUSTOM_FIELD_GROUPS> INV_CUSTOM_FIELD_GROUPS { get; set; }
+        DbSet<INV_CUSTOM_FIELDS> INV_CUSTOM_FIELDS { get; set; }
     }
 }
