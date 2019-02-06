@@ -58,7 +58,7 @@ namespace PerkinElmer.COE.Inventory.DAL
                 .Include(c => c.INV_LOCATIONS1)
                 .Include(c => c.INV_COMPOUNDS)
                 .Include(c => c.INV_LOCATION_TYPES)
-                .SingleOrDefault(c => c.BARCODE == barcode));
+                .SingleOrDefault(c => c.BARCODE.ToUpper() == barcode.ToUpper()));
 
             if (containerData != null && containerData.Compound != null)
             {
