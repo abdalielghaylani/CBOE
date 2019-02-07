@@ -45,7 +45,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the qualtity available.
         /// </summary>
         [JsonProperty(PropertyName = "quantityAvailable")]
-        public decimal? QuantityAvailable { get; set; }
+        public UnitData QuantityAvailable { get; set; }
 
         /// <summary>
         /// Gets or sets the date created.

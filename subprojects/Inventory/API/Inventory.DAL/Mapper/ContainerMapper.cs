@@ -26,7 +26,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Name = element.CONTAINER_NAME,
                 Type = (element.INV_CONTAINER_TYPES != null) ? element.INV_CONTAINER_TYPES.CONTAINER_TYPE_NAME : string.Empty,
                 ContainerSize = new UnitData() { Value = element.QTY_MAX, Unit = (element.INV_UNITS1 != null) ? element.INV_UNITS1.UNIT_ABREVIATION : string.Empty },
-                QuantityAvailable = element.QTY_AVAILABLE,
+                QuantityAvailable = new UnitData() { Value = element.QTY_AVAILABLE, Unit = (element.INV_UNITS1 != null) ? element.INV_UNITS1.UNIT_ABREVIATION : string.Empty },
                 Concentration = new UnitData() { Value = element.CONCENTRATION, Unit = (element.INV_UNITS != null) ? element.INV_UNITS.UNIT_ABREVIATION : string.Empty },
                 Supplier = (element.INV_SUPPLIERS != null) ? element.INV_SUPPLIERS.SUPPLIER_NAME : string.Empty,
                 CurrentUser = element.CURRENT_USER_ID_FK,

@@ -104,7 +104,9 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.IsNotNull(containerTest.ContainerSize);
             Assert.AreEqual(containerTest.ContainerSize.Value, content.ContainerSize.Value);
             Assert.AreEqual(containerTest.ContainerSize.Unit, content.ContainerSize.Unit);
-            Assert.AreEqual(containerTest.QuantityAvailable, content.QuantityAvailable);
+            Assert.IsNotNull(containerTest.QuantityAvailable);
+            Assert.AreEqual(containerTest.QuantityAvailable.Value, content.QuantityAvailable.Value);
+            Assert.AreEqual(containerTest.QuantityAvailable.Unit, content.QuantityAvailable.Unit);
             Assert.AreEqual(containerTest.Supplier, content.Supplier);
             Assert.AreEqual(containerTest.CurrentUser, content.CurrentUser);
             Assert.AreEqual(containerTest.DateCreated, content.DateCreated);
@@ -167,7 +169,9 @@ namespace PerkinElmer.COE.Inventory.API.Tests.Controllers
             Assert.IsNotNull(containerTest.ContainerSize);
             Assert.AreEqual(containerTest.ContainerSize.Value, content.ContainerSize.Value);
             Assert.AreEqual(containerTest.ContainerSize.Unit, content.ContainerSize.Unit);
-            Assert.AreEqual(containerTest.QuantityAvailable, content.QuantityAvailable);
+            Assert.IsNotNull(containerTest.QuantityAvailable);
+            Assert.AreEqual(containerTest.QuantityAvailable.Value, content.QuantityAvailable.Value);
+            Assert.AreEqual(containerTest.QuantityAvailable.Unit, content.QuantityAvailable.Unit);
             Assert.AreEqual(containerTest.Supplier, content.Supplier);
             Assert.AreEqual(containerTest.CurrentUser, content.CurrentUser);
             Assert.AreEqual(containerTest.DateCreated, content.DateCreated);
