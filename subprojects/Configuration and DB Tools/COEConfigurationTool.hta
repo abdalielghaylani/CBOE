@@ -842,7 +842,7 @@
 	End function
 	
 	Sub SaveConfig()
-	    Dim tmpVal, tmpVal2, tmpValNewReg
+	    Dim tmpVal, tmpVal2, tmpValNewReg, tmpCdjsUrl
 	    Dim secPwd
 	    Dim acxPwd
 	    Dim invPwd
@@ -929,7 +929,7 @@
         if rc = vbNo then
             document.body.style.cursor = "default"
             EXIT Sub  '===============>  EXIT POINT
-        End if
+        End if		
 		
 		selectedPort = ""
 		if document.all.txtHttpPort.value <> "" AND Cstr(document.all.txtHttpPort.value) <> "80" AND cstr(document.all.txtHttpPort.value) <> "443" then selectedPort = ":" & document.all.txtHttpPort.value
@@ -939,15 +939,17 @@
 		if document.all.isSecureHttp.checked then 
 			selectedProtocol = selectedProtocol & "s"
 			if isCOEInstalled then 			
-				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "true" 
+				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "true"				 
 			end if
 		Else
 			if isCOEInstalled then 
-				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "false"
+				SetIniValue chemOfficeIniPath, "GLOBALS", "FORCE_HTTPS", "false"				
 			end if
 		End if
 		
 		selectedProtocol = selectedProtocol & "://"
+		tmpCdjsUrl = selectedProtocol & COEHTTPHostName & currHttpPort & "/cdjs/js/chemdrawweb/chemdrawweb.js"
+		SetIniValue chemOfficeIniPath, "GLOBALS", "CDJS_URL", tmpCdjsUrl
 		
 		fullURL = selectedProtocol & COEHTTPHostName & selectedPort 
 		'CSBR 131085 - added if condition below to set currHttpPort - common functioMsgnality
