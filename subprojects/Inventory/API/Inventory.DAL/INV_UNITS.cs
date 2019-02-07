@@ -21,6 +21,7 @@ namespace PerkinElmer.COE.Inventory.DAL
             this.INV_CONTAINERS1 = new HashSet<INV_CONTAINERS>();
             this.INV_CONTAINERS2 = new HashSet<INV_CONTAINERS>();
             this.INV_CONTAINERS3 = new HashSet<INV_CONTAINERS>();
+            this.INV_CONTAINERS4 = new HashSet<INV_CONTAINERS>();
         }
     
         public short UNIT_ID { get; set; }
@@ -39,5 +40,7 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS4 { get; set; }
     }
 }

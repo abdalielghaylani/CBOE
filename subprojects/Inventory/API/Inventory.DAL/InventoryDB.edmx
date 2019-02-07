@@ -667,6 +667,7 @@
           <NavigationProperty Name="INV_UNITS2" Relationship="Self.INV_CONT_UNITOFPURITY_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
           <NavigationProperty Name="INV_UNITS3" Relationship="Self.INV_CONT_UNITOFWGHT_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
           <NavigationProperty Name="INV_LOCATION_TYPES" Relationship="Self.INV_CONTAINERS_LOC_TYPE_FK" FromRole="INV_CONTAINERS" ToRole="INV_LOCATION_TYPES" />
+          <NavigationProperty Name="INV_UNITS4" Relationship="Model.UNIT_OF_DENSITY_ID_FK" FromRole="INV_CONTAINERS" ToRole="INV_UNITS" />
         </EntityType>
         <EntityType Name="INV_LOCATION_TYPES">
           <Key>
@@ -736,6 +737,7 @@
           <NavigationProperty Name="INV_CONTAINERS1" Relationship="Self.INV_CONT_UNITOFMEAS_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS2" Relationship="Self.INV_CONT_UNITOFPURITY_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS3" Relationship="Self.INV_CONT_UNITOFWGHT_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_CONTAINERS4" Relationship="Model.UNIT_OF_DENSITY_ID_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
         </EntityType>
         <Association Name="INV_COMP_LOC_TYPES_FK">
           <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
@@ -1001,6 +1003,10 @@
             <End Role="INV_CUSTOM_FIELD_GROUPS" EntitySet="INV_CUSTOM_FIELD_GROUPS" />
             <End Role="INV_CUSTOM_FIELDS" EntitySet="INV_CUSTOM_FIELDS" />
           </AssociationSet>
+          <AssociationSet Name="INV_CONT_UNITOFDEN_FK" Association="Model.UNIT_OF_DENSITY_ID_FK">
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+            <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="INV_CUSTOM_CPD_FIELD_VALUES">
           <Key>
@@ -1056,6 +1062,18 @@
             </Principal>
             <Dependent Role="INV_CUSTOM_FIELDS">
               <PropertyRef Name="CUSTOM_FIELD_GROUP_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UNIT_OF_DENSITY_ID_FK">
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="0..1" />
+          <End Type="Model.INV_CONTAINERS" Role="INV_CONTAINERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNITS">
+              <PropertyRef Name="UNIT_ID" />
+            </Principal>
+            <Dependent Role="INV_CONTAINERS">
+              <PropertyRef Name="UNIT_OF_DENSITY_ID_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

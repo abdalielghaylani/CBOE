@@ -51,6 +51,7 @@
     <Compile Include="CustomFieldData.cs" />
     <Compile Include="LocationData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

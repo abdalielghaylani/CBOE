@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="Model.INV_CUSTOM_FIELDS" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="Model.INV_CUSTOM_CPD_FLD_VAL_FK2" />
         <AssociationConnector Association="Model.INV_CUSTOM_FIELDS_FK1" />
+        <AssociationConnector Association="Model.UNIT_OF_DENSITY_ID_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

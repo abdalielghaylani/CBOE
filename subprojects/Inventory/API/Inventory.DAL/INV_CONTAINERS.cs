@@ -118,5 +118,6 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual INV_UNITS INV_UNITS2 { get; set; }
         public virtual INV_UNITS INV_UNITS3 { get; set; }
         public virtual INV_LOCATION_TYPES INV_LOCATION_TYPES { get; set; }
+        public virtual INV_UNITS INV_UNITS4 { get; set; }
     }
 }
