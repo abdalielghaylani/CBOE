@@ -282,7 +282,7 @@ Begin VB.Form frmCFWDBWiz
          Width           =   2412
       End
       Begin VB.CheckBox chkRegister 
-         Caption         =   "Register the new compounds in the CambridgeSoft Chemical Registration System"
+         Caption         =   "Register the new compounds in the PerkinElmer Chemical Registration System"
          BeginProperty Font 
             Name            =   "Tahoma"
             Size            =   8.25
