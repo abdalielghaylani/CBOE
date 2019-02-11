@@ -1,157 +1,163 @@
+/deep/ .dx-datagrid-header-panel command-button .btn-group {
+    padding-top: 8px;
+}
+
 .record-detail-title {
-  display: inline-block;
+    display: inline-block;
 }
 
 /deep/ .dx-command-edit .dx-link {
-  font-size: 18px;
-  margin: 0 3px;
-  text-decoration: none;
+    font-size: 18px;
+    margin: 0 3px;
+    text-decoration: none;
 }
 
 /deep/ .dx-command-edit .dx-link:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 /deep/ #select-position {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /deep/ .select-position span {
-  margin-right: 10px;
-  vertical-align: middle;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 /deep/ .dx-datagrid-total-footer {
-  display: none;
+    display: none;
 }
 
 .list-header {
-  text-decoration: none;
-  cursor: pointer;
-  margin: 8px;
-  font-weight: 500;
-  font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 8px;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .query-list-item {
-  color: #634f55;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
+    color: #634f55;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .query-list-btn {
-  color: #634f55;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
+    color: #634f55;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .grid-icon {
-  font-size: 14px;
-  margin: 0 3px;
-  text-decoration: none;
-  background-color: #e6e6e6;
-  border-radius: 50%;
-  border: 1x solid grey;
-  padding: 5px;
-  cursor: pointer;
+    font-size: 14px;
+    margin: 0 3px;
+    text-decoration: none;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    border: 1x solid grey;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .grid-icon-disabled {
-  font-size: 14px;
-  margin: 0 3px;
-  text-decoration: none;
-  background-color: #e6e6e6;
-  border-radius: 50%;
-  border: 1x solid grey;
-  padding: 5px;
-  color: white;
-  cursor: pointer;
+    font-size: 14px;
+    margin: 0 3px;
+    text-decoration: none;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    border: 1x solid grey;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
 }
 
 .grid-icon:hover {
-  background-color: #cccccc;
+    background-color: #cccccc;
 }
 
 .modal {
-  position: absolute;
+    position: absolute;
 }
 
 .modal.left .modal-dialog,
 .modal.right .modal-dialog {
-  position: fixed;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  padding-left: 75px;
+    position: fixed;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding-left: 75px;
 }
 
 .modal.left .modal-content,
 .modal.right .modal-content {
-  height: 100%;
-  overflow-y: auto;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-  padding: 15px 15px 80px;
+    padding: 15px 15px 80px;
 }
 
 .modal.left.fade .modal-dialog {
-  left: -320px;
+    left: -320px;
 }
 
 .modal.left.fade.in .modal-dialog {
-  left: 0;
+    left: 0;
 }
 
 .modal.right.fade .modal-dialog {
-  right: -320px;
+    right: -320px;
 }
 
 .modal.right.fade.in .modal-dialog {
-  right: 0;
+    right: 0;
 }
 
 .modal-content {
-  border-radius: 0;
-  border-left: 1px solid #ffffe6;
+    border-radius: 0;
+    border-left: 1px solid #ffffe6;
 }
 
 .modal-header {
-  border-bottom-color: #eeeeee;
-  background-color: #fafafa;
+    border-bottom-color: #eeeeee;
+    background-color: #fafafa;
 }
 
 .panel-heading a.list-header::before {
-  content: '\F078';
-  position: absolute;
-  font-family: 'FontAwesome';
-  right: 15px;
-  font-size: 16px;
+    content: '\F078';
+    position: absolute;
+    font-family: 'FontAwesome';
+    right: 15px;
+    font-size: 16px;
 }
 
 .panel-heading a.list-header.collapsed::before {
-  content: '\F054';
-  position: absolute;
-  font-family: 'FontAwesome';
-  right: 15px;
-  font-size: 16px;
+    content: '\F054';
+    position: absolute;
+    font-family: 'FontAwesome';
+    right: 15px;
+    font-size: 16px;
 }
 
 .wrap {
-  word-wrap: break-word;
-  width: 150px;
+    word-wrap: break-word;
+    width: 150px;
 }
 
-/* Following Fixes are For IE11 */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
-  label.cdd-dialog-input.checkbox-inline {
-    display: block;
-  }
+/* Following Fixes are For IE11 */
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    label.cdd-dialog-input.checkbox-inline {
+        display: block;
+    }
 }
