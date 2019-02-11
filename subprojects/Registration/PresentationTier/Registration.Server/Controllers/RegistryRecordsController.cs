@@ -673,7 +673,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 }
                             }
                         }
-                        if (component.IsDirty && (component.Compound.FragmentList.IsDirty || component.Compound.IdentifierList.IsDirty || component.Compound.PropertyList.IsDirty
+                        if (component.IsDirty && component.Compound.FragmentList.IsDirty && !component.Compound.IdentifierList.IsDirty && !component.Compound.PropertyList.IsDirty
+                            && !isStructureIdentifierListChanged && !component.Compound.BaseFragment.Structure.PropertyList.IsDirty && !originalRegistryRecord.SameBatchesIdentity)
+                        {
+                            continue;
+                        }
+                        else if (component.IsDirty && (component.Compound.FragmentList.IsDirty || component.Compound.IdentifierList.IsDirty || component.Compound.PropertyList.IsDirty
                              || isStructureIdentifierListChanged || component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
                         {
                             // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
