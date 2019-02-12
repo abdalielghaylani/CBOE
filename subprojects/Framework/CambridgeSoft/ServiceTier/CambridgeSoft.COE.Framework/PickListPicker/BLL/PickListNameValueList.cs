@@ -577,6 +577,7 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
                         this.IdColumn = "ID";
                         this.DisplayColumn = "PICKLISTVALUE";
                         this.WhereFilter = "WHERE PICKLISTDOMAINID = " + Convert.ToString(picklistServiceCriteria.DomainId);
+                        this.OrderByFilter = " ORDER BY SORTORDER ASC";
                         this.WhereFilter = GetPickListStatus(picklistServiceCriteria.PickListStatus);
                     }
                    
