@@ -87,7 +87,6 @@ pipeline
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\BioSAR_Browser"
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\DocManager"
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\VB Projects"
-				RD /S /Q "${WORKSPACE}\\ChemOffice\\cs_security"
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\Consulting"
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\ChemInv_9SR"
 				RD /S /Q "${WORKSPACE}\\ChemOffice\\Chem_Reg"
@@ -191,8 +190,8 @@ pipeline
 					bat """ 
 						del /Q ${DISKLOCATION}
 						xcopy /Y "${PUBLISH_PATH}\\Dev\\Server\\CBOEServerInstaller_${VERSION_STRING}\\*.*" ${DISKLOCATION}
-						"${INST_2013}" -p "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${VERSION_STRING}"
-						xcopy "${WORKSPACECBOE}\\Combined CBOE\\CBOE1210\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${VERSION_STRING}" /I /Y /S
+						"${INST_2013}" -p "${WORKSPACE}\\Combined CBOE\\CBOE.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${VERSION_STRING}"
+						xcopy "${WORKSPACE}\\Combined CBOE\\CBOE\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${VERSION_STRING}" /I /Y /S
 					""" 
 				}		          
 			}      
