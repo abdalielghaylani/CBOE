@@ -436,6 +436,14 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                 Csla.ApplicationContext.GlobalContext["LOGIN_FAILURE_MODE"] = sex.Detail.InnerText;
                 throw new InvalidCredentials(sex.Detail.InnerText);
             }
+            catch (System.Net.WebException webex)
+            {
+                if (webex.Status == System.Net.WebExceptionStatus.NameResolutionFailure)
+                {
+                    Csla.ApplicationContext.GlobalContext["LOGIN_FAILURE_MODE"] = Resources.ErrorServerName;
+                    throw new InvalidCredentials(Resources.ErrorServerName);
+                }
+            }
             catch (Exception ex)
             {
                 Csla.ApplicationContext.GlobalContext["LOGIN_FAILURE_MODE"] = Resources.ErrorRetrievingAuthTicket;

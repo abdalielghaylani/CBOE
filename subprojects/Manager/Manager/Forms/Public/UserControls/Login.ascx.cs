@@ -87,9 +87,12 @@ public partial class Forms_Public_UserControls_Login : System.Web.UI.UserControl
 
             if (HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString() != null && HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString() != string.Empty)
             {
-                this.Login1.FailureText = "Login Failed.";
-                ((WebControl)((Literal)Login1.FindControl("FailureText")).Parent).ToolTip = HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString();
-                _coeLog.Log(HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString(), 0, System.Diagnostics.SourceLevels.Error);
+                if (HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString() == "ErrorServerName")
+                    this.Login1.FailureText = "An Error occurred due to wrong Server Name.";
+                else
+                    this.Login1.FailureText = "Login Failed.";
+                    ((WebControl)((Literal)Login1.FindControl("FailureText")).Parent).ToolTip = HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString();
+                    _coeLog.Log(HttpContext.Current.Session["LOGIN_FAILURE_MODE"].ToString(), 0, System.Diagnostics.SourceLevels.Error);
             }
             else
             {

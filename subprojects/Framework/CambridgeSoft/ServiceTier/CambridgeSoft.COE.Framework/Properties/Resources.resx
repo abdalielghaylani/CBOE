@@ -519,6 +519,9 @@
   <data name="ErrorRetrievingAuthTicket" xml:space="preserve">
     <value>An error occurred retrieving the Authentication ticket</value>
   </data>
+  <data name="ErrorServerName" xml:space="preserve">
+    <value>ErrorServerName</value>
+  </data>
   <data name="BaseTablePKNotSet" xml:space="preserve">
     <value>The base table primary key has not been set. This is required for searching. Please review your dataview.</value>
   </data>

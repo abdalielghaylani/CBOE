@@ -664,6 +664,15 @@ namespace CambridgeSoft.COE.Framework.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ErrorServerName.
+        /// </summary>
+        internal static string ErrorServerName {
+            get {
+                return ResourceManager.GetString("ErrorServerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;C:\Documents and Settings\All Users\Application Data\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\COEFrameworkConfig.xml&quot; doesn&apos;t exists in the client machine..
         /// </summary>
         internal static string excepConfigNotFound {
@@ -849,17 +858,6 @@ namespace CambridgeSoft.COE.Framework.Properties {
         internal static string InvalidDataTypeForMolWeightCriteria {
             get {
                 return ResourceManager.GetString("InvalidDataTypeForMolWeightCriteria", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The data you have entered for searching with MolWeight contains negative value(s)..
-        /// </summary>
-        internal static string NegativeValueForMolWeightCriteria
-        {
-            get
-            {
-                return ResourceManager.GetString("NegativeValueForMolWeightCriteria", resourceCulture);
             }
         }
         
@@ -1184,6 +1182,15 @@ namespace CambridgeSoft.COE.Framework.Properties {
         internal static string NameAlreadyExists {
             get {
                 return ResourceManager.GetString("NameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data you have entered for searching with MolWeight contains negative value(s)..
+        /// </summary>
+        internal static string NegativeValueForMolWeightCriteria {
+            get {
+                return ResourceManager.GetString("NegativeValueForMolWeightCriteria", resourceCulture);
             }
         }
         
