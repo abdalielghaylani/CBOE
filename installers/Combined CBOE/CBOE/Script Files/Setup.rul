@@ -761,7 +761,7 @@ function InstallPatch(hMSI)
         MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
         MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);      
-        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.0.msi";                 
+        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi";                 
         LongPathFromShortPath(strMSIChem);
         LongPathToQuote(strMSIChem,TRUE);         
         strMSIChem ="/i " +strMSIChem + " /qb";      
