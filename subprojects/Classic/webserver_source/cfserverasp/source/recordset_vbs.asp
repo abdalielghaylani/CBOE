@@ -52,7 +52,7 @@
 		elseif (Session("fEmptyRecordset" & dbkey & formgroup) = True) OR (Session("error" & dbkey & formgroup)= True) then 
 			Session("RecordRange" & dbkey & formgroup) = ""
 			
-			Response.Write Session("Message" & dbkey & formgroup) 
+			Response.Write "<br /><font color=""red"" style=""padding-left:20px"">" & Session("Message" & dbkey & formgroup) & "</font><br />" 
 			'LJB 8_31_2004. Check for errors were the table does not exist. This usually indicates the user does not have privileges and they should be alerted.
 			if Session("TablePermissions" & dbkey & formgroup) <> "" then
 				Response.write "<br>"

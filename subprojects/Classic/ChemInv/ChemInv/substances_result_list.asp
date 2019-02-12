@@ -50,15 +50,9 @@ if detectModernBrowser = true then
 <%
 end if
 %>
-	<table border="0" width="100%">
-		<tr>
-			<td align="left">
-				<!--#INCLUDE VIRTUAL ="/cfserverasp/source/recordset_vbs.asp"-->
-			</td>
-		</tr>
-	</table>
 		<table id="resultsTable" border="1" bgcolor="#FFFFFF" align="left" width="600">
 			<tr>
+			<!--#INCLUDE VIRTUAL ="/cfserverasp/source/recordset_vbs.asp"-->
 <%
 recordsFound = true
 ' If there is only one record to display then Go to form view
