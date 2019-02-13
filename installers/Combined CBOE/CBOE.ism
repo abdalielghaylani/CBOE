@@ -3608,7 +3608,7 @@ If filesys.FolderExists(strPath) Then
 	oShell.Run str
 End If
 </td><td/><td/></row>
-		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework\v2.0.50727</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
+		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
 		<row><td>RunCBVNBatchMageFile</td><td>38</td><td/><td>dim strSource,strSourcePath       
 strSource = Session.Property("INSTALLDIR")
 strSourcePath = "ChemOfficeEnterprise\ChemBioViz.Net_Client\ChemBioViz.Net_ClickOnce" 
@@ -4220,6 +4220,7 @@ Set shell = Nothing
 		<row><td>_CCB11FA2_189D_43E4_83AB_A14F463CF8EA_</td><td>COMPLUS_APPLICATIONS</td><td>{CCB11~1|{CCB11FA2-189D-43E4-83AB-A14F463CF8EA}</td><td/><td>0</td><td/></row>
 		<row><td>_E449D8AD_0E1F_4BF4_A290_01277DBFA9D7_</td><td>COMPLUS_APPLICATIONS</td><td>{E449D~1|{E449D8AD-0E1F-4BF4-A290-01277DBFA9D7}</td><td/><td>0</td><td/></row>
 		<row><td>_WindowsFolder_Microsoft</td><td>TARGETDIR</td><td>_WindowsFolder_Microsoft</td><td/><td>0</td><td/></row>
+		<row><td>_WindowsFolder_Microsoft.NET_Framework64_v4.0.30319</td><td>TARGETDIR</td><td>_WindowsFolder_Microsoft.NET_Framework64_v4.0.30319</td><td/><td>0</td><td/></row>
 		<row><td>_WindowsFolder_Microsoft.NET_Framework_v2.0.50727</td><td>TARGETDIR</td><td>_WindowsFolder_Microsoft.NET_Framework_v2.0.50727</td><td/><td>0</td><td/></row>
 		<row><td>_WindowsFolder_aspnet_regiis.exe__s_W3SVC_1_ROOT</td><td>TARGETDIR</td><td>_WindowsFolder_aspnet_regiis.exe__s_W3SVC_1_ROOT</td><td/><td>0</td><td/></row>
 		<row><td>newfolder1</td><td>ProgramMenuFolder</td><td>##ID_STRING53##</td><td/><td>1</td><td/></row>
@@ -7771,7 +7772,6 @@ Set shell = Nothing
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
-		<row><td>_A553A840_3363_431B_8372_26F3AF51EF6B_</td><td>Microsoft ASP.Net AJAX Extensions.prq</td><td>5</td><td/><td/></row>
 		<row><td>_C66BA029_26A0_4B75_9C7E_18F58E6E79AB_</td><td>Windows Installer 4.5 for Windows Server 2008 (x86).prq</td><td>4</td><td/><td/></row>
 		<row><td>_EE3D4CF7_25D4_479D_944B_F787E0FB315D_</td><td>Microsoft Visual C++ 2017 Redistributable Package (x64).prq</td><td/><td/><td/></row>
 		<row><td>_F8BC7B6B_CC8D_4110_9242_9F9F6DBB18D4_</td><td>URL Rewrite Extension.prq</td><td/><td/><td/></row>
