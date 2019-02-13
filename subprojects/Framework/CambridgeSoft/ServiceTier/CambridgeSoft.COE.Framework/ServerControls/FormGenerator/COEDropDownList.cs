@@ -282,12 +282,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
                         if (dropdownItemsSelect != null)
                         {
                             _picklistDomain = -1;
-                            if (dropdownItemsSelect.InnerText.Contains("REGDB.PICKLIST") && !dropdownItemsSelect.InnerText.Contains("ORDER BY SORTORDER ASC"))
-                            {
-                                _sqlSelect = dropdownItemsSelect.InnerText + " ORDER BY SORTORDER ASC";
-                            }
-                            else
-                                _sqlSelect = dropdownItemsSelect.InnerText;
+                            _sqlSelect = dropdownItemsSelect.InnerText;
                             this.DataSource = _sqlSelect;
                             this.DataBind();
                         }
