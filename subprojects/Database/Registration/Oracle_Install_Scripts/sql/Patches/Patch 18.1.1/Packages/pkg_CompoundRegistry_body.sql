@@ -7162,7 +7162,7 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
         IF LUpdate THEN
           LSomeUpdate := TRUE;
 --          LRowsUpdated := DBMS_XMLSTORE.updateXML( LinsCtx, LXmlRows );
-          lstmt3:= Replace(lstmt3, '<STRUCTURE>(RemovedStructure)</STRUCTURE>','');
+          lstmt3:= Replace(lstmt3, 'a.STRUCTURE=q'||'''[(RemovedStructure)]''','a.STRUCTURE='''' ');
           TraceWrite('UpdateMcrr_lstmt3', $$plsql_line, 'lstmt3-> '||lstmt3);
           execute immediate lstmt3;
 
