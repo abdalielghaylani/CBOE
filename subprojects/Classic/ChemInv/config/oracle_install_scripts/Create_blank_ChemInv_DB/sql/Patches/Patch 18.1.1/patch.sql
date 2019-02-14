@@ -11,6 +11,14 @@ prompt
 Connect &&schemaName/&&schemaPass@&&serverName
 
 prompt '#########################################################'
+prompt 'Alter tables in &&schemaName'
+prompt '#########################################################'
+
+alter table &&schemaName..INV_LOCATION_TYPES modify(LOCATION_TYPE_ID NUMBER(9,0));
+alter table &&schemaName..INV_COMPOUNDS modify(LOCATION_TYPE_ID_FK NUMBER(9,0));
+alter table &&schemaName..INV_CONTAINERS modify(LOCATION_TYPE_ID_FK NUMBER(9,0));
+
+prompt '#########################################################'
 prompt 'Providing additional grants to &&schemaName...'
 prompt '#########################################################'
 
