@@ -3563,8 +3563,6 @@ For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
         If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") ) Then
-           
- MsgBox strValue1
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
