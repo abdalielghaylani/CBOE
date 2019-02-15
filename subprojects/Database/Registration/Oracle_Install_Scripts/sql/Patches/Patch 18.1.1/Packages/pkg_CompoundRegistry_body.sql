@@ -4,21 +4,20 @@ prompt
 
 create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
 --query to find slow procedures in package
---With start_log as (
---select t.*,to_char(substr(t.logprocedure,instr(t.logprocedure,'CompoundRegistry.',1)+17,instr(t.logprocedure,'_started',1)-(instr(t.logprocedure,'COMPOUNDREGISTRY.',1)+17)
---)) as proc_name
---from log t where LOGPROCEDURE like '%started%'-- or LOGPROCEDURE like '%ended%'
---),
---end_log as (
---select t.*,to_char(substr(t.logprocedure,instr(t.logprocedure,'COMPOUNDREGISTRY.',1)+17,instr(t.logprocedure,'_ended',1)-(instr(t.logprocedure,'COMPOUNDREGISTRY.',1)+17)
---)) as proc_name from log t where LOGPROCEDURE like '%ended%'
---)
---Select * from (
---select  a.id as start_id,a.logprocedure,a.proc_name,round((e.logdate-a.logdate) * 24 * 3600,2) as diff_in_sec,
---to_char(a.logdate,'dd/mm/yyy hh24:mi:ss') as start_d, to_char(e.logdate,'dd/mm/yyy hh24:mi:ss') as end_d from (
---select s.*,(select min(e.id) as id from end_log e where e.id>s.id and s.proc_name=e.proc_name) as end_id from start_log s
---) a, end_log e where a.end_id = e.id) where diff_in_sec>1
---;
+--select * from (
+-- select  l.id, l.logdate,  (lead(logdate) over (order by id)) as next_date,
+----to_number(substr(l.logprocedure,1,9)) as time1, 
+---- (lead(to_number(substr(l.logprocedure,1,9))) over (order by id)) as time_next,
+---- (lead(to_number(substr(l.logprocedure,1,9))) over (order by id))-to_number(substr(l.logprocedure,1,9)) as diff_time,
+--round (( (lead(logdate) over (order by id)) - logdate )* 24 * 3600,2) as diff_date_sec,
+-- to_char(substr(l.logprocedure,instr(l.logprocedure,'COMPOUNDREGISTRY.',1)+17,
+-- case when instr(l.logprocedure,'_ended',1)=0 then instr(l.logprocedure,'_started',1) else instr(l.logprocedure,'_ended',1) end
+-- -(instr(l.logprocedure,'COMPOUNDREGISTRY.',1)+17)
+--)) as proc_name,run_seq,to_char(L.LOGPROCEDURE) as LOGPROCEDURE
+-- from regdb.log l 
+--where to_char(substr(l.logcomment,1,10)) in ('start','end')
+-- )  where diff_date_sec >=1
+-- ;
 
 --Methods to *potentially* delete:
 --  AddAttribPickList and all references
@@ -7059,12 +7058,21 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
               lstmt4 := ' where ';
               LIndexField:= 0;
               lvTableName := to_char(LTableName);
+              
          for cur_upd in (with a as
            (select XmlType(LXmlRows) as xml  FROM dual)
            select
            --z.tt.getRootElement() as FieldToUpdate
            z.tt as FieldToUpdate
-           ,z.val
+           , 
+           -- if value is structure, we take it from variable
+           case when UPPER(lvTableName)='VW_STRUCTURE' and upper((z.tt))='STRUCTURE' then LStructureValue
+                  when UPPER(lvTableName)='VW_MIXTURE' and upper((z.tt))='STRUCTUREAGGREGATION' then LStructureAggregationValue
+                  when UPPER(lvTableName)='VW_FRAGMENT' and upper((z.tt))='STRUCTURE' then LFragmentXmlValue
+                  when UPPER(lvTableName)='VW_COMPOUND' and upper((z.tt))='NORMALIZEDSTRUCTURE' then LNormalizedStructureValue
+                else
+                  z.val
+             end as val
            from a, xmltable(lstmt
            passing (a.xml)
                 columns tt   varchar2(100) path './local-name()'--'/node()'
@@ -7132,7 +7140,17 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
               end case;
           end loop;
 
-           lstmt3 := 'update '||LTableName||' a set '||substr(lstmt3,2)||lstmt4;
+           lstmt3 := case 
+           -- if nothing set to update
+           when nvl(length(trim(both ' ' from  substr(lstmt3,2) )),0)=0 then 'select 1 from dual' 
+           -- if some columns set for updating
+           else 'update '||LTableName||' a set '||substr(lstmt3,2)||lstmt4 
+           end  ;
+           lstmt3 := case 
+           -- if nothing set to update
+           when lstmt3='update VW_Mixture_Component a set  a.MIXTUREID=0, a.COMPOUNDID=0 where  a.MIXTURECOMPONENTID=0'
+            then  'select 1 from dual' else lstmt3 end;
+           
           TraceWrite('UpdateMcrr_lstmt2', $$plsql_line, 'lstmt2-> '||lstmt2);
            execute immediate lstmt2 into lout;
 
@@ -7162,9 +7180,11 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
         IF LUpdate THEN
           LSomeUpdate := TRUE;
 --          LRowsUpdated := DBMS_XMLSTORE.updateXML( LinsCtx, LXmlRows );
-          lstmt3:= Replace(lstmt3, 'a.STRUCTURE=q'||'''[(RemovedStructure)]''','a.STRUCTURE='''' ');
+          lstmt3:= Replace(lstmt3, '(RemovedStructure)','');
+          if  lstmt3 != 'select 1 from dual' then
           TraceWrite('UpdateMcrr_lstmt3', $$plsql_line, 'lstmt3-> '||lstmt3);
           execute immediate lstmt3;
+          end if;
 
           LRowsProcessed := LRowsProcessed + LRowsUpdated;
           --Build Message Logs
@@ -7190,9 +7210,11 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
         END IF;
 
         IF UPPER(LTableName)='VW_FRAGMENT' AND LFragmentXmlValue IS NOT NULL THEN
-          UPDATE VW_STRUCTURE
+          LFragmentID := XmlType(LXmlRows).extract('VW_Fragment/ROW/FRAGMENTID/text()').getNumberVal();
+
+          UPDATE VW_FRAGMENT
           SET STRUCTURE = LFragmentXmlValue
-          WHERE StructureID = LStructureID  and dbms_lob.compare(STRUCTURE, LFragmentXmlValue)!=0;
+          WHERE FRAGMENTID = LFragmentID  and dbms_lob.compare(STRUCTURE, LFragmentXmlValue)!=0;
         END IF;
 
         IF UPPER(LTableName)='VW_COMPOUND' THEN
