@@ -147,7 +147,11 @@ Sub AuthenticateUserFromRequest(dbKey)
 		else
 			' DGB  reverting to redirect to login.asp instead of login.aspx because login.asp 
 			' cleans up classic session before redirecting to login.aspx
-			Response.redirect "/" & Application("appkey")& "/userprivs.asp?privsuser=1"
+			if Session("UserName" & dbKey) = "" then 
+			Response.redirect "/" & Application("appkey")& "/userprivs.asp?privsuser=1&usersession=0"
+			else
+			Response.redirect "/" & Application("appkey")& "/userprivs.asp?privsuser=1&usersession=1"
+			end if
 			'response.redirect "/coemanager/forms/public/contentarea/login.aspx"
 		end if
 	else 'user authenticated

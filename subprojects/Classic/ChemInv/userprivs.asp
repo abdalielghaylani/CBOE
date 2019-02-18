@@ -9,10 +9,16 @@ userprivileges = Request.QueryString("privsuser")
 
 <script language = "javascript">
 var check = <%=userprivileges%>
-if(check == 1)
+var userSessionValue = <%=userSession%>
+if(check == 1 && userSessionValue == 1)
 {
 alert("Insufficient privileges, please talk to your system administrator");
 document.location.href = "/cheminv/login.asp";
+}
+else if(check == 1 && userSessionValue == 0)
+{
+alert("Application has timed out");
+document.location.href = "/cheminv/logoff.asp";
 }
 </script>
 
