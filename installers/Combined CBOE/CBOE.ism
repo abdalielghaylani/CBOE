@@ -374,11 +374,9 @@
 		<row><td>CS_Security</td><td>{9A8208E0-A925-4F56-A7DD-D0D623C0780A}</td><td>CS_SECURITY1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td>{FDDCCA6E-86EE-4A64-B2B5-5C24C9B8BA1D}</td><td>RUNTIMELIBRARIES</td><td>8</td><td/><td>cambridgesoft.coe.framework.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemACX</td><td>{BC7C9AA2-15C5-477C-8204-BB8172FD7276}</td><td>CHEMACX1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ChemACX2</td><td>{9EAD337D-73DD-4EE2-8F71-2910ACEBDB11}</td><td>CHEMACX</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server</td><td>{F85EAB50-C36F-4677-9E62-5DCF404786C1}</td><td>_93C7DCE3_1049_4389_A848_B114738B6DE3_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server_File</td><td>{2F15C4E4-DF3B-4DA4-80FE-8D0DB628A989}</td><td>NEW_DIRECTORY3</td><td>0</td><td/><td>chemimp.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemInv</td><td>{114BFA2E-FAC1-47CC-BAD0-DE79DA0C296A}</td><td>CHEMINV</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ChemInv2</td><td>{7FD15E12-7FDB-4B0A-8710-DAC133075D13}</td><td>CHEMINV1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemOffice</td><td>{47CE7723-1EA9-4241-9EBD-8B85C0DCC4A1}</td><td>CHEMOFFICE</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemOfficeEnterprise</td><td>{58AD3C73-6C7F-4398-AF4A-4BFA91E46E73}</td><td>CHEMOFFICEENTERPRISE1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemOffice_Data</td><td>{215C5CC4-BD71-4246-A78A-6C88FB99D8E0}</td><td>CHEMOFFICE_DATA</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1264,7 +1262,6 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>CHEMACX</td><td>ChemACX2</td></row>
 		<row><td>CHEMOFFICE</td><td>ChemOffice</td></row>
 		<row><td>CHEMOFFICE_DATA</td><td>ChemOffice_Data</td></row>
 		<row><td>INSTALLDIR</td><td>AppPoolInstallDir2</td></row>
@@ -4095,11 +4092,9 @@ Set shell = Nothing
 		<row><td>CFSERVERADSI</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|CFServerADSI</td><td/><td>0</td><td/></row>
 		<row><td>CFSERVERASP</td><td>WEBSERVER_SOURCE1</td><td>CFSERV~1|cfserverasp</td><td/><td>0</td><td/></row>
 		<row><td>CFWTEMP</td><td>CHEMOFFICE</td><td>cfwtemp</td><td/><td>0</td><td/></row>
-		<row><td>CHEMACX</td><td>CHEMOFFICE_DATA</td><td>ChemACX</td><td/><td>0</td><td/></row>
 		<row><td>CHEMACX.UDL</td><td>CONFIG4</td><td>CHEMAC~1|ChemACX.udl</td><td/><td>0</td><td/></row>
 		<row><td>CHEMACX1</td><td>CHEMOFFICE</td><td>ChemACX</td><td/><td>0</td><td/></row>
 		<row><td>CHEMINV</td><td>CHEMOFFICE</td><td>ChemInv</td><td/><td>0</td><td/></row>
-		<row><td>CHEMINV1</td><td>CHEMOFFICE_DATA</td><td>ChemINV</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICE</td><td>IISROOTFOLDER</td><td>CHEMOF~1|ChemOffice</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE</td><td>INSTALLDIR</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE1</td><td>PERKINELMER</td><td>CHEMOF~1|ChemOfficeEnterprise</td><td/><td>0</td><td/></row>
@@ -4969,10 +4964,8 @@ Set shell = Nothing
 		<row><td>Classic</td><td>CSSecurityLDAP_Server</td></row>
 		<row><td>Classic</td><td>CSSecurityLDAP_Server_File</td></row>
 		<row><td>Classic</td><td>CS_Security</td></row>
-		<row><td>Classic</td><td>ChemACX2</td></row>
 		<row><td>Classic</td><td>ChemImp_Server</td></row>
 		<row><td>Classic</td><td>ChemImp_Server_File</td></row>
-		<row><td>Classic</td><td>ChemInv2</td></row>
 		<row><td>Classic</td><td>ChemOffice</td></row>
 		<row><td>Classic</td><td>Common</td></row>
 		<row><td>Classic</td><td>Config</td></row>
@@ -5034,7 +5027,6 @@ Set shell = Nothing
 		<row><td>cambridgesoft.coe.framework.</td><td>CambridgeSoft.COE.Framework.dll</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Release\CambridgeSoft.COE.Framework.dll</td><td>21</td><td/></row>
 		<row><td>chembiooffice.html1</td><td>IISRoot</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
 		<row><td>chemimp.dll</td><td>ChemImp_Server_File</td><td>ChemImp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\ChemImp.dll</td><td>1</td><td/></row>
-		<row><td>cheminv_reports_11.0.2.mdb</td><td>ChemInv2</td><td>CHEMIN~1.MDB|ChemInv_Reports_11.0.2.mdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\ChemInv_Reports_11.0.2.mdb</td><td>1</td><td/></row>
 		<row><td>chemoffice.asp1</td><td>IISRoot</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
 		<row><td>coeexceptionhandling.xml</td><td>ChemOfficeEnterprise</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>1</td><td/></row>
 		<row><td>coeframeworkconfig.xml</td><td>ChemOfficeEnterprise</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>1</td><td/></row>
@@ -6731,11 +6723,9 @@ Set shell = Nothing
 		<row><td>CS_Security</td><td/><td/><td>_022CD759_A098_4166_9445_75C79A22EF68_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CambridgeSoft.COE.Framework.dll</td><td/><td/><td>_6BDC8DCC_0162_4B11_B55C_2E7927150B93_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemACX</td><td/><td/><td>_7CB8DCF5_5DF6_4988_A8DF_E664EA18B67B_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ChemACX2</td><td/><td/><td>_05D3B6A2_63AE_4112_962C_B2DF146D4E93_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemImp_Server</td><td/><td/><td>_9B059B34_AAFC_4602_B00A_3C262D465079_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemImp_Server_File</td><td/><td/><td>_65B3AADA_CD02_47AA_9538_4E998183F5C9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemInv</td><td/><td/><td>_6566EFBE_C5DC_45BA_A660_98BEBFB2039D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ChemInv2</td><td/><td/><td>_1C66B6A4_50EE_4C1C_ABE7_0296C4BF3863_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemOffice</td><td/><td/><td>_C453F079_9DE2_48DB_AB32_3B4B265E34DA_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemOfficeEnterprise</td><td/><td/><td>_B9510EA5_81C4_434B_96B5_0E9D4C9C2828_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChemOffice_Data</td><td/><td/><td>_42897752_337E_4A2E_A977_788E8BE88796_FILTER</td><td/><td/><td/><td/></row>
