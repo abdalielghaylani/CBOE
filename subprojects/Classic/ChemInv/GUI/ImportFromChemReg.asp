@@ -90,19 +90,27 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 		var bWriteError = false;
 		var blocalError;
 		
-		// Destination is required
-		if (document.form1.LocationID.value.length == 0) {
+		if (document.form1.LocationID.value.length > 0)
+		{	
+			sessionStorage.setItem("LocationID", document.form1.LocationID.value);
+			LocationID = sessionStorage.getItem("LocationID");		
+		}
+		//Destination is required
+		else if (document.form1.LocationID.value.length == 0 && sessionStorage.getItem("LocationID") == null)
+		{
 			errmsg = errmsg + "- Destination is required.\r\r";
 			alert(errmsg);
 			return false;
 		}
-		else{
-			// Destination must be a number
+		else
+		{
+			//Destination must be a number
 			if (!isNumber(document.form1.LocationID.value)){
 			errmsg = errmsg + "- Destination must be a number.\r\r";
 			bWriteError = true;
 			}
 		}
+		
 		<%if Application("ENABLE_OWNERSHIP")="TRUE" then%>
 		 !document.form1.Ownershiplst ? document.form1.PrincipalID.value="" :  document.form1.PrincipalID.value=document.form1.Ownershiplst.value;
 	     if(GetAuthorizedLocation(document.form1.LocationID.value,document.getElementById("tempCsUserName").value,document.getElementById("tempCsUserID").value)==0)
@@ -200,7 +208,7 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 	}
 	
 	function GetActionBatchXML(){
-		var LocationID = document.form1.LocationID.value;
+		var LocationID = sessionStorage.getItem("LocationID");
 		var mydoc;
 		if (window.DOMParser) {
             mydoc = document.implementation.createDocument("", "", null);
