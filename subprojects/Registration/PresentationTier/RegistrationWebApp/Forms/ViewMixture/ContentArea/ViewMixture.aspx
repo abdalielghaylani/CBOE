@@ -168,6 +168,6 @@
             </td>
         </tr>
     </table>
-    <cc3:COEModalIframe runat="server" BodyURL="" ID="ModalFrame" ControlIDToBind="" HeaderText="" PaneInsideHeight="670" PaneInsideWidth="790" ModalPanelSettings="modal: true, width: '810px', height: '720px', context: ['MenuDiv', 'tr', 'br'] "></cc3:COEModalIframe>
+    <cc3:COEModalIframe runat="server" BodyURL="" ID="ModalFrame" ControlIDToBind="" HeaderText="" PaneInsideHeight="670" PaneInsideWidth="900" ModalPanelSettings="modal: true, width: '910px', height: '720px', context: ['MenuDiv', 'tr', 'br'] "></cc3:COEModalIframe>
     <asp:HiddenField ID="structureToolbarOption" runat="server" ClientIDMode="Static" />
 </asp:Content>
