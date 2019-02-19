@@ -37,6 +37,7 @@ const basePlugins = [
   }),
   new CopyWebpackPlugin([
     { from: 'src/assets', to: 'assets' },
+    { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
   ]),
   new webpack.LoaderOptionsPlugin({
     test: /\.css$/,

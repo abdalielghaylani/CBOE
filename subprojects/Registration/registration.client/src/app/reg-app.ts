@@ -1,16 +1,17 @@
 import { PrivilegeUtils } from './../common/utils/privilege.utils';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable ,  Subject ,  Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } from '../epics';
 import { IAppState, ISession, rootReducer, ILookupData, RegistryActions, SessionActions } from '../redux';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../redux';
-
 import { dev, helpLinkUserGuide, helpLinkAdminGuide, basePath } from '../configuration';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { DOCUMENT } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'reg-app',
@@ -49,7 +50,7 @@ export class RegApp {
   private hasRegAppPrivilege: boolean = false;
   private selectedCommandIndex: number = 0;
 
-  constructor(
+  constructor(@Inject(DOCUMENT) private doc: HTMLDocument,
     private devTools: DevToolsExtension,
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
@@ -101,6 +102,7 @@ export class RegApp {
           : link.endsWith('/records') || link.endsWith('records/marked') || link.indexOf('records/hits/') > 0 ? 3
             : link.indexOf('configuration') > 0 ? 4 : 0;
     });
+    this.doc.getElementById('app-favicon').setAttribute('href', location.protocol + '//' + location.host + basePath + `/favicon.ico`);
   }
 
   ngOnDestroy() {
