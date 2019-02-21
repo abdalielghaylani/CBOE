@@ -275,7 +275,7 @@ formgroup = Request("formgroup")
 							<td>
 							<nobr>
 								<script language="JavaScript">
-									if (!((formgroup.toLowerCase() == "containers_form_group") || (formgroup.toLowerCase() == "containers_np_form_group") || (formgroup.toLowerCase() == "plates_form_group") || (formgroup.toLowerCase() == "plates_np_form_group"))){
+									if (!((formgroup.toLowerCase() == "containers_form_group") || (formgroup.toLowerCase() == "containers_np_form_group") || (formgroup.toLowerCase() == "plates_form_group") || (formgroup.toLowerCase() == "batches_form_group") || (formgroup.toLowerCase() == "plates_np_form_group"))){
 										//this cals the navigation buttons for navigating the record set
 										if ((formmode.toLowerCase() == "list")||(formmode.toLowerCase() == "edit")){	
 											
