@@ -6288,6 +6288,15 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
     LMixtureIDTagEnd CONSTANT        VARCHAR2(15):='</MIXTUREID>';
 
     LComponentID                     Number := 0;
+    Larr_idc                                number;
+    Larr_idc1                                number;
+    Larr_idv                                number;
+    source_cursor                       INTEGER;
+
+    Lclobtable                           T_CLOB_ARRAY;
+    Lvartable                           T_VAR_ARRAY;
+    Lclobtable1                           T_CLOB_ARRAY;
+    Lvartable1                           T_VAR_ARRAY;
 
     LStructureValue                  CLOB;
     LStructuresList                  CLOB;
@@ -6322,9 +6331,9 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
     LCountComponent                  Number;
     LXslTables xmltype := XslMcrrUpdate;
     lstmt                            Varchar2(500);
-    lstmt2                           Varchar2(32000);
-    lstmt3                           Varchar2(32000);
-    lstmt4                           Varchar2(32000);
+    lstmt2                           CLOB;
+    lstmt3                           CLOB;
+    lstmt4                           CLOB;
     ldata_type                       Varchar2(100);
     lvTableName                      Varchar2(100);
     lout                             number;
@@ -7053,11 +7062,15 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
           END LOOP;*/
           lstmt:='for $i in '||LTableName||'/ROW[1]/* return $i';
           -- check, do we need update table or not
-              lstmt2 := 'select  count(1) from '||LTableName||' a where 1=1 ';
+              lstmt2 := 'select  count(1) from '||LTableName||' a where ';
               lstmt3 := '';
               lstmt4 := ' where ';
+
               LIndexField:= 0;
               lvTableName := to_char(LTableName);
+              Larr_idc:=-1;
+              Larr_idv:=0;
+              Larr_idc1:=-1;
               
          for cur_upd in (with a as
            (select XmlType(LXmlRows) as xml  FROM dual)
@@ -7066,10 +7079,10 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
            z.tt as FieldToUpdate
            , 
            -- if value is structure, we take it from variable
-           case when UPPER(lvTableName)='VW_STRUCTURE' and upper((z.tt))='STRUCTURE' then LStructureValue
-                  when UPPER(lvTableName)='VW_MIXTURE' and upper((z.tt))='STRUCTUREAGGREGATION' then LStructureAggregationValue
-                  when UPPER(lvTableName)='VW_FRAGMENT' and upper((z.tt))='STRUCTURE' then LFragmentXmlValue
-                  when UPPER(lvTableName)='VW_COMPOUND' and upper((z.tt))='NORMALIZEDSTRUCTURE' then LNormalizedStructureValue
+           case when UPPER(lvTableName)='VW_STRUCTURE' and upper((z.tt))='STRUCTURE' then empty_clob()
+                  when UPPER(lvTableName)='VW_MIXTURE' and upper((z.tt))='STRUCTUREAGGREGATION' then empty_clob()
+                  when UPPER(lvTableName)='VW_FRAGMENT' and upper((z.tt))='STRUCTURE' then empty_clob()
+                  when UPPER(lvTableName)='VW_COMPOUND' and upper((z.tt))='NORMALIZEDSTRUCTURE' then empty_clob()
                 else
                   z.val
              end as val
@@ -7079,14 +7092,15 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                 , val clob path '/*'
            ) z ) loop
               LIndexField := LIndexField + 1;
-              select data_type into ldata_type from user_tab_cols where table_name = upper(lvTableName) and column_name = to_char(cur_upd.FieldToUpdate);
+              select data_type into ldata_type from user_tab_cols where table_name = upper(lvTableName) and column_name = upper(cur_upd.FieldToUpdate);
+
 
               case ldata_type
                 when 'NUMBER'
                       then
                       begin
-                        lstmt2 := lstmt2 || ' and a.'|| case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
-                                                             else cur_upd.FieldToUpdate || '=' || to_char(cur_upd.val) end;
+                        lstmt2 := lstmt2 || ' a.'|| case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null  '
+                                                             else cur_upd.FieldToUpdate || '=' || to_char(cur_upd.val) end || ' and ';
                         if LIndexField != 1 then -- we don't need update ID of table
                            lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'='||nvl(to_char(cur_upd.val),'null');
                         else -- we need to do update only using primary ID of table
@@ -7100,16 +7114,55 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                 when 'CLOB'
                       then
                       begin
-                        lstmt2 := lstmt2 || ' and nvl(dbms_lob.compare('||cur_upd.FieldToUpdate||', '||q'[']'||to_char(cur_upd.val)||q'[']'||'),1) != 0';
-                        lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'='||  case when dbms_lob.getlength(cur_upd.val)=0 then q'[empty_clob()]'
-                                                                                       else q'[q'[]'||to_char(cur_upd.val)||']'||q'[']' end;
+                        lstmt2 := lstmt2 ||
+                                 case when (UPPER(lvTableName)='VW_STRUCTURE' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or ( UPPER(lvTableName)='VW_MIXTURE' and upper(cur_upd.FieldToUpdate)='STRUCTUREAGGREGATION')
+                                  or (UPPER(lvTableName)='VW_FRAGMENT' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or (UPPER(lvTableName)='VW_COMPOUND' and upper(cur_upd.FieldToUpdate)='NORMALIZEDSTRUCTURE')
+                                    then ''-- it will be updated in any case at the end procedure
+                                   else
+                                      ' nvl(dbms_lob.compare(a.'||cur_upd.FieldToUpdate||', :'||( cur_upd.FieldToUpdate)|| '),1) != 0 ' || ' and '
+                                   end;
+                        lstmt3 := lstmt3 ||
+                         case when (UPPER(lvTableName)='VW_STRUCTURE' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or ( UPPER(lvTableName)='VW_MIXTURE' and upper(cur_upd.FieldToUpdate)='STRUCTUREAGGREGATION')
+                                  or (UPPER(lvTableName)='VW_FRAGMENT' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or (UPPER(lvTableName)='VW_COMPOUND' and upper(cur_upd.FieldToUpdate)='NORMALIZEDSTRUCTURE')
+                                    then ''-- it will be updated in any case at the end procedure
+                                   else
+                               ', a.'||cur_upd.FieldToUpdate||'='||  case when dbms_lob.getlength(cur_upd.val)=0 then q'[empty_clob()]'
+                                                                                       else
+                                                                                           ':' || cur_upd.FieldToUpdate
+                                                                                       end
+                         end;
+
+                                 if  ( (UPPER(lvTableName)='VW_STRUCTURE' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or ( UPPER(lvTableName)='VW_MIXTURE' and upper(cur_upd.FieldToUpdate)='STRUCTUREAGGREGATION')
+                                  or (UPPER(lvTableName)='VW_FRAGMENT' and upper(cur_upd.FieldToUpdate)='STRUCTURE')
+                                  or (UPPER(lvTableName)='VW_COMPOUND' and upper(cur_upd.FieldToUpdate)='NORMALIZEDSTRUCTURE')) then
+                                    null;
+                                 else
+                                 if dbms_lob.getlength(cur_upd.val) =0 then
+                                               Larr_idc:=Larr_idc+1;
+                                               Lclobtable(Larr_idc):=cur_upd.val;
+                                               Lvartable(Larr_idc):=cur_upd.FieldToUpdate;
+                                    end if;
+                                    Larr_idc1:=Larr_idc1+1;
+                                    Lclobtable1(Larr_idc1):=cur_upd.val;
+                                    Lvartable1(Larr_idc1):=cur_upd.FieldToUpdate;
+                                 end if;
+
+
+
+
+
                         --lstmt4 := lstmt4 || ' and nvl(dbms_lob.compare('||cur_upd.FieldToUpdate||', '||q'[']'||to_char(cur_upd.val)||q'[']'||'),1) != 0';
                       end;
                 when 'NCHAR'
                       then
                       begin
-                        lstmt2 := lstmt2 || ' and a.'||case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
-                                                            else cur_upd.FieldToUpdate||'='||q'[q'[]'||to_char(cur_upd.val)||']'||q'[']' end;
+                        lstmt2 := lstmt2 || ' a.'||case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
+                                                            else cur_upd.FieldToUpdate||'='||q'[q'[]'||to_char(cur_upd.val)||']'||q'[']' end || ' and ';
                         lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'='||q'[q'[]'||to_char(cur_upd.val)||']'||q'[']';
                         --lstmt4 := lstmt4 || ' and a.'||cur_upd.FieldToUpdate||'='||q'[']'||to_char(cur_upd.val)||q'[']';
                       end;
@@ -7119,8 +7172,8 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                        if lvTableName||'.'||cur_upd.FieldToUpdate in ('VW_Compound.DATELASTMODIFIED','VW_Compound.ORDER_DATE','VW_Compound.RECEIVED_DATE','VW_Mixture.MODIFIED','VW_Batch.CREATION_DATE','VW_Batch.DATELASTMODIFIED') then
                          null;
                        else
-                          lstmt2 := lstmt2 || ' and a.' ||case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
-                                                               else cur_upd.FieldToUpdate||'='||q'[to_date(']' ||to_char(cur_upd.val)||q'[','yyyy-mm-dd hh:mi:ss AM')]' end;
+                          lstmt2 := lstmt2 || ' a.' ||case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
+                                                               else cur_upd.FieldToUpdate||'='||q'[to_date(']' ||to_char(cur_upd.val)||q'[','yyyy-mm-dd hh:mi:ss AM')]' end || ' and ';
                        end if;
                         lstmt3 := lstmt3 || ', a.' ||cur_upd.FieldToUpdate||'='|| case when dbms_lob.getlength(cur_upd.val)=0 then q'[null]'
                                                                                        else  q'[to_date(']' ||to_char(cur_upd.val)||q'[','yyyy-mm-dd hh:mi:ss AM')]' end;
@@ -7129,10 +7182,20 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                 when 'VARCHAR2'
                       then
                       begin
-                        lstmt2 := lstmt2 || ' and a.'||case when dbms_lob.getlength(cur_upd.val)=0 then cur_upd.FieldToUpdate || ' is null '
-                                                            else cur_upd.FieldToUpdate||'='||q'[q'[]'||to_char(cur_upd.val)||']'||q'[']' end;
-                        lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'='||q'[q'[]'||to_char(cur_upd.val)||']'||q'[']';
+                        lstmt2 := lstmt2 ||case when dbms_lob.getlength(cur_upd.val)=0 then  ' a.'||cur_upd.FieldToUpdate || ' is null '
+                                                            else cur_upd.FieldToUpdate||'= to_char(:'|| cur_upd.FieldToUpdate ||')'  end || ' and ';
+                        lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'=to_char(:'|| cur_upd.FieldToUpdate ||')';
                         --lstmt4 := lstmt4 || ' and a.'||cur_upd.FieldToUpdate||'='||q'[']'||to_char(cur_upd.val)||q'[']';
+                         if dbms_lob.getlength(cur_upd.val) !=0 then
+                            Larr_idc:=Larr_idc+1;
+                            Lclobtable(Larr_idc):=cur_upd.val;
+                            Lvartable(Larr_idc):=cur_upd.FieldToUpdate;
+                         end if;
+
+                            Larr_idc1:=Larr_idc1+1;
+                            Lclobtable1(Larr_idc1):=cur_upd.val;
+                            Lvartable1(Larr_idc1):=cur_upd.FieldToUpdate;
+
                       end;
                 else lstmt2 := lstmt2 || '';
                      lstmt3 := lstmt3 || '';
@@ -7140,19 +7203,50 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
               end case;
           end loop;
 
-           lstmt3 := case 
+           lstmt2 :=rtrim(lstmt2,' and ');
+           
+          TraceWrite('UpdateMcrr_lstmt2', $$plsql_line, 'lstmt2-> '||lstmt2);
+        begin
+          source_cursor := dbms_sql.open_cursor;
+         DBMS_SQL.PARSE(source_cursor,
+            lstmt2,
+              DBMS_SQL.NATIVE);
+
+
+          DBMS_SQL.DEFINE_COLUMN(source_cursor, 1, lout);
+
+        IF Larr_idc>-1 THEN
+          for i in 0..Larr_idc    loop
+              DBMS_SQL.BIND_VARIABLE(source_cursor, Lvartable(i), Lclobtable(i));
+          end loop;
+        END IF;
+
+          Larr_idv:= DBMS_SQL.EXECUTE(source_cursor);
+          if dbms_sql.fetch_rows(source_cursor) > 0 then
+             dbms_sql.column_value(source_cursor, 1, Lout);
+          end if;
+           DBMS_SQL.CLOSE_CURSOR(source_cursor);
+
+          EXCEPTION
+         WHEN OTHERS THEN
+              TraceWrite('UpdateMcrr_lstmt2_err', $$plsql_line, 'lstmt2-> '||SQLERRM);
+              DBMS_SQL.CLOSE_CURSOR(source_cursor);
+
+       RAISE;
+     end;
+
+           lstmt3 := case
            -- if nothing set to update
-           when nvl(length(trim(both ' ' from  substr(lstmt3,2) )),0)=0 then 'select 1 from dual' 
+           when nvl(length(trim(both ' ' from  substr(lstmt3,2) )),0)=0 then 'select 1 from dual'
            -- if some columns set for updating
-           else 'update '||LTableName||' a set '||substr(lstmt3,2)||lstmt4 
+           else 'update '||LTableName||' a set '||substr(lstmt3,2)||lstmt4
            end  ;
-           lstmt3 := case 
+           lstmt3 := case
            -- if nothing set to update
            when lstmt3='update VW_Mixture_Component a set  a.MIXTUREID=0, a.COMPOUNDID=0 where  a.MIXTURECOMPONENTID=0'
             then  'select 1 from dual' else lstmt3 end;
-           
-          TraceWrite('UpdateMcrr_lstmt2', $$plsql_line, 'lstmt2-> '||lstmt2);
-           execute immediate lstmt2 into lout;
+
+
 
            case lout when 0 then
               LUpdate:= true;
@@ -7183,7 +7277,31 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
           lstmt3:= Replace(lstmt3, '(RemovedStructure)','');
           if  lstmt3 != 'select 1 from dual' then
           TraceWrite('UpdateMcrr_lstmt3', $$plsql_line, 'lstmt3-> '||lstmt3);
-          execute immediate lstmt3;
+
+             begin
+                  source_cursor := dbms_sql.open_cursor;
+
+                 DBMS_SQL.PARSE(source_cursor,   lstmt3,  DBMS_SQL.NATIVE);
+
+                IF Larr_idc1>-1 THEN
+                  for i in 0..Larr_idc1    loop
+
+                      DBMS_SQL.BIND_VARIABLE(source_cursor, Lvartable1(i), Lclobtable1(i));
+                  end loop;
+                END IF;
+
+                  Larr_idv:= DBMS_SQL.EXECUTE(source_cursor);
+
+
+                   DBMS_SQL.CLOSE_CURSOR(source_cursor);
+
+                  EXCEPTION
+                 WHEN OTHERS THEN
+                      TraceWrite('UpdateMcrr_lstmt3_err', $$plsql_line, 'lstmt3-> '||SQLERRM);
+                      DBMS_SQL.CLOSE_CURSOR(source_cursor);
+
+               RAISE;
+             end;
           end if;
 
           LRowsProcessed := LRowsProcessed + LRowsUpdated;
