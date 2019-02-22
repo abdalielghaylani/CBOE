@@ -14,6 +14,8 @@ PACKAGE "COMPOUNDREGISTRY" AS
     TYPE TNumericIdList IS TABLE OF NUMBER INDEX BY binary_integer;
     TYPE CURSOR_TYPE IS REF CURSOR;
     TYPE T_ARRAY IS TABLE OF VARCHAR2(500);
+    TYPE T_VAR_ARRAY IS TABLE OF VARCHAR2(4000) INDEX BY binary_integer;
+    TYPE T_CLOB_ARRAY IS TABLE OF CLOB INDEX BY binary_integer;
     FUNCTION GetFragmentXML( ATempCompundID  in Number) RETURN CLOB;
     FUNCTION GetIdentifierCompundXML( ATempCompundID  in Number) RETURN CLOB;
     FUNCTION ValidateCompoundMulti(AStructure CLOB, AStructureIDToValidate Number:=NULL, AConfigurationID Number:=1, AXMLCompound XmlType, AXMLFragmentEquivalent XmlType, AREGNumber varchar2 :=null) RETURN CLOB;
