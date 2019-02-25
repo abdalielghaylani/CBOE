@@ -12,8 +12,8 @@
     <AssemblyName>DataLoader</AssemblyName>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <SignManifests>true</SignManifests>
-    <ManifestCertificateThumbprint>19AF77CB546748EA22DE3950A72074A3714B29B4</ManifestCertificateThumbprint>
-    <ManifestKeyFile>CambridgeSoft.COE.DataLoader_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>2F95BDD1DEAF5260A4CD71B7CBAF94C28859CE9D</ManifestCertificateThumbprint>
+    <ManifestKeyFile>CambridgeSoft.COE.DataLoader_2_TemporaryKey.pfx</ManifestKeyFile>
     <TargetZone>LocalIntranet</TargetZone>
     <GenerateManifests>true</GenerateManifests>
     <SignAssembly>false</SignAssembly>
@@ -49,8 +49,8 @@
     <ProductName>COE DataLoader</ProductName>
     <PublisherName>ChemBioOffice Enterprise 2010</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5021</ApplicationRevision>
-    <ApplicationVersion>12.6.3.5021</ApplicationVersion>
+    <ApplicationRevision>58</ApplicationRevision>
+    <ApplicationVersion>18.1.0.58</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -589,6 +589,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CambridgeSoft.COE.DataLoader_1_TemporaryKey.pfx" />
+    <None Include="CambridgeSoft.COE.DataLoader_2_TemporaryKey.pfx" />
     <None Include="CambridgeSoft.COE.DataLoader_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\DataLoader_02.png" />
