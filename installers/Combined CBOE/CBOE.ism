@@ -372,7 +372,7 @@
 		<row><td>CSSecurityLDAP_Server</td><td>{4BDB7314-B3A2-4E3E-A430-95DB0481E8CB}</td><td>_07E07208_61A6_4C6A_9033_C91C39B9FB55_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSSecurityLDAP_Server_File</td><td>{5EDBA113-EBE0-4EC0-80E2-4DCE899612E3}</td><td>NEW_DIRECTORY7</td><td>0</td><td/><td>cssecurityldap.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CS_Security</td><td>{9A8208E0-A925-4F56-A7DD-D0D623C0780A}</td><td>CS_SECURITY1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CambridgeSoft.COE.Framework.dll</td><td>{FDDCCA6E-86EE-4A64-B2B5-5C24C9B8BA1D}</td><td>RUNTIMELIBRARIES</td><td>8</td><td/><td>cambridgesoft.coe.framework.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CambridgeSoft.COE.Framework.dll</td><td>{FDDCCA6E-86EE-4A64-B2B5-5C24C9B8BA1D}</td><td>RUNTIMELIBRARIES</td><td>8</td><td/><td>cambridgesoft.coe.framework.</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemACX</td><td>{BC7C9AA2-15C5-477C-8204-BB8172FD7276}</td><td>CHEMACX1</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server</td><td>{F85EAB50-C36F-4677-9E62-5DCF404786C1}</td><td>_93C7DCE3_1049_4389_A848_B114738B6DE3_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChemImp_Server_File</td><td>{2F15C4E4-DF3B-4DA4-80FE-8D0DB628A989}</td><td>NEW_DIRECTORY3</td><td>0</td><td/><td>chemimp.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -693,7 +693,7 @@
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>PushButton</td><td>301</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_CANCEL##</td><td>ISPrintButton</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>PushButton</td><td>301</td><td>188</td><td>65</td><td>17</td><td>3</td><td/><td>##IDS_PRINT_BUTTON##</td><td>Text1</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>7</td><td>56</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\LicenseAgreement.RTF</td><td/></row>
+		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>6</td><td>56</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;WORKSPACE_ROOT&gt;\installers\InstallSupportFiles\LicenseAgreement.RTF</td><td/></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>Text1</td><td>Text</td><td>15</td><td>12</td><td>180</td><td>14</td><td>65539</td><td>NewProperty14</td><td>##NEW_STRING15##</td><td>Text2</td><td/><td/><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>Text2</td><td>Text</td><td>29</td><td>26</td><td>247</td><td>12</td><td>65539</td><td>NewProperty15</td><td>##NEW_STRING16##</td><td>Agree</td><td/><td/><td/><td/><td/></row>
@@ -3340,7 +3340,7 @@ Loop
 
 </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711,strReg
+Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer = "."
@@ -3349,12 +3349,11 @@ strEntry1a = "DisplayName"
 strCBOE17="ChemBioOffice Enterprise 17.1"
 strCBOE1711="ChemOffice Enterprise 17.1.1"
 strCBOE18="ChemOffice Enterprise 18.1"
-strReg="Registration.Server"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
     objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18) Or (strValue1=strReg)) then         
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
              WSHShell.RegDelete strK              
@@ -3369,7 +3368,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)              
-       If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18) Or (strValue1=strReg)) then         
+       If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
@@ -3385,7 +3384,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18) Or (strValue1=strReg)) then   
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then   
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
@@ -5020,27 +5019,27 @@ Set shell = Nothing
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>appl.vbs1</td><td>DataLoader_Click</td><td>Appl.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>1</td><td/></row>
 		<row><td>appl1.vbs1</td><td>DataLoader_Click</td><td>Appl1.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>1</td><td/></row>
-		<row><td>base64decode.dll</td><td>Base64Decoder_Server_File</td><td>BASE64~1.DLL|Base64Decode.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\Base64Decode.dll</td><td>1</td><td/></row>
+		<row><td>base64decode.dll</td><td>Base64Decoder_Server_File</td><td>BASE64~1.DLL|Base64Decode.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Base64Decode.dll</td><td>1</td><td/></row>
 		<row><td>binary.dll</td><td>Binary.dll</td><td>Binary.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Binary.dll</td><td>1</td><td/></row>
 		<row><td>blob.dll</td><td>BLOB_Server_File</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
 		<row><td>blob.dll1</td><td>Blob.dll</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
 		<row><td>blob.dll2</td><td>BLOB_Server_File1</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
-		<row><td>cambridgesoft.coe.framework.</td><td>CambridgeSoft.COE.Framework.dll</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Release\CambridgeSoft.COE.Framework.dll</td><td>21</td><td/></row>
-		<row><td>chembiooffice.html1</td><td>IISRoot</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
-		<row><td>chemimp.dll</td><td>ChemImp_Server_File</td><td>ChemImp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\ChemImp.dll</td><td>1</td><td/></row>
-		<row><td>chemoffice.asp1</td><td>IISRoot</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
-		<row><td>coeexceptionhandling.xml</td><td>ChemOfficeEnterprise</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>1</td><td/></row>
-		<row><td>coeframeworkconfig.xml</td><td>ChemOfficeEnterprise</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>1</td><td/></row>
-		<row><td>coeframeworkservices.asmx</td><td>WebService</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
-		<row><td>coeheaderserver.dll</td><td>COEHeaderServer_Server_File</td><td>COEHEA~1.DLL|COEHeaderServer.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\COEHeaderServer.dll</td><td>1</td><td/></row>
-		<row><td>coesharedassemblyconfig.xml</td><td>ChemOfficeEnterprise</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>1</td><td/></row>
-		<row><td>cssecurityldap.dll</td><td>CSSecurityLDAP_Server_File</td><td>CSSECU~1.DLL|CSSecurityLDAP.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\CSSecurityLDAP.dll</td><td>1</td><td/></row>
+		<row><td>cambridgesoft.coe.framework.</td><td>CambridgeSoft.COE.Framework.dll</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Release\CambridgeSoft.COE.Framework.dll</td><td>21</td><td/></row>
+		<row><td>chembiooffice.html1</td><td>IISRoot</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
+		<row><td>chemimp.dll</td><td>ChemImp_Server_File</td><td>ChemImp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\ChemImp.dll</td><td>1</td><td/></row>
+		<row><td>chemoffice.asp1</td><td>IISRoot</td><td>CHEMOF~1.ASP|chemoffice.asp</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\wwwroot\chemoffice.asp</td><td>1</td><td/></row>
+		<row><td>coeexceptionhandling.xml</td><td>ChemOfficeEnterprise</td><td>COEEXC~1.XML|COEExceptionHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEExceptionHandling.xml</td><td>1</td><td/></row>
+		<row><td>coeframeworkconfig.xml</td><td>ChemOfficeEnterprise</td><td>COEFRA~1.XML|COEFrameworkConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COEFrameworkConfig.xml</td><td>1</td><td/></row>
+		<row><td>coeframeworkservices.asmx</td><td>WebService</td><td>COEFRA~1.ASM|COEFrameworkServices.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\COEFrameworkServices.asmx</td><td>1</td><td/></row>
+		<row><td>coeheaderserver.dll</td><td>COEHeaderServer_Server_File</td><td>COEHEA~1.DLL|COEHeaderServer.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\COEHeaderServer.dll</td><td>1</td><td/></row>
+		<row><td>coesharedassemblyconfig.xml</td><td>ChemOfficeEnterprise</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>1</td><td/></row>
+		<row><td>cssecurityldap.dll</td><td>CSSecurityLDAP_Server_File</td><td>CSSECU~1.DLL|CSSecurityLDAP.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\CSSecurityLDAP.dll</td><td>1</td><td/></row>
 		<row><td>dcomcnfg.cmd</td><td>Dlls2</td><td>DCOMCNFG.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\DCOMCNFG.cmd</td><td>1</td><td/></row>
 		<row><td>dcomperm.exe</td><td>dcomperm.exe</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
 		<row><td>dcomperm.exe1</td><td>dcomperm.exe1</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
 		<row><td>deletefiles.bat</td><td>Dlls3</td><td>DELETE~1.BAT|DeleteFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DeleteFiles.bat</td><td>1</td><td/></row>
 		<row><td>dsofile.dll</td><td>dsofile.dll</td><td>dsofile.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dsofile.dll</td><td>1</td><td/></row>
-		<row><td>exceptionshandling.xml</td><td>ChemOfficeEnterprise</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>1</td><td/></row>
+		<row><td>exceptionshandling.xml</td><td>ChemOfficeEnterprise</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>1</td><td/></row>
 		<row><td>filebatchload.exe</td><td>FileBatchLoad.exe</td><td>FILEBA~1.EXE|FileBatchLoad.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\FileBatchLoad.exe</td><td>1</td><td/></row>
 		<row><td>instsrv.exe</td><td>instsrv.exe</td><td>instsrv.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\instsrv.exe</td><td>1</td><td/></row>
 		<row><td>loadfiles.bat</td><td>Dlls</td><td>LOADFI~1.BAT|LoadFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\LoadFiles.bat</td><td>1</td><td/></row>
@@ -5052,19 +5051,20 @@ Set shell = Nothing
 		<row><td>mssoap30.dll</td><td>COEHeaderServer_Server_File1</td><td>MSSOAP30.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;CommonFilesFolder&gt;\MSSoap\Binaries\MSSOAP30.dll</td><td>1</td><td/></row>
 		<row><td>msvcp71.dll</td><td>MVC71</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>msvcp71.dll1</td><td>MVC7132</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
-		<row><td>mswcrun.dll</td><td>mswrun</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\WebServer_Source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
-		<row><td>mswcrun.dll1</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\WebServer_Source\cfserveradmin\AdminSource\mswcrun.dll</td><td>17</td><td/></row>
+		<row><td>mswcrun.dll</td><td>mswrun</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
+		<row><td>mswcrun.dll1</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>17</td><td/></row>
 		<row><td>mykey.cer</td><td>DataLoader_Click</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
 		<row><td>mykey.pvk</td><td>DataLoader_Click</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
 		<row><td>mypfx.pfx</td><td>DataLoader_Click</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
 		<row><td>setdcompermission.cmd</td><td>Dlls2</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.tlb</td><td>COESSO_Server_File1</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.reg</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.REG|SingleSignOnCom.reg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.reg</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.tlb</td><td>COESSO_Server_File1</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
+		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>srvany.exe</td><td>SRVANY.EXE</td><td>SRVANY.EXE</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\SRVANY.EXE</td><td>1</td><td/></row>
 		<row><td>taskscheduler.dll</td><td>Scheduler_Server_File</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
 		<row><td>taskscheduler.dll1</td><td>Scheduler_Server_File1</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
-		<row><td>web.config4</td><td>WebService</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
+		<row><td>web.config4</td><td>WebService</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -6869,20 +6869,20 @@ Set shell = Nothing
 		<col def="S0">IncludeFiles</col>
 		<col def="S0">ExcludeFiles</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>CS_Security</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\cs_security</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>ChemACX</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\chemacx</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>ChemInv</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\ChemInv</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>Common</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common</td><td>4</td><td/><td>web.config,CSDO.dll, CSDO10.dll,  CSDO11.dll, MolServer.dll</td><td>10</td></row>
-		<row><td>Config</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\config</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>DataLoader</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\DataLoader\bin\Release\DataLoader.publish</td><td>4</td><td/><td>*.pdb</td><td>8</td></row>
-		<row><td>DataLoader2</td><td>&lt;New Path Variable&gt;\Perforce\Goods\program files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\DataLoader2</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
+		<row><td>CS_Security</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\CS_Security</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>ChemACX</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\chemacx</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>ChemInv</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\ChemInv</td><td>4</td><td/><td>web.config,TBarCode_x64_Setup.msi</td><td>10</td></row>
+		<row><td>Common</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\Common</td><td>4</td><td/><td>web.config,CSDO.dll, CSDO10.dll,  CSDO11.dll, MolServer.dll,CSDO17.dll,CSDO14.dll,CSDO15.dll</td><td>10</td></row>
+		<row><td>Config</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\config</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>DataLoader</td><td>&lt;New Path Variable&gt;\Goods\DataLoader.publish</td><td>4</td><td/><td>*.pdb</td><td>8</td></row>
+		<row><td>DataLoader2</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\DataUploader\DataUploader\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>DataLoader_Click</td><td>&lt;New Path Variable&gt;\Perforce\Goods\program files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\DataLoader\DataLoader_ClickOnce</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
-		<row><td>RunTimeLib</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;</td><td>4</td><td/><td/><td>8</td></row>
-		<row><td>Sample</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>Sample_Ora</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample_ora</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>Sample_SqlServer</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\sample_sqlserver</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>WebServer_Source</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\webserver_source</td><td>4</td><td/><td>web.config</td><td>10</td></row>
-		<row><td>cfwtemp</td><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\cfwtemp</td><td>4</td><td/><td/><td>10</td></row>
+		<row><td>RunTimeLib</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;</td><td>4</td><td>CambridgeSoft.COE.Framework.dll,InstallServices.bat</td><td/><td>8</td></row>
+		<row><td>Sample</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\Sample</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>Sample_Ora</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\Sample_Ora</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>Sample_SqlServer</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\sample_sqlserver</td><td>4</td><td/><td>web.config</td><td>10</td></row>
+		<row><td>WebServer_Source</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source</td><td>4</td><td/><td>web.config,PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_18.1.msi,ChemBioVizExcelAddin1240.exe,SendToE-Notebook 18.1.exe</td><td>10</td></row>
+		<row><td>cfwtemp</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\CFWTemp</td><td>4</td><td/><td/><td>10</td></row>
 	</table>
 
 	<table name="ISFeatureDIMReferences">
@@ -7415,25 +7415,26 @@ Set shell = Nothing
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>New Path Variable</td><td>c:\</td><td/><td>2</td></row>
-		<row><td>PATH_TO_APP_GLOBALRESOU_FI</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp\App_GlobalResources</td><td/><td>2</td></row>
-		<row><td>PATH_TO_APP_GLOBALRESOU_FI1</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager\App_GlobalResources</td><td/><td>2</td></row>
-		<row><td>PATH_TO_APP_THEMES_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp\App_Themes</td><td/><td>2</td></row>
-		<row><td>PATH_TO_APP_THEMES_FILES1</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager\App_Themes</td><td/><td>2</td></row>
-		<row><td>PATH_TO_BIN_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp\bin</td><td/><td>2</td></row>
-		<row><td>PATH_TO_BIN_FILES1</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager\bin</td><td/><td>2</td></row>
-		<row><td>PATH_TO_CHEMBIOVIZWEBAP_FI</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp</td><td/><td>2</td></row>
-		<row><td>PATH_TO_COMMONRUNTIMELI_FI</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Framework\CambridgeSoft\CommonRuntimeLibraries</td><td/><td>2</td></row>
-		<row><td>PATH_TO_FORMS_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp\Forms</td><td/><td>2</td></row>
-		<row><td>PATH_TO_FORMS_FILES1</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager\Forms</td><td/><td>2</td></row>
-		<row><td>PATH_TO_HELP_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\ChemBioViz.NET\Help</td><td/><td>2</td></row>
-		<row><td>PATH_TO_MANAGER_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager</td><td/><td>2</td></row>
-		<row><td>PATH_TO_PROPERTIES_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ChemBioViz\PresentationTier\ChemBioVizWebApp\Properties</td><td/><td>2</td></row>
-		<row><td>PATH_TO_PROPERTIES_FILES1</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Manager\Manager\Properties</td><td/><td>2</td></row>
-		<row><td>PATH_TO_REGISTRATIONWEB_FI</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Registration\PresentationTier\RegistrationWebApp</td><td/><td>2</td></row>
-		<row><td>PATH_TO_RELEASE_FILES</td><td>C:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\ChemBioViz.NET\bin\Release</td><td/><td>2</td></row>
-		<row><td>PATH_TO_SINGLESIGNON_FILES</td><td>c:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Security\SingleSignOn\SingleSignOn</td><td/><td>2</td></row>
+		<row><td>PATH_TO_APP_GLOBALRESOU_FI</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\PresentationTier\ChemBioVizWebApp\App_GlobalResources</td><td/><td>2</td></row>
+		<row><td>PATH_TO_APP_GLOBALRESOU_FI1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager\App_GlobalResources</td><td/><td>2</td></row>
+		<row><td>PATH_TO_APP_THEMES_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\ChemBioViz\PresentationTier\ChemBioVizWebApp\App_Themes</td><td/><td>2</td></row>
+		<row><td>PATH_TO_APP_THEMES_FILES1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager\App_Themes</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BIN_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\ChemBioViz\PresentationTier\ChemBioVizWebApp\bin</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BIN_FILES1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager\bin</td><td/><td>2</td></row>
+		<row><td>PATH_TO_CHEMBIOVIZWEBAP_FI</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\PresentationTier\ChemBioVizWebApp</td><td/><td>2</td></row>
+		<row><td>PATH_TO_COMMONRUNTIMELI_FI</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\CommonRuntimeLibraries</td><td/><td>2</td></row>
+		<row><td>PATH_TO_FORMS_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\ChemBioViz\PresentationTier\ChemBioVizWebApp\Forms</td><td/><td>2</td></row>
+		<row><td>PATH_TO_FORMS_FILES1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager\Forms</td><td/><td>2</td></row>
+		<row><td>PATH_TO_HELP_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\CBVN\ChemBioViz.Net\ChemBioViz.NET\Help</td><td/><td>2</td></row>
+		<row><td>PATH_TO_MANAGER_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager</td><td/><td>2</td></row>
+		<row><td>PATH_TO_PROPERTIES_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\ChemBioViz\PresentationTier\ChemBioVizWebApp\Properties</td><td/><td>2</td></row>
+		<row><td>PATH_TO_PROPERTIES_FILES1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Manager\Manager\Properties</td><td/><td>2</td></row>
+		<row><td>PATH_TO_REGISTRATIONWEB_FI</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\RegistrationWebApp</td><td/><td>2</td></row>
+		<row><td>PATH_TO_RELEASE_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\CBVN\ChemBioViz.Net\ChemBioViz.NET\bin\Release</td><td/><td>2</td></row>
+		<row><td>PATH_TO_SINGLESIGNON_FILES</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Security\SingleSignOn\SingleSignOn</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
+		<row><td>WORKSPACE_ROOT</td><td>WORKSPACE_ROOT</td><td/><td>4</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
 	</table>
 
@@ -7751,8 +7752,8 @@ Set shell = Nothing
 		<row><td>SetupFile5</td><td>logAsSvc.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\LogasSvc\logAsSvc.exe</td></row>
 		<row><td>SetupFile6</td><td>RegSvr32AS.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\Scripts\RegSvr32AS.vbs</td></row>
 		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\0x0409.ini</td></row>
-		<row><td>SetupFile8</td><td>CBOE 17.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.1.exe</td></row>
-		<row><td>SetupFile9</td><td>CBOE 17.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\CBOE 18.1.1.msi</td></row>
+		<row><td>SetupFile8</td><td>CBOE 18.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\CBOE 18.1.1.exe</td></row>
+		<row><td>SetupFile9</td><td>CBOE 18.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\CBOE 18.1.1.msi</td></row>
 	</table>
 
 	<table name="ISSetupPrerequisites">
@@ -9581,21 +9582,21 @@ Set shell = Nothing
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\install9\UserInterface\ARPIcon.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\Images\ARPIcon.ico</td><td>0</td></row>
 		<row><td>NewShortcut10_6810897C8637412F9D5AD922C67F5502.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut11_B4B3F566FA6349B9A43B10DCAC4C973B.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
-		<row><td>NewShortcut12_63E93F6CBD6F42C090D62D1E858EDE38.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\install9\UserInterface\DataLoader.exe</td><td>0</td></row>
+		<row><td>NewShortcut12_63E93F6CBD6F42C090D62D1E858EDE38.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\subprojects\DataLoader\bin\Release\DataLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut13_CB430019565C496087E7A2ED2B446D9B.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\ChemBioViz.NET\bin\Release\ChemBioViz.NET.exe</td><td>0</td></row>
 		<row><td>NewShortcut14_BD195F06F3A2435987D10F12736D3551.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ConfigLoader\bin\Release\ConfigLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut16_7AAD1165DFB446B395667760166449B1.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
-		<row><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut2_986FB7C3104D4C0990DF5C80B0A94447.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut3_CAE912D443824125AE490CF2A3018190.exe</td><td/><td>&lt;SystemFolder&gt;\shell32.dll</td><td>126</td></row>
 		<row><td>NewShortcut4_06CA7823C1944AB3825310E3A37A906E.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
-		<row><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
-		<row><td>NewShortcut6_6CAFB4D780574BCABA310389A6EAD09B.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
+		<row><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
+		<row><td>NewShortcut6_6CAFB4D780574BCABA310389A6EAD09B.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut7_6BC2D4DE29B94708867BA43BF4D85343.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut8_2DB07C7DBB9340BB960D0867999C261B.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut9_9BA3DE1672344219BCD332FBDD5BB136.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
