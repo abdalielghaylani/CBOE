@@ -1571,6 +1571,25 @@ Set shell = CreateObject("WScript.Shell")
 shell.CurrentDirectory = strsource '&amp; strSourcePath
 shell.run "ScriptMaps.vbs W3SVC/ScriptMaps .cdx /REMOVE /RECURSE /ALL /COMMIT"  
 Set shell = Nothing </td><td/><td/></row>
+		<row><td>DeleteChemInvObsolote</td><td>38</td><td/><td>On Error Resume Next
+Dim strDelFolder,strFile,strDir,strCmd,strCommand
+dim objShell : set objShell = CreateObject("Wscript.Shell")
+Const DeleteReadOnly = TRUE
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+'CBOE-8536
+strDelFolder=Session.Property("CHEMOFFICE_DATA")
+strFile=strDelFolder &amp; "\ChemINV\ChemInv_Reports_11.0.2.mdb"
+objFSO.DeleteFile(strFile), DeleteReadOnly
+'CBOE-8537
+strDir=strFolder&amp; "\ChemACX"
+strCmd=Chr(34) &amp; objFSO.GetSpecialFolder(1)  &amp; "\cmd.exe " &amp; Chr(34)
+strCommand=strCmd &amp;"/c RD /S /Q " &amp; Chr(34) &amp; strDir  &amp; Chr(34)
+If objFSO.FolderExists( strDir) Then
+ objShell.Run strCommand, 0, 1
+End If
+
+
+</td><td/><td/></row>
 		<row><td>DeleteComComponents</td><td>38</td><td/><td>on error resume next
 
 Dim c_PackageId, objCatalog, objApplicationsColl, objServer, Computer
@@ -7742,8 +7761,8 @@ Set shell = Nothing
 		<col def="I2">Splash</col>
 		<col def="S0">Path</col>
 		<row><td>SetupFile1</td><td>ntrights.exe</td><td/><td>1033</td><td>0</td><td>&lt;ProgramFilesFolder&gt;\Windows Resource Kits\Tools\ntrights.exe</td></row>
-		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Data1.cab</td></row>
-		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\Setup.ini</td></row>
+		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Data1.cab</td></row>
+		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Setup.ini</td></row>
 		<row><td>SetupFile12</td><td>ChemDraw-JS-Setup-18.0.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\CDJS18.1\ChemDraw-JS-Setup-18.0.exe</td></row>
 		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td></row>
 		<row><td>SetupFile2</td><td>ScriptMaps.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ScriptMaps.vbs</td></row>
@@ -7751,7 +7770,7 @@ Set shell = Nothing
 		<row><td>SetupFile4</td><td>usersetup.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\usersetup\usersetup.exe</td></row>
 		<row><td>SetupFile5</td><td>logAsSvc.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\LogasSvc\logAsSvc.exe</td></row>
 		<row><td>SetupFile6</td><td>RegSvr32AS.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\Scripts\RegSvr32AS.vbs</td></row>
-		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\CBOEServerInstaller_18.1\0x0409.ini</td></row>
+		<row><td>SetupFile7</td><td>0x0409.ini</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\0x0409.ini</td></row>
 		<row><td>SetupFile8</td><td>CBOE 18.1.1.exe</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\CBOE 18.1.1.exe</td></row>
 		<row><td>SetupFile9</td><td>CBOE 18.1.1.msi</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\CBOE 18.1.1.msi</td></row>
 	</table>
@@ -9695,6 +9714,7 @@ Set shell = Nothing
 		<row><td>CreateShortcuts</td><td/><td>4500</td><td>CreateShortcuts</td><td/></row>
 		<row><td>CreateWebsite</td><td>Not Installed And INSTALLWSUI="No" And CREATEWEBSITE="Yes" And CBOE="no"</td><td>1013</td><td/><td/></row>
 		<row><td>DeleteCDXScriptMaps</td><td>Not Installed And INSTALLWSUI="No" And CBOE="no"</td><td>1017</td><td/><td/></row>
+		<row><td>DeleteChemInvObsolote</td><td>Not Installed</td><td>6737</td><td/><td/></row>
 		<row><td>DeleteServices</td><td>VersionNT</td><td>2000</td><td>DeleteServices</td><td/></row>
 		<row><td>DisableRollback</td><td/><td>5</td><td/><td/></row>
 		<row><td>DuplicateFiles</td><td/><td>4210</td><td>DuplicateFiles</td><td/></row>
