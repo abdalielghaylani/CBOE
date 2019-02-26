@@ -142,14 +142,18 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
   mod1 varchar2(100);
   act varchar2(100);
   BEGIN
-     dbms_application_info.read_module(mod1, act); TraceWrite( act||'add_attrib_started', $$plsql_line,'start' );
+     dbms_application_info.read_module(mod1, act); 
+     TraceWrite( act||'add_attrib_started', $$plsql_line,'start' );
+    if l_FieldList is not null then
     l_FieldList  := case when ',' = substr(l_FieldList,1,1) then '' else ',' end || l_FieldList;
-
-    if l_FieldList like '%'||l_FieldName||'%' then
+    end if;
+    if l_FieldList like '%'||l_FieldName||'%' and l_FieldList is not null then
       l_var := substr(l_FieldList,instr(l_FieldList,l_FieldName)+length(l_FieldName));
       l_var := substr(l_var,1,instr(l_var,',',1,1)-1);
       begin
-        select 'select '|| Ext_Display_Col || ' FROM ' || Ext_Table  ||' WHERE ' || Ext_ID_Col || ' = '||iAlias||iFieldName into var1
+        select case when Ext_Display_Col is not null and Ext_Table  is not null and Ext_ID_Col is not null then
+          'select '|| Ext_Display_Col || ' FROM ' || Ext_Table  ||' WHERE ' || Ext_ID_Col || ' = '||iAlias||iFieldName
+                 else null end into var1
         from VW_PickListDomain pd where pd.id=to_number(l_var);
       exception when NO_DATA_FOUND then
         var1:=null;
