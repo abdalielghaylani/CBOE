@@ -1581,7 +1581,7 @@ strDelFolder=Session.Property("CHEMOFFICE_DATA")
 strFile=strDelFolder &amp; "\ChemINV\ChemInv_Reports_11.0.2.mdb"
 objFSO.DeleteFile(strFile), DeleteReadOnly
 'CBOE-8537
-strDir=strFolder&amp; "\ChemACX"
+strDir=strDelFolder&amp; "\ChemACX"
 strCmd=Chr(34) &amp; objFSO.GetSpecialFolder(1)  &amp; "\cmd.exe " &amp; Chr(34)
 strCommand=strCmd &amp;"/c RD /S /Q " &amp; Chr(34) &amp; strDir  &amp; Chr(34)
 If objFSO.FolderExists( strDir) Then
