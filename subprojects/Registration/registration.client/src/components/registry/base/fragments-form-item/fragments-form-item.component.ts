@@ -178,11 +178,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       allowFiltering: false,
       allowSorting: false,
       width: 150,
-      cellTemplate: function (c, o) {
-        if (o.data.structure) {
-          jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="structure-column block mx-auto" />`).appendTo(c);
-        }
-      }
+      cellTemplate: 'structureTemplate',
     }, {
       dataField: 'description',
       caption: 'Description',

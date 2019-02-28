@@ -13,10 +13,13 @@ export const nonStructureImage = require('../assets/no-structure.png');
 })
 export class RegStructureImageColumnItem {
   @Input() source: any;
+  @Input() smallImage: boolean = false;
   @Input() title: string;
   @Output() onClick = new EventEmitter<string>();
   private image;
   private imageId;
+  private width;
+  private heigth;
   private spinnerImage = require('../assets/spinner.gif');
   
   constructor(private imageService: CStructureImageService, private changeDetector: ChangeDetectorRef, private ngZone: NgZone) {
@@ -29,10 +32,14 @@ export class RegStructureImageColumnItem {
     if (!value) {
       return;
     }
+    if (this.smallImage) {
+      this.width = 30;
+      this.heigth = 60;
+    }
     let self = this;
     this.image = this.spinnerImage;
     self.changeDetector.markForCheck();
-    if (!value) {
+    if (!value || typeof value !== 'string') {
       this.image = nonStructureImage;
     } else {
       this.imageService.generateImage(value)
@@ -54,6 +61,8 @@ export class RegStructureImageColumnItem {
       value = value.STRUCTUREAGGREGATION;
     } else if ( value && value.structure != null) {
       value = value.structure;
+    } else if ( value && value.STRUCTURE != null) {
+      value = value.STRUCTURE.trim();
     }
     return value;
   }

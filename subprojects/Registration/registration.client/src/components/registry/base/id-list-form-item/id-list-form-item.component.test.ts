@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { RegIdListFormItem } from './id-list-form-item.component';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegDropDownColumnItem, RegStructureColumnItem } from '../../../index';
+import { RegDropDownColumnItem, RegStructureImageColumnItem } from '../../../index';
 import { idListTestData } from './id-list-form-item.component.data.test';
 
 // Mock out the NgRedux class with just enough to test what we want.
@@ -36,7 +36,7 @@ describe('Component : ID List Form Item', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [TestModule, DevExtremeModule],
-        declarations: [RegIdListFormItem, RegDropDownColumnItem, RegStructureColumnItem],
+        declarations: [RegIdListFormItem, RegDropDownColumnItem, RegStructureImageColumnItem],
         providers: [
           { provide: NgRedux, useValue: mockRedux }
         ]

@@ -152,11 +152,11 @@
     width: 150px;
 }
 
-
 /* Following Fixes are For IE11 */
 
 @media all and (-ms-high-contrast: none),
 (-ms-high-contrast: active) {
+
     label.cdd-dialog-input.checkbox-inline {
         display: block;
     }

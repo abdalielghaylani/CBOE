@@ -6,7 +6,7 @@
       [scrolling]="{ mode: 'infinite' }" [height]="265"
       (onRowClick)="onGridRowClick($event)">
       <div *dxTemplate="let data of 'structureTemplate'">
-        <reg-structure-column-item-template [viewModel]="data"></reg-structure-column-item-template>
+        <reg-structure-image-column-item-template [source]="data.data" [smallImage]="true"></reg-structure-image-column-item-template>
       </div>
     </dx-data-grid>
   </div>

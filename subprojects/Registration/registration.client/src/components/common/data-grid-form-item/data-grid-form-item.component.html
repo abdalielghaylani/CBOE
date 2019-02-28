@@ -17,7 +17,10 @@
   </div>
   <div *dxTemplate="let e of 'identifierCellTemplate'">
    {{getIdentifierName(e)}}
-   </div> 
+   </div>
+  <div *dxTemplate="let data of 'structureTemplate'">
+    <reg-structure-image-column-item-template [source]="data.data" [smallImage]="true"></reg-structure-image-column-item-template>
+  </div>
 </dx-data-grid>
 <dx-text-box class="display-none">
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">

@@ -5,7 +5,7 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { RegistryModule } from '../..';
 import {
   RegDropDownFormItem, RegDateFormItem, RegStructureImageFormItem, RegTextFormItem, 
-  RegDropDownColumnItem, RegStructureColumnItem
+  RegDropDownColumnItem, RegStructureImageColumnItem
 } from '../../../index';
 
 describe('Component : Form View Component', () => {

@@ -2,7 +2,7 @@ import { RegFragmentsFormItem } from './fragments-form-item.component';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegDropDownColumnItem, RegStructureColumnItem } from '../../../index';
+import { RegDropDownColumnItem, RegStructureImageColumnItem } from '../../../index';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux/index';
 import { HttpService } from '../../../../services/http.service';
@@ -38,7 +38,7 @@ describe('Component : Fragments Form Item', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [ TestModule, DevExtremeModule  ],
-        declarations : [ RegFragmentsFormItem, RegDropDownColumnItem, RegStructureColumnItem ],
+        declarations : [ RegFragmentsFormItem, RegDropDownColumnItem, RegStructureImageColumnItem ],
         providers: [
           { provide: NgRedux, useValue : mockRedux }
         ]

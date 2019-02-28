@@ -37,7 +37,7 @@
     'function-parentheses-space-inside': 'never-single-line',
     'function-whitespace-after': 'always',
     'function-url-quotes': 'always',
-    'indentation': 2,
+    'indentation': null,
     'max-empty-lines': 1,
     'max-line-length': [ 80, {
       'ignore': 'non-comments',

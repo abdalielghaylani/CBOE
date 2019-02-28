@@ -2,7 +2,7 @@ import { RegDataGridFormItem } from './data-grid-form-item.component';
 import { TestModule } from '../../../test/test.module';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegDropDownColumnItem, RegStructureColumnItem } from '../common-component.module';
+import { RegDropDownColumnItem, RegStructureImageColumnItem } from '../common-component.module';
 
 describe('Component : Data Grid Form Item', () => {
 
@@ -12,8 +12,7 @@ describe('Component : Data Grid Form Item', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [ TestModule, DevExtremeModule ],
-        declarations : [ RegDataGridFormItem, RegDropDownColumnItem, 
-                          RegStructureColumnItem ],
+        declarations : [ RegDataGridFormItem, RegDropDownColumnItem, RegStructureImageColumnItem ],
       });
     };
 

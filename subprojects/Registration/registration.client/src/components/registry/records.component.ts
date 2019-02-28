@@ -66,7 +66,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private gridHeight: string;
   private currentIndex: number = 0;
   private sortCriteria: string;
-  private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');

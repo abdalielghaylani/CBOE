@@ -2,8 +2,8 @@ import { RegDropDownColumnItem } from './drop-down-column-item.component';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../test/test.module';
 import { DevExtremeModule } from 'devextreme-angular';
-import { RegStructureColumnItem } from '../common-component.module';
 import { DDColumnItemViewConfig } from './test-data';
+import { RegStructureImageColumnItem } from '../common-component.module';
 
 describe('Component : Drop Down Column Item', () => {
 
@@ -13,7 +13,7 @@ describe('Component : Drop Down Column Item', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [ TestModule, DevExtremeModule ],
-        declarations : [ RegDropDownColumnItem, RegStructureColumnItem ],
+        declarations : [ RegDropDownColumnItem, RegStructureImageColumnItem ],
       });
     };
 

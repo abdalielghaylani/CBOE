@@ -39,7 +39,6 @@ import { RegDateFormItem } from './date-form-item';
 import { RegDropDownColumnItem } from './drop-down-column-item';
 import { RegDropDownFormItem } from './drop-down-form-item';
 import { RegStructureBaseFormItem } from './structure-base-form-item';
-import { RegStructureColumnItem } from './structure-column-item';
 import { RegStructureImage } from './structure-image';
 import { RegStructureImageGridItem } from './structure-image-grid-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
@@ -59,7 +58,6 @@ export * from './date-form-item';
 export * from './drop-down-column-item';
 export * from './drop-down-form-item';
 export * from './structure-base-form-item';
-export * from './structure-column-item';
 export * from './structure-image';
 export * from './structure-image-form-item';
 export * from './structure-image-column-item';
@@ -105,7 +103,7 @@ export * from './modal';
     RegAlert, RegButton,
     RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup,
     RegModal, RegModalContent,
-    RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
+    RegBaseColumnItem, RegDropDownColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
     RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem
@@ -115,7 +113,7 @@ export * from './modal';
     RegAlert, RegButton,
     RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup,
     RegModal, RegModalContent,
-    RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
+    RegBaseColumnItem, RegDropDownColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
     RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem,

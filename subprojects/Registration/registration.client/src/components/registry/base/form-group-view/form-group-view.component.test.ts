@@ -6,7 +6,7 @@ import { RegistryModule } from '../..';
 import { DevExtremeModule } from 'devextreme-angular';
 import {
   RegDateFormItem, RegDropDownFormItem, RegStructureImageFormItem, RegTextFormItem,
-  RegDropDownColumnItem, RegStructureColumnItem
+  RegDropDownColumnItem, RegStructureImageColumnItem
 } from '../../../index';
 import { NgReduxModule } from '@angular-redux/store';
 import { RegToolModule } from '../../../../common/tool';
