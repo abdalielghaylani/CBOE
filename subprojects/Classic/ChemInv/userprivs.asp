@@ -5,6 +5,7 @@
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_login_utils_vbs.asp"-->
 <%
 userprivileges = Request.QueryString("privsuser")
+userSession = Request.QueryString("usersession")
 %>
 
 <script language = "javascript">
