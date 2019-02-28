@@ -75,9 +75,9 @@ namespace CambridgeSoft.COE.Framework.Common
             }
 
             //set up instrumentation listener is the instrumentation settings indicated to do so.
-            DataInstrumentationListener listener = new DataInstrumentationListener("COECore", true, true, true);
-            DataInstrumentationListenerBinder binder = new DataInstrumentationListenerBinder();
-            binder.Bind(this.Database.GetInstrumentationEventProvider(), new DataInstrumentationListener("COECore", true, true, true));
+            //DataInstrumentationListener listener = new DataInstrumentationListener("COECore", true, true, true);
+            //DataInstrumentationListenerBinder binder = new DataInstrumentationListenerBinder();
+            //binder.Bind(this.Database.GetInstrumentationEventProvider(), new DataInstrumentationListener("COECore", true, true, true));
 
             AssociateSession();
         }
