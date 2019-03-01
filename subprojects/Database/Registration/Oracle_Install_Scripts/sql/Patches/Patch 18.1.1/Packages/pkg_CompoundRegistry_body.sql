@@ -8421,6 +8421,7 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
     LStructureAggregationValue     CLOB;
 
     LStructureID                   Number(8);
+	LTempSequenceID				   Number(8); 	
 
     LProjectsSequenceType          XmlSequenceType;
     LProjectID                     VW_PROJECT.ProjectID%Type;
@@ -8526,6 +8527,11 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
       -- Only new components can be inserted on update of a temporary 'registration'
       IF LSectionInsert THEN
         LRowsInserted := 0;
+		
+		--Get the SequenceID for new component from xml
+		SELECT extractValue(LXmlTables,'/MultiCompoundRegistryRecord/ComponentList/Component[@insert="yes"]/Compound[@insert="yes"]/RegNumber/SequenceID')      
+        INTO LTempSequenceID FROM dual;
+        TraceWrite('NewComponent_SequenceID', $$plsql_line, to_char(LTempSequenceID));
 
         CASE UPPER(LTableName)
           WHEN 'VW_TEMPORARYCOMPOUND' THEN
@@ -8609,19 +8615,19 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
           IF LBatchCompFragmentXmlValue IS NOT NULL THEN
             IF LStructureValue IS NOT NULL AND LFragmentXmlValue IS NOT NULL THEN
               UPDATE VW_TEMPORARYCOMPOUND
-              SET BASE64_CDX=LStructureValue,FRAGMENTXML=LFragmentXmlValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue
+              SET BASE64_CDX=LStructureValue,FRAGMENTXML=LFragmentXmlValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue, SequenceID=LTempSequenceID
               WHERE TempCompoundID=LTempCompoundID;
 
             ELSE
               IF LStructureValue IS NOT NULL THEN
                 UPDATE VW_TEMPORARYCOMPOUND
-                SET BASE64_CDX=LStructureValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue,NormalizedStructure=LNormalizedStructureValue
+                SET BASE64_CDX=LStructureValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue,NormalizedStructure=LNormalizedStructureValue, SequenceID=LTempSequenceID
                 WHERE TempCompoundID=LTempCompoundID;
               END IF;
 
               IF LFragmentXmlValue IS NOT NULL THEN
                 UPDATE VW_TEMPORARYCOMPOUND
-                SET FRAGMENTXML=LFragmentXmlValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue,NormalizedStructure=LNormalizedStructureValue
+                SET FRAGMENTXML=LFragmentXmlValue, BatchCompFragmentXML=LBatchCompFragmentXmlValue,NormalizedStructure=LNormalizedStructureValue, SequenceID=LTempSequenceID
                 WHERE TempCompoundID=LTempCompoundID;
               END IF;
             END IF;
@@ -8629,18 +8635,18 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
           ELSE
             IF LStructureValue IS NOT NULL AND LFragmentXmlValue IS NOT NULL THEN
               UPDATE VW_TEMPORARYCOMPOUND
-              SET BASE64_CDX=LStructureValue,FRAGMENTXML=LFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue
+              SET BASE64_CDX=LStructureValue,FRAGMENTXML=LFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue, SequenceID=LTempSequenceID
               WHERE TempCompoundID=LTempCompoundID;
             ELSE
               IF LStructureValue IS NOT NULL THEN
                 UPDATE VW_TEMPORARYCOMPOUND
-                SET BASE64_CDX=LStructureValue, NormalizedStructure=LNormalizedStructureValue
+                SET BASE64_CDX=LStructureValue, NormalizedStructure=LNormalizedStructureValue,SequenceID=LTempSequenceID
                 WHERE TempCompoundID=LTempCompoundID;
               END IF;
 
               IF LFragmentXmlValue IS NOT NULL THEN
                 UPDATE VW_TEMPORARYCOMPOUND
-                SET FRAGMENTXML=LFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue
+                SET FRAGMENTXML=LFragmentXmlValue, NormalizedStructure=LNormalizedStructureValue,SequenceID=LTempSequenceID
                 WHERE TempCompoundID=LTempCompoundID;
               END IF;
             END IF;
