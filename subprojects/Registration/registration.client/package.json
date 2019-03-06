@@ -29,7 +29,8 @@
     "test": "node --max_old_space_size=4096 node_modules/karma/bin/karma start --singleRun true --browsers=Chrome",
     "test:ci": "node --max_old_space_size=4096 node_modules/karma/bin/karma start --singleRun true --browsers=ChromeHeadless",
     "posttest": "npm run cover",
-    "test:watch": "node --max_old_space_size=4096 node_modules/karma/bin/karma start --singleRun false"
+    "test:watch": "node --max_old_space_size=4096 node_modules/karma/bin/karma start --singleRun false",
+    "ci:build": "npm install && npm run build && npm run test:ci"
   },
   "repository": {},
   "devDependencies": {
