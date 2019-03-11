@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;copy; Copyright 2001-2017 PerkinElmer Informatics, Inc..
+        ///   Looks up a localized string similar to &amp;copy; Copyright 1998-2019 PerkinElmer Informatics, Inc..
         /// </summary>
         internal static string CopyrightInfo {
             get {

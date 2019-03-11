@@ -11,7 +11,7 @@ using System.Web.UI;
 [assembly: System.Reflection.AssemblyConfiguration("")]
 [assembly: System.Reflection.AssemblyCompany("PerkinElmer")]
 [assembly: System.Reflection.AssemblyProduct("CambridgeSoft.COE.Framework")]
-[assembly: System.Reflection.AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
+[assembly: System.Reflection.AssemblyCopyright("© Copyright 1998-2019 PerkinElmer Informatics, Inc.")]
 [assembly: System.Reflection.AssemblyTrademark("")]
 [assembly: System.Reflection.AssemblyCulture("")]
 

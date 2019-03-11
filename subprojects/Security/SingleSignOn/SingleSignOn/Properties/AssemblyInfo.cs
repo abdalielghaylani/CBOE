@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PerkinElmer")]
 [assembly: AssemblyProduct("SingleSignOn")]
-[assembly: AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyCopyright("© Copyright 1998-2019 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

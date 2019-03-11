@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PerkinElmer")]
 [assembly: AssemblyProduct("CambridgeSoft.COE.Registration.Services")]
-[assembly: AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyCopyright("© Copyright 1998-2019 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
