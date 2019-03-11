@@ -38,10 +38,6 @@
   background-color: lightgray;
 }
 
-.dx-invalid-message > .dx-overlay-content {
-  position: fixed !important;
-}
-
 .container-info {
   margin-top: 15px;
   font-size: 13px;
