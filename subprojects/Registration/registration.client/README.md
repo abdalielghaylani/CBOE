@@ -66,4 +66,4 @@ Edit [this file](server/proxy-config.js) to mount such APIs at a given path.
 
 ## License
 
-Copyright &copy;2018 PerkinElmer, Inc.
+Copyright &copy;2019 PerkinElmer, Inc.
