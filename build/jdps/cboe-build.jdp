@@ -14,7 +14,7 @@ pipeline
         CBOE_BUILD_NUMBER = "${env.BRANCH_NAME.startsWith('release/v') ? "0${BUILD_NUMBER}" : "5${BUILD_NUMBER}"}"
         FULL_VERSION = "${PROD_VERSION}.${CBOE_BUILD_NUMBER}"
         FOLDER_VERSION_NAME = "${FULL_VERSION.replace('.', '_')}"
-        PUBLISH_PATH = '"\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\${PROD_VERSION}"'
+        PUBLISH_PATH = "\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\${PROD_VERSION}"
 		STAGE_INSTALLER="Staging"
         NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"
     }
@@ -101,13 +101,14 @@ pipeline
             steps 
             {
                 bat """
-                    
+                    call "${WORKSPACE}\\build\\jdps\\SigningFiles.bat" ${SIGNTOOL} ${WORKSPACE}
                     set WORKSPACE_PATH_ROOT=${WORKSPACE}
                     "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${FULL_VERSION}" -z "CBVNBUILDNUMBER=${FULL_VERSION}" -z "CBVNFOLDERVERSION=${FOLDER_VERSION_NAME}" -z "BUILDVERSION=${FOLDER_VERSION_NAME}"
                     xcopy /Y /I /S "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${WORKSPACE}\\installers\\SubInstaller"
                     set WORKSPACE_ROOT=${WORKSPACE}
                     "${ISCMD}" -p "${WORKSPACE}\\installers\\Combined CBOE\\CBOE.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${FULL_VERSION}"
                     xcopy "${WORKSPACE}\\installers\\Combined CBOE\\CBOE\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}" /I /Y /S
+                    call %SIGNTOOL% "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}\\CBOE${PROD_VERSION}.exe"
                 """
             }
         }
