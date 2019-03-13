@@ -15,7 +15,7 @@ pipeline
         FULL_VERSION = "${PROD_VERSION}.${CBOE_BUILD_NUMBER}"
         FOLDER_VERSION_NAME = "${FULL_VERSION.replace('.', '_')}"
         PUBLISH_PATH = "\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\${PROD_VERSION}"
-		STAGE_INSTALLER="Staging"
+        STAGE_INSTALLER="Staging"
         NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"
     }
     options
@@ -108,7 +108,24 @@ pipeline
                     set WORKSPACE_ROOT=${WORKSPACE}
                     "${ISCMD}" -p "${WORKSPACE}\\installers\\Combined CBOE\\CBOE.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${FULL_VERSION}"
                     xcopy "${WORKSPACE}\\installers\\Combined CBOE\\CBOE\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}" /I /Y /S
-                    call %SIGNTOOL% "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}\\CBOE${PROD_VERSION}.exe"
+                    call %SIGNTOOL% "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}\\CBOE ${PROD_VERSION}.exe"
+                """
+            }
+        }
+        stage('Perform-VirusScan')
+        {
+            when 
+            {
+                expression
+                {
+                    return env.BRANCH_NAME.startsWith('release/v') || env.BRANCH_NAME == "master"
+                }
+            }
+            steps 
+            {
+                bat """
+                   cd "${WORKSPACE}"
+                   "${SCAN}"
                 """
             }
         }
