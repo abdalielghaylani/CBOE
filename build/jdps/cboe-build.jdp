@@ -158,7 +158,17 @@ pipeline
     {
         always
         {
+            emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                mimeType: 'text/html',
+                subject: "${currentBuild.result?:'SUCCESS'}-Job \'${env.JOB_NAME}:${env.CBOE_BUILD_NUMBER}\'",
+                to: "${NOTIFY_LIST}",
+                replyTo: "${NOTIFY_LIST}",
+                recipientProviders: [[$class: 'CulpritsRecipientProvider']]
             deleteDir()
+        }
+        success 
+        {
+            slackSend (color: 'GREEN', message: "SUCCESS: Job '${env.JOB_NAME} [${FULL_VERSION}]' (${env.BUILD_URL}) (${env.PUBLISH_PATH})",channel: "#cboe-qa-dev")
         }
     }
 }
