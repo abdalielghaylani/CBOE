@@ -14516,8 +14516,8 @@ PROCEDURE SaveDuplicates(AXMLDuplicated IN clob,APersonID IN VARCHAR2:=null) IS
   END;
 
 begin
- vActiveRLS:=GetActiveRLS;
  VSystemSettings := GetSystemSettings;
+ vActiveRLS:=GetActiveRLS;
  VRegObjectTemplate:=GetRegObjectTemplate;
  LEnableRLS := RegistrationRLS.GEnableRLS;
  VSameBatchesIdentity:=GetSameBatchesIdentity;
