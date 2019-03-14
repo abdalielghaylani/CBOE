@@ -3359,7 +3359,7 @@ Loop
 
 </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711
+Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711,strReg
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer = "."
@@ -3368,11 +3368,12 @@ strEntry1a = "DisplayName"
 strCBOE17="ChemBioOffice Enterprise 17.1"
 strCBOE1711="ChemOffice Enterprise 17.1.1"
 strCBOE18="ChemOffice Enterprise 18.1"
+strReg="Registration.Server"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
     objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18)  Or (strValue1=strReg)) then         
              Set WSHShell = CreateObject("WScript.Shell")
              strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
              WSHShell.RegDelete strK              
@@ -3387,7 +3388,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)              
-       If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then         
+       If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18) Or (strValue1=strReg)) then         
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"   
             WSHShell.RegDelete strK
@@ -3403,7 +3404,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
 objReg.EnumKey HKLM, strKey, arrSubkeys   
     For Each strSubkey In arrSubkeys
         intRet1 = objReg.GetStringValue(HKLM, strKey &amp; strSubkey, strEntry1a, strValue1)
-        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1="strCBOE18")) then   
+        If ((strValue1=strCBOE17)  Or (strValue1=strCBOE1711) Or (strValue1=strCBOE18) Or (strValue1=strReg)) then   
             Set WSHShell = CreateObject("WScript.Shell")
             strK="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\"  
             strSource="HKLM"&amp;"\"&amp;strKey &amp;strSubKey &amp;"\" &amp; "SourceList\"
