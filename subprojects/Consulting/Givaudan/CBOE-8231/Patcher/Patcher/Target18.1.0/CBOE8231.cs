@@ -6,8 +6,8 @@ using System.Xml;
 
 namespace CambridgeSoft.COE.Patcher
 {
-	class CBOE8231:BugFixBaseCommand
-	{
+    class CBOE8231 : BugFixBaseCommand
+    {
         public override List<string> Fix(List<System.Xml.XmlDocument> forms, List<System.Xml.XmlDocument> dataviews, List<System.Xml.XmlDocument> configurations, System.Xml.XmlDocument objectConfig, System.Xml.XmlDocument frameworkConfig)
         {
             List<string> messages = new List<string>();
@@ -27,7 +27,7 @@ namespace CambridgeSoft.COE.Patcher
                     XmlNode tableTemporaryBatch = dataviewDoc.SelectSingleNode(coeDataViewPath, manager);
 
                     if (tableTemporaryBatch != null)
-                    {                        
+                    {
                         XmlNode fields = dataviewDoc.SelectSingleNode(coeDataViewPath + "/COE:fields[@name='SOURCE_V10']", manager);
                         if (fields == null)
                         {
@@ -55,7 +55,7 @@ namespace CambridgeSoft.COE.Patcher
                     }
                 }
             }
-            
+
             #endregion
 
             #region COEObjectConfig
@@ -64,23 +64,41 @@ namespace CambridgeSoft.COE.Patcher
             string _coePropertyPath = string.Empty;
             _coePropertyPath = "MultiCompoundRegistryRecord/BatchList/Batch/PropertyList"; // Path to check the Rootnode before patcher update.
             rootNode = objectConfig.SelectSingleNode(_coePropertyPath);
-            XmlNode lastModPersonID_Node = rootNode.SelectSingleNode("Property[@name='LAST_MOD_PERSON_ID']");
-            if (lastModPersonID_Node == null)
-            {
-                lastModPersonID_Node = rootNode.OwnerDocument.CreateNode(XmlNodeType.Element, "Property", null);
-                createNewAttribute("name", "LAST_MOD_PERSON_ID", ref lastModPersonID_Node);
-                createNewAttribute("friendlyName", "LAST_MOD_PERSON_ID", ref lastModPersonID_Node);
-                createNewAttribute("type", "NUMBER", ref lastModPersonID_Node);
-                createNewAttribute("precision", "4.0", ref lastModPersonID_Node);
-                createNewAttribute("sortOrder", "0", ref lastModPersonID_Node);
-                lastModPersonID_Node.AppendChild(lastModPersonID_Node.OwnerDocument.CreateNode(XmlNodeType.Element, "validationRuleList", null));
 
-                rootNode.AppendChild(lastModPersonID_Node);
-                messages.Add("LAST_MOD_PERSON_ID node was Addded succesfully in PropertyList.");
+            string lastModPersonIDPropertyXml = @"<Property name=""LAST_MOD_PERSON_ID"" friendlyName=""LAST_MOD_PERSON_ID"" type=""NUMBER"" precision=""8.0"" sortOrder=""69"">
+               <validationRuleList>
+                  <validationRule validationRuleName=""integer"" errorMessage=""This property value must be an integer number"">
+                     <params>
+                        <param name=""integerPart"" value=""8"" />
+                        <param name=""decimalPart"" value=""0"" />
+                     </params>
+                  </validationRule>
+                  <validationRule validationRuleName=""textLength"" errorMessage=""The property value can have between 0 and 8 characters"">
+                     <params>
+                        <param name=""min"" value=""0"" />
+                        <param name=""max"" value=""8"" />
+                     </params>
+                  </validationRule>
+               </validationRuleList>
+            </Property>";
+
+            if (rootNode != null)
+            {
+                XmlNode lastModPersonID_Node = rootNode.SelectSingleNode("Property[@name='LAST_MOD_PERSON_ID']");
+                if (lastModPersonID_Node == null)
+                {
+                    rootNode.InnerXml += lastModPersonIDPropertyXml;
+                    messages.Add("LAST_MOD_PERSON_ID node was Addded succesfully in Batch PropertyList.");
+                }
+                else
+                {
+                    messages.Add("LAST_MOD_PERSON_ID node is already available in Batch PropertyList.");
+                }
             }
             else
             {
-                messages.Add("LAST_MOD_PERSON_ID node is already available");
+                errorsInPatch = true;
+                messages.Add("Batch PropertyList node is not available in objectconfig xml");
             }
 
             if (!errorsInPatch)
