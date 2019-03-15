@@ -31,8 +31,6 @@ pipeline
             {
                 bat """
                     call "${WORKSPACE}\\build\\jdps\\VersionFiles.bat" ${FULL_VERSION} ${WORKSPACE}
-                    cd ${WORKSPACE}\\Installers\\InstallSupportFiles
-                    EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
                 """
             }
         }
@@ -41,7 +39,9 @@ pipeline
             steps
             {
                 bat """
-                    xcopy /Y C:\\Users\\jmsayan\\Desktop\\Test\\DataLoader\\*.* ${WORKSPACE}\\subprojects\\DataLoader
+                    xcopy /Y ${SUBFILES}\\Test\\DataLoader\\*.* ${WORKSPACE}\\subprojects\\DataLoader
+                    cd ${WORKSPACE}\\Installers\\InstallSupportFiles
+                    EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
                     call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH} ${WORKSPACE}
                 """
             }
