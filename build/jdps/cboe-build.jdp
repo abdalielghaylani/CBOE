@@ -31,7 +31,8 @@ pipeline
             {
                 bat """
                     call "${WORKSPACE}\\build\\jdps\\VersionFiles.bat" ${FULL_VERSION} ${WORKSPACE}
-                    ${WORKSPACE}\\Installers\\InstallSupportFiles\\EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
+                    cd ${WORKSPACE}\\Installers\\InstallSupportFiles
+                    EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
                 """
             }
         }
