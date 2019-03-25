@@ -7322,13 +7322,13 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
         IF UPPER(LTableName)='VW_STRUCTURE' AND LStructureValue IS NOT NULL THEN
           UPDATE VW_STRUCTURE
           SET STRUCTURE = LStructureValue
-          WHERE STRUCTUREID = LStructureID and dbms_lob.compare(STRUCTURE, LStructureValue)!=0;
+          WHERE STRUCTUREID = LStructureID and dbms_lob.compare(nvl(STRUCTURE,empty_clob()), LStructureValue)!=0;
         END IF;
 
         IF UPPER(LTableName)='VW_MIXTURE' AND LStructureAggregationValue IS NOT NULL THEN
           UPDATE VW_MIXTURE
           SET StructureAggregation = LStructureAggregationValue
-          WHERE MixtureID = LMixtureID  and dbms_lob.compare(StructureAggregation, LStructureAggregationValue)!=0;
+          WHERE MixtureID = LMixtureID  and dbms_lob.compare( nvl(StructureAggregation,empty_clob()), LStructureAggregationValue)!=0;
         END IF;
 
         IF UPPER(LTableName)='VW_FRAGMENT' AND LFragmentXmlValue IS NOT NULL THEN
@@ -7336,7 +7336,7 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
 
           UPDATE VW_FRAGMENT
           SET STRUCTURE = LFragmentXmlValue
-          WHERE FRAGMENTID = LFragmentID  and dbms_lob.compare(STRUCTURE, LFragmentXmlValue)!=0;
+          WHERE FRAGMENTID = LFragmentID  and dbms_lob.compare(nvl(STRUCTURE,empty_clob()), LFragmentXmlValue)!=0;
         END IF;
 
         IF UPPER(LTableName)='VW_COMPOUND' THEN
@@ -7347,11 +7347,11 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
 
             UPDATE VW_COMPOUND
             SET NORMALIZEDSTRUCTURE = LNormalizedStructureValue
-            WHERE COMPOUNDID = LCompoundIDTemp  and dbms_lob.compare(NORMALIZEDSTRUCTURE, LNormalizedStructureValue)!=0;
+            WHERE COMPOUNDID = LCompoundIDTemp  and dbms_lob.compare( nvl(NORMALIZEDSTRUCTURE,empty_clob()), LNormalizedStructureValue)!=0;
 
-            IF LStructureIDToUpdate IS NOT NULL THEN
-              DeleteStructure(LStructureIDToUpdate,LMessage);
-            END IF;
+--            IF LStructureIDToUpdate IS NOT NULL THEN
+--              DeleteStructure(LStructureIDToUpdate,LMessage);
+--            END IF;
           END IF;
 
           IF LStructureIDToUpdate IS NOT NULL THEN
