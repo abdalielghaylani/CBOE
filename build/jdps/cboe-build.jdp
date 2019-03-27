@@ -102,7 +102,7 @@ pipeline
             steps 
             {
                 bat """
-                    call "${WORKSPACE}\\build\\jdps\\SigningFiles.bat" ${SIGNTOOL} ${WORKSPACE}
+                    call "${WORKSPACE}\\build\\jdps\\SigningFiles.bat" ${SIGNTOOL} ${WORKSPACE} ${FOLDER_VERSION_NAME}
                     set WORKSPACE_PATH_ROOT=${WORKSPACE}
                     "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${FULL_VERSION}" -z "CBVNBUILDNUMBER=${FULL_VERSION}" -z "CBVNFOLDERVERSION=${FOLDER_VERSION_NAME}" -z "BUILDVERSION=${FOLDER_VERSION_NAME}"
                     xcopy /Y /I /S "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${WORKSPACE}\\installers\\SubInstaller"
