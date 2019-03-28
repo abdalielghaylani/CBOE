@@ -113,29 +113,29 @@ call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\COELogViewer\app.publish\Appl
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\COEPatchingTool\app.publish\Application Files\COEPatcher_1_0_0_0\COEPatcher.exe.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\Framework\ConfigLoader\app.publish\Application Files\ConfigLoader_1_0_0_0\CambridgeSoft.COE.Framework.dll.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\Framework\ConfigLoader\app.publish\Application Files\ConfigLoader_1_0_0_0\ConfigLoader.exe.deploy"
-call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\RuntimeLibraries\MolServer12.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Asc67Cvt.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Base64.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Base64Decode.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ChemImp.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ChemImp.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\COEHeaderServer.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\CSDO12.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\CSSecurityLDAP.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ENLDAPProxy.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\HillOrder.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\LDAPTest.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ReadBinFile.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\SingleSignOnCom.XmlSerializers.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\ChemInv\config\oracle_install_scripts\Create_test_ChemInv_DB\OracleSetup.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemInv\config\oracle_install_scripts\Export_ChemInv_DB\OracleSetup.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\OracleSetup.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\LockBroker.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\WAITFOR.DLL
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\Lockit.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\CDXLibCOM.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\Base64Decode.dll
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\configiis.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserverasp\Clients\SendToEnotebookV1\SendToE-Notebook 18.1.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserverasp\Clients\BioAssayClient10.1.6\setup.exe
-call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\LockBroker.exe				
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\RuntimeLibraries\MolServer12.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Asc67Cvt.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Base64.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\Base64Decode.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ChemImp.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ChemImp.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\COEHeaderServer.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\CSDO12.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\CSSecurityLDAP.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ENLDAPProxy.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\HillOrder.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\LDAPTest.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\ReadBinFile.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\Common\dlls\SingleSignOnCom.XmlSerializers.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\ChemInv\config\oracle_install_scripts\Create_test_ChemInv_DB\OracleSetup.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemInv\config\oracle_install_scripts\Export_ChemInv_DB\OracleSetup.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemInv\config\oracle_install_scripts\Create_blank_ChemInv_DB\OracleSetup.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\LockBroker.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\WAITFOR.DLL"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\Lockit.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\CDXLibCOM.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\Base64Decode.dll"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\configiis.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserverasp\Clients\SendToEnotebookV1\SendToE-Notebook 18.1.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserverasp\Clients\BioAssayClient10.1.6\setup.exe"
+call %SIGNTOOL% "%WORKSPACE%\ChemOffice\WebServer_Source\cfserver_scripts\LockBroker.exe"
