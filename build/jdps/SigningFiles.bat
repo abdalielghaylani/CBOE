@@ -100,6 +100,13 @@ call %SIGNTOOL% "%WORKSPACE%\Subprojects\DataLoader\bin\Release\app.publish\Appl
 call %SIGNTOOL% "%WORKSPACE%\subprojects\DataLoader\bin\Release\app.publish\Application Files\DataLoader_%FOLDER_VERSION_NAME%\CambridgeSoft.COE.DataLoader.Calculation.dll.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\DataLoader\bin\Release\app.publish\Application Files\DataLoader_%FOLDER_VERSION_NAME%\CambridgeSoft.COE.DataLoader.Common.dll.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\DataLoader\bin\Release\app.publish\Application Files\DataLoader_%FOLDER_VERSION_NAME%\DataLoader.exe.deploy"
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\CambridgeSoft\ServiceTier\COELogViewer\bin\Release\app.publish\Application Files\COELogViewer_1_0_0_0\CambridgeSoft.COE.Framework.dll.deploy"
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\CambridgeSoft\ServiceTier\COELogViewer\bin\Release\app.publish\Application Files\COELogViewer_1_0_0_0\CambridgeSoft.COE.Framework.XmlSerializers.dll.deploy"
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\CambridgeSoft\ServiceTier\COELogViewer\bin\Release\app.publish\Application Files\COELogViewer_1_0_0_0\COELogViewer.exe.deploy"
+call %SIGNTOOL% "%WORKSPACE%\subprojects\Framework\CambridgeSoft\ServiceTier\Patcher\Patcher\bin\Release\app.publish\Application Files\COEPatcher_1_0_0_0\COEPatcher.exe.deploy"
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\ConfigLoader\bin\Release\app.publish\Application Files\ConfigLoader_1_0_0_0\CambridgeSoft.COE.Framework.dll.deploy"
+call %SIGNTOOL% "%WORKSPACE%\Subprojects\ConfigLoader\bin\Release\app.publish\Application Files\ConfigLoader_1_0_0_0\ConfigLoader.exe.deploy"
+call %SIGNTOOL% "%WORKSPACE%\subprojects\Framework\CambridgeSoft\CommonRuntimeLibraries\MolServer12.dll
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\COELogViewer\app.publish\Application Files\COELogViewer_1_0_0_0\CambridgeSoft.COE.Framework.dll.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\COELogViewer\app.publish\Application Files\COELogViewer_1_0_0_0\CambridgeSoft.COE.Framework.XmlSerializers.dll.deploy"
 call %SIGNTOOL% "%WORKSPACE%\Subprojects\Framework\COELogViewer\app.publish\Application Files\COELogViewer_1_0_0_0\COELogViewer.exe.deploy"
