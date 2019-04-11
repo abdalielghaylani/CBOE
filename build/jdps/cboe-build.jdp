@@ -10,7 +10,7 @@ pipeline
     }
     environment
     {
-        PROD_VERSION = '18.1.1'
+        PROD_VERSION = '19.1.0'
         CBOE_BUILD_NUMBER = "${env.BRANCH_NAME.startsWith('release/v') ? "0${BUILD_NUMBER}" : "5${BUILD_NUMBER}"}"
         FULL_VERSION = "${PROD_VERSION}.${CBOE_BUILD_NUMBER}"
         FOLDER_VERSION_NAME = "${FULL_VERSION.replace('.', '_')}"
@@ -39,7 +39,6 @@ pipeline
             steps
             {
                 bat """
-                    xcopy /Y ${SUBFILES}\\Test\\DataLoader\\*.* ${WORKSPACE}\\subprojects\\DataLoader
                     cd ${WORKSPACE}\\Installers\\InstallSupportFiles
                     EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
                     call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH} ${WORKSPACE}
@@ -150,10 +149,10 @@ pipeline
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
             deleteDir()
         }
-        success 
-        {
-            slackSend (color: 'GREEN', message: "SUCCESS: Job '${env.JOB_NAME} [${FULL_VERSION}]' (${env.BUILD_URL}) (${env.PUBLISH_PATH})",channel: "#cboe-qa-dev")
-        }
+        //success 
+       // {
+            //slackSend (color: 'GREEN', message: "SUCCESS: Job '${env.JOB_NAME} [${FULL_VERSION}]' (${env.BUILD_URL}) (${env.PUBLISH_PATH})",channel: "#cboe-qa-dev")
+       // }
     }
 }
 

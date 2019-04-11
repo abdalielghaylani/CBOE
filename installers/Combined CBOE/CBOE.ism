@@ -1382,7 +1382,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                      Session.Property("CBOE")="yes"
                      
                  End If 
-                   If strValue1="ChemOffice Enterprise 18.1" then
+                   If strValue1="ChemOffice Enterprise 18.1" Or strValue1="ChemOffice Enterprise 18.1.1" then
                      Session.Property("CBOE")="yes"
                      
                  End If 
@@ -1411,7 +1411,7 @@ Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdR
                      Session.Property("CBOE")="yes"
                      
                  End If  
-                  If strValue1="ChemOffice Enterprise 18.1" then
+                  If strValue1="ChemOffice Enterprise 18.1" strValue1="ChemOffice Enterprise 18.1.1" then
                      Session.Property("CBOE")="yes"
                      
                  End If    
@@ -7489,7 +7489,7 @@ Set shell = Nothing
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
 		<row><td>Product Configuration 1</td><td>IncludeActionHelp</td><td>1</td></row>
-		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1.1</td></row>
+		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 19.1</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -7577,7 +7577,7 @@ Set shell = Nothing
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemBioOffice Enterprise 18.1.1</td></row>
 		<row><td>Release 1</td><td>Product Configuration 1</td><td>CabCompressionType</td><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemOffice Enterprise 18.1.1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>SetupExeDescr</td><td>ChemOffice Enterprise 19.1</td></row>
 	</table>
 
 	<table name="ISReleasePublishInfo">
@@ -9852,8 +9852,8 @@ Set shell = Nothing
 		<col def="S0">Value</col>
 		<row><td>ActiveLanguage</td><td>1033</td></row>
 		<row><td>Comments</td><td/></row>
-		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="c63708097c5933ac92bcd0f9e5401a43">
-QwBvAHAAeQAgAG8AZgAgAFIAZQBsAGUAYQBzAGUAIAAxAAEAUAByAG8AZAB1AGMAdAAgAEMAbwBuAGYAaQBnAHUAcgBhAHQAaQBvAG4AIAAxAA==
+		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="b491486f2ea923dc16dc8132d9c8c265">
+UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8AbgAgADEA
 			</td></row>
 		<row><td>DefaultProductConfiguration</td><td>Product Configuration 2</td></row>
 		<row><td>ISCompilerOption_CompileBeforeBuild</td><td>1</td></row>
@@ -10280,11 +10280,11 @@ QwBvAHAAeQAgAG8AZgAgAFIAZQBsAGUAYQBzAGUAIAAxAAEAUAByAG8AZAB1AGMAdAAgAEMAbwBuAGYA
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{ED0D8CF3-B7AD-4355-92C1-C0DE3C54FD80}</td><td/></row>
+		<row><td>ProductCode</td><td>{E5AC7398-0A59-4CC1-BBB8-F1D53EF9B539}</td><td/></row>
 		<row><td>ProductID</td><td>none</td><td/></row>
 		<row><td>ProductLanguage</td><td>1033</td><td/></row>
-		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1.1</td><td/></row>
-		<row><td>ProductVersion</td><td>18.1.1</td><td/></row>
+		<row><td>ProductName</td><td>ChemOffice Enterprise 19.1</td><td/></row>
+		<row><td>ProductVersion</td><td>19.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -10303,7 +10303,7 @@ QwBvAHAAeQAgAG8AZgAgAFIAZQBsAGUAYQBzAGUAIAAxAAEAUAByAG8AZAB1AGMAdAAgAEMAbwBuAGYA
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>
 		<row><td>USERFULLNAME</td><td>CambridgeSoft Administrator</td><td/></row>
-		<row><td>UpgradeCode</td><td>{F4384290-27E6-4A91-AC43-F553686826F7}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{F79B7D05-CB98-491A-8B7F-47661B2003F2}</td><td/></row>
 		<row><td>WEBPROPERTY</td><td/><td/></row>
 		<row><td>WEBSITE</td><td>1#80#Default Web Site</td><td/></row>
 		<row><td>WEBSITEN</td><td>ChemOfficeEnterprise</td><td/></row>

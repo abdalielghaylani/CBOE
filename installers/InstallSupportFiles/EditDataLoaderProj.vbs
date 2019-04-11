@@ -40,7 +40,7 @@ If oNode.nodeName = "ApplicationRevision" Then
 		oNode.Text =arg2
  	End If	
 If oNode.nodeName = "ApplicationVersion" Then
-		oNode.Text ="18.1.1." + arg2
+		oNode.Text ="19.1.0." + arg2
  	End If
 Next
 

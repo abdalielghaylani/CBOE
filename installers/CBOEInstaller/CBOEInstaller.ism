@@ -5141,8 +5141,8 @@ End If
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
 		<row><td>Product Configuration 1</td><td>IncludeActionHelp</td><td>1</td></row>
-		<row><td>Product Configuration 1</td><td>MSIPackageFileName</td><td>CBOE 18.1.1</td></row>
-		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 18.1.1</td></row>
+		<row><td>Product Configuration 1</td><td>MSIPackageFileName</td><td>CBOE 19.1</td></row>
+		<row><td>Product Configuration 1</td><td>SetupFileName</td><td>CBOE 19.1</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -7977,11 +7977,11 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{41151893-7A24-4959-A738-6F48638AA1E6}</td><td/></row>
+		<row><td>ProductCode</td><td>{795E735C-67FA-4AE7-94D3-FCBA7EE826ED}</td><td/></row>
 		<row><td>ProductID</td><td>none</td><td/></row>
 		<row><td>ProductLanguage</td><td>1033</td><td/></row>
-		<row><td>ProductName</td><td>ChemOffice Enterprise 18.1.1</td><td/></row>
-		<row><td>ProductVersion</td><td>18.1.1</td><td/></row>
+		<row><td>ProductName</td><td>ChemOffice Enterprise 19.1</td><td/></row>
+		<row><td>ProductVersion</td><td>19.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -8001,7 +8001,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>
 		<row><td>USERFULLNAME</td><td>CambridgeSoft Administrator</td><td/></row>
-		<row><td>UpgradeCode</td><td>{41D88B9E-FE7C-441A-A50F-AAC52986C46A}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{2C54BBFC-A0D3-45CF-AD81-7B9F61BFBFDA}</td><td/></row>
 		<row><td>WEBPROPERTY</td><td/><td/></row>
 		<row><td>WEBSITE</td><td>1#80#Default Web Site</td><td/></row>
 		<row><td>WEBSITEN</td><td>ChemBioOfficeEnterprise12.0.1</td><td/></row>
