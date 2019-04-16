@@ -595,7 +595,7 @@ end if
 			<span class="required"><%=LocationText%> Name:</span>
 		</td>
 		<td>
-			<input type="text" size="30" maxlength="50" name="LocationName" value="<%=LocationName%>">
+			<input type="text" size="30" maxlength="50" name="LocationName" value="<%=server.htmlencode(LocationName)%>">
 		</td>
 	</tr>
 	<tr>

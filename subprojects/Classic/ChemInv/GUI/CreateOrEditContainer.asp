@@ -941,7 +941,7 @@ Select Case sTab
 			<span class="required">Container Name:</span>
 		</td>
 		<td>
-			<input type="text" name="iContainerName" size="30" value="<%=ContainerName%>">
+			<input type="text" name="iContainerName" size="30" value="<%=server.htmlencode(ContainerName)%>">
 		</td>
 		<td rowspan="4">
 			<table>
