@@ -556,29 +556,34 @@ namespace CambridgeSoft.COE.Security.Services
             byte[] encrypted = HexConverter.ToByteArray(ldapPasswordNode.InnerText);
             byte[] iv = { 218, 123, 211, 4, 145, 147, 132, 228, 121, 39, 222, 60, 158, 10, 229, 62 };
             byte[] key = UnicodeConverter.ToByteArray("LdapPass");
-            using (System.Security.Cryptography.RijndaelManaged myRijndael = new System.Security.Cryptography.RijndaelManaged())
+
+            var fipsEnabled = SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"] != null && SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"].Value.ToUpper() == "TRUE";
+
+            System.Security.Cryptography.ICryptoTransform decryptor = null;
+            if (fipsEnabled)
             {
+                AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                decryptor = aesCryptoProvider.CreateDecryptor(key, iv);
+            } 
+            else
+            {
+                var myRijndael = new System.Security.Cryptography.RijndaelManaged();
+                decryptor = myRijndael.CreateDecryptor(key, iv);
+            }
 
-                //Get a decryptor that uses the same key and IV as the encryptor.
-                using (System.Security.Cryptography.ICryptoTransform decryptor = myRijndael.CreateDecryptor(key, iv))
+            //Now decrypt the previously encrypted message using the decryptor
+            // obtained in the above step.
+            using (MemoryStream msDecrypt = new MemoryStream(encrypted))
+            {
+                using (System.Security.Cryptography.CryptoStream csDecrypt = new System.Security.Cryptography.CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                 {
-
-                    //Now decrypt the previously encrypted message using the decryptor
-                    // obtained in the above step.
-                    using (MemoryStream msDecrypt = new MemoryStream(encrypted))
-                    {
-                        using (System.Security.Cryptography.CryptoStream csDecrypt = new System.Security.Cryptography.CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                        {
-                            byte[] fromEncrypt = new byte[encrypted.Length];
-                            int numRead = csDecrypt.Read(fromEncrypt, 0, (int)encrypted.Length);
-                            byte[] targetDecrypt  = new byte[numRead];
-                            Array.Copy(fromEncrypt, 0, targetDecrypt, 0, numRead);
-                            return UnicodeConverter.ToUnicodeString(targetDecrypt);
-                        }
-                    }
+                    byte[] fromEncrypt = new byte[encrypted.Length];
+                    int numRead = csDecrypt.Read(fromEncrypt, 0, (int)encrypted.Length);
+                    byte[] targetDecrypt = new byte[numRead];
+                    Array.Copy(fromEncrypt, 0, targetDecrypt, 0, numRead);
+                    return UnicodeConverter.ToUnicodeString(targetDecrypt);
                 }
             }
-           
         }
 
 

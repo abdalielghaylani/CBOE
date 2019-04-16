@@ -26,6 +26,7 @@ namespace CambridgeSoft.COE.Framework.Common
         private const string chemDrawEmbedProperty = "chemDrawEmbed";
         private const string cachingProperty = "caching";
         private const string displayCulture = "displayCulture";
+        private const string fipsEnabled = "fipsEnabled";
         private const string dateFormat = "dateFormat";
         private const string safeExportSize = "safeExportSize";
 
@@ -62,6 +63,16 @@ namespace CambridgeSoft.COE.Framework.Common
         {
             get { return (string)base[displayCulture]; }
             set { base[displayCulture] = value; }
+        }
+
+        /// <summary>
+        /// Default fipsEnabled for all applications
+        /// </summary>
+        [ConfigurationProperty(fipsEnabled, IsRequired = true, DefaultValue = false)]
+        public bool FipsEnabled
+        {
+            get { return (bool)base[fipsEnabled]; }
+            set { base[fipsEnabled] = value; }
         }
 
         /// <summary>

@@ -530,9 +530,10 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             if (ApplicationName.ToLower() == FrameworkName && _configurationSection.SectionInformation.Name == "coeConfiguration")
             {
                 bool unencryptedPasswords = false;
+                bool fipsEnabled = ((COEConfigurationSettings)_configurationSection).ApplicationDefaults.FipsEnabled;
                 foreach (DatabaseData dbData in ((COEConfigurationSettings)_configurationSection).Databases)
                 {
-                    if (!CambridgeSoft.COE.Framework.Common.Utilities.IsRijndaelEncrypted(dbData.Password))
+                    if (!CambridgeSoft.COE.Framework.Common.Utilities.IsEncrypted(fipsEnabled, dbData.Password))
                     {
                         unencryptedPasswords = true;
                         break;
@@ -546,8 +547,8 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
 
                     foreach (XmlAttribute dbPass in doc.SelectNodes("//databases/add[string-length(@password) > 0]/@password"))
                     {
-                        if (!CambridgeSoft.COE.Framework.Common.Utilities.IsRijndaelEncrypted(dbPass.Value))
-                            dbPass.Value = CambridgeSoft.COE.Framework.Common.Utilities.EncryptRijndael(dbPass.Value);
+                        if (!CambridgeSoft.COE.Framework.Common.Utilities.IsEncrypted(fipsEnabled, dbPass.Value))
+                            dbPass.Value = CambridgeSoft.COE.Framework.Common.Utilities.Encrypt(fipsEnabled, dbPass.Value);
                     }
 
                     newSection.SectionInformation.SetRawXml(doc.OuterXml);
@@ -586,7 +587,10 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                             //Will use COEDB as connection for this DAL.
                             Csla.ApplicationContext.GlobalContext["TEMPUSERNAME"] = Resources.CentralizedStorageDB;
 
-                            this.LoadDAL(settings.Applications.Get(COEAppName.Get()), settings.Services.Get(_serviceName), settings.Databases.Get(dbmstype.DatabaseGlobalUser), settings.DBMSTypes.Get("ORACLE"));
+                            var dataBaseConfigurationData = settings.Databases.Get(dbmstype.DatabaseGlobalUser);
+                            dataBaseConfigurationData.FipsEabled = settings.ApplicationDefaults.FipsEnabled;
+
+                            this.LoadDAL(settings.Applications.Get(COEAppName.Get()), settings.Services.Get(_serviceName), dataBaseConfigurationData, settings.DBMSTypes.Get("ORACLE"));
                         }
                         // Coverity Fix CID - 11480 
                         if (_coeDAL != null)

@@ -565,7 +565,143 @@ namespace CambridgeSoft.COE.Framework.Common
 
             return string.Empty;
         }
-        
+
+        /// <summary>
+        /// Indicates if the given text was encrypted based on the FIPS enabled flag and the default key, 
+        /// Rijndael algorithm for FIPSEnabled = false, AES for FIPSEnabled = true
+        /// </summary>
+        /// <param name="fipsEnabled">The FIPS enabled flag</param>
+        /// <param name="text">The value</param>
+        /// <returns>True if encrypted with this class</returns>
+        public static bool IsEncrypted(bool fipsEnabled, string text)
+        {
+            if (fipsEnabled)
+            {
+                return IsAESEncrypted(text);
+            }
+            else
+            {
+                return IsRijndaelEncrypted(text);
+            }
+        }
+
+        public static string Encrypt(bool fipsEnabled, string text)
+        {
+            if (fipsEnabled)
+            {
+                return EncryptAES(text);
+            }
+            else
+            {
+                return EncryptRijndael(text);
+            }
+        }
+
+        public static string Decrypt(bool fipsEnabled, string text)
+        {
+            if (fipsEnabled)
+            {
+                return DecryptAES(text);
+            }
+            else
+            {
+                return DecryptRijndael(text);
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the given text was encrypted with AES algorithm and the default key
+        /// </summary>
+        /// <param name="text">The value</param>
+        /// <returns>True if encrypted with this class</returns>
+        public static bool IsAESEncrypted(string text)
+        {
+            try
+            {
+                text = DecryptAES(text, DEFAULTKEY);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static string DecryptAES(string encryptedText)
+        {
+            return DecryptAES(encryptedText, DEFAULTKEY);
+        }
+
+        public static string DecryptAES(string encryptedText, string key)
+        {
+            if (!string.IsNullOrEmpty(encryptedText))
+            {
+                byte[] PlainText = Convert.FromBase64String(encryptedText);
+
+                //Salt is created for additional degree of disorder in encrypted key
+                byte[] Salt = System.Text.Encoding.Unicode.GetBytes(key.Length.ToString());
+
+                //This class uses an extension of the PBKDF1 algorithm defined 
+                //in the PKCS#5 v2.0 standard to derive bytes suitable 
+                //for use as key material from a password. 
+                //The standard is documented in IETF RRC 2898.
+                using (PasswordDeriveBytes SecretKey = new PasswordDeriveBytes(key, Salt))
+                {
+                    AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                    var decryptor = aesCryptoProvider.CreateDecryptor(SecretKey.GetBytes(32), SecretKey.GetBytes(16));
+
+                    using (MemoryStream decryptedStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(decryptedStream, decryptor, CryptoStreamMode.Write))
+                        {
+                            cryptoStream.Write(PlainText, 0, PlainText.Length);
+                        }
+                        return Encoding.Unicode.GetString(decryptedStream.ToArray());
+                    }
+                }
+            }
+            return string.Empty;
+        }
+
+        public static string EncryptAES(string plainText, string key)
+        {
+            string response = string.Empty;
+
+            if (!string.IsNullOrEmpty(plainText))
+            {
+                byte[] PlainText = System.Text.Encoding.Unicode.GetBytes(plainText);
+
+                //Salt is created for additional degree of disorder in encrypted key
+                byte[] Salt = //new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }; 
+                    System.Text.Encoding.Unicode.GetBytes(key.Length.ToString());
+
+                //This class uses an extension of the PBKDF1 algorithm defined 
+                //in the PKCS#5 v2.0 standard to derive bytes suitable 
+                //for use as key material from a password. 
+                //The standard is documented in IETF RRC 2898.
+                //Coverity Fix CID 22965
+                using (PasswordDeriveBytes SecretKey = new PasswordDeriveBytes(key, Salt))
+                {
+                    AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                    var encryptor = aesCryptoProvider.CreateEncryptor(SecretKey.GetBytes(32), SecretKey.GetBytes(16));
+
+                    using (MemoryStream encryptedStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(encryptedStream, encryptor, CryptoStreamMode.Write))
+                        {
+                            cryptoStream.Write(PlainText, 0, PlainText.Length);
+                        }
+                        response = Convert.ToBase64String(encryptedStream.ToArray());
+                    }
+                }
+            }
+            return response;
+        }
+
+        public static string EncryptAES(string plainText)
+        {
+            return EncryptAES(plainText, DEFAULTKEY);
+        }
     }
 }
 

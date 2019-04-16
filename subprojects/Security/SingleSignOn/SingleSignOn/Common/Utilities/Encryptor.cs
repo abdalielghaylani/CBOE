@@ -14,87 +14,98 @@ using System.Text;
 
 namespace CambridgeSoft.COE.Security.Services.Utlities
 {
-	public static class Encryptor
-	{
-		/// <summary>
-		/// Converts the specified byte array to a string of hex characters representing the array
-		/// </summary>
-		/// <param name="value">An array of bytes to be converted</param>
-		/// <returns>A string of hexidecimal characters</returns>
-		public static string Encrypt(string p)
-		{
-			//byte[] encryptedPass = HexConverter.ToByteArray(p);
-			byte[] iv = { 218, 123, 211, 4, 145, 147, 132, 228, 121, 39, 222, 60, 158, 10, 229, 62 };
-			byte[] keyPass = UnicodeConverter.ToByteArray("LdapPass");
-			
-			byte[] toEncryptPass;
-            using(RijndaelManaged myRijndael = new RijndaelManaged())
+    public static class Encryptor
+    {
+        /// <summary>
+        /// Converts the specified byte array to a string of hex characters representing the array
+        /// </summary>
+        /// <param name="value">An array of bytes to be converted</param>
+        /// <returns>A string of hexidecimal characters</returns>
+        public static string Encrypt(string p)
+        {
+            //byte[] encryptedPass = HexConverter.ToByteArray(p);
+            byte[] iv = { 218, 123, 211, 4, 145, 147, 132, 228, 121, 39, 222, 60, 158, 10, 229, 62 };
+            byte[] keyPass = UnicodeConverter.ToByteArray("LdapPass");
+
+            byte[] toEncryptPass;
+            ICryptoTransform encryptorPass = null;
+
+            bool fipsEnabled = SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"] != null && SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"].Value.ToUpper() == "YES";
+            if (fipsEnabled)
             {
-			//Get a decryptor that uses the same key and IV as the encryptor.                
-                using (ICryptoTransform encryptorPass = myRijndael.CreateEncryptor(keyPass, iv))
+                AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                encryptorPass = aesCryptoProvider.CreateEncryptor(keyPass, iv);
+            }
+            else
+            {
+                RijndaelManaged myRijndael = new RijndaelManaged();
+                encryptorPass = myRijndael.CreateEncryptor(keyPass, iv);
+            }
+
+            //Encrypt the data.                
+            using (MemoryStream msEncryptPass = new MemoryStream())
+            {
+                using (CryptoStream csEncryptPass = new CryptoStream(msEncryptPass, encryptorPass, CryptoStreamMode.Write))
                 {
 
-                    //Encrypt the data.                
-                    using (MemoryStream msEncryptPass = new MemoryStream())
-                    {
-                        using (CryptoStream csEncryptPass = new CryptoStream(msEncryptPass, encryptorPass, CryptoStreamMode.Write))
-                        {
+                    //Convert the data to a byte array.               
+                    toEncryptPass = UnicodeConverter.ToByteArray(p);
 
-                            //Convert the data to a byte array.               
-                            toEncryptPass = UnicodeConverter.ToByteArray(p);
-
-                            //Write all data to the crypto stream and flush it.              
-                            csEncryptPass.Write(toEncryptPass, 0, toEncryptPass.Length);
-                            csEncryptPass.FlushFinalBlock();
+                    //Write all data to the crypto stream and flush it.              
+                    csEncryptPass.Write(toEncryptPass, 0, toEncryptPass.Length);
+                    csEncryptPass.FlushFinalBlock();
 
 
-                            //Get encrypted array of bytes.              
-                            byte[] encryptedPass = msEncryptPass.ToArray();
+                    //Get encrypted array of bytes.              
+                    byte[] encryptedPass = msEncryptPass.ToArray();
 
 
-                            return HexConverter.ToHexString(encryptedPass);
-                        }
-                    }
+                    return HexConverter.ToHexString(encryptedPass);
                 }
             }
-		}
+        }
 
-		/// <summary>
-		/// Decrypts the specified p.
-		/// </summary>
-		/// <param name="p">The p.</param>
-		/// <returns></returns>
-		public static string Decrypt(string p)
-		{
-			if (p == null) return null;
-			byte[] encrypted = HexConverter.ToByteArray(p);
-			byte[] iv = { 218, 123, 211, 4, 145, 147, 132, 228, 121, 39, 222, 60, 158, 10, 229, 62 };
-			byte[] key = UnicodeConverter.ToByteArray("LdapPass");
-            using (System.Security.Cryptography.RijndaelManaged myRijndael = new System.Security.Cryptography.RijndaelManaged())
+        /// <summary>
+        /// Decrypts the specified p.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        public static string Decrypt(string p)
+        {
+            if (p == null) return null;
+            byte[] encrypted = HexConverter.ToByteArray(p);
+            byte[] iv = { 218, 123, 211, 4, 145, 147, 132, 228, 121, 39, 222, 60, 158, 10, 229, 62 };
+            byte[] key = UnicodeConverter.ToByteArray("LdapPass");
+
+            ICryptoTransform decryptor = null;
+            bool fipsEnabled = SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"] != null && SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"].Value.ToUpper() == "YES";
+            if (fipsEnabled)
             {
+                AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                decryptor = aesCryptoProvider.CreateDecryptor(key, iv);
+            }
+            else
+            {
+                RijndaelManaged myRijndael = new RijndaelManaged();
+                decryptor = myRijndael.CreateDecryptor(key, iv);
+            }
 
-                //Get a decryptor that uses the same key and IV as the encryptor.
-                using (System.Security.Cryptography.ICryptoTransform decryptor = myRijndael.CreateDecryptor(key, iv))
+            //Now decrypt the previously encrypted message using the decryptor
+            // obtained in the above step.
+            using (MemoryStream msDecrypt = new MemoryStream(encrypted))
+            {
+                using (System.Security.Cryptography.CryptoStream csDecrypt = new System.Security.Cryptography.CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                 {
 
-                    //Now decrypt the previously encrypted message using the decryptor
-                    // obtained in the above step.
-                    using (MemoryStream msDecrypt = new MemoryStream(encrypted))
-                    {
-                        using (System.Security.Cryptography.CryptoStream csDecrypt = new System.Security.Cryptography.CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                        {
+                    byte[] fromEncrypt = new byte[encrypted.Length];
+                    int numRead = csDecrypt.Read(fromEncrypt, 0, (int)encrypted.Length);
 
-                            byte[] fromEncrypt = new byte[encrypted.Length];
-                            int numRead = csDecrypt.Read(fromEncrypt, 0, (int)encrypted.Length);
-
-                            byte[] targetDecrypt = new byte[numRead];
-                            Array.Copy(fromEncrypt, 0, targetDecrypt, 0, numRead);
-                            return UnicodeConverter.ToUnicodeString(targetDecrypt);
-                        }
-                    }
+                    byte[] targetDecrypt = new byte[numRead];
+                    Array.Copy(fromEncrypt, 0, targetDecrypt, 0, numRead);
+                    return UnicodeConverter.ToUnicodeString(targetDecrypt);
                 }
             }
-		}
+        }
 
         public static string DecryptRijndael(string encryptedText, string key)
         {
@@ -132,30 +143,70 @@ namespace CambridgeSoft.COE.Security.Services.Utlities
             }
             return string.Empty;
         }
-		public static bool IsEncrypted(string p)
-		{
-			try
-			{
-				p = Decrypt(p);
-				return true;
-			}
-			catch (Exception e)
-			{
-				return false;
-			}
-		}
 
-        public static bool IsEncrypted(string p, string key)
+        public static bool IsEncrypted(string p)
         {
             try
             {
-                p = DecryptRijndael(p, key);
+                p = Decrypt(p);
                 return true;
             }
             catch (Exception e)
             {
                 return false;
             }
-        }  
-	}
+        }
+
+        public static bool IsEncrypted(string p, string key)
+        {
+            try
+            {
+                bool fipsEnabled = SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"] != null && SSOConfigurationProvider.GetConfig().GetSettings["FIPS_ENABLED"].Value.ToUpper() == "YES";
+                if (fipsEnabled)
+                {
+                    p = DecryptAES(p, key);
+                }
+                else
+                {
+                    p = DecryptRijndael(p, key);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static string DecryptAES(string encryptedText, string key)
+        {
+            if (!string.IsNullOrEmpty(encryptedText))
+            {
+                byte[] PlainText = Convert.FromBase64String(encryptedText);
+
+                //Salt is created for additional degree of disorder in encrypted key
+                byte[] Salt = System.Text.Encoding.Unicode.GetBytes(key.Length.ToString());
+
+                //This class uses an extension of the PBKDF1 algorithm defined 
+                //in the PKCS#5 v2.0 standard to derive bytes suitable 
+                //for use as key material from a password. 
+                //The standard is documented in IETF RRC 2898.
+                using (PasswordDeriveBytes SecretKey = new PasswordDeriveBytes(key, Salt))
+                {
+                    AesCryptoServiceProvider aesCryptoProvider = new AesCryptoServiceProvider();
+                    var decryptor = aesCryptoProvider.CreateDecryptor(SecretKey.GetBytes(32), SecretKey.GetBytes(16));
+
+                    using (MemoryStream decryptedStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(decryptedStream, decryptor, CryptoStreamMode.Write))
+                        {
+                            cryptoStream.Write(PlainText, 0, PlainText.Length);
+                        }
+                        return Encoding.Unicode.GetString(decryptedStream.ToArray());
+                    }
+                }
+            }
+            return string.Empty;
+        }
+    }
 }

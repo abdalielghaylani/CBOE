@@ -88,7 +88,13 @@ namespace CambridgeSoft.COE.Framework.Common
         {
             string providerName = databaseData.ProviderName;
             string userName = databaseData.Owner;
-            string password = Utilities.IsRijndaelEncrypted(databaseData.Password) ? Utilities.DecryptRijndael(databaseData.Password) : databaseData.Password;
+            string password = databaseData.Password;
+
+            if (Utilities.IsEncrypted(databaseData.FipsEabled, databaseData.Password)) 
+            {
+                password = Utilities.Decrypt(databaseData.FipsEabled, databaseData.Password);
+            }
+            
             string userNameKeyword = string.Empty;
             string passwordKeyword = string.Empty;
             string proxyuserNameKeyword = string.Empty;

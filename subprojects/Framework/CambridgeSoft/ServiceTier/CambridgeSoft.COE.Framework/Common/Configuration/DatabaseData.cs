@@ -20,8 +20,9 @@ namespace CambridgeSoft.COE.Framework.Common
         private const string providerOptionsProperty = "providerOptions";
         private const string tracingProperty = "tracing";
         private const string oracleTracingProperty = "oracleTracing";
-        private const string dataSourceProperty = "dataSource";  
-        private const string sqlGeneratorDataProperty = "sqlGeneratorData";       
+        private const string dataSourceProperty = "dataSource";
+        private const string sqlGeneratorDataProperty = "sqlGeneratorData";
+        private const string fipsEnabled = "fipsEnabled";    
 
         private string originalOwner = "originalOwner";
 
@@ -141,6 +142,16 @@ namespace CambridgeSoft.COE.Framework.Common
         public COENamedElementCollection<SQLGeneratorData> SQLGeneratorData
         {
             get { return (COENamedElementCollection<SQLGeneratorData>)base[sqlGeneratorDataProperty]; }
+        }
+
+        /// <summary>
+        /// If true, enforce FIPS compliance.
+        /// </summary>
+        [ConfigurationProperty(fipsEnabled, IsRequired = false)]
+        public bool FipsEabled
+        {
+            get { return (bool)base[fipsEnabled]; }
+            set { base[fipsEnabled] = value; }
         }
     }
 }

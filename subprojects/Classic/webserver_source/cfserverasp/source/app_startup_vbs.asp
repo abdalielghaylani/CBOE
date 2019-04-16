@@ -425,6 +425,9 @@ Sub SetAdditionalAppVariables()
     'CDJS js library location
     Application("CDJSUrl") = GetINIValue( "required", "GLOBALS", "CDJS_URL", "chemoffice", "chemoffice")
 
+    'Enforce FIPS Compliance
+    GetFipsEnabled()
+
 	SetIniParamDefault "CDAX_ProgID", "ChemDrawControl10.ChemDrawCtl"
 	' Check LDAP Authentication Option
 	Application("LDAPConfigXmlPath") = Application("ServerDrive") & "\"&  Application("ServerRoot") & "\"  & Application("DocumentRoot") & "\chemoffice\config\LDAPConfig.xml"
@@ -855,6 +858,21 @@ Function SetINIValue(section, key, value, ini_type)
 	SetINIValue = success
 End Function
 
+Function GetFipsEnabled ()
+    Dim oXML
+	Dim COEFrameworkConfigPath
+	Dim FipsEnabled
+	
+	Set oXML = server.CreateObject("MSXML2.DOMDOCUMENT.4.0")
+	COEFrameworkConfigPath = GetConfigFilePath()
+	If COEFrameworkConfigPath = "File Not Found" Then
+	    FipsEnabled = false
+	    Exit Function
+	End If     
+	oXML.load(COEFrameworkConfigPath)
+	FipsEnabled = oXML.SelectSingleNode("/configuration/coeConfiguration/applicationDefaults/@fipsEnabled").text
+	Application("FipsEnabled") = FipsEnabled
+End Function
 
 
 '******************************************************************************
@@ -873,15 +891,26 @@ End Function
 Function DoEncryptDecryptCommand (encryptType,inputText, secretKey)
  Set EncryptedData = Server.CreateObject("CAPICOM.EncryptedData")
 
+ Set FipsEnabled = false
+ if Ucase(Application("FipsEnabled")) = "TRUE" then
+    FipsEnabled = true
+ end if
+
  Select Case UCase(EncryptType)
  
 	case "ENCRYPT"
 
 		' Create the EncryptedData object.
 		' Set algorithm, key size, and encryption password.
-		'algorightm = 0 -> ALGORITHM_RC2
-		EncryptedData.Algorithm.Name = 0
-		'keylength = 3 ->128
+        if FipsEnabled then
+            'algorightm = 4 -> ALGORITHM_AES
+		    EncryptedData.Algorithm.Name = 4
+        else 
+		    'algorightm = 0 -> ALGORITHM_RC2
+		    EncryptedData.Algorithm.Name = 0
+		end if
+        
+        'keylength = 3 ->128
 		EncryptedData.Algorithm.KeyLength = 3
 		EncryptedData.SetSecret secretKey
 		' Now encrypt it.

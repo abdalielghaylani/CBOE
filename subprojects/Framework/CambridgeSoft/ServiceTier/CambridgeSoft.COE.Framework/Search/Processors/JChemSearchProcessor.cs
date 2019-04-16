@@ -43,10 +43,12 @@ namespace CambridgeSoft.COE.Framework.Search.Processors
             //var pwd = Utilities.GetPwdFromOracleConnStr(searchDAL.DALManager.Database.ConnectionStringWithoutCredentials);
 
             var encryptedPassword = searchDAL.DALManager.DatabaseData.Password;
+            if (Utilities.IsEncrypted(searchDAL.DALManager.DatabaseData.FipsEabled, encryptedPassword)) 
+            {
+                encryptedPassword = Utilities.Decrypt(searchDAL.DALManager.DatabaseData.FipsEabled, encryptedPassword);
+            }
 
-            var pwd = Utilities.IsRijndaelEncrypted(encryptedPassword) ? Utilities.DecryptRijndael(encryptedPassword) : encryptedPassword;
-
-            var setpwd = new SetJChemPassword(pwd);
+            var setpwd = new SetJChemPassword(encryptedPassword);
 
             searchDAL.ExecuteNonQuery(setpwd);
         }
