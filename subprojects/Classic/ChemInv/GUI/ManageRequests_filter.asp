@@ -9,7 +9,7 @@ if RequestType = "" then RequestType = "PENDING"
 if RequestType = "NEW" then
 	disable1 = "disabled"
 elseif RequestType = "PENDING" then
-	disable2 = "disabled"
+	disable1 = "disabled"
 else
 	disable3 = "disabled"
 end if
