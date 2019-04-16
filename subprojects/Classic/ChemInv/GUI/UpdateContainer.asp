@@ -619,7 +619,14 @@ next
 		case "container_cost"
 			theRow = ShowInputBox(fieldName, fieldColumn, 15, ShowSelectBox("iunit_of_cost_id_fk", Session("UOCostIDOptionValue"),"SELECT UNIT_ID||'='||Unit_Abreviation AS Value, Unit_Name AS DisplayText FROM inv_units WHERE Unit_type_id_FK = 5 ORDER BY Unit_Name ASC"), False, False)
 		case else
-			theRow = ShowInputBox(fieldName, fieldColumn, 15, "", False, false)
+			if custom_lists_dict.Exists("CUSTOM_FIELDS." & fieldColumn) then
+				theRow = "<TD align=""right"" valign=""top"" width=""150"">" & fieldName & "</TD><TD><SELECT name=""i" & fieldColumn & """ size=""1"">"
+				'-- build the select from the custom list
+				theRow = theRow & GetCustomListOptions("CUSTOM_FIELDS", fieldColumn, eval(fieldColumn), null)	
+				theRow = theRow & "</TD>"
+			else
+				theRow = ShowInputBox(fieldName, fieldColumn, 15, "", False, false)
+			end if
 	end select
 	'Response.Write field & "<BR>"
 	'Response.Write Left(field,instr(field,":")-1) & "<BR>"
