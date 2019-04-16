@@ -85,7 +85,8 @@ LocationName = Mid(str, start+1, Len(str)-start)
 
 <center>
 <form name="form1" action="DeleteLocation_action.asp" method="POST">
-
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <%
 if Application("ENABLE_OWNERSHIP")="TRUE" then
 isAuthorised=cint(isAuthorisedLocation(LocationID))

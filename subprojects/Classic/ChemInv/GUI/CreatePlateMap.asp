@@ -75,6 +75,8 @@ LocationID = Request.QueryString("LocationID")
 <form name="form1" xaction="echo.asp" action="CreatePlateMap_action.asp" method="POST">
 <input Type="hidden" name="PlateID" value="<%=PlateID%>">
 <input Type="hidden" name="multiscan" value="<%=Request("multiscan")%>">
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <table border="0">
 	<tr>
 		<td colspan="2">

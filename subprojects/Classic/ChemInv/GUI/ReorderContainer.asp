@@ -243,7 +243,8 @@ End if
 <input TYPE="hidden" NAME="DueDate" Value>
 <input TYPE="hidden" NAME="ReorderReason" Value>
 <input TYPE="hidden" NAME="ReorderReasonOther" Value="<%=ReorderReasonOther%>">
-
+<input TYPE="hidden" NAME="tempCsUserName" id="tempCsUserName" Value="<%=Session("UserName" & "cheminv")%>" >
+<input type="hidden" name="tempCsUserID" id="tempCsUserID" value="<%=Server.URLEncode(CryptVBS(Session("UserID" & "cheminv"), "ChemInv\API\GetBatchInfo.asp"))%>" />
 <table border="0" cellspacing="0" cellpadding="0" width="700">
 	<tr height="25">
 		<td align="right" valign="top" nowrap width="150">
