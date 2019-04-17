@@ -205,8 +205,8 @@
 <script language="javascript" type="text/javascript">
 YAHOO.namespace("ChemOfficeEnterprise.EditUser");
 function initUserConfirmationPanel() {
-    var visibleVar = (typeof(document.getElementById('<%= EnableUserPanel.ClientID %>')) != 'undefined' && document.getElementById('ctl00_ctl00_ContentPlaceHolder_ContentPlaceHolder_EditUserControl_EnableUserPanel') != null && document.getElementById('<%= EnableUserPanel.ClientID %>').disabled == false);
-    YAHOO.ChemOfficeEnterprise.EditUser.ConfirmationPanel = new YAHOO.widget.Panel('UserConfirmationPanel', { width:'350px',fixedcenter:true,visible:visibleVar ,draggable:false,close:false,modal:true,constraintoviewport:true,zIndex:17000});
+    var visibleVar = (typeof (document.getElementById('<%= EnableUserPanel.ClientID %>')) != 'undefined' && document.getElementById('ctl00_ctl00_ContentPlaceHolder_ContentPlaceHolder_EditUserControl_EnableUserPanel') != null);
+    YAHOO.ChemOfficeEnterprise.EditUser.ConfirmationPanel = new YAHOO.widget.Panel('UserConfirmationPanel', { width: '350px', fixedcenter: true, visible: visibleVar, draggable: false, close: false, modal: true, constraintoviewport: true, zIndex: 17000 });
     YAHOO.ChemOfficeEnterprise.EditUser.ConfirmationPanel.render(document.forms[0]);
 }
 var prm = Sys.WebForms.PageRequestManager.getInstance();
