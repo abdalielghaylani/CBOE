@@ -55,7 +55,7 @@ end if
 			}
 			var m = document.form1.QtyRemaining.value.toString();		
 			if(m.indexOf(",") != -1){
-			errmsg = errmsg + "- Quantity Remaining amount has wrong decimal operator.\r";
+			errmsg = errmsg + "- The decimal separator for Quantity Remaining amount should be the decimal point.\r";
 			bWriteError = true;
 			}
 		}
@@ -93,7 +93,7 @@ end if
 			}
 			var m = document.form1.QtyRemoved.value.toString();		
 			if(m.indexOf(",") != -1){
-			errmsg = errmsg + "- Quantity Removed amount has wrong decimal operator.\r";
+			errmsg = errmsg + "- The decimal separator for Quantity Removed amount should be the decimal point.\r";
 			bWriteError = true;
 			}
 			if (!bWriteError) {
