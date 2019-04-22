@@ -37,7 +37,7 @@
       <add name="COETEST" owner="COETEST" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
       <add name="DOCMGR" owner="DOCMGR" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
     </databases>
-    <applicationDefaults displayCulture="en-US" dateFormat="" safeExportSize="500">
+    <applicationDefaults displayCulture="en-US" dateFormat="" safeExportSize="500" fipsEnabled="false">
       <searchService>
         <add name="saveQueryHistory" value="YES"/>
         <add name="returnPartialHitlist" value="YES"/>
@@ -1159,6 +1159,7 @@
         <!--LDAP_AUTHENTICATION_TYPE (SimpleBind | FastBind) -->
         <add Name="LDAP_AUTHENTICATION_TYPE" Value=""/>
         <add Name="LDAP_ENCRYPT_SERVICE_PWD" Value="NO"/>
+		<add Name="FIPS_ENABLED" Value="FALSE"/>
       </Settings>
       <GetUserReturnInfo>
         <add nodeName="username" ldapCode="SAMAccountName" displayName="Username" mapTo="username"/>
