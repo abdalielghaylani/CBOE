@@ -1,8 +1,8 @@
 <div id="record-detail-view" class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
   <command-dropdown-list *ngIf="submissionTemplatesEnabled" class="pull-right" iconName="clone" [title]="'Templates'">
-      <ul class="dropdown-menu">          
+      <ul class="dropdown-menu">
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
-      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>  
+      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
       </ul>
   </command-dropdown-list>
   <command-button *ngIf="createContainerButtonEnabled" testid="new-container" (onClick)="createInvContainer()" iconName="flask" title="New Container" [pullRight]="true"></command-button>
@@ -16,14 +16,14 @@
   <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
   <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
-    {{title}}
+    {{ (displayMode === 'edit' && saveButtonEnabled) ? 'Edit ' + title : title}}
     <span class="fa-stack fa" *ngIf="approvalIconEnabled">
       <i class="fa fa-circle fa-stack-2x {{showApprovedIcon? 'green' : 'red'}}"></i>
       <i class="fa fa-thumbs-o-{{showApprovedIcon? 'up' : 'down'}} fa-stack-1x fa-inverse"></i>
     </span>
   </reg-header>
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" 
+      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true"
         [invIntegrationEnabled]="invIntegrationEnabled" [sendToInventoryEnabled]="sendToInventoryEnabled" [invContainers]="inventoryContainersList"
         [useCurrent]="useCurrent" [parentHeight]="parentHeight" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
