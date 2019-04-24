@@ -45,7 +45,7 @@
 	Dim LocalMachineName
 	Dim COEFrameworkConfigPath, RegConfigFilesPath
 	Dim COEFrameworkInstallPath, COECommonDllsPath
-	Dim currentOracleServiceName, currentCOEHostName, currentSSODefaultProvider
+	Dim currentOracleServiceName, currentCOEHostName, currentSSODefaultProvider, currentFipsValue
 	Dim currentLDAPConfigXML, currentLDAPServerName, currentLDAPPort, currentLDAPADDomain, currentLDAPDN, currentLDAPServiceAccountName
 	Dim currentLDAPServiceAccountPWD, currentLDAPUserDN, currentLDAPFilter
 	Dim currentACXDBType, currentDateFormat, bCurrentInvACX, bCurrentInvReg, bCurrentInvDoc, currentDisplayCulture, currentRegRLSValue, bCurrentInvGroupSecurity, bCurrentInvUserPreferences	
@@ -409,12 +409,16 @@
 		    document.all.chkInvACX.checked = bCurrentInvACX
 		    document.all.chkInvReg.checked = bCurrentInvReg
 		    document.all.chkInvGroupSecurity.checked = bCurrentInvGroupSecurity
+			document.all.FipsMode.checked = currentFipsValue
+			if currentFipsValue = "True" then
+			document.all.fipsMode.disabled = currentFipsValue
+			end if
 		    'CSBR-158685: Set the default/saved values for safety data
 		    document.all.chkInvSafetyData.checked = bCurrentInvSafetyData
 		    document.all.chkInvUserPreferences.checked = bCurrentInvUserPreferences   
 		    SelectRadioValue document.all.radioACXDBType, currentACXDBType
-		    SelectRadioValue document.all.radioAuthenticationMode, currentSSODefaultProvider
-	    SelectRadioValue document.all.radioDateFormat, currentDateFormat
+		    SelectRadioValue document.all.radioAuthenticationMode, currentSSODefaultProvider			
+			SelectRadioValue document.all.radioDateFormat, currentDateFormat
 		    'CSBR 126522 - Changed by Soorya Anwar on 15-Jul-2010.
 		    LoadLocalization()	'End of Change			
 		    'CSBR 132150 - Code change by Soorya on 18-Oct-2010
@@ -1058,7 +1062,16 @@
 				
 				SetCOE11ConfigSSOProvider("CSSecurity")
 			end if
-
+			
+			'FIPS Settings
+			if document.all.FipsMode.checked then
+			    SetCOE11ConfigFIPSProvider("True")
+				SetCOEConfigFipsInfo()
+			else
+				SetCOE11ConfigFIPSProvider("False")
+				SetCOEConfigFipsInfo()
+			end if	
+				
 
 			'==== SET ORACLE SERVICE NAME:  Sets the serviceName in ini and udl files  ====
 			SetOraServiceNames()
@@ -1340,6 +1353,7 @@
 		oNode.setAttribute "displayCulture", cultureInfo
 		ObjDom.save(COEFrameworkConfigPath)
 	End Sub
+	
 	
 	'This method will get the program files folder 
 	Function GetCommonProgDataFolder()
@@ -2261,14 +2275,23 @@
 
 
     Sub SetCOE11ConfigServiceName()
-	    REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServiceName, "ORACLE"" dataSource=""[ \.=A-Za-z0-9_\\:]*", vbUseDefault
-	    TraceLogError INFOMSG, "SetCOE11ConfigServiceName", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "OracleServicename=" & OracleServiceName	
+REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServiceName, "ORACLE"" dataSource=""[ \.=A-Za-z0-9_\\:]*", vbUseDefault
+	    TraceLogError INFOMSG, "SetCOE11ConfigServiceName", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "OracleServicename=" & OracleServiceName	    	
     End sub
 
     Sub SetCOE11ConfigSSOProvider(providerName)
 	    REReplaceInFile COEFrameworkConfigPath, "DEFAULT_PROVIDER"" Value=""" &  providerName & """/", "DEFAULT_PROVIDER[ \.=A-Za-z0-9_\\://""]*", vbUseDefault
 	    TraceLogError INFOMSG, "SetCOE11ConfigSSOProvider", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "SSOProvider=" & providerName	
     End sub
+	
+	Sub SetCOE11ConfigFIPSProvider(fipsCheckValue)
+		REReplaceInFile COEFrameworkConfigPath, "FIPS_ENABLED"" Value=""" &  fipsCheckValue & """/", "FIPS_ENABLED[ \.=A-Za-z0-9_\\://""]*", vbUseDefault
+	    TraceLogError INFOMSG, "SetCOE11ConfigSSOProvider", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "FIPS Enabled=" & fipsCheckValue
+		msgbox "Warning: You must enable FIPS at OS if FIPS ENABLED is checked. Location:Local Security Policy > Security Settings > Local Policies > Security Options > System cryptography: Use FIPS compliant algorthms for encryption"
+		if fipsCheckValue = "True" then
+		document.all.FipsMode.Disabled = true
+		end if
+	End sub	
 
     Sub SetCOE11ConfigLDAPParams()
 		SetLDAPConfigXML()
@@ -2279,7 +2302,7 @@
     Sub SetCOEConfigParam(paramName, paramValue)
 	REReplaceInFile COEFrameworkConfigPath, paramName &  """ Value=""" &  paramValue & """/", paramName & "[ \.=%A-Za-z0-9,_\\://""]*", vbUseDefault
 	TraceLogError INFOMSG, "SetCOE11ConfigLDAPParams", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & paramName & "=" & paramValue	
-    End sub		
+    End sub	
 
     Sub CreateWebServiceVirtual(thePath, AppName)
 	    Dim theOrigBool
@@ -2624,7 +2647,7 @@
 		currentOracleServiceName = objDOM.selectSingleNode("/configuration/coeConfiguration/dbmsTypes/add[@name='ORACLE']").selectSingleNode("@dataSource").text
 		currentSSOUrl = objDOM.selectSingleNode("/configuration/coeConfiguration/@singleSignOnURL").text
         currentSSODefaultProvider = objDOM.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='DEFAULT_PROVIDER']").selectSingleNode("@Value").text
-	
+		currentFipsValue = objDOm.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='FIPS_ENABLED']").selectSingleNode("@Value").text
        		currentCOEHostName = GetHostNameFromURL(currentSSOUrl)
 		currentLDAPConfigXML = GetLDAPConfigXML(objDOM)
 	
@@ -2708,8 +2731,21 @@
 		ObjDom.save(COEFrameworkConfigPath)
 	End Sub
 
-	
-
+	Sub SetCOEConfigFipsInfo()
+	Dim fipsValue, FIPSNode
+	Dim objFipsNode
+	if document.all.fipsMode.checked then
+		fipsValue = "True"
+	else
+		fipsValue = "False"
+	end if	
+		set objDom = CreateObject("Microsoft.XMLDOM")
+		objDom.async = false
+		objDom.load(COEFrameworkConfigPath)
+		set FIPSNode = objDom.selectSingleNode("//applicationDefaults")
+		 FIPSNode.setAttribute "fipsEnabled", fipsValue
+		objDom.save(COEFrameworkConfigPath)
+	End Sub
 
 	
 	Sub SetClassicSSOCOMUrl()
@@ -3837,7 +3873,12 @@ onclick='swapLayers("lyr4")'>Tablespace Params</a></li>
 					<input checked type="radio" value="ORACLE" name="radioAuthenticationMode" onclick="document.all.divLDAPParameters.style.visibility ='hidden'">ORACLE
 					<input type="radio" value="COELDAP" name="radioAuthenticationMode" onclick="document.all.divLDAPParameters.style.visibility ='visible'" >COELDAP 
 				</td>
-			</tr>            
+			</tr>
+			<tr>
+				<td> 
+				<input checked type="checkbox" value="" name="FipsMode"/>FIPS Enabled		
+				</td>
+			</tr>
 				<tr>
 					<td colspan="2">
 					<div id="divLDAPParameters" style="visibility: hidden">
