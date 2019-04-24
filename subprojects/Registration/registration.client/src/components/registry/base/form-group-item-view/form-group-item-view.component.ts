@@ -42,6 +42,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private loadingVisible: boolean = false;
   private invHandler = new RegInvContainerHandler();
   private showRequestMaterialButton: boolean = false;
+  private isMoveBatchVisible: boolean = false;
   @ViewChild(DxLoadPanelComponent) loading;
 
   constructor(private ngRedux: NgRedux<IAppState>,
@@ -164,7 +165,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.viewConfig.subArray = this.viewModel.BatchList.Batch;
     this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
 
-    // after adding batch, default select new batch and update the UI  
+    // after adding batch, default select new batch and update the UI
     let batch: IBatch = this.viewModel.BatchList.Batch[this.viewConfig.subArray.length - 1];
     this.onBatchSelected(batch.BatchID);
   }
@@ -217,10 +218,12 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
         this.removeBatchItem();
         notifySuccess(res.json().message, 2000);
         this.setLoadingVisible(false);
+        this.isMoveBatchVisible = false;
       })
       .catch(error => {
         notifyException(`The batch was not moved due to a problem`, error, 5000);
         this.setLoadingVisible(false);
+        this.isMoveBatchVisible = true;
       });
   }
 
@@ -245,9 +248,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     super.update();
     let lookups = this.ngRedux.getState().session.lookups;
     let systemSettings = new CSystemSettings(lookups.systemSettings);
-    this.createContainerButtonEnabled = !this.editMode 
-      && this.invIntegrationEnabled 
-      && this.sendToInventoryEnabled 
+    this.createContainerButtonEnabled = !this.editMode
+      && this.invIntegrationEnabled
+      && this.sendToInventoryEnabled
       && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;

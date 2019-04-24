@@ -3,21 +3,26 @@ import * as dxDialog from 'devextreme/ui/dialog';
 import { DxFormComponent } from 'devextreme-angular';
 import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
+  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges
 } from '@angular/core';
 
+import { notifyError, notifyException, notifySuccess } from '../../../../common';
 import { IBatch } from '../../../common';
 
 @Component({
   selector: 'reg-batch-mover',
   template: require('./batch-mover.component.html'),
-  styles: [require('../registry-base.css')],
+  styles: [` /deep/ .dx-dialog > .dx-overlay-wrapper {
+      z-index: 2000 !important;
+  }`,
+    require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegBatchMover implements OnInit {
+export class RegBatchMover implements OnInit, OnChanges {
   @Input() viewModel: IBatch[] = [];
   @Output() onMoved = new EventEmitter<any>();
   @Input() batchId: Number;
+  @Input() defaultShow: boolean = false;
   private formVisible: boolean = false;
   private moveBatchForm: DxForm;
   private moveBatchData: BatchData;
@@ -46,6 +51,15 @@ export class RegBatchMover implements OnInit {
 
   ngOnInit() {
     this.moveBatchData = new BatchData(this.batchId);
+  }
+
+  ngOnChanges() {
+    if (this.defaultShow) {
+      this.showForm(null);
+    } else {
+      this.cancel(null);
+    }
+
   }
 
   private onBatchMoveFormInit(e) {
@@ -84,8 +98,6 @@ export class RegBatchMover implements OnInit {
         this.moveBatchForm.updateData('batchId', this.batchId);
       }
     });
-    // Close popup
-    this.formVisible = false;
     return true;
   }
 }
