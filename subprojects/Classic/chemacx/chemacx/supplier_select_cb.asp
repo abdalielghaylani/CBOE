@@ -33,7 +33,9 @@ set SupsRS = GetRecordSet(SQLQuery, SQLQuery_Parameters)
 if NOT (SupsRS.EOF AND SupsRS.BOF) then
 %>
 <HTML>
-<HEAD></head>
+<HEAD>
+<script type="text/javascript" language="javascript" src="/chemacx/Choosecss.js"></script>
+</head>
 <body onload="ChecktheBoxes()">
 <form name="form1">
 <div align="center">
@@ -157,6 +159,7 @@ response.end
 <html>
 <head>
 	<title>Vendor Selector</title>
+	<script type="text/javascript" language="javascript" src="/chemacx/Choosecss.js"></script>
 <script language="JavaScript1.1">
 focus();
 opener.<%=Application("mainwindow")%>.document.cows_input_form.limitSearch[0].checked = true;

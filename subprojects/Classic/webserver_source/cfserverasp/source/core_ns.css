@@ -137,7 +137,7 @@ SPAN.LinkSentence
     COLOR: maroon;
     FONT-FAMILY: Verdana, Arial, helvetica, sans-serif
 }
-INPUT
+INPUT:not([type="radio"]):not([type="checkbox"])
 {
     FONT-SIZE: 12px;
     CURSOR: auto;
@@ -225,6 +225,51 @@ input[type="checkbox"]:active {
 }
 
 input[type="checkbox"][disabled]:checked:before {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+/*..<< */
+
+/* Style for any radio button required to be displayed in IE style..>> */
+
+input[type="radio"] {
+	  
+	height: 0.60em;
+	width: 0.60em;
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.85);
+	background-color: rgba(255, 255, 255, 1);
+	vertical-align: sub;
+	padding-left: 0.8px;
+	margin-top: 5px;
+	margin-bottom: 2px;
+	font-size: 22px;
+	-webkit-appearance: none;
+}
+
+input[type="radio"]:focus {
+    outline:none;
+}
+
+input[type="radio"]:checked:before {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	content: '\2022';
+	font-size: 25px;
+	margin-left: 0.3px;
+	line-height: 0.4;
+}
+
+input[type=radio][disabled] {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+input[type="radio"]:active {
+	background-color: rgba(0, 0, 0, 0.20);
+}
+
+input[type="radio"][disabled]:checked:before {
 	color: rgba(0, 0, 0, 0.35);
 }
 
