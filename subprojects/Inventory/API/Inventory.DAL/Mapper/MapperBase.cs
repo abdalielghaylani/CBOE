@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PerkinElmer.COE.Inventory.Model;
 
 namespace PerkinElmer.COE.Inventory.DAL.Mapper
 {
@@ -49,5 +50,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
             }
             return objectCollection;
         }
+
+        public abstract Array GetOracleParameters(TSecond element);
     }
 }

@@ -9,6 +9,11 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
 {
     public sealed class CustomFieldMapper : MapperBase<INV_CUSTOM_CPD_FIELD_VALUES, CustomFieldData>
     {
+        public override Array GetOracleParameters(CustomFieldData element)
+        {
+            throw new NotImplementedException();
+        }
+
         public override INV_CUSTOM_CPD_FIELD_VALUES Map(CustomFieldData element)
         {
             // convert from DTO to Entity

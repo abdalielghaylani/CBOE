@@ -44,5 +44,9 @@ namespace PerkinElmer.COE.Inventory.API.Tests
         {
         }
 
+        public int SaveChanges()
+        {
+            return 0;
+        }
     }
 }

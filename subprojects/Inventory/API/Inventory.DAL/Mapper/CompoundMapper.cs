@@ -9,6 +9,11 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
 {
     public sealed class CompoundMapper : MapperBase<INV_COMPOUNDS, CompoundData>
     {
+        public override Array GetOracleParameters(CompoundData element)
+        {
+            throw new NotImplementedException();
+        }
+
         public override INV_COMPOUNDS Map(CompoundData element)
         {
             // convert from DTO to Entity

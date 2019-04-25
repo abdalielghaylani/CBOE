@@ -122,5 +122,38 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
+
+        /// <summary>
+        /// Create a container
+        /// </summary>
+        /// <param name="container">The container data</param>
+        /// <returns>Container</returns>
+        [HttpPost]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers")]
+        [SwaggerOperation("Containers")]
+        [SwaggerResponse(200, type: typeof(ContainerData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> CreateContainer(ContainerData container)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                var newContainerId = containerDAL.CreateContainer(container);
+                var newContainer = containerDAL.GetContainerById(newContainerId);
+
+                responseMessage = Request.CreateResponse(statusCode, newContainer);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
     }
 }

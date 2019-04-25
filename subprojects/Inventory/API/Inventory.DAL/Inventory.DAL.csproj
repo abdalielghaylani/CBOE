@@ -114,6 +114,7 @@
     <Compile Include="Mapper\CompoundMapper.cs" />
     <Compile Include="Mapper\ContainerMapper.cs" />
     <Compile Include="Mapper\CustomFieldMapper.cs" />
+    <Compile Include="Mapper\EnumHelper.cs" />
     <Compile Include="Mapper\LocationMapper.cs" />
     <Compile Include="Mapper\MapperBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL.Mapper;
+using Oracle.ManagedDataAccess.Client;
 
 namespace PerkinElmer.COE.Inventory.DAL
 {
@@ -70,6 +71,91 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
 
             return containerData;
+        }
+
+        public int CreateContainer(ContainerData container)
+        {
+            ValidateContainer(container);            
+
+            var dbContext = ((DbContext)db);
+            using (var dbContextTransaction = dbContext.Database.BeginTransaction())
+            {
+                var doRollback = true;
+                try
+                {                    
+                    Oracle.ManagedDataAccess.Client.OracleConnection connection = (Oracle.ManagedDataAccess.Client.OracleConnection)dbContext.Database.Connection;
+                    Oracle.ManagedDataAccess.Client.OracleCommand cmd = dbContext.Database.Connection.CreateCommand() as Oracle.ManagedDataAccess.Client.OracleCommand;
+                    cmd.CommandText = "CHEMINVDB2.CreateContainer";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddRange(containerMapper.GetOracleParameters(container));
+                    cmd.ExecuteNonQuery();
+                    dbContextTransaction.Commit();
+                    
+                    var returnValue = int.Parse(cmd.Parameters["RETURN_VALUE"].Value.ToString());
+                    doRollback = false;
+
+                    if (returnValue.Equals(-123))
+                    {
+                        throw new Exception("The creation of the container failed with code -123.");
+                    }
+                    else if (returnValue.Equals(-102))
+                    {
+                        throw new Exception("A container with same barcode already exists.");
+                    }
+                    else if (returnValue.Equals(-103))
+                    {
+                        throw new Exception("Amount cannot exceed container size.");
+                    }
+                    else if (returnValue.Equals(-128))
+                    {
+                        throw new Exception("The container type is not allowed.");
+                    }
+
+                    container.ContainerId = returnValue;
+                }
+                catch (Exception ex)
+                {
+                    if(doRollback)
+                        dbContextTransaction.Rollback();
+
+                    throw new Exception("The creation of the container failed.", ex);
+                }
+            }
+
+            return container.ContainerId;
+        }
+
+        private void ValidateContainer(ContainerData container)
+        {
+            if (container.Location == null)
+            {
+                throw new Exception("LocationID is a required parameter");
+            }
+
+            if (container.QuantityMax == null || container.QuantityMax.Value == null)
+            {
+                throw new Exception("QuantityMax is a required parameter");
+            }
+
+            if (container.QuantityInitial == null || container.QuantityInitial.Value == null)
+            {
+                throw new Exception("QuantityInitial is a required parameter");
+            }
+
+            if (container.ContainerType == null)
+            {
+                throw new Exception("ContainerTypeID is a required parameter");
+            }
+
+            if (container.Status == null)
+            {
+                throw new Exception("ContainerStatusID is a required parameter");
+            }
+
+            if (string.IsNullOrEmpty(container.CurrentUser))
+            {
+                throw new Exception("CurrentUser is a required parameter");
+            }
         }
     }
 }

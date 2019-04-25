@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="INV_COMPOUNDS">
           <Key>
             <PropertyRef Name="COMPOUND_ID" />
@@ -1132,95 +1132,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="INV_CONTAINERS">
-            <EntityTypeMapping TypeName="Model.INV_CONTAINERS">
-              <MappingFragment StoreEntitySet="INV_CONTAINERS">
-                <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
-                <ScalarProperty Name="LOCATION_ID_FK" ColumnName="LOCATION_ID_FK" />
-                <ScalarProperty Name="COMPOUND_ID_FK" ColumnName="COMPOUND_ID_FK" />
-                <ScalarProperty Name="PARENT_CONTAINER_ID_FK" ColumnName="PARENT_CONTAINER_ID_FK" />
-                <ScalarProperty Name="REG_ID_FK" ColumnName="REG_ID_FK" />
-                <ScalarProperty Name="BATCH_NUMBER_FK" ColumnName="BATCH_NUMBER_FK" />
-                <ScalarProperty Name="FAMILY" ColumnName="FAMILY" />
-                <ScalarProperty Name="BATCH_ID_FK" ColumnName="BATCH_ID_FK" />
-                <ScalarProperty Name="CONTAINER_NAME" ColumnName="CONTAINER_NAME" />
-                <ScalarProperty Name="CONTAINER_DESCRIPTION" ColumnName="CONTAINER_DESCRIPTION" />
-                <ScalarProperty Name="QTY_MAX" ColumnName="QTY_MAX" />
-                <ScalarProperty Name="QTY_INITIAL" ColumnName="QTY_INITIAL" />
-                <ScalarProperty Name="QTY_REMAINING" ColumnName="QTY_REMAINING" />
-                <ScalarProperty Name="QTY_MINSTOCK" ColumnName="QTY_MINSTOCK" />
-                <ScalarProperty Name="QTY_MAXSTOCK" ColumnName="QTY_MAXSTOCK" />
-                <ScalarProperty Name="WELL_NUMBER" ColumnName="WELL_NUMBER" />
-                <ScalarProperty Name="WELL_ROW" ColumnName="WELL_ROW" />
-                <ScalarProperty Name="WELL_COLUMN" ColumnName="WELL_COLUMN" />
-                <ScalarProperty Name="DATE_EXPIRES" ColumnName="DATE_EXPIRES" />
-                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
-                <ScalarProperty Name="CONTAINER_TYPE_ID_FK" ColumnName="CONTAINER_TYPE_ID_FK" />
-                <ScalarProperty Name="PURITY" ColumnName="PURITY" />
-                <ScalarProperty Name="SOLVENT_ID_FK" ColumnName="SOLVENT_ID_FK" />
-                <ScalarProperty Name="CONCENTRATION" ColumnName="CONCENTRATION" />
-                <ScalarProperty Name="UNIT_OF_MEAS_ID_FK" ColumnName="UNIT_OF_MEAS_ID_FK" />
-                <ScalarProperty Name="UNIT_OF_WGHT_ID_FK" ColumnName="UNIT_OF_WGHT_ID_FK" />
-                <ScalarProperty Name="UNIT_OF_CONC_ID_FK" ColumnName="UNIT_OF_CONC_ID_FK" />
-                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
-                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
-                <ScalarProperty Name="UNIT_OF_PURITY_ID_FK" ColumnName="UNIT_OF_PURITY_ID_FK" />
-                <ScalarProperty Name="TARE_WEIGHT" ColumnName="TARE_WEIGHT" />
-                <ScalarProperty Name="OWNER_ID_FK" ColumnName="OWNER_ID_FK" />
-                <ScalarProperty Name="CONTAINER_COMMENTS" ColumnName="CONTAINER_COMMENTS" />
-                <ScalarProperty Name="STORAGE_CONDITIONS" ColumnName="STORAGE_CONDITIONS" />
-                <ScalarProperty Name="HANDLING_PROCEDURES" ColumnName="HANDLING_PROCEDURES" />
-                <ScalarProperty Name="ORDERED_BY_ID_FK" ColumnName="ORDERED_BY_ID_FK" />
-                <ScalarProperty Name="DATE_ORDERED" ColumnName="DATE_ORDERED" />
-                <ScalarProperty Name="DATE_RECEIVED" ColumnName="DATE_RECEIVED" />
-                <ScalarProperty Name="DATE_CERTIFIED" ColumnName="DATE_CERTIFIED" />
-                <ScalarProperty Name="DATE_APPROVED" ColumnName="DATE_APPROVED" />
-                <ScalarProperty Name="LOT_NUM" ColumnName="LOT_NUM" />
-                <ScalarProperty Name="CONTAINER_STATUS_ID_FK" ColumnName="CONTAINER_STATUS_ID_FK" />
-                <ScalarProperty Name="RECEIVED_BY_ID_FK" ColumnName="RECEIVED_BY_ID_FK" />
-                <ScalarProperty Name="FINAL_WGHT" ColumnName="FINAL_WGHT" />
-                <ScalarProperty Name="NET_WGHT" ColumnName="NET_WGHT" />
-                <ScalarProperty Name="QTY_AVAILABLE" ColumnName="QTY_AVAILABLE" />
-                <ScalarProperty Name="QTY_RESERVED" ColumnName="QTY_RESERVED" />
-                <ScalarProperty Name="PHYSICAL_STATE_ID_FK" ColumnName="PHYSICAL_STATE_ID_FK" />
-                <ScalarProperty Name="CURRENT_USER_ID_FK" ColumnName="CURRENT_USER_ID_FK" />
-                <ScalarProperty Name="SUPPLIER_ID_FK" ColumnName="SUPPLIER_ID_FK" />
-                <ScalarProperty Name="SUPPLIER_CATNUM" ColumnName="SUPPLIER_CATNUM" />
-                <ScalarProperty Name="DATE_PRODUCED" ColumnName="DATE_PRODUCED" />
-                <ScalarProperty Name="CONTAINER_COST" ColumnName="CONTAINER_COST" />
-                <ScalarProperty Name="UNIT_OF_COST_ID_FK" ColumnName="UNIT_OF_COST_ID_FK" />
-                <ScalarProperty Name="DEF_LOCATION_ID_FK" ColumnName="DEF_LOCATION_ID_FK" />
-                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
-                <ScalarProperty Name="PO_NUMBER" ColumnName="PO_NUMBER" />
-                <ScalarProperty Name="REQ_NUMBER" ColumnName="REQ_NUMBER" />
-                <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
-                <ScalarProperty Name="UNIT_OF_DENSITY_ID_FK" ColumnName="UNIT_OF_DENSITY_ID_FK" />
-                <ScalarProperty Name="PO_LINE_NUMBER" ColumnName="PO_LINE_NUMBER" />
-                <ScalarProperty Name="FIELD_1" ColumnName="FIELD_1" />
-                <ScalarProperty Name="FIELD_2" ColumnName="FIELD_2" />
-                <ScalarProperty Name="FIELD_3" ColumnName="FIELD_3" />
-                <ScalarProperty Name="FIELD_4" ColumnName="FIELD_4" />
-                <ScalarProperty Name="FIELD_5" ColumnName="FIELD_5" />
-                <ScalarProperty Name="FIELD_6" ColumnName="FIELD_6" />
-                <ScalarProperty Name="FIELD_7" ColumnName="FIELD_7" />
-                <ScalarProperty Name="FIELD_8" ColumnName="FIELD_8" />
-                <ScalarProperty Name="FIELD_9" ColumnName="FIELD_9" />
-                <ScalarProperty Name="FIELD_10" ColumnName="FIELD_10" />
-                <ScalarProperty Name="DATE_1" ColumnName="DATE_1" />
-                <ScalarProperty Name="DATE_2" ColumnName="DATE_2" />
-                <ScalarProperty Name="DATE_3" ColumnName="DATE_3" />
-                <ScalarProperty Name="DATE_4" ColumnName="DATE_4" />
-                <ScalarProperty Name="DATE_5" ColumnName="DATE_5" />
-                <ScalarProperty Name="RID" ColumnName="RID" />
-                <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
-                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="PRINCIPAL_ID_FK" ColumnName="PRINCIPAL_ID_FK" />
-                <ScalarProperty Name="LOCATION_TYPE_ID_FK" ColumnName="LOCATION_TYPE_ID_FK" />
-                <ScalarProperty Name="BATCH_ID2_FK" ColumnName="BATCH_ID2_FK" />
-                <ScalarProperty Name="BATCH_ID3_FK" ColumnName="BATCH_ID3_FK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="INV_LOCATION_TYPES">
             <EntityTypeMapping TypeName="Model.INV_LOCATION_TYPES">
               <MappingFragment StoreEntitySet="INV_LOCATION_TYPES">
@@ -1310,6 +1221,95 @@
                 <ScalarProperty Name="CUSTOM_FIELD_GROUP_ID_FK" ColumnName="CUSTOM_FIELD_GROUP_ID_FK" />
                 <ScalarProperty Name="PICKLIST_TYPE_ID_FK" ColumnName="PICKLIST_TYPE_ID_FK" />
                 <ScalarProperty Name="CUSTOM_FIELD_ID" ColumnName="CUSTOM_FIELD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_CONTAINERS">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.INV_CONTAINERS)">
+              <MappingFragment StoreEntitySet="INV_CONTAINERS">
+                <ScalarProperty Name="BATCH_ID3_FK" ColumnName="BATCH_ID3_FK" />
+                <ScalarProperty Name="BATCH_ID2_FK" ColumnName="BATCH_ID2_FK" />
+                <ScalarProperty Name="LOCATION_TYPE_ID_FK" ColumnName="LOCATION_TYPE_ID_FK" />
+                <ScalarProperty Name="PRINCIPAL_ID_FK" ColumnName="PRINCIPAL_ID_FK" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="DATE_5" ColumnName="DATE_5" />
+                <ScalarProperty Name="DATE_4" ColumnName="DATE_4" />
+                <ScalarProperty Name="DATE_3" ColumnName="DATE_3" />
+                <ScalarProperty Name="DATE_2" ColumnName="DATE_2" />
+                <ScalarProperty Name="DATE_1" ColumnName="DATE_1" />
+                <ScalarProperty Name="FIELD_10" ColumnName="FIELD_10" />
+                <ScalarProperty Name="FIELD_9" ColumnName="FIELD_9" />
+                <ScalarProperty Name="FIELD_8" ColumnName="FIELD_8" />
+                <ScalarProperty Name="FIELD_7" ColumnName="FIELD_7" />
+                <ScalarProperty Name="FIELD_6" ColumnName="FIELD_6" />
+                <ScalarProperty Name="FIELD_5" ColumnName="FIELD_5" />
+                <ScalarProperty Name="FIELD_4" ColumnName="FIELD_4" />
+                <ScalarProperty Name="FIELD_3" ColumnName="FIELD_3" />
+                <ScalarProperty Name="FIELD_2" ColumnName="FIELD_2" />
+                <ScalarProperty Name="FIELD_1" ColumnName="FIELD_1" />
+                <ScalarProperty Name="PO_LINE_NUMBER" ColumnName="PO_LINE_NUMBER" />
+                <ScalarProperty Name="UNIT_OF_DENSITY_ID_FK" ColumnName="UNIT_OF_DENSITY_ID_FK" />
+                <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
+                <ScalarProperty Name="REQ_NUMBER" ColumnName="REQ_NUMBER" />
+                <ScalarProperty Name="PO_NUMBER" ColumnName="PO_NUMBER" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="DEF_LOCATION_ID_FK" ColumnName="DEF_LOCATION_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_COST_ID_FK" ColumnName="UNIT_OF_COST_ID_FK" />
+                <ScalarProperty Name="CONTAINER_COST" ColumnName="CONTAINER_COST" />
+                <ScalarProperty Name="DATE_PRODUCED" ColumnName="DATE_PRODUCED" />
+                <ScalarProperty Name="SUPPLIER_CATNUM" ColumnName="SUPPLIER_CATNUM" />
+                <ScalarProperty Name="SUPPLIER_ID_FK" ColumnName="SUPPLIER_ID_FK" />
+                <ScalarProperty Name="CURRENT_USER_ID_FK" ColumnName="CURRENT_USER_ID_FK" />
+                <ScalarProperty Name="PHYSICAL_STATE_ID_FK" ColumnName="PHYSICAL_STATE_ID_FK" />
+                <ScalarProperty Name="QTY_RESERVED" ColumnName="QTY_RESERVED" />
+                <ScalarProperty Name="QTY_AVAILABLE" ColumnName="QTY_AVAILABLE" />
+                <ScalarProperty Name="NET_WGHT" ColumnName="NET_WGHT" />
+                <ScalarProperty Name="FINAL_WGHT" ColumnName="FINAL_WGHT" />
+                <ScalarProperty Name="RECEIVED_BY_ID_FK" ColumnName="RECEIVED_BY_ID_FK" />
+                <ScalarProperty Name="CONTAINER_STATUS_ID_FK" ColumnName="CONTAINER_STATUS_ID_FK" />
+                <ScalarProperty Name="LOT_NUM" ColumnName="LOT_NUM" />
+                <ScalarProperty Name="DATE_APPROVED" ColumnName="DATE_APPROVED" />
+                <ScalarProperty Name="DATE_CERTIFIED" ColumnName="DATE_CERTIFIED" />
+                <ScalarProperty Name="DATE_RECEIVED" ColumnName="DATE_RECEIVED" />
+                <ScalarProperty Name="DATE_ORDERED" ColumnName="DATE_ORDERED" />
+                <ScalarProperty Name="ORDERED_BY_ID_FK" ColumnName="ORDERED_BY_ID_FK" />
+                <ScalarProperty Name="HANDLING_PROCEDURES" ColumnName="HANDLING_PROCEDURES" />
+                <ScalarProperty Name="STORAGE_CONDITIONS" ColumnName="STORAGE_CONDITIONS" />
+                <ScalarProperty Name="CONTAINER_COMMENTS" ColumnName="CONTAINER_COMMENTS" />
+                <ScalarProperty Name="OWNER_ID_FK" ColumnName="OWNER_ID_FK" />
+                <ScalarProperty Name="TARE_WEIGHT" ColumnName="TARE_WEIGHT" />
+                <ScalarProperty Name="UNIT_OF_PURITY_ID_FK" ColumnName="UNIT_OF_PURITY_ID_FK" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="UNIT_OF_CONC_ID_FK" ColumnName="UNIT_OF_CONC_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_WGHT_ID_FK" ColumnName="UNIT_OF_WGHT_ID_FK" />
+                <ScalarProperty Name="UNIT_OF_MEAS_ID_FK" ColumnName="UNIT_OF_MEAS_ID_FK" />
+                <ScalarProperty Name="CONCENTRATION" ColumnName="CONCENTRATION" />
+                <ScalarProperty Name="SOLVENT_ID_FK" ColumnName="SOLVENT_ID_FK" />
+                <ScalarProperty Name="PURITY" ColumnName="PURITY" />
+                <ScalarProperty Name="CONTAINER_TYPE_ID_FK" ColumnName="CONTAINER_TYPE_ID_FK" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="DATE_EXPIRES" ColumnName="DATE_EXPIRES" />
+                <ScalarProperty Name="WELL_COLUMN" ColumnName="WELL_COLUMN" />
+                <ScalarProperty Name="WELL_ROW" ColumnName="WELL_ROW" />
+                <ScalarProperty Name="WELL_NUMBER" ColumnName="WELL_NUMBER" />
+                <ScalarProperty Name="QTY_MAXSTOCK" ColumnName="QTY_MAXSTOCK" />
+                <ScalarProperty Name="QTY_MINSTOCK" ColumnName="QTY_MINSTOCK" />
+                <ScalarProperty Name="QTY_REMAINING" ColumnName="QTY_REMAINING" />
+                <ScalarProperty Name="QTY_INITIAL" ColumnName="QTY_INITIAL" />
+                <ScalarProperty Name="QTY_MAX" ColumnName="QTY_MAX" />
+                <ScalarProperty Name="CONTAINER_DESCRIPTION" ColumnName="CONTAINER_DESCRIPTION" />
+                <ScalarProperty Name="CONTAINER_NAME" ColumnName="CONTAINER_NAME" />
+                <ScalarProperty Name="BATCH_ID_FK" ColumnName="BATCH_ID_FK" />
+                <ScalarProperty Name="FAMILY" ColumnName="FAMILY" />
+                <ScalarProperty Name="BATCH_NUMBER_FK" ColumnName="BATCH_NUMBER_FK" />
+                <ScalarProperty Name="REG_ID_FK" ColumnName="REG_ID_FK" />
+                <ScalarProperty Name="PARENT_CONTAINER_ID_FK" ColumnName="PARENT_CONTAINER_ID_FK" />
+                <ScalarProperty Name="COMPOUND_ID_FK" ColumnName="COMPOUND_ID_FK" />
+                <ScalarProperty Name="LOCATION_ID_FK" ColumnName="LOCATION_ID_FK" />
+                <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

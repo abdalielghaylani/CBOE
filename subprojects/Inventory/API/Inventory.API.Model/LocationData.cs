@@ -32,8 +32,8 @@ namespace PerkinElmer.COE.Inventory.Model
         /// <summary>
         /// Gets or sets the type of the location.
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        [JsonProperty(PropertyName = "locationType")]
+        public LocationTypeData LocationType { get; set; }
 
         /// <summary>
         /// Gets or sets the barcode of the location.

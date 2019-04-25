@@ -10,6 +10,11 @@ namespace PerkinElmer.COE.Inventory.Model
     public class UnitData
     {
         /// <summary>
+        /// Gets or sets the id of the unit.
+        /// </summary>
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+        /// <summary>
         /// Gets or sets the value of the unit.
         /// </summary>
         [JsonProperty(PropertyName = "value")]
