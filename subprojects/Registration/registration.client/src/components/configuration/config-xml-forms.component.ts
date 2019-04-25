@@ -41,6 +41,13 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
     $temp.remove();
   }
 
+  pasteFromClipboard(event) {
+    let key = 'clipboard';
+    navigator[key].readText().then(clipText => {
+      this.popup.data = clipText;
+    });
+  }
+
   onEditingStart(e) {
     this.popup = { visible: true, data: e.data.data, title: e.data.name, key: e.key };
     e.cancel = true;
