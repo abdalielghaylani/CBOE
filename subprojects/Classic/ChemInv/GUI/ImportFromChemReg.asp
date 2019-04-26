@@ -110,7 +110,12 @@ defaultStatusID = Application("DefaultRegContainerStatus") ' Hardcode it to the 
 			bWriteError = true;
 			}
 		}
-		
+		// Container creation is not allowed at Root location
+		 if (document.form1.LocationID.value == 0){
+				errmsg = errmsg + "- Cannot create container at the root location.\r";
+				alert(errmsg);
+				return false;
+			}
 		<%if Application("ENABLE_OWNERSHIP")="TRUE" then%>
 		 !document.form1.Ownershiplst ? document.form1.PrincipalID.value="" :  document.form1.PrincipalID.value=document.form1.Ownershiplst.value;
 	     if(GetAuthorizedLocation(document.form1.LocationID.value,document.getElementById("tempCsUserName").value,document.getElementById("tempCsUserID").value)==0)
