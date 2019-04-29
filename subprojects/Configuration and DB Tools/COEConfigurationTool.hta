@@ -410,7 +410,7 @@
 		    document.all.chkInvReg.checked = bCurrentInvReg
 		    document.all.chkInvGroupSecurity.checked = bCurrentInvGroupSecurity
 			document.all.FipsMode.checked = currentFipsValue
-			if currentFipsValue = "True" then
+			if UCase(currentFipsValue) = "TRUE" then
 			document.all.fipsMode.disabled = currentFipsValue
 			end if
 		    'CSBR-158685: Set the default/saved values for safety data
@@ -2286,10 +2286,10 @@ REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServic
 	
 	Sub SetCOE11ConfigFIPSProvider(fipsCheckValue)
 		REReplaceInFile COEFrameworkConfigPath, "FIPS_ENABLED"" Value=""" &  fipsCheckValue & """/", "FIPS_ENABLED[ \.=A-Za-z0-9_\\://""]*", vbUseDefault
-	    TraceLogError INFOMSG, "SetCOE11ConfigSSOProvider", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "FIPS Enabled=" & fipsCheckValue
-		msgbox "Warning: You must enable FIPS at OS if FIPS ENABLED is checked. Location:Local Security Policy > Security Settings > Local Policies > Security Options > System cryptography: Use FIPS compliant algorthms for encryption"
-		if fipsCheckValue = "True" then
+	    TraceLogError INFOMSG, "SetCOE11ConfigSSOProvider", "FileName=" & COEFrameworkConfigPath & vbcrlf & space(12) & "FIPS Enabled=" & fipsCheckValue		
+		if UCase(fipsCheckValue) = "TRUE" then
 		document.all.FipsMode.Disabled = true
+		msgbox "Warning: You must enable FIPS at OS if FIPS ENABLED is checked. Location:Local Security Policy > Security Settings > Local Policies > Security Options > System cryptography: Use FIPS compliant algorthms for encryption"
 		end if
 	End sub	
 
@@ -2647,8 +2647,8 @@ REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServic
 		currentOracleServiceName = objDOM.selectSingleNode("/configuration/coeConfiguration/dbmsTypes/add[@name='ORACLE']").selectSingleNode("@dataSource").text
 		currentSSOUrl = objDOM.selectSingleNode("/configuration/coeConfiguration/@singleSignOnURL").text
         currentSSODefaultProvider = objDOM.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='DEFAULT_PROVIDER']").selectSingleNode("@Value").text
-		currentFipsValue = objDOm.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='FIPS_ENABLED']").selectSingleNode("@Value").text
-       		currentCOEHostName = GetHostNameFromURL(currentSSOUrl)
+		currentFipsValue = objDOM.selectSingleNode("//SSOConfiguration/ProviderConfiguration/Settings/add[@Name='FIPS_ENABLED']").selectSingleNode("@Value").text
+       	currentCOEHostName = GetHostNameFromURL(currentSSOUrl)
 		currentLDAPConfigXML = GetLDAPConfigXML(objDOM)
 	
 	End Sub
@@ -2726,9 +2726,9 @@ REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServic
 		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
 		objDOM.async = false
 		objDOM.load(COEFrameworkConfigPath)	
-		Set SSOUrlNode = ObjDom.selectSingleNode("//coeConfiguration")
+		Set SSOUrlNode = ObjDOM.selectSingleNode("//coeConfiguration")
 		SSOUrlNode.setAttribute "singleSignOnURL", BuildSSOURL()
-		ObjDom.save(COEFrameworkConfigPath)
+		objDOM.save(COEFrameworkConfigPath)
 	End Sub
 
 	Sub SetCOEConfigFipsInfo()
@@ -2758,9 +2758,9 @@ REReplaceInFile COEFrameworkConfigPath,  "ORACLE"" dataSource=""" & OracleServic
 		Set objDOM  = CreateObject("Microsoft.XMLDOM")		
 		objDOM.async = false
 		objDOM.load(SSOComConfigPath)	     		
-		Set SSOUrlNode = ObjDom.selectSingleNode("//value")
+		Set SSOUrlNode = objDOM.selectSingleNode("//value")
 		SSOUrlNode.text = BuildSSOURL()
-		ObjDom.save(SSOComConfigPath)
+		objDOM.save(SSOComConfigPath)
 	End Sub
 	
 	
@@ -3875,8 +3875,10 @@ onclick='swapLayers("lyr4")'>Tablespace Params</a></li>
 				</td>
 			</tr>
 			<tr>
-				<td> 
-				<input checked type="checkbox" value="" name="FipsMode"/>FIPS Enabled		
+				<td width="200"> FIPS Enabled       		
+				</td>
+				<td>
+					<input checked type="checkbox" value="" name="FipsMode"/>
 				</td>
 			</tr>
 				<tr>
