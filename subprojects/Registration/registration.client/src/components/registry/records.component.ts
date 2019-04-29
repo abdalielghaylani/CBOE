@@ -524,6 +524,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.grid.instance.refresh();
         notifySuccess(`The record was deleted successfully!`, 5000);
         this.setTotalSearchableCount();
+        this.newQuery();
       })
       .catch(error => {
         notifyException(`The record was not deleted due to a problem`, error, 5000);
@@ -807,7 +808,7 @@ export class RegRecords implements OnInit, OnDestroy {
                 <title>Print table</title>
                 <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
                 <style>
-                table, tr, td 
+                table, tr, td
                 {
                     border:solid 1px #f0f0f0;
                     font-size: 12px;
