@@ -3436,8 +3436,9 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 //In case of bulk-style inserts going directly to permanent using DuplicateAction member
                 if (_dataStrategy == DataAccessStrategy.BulkLoader){
                     try
-                    {
-                        response = this.RegDal.InsertRegistryRecord(_xml, _actionDuplicates);
+                    {						
+                        string strategy = "BulkLoading";																											
+                        response = this.RegDal.InsertRegistryRecord(_xml, _actionDuplicates, 1, strategy);																													
                     }
                     catch (Exception ex)
                     {
@@ -3465,7 +3466,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 if (_checkDuplicates == DuplicateCheck.None && _actionDuplicates == DuplicateAction.None && _dataStrategy == DataAccessStrategy.BulkLoader)
                     response = this.RegDal.InsertRegistryRecord(_xml, _checkDuplicates);
                 else if (_actionDuplicates == DuplicateAction.None && _dataStrategy == DataAccessStrategy.BulkLoader)
-                    response = this.RegDal.InsertRegistryRecord(_xml, _actionDuplicates);
+                    response = this.RegDal.InsertRegistryRecord(_xml, _actionDuplicates, 0, "None");
                 else
                     response = this.RegDal.RegisterRegistryRecord(ID, _xml, _checkDuplicates);
             }

@@ -96,6 +96,7 @@ namespace CambridgeSoft.COE.Registration.Access
         const string AXMLDUPLICATE = "AXMLDuplicated";
         //other string constants
         const string NONE = "NONE";
+	 const string ABULKREG = "ABulkReg";								   
 
         #endregion
 
@@ -3085,7 +3086,7 @@ and b.regid = m.regid" +
         }
 
         [Description(BulkSupportDescription)]
-        public RegistrationCrudResponse InsertRegistryRecord(string xml, DuplicateAction actionDuplicates)
+        public RegistrationCrudResponse InsertRegistryRecord(string xml, DuplicateAction actionDuplicates, int bulkValue, string loadingStrategy)
         {
             RegistrationCrudResponse result = null;
             char chAction = 'U';
@@ -3103,6 +3104,8 @@ and b.regid = m.regid" +
                     cmd.Parameters.Add(new OracleParameter(AMESSAGE, OracleDbType.Clob, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AREGNUMBER, OracleDbType.Varchar2, 50, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(ASETBATCHNUMBER, OracleDbType.Int32, 5, setBatchNumber, ParameterDirection.Input));
+		    cmd.Parameters.Add(new OracleParameter(ABULKREG, OracleDbType.Int32, 5, bulkValue, ParameterDirection.Input));
+					
                     if (this._persistentConenctionWrapper != null)
                     {
                         //cmd.Parameters.Add(new OracleParameter(AREGISTRATION, OracleDbType.Char, "Y", ParameterDirection.Input));
@@ -3153,7 +3156,7 @@ and b.regid = m.regid" +
             , bool callerControlsTransaction
             )
         {
-            RegistrationCrudResponse result = null;
+            RegistrationCrudResponse result = null;						 
             char chAction = 'U';
             DbCommand cmd = null;
             int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
@@ -3177,7 +3180,7 @@ and b.regid = m.regid" +
                 }
                 else
                 {
-                    result = InsertRegistryRecord(xml, actionDuplicates);
+                    result = InsertRegistryRecord(xml, actionDuplicates, 0, "None");
                 }
             }
             catch (Exception ex)
