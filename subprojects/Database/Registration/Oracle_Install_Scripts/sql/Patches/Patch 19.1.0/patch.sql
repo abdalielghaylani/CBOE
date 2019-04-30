@@ -43,7 +43,9 @@ Connect &&schemaName/&&schemaPass@&&serverName
 --#########################################################
 --INDEXES
 --#########################################################
-
+Connect &&schemaName/&&schemaPass@&&serverName
+--CBOE-8144. CBOE-8011. New index was added to improve most slow query.
+create index reg_num_low_case on reg_numbers (lower(reg_number));
 --#########################################################
 --CONSTRAINTS
 --#########################################################
