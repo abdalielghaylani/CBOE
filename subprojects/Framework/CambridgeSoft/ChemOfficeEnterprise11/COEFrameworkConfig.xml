@@ -1036,6 +1036,7 @@
         <!--Ticket Timeout in the number of minutes-->
         <add Name="TICKET_TIMEOUT" Value="20"/>
         <add Name="ENCRYPT_USER_PASSWORDS" Value="NO"/>
+		<add Name="FIPS_ENABLED" Value="FALSE"/>
       </Settings>
       <ExemptUsers>
         <add userName="CSSADMIN" ssoProvider="cssecurity"/>
@@ -1158,8 +1159,7 @@
         <add Name="LDAP_FILTER" Value="sAMAccountName=%username%"/>
         <!--LDAP_AUTHENTICATION_TYPE (SimpleBind | FastBind) -->
         <add Name="LDAP_AUTHENTICATION_TYPE" Value=""/>
-        <add Name="LDAP_ENCRYPT_SERVICE_PWD" Value="NO"/>
-		<add Name="FIPS_ENABLED" Value="FALSE"/>
+        <add Name="LDAP_ENCRYPT_SERVICE_PWD" Value="NO"/>		
       </Settings>
       <GetUserReturnInfo>
         <add nodeName="username" ldapCode="SAMAccountName" displayName="Username" mapTo="username"/>
