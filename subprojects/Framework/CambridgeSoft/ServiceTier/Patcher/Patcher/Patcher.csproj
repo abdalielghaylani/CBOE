@@ -289,6 +289,7 @@
     <Compile Include="Target18.1.0\CBOE8211.cs" />
     <Compile Include="Target18.1.0\CBOE8242.cs" />
     <Compile Include="Target18.1.1\CBOE8456.cs" />
+    <Compile Include="Target19.1.0\CBOE8751.cs" />
     <Compile Include="Utilities\PatcherUtility.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +353,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PatchLists\18.1.1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\19.1.0.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="README.txt">
