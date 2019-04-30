@@ -29,7 +29,7 @@
         <a class="fa fa-expand grid-icon" aria-hidden="true" title='Show detail view' (click)="edit(data)"></a>&nbsp;
       </div>
       <div *dxTemplate="let data of 'cellTemplate'">
-        <reg-structure-image [src]="data.value"></reg-structure-image>
+        <reg-structure-image [src]="data.value" width="215" ></reg-structure-image>
       </div>
       <div *dxTemplate="let data of 'resolutionOptionTemplate'">
         <a *ngIf="setButtonVisibility('AddBatch', data.value)" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch', data.value)" title={{addBatchButtonTitle}}></a>&nbsp;

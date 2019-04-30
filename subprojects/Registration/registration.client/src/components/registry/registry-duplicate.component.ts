@@ -13,6 +13,7 @@ import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 import { CRegistryRecord, CViewGroup } from './base';
 import { CFragment } from '../common';
+import { DxiCenterComponent } from 'devextreme-angular/ui/nested/center-dxi';
 
 @Component({
   selector: 'reg-duplicate-record',
@@ -59,6 +60,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     caption: 'Structure',
     cellTemplate: 'cellTemplate',
     width: 220,
+    alignment: 'center',
     allowFiltering: false,
     allowSorting: false,
   }, {
