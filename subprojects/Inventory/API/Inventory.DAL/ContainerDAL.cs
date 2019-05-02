@@ -146,7 +146,33 @@ namespace PerkinElmer.COE.Inventory.DAL
                 catch (Exception ex)
                 {
                     dbContextTransaction.Rollback();
-                    throw new Exception("The creation of the container failed.", ex);
+                    throw new Exception("The update of the container failed.", ex);
+                }
+            }
+        }
+
+        public void UpdateContainerRemainingQuantity(int containerId, decimal remainingQuantity)
+        {
+            var dbContext = ((DbContext)db);
+            using (var dbContextTransaction = dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    Oracle.ManagedDataAccess.Client.OracleConnection connection = (Oracle.ManagedDataAccess.Client.OracleConnection)dbContext.Database.Connection;
+                    Oracle.ManagedDataAccess.Client.OracleCommand cmd = dbContext.Database.Connection.CreateCommand() as Oracle.ManagedDataAccess.Client.OracleCommand;
+                    cmd.CommandText = "CHEMINVDB2.UpdateContainerQtyRemaining";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Int32, 0, null, System.Data.ParameterDirection.ReturnValue));
+                    cmd.Parameters.Add(new OracleParameter("PCONTAINERIDs", OracleDbType.Varchar2, 4000, containerId.ToString(), System.Data.ParameterDirection.Input));
+                    cmd.Parameters.Add(new OracleParameter("PQTYREMAINING", OracleDbType.Double, 0, remainingQuantity, System.Data.ParameterDirection.Input));
+                    cmd.Parameters.Add(new OracleParameter("PQTYCHANGED", OracleDbType.Double, 0, null, System.Data.ParameterDirection.Input));
+                    cmd.ExecuteNonQuery();
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw new Exception("The update of the remaining quantty of the container failed.", ex);
                 }
             }
         }

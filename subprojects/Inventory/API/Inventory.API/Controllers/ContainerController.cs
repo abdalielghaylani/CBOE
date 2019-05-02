@@ -187,5 +187,37 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
+
+        /// <summary>
+        /// Update container remaining quantity
+        /// </summary>
+        /// <param name="containerId">The container id to be updated</param>
+        /// <param name="remainingQuantity">The remaining quantity to update</param>
+        /// <returns>Container</returns>
+        [HttpPut]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/remainingQuantity")]
+        [SwaggerOperation("UpdateContainerRemainingQuantity")]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateContainerRemainingQuantity(int containerId, decimal remainingQuantity)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                containerDAL.UpdateContainerRemainingQuantity(containerId, remainingQuantity);
+
+                responseMessage = Request.CreateResponse(statusCode);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
     }
 }
