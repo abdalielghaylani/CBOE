@@ -177,6 +177,38 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
         }
 
+        public void UpdateContainerStatus(int containerId, int containerStatusId)
+        {
+            var status = db.INV_CONTAINER_STATUS.FirstOrDefault(s => s.CONTAINER_STATUS_ID == containerStatusId);
+            if (status == null)
+            {
+                throw new Exception("The container status id is not valid!");
+            }
+
+            var dbContext = ((DbContext)db);
+            using (var dbContextTransaction = dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    Oracle.ManagedDataAccess.Client.OracleConnection connection = (Oracle.ManagedDataAccess.Client.OracleConnection)dbContext.Database.Connection;
+                    Oracle.ManagedDataAccess.Client.OracleCommand cmd = dbContext.Database.Connection.CreateCommand() as Oracle.ManagedDataAccess.Client.OracleCommand;
+                    cmd.CommandText = "CHEMINVDB2.UpdateContainer";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Int32, 0, null, System.Data.ParameterDirection.ReturnValue));
+                    cmd.Parameters.Add(new OracleParameter("PCONTAINERIDS", OracleDbType.Varchar2, 4000, containerId.ToString(), System.Data.ParameterDirection.Input));
+                    var valuePairs = string.Format("{0}='{1}'", "CONTAINER_STATUS_ID_FK", containerStatusId);
+                    cmd.Parameters.Add(new OracleParameter("PVALUEPAIRS", OracleDbType.Varchar2, 10000, valuePairs, System.Data.ParameterDirection.Input));
+                    cmd.ExecuteNonQuery();
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw new Exception("The update of the container failed.", ex);
+                }
+            }
+        }
+
         private void ValidateContainer(ContainerData container)
         {
             if (container.Location == null)
@@ -208,7 +240,7 @@ namespace PerkinElmer.COE.Inventory.DAL
             {
                 throw new Exception("CurrentUser is a required parameter");
             }
-        }
+        }        
 
         private string GetKeyValuePairsParameters(List<ContainerUpdatedData> containerUpdatedData)
         {
