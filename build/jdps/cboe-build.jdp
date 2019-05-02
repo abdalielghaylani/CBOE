@@ -75,7 +75,7 @@ pipeline
                     bat "npm run ci:build"
                 }
             }
-            post {
+         /* post {
                 always {
                     junit 'subprojects/Registration/registration.client/test-output/test-results.xml' 
                     publishHTML target: [
@@ -87,7 +87,7 @@ pipeline
                     reportName: 'Code Coverage Registration Web Client',
                     reportTitles: '']
                 }
-            }
+            }*/
         }
         stage('CBOE-Installer')
         {
