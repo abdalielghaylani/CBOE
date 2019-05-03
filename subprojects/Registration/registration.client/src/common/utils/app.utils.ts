@@ -26,7 +26,7 @@ export function getExceptionMessage(baseMessage: string, error): string {
 
 export function notify(message: string, type: string, duration: number = notificationDuration) {
   if (type === 'success') {
-    dxNotify(message, 'success', notificationDuration);
+    dxNotify({ message: message, position: { my: 'Center', at: 'Center', of: window } }, 'success', notificationDuration);
     return;
   } else if (type === 'error') {
     type = 'Error';
@@ -47,7 +47,7 @@ export function notifyException(message: string, error, duration: number = notif
 }
 
 export function notifySuccess(message: string, duration: number = notificationDuration) {
-  dxNotify(message, 'success', notificationDuration);
+  dxNotify({ message: message, position: { my: 'Center', at: 'Center', of: window } }, 'success', notificationDuration);
 }
 
 export function b64Encode(utf8Array) {
