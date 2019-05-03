@@ -110,7 +110,7 @@ describe('Component : Record Detail Base', () => {
   // update
   it('should check vales on update method call', async(inject([], () => {
     fixture.whenStable().then(() => {
-      spyOn(fixture.componentInstance, 'updateEditMode');
+      spyOn(fixture.componentInstance, 'updateEditMode').and.returnValue({ subscribe: () => {} });
       fixture.componentInstance.id = 101;
       fixture.componentInstance.revision = undefined;
       fixture.componentInstance.viewId = undefined;
