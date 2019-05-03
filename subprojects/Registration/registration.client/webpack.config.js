@@ -30,6 +30,7 @@ const devConfig = {
     publicPath: basePath,
     sourceMapFilename: '[name].js.map',
     chunkFilename: '[id].chunk.js',
+    jsonpFunction: 'jsonpFunction',
   },
   devtool: 'inline-source-map',
 };
@@ -84,6 +85,7 @@ const prodConfig = {
     publicPath: basePath,
     sourceMapFilename: '[name].[chunkhash].js.map',
     chunkFilename: '[id].chunk.js',
+    jsonpFunction: 'jsonpFunction',
   },
   devtool: 'source-map',
 };
