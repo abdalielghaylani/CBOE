@@ -134,6 +134,24 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
 
+                    // Keep only the data of the affected batch, otherwise it affects performance
+                    XmlNode batchNumberNode = xmlDoc.FirstChild.SelectSingleNode("Batch/BatchNumber");
+                    uint batchNumber;
+                    if (batchNumberNode != null && !string.IsNullOrEmpty(batchNumberNode.InnerText) &&
+                        UInt32.TryParse(batchNumberNode.InnerText, out batchNumber))
+                    {
+                        var result = (from bl in registryRecord.BatchList where bl.BatchNumber == batchNumber select bl);
+                        if (result != null)
+                        {
+                            List<CambridgeSoft.COE.Registration.Services.Types.Batch> batches = result.ToList();
+                            if (batches != null && batches.Count > 0)
+                            {
+                                registryRecord.BatchList.Clear();
+                                registryRecord.BatchList.Add(batches[0]);
+                            }
+                        }
+                    }
+
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
 
