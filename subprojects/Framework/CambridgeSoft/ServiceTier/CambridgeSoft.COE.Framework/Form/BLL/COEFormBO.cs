@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.Caching;
 
+
 namespace CambridgeSoft.COE.Framework.COEFormService
 {
     [Serializable()]
@@ -35,6 +36,7 @@ namespace CambridgeSoft.COE.Framework.COEFormService
         private string _formType;
         private int _formTypeId;
         private COEAccessRightsBO _coeAccessRights;
+        
         //variables data access
         [NonSerialized]
         private DAL _coeDAL = null;
@@ -450,13 +452,14 @@ namespace CambridgeSoft.COE.Framework.COEFormService
 
         public override COEFormBO Save()
         {
+           
             if (IsDeleted && !CanDeleteObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForDeleteObject + " COEFormBO");
             else if (IsNew && !CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEFormBO");
             else if (!CanEditObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " COEFormBO");
-            if (!this.CompareByteArray(_coeFormHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(this.COEFormGroup.ToString())))
+            if (!this.CompareByteArray(_coeFormHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(this.COEFormGroup.ToString())))
                 this.MarkDirty();
 
             return base.Save();
@@ -934,7 +937,7 @@ namespace CambridgeSoft.COE.Framework.COEFormService
 
         private void CreateCoeFormHash()
         {
-            _coeFormHash = CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(this.COEFormGroup.ToString());
+            _coeFormHash = CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(this.COEFormGroup.ToString());
         }
 
         private bool CompareByteArray(byte[] operand1, byte[] operand2)

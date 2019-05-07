@@ -195,7 +195,7 @@ namespace CambridgeSoft.COE.Framework.COEReportingService
             set { 
                 CanWriteProperty();
 
-                if (!CompareByteArray(_coeReportTemplateHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(value.ToString())))
+                if (!CompareByteArray(_coeReportTemplateHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(value.ToString())))
                 {
                     _coeReportDefinition = value;
                 CreateReportTemplateHash();
@@ -469,7 +469,7 @@ namespace CambridgeSoft.COE.Framework.COEReportingService
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " " + CLASSNAME);
             else if (!CanEditObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " " + CLASSNAME);
-            if (!this.CompareByteArray(_coeReportTemplateHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(this.ReportDefinition.ToString())))
+            if (!this.CompareByteArray(_coeReportTemplateHash, CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(this.ReportDefinition.ToString())))
                 this.MarkDirty();
 
             return base.Save();
@@ -477,7 +477,7 @@ namespace CambridgeSoft.COE.Framework.COEReportingService
 
         private void CreateReportTemplateHash()
         {
-            _coeReportTemplateHash = CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(this.ReportDefinition.ToString());
+            _coeReportTemplateHash = CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(this.ReportDefinition.ToString());
         }
 
         private bool CompareByteArray(byte[] operand1, byte[] operand2)

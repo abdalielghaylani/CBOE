@@ -297,7 +297,7 @@ namespace CambridgeSoft.COE.Framework.ServerControls.Reporting
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(value);
 
-                return CambridgeSoft.COE.Framework.Common.Utilities.ComputeMD5(document.OuterXml);
+                return CambridgeSoft.COE.Framework.Common.Utilities.ComputeHash(document.OuterXml);
             }
             return null;
         }

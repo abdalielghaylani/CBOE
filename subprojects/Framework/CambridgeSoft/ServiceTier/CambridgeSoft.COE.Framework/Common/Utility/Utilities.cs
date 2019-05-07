@@ -8,16 +8,20 @@ using System.IO.Compression;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 
 namespace CambridgeSoft.COE.Framework.Common
 {
+    
     /// <summary>
     /// Common utilities class.
     /// </summary>
     public class Utilities
-    {
+    {        
         private const string DEFAULTKEY = "COEFramework";
+        private static bool fipsEnabled;
+        
         /// <summary>
         /// Returns the path to the specified project. It exctracts this information from the corresponding assembly.
         /// </summary>
@@ -173,19 +177,59 @@ namespace CambridgeSoft.COE.Framework.Common
             return Convert.ToBase64String(stream.ToArray());
         }
 
+        public static bool GetFipsValue()
+        {
+            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
+            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
+
+            bool returnFips;
+            if (configSettings.ApplicationDefaults.FipsEnabled != null)
+            {
+                returnFips = configSettings.ApplicationDefaults.FipsEnabled;
+            }
+            else
+            {
+                returnFips = false;
+            }
+            return returnFips;
+        }
+
         /// <summary>
         /// Returns the hash as an array of 16 bytes. 
         /// Note that some MD5 implementations produce a 32-character, hexadecimal-formatted hash. To interoperate with such implementations, use <see cref="GetMD5Hash"/> function instead.
         /// </summary>
         /// <param name="value">String to compute its hash</param>
         /// <returns>The hash as an Array of 16 bytes</returns>
-        public static byte[] ComputeMD5(string value)
+        public static byte[] ComputeHash(string value)
         {
-            using (MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider())   // Coverity Fix CID - 11813
+           
+            SHA1CryptoServiceProvider sha1provider = null;
+            MD5CryptoServiceProvider md5provider = null;
+            try
             {
-                byte[] byteValue = UTF32Encoding.UTF8.GetBytes(value.ToCharArray());
-                return md5provider.ComputeHash(byteValue);
+                Utilities.fipsEnabled = GetFipsValue();
+                if (Utilities.fipsEnabled)
+                {
+                    sha1provider = new SHA1CryptoServiceProvider();                
+                    byte[] byteValue = UTF32Encoding.UTF8.GetBytes(value.ToCharArray());
+                    return sha1provider.ComputeHash(byteValue);
+                }
+                else
+                {
+                    md5provider = new MD5CryptoServiceProvider();  // Coverity Fix CID - 11813                
+                    byte[] byteValue = UTF32Encoding.UTF8.GetBytes(value.ToCharArray());
+                    return md5provider.ComputeHash(byteValue);
+                }
+
             }
+            finally
+            {
+                if(sha1provider != null)
+                    ((IDisposable)sha1provider).Dispose();
+                if(md5provider != null)
+                    ((IDisposable)md5provider).Dispose();
+            }
+                       
         }
 
         /// <summary>
@@ -195,7 +239,7 @@ namespace CambridgeSoft.COE.Framework.Common
         /// <param name="input">String to be hashed</param>
         /// <returns>Hashed string</returns>
         public static string GetMD5Hash(string input)
-        {            
+        {
             // Create a new Stringbuilder to collect the bytes
             // and create a string.
             StringBuilder sBuilder = new StringBuilder();
@@ -213,7 +257,7 @@ namespace CambridgeSoft.COE.Framework.Common
                     sBuilder.Append(data[i].ToString("x2"));
                 }
             }
-            // Return the hexadecimal string.
+
             return sBuilder.ToString();
         }
 
