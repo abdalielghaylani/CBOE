@@ -113,6 +113,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    sessionStorage.searchHitlistId = this.hitListId;
     this.url = this.router.url;
     this.queryFormShown = false;
     this.updateQueryForm = true;
@@ -341,6 +342,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onSearch(hitListId) {
     this.navigateToHits(hitListId);
+    sessionStorage.searchHitlistId = hitListId;
   }
 
   onRefine(result) {
@@ -524,7 +526,6 @@ export class RegRecords implements OnInit, OnDestroy {
         this.grid.instance.refresh();
         notifySuccess(`The record was deleted successfully!`, 5000);
         this.setTotalSearchableCount();
-        this.newQuery();
       })
       .catch(error => {
         notifyException(`The record was not deleted due to a problem`, error, 5000);

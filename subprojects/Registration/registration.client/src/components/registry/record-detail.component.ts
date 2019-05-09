@@ -551,7 +551,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
             if (this.bulkreg) {
               this.router.navigate([`records/bulkreg`]);
             } else {
-              this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+              const hitListId = Number(sessionStorage.searchHitlistId ? sessionStorage.searchHitlistId : '0');
+              this.router.navigate([`records/${this.temporary ? 'temp' : ''}${hitListId > 0 ? '/hits/' + hitListId : ''}`]);
             }
           })
           .catch(error => {
