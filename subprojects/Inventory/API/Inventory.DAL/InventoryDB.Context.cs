@@ -36,5 +36,6 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual DbSet<INV_CUSTOM_CPD_FIELD_VALUES> INV_CUSTOM_CPD_FIELD_VALUES { get; set; }
         public virtual DbSet<INV_CUSTOM_FIELD_GROUPS> INV_CUSTOM_FIELD_GROUPS { get; set; }
         public virtual DbSet<INV_CUSTOM_FIELDS> INV_CUSTOM_FIELDS { get; set; }
+        public virtual DbSet<INV_UNIT_TYPES> INV_UNIT_TYPES { get; set; }
     }
 }

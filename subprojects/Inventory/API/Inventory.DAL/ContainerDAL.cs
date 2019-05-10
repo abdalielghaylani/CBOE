@@ -14,6 +14,9 @@ namespace PerkinElmer.COE.Inventory.DAL
     {
         MapperBase<INV_CONTAINERS, ContainerData> containerMapper = new ContainerMapper();
         MapperBase<INV_CUSTOM_CPD_FIELD_VALUES, CustomFieldData> customFieldMapper = new CustomFieldMapper();
+        MapperBase<INV_CONTAINER_TYPES, ContainerTypeData> containerTypeMapper = new ContainerTypeMapper();
+        MapperBase<INV_CONTAINER_STATUS, ContainerStatusData> containerStatusMapper = new ContainerStatusMapper();
+        MapperBase<INV_UNITS, UnitData> unitMapper = new UnitMapper();
 
         public ContainerDAL()
         {
@@ -209,6 +212,18 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
         }
 
+        public List<ContainerTypeData> GetContainerTypes()
+        {
+            var result = new List<ContainerTypeData>();
+
+            foreach (var containerType in db.INV_CONTAINER_TYPES)
+            {
+                result.Add(containerTypeMapper.Map(containerType));
+            }
+
+            return result;
+        }
+
         private void ValidateContainer(ContainerData container)
         {
             if (container.Location == null)
@@ -240,7 +255,7 @@ namespace PerkinElmer.COE.Inventory.DAL
             {
                 throw new Exception("CurrentUser is a required parameter");
             }
-        }        
+        }
 
         private string GetKeyValuePairsParameters(List<ContainerUpdatedData> containerUpdatedData)
         {

@@ -110,11 +110,17 @@
     <Compile Include="INV_UNITS.cs">
       <DependentUpon>InventoryDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="INV_UNIT_TYPES.cs">
+      <DependentUpon>InventoryDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="LocationDAL.cs" />
     <Compile Include="Mapper\CompoundMapper.cs" />
     <Compile Include="Mapper\ContainerMapper.cs" />
+    <Compile Include="Mapper\UnitMapper.cs" />
     <Compile Include="Mapper\CustomFieldMapper.cs" />
     <Compile Include="Mapper\EnumHelper.cs" />
+    <Compile Include="Mapper\ContainerTypeMapper.cs" />
+    <Compile Include="Mapper\ContainerStatusMapper.cs" />
     <Compile Include="Mapper\LocationMapper.cs" />
     <Compile Include="Mapper\MapperBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

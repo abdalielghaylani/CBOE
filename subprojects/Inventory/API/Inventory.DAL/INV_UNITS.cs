@@ -42,5 +42,6 @@ namespace PerkinElmer.COE.Inventory.DAL
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INV_CONTAINERS> INV_CONTAINERS4 { get; set; }
+        public virtual INV_UNIT_TYPES INV_UNIT_TYPES { get; set; }
     }
 }

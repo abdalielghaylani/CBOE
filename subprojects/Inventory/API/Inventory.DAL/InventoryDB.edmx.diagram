@@ -34,6 +34,8 @@
         <AssociationConnector Association="Model.INV_CUSTOM_CPD_FLD_VAL_FK2" />
         <AssociationConnector Association="Model.INV_CUSTOM_FIELDS_FK1" />
         <AssociationConnector Association="Model.UNIT_OF_DENSITY_ID_FK" />
+        <EntityTypeShape EntityType="Model.INV_UNIT_TYPES" Width="1.5" PointX="0.75" PointY="4" />
+        <AssociationConnector Association="Model.INV_UNIT_TYPES_UNITS_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

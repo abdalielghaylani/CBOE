@@ -26,5 +26,17 @@ namespace PerkinElmer.COE.Inventory.Model
         /// </summary>
         [JsonProperty(PropertyName = "unit")]
         public string Unit { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unit type.
+        /// </summary>
+        [JsonProperty(PropertyName = "unitType")]
+        public UnitTypeData UnitType { get; set; }
     }
 }

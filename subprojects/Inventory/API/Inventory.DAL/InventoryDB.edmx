@@ -212,6 +212,13 @@
           <Property Name="CREATOR" Type="varchar2" MaxLength="30" Nullable="false" />
           <Property Name="TIMESTAMP" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="INV_UNIT_TYPES">
+          <Key>
+            <PropertyRef Name="UNIT_TYPE_ID" />
+          </Key>
+          <Property Name="UNIT_TYPE_ID" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="UNIT_TYPE_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="INV_UNITS">
           <Key>
             <PropertyRef Name="UNIT_ID" />
@@ -432,6 +439,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INV_UNIT_TYPES_UNITS_FK">
+          <End Role="INV_UNIT_TYPES" Type="Self.INV_UNIT_TYPES" Multiplicity="0..1" />
+          <End Role="INV_UNITS" Type="Self.INV_UNITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNIT_TYPES">
+              <PropertyRef Name="UNIT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_UNITS">
+              <PropertyRef Name="UNIT_TYPE_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="INV_COMPOUNDS" EntityType="Self.INV_COMPOUNDS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_CONTAINER_STATUS" EntityType="Self.INV_CONTAINER_STATUS" Schema="CHEMINVDB2" store:Type="Tables" />
@@ -443,6 +462,7 @@
           <EntitySet Name="INV_LOCATION_TYPES" EntityType="Self.INV_LOCATION_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_LOCATIONS" EntityType="Self.INV_LOCATIONS" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_SUPPLIERS" EntityType="Self.INV_SUPPLIERS" Schema="CHEMINVDB2" store:Type="Tables" />
+          <EntitySet Name="INV_UNIT_TYPES" EntityType="Self.INV_UNIT_TYPES" Schema="CHEMINVDB2" store:Type="Tables" />
           <EntitySet Name="INV_UNITS" EntityType="Self.INV_UNITS" Schema="CHEMINVDB2" store:Type="Tables" />
           <AssociationSet Name="INV_COMP_LOC_TYPES_FK" Association="Self.INV_COMP_LOC_TYPES_FK">
             <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
@@ -511,6 +531,10 @@
           <AssociationSet Name="INV_LOC_LOC_TYPES_FK" Association="Self.INV_LOC_LOC_TYPES_FK">
             <End Role="INV_LOCATION_TYPES" EntitySet="INV_LOCATION_TYPES" />
             <End Role="INV_LOCATIONS" EntitySet="INV_LOCATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="INV_UNIT_TYPES_UNITS_FK" Association="Self.INV_UNIT_TYPES_UNITS_FK">
+            <End Role="INV_UNIT_TYPES" EntitySet="INV_UNIT_TYPES" />
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -738,6 +762,7 @@
           <NavigationProperty Name="INV_CONTAINERS2" Relationship="Self.INV_CONT_UNITOFPURITY_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS3" Relationship="Self.INV_CONT_UNITOFWGHT_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
           <NavigationProperty Name="INV_CONTAINERS4" Relationship="Model.UNIT_OF_DENSITY_ID_FK" FromRole="INV_UNITS" ToRole="INV_CONTAINERS" />
+          <NavigationProperty Name="INV_UNIT_TYPES" Relationship="Model.INV_UNIT_TYPES_UNITS_FK" FromRole="INV_UNITS" ToRole="INV_UNIT_TYPES" />
         </EntityType>
         <Association Name="INV_COMP_LOC_TYPES_FK">
           <End Role="INV_LOCATION_TYPES" Type="Self.INV_LOCATION_TYPES" Multiplicity="0..1" />
@@ -1007,6 +1032,11 @@
             <End Role="INV_UNITS" EntitySet="INV_UNITS" />
             <End Role="INV_CONTAINERS" EntitySet="INV_CONTAINERS" />
           </AssociationSet>
+          <EntitySet Name="INV_UNIT_TYPES" EntityType="Model.INV_UNIT_TYPES" />
+          <AssociationSet Name="INV_UNIT_TYPES_UNITS_FK" Association="Model.INV_UNIT_TYPES_UNITS_FK">
+            <End Role="INV_UNIT_TYPES" EntitySet="INV_UNIT_TYPES" />
+            <End Role="INV_UNITS" EntitySet="INV_UNITS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="INV_CUSTOM_CPD_FIELD_VALUES">
           <Key>
@@ -1074,6 +1104,26 @@
             </Principal>
             <Dependent Role="INV_CONTAINERS">
               <PropertyRef Name="UNIT_OF_DENSITY_ID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="INV_UNIT_TYPES">
+          <Key>
+            <PropertyRef Name="UNIT_TYPE_ID" />
+          </Key>
+          <Property Name="UNIT_TYPE_ID" Type="Int16" Nullable="false" />
+          <Property Name="UNIT_TYPE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INV_UNITS" Relationship="Model.INV_UNIT_TYPES_UNITS_FK" FromRole="INV_UNIT_TYPES" ToRole="INV_UNITS" />
+        </EntityType>
+        <Association Name="INV_UNIT_TYPES_UNITS_FK">
+          <End Type="Model.INV_UNIT_TYPES" Role="INV_UNIT_TYPES" Multiplicity="0..1" />
+          <End Type="Model.INV_UNITS" Role="INV_UNITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_UNIT_TYPES">
+              <PropertyRef Name="UNIT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INV_UNITS">
+              <PropertyRef Name="UNIT_TYPE_ID_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1310,6 +1360,14 @@
                 <ScalarProperty Name="COMPOUND_ID_FK" ColumnName="COMPOUND_ID_FK" />
                 <ScalarProperty Name="LOCATION_ID_FK" ColumnName="LOCATION_ID_FK" />
                 <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_UNIT_TYPES">
+            <EntityTypeMapping TypeName="Model.INV_UNIT_TYPES">
+              <MappingFragment StoreEntitySet="INV_UNIT_TYPES">
+                <ScalarProperty Name="UNIT_TYPE_NAME" ColumnName="UNIT_TYPE_NAME" />
+                <ScalarProperty Name="UNIT_TYPE_ID" ColumnName="UNIT_TYPE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
