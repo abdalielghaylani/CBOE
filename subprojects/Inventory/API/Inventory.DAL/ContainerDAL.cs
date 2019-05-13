@@ -224,6 +224,18 @@ namespace PerkinElmer.COE.Inventory.DAL
             return result;
         }
 
+        public List<ContainerStatusData> GetContainerStatus()
+        {
+            var result = new List<ContainerStatusData>();
+
+            foreach (var containerStatus in db.INV_CONTAINER_STATUS)
+            {
+                result.Add(containerStatusMapper.Map(containerStatus));
+            }
+
+            return result;
+        }
+
         private void ValidateContainer(ContainerData container)
         {
             if (container.Location == null)
