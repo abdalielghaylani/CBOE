@@ -236,6 +236,18 @@ namespace PerkinElmer.COE.Inventory.DAL
             return result;
         }
 
+        public List<UnitData> GetContainerUnits()
+        {
+            var result = new List<UnitData>();
+
+            foreach (var unit in db.INV_UNITS)
+            {
+                result.Add(unitMapper.Map(unit));
+            }
+
+            return result;
+        }
+
         private void ValidateContainer(ContainerData container)
         {
             if (container.Location == null)
