@@ -6,15 +6,15 @@
       <!--CambridgeSoft-->
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Framework" publicKeyToken="1e3754866626dfbf" culture="neutral"/>
-        <codeBase version="18.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\CambridgeSoft.COE.Framework.dll"/>
+        <codeBase version="19.1.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\CambridgeSoft.COE.Framework.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Registration.Services" publicKeyToken="f435ba95da9797dc" culture="neutral"/>
-        <codeBase version="18.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.Services.dll"/>
+        <codeBase version="19.1.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.Services.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Registration.RegistrationAddins" publicKeyToken="f435ba95da9797dc" culture="neutral"/>
-        <codeBase version="18.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.RegistrationAddins.dll"/>
+        <codeBase version="19.1.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.RegistrationAddins.dll"/>
       </dependentAssembly>
 	  <dependentAssembly>
 		<assemblyIdentity name="PyEngine3" publicKeyToken="1e3754866626dfbf" culture="neutral"/>

@@ -4,7 +4,7 @@
 
     <%@ Register Assembly="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30"
     Namespace="Csla.Web" TagPrefix="cc1" %>
-        <%@ Register Assembly="CambridgeSoft.COE.Framework, Version=18.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
+        <%@ Register Assembly="CambridgeSoft.COE.Framework, Version=19.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
     Namespace="CambridgeSoft.COE.Framework.Controls" TagPrefix="cc2" %>
             <%@ Register Src="~/Forms/Search/UserControls/SavePanel.ascx" TagPrefix="ChemBioViz"
     TagName="SavePanel" %>

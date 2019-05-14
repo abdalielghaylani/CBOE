@@ -32,7 +32,7 @@ using System.Web.UI;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: System.Reflection.AssemblyVersion("18.1.1.0")]
+[assembly: System.Reflection.AssemblyVersion("19.1.0.0")]
 [assembly: AssemblyFileVersion("12.5.0.0")]
 [assmebly: InternalsVisibleTo("CambridgeSoft.COE.Framework.UnitTests")]
 [assembly: WebResource("CambridgeSoft.COE.Framework.ServerControls.PagerControl.Next_B.png", "image/png")]
