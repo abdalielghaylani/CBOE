@@ -212,6 +212,62 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
         }
 
+        public List<ContainerData> GetContainers(SearchContainerData searchContainerData)
+        {
+            var includeCompoundId = searchContainerData.CompoundId.HasValue;
+            var includeACXNumber = !string.IsNullOrEmpty(searchContainerData.ACXNumber);
+            var includeCASRegistryNumber = !string.IsNullOrEmpty(searchContainerData.CASRegistryNumber);
+            var includeCotainerStatusId = searchContainerData.ContainerStatusId.HasValue;
+            var includeCurrentUser = !string.IsNullOrEmpty(searchContainerData.CurrentUser);
+            var includeLocationBarcode = !string.IsNullOrEmpty(searchContainerData.LocationBarcode);
+            var includeLocationId = searchContainerData.LocationId.HasValue;
+            var includeLotNumber = !string.IsNullOrEmpty(searchContainerData.LotNumber);
+            var includeSubstanceName = !string.IsNullOrEmpty(searchContainerData.SubstanceName);
+            var includeRemainingQuantity = searchContainerData.RemainingQuantity.HasValue;
+            var includeUnitOfMeasureId = searchContainerData.UnitOfMeasureId.HasValue;
+
+            var containers = db.INV_CONTAINERS
+                .Include(c => c.INV_CONTAINER_TYPES)
+                .Include(c => c.INV_CONTAINER_STATUS)
+                .Include(c => c.INV_SUPPLIERS)
+                .Include(c => c.INV_UNITS)
+                .Include(c => c.INV_LOCATIONS)
+                .Include(c => c.INV_LOCATIONS1)
+                .Include(c => c.INV_COMPOUNDS)
+                .Include(c => c.INV_LOCATION_TYPES).Where(c => (!includeSubstanceName || c.INV_COMPOUNDS.SUBSTANCE_NAME == searchContainerData.SubstanceName)
+                    && (!includeCompoundId || c.INV_COMPOUNDS.COMPOUND_ID == searchContainerData.CompoundId.Value)
+                    && (!includeACXNumber || c.INV_COMPOUNDS.ACX_ID == searchContainerData.ACXNumber)
+                    && (!includeCASRegistryNumber || c.INV_COMPOUNDS.CAS == searchContainerData.CASRegistryNumber)
+                    && (!includeCotainerStatusId || c.INV_COMPOUNDS.COMPOUND_ID == searchContainerData.ContainerStatusId.Value)
+                    && (!includeCurrentUser || c.CURRENT_USER_ID_FK == searchContainerData.CurrentUser)
+                    && (!includeLocationBarcode || c.INV_LOCATIONS1.LOCATION_BARCODE == searchContainerData.LocationBarcode)
+                    && (!includeLocationId || c.INV_LOCATIONS1.LOCATION_ID == searchContainerData.LocationId.Value)
+                    && (!includeLotNumber || c.LOT_NUM == searchContainerData.LotNumber)
+                    && (!includeRemainingQuantity || c.QTY_REMAINING == searchContainerData.RemainingQuantity.Value)
+                    && (!includeUnitOfMeasureId || c.UNIT_OF_MEAS_ID_FK == searchContainerData.UnitOfMeasureId.Value)
+                );
+           
+            var containersData = new List<ContainerData>();
+
+            foreach (var container in containers)
+            {
+                var containerData = containerMapper.Map(container);
+
+                if (containerData != null && containerData.Compound != null)
+                {
+                    containerData.Compound.SafetyData = customFieldMapper.Map(db.INV_CUSTOM_CPD_FIELD_VALUES
+                        .Include(c => c.INV_CUSTOM_FIELDS)
+                        .Include("INV_CUSTOM_FIELDS.INV_CUSTOM_FIELD_GROUPS")
+                        .Where(c => c.COMPOUND_ID_FK == containerData.Compound.CompoundId)
+                        .ToList());
+                }
+
+                containersData.Add(containerData);
+            }
+
+            return containersData;
+        }
+
         public List<ContainerTypeData> GetContainerTypes()
         {
             var result = new List<ContainerTypeData>();

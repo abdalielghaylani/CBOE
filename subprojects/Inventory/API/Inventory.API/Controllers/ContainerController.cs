@@ -344,5 +344,36 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
+
+        /// <summary>
+        /// Get containers based on the filters parameters
+        /// </summary>
+        /// <returns>List of containers</returns>
+        [HttpPost]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/search")]
+        [SwaggerOperation("SearchContainers")]
+        [SwaggerResponse(200, type: typeof(List<ContainerData>))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> SearchContainers([FromBody] SearchContainerData searchContainerData)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                List<ContainerData> containers = containerDAL.GetContainers(searchContainerData);
+
+                responseMessage = Request.CreateResponse(statusCode, containers);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
     }
 }
