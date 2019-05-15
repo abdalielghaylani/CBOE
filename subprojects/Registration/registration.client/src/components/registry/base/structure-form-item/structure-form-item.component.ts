@@ -105,7 +105,10 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
       if (this.mode === 0 && this.cdd.isBlankStructure() &&
         this.viewModel.editorOptions.value.Structure) {
         this.viewModel.editorOptions.value.Structure.__text = undefined;
-        this.viewModel.component.option('formData.' + this.viewModel.dataField).Structure.__text = undefined;
+        if (this.viewModel.component.option('formData.' + this.viewModel.dataField) !== undefined 
+        && this.viewModel.component.option('formData.' + this.viewModel.dataField).Structure !== undefined) {
+          this.viewModel.component.option('formData.' + this.viewModel.dataField).Structure.__text = undefined;
+        }
         this.valueUpdated.emit(this);
       }
     }
