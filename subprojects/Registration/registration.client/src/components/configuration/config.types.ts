@@ -574,6 +574,7 @@ export class CConfigProperties {
   clearFormData() {
     this.formData = new CConfigPropertiesFormData();
     this.clearFormDataValidations();
+    this.showHideDataFields({ dataField: 'type', value: this.formData.type });
   }
 
   addEditProperty(w: string, d?: any) {
