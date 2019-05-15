@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.XPath;
@@ -723,13 +724,27 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             }
             finally
             {
+                // Get the updated record
+                toReg = RegistryRecord.GetRegistryRecord(criteria.ToRegNum);
+
+                // Keep only the data of the affected batch, otherwise it affects performance
+                var result = (from bl in toReg.BatchList where bl.ID == criteria.Id select bl);
+                if (result != null)
+                {
+                    List<CambridgeSoft.COE.Registration.Services.Types.Batch> batches = result.ToList();
+                    if (batches != null && batches.Count > 0)
+                    {
+                        toReg.BatchList.Clear();
+                        toReg.BatchList.Add(batches[0]);
+                    }
+                }
+
                 // The following is for triggering addins and saving the changes they may generate, and must happen even if a batch was moved
                 // from a record with 1 component to a record with 2 components. That case would throw an exeption we dont want to catch, but
                 // we still want to trigger the addins.
                 // ------------------------------------
-                // Get the updated record
-                toReg = RegistryRecord.GetRegistryRecord(criteria.ToRegNum);
-                // Force it dirty
+
+                // Force the record dirty
                 toReg.Xml = toReg.Xml;
                 // Trigger addins and save changes. (IE: Batch formula and formula weight needs to be recalculated)
                 toReg.CheckOtherMixtures = false;

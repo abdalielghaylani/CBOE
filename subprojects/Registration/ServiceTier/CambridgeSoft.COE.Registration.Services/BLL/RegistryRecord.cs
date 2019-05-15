@@ -2594,13 +2594,12 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 }
 
                 if (this.IsValid)
-                {                    
-                    RegistryRecord recordClone = this.Clone();
-                    RegistryRecord currentRecord = base.Save();                    
-                    
+                {
                     // Check red box warnings
                     if ((_isTemporal && _submitCheckRedBoxWarning) || (!_isTemporal && _registerCheckRedBoxWarning))
                     {
+                        RegistryRecord recordClone = this.Clone();
+                        base.Save();
                         recordClone.SubmitCheckRedBoxWarning = _submitCheckRedBoxWarning;
                         recordClone.RegisterCheckRedBoxWarning = _registerCheckRedBoxWarning;
                         recordClone.RedBoxWarning = _redBoxWarning;
@@ -2610,7 +2609,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                         return recordClone;
                     }
                     else
-                        return currentRecord;
+                        return base.Save();
                 }
                 else
                     return this;

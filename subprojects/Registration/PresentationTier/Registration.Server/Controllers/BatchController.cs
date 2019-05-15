@@ -196,23 +196,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                RegistryRecord sourceRegistryRecord = null;
+                bool sourceRegistryRecordFound = false;
                 try
                 {
-                    sourceRegistryRecord = RegistryRecord.GetRegistryRecord(data.SourceRegNum);
-                    if (sourceRegistryRecord == null)
-                        throw new RegistrationException(string.Format("cannot find registry record {0}", data.SourceRegNum));
-
-                    RegistryRecord targetRegistryRecord = RegistryRecord.GetRegistryRecord(data.TargetRegNum);
-                    if (targetRegistryRecord == null)
-                        throw new RegistrationException(string.Format("the registry number {0} doesent exist", data.TargetRegNum));
-
                     if (id == 0)
                         throw new RegistrationException(string.Format("batch id '{0}' is not valid", id));
 
-                    CambridgeSoft.COE.Registration.Services.Types.Batch.MoveBatch(id, data.TargetRegNum);
+                    if (!CheckPermanentRecordExists(data.SourceRegNum))
+                        throw new RegistrationException(string.Format("cannot find registry record {0}", data.SourceRegNum));
+                    else
+                        sourceRegistryRecordFound = true;
 
-                    sourceRegistryRecord.BatchList.Remove(sourceRegistryRecord.BatchList.GetBatchById(id));
+                    if (!CheckPermanentRecordExists(data.TargetRegNum))
+                        throw new RegistrationException(string.Format("the registry number {0} doesn't exist", data.TargetRegNum));
+
+                    CambridgeSoft.COE.Registration.Services.Types.Batch.MoveBatch(id, data.TargetRegNum);
                 }
                 catch (Exception ex)
                 {
@@ -230,11 +228,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         }
                         else if (baseEx.Message.Contains("ORA-20037") || baseEx.Message.Contains("ORA-20038") || baseEx.Message.Contains("ORA-20035"))
                         {
-                            if (sourceRegistryRecord != null)
-                            {
-                                sourceRegistryRecord.BatchList.Remove(sourceRegistryRecord.BatchList.GetBatchById(id));
+                            if (sourceRegistryRecordFound)
                                 moveBatchSuccss = true;
-                            }
                         }
                         else if (baseEx.Message.Contains("ORA-20031"))
                         {
@@ -265,5 +260,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             }, new string[] { "DELETE_BATCH_REG" });
         }
+        
+        #region private methods
+
+        /// <summary>
+        /// Checks to see a registry record exists with provided register number
+        /// </summary>
+        /// <param name="regNumber">register number</param>
+        private bool CheckPermanentRecordExists(string regNumber)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":regNumber", regNumber);
+            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM REG_NUMBERS where reg_number=:regNumber", args));
+            return count == 1;
+        }
+
+        #endregion
     }
 }
