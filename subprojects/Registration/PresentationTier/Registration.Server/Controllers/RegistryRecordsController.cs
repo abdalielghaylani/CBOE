@@ -199,10 +199,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 const string personCreatedIdPath = "/MultiCompoundRegistryRecord/PersonCreated";
                 XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
-                int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
-                bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
-                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+                int personCreatedId;
+                bool isLoggedInUserOwner = false;
+                bool isLoggedInUserSupervisor = false;
+                if (int.TryParse(regNode.InnerText.Trim(), out personCreatedId)) 
+                {
+                    isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
+                    isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+                }
 
                 return new JObject(new JProperty("data", record),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
