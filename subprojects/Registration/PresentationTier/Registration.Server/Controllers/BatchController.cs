@@ -134,28 +134,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
 
-                    // Keep only the data of the affected batch, otherwise it affects performance
-                    XmlNode batchNumberNode = xmlDoc.FirstChild.SelectSingleNode("Batch/BatchNumber");
-                    uint batchNumber;
-                    if (batchNumberNode != null && !string.IsNullOrEmpty(batchNumberNode.InnerText) &&
-                        UInt32.TryParse(batchNumberNode.InnerText, out batchNumber))
-                    {
-                        var result = (from bl in registryRecord.BatchList where bl.BatchNumber == batchNumber select bl);
-                        if (result != null)
-                        {
-                            List<CambridgeSoft.COE.Registration.Services.Types.Batch> batches = result.ToList();
-                            if (batches != null && batches.Count > 0)
-                            {
-                                registryRecord.BatchList.Clear();
-                                registryRecord.BatchList.Add(batches[0]);
-                            }
-                        }
-                    }
-
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
 
                     registryRecord.FixBatchesFragmentsEx();
+
+                    // Keep only the data of the affected batch, otherwise it affects performance
+                    if (registryRecord.BatchList.Count > 0)
+                    {
+                        CambridgeSoft.COE.Registration.Services.Types.Batch firstBatch = registryRecord.BatchList[0];
+                        List<CambridgeSoft.COE.Registration.Services.Types.Batch> modifiedBatchList =
+                            (from bl in registryRecord.BatchList where bl.IsDirty == true select bl).ToList();
+                        registryRecord.BatchList.Clear();
+                        if (modifiedBatchList != null && modifiedBatchList.Count > 0)
+                        {
+                            foreach (CambridgeSoft.COE.Registration.Services.Types.Batch batchItem in modifiedBatchList)
+                                registryRecord.BatchList.Add(batchItem);
+                        }
+                        else
+                        {
+                            // keep at least one batch when there is no modification in batch to avoid exception
+                            registryRecord.BatchList.Add(firstBatch);
+                        }
+                    }
 
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
