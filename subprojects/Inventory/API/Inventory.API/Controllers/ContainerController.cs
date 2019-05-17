@@ -90,6 +90,38 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         }
 
         /// <summary>
+        /// Get containers by location id
+        /// </summary>
+        /// <param name="locationId">Internal location id</param>
+        /// <returns>List of Containers</returns>
+        [HttpGet]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/location/{locationId:int}")]
+        [SwaggerOperation("Containers")]
+        [SwaggerResponse(200, type: typeof(ContainerData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetContainersByLocationId(int locationId)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                List<ContainerData> containers = containerDAL.GetContainersByLocationId(locationId);
+                
+                responseMessage = Request.CreateResponse(statusCode, containers);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        /// <summary>
         /// Get container by barcode
         /// </summary>
         /// <param name="barcode">Barcode</param>

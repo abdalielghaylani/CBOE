@@ -76,6 +76,45 @@ namespace PerkinElmer.COE.Inventory.DAL
             return containerData;
         }
 
+        public List<ContainerData> GetContainersByLocationId(int locationId)
+        {
+            var location = db.INV_LOCATIONS.FirstOrDefault(s => s.LOCATION_ID == locationId);
+            if (location == null)
+            {
+                throw new Exception("The location is not valid!");
+            }
+
+            var containers = db.INV_CONTAINERS
+                .Include(c => c.INV_CONTAINER_TYPES)
+                .Include(c => c.INV_CONTAINER_STATUS)
+                .Include(c => c.INV_SUPPLIERS)
+                .Include(c => c.INV_UNITS)
+                .Include(c => c.INV_LOCATIONS)
+                .Include(c => c.INV_LOCATIONS1)
+                .Include(c => c.INV_COMPOUNDS)
+                .Include(c => c.INV_LOCATION_TYPES).Where(c => c.LOCATION_ID_FK == locationId);
+
+            var containersData = new List<ContainerData>();
+
+            foreach (var container in containers)
+            {
+                var containerData = containerMapper.Map(container);
+
+                if (containerData != null && containerData.Compound != null)
+                {
+                    containerData.Compound.SafetyData = customFieldMapper.Map(db.INV_CUSTOM_CPD_FIELD_VALUES
+                        .Include(c => c.INV_CUSTOM_FIELDS)
+                        .Include("INV_CUSTOM_FIELDS.INV_CUSTOM_FIELD_GROUPS")
+                        .Where(c => c.COMPOUND_ID_FK == containerData.Compound.CompoundId)
+                        .ToList());
+                }
+
+                containersData.Add(containerData);
+            }
+
+            return containersData;
+        }
+
         public int CreateContainer(ContainerData container)
         {
             ValidateContainer(container);
