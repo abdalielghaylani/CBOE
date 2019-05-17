@@ -210,7 +210,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
                 containerDAL.UpdateContainer(containerId, containerUpdatedData);
 
-                responseMessage = Request.CreateResponse(statusCode);
+                responseMessage = Request.CreateResponse(statusCode, "The container was updated successfully!");
             }
             catch (Exception ex)
             {
@@ -242,7 +242,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
                 containerDAL.UpdateContainerRemainingQuantity(containerId, remainingQuantity);
 
-                responseMessage = Request.CreateResponse(statusCode);
+                responseMessage = Request.CreateResponse(statusCode, "The container remaining quantity was updated successfully!");
             }
             catch (Exception ex)
             {
@@ -274,7 +274,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
 
                 containerDAL.UpdateContainerStatus(containerId, containerStatusId);
 
-                responseMessage = Request.CreateResponse(statusCode);
+                responseMessage = Request.CreateResponse(statusCode, "The container status was updated successfully!");
             }
             catch (Exception ex)
             {
@@ -399,6 +399,37 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 List<ContainerData> containers = containerDAL.GetContainers(searchContainerData);
 
                 responseMessage = Request.CreateResponse(statusCode, containers);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        /// <summary>
+        /// Delete container
+        /// </summary>
+        /// <param name="id">The container id to be deleted</param>
+        /// <returns>Container</returns>
+        [HttpDelete]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/{id:int}")]
+        [SwaggerOperation("DeleteContainer")]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteContainer(int id)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                containerDAL.DeleteContainer(id);
+
+                responseMessage = Request.CreateResponse(statusCode, "The container was deleted successfully!");
             }
             catch (Exception ex)
             {

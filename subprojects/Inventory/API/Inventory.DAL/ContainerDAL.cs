@@ -343,6 +343,36 @@ namespace PerkinElmer.COE.Inventory.DAL
             return result;
         }
 
+        public void DeleteContainer(int containerId)
+        {
+            var container = db.INV_CONTAINERS.FirstOrDefault(s => s.CONTAINER_ID == containerId);
+            if (container == null)
+            {
+                throw new Exception("The container was not found with that id!");
+            }
+
+            var dbContext = ((DbContext)db);
+            using (var dbContextTransaction = dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    Oracle.ManagedDataAccess.Client.OracleConnection connection = (Oracle.ManagedDataAccess.Client.OracleConnection)dbContext.Database.Connection;
+                    Oracle.ManagedDataAccess.Client.OracleCommand cmd = dbContext.Database.Connection.CreateCommand() as Oracle.ManagedDataAccess.Client.OracleCommand;
+                    cmd.CommandText = "CHEMINVDB2.DeleteContainer";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Int32, 0, null, System.Data.ParameterDirection.ReturnValue));
+                    cmd.Parameters.Add(new OracleParameter("PCONTAINERID", OracleDbType.Varchar2, 2000, containerId.ToString(), System.Data.ParameterDirection.Input));
+                    cmd.ExecuteNonQuery();
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw new Exception("The delete of the container failed.", ex);
+                }
+            }
+        }
+
         private void ValidateContainer(ContainerData container)
         {
             if (container.Location == null)
