@@ -253,6 +253,38 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         }
 
         /// <summary>
+        /// Move container to a particular location
+        /// </summary>
+        /// <param name="containerId">The container id to be moved</param>
+        /// <param name="locationId">The location id to which the container should be moved</param>
+        /// <returns>Container</returns>
+        [HttpPut]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "container/moveContainer")]
+        [SwaggerOperation("MoveContainer")]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> MoveContainer(int containerId, int locationId)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                var statusCode = HttpStatusCode.OK;
+
+                var locationValue = containerDAL.MoveContainer(containerId, locationId);
+
+                responseMessage = Request.CreateResponse(statusCode, locationValue);
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        /// <summary>
         /// Update container status
         /// </summary>
         /// <param name="containerId">The container id to be updated</param>

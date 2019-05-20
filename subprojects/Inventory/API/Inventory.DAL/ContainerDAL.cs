@@ -219,6 +219,33 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
         }
 
+        public string MoveContainer(int containerId, int locationId)
+        {
+            var dbContext = ((DbContext)db);
+            using (var dbContextTransaction = dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    Oracle.ManagedDataAccess.Client.OracleConnection connection = (Oracle.ManagedDataAccess.Client.OracleConnection)dbContext.Database.Connection;
+                    Oracle.ManagedDataAccess.Client.OracleCommand cmd = dbContext.Database.Connection.CreateCommand() as Oracle.ManagedDataAccess.Client.OracleCommand;
+                    cmd.CommandText = "CHEMINVDB2.MoveContainer";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Varchar2, 8000, null, System.Data.ParameterDirection.ReturnValue));
+                    cmd.Parameters.Add(new OracleParameter("PLOCATIONID", OracleDbType.Varchar2, 8000, locationId.ToString(), System.Data.ParameterDirection.Input));
+                    cmd.Parameters.Add(new OracleParameter("PCONTAINERID", OracleDbType.Varchar2, 8000, containerId.ToString(), System.Data.ParameterDirection.Input));
+                    cmd.ExecuteNonQuery();
+                    dbContextTransaction.Commit();
+                    var returnValue = cmd.Parameters["RETURN_VALUE"].Value.ToString();
+                    return returnValue;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw new Exception("The move container functionality failed.", ex);
+                }
+            }
+        }
+
         public void UpdateContainerStatus(int containerId, int containerStatusId)
         {
             var status = db.INV_CONTAINER_STATUS.FirstOrDefault(s => s.CONTAINER_STATUS_ID == containerStatusId);
