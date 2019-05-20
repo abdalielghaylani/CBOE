@@ -47,7 +47,23 @@ export function notifyException(message: string, error, duration: number = notif
 }
 
 export function notifySuccess(message: string, duration: number = notificationDuration) {
-  dxNotify({ message: message, position: { my: 'Center', at: 'Center', of: window } }, 'success', notificationDuration);
+  let dynamicWidth = getwidth(message);
+  dxNotify(
+    {
+      message: message,
+      position: { my: 'Center', at: 'Center', of: window }, width: dynamicWidth
+    },
+    'success',
+    notificationDuration);
+}
+
+function getwidth(val) {
+  let width = val.length;
+  if (window.innerWidth < (width * 6 + 100)) {
+    return (window.innerWidth - 100) + 'px';
+  } else {
+    return (width + 8).toString() + 'ex';
+  }
 }
 
 export function b64Encode(utf8Array) {
