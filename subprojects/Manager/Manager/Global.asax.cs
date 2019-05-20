@@ -51,6 +51,8 @@ public class Global : System.Web.HttpApplication
 
     void Application_Error(object sender, EventArgs e)
     {
+        Response.Filter = null;
+
         //Coverity Fixes: CBOE-313
         //Unhandled exeptions must display a generic message and be logged.
         Exception lastError = this.Server.GetLastError();
