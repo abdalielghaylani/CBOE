@@ -470,10 +470,13 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     // We assume the first batch is the one that has the correct values for the fragment sections. Notice that in RegGUI only values of batch 0 are editable (if SBI = true).
                     foreach (BatchComponent batchComp in registryRecord.BatchList[0].BatchComponentList)
                     {
-                        // Overwrite values of other batches.
-                        for (int i = 1; i < registryRecord.BatchList.Count; i++)
+                        if (batchComp.BatchComponentFragmentList.IsDirty)
                         {
-                            registryRecord.BatchList[i].BatchComponentList[batchComp.OrderIndex - 1].BatchComponentFragmentList = batchComp.BatchComponentFragmentList;
+                            // Overwrite values of other batches.
+                            for (int i = 1; i < registryRecord.BatchList.Count; i++)
+                            {
+                                registryRecord.BatchList[i].BatchComponentList[batchComp.OrderIndex - 1].BatchComponentFragmentList = batchComp.BatchComponentFragmentList;
+                            }
                         }
                     }
                 }
