@@ -891,10 +891,9 @@ End Function
 Function DoEncryptDecryptCommand (encryptType,inputText, secretKey)
  Set EncryptedData = Server.CreateObject("CAPICOM.EncryptedData")
 
- Set FipsEnabled = false
- if Ucase(Application("FipsEnabled")) = "TRUE" then
-    FipsEnabled = true
- end if
+ Dim fipsEnabledValue
+
+ fipsEnabledValue = GetFipsEnabled()
 
  Select Case UCase(EncryptType)
  
@@ -902,7 +901,7 @@ Function DoEncryptDecryptCommand (encryptType,inputText, secretKey)
 
 		' Create the EncryptedData object.
 		' Set algorithm, key size, and encryption password.
-        if FipsEnabled then
+        if fipsEnabledValue then
             'algorightm = 4 -> ALGORITHM_AES
 		    EncryptedData.Algorithm.Name = 4
         else 
