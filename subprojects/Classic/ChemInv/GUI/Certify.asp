@@ -61,7 +61,7 @@ dbkey = Application("appkey")
 		//Purity if present should not have comma
 			var m = document.form1.Purity.value.toString();		
 		if(m.indexOf(",") != -1){
-			errmsg = errmsg + "- The decimal separator for Quantity Removed amount should be the decimal point.\r";
+			errmsg = errmsg + "- The decimal separator for Purity should be the decimal point.\r";
 			bWriteError = true;
 		}		
 		if (bWriteError){
