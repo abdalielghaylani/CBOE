@@ -93,6 +93,20 @@
 		</SCRIPT>
 		
 		<STYLE>
+			a.MenuLink.tb {
+					padding: 5px 5px 1px 5px;
+					border: 1px #f0f0f0 solid;
+					background-color: #e1e1e1;
+					border-radius:5px;
+			}
+		    a.MenuLink.tb.active { 
+					padding: 5px 5px 1px 5px;
+					border: 1px #e1e1e1 solid;
+					border-bottom:none;
+					background-color: #fefefe;
+					font-size: 8.5pt !important;
+					font-weight: bold;
+			}
 			A {Text-Decoration: none;}
 			.ListView {color:#000000; font-size:8pt; font-family: Lucida Console}
 			A.ListView:LINK	{Text-Decoration: none; color:#4682b4; font-size:8pt; font-family: arial}
@@ -226,22 +240,29 @@ If bHitsFound then
 				ListPositionHeight = 55
 			%>
 			<TR>
-				<td align=center>
-					<A CLASS="MenuLink" HREF="plates_result_list.asp?view=3&multiSelect=1&<%=Replace(QS, "clear=1&","")%>" >Multi Select</A>
+				<td  align="center"> 
+				<% 	Dim tabselected
+					If(Len(Trim(Request.QueryString("View")))= 0) then
+					tabselected=3
+					else
+					tabselected=Request.QueryString("View")
+					End if
+				%>
+					<A CLASS="MenuLink tb <% If tabselected=3 then %> active <% End if%>" HREF="plates_result_list.asp?view=3&<%=QS%>" >Details</A>
 					|
-					<A CLASS="MenuLink" HREF="plates_result_list.asp?view=0&<%=QS%>">Large Icons</A>
+					<A CLASS="MenuLink tb <% If tabselected=0 then %> active <% End if%> " HREF="plates_result_list.asp?view=0&<%=QS%>">Large Icons</A>
 					|
-					<A CLASS="MenuLink" HREF="plates_result_list.asp?view=1&<%=QS%>" >Small Icons</A>
+					<A CLASS="MenuLink tb <% If tabselected=1 then %> active <% End if%>" HREF="plates_result_list.asp?view=1&<%=QS%>" >Small Icons</A>
 					<!--
 					|
 					<A CLASS="MenuLink" HREF="plates_result_list.asp?view=2&<%=QS%>" >List</A>
 					-->
 					|
-					<A CLASS="MenuLink" HREF="plates_result_list.asp?view=3&<%=QS%>" >Details</A>
+					<A CLASS="MenuLink tb" HREF="plates_result_list.asp?view=3&multiSelect=1&<%=Replace(QS, "clear=1&","")%>" >Multi Select</A>
 					|
-					<a class="MenuLink" href="#" title="Click to choose report columns" onclick="OpenDialog('columnPicker2.asp?ArrayID=1&showplates=1&isSearch=1&formgroup=<%=formgroup%>&dbkey=<%=dbkey%>', 'Diag', 550, 450, 200,200); return false">Column Chooser</a>
+					<a class="MenuLink tb" href="#" title="Click to choose report columns" onclick="OpenDialog('columnPicker2.asp?ArrayID=1&showplates=1&isSearch=1&formgroup=<%=formgroup%>&dbkey=<%=dbkey%>', 'Diag', 550, 450, 200,200); return false">Column Chooser</a>
 					|
-					<A CLASS="MenuLink" HREF="/cheminv/Gui/CreateReport_frset.asp?HitlistID=<%=Session("hitlistID" & "ChemInv" & formgroup)%>&ShowInList=plates" target="RPT">Print Report</A>
+					<A CLASS="MenuLink tb" HREF="/cheminv/Gui/CreateReport_frset.asp?HitlistID=<%=Session("hitlistID" & "ChemInv" & formgroup)%>&ShowInList=plates" target="RPT">Print Report</A>
 				</td>
 			</tr>
 			<%End if%>
