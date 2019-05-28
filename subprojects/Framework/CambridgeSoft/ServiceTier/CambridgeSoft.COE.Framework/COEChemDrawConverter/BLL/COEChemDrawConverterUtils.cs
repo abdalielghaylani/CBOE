@@ -150,11 +150,9 @@ namespace CambridgeSoft.COE.Framework.COEChemDrawConverterService
             // into hex and appending it to a StringBuilder
             StringBuilder sb = new StringBuilder();
 
-            // Now that we have a byte array we can ask the CSP to hash it
-            using (MD5 md5 = new MD5CryptoServiceProvider())        // Coverity Fix CID - 11809
+            using (SHA1 sha1 = new SHA1CryptoServiceProvider())
             {
-                byte[] result = md5.ComputeHash(unicodeText);
-
+                byte[] result = sha1.ComputeHash(unicodeText);
                 for (int i = 0; i < result.Length; i++)
                 {
                     sb.Append(result[i].ToString("X2"));
