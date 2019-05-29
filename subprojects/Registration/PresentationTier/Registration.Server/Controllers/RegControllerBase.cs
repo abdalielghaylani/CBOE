@@ -375,7 +375,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var f = type.Equals("record", System.StringComparison.OrdinalIgnoreCase) ?
                 new string[] { "structureaggregation", "vw_mixture_regnumber", "regid" } :
                 type.Equals("temprecord", System.StringComparison.OrdinalIgnoreCase) ?
-                new string[] { "normalizedstructure", "vw_temporarycompound", "tempcompoundid" } :
+                new string[] { "normalizedstructure", "vw_temporarycompound", "tempbatchid" } :
                 new string[] { "structure", "vw_fragment", "fragmentid" };
 
             var queryParams = new Dictionary<string, object>();
