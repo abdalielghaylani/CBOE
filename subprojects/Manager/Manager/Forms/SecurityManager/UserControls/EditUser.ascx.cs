@@ -361,7 +361,6 @@ public partial class EditUserUC : System.Web.UI.UserControl
             COEUserBO user = (COEUserBO)ViewState["user"];
             TextBox mytext = (TextBox)DetailsView1.Controls[0].FindControl("UserID");
             mytext.Text = user.UserID;
-            mytext.Enabled = false;
             TextBox mytext2 = (TextBox)DetailsView1.Controls[0].FindControl("UserCode");
             mytext2.Text = user.UserCode;
             TextBox mytext3 = (TextBox)DetailsView1.Controls[0].FindControl("Email");
