@@ -833,7 +833,7 @@ function InstallCDJS(hMSI)
         MsiGetProperty(hMSI,"INSTALLDIR",strInstallDir,nBuf);
         MsiGetProperty(hMSI,"WEBSITENAME",strWebSite,nBuf);                
         LongPathToQuote(strInstallDir,TRUE);                  
-        strMSICDJS=strMSI + "\\ChemDraw-JS-Setup-18.0.exe";                 
+        strMSICDJS=strMSI + "\\ChemDraw-JS-Setup-18.1.exe";                 
         LongPathFromShortPath(strMSICDJS);
         LongPathToQuote(strMSICDJS,TRUE);         
         strCDJSParameter="\""+"/qb SERVER_PORT=80 SERVER_VIRPATH=cdjs";   

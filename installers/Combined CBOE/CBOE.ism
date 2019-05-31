@@ -7771,7 +7771,7 @@ Set shell = Nothing
 		<row><td>SetupFile1</td><td>ntrights.exe</td><td/><td>1033</td><td>0</td><td>&lt;ProgramFilesFolder&gt;\Windows Resource Kits\Tools\ntrights.exe</td></row>
 		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Data1.cab</td></row>
 		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Setup.ini</td></row>
-		<row><td>SetupFile12</td><td>ChemDraw-JS-Setup-18.0.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\CDJS18.1\ChemDraw-JS-Setup-18.0.exe</td></row>
+		<row><td>SetupFile12</td><td>ChemDraw-JS-Setup-18.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\CDJS18.1\ChemDraw-JS-Setup-18.1.exe</td></row>
 		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td></row>
 		<row><td>SetupFile2</td><td>ScriptMaps.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ScriptMaps.vbs</td></row>
 		<row><td>SetupFile3</td><td>ssplogon.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ssplogon.exe</td></row>
