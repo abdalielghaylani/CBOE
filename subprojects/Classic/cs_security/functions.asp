@@ -154,7 +154,7 @@ Sub GetApps(app_type, caption, dropdownThreshold)
 				DBNAME = temp(k)
 				DBNAME_START_PATH=INIVAR.VBGetPrivateProfileString(CStr(APP_NAME), CStr(DBNAME & "_START_PATH"), Trim(chemoffice_ini_path))
 				DBNAME_DISPLAY_NAME=INIVAR.VBGetPrivateProfileString(CStr(APP_NAME), CStr(DBNAME & "_DISPLAY_NAME"), Trim(chemoffice_ini_path)) 
-				if not linkDic.Exists(Trim(DBNAME_DISPLAY_NAME)) then linkDic.Add Trim(DBNAME_DISPLAY_NAME),DBNAME_START_PATH 		
+				if not linkDic.Exists(Trim(DBNAME_DISPLAY_NAME))and Trim(DBNAME_DISPLAY_NAME) <> "ChemACX" then linkDic.Add Trim(DBNAME_DISPLAY_NAME),DBNAME_START_PATH 		
 			next
 		end if
 	next
