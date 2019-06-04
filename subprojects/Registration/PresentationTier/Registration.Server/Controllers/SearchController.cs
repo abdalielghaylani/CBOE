@@ -474,13 +474,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> ApproveMarkedHitList(bool temp = false)
+        public async Task<IHttpActionResult> ApproveMarkedHitList(bool temp = false, bool cancelApproval = false)
         {
             return await CallMethod(() =>
             {
                 var markedHitList = GetMarkedHitListBO(temp);
                 var message = string.Empty;
-                var result = BulkApprove.Execute(markedHitList.ID);
+                var result = BulkApprove.Execute(markedHitList.ID,cancelApproval);
                 return result ? new ResponseData(message: Resource.OperationSucceeded_Label_Text, data: new JObject(new JProperty("status", true))) :
                     new ResponseData(message: Resource.OperationProblem_Label_Text, data: new JObject(new JProperty("status", false)));
             });

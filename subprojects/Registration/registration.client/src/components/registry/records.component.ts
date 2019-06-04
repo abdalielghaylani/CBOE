@@ -926,6 +926,37 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  private cancelApproval() {
+    if (this.markedHitCount > 0) {
+      let dialogResult = dxDialog.confirm(
+        `Are you sure you want to Cancel approval of marked registries?`,
+        'Confirm Cancel Approval');
+      dialogResult.done(res => {
+        if (res) {
+          this.loadIndicatorVisible = true;
+          let url = `${apiUrlPrefix}hitlists/markedHitList/approve${this.temporary ? '?temp=true&cancelApproval=true' : ''}`;
+          this.http.put(url, undefined)
+            .toPromise()
+            .then(result => {
+              let responseData = result.json();
+              if (responseData.data.status) {
+                notifySuccess(responseData.message, 5000);
+              } else {
+                notifyError(responseData.message, 5000);
+              }
+              this.setProgressBarVisibility(false);
+              this.getMarkedHitList();
+              this.grid.instance.refresh();
+            })
+            .catch(error => {
+              notifyException(`Cancelling Approve records failed due to a problem`, error, 5000);
+              this.setProgressBarVisibility(false);
+            });
+        }
+      });
+    }
+  }
+
   createBulkContainers() {
     let url = `${apiUrlPrefix}hitlists/getRegNumberList?hitlistId=${this.markedHitListId}`;
     this.http.get(url).toPromise()

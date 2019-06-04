@@ -51,6 +51,7 @@
                     <badge-count [hidden]="recordsTotalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
                     <badge-count [hidden]="markedHitCount==0" color="orange" icon="check" text="Marked Hits" [count]="markedHitCount"></badge-count>
                     <command-button *ngIf="createContainersEnabled &amp;&amp; markedHitCount > 0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
+                    <command-button [hidden]="!approveMarkedEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
                     <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
                     <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
                     <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>

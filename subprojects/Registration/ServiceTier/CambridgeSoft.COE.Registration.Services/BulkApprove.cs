@@ -23,14 +23,15 @@ namespace CambridgeSoft.COE.Registration.Services
     public class BulkApprove : RegistrationCommandBase
     {
         int _hitListId;
+        bool _cancelApproval = false;
         bool _result;
 
-        public static bool Execute(int hitListId)
+        public static bool Execute(int hitListId, bool isCancelApproval=false)
         {
             bool result = false;
             try
             {
-                BulkApprove cmd = new BulkApprove(hitListId);
+                BulkApprove cmd = new BulkApprove(hitListId, isCancelApproval);
                 cmd = DataPortal.Execute<BulkApprove>(cmd);
                 result = cmd._result;
             }
@@ -46,6 +47,12 @@ namespace CambridgeSoft.COE.Registration.Services
             this._hitListId = hitListId;
         }
 
+        private BulkApprove(int hitListId, bool cancelApproval)
+        {
+            this._hitListId = hitListId;
+            this._cancelApproval = cancelApproval;
+        }
+
         protected override void DataPortal_Execute()
         {
             try
@@ -56,7 +63,7 @@ namespace CambridgeSoft.COE.Registration.Services
                 {
                     foreach (string regNumber in idString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        this.RegDal.UpdateApprovedStatus(int.Parse(regNumber), RegistryStatus.Approved, COEUser.ID);
+                        this.RegDal.UpdateApprovedStatus(int.Parse(regNumber), (this._cancelApproval ? RegistryStatus.Submitted : RegistryStatus.Approved), COEUser.ID);
                     }
 
                     COEHitListBO.Get(CambridgeSoft.COE.Framework.HitListType.MARKED, _hitListId).UnMarkAllHits();
