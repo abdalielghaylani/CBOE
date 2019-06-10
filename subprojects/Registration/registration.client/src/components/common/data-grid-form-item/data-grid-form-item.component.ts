@@ -104,7 +104,7 @@ export class RegDataGridFormItem extends RegBaseFormItem {
     }
   }
 
-  getName() {
+  getName(addRowText: boolean = false) {
     let validItems = [];
     this.viewConfig.forEach(i => {
       if (i.itemType === 'group') {
@@ -115,7 +115,10 @@ export class RegDataGridFormItem extends RegBaseFormItem {
     });
     let val = validItems.find(r => r.dataField === this.viewModel.dataField);
     if (val && val.label && val.label.text) {
-      return val.label.text;
+      return addRowText ? val.label.text.slice(0, -1) : val.label.text;
+    }
+    if (val.template === 'fragmentsTemplate') {
+      return addRowText ? 'Fragment' : 'Fragments';
     }
     return 'list item';
   }
