@@ -3243,6 +3243,42 @@ shell.run "cscript RegSvr32AS.vbs " &amp; uName &amp; " " &amp; password&amp; " 
 'shell.run "cscript RegSvr32AS.vbs " &amp; uName &amp; " " &amp; password&amp; " " &amp; strFileName &amp; " /s"
 'shell.run("%comspec% /c InstallServices.bat"),Hidden,True
 Set shell = Nothing </td><td/><td/></row>
+		<row><td>RemoveCDJS18.0</td><td>38</td><td/><td>On Error resume next
+Dim strK ,strorVal,dteWait
+Dim WSHShell
+Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
+Set filesys = CreateObject("Scripting.FileSystemObject")                  
+set oShell = CreateObject("wscript.shell")
+strComputer="."
+strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
+strEntry1a = "DisplayName"
+strEntry1b = "QuietDisplayName"
+Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
+objReg.EnumKey HKLM, strKey, arrSubkeys 
+
+strValue1=""
+For Each strSubkey In arrSubkeys
+  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
+        Set WSHShell = CreateObject("WScript.Shell")
+        If ((strValue1 = "ChemDraw JS 18.0") Then
+               strEntry1b = "UninstallString"        
+               RawGUID = ""
+               GUID = ""
+               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
+               GUID =  Mid(str, instr(str, "{"), 38)
+			   If GUID&lt;&gt;"" then
+					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
+					Sleep(30000000)          
+					Exit For
+			   End If
+		End If 
+Next
+
+dteWait = DateAdd("s", 10, Now())
+Do Until (Now() &gt; dteWait)
+Loop
+
+</td><td/><td/></row>
 		<row><td>RemoveChemDraw</td><td>38</td><td/><td>On error resume next
 Dim strK ,strorVal,dteWait,CDVersion
 Dim WSHShell
@@ -9896,7 +9932,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
-		<row><td>DelayMessageStart</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>DelayMessageStart</td><td>Not Installed</td><td>6</td><td/><td/></row>
 		<row><td>DelayMessageStop</td><td>Not Installed</td><td>425</td><td/><td/></row>
 		<row><td>ExecuteAction</td><td/><td>1300</td><td>ExecuteAction</td><td/></row>
 		<row><td>FindRelatedProducts</td><td>Not Installed</td><td>430</td><td>FindRelatedProducts</td><td/></row>
@@ -9914,7 +9950,8 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>MigrateFeatureStates</td><td/><td>1200</td><td>MigrateFeatureStates</td><td/></row>
 		<row><td>PatchWelcome</td><td>Installed And PATCH And Not IS_MAJOR_UPGRADE</td><td>1205</td><td>Patch Panel</td><td/></row>
 		<row><td>RMCCPSearch</td><td>Not CCP_SUCCESS And CCP_TEST</td><td>600</td><td>RMCCPSearch</td><td/></row>
-		<row><td>RemoveChenBioOfficeUltra</td><td>Not Installed</td><td>6</td><td/><td/></row>
+		<row><td>RemoveCDJS18.0</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>RemoveChenBioOfficeUltra</td><td>Not Installed</td><td>7</td><td/><td/></row>
 		<row><td>RemovePython</td><td>Not Installed</td><td>750</td><td/><td/></row>
 		<row><td>ResolveSource</td><td>Installed</td><td>990</td><td>ResolveSource</td><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>VersionNT = 400</td><td>970</td><td/><td/></row>
