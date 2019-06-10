@@ -416,7 +416,7 @@
 		    'CSBR-158685: Set the default/saved values for safety data
 		    document.all.chkInvSafetyData.checked = bCurrentInvSafetyData
 		    document.all.chkInvUserPreferences.checked = bCurrentInvUserPreferences   
-		    SelectRadioValue document.all.radioACXDBType, currentACXDBType
+		    'SelectRadioValue document.all.radioACXDBType, currentACXDBType
 		    SelectRadioValue document.all.radioAuthenticationMode, currentSSODefaultProvider			
 			SelectRadioValue document.all.radioDateFormat, currentDateFormat
 		    'CSBR 126522 - Changed by Soorya Anwar on 15-Jul-2010.
@@ -3904,7 +3904,7 @@ onclick='swapLayers("lyr4")'>Tablespace Params</a></li>
 		<table>
 			<tr style="display:none;">
 				<td>ChemACX Database:</td>
-				<td><input checked type="radio" value="ACCESS" name="radioACXDBType">MS Access <input type="radio" value="ORACLE" name="radioACXDBType">Oracle</td>
+				<td><input type="radio" value="ACCESS" name="radioACXDBType">MS Access <input type="radio" value="ORACLE" name="radioACXDBType" checked>Oracle</td>
 			</tr>
 			<tr>
 				<td>Inventory Integration:</td>
