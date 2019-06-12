@@ -3260,7 +3260,7 @@ strValue1=""
 For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-        If ((strValue1 = "ChemDraw JS 18.0") Then
+        If (strValue1 = "ChemDraw JS 18.0") Then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
