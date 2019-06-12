@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="CompoundData.cs" />
     <Compile Include="ContainerData.cs" />
-    <Compile Include="ContainerPropertyEnum.cs" />
     <Compile Include="ContainerStatusData.cs" />
     <Compile Include="ContainerTypeData.cs" />
     <Compile Include="ContainerUpdatedData.cs" />

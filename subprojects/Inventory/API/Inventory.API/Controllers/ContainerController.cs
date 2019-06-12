@@ -68,6 +68,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetContainerById(int id)
         {
@@ -79,6 +80,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 ContainerData container = containerDAL.GetContainerById(id);
                 if (container == null)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", id));
+
                 responseMessage = Request.CreateResponse(statusCode, container);
             }
             catch (Exception ex)
@@ -101,6 +103,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetContainersByLocationId(int locationId)
         {
@@ -133,6 +136,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetContainerByBarcode(string barcode)
         {
@@ -192,7 +196,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// Update a container
         /// </summary>
         /// <param name="containerId"></param>
-        /// <param name="containerUpdatedData"></param>
+        /// <param name="container"></param>
         /// <returns>Container</returns>
         [HttpPut]
         [ApiKeyAuthenticationFilter]
@@ -200,15 +204,16 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerOperation("Containers")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> UpdateContainer(int containerId, List<ContainerUpdatedData> containerUpdatedData)
+        public async Task<IHttpActionResult> UpdateContainer(int containerId, ContainerData container)
         {
             HttpResponseMessage responseMessage;
             try
             {
                 var statusCode = HttpStatusCode.OK;
 
-                containerDAL.UpdateContainer(containerId, containerUpdatedData);
+                containerDAL.UpdateContainer(containerId, container);
 
                 responseMessage = Request.CreateResponse(statusCode, "The container was updated successfully!");
             }
@@ -232,6 +237,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerOperation("UpdateContainerRemainingQuantity")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> UpdateContainerRemainingQuantity(int containerId, decimal remainingQuantity)
         {
@@ -264,6 +270,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerOperation("MoveContainer")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> MoveContainer(int containerId, int locationId)
         {
@@ -296,6 +303,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerOperation("UpdateContainerStatus")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> UpdateContainerStatus(int containerId, int containerStatusId)
         {
@@ -451,6 +459,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [SwaggerOperation("DeleteContainer")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> DeleteContainer(int id)
         {

@@ -37,7 +37,7 @@ namespace PerkinElmer.COE.Inventory.Model
         public string CurrentUser { get; set; }
 
         /// <summary>
-        /// Gets or sets the qualtity available.
+        /// Gets or sets the quantity available.
         /// </summary>
         [JsonProperty(PropertyName = "quantityAvailable")]
         public UnitData QuantityAvailable { get; set; }
@@ -365,5 +365,83 @@ namespace PerkinElmer.COE.Inventory.Model
         /// </summary>
         [JsonProperty(PropertyName = "dateApproved")]
         public DateTime? DateApproved { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parent container id
+        /// </summary>
+        [JsonProperty(PropertyName = "parentContainerId")]
+        public int? ParentContainerId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the family
+        /// </summary>
+        [JsonProperty(PropertyName = "family")]
+        public int? Family { get; set; }
+
+        /// <summary>
+        /// Gets or sets the batch id
+        /// </summary>
+        [JsonProperty(PropertyName = "batchId")]
+        public decimal? BatchId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity min stock.
+        /// </summary>
+        [JsonProperty(PropertyName = "quantityMinStock")]
+        public UnitData QuantityMinStock { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity max stock.
+        /// </summary>
+        [JsonProperty(PropertyName = "quantityMaxStock")]
+        public UnitData QuantityMaxStock { get; set; }
+
+        /// <summary>
+        /// Gets or sets the well nunmber.
+        /// </summary>
+        [JsonProperty(PropertyName = "wellNumber")]
+        public short? WellNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the well row.
+        /// </summary>
+        [JsonProperty(PropertyName = "wellRow")]
+        public string WellRow { get; set; }
+
+        /// <summary>
+        /// Gets or sets the well column.
+        /// </summary>
+        [JsonProperty(PropertyName = "wellColumn")]
+        public string WellColumn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ordered by id.
+        /// </summary>
+        [JsonProperty(PropertyName = "orderedById")]
+        public string OrderedById { get; set; }
+
+        /// <summary>
+        /// Gets or sets the certified date.
+        /// </summary>
+        [JsonProperty(PropertyName = "dateCertified")]
+        public DateTime? DateCertified { get; set; }
+
+        /// <summary>
+        /// Gets or sets the received by id.
+        /// </summary>
+        [JsonProperty(PropertyName = "receivedById")]
+        public string ReceivedById { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity reserved.
+        /// </summary>
+        [JsonProperty(PropertyName = "quantityReserved")]
+        public UnitData QuantityReserved { get; set; }
+
+        /// <summary>
+        /// Gets or sets the physical state id.
+        /// </summary>
+        [JsonProperty(PropertyName = "physicalStateId")]
+        public short? PhysicalStateId { get; set; }
     }
 }

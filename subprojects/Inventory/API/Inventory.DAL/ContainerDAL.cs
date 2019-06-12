@@ -7,6 +7,8 @@ using System.Data.Entity;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL.Mapper;
 using Oracle.ManagedDataAccess.Client;
+using System.Reflection;
+using System.Globalization;
 
 namespace PerkinElmer.COE.Inventory.DAL
 {
@@ -78,11 +80,7 @@ namespace PerkinElmer.COE.Inventory.DAL
 
         public List<ContainerData> GetContainersByLocationId(int locationId)
         {
-            var location = db.INV_LOCATIONS.FirstOrDefault(s => s.LOCATION_ID == locationId);
-            if (location == null)
-            {
-                throw new Exception("The location is not valid!");
-            }
+            IsValidLocation(locationId);
 
             var containers = db.INV_CONTAINERS
                 .Include(c => c.INV_CONTAINER_TYPES)
@@ -167,8 +165,10 @@ namespace PerkinElmer.COE.Inventory.DAL
             return container.ContainerId;
         }
 
-        public void UpdateContainer(int containerId, List<ContainerUpdatedData> containerUpdatedData)
+        public void UpdateContainer(int containerId, ContainerData container)
         {
+            IsValidContainer(containerId);
+
             var dbContext = ((DbContext)db);
             using (var dbContextTransaction = dbContext.Database.BeginTransaction())
             {
@@ -180,8 +180,8 @@ namespace PerkinElmer.COE.Inventory.DAL
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Int32, 0, null, System.Data.ParameterDirection.ReturnValue));
                     cmd.Parameters.Add(new OracleParameter("PCONTAINERIDS", OracleDbType.Varchar2, 4000, containerId.ToString(), System.Data.ParameterDirection.Input));
-                    var valuePairs = GetKeyValuePairsParameters(containerUpdatedData);
-                    cmd.Parameters.Add(new OracleParameter("PVALUEPAIRS", OracleDbType.Varchar2, 10000, valuePairs, System.Data.ParameterDirection.Input));
+                    var valuePairs = GetKeyValuePairsParameters(container);
+                    cmd.Parameters.Add(new OracleParameter("PVALUEPAIRS", OracleDbType.NVarchar2, 4000, valuePairs, System.Data.ParameterDirection.Input));
                     cmd.ExecuteNonQuery();
                     dbContextTransaction.Commit();
                 }
@@ -195,6 +195,8 @@ namespace PerkinElmer.COE.Inventory.DAL
 
         public void UpdateContainerRemainingQuantity(int containerId, decimal remainingQuantity)
         {
+            IsValidContainer(containerId);
+
             var dbContext = ((DbContext)db);
             using (var dbContextTransaction = dbContext.Database.BeginTransaction())
             {
@@ -221,6 +223,9 @@ namespace PerkinElmer.COE.Inventory.DAL
 
         public string MoveContainer(int containerId, int locationId)
         {
+            IsValidContainer(containerId);
+            IsValidLocation(locationId);
+
             var dbContext = ((DbContext)db);
             using (var dbContextTransaction = dbContext.Database.BeginTransaction())
             {
@@ -248,11 +253,8 @@ namespace PerkinElmer.COE.Inventory.DAL
 
         public void UpdateContainerStatus(int containerId, int containerStatusId)
         {
-            var status = db.INV_CONTAINER_STATUS.FirstOrDefault(s => s.CONTAINER_STATUS_ID == containerStatusId);
-            if (status == null)
-            {
-                throw new Exception("The container status id is not valid!");
-            }
+            IsValidContainer(containerId);
+            IsValidContainerStatus(containerStatusId);
 
             var dbContext = ((DbContext)db);
             using (var dbContextTransaction = dbContext.Database.BeginTransaction())
@@ -312,7 +314,7 @@ namespace PerkinElmer.COE.Inventory.DAL
                     && (!includeRemainingQuantity || c.QTY_REMAINING == searchContainerData.RemainingQuantity.Value)
                     && (!includeUnitOfMeasureId || c.UNIT_OF_MEAS_ID_FK == searchContainerData.UnitOfMeasureId.Value)
                 );
-           
+
             var containersData = new List<ContainerData>();
 
             foreach (var container in containers)
@@ -372,11 +374,7 @@ namespace PerkinElmer.COE.Inventory.DAL
 
         public void DeleteContainer(int containerId)
         {
-            var container = db.INV_CONTAINERS.FirstOrDefault(s => s.CONTAINER_ID == containerId);
-            if (container == null)
-            {
-                throw new Exception("The container was not found with that id!");
-            }
+            IsValidContainer(containerId);
 
             var dbContext = ((DbContext)db);
             using (var dbContextTransaction = dbContext.Database.BeginTransaction())
@@ -397,6 +395,33 @@ namespace PerkinElmer.COE.Inventory.DAL
                     dbContextTransaction.Rollback();
                     throw new Exception("The delete of the container failed.", ex);
                 }
+            }
+        }
+
+        private void IsValidContainer(int containerId)
+        {
+            var container = db.INV_CONTAINERS.FirstOrDefault(s => s.CONTAINER_ID == containerId);
+            if (container == null)
+            {
+                throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", containerId));
+            }
+        }
+
+        private void IsValidContainerStatus(int containerStatusId)
+        {
+            var status = db.INV_CONTAINER_STATUS.FirstOrDefault(s => s.CONTAINER_STATUS_ID == containerStatusId);
+            if (status == null)
+            {
+                throw new IndexOutOfRangeException(string.Format("Cannot find the container status, {0}", containerStatusId));
+            }
+        }
+
+        private void IsValidLocation(int locationId)
+        {
+            var location = db.INV_LOCATIONS.FirstOrDefault(s => s.LOCATION_ID == locationId);
+            if (location == null)
+            {
+                throw new IndexOutOfRangeException(string.Format("Cannot find the location, {0}", locationId));
             }
         }
 
@@ -433,248 +458,391 @@ namespace PerkinElmer.COE.Inventory.DAL
             }
         }
 
-        private string GetKeyValuePairsParameters(List<ContainerUpdatedData> containerUpdatedData)
+        private string GetKeyValuePairsParameters(ContainerData container)
         {
             var result = new List<string>();
 
-            foreach (var property in containerUpdatedData)
+            foreach (PropertyInfo propertyInfo in container.GetType().GetProperties())
             {
-                var propertyEnumValue = EnumHelper.ParseEnum<ContainerPropertyEnum>(property.PropertyName);
-                switch (propertyEnumValue)
+                var propertyValue = container.GetType().GetProperty(propertyInfo.Name).GetValue(container, null);
+                if (propertyValue != null)
                 {
-                    case ContainerPropertyEnum.LocationId:
-                        result.Add(string.Format("{0}='{1}'", "LOCATION_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.CompoundId:
-                        result.Add(string.Format("{0}='{1}'", "COMPOUND_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ParentContainerId:
-                        result.Add(string.Format("{0}='{1}'", "PARENT_CONTAINER_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.RegId:
-                        result.Add(string.Format("{0}='{1}'", "REG_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.BatchNumber:
-                        result.Add(string.Format("{0}='{1}'", "BATCH_NUMBER_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Family:
-                        result.Add(string.Format("{0}='{1}'", "FAMILY", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.BatchId:
-                        result.Add(string.Format("{0}='{1}'", "BATCH_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerName:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_NAME", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerDescription:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_DESCRIPTION", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityMax:
-                        result.Add(string.Format("{0}='{1}'", "QTY_MAX", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityInitial:
-                        result.Add(string.Format("{0}='{1}'", "QTY_INITIAL", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityRemaining:
-                        result.Add(string.Format("{0}='{1}'", "QTY_REMAINING", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityMinStock:
-                        result.Add(string.Format("{0}='{1}'", "QTY_MINSTOCK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityMaxStock:
-                        result.Add(string.Format("{0}='{1}'", "QTY_MAXSTOCK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.WellNumber:
-                        result.Add(string.Format("{0}='{1}'", "WELL_NUMBER", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.WellRow:
-                        result.Add(string.Format("{0}='{1}'", "WELL_ROW", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.WellColumn:
-                        result.Add(string.Format("{0}='{1}'", "WELL_COLUMN", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateExpires:
-                        result.Add(string.Format("{0}='{1}'", "DATE_EXPIRES", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateCreated:
-                        result.Add(string.Format("{0}='{1}'", "DATE_CREATED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerTypeId:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_TYPE_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Purity:
-                        result.Add(string.Format("{0}='{1}'", "PURITY", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.PurityId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_PURITY_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.SolventId:
-                        result.Add(string.Format("{0}='{1}'", "SOLVENT_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Concentration:
-                        result.Add(string.Format("{0}='{1}'", "CONCENTRATION", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ConcentrationId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_CONC_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityMaxId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_MEAS_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Grade:
-                        result.Add(string.Format("{0}='{1}'", "GRADE", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Weight:
-                        result.Add(string.Format("{0}='{1}'", "WEIGHT", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.WeightId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_WGHT_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.TareWeight:
-                        result.Add(string.Format("{0}='{1}'", "TARE_WEIGHT", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.OwnerId:
-                        result.Add(string.Format("{0}='{1}'", "OWNER_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerComments:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_COMMENTS", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.StorageConditions:
-                        result.Add(string.Format("{0}='{1}'", "STORAGE_CONDITIONS", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.HandlingProcedures:
-                        result.Add(string.Format("{0}='{1}'", "HANDLING_PROCEDURES", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.OrderedById:
-                        result.Add(string.Format("{0}='{1}'", "ORDERED_BY_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateOrdered:
-                        result.Add(string.Format("{0}='{1}'", "DATE_ORDERED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateReceived:
-                        result.Add(string.Format("{0}='{1}'", "DATE_RECEIVED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateCertified:
-                        result.Add(string.Format("{0}='{1}'", "DATE_CERTIFIED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateApproved:
-                        result.Add(string.Format("{0}='{1}'", "DATE_APPROVED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.LotNum:
-                        result.Add(string.Format("{0}='{1}'", "LOT_NUM", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerStatusId:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_STATUS_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ReceivedById:
-                        result.Add(string.Format("{0}='{1}'", "RECEIVED_BY_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.FinelWeight:
-                        result.Add(string.Format("{0}='{1}'", "FINAL_WGHT", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.NetWeight:
-                        result.Add(string.Format("{0}='{1}'", "NET_WGHT", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityAvailable:
-                        result.Add(string.Format("{0}='{1}'", "QTY_AVAILABLE", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.QuantityReserved:
-                        result.Add(string.Format("{0}='{1}'", "QTY_RESERVED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.PhysicalStateId:
-                        result.Add(string.Format("{0}='{1}'", "PHYSICAL_STATE_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.CurrentUserId:
-                        result.Add(string.Format("{0}='{1}'", "CURRENT_USER_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.SupplierId:
-                        result.Add(string.Format("{0}='{1}'", "SUPPLIER_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.SupplierCatNumber:
-                        result.Add(string.Format("{0}='{1}'", "SUPPLIER_CATNUM", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DateProduced:
-                        result.Add(string.Format("{0}='{1}'", "DATE_PRODUCED", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerCost:
-                        result.Add(string.Format("{0}='{1}'", "CONTAINER_COST", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.ContainerCostId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_COST_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DefaultLocationId:
-                        result.Add(string.Format("{0}='{1}'", "DEF_LOCATION_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Barcode:
-                        result.Add(string.Format("{0}='{1}'", "BARCODE", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.PONumber:
-                        result.Add(string.Format("{0}='{1}'", "PO_NUMBER", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.RequestNumber:
-                        result.Add(string.Format("{0}='{1}'", "REQ_NUMBER", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Density:
-                        result.Add(string.Format("{0}='{1}'", "DENSITY", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.DensityId:
-                        result.Add(string.Format("{0}='{1}'", "UNIT_OF_DENSITY_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.POLineNumber:
-                        result.Add(string.Format("{0}='{1}'", "PO_LINE_NUMBER", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field1:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_1", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field2:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_2", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field3:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_3", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field4:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_4", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field5:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_5", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field6:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_6", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field7:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_7", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field8:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_8", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field9:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_9", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Field10:
-                        result.Add(string.Format("{0}='{1}'", "FIELD_10", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Date1:
-                        result.Add(string.Format("{0}='{1}'", "DATE_1", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Date2:
-                        result.Add(string.Format("{0}='{1}'", "DATE_2", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Date3:
-                        result.Add(string.Format("{0}='{1}'", "DATE_3", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Date4:
-                        result.Add(string.Format("{0}='{1}'", "DATE_4", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.Date5:
-                        result.Add(string.Format("{0}='{1}'", "DATE_5", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.PrincipalId:
-                        result.Add(string.Format("{0}='{1}'", "PRINCIPAL_ID_FK", property.PropertyValue));
-                        break;
-                    case ContainerPropertyEnum.LocationTypeId:
-                        result.Add(string.Format("{0}='{1}'", "LOCATION_TYPE_ID_FK", property.PropertyValue));
-                        break;
-                    default:
-                        throw new Exception(string.Format("{0} is not a valid property of the container", property.PropertyName));
+                    switch (propertyInfo.Name)
+                    {
+                        case "Location":
+                            if (container.Location.Id > -1)
+                            {
+                                result.Add(string.Format("{0}={1}", "LOCATION_ID_FK", container.Location.Id));
+                            }
+                            if (container.Location.LocationType != null && container.Location.LocationType.LocationTypeId > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "LOCATION_TYPE_ID_FK", container.Location.LocationType.LocationTypeId));
+                            }
+                            break;
+                        case "Compound":
+                            if (container.Compound.CompoundId > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "COMPOUND_ID_FK", container.Compound.CompoundId));
+                            }
+                            break;
+                        case "ParentContainerId":
+                            if (container.ParentContainerId.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "PARENT_CONTAINER_ID_FK", container.ParentContainerId.Value));
+                            }
+                            break;
+                        case "RegId":
+                            if (container.RegId.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "REG_ID_FK", container.RegId.Value));
+                            }
+                            break;
+                        case "BatchNumber":
+                            if (container.BatchNumber.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "BATCH_NUMBER_FK", container.BatchNumber.Value));
+                            }
+                            break;
+                        case "Family":
+                            if (container.Family.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "FAMILY", container.Family.Value));
+                            }
+                            break;
+                        case "BatchId":
+                            if (container.BatchId.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "BATCH_ID_FK", container.BatchId));
+                            }
+                            break;
+                        case "ContainerName":
+                            result.Add(string.Format("{0}='{1}'", "CONTAINER_NAME", container.ContainerName));
+                            break;
+                        case "ContainerDescription":
+                            result.Add(string.Format("{0}='{1}'", "CONTAINER_DESCRIPTION", container.Description));
+                            break;
+                        case "WellNumber":
+                            if (container.WellNumber.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "WELL_NUMBER", container.WellNumber.Value));
+                            }
+                            break;
+                        case "WellRow":
+                            if (container.WellRow != null)
+                            {
+                                result.Add(string.Format("{0}='{1}'", "WELL_ROW", container.WellRow));
+                            }
+                            break;
+                        case "WellColumn":
+                            if (container.WellColumn != null)
+                            {
+                                result.Add(string.Format("{0}='{1}'", "WELL_COLUMN", container.WellColumn));
+                            }
+                            break;
+                        case "DateExpires":
+                            if (container.ExpirationDate.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_EXPIRES",
+                                    string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.ExpirationDate.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "ContainerType":
+                            if (container.ContainerType.ContainerTypeId > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "CONTAINER_TYPE_ID_FK", container.ContainerType.ContainerTypeId));
+                            }
+                            break;
+                        case "Purity":
+                            if (container.Purity.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "PURITY", container.Purity.Value.Value));
+                            }
+                            if (container.Purity.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_PURITY_ID_FK", container.Purity.Id));
+                            }
+                            break;
+                        case "SolventId":
+                            if (container.SolventId != null)
+                            {
+                                result.Add(string.Format("{0}='{1}'", "SOLVENT_ID_FK", container.SolventId));
+                            }
+                            break;
+                        case "Concentration":
+                            if (container.Concentration.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "CONCENTRATION", container.Concentration.Value.Value));
+                            }
+                            if (container.Concentration.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_CONC_ID_FK", container.Concentration.Id));
+                            }
+                            break;
+                        case "QuantityMax":
+                            if (container.QuantityMax.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_MAX", container.QuantityMax.Value));
+                            }
+                            if (container.QuantityMax.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_MEAS_ID_FK", container.QuantityMax.Id));
+                            }
+                            break;
+                        case "Grade":
+                            if (container.Grade != null)
+                            {
+                                result.Add(string.Format("{0}='{1}'", "GRADE", container.Grade));
+                            }
+                            break;
+                        case "Weight":
+                            if (container.Weight.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "WEIGHT", container.Weight.Value.Value));
+                            }
+                            if (container.Weight.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_WGHT_ID_FK", container.Weight.Id));
+                            }
+                            break;
+                        case "TareWeight":
+                            if (container.TareWeight.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "TARE_WEIGHT", container.TareWeight.Value));
+                            }
+                            break;
+                        case "OwnerId":
+                            result.Add(string.Format("{0}='{1}'", "OWNER_ID_FK", container.OwnerId));
+                            break;
+                        case "ContainerComments":
+                            result.Add(string.Format("{0}='{1}'", "CONTAINER_COMMENTS", container.Comments));
+                            break;
+                        case "StorageConditions":
+                            result.Add(string.Format("{0}='{1}'", "STORAGE_CONDITIONS", container.StorageConditions));
+                            break;
+                        case "HandlingProcedures":
+                            result.Add(string.Format("{0}='{1}'", "HANDLING_PROCEDURES", container.HandlingProcedures));
+                            break;
+                        case "OrderedById":
+                            result.Add(string.Format("{0}='{1}'", "ORDERED_BY_ID_FK", container.OrderedById));
+                            break;
+                        case "DateOrdered":
+                            if (container.DateOrdered.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_ORDERED",
+                                    string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.DateOrdered.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "DateReceived":
+                            if (container.DateReceived.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_RECEIVED",
+                                    string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.DateReceived.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "DateCertified":
+                            if (container.DateCertified.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_CERTIFIED",
+                                    string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.DateCertified.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "DateApproved":
+                            if (container.DateApproved.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_APPROVED",
+                                    string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.DateApproved.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "LotNum":
+                            result.Add(string.Format("{0}='{1}'", "LOT_NUM", container.LotNumber));
+                            break;
+                        case "Status":
+                            if (container.Status.StatusId > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "CONTAINER_STATUS_ID_FK", container.Status.StatusId));
+                            }
+                            break;
+                        case "ReceivedById":
+                            result.Add(string.Format("{0}='{1}'", "RECEIVED_BY_ID_FK", container.ReceivedById));
+                            break;
+                        case "FinalWeight":
+                            if (container.FinalWeight.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "FINAL_WGHT", container.FinalWeight.Value));
+                            }
+                            break;
+                        case "NetWeight":
+                            if (container.NetWeight.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "NET_WGHT", container.NetWeight.Value));
+                            }
+                            break;
+                        case "QuantityInitial":
+                            if (container.QuantityInitial.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_INITIAL", container.QuantityInitial.Value));
+                            }
+                            break;
+                        case "QuantityRemaining":
+                            if (container.QuantityRemaining.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_REMAINING", container.QuantityRemaining.Value));
+                            }
+                            break;
+                        case "QuantityMinStock":
+                            if (container.QuantityMinStock.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_MINSTOCK", container.QuantityMinStock.Value));
+                            }
+                            break;
+                        case "QuantityMaxStock":
+                            if (container.QuantityMaxStock.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_MAXSTOCK", container.QuantityMaxStock.Value));
+                            }
+                            break;
+                        case "QuantityAvailable":
+                            if (container.QuantityAvailable != null & container.QuantityAvailable.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_AVAILABLE", container.QuantityAvailable.Value.Value));
+                            }
+                            break;
+                        case "QuantityReserved":
+                            if (container.QuantityReserved != null & container.QuantityReserved.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "QTY_RESERVED", container.QuantityReserved.Value.Value));
+                            }
+                            break;
+                        case "PhysicalStateId":
+                            if (container.PhysicalStateId.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "PHYSICAL_STATE_ID_FK", container.PhysicalStateId.Value));
+                            }
+                            break;
+                        case "CurrentUser":
+                            result.Add(string.Format("{0}='{1}'", "CURRENT_USER_ID_FK", container.CurrentUser));
+                            break;
+                        case "Supplier":
+                            if (container.Supplier.SupplierId > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "SUPPLIER_ID_FK", container.Supplier.SupplierId));
+                            }
+                            if (container.Supplier.CatNumber != null)
+                            {
+                                result.Add(string.Format("{0}='{1}'", "SUPPLIER_CATNUM", container.Supplier.CatNumber));
+                            }
+                            break;
+                        case "DateProduced":
+                            if (container.DateProduced.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_PRODUCED",
+                                        string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.DateProduced.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "ContainerCost":
+                            if (container.ContainerCost.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "CONTAINER_COST", container.ContainerCost.Value.Value));
+                            }
+                            if (container.ContainerCost.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_COST_ID_FK", container.ContainerCost.Id));
+                            }
+                            break;
+                        case "Barcode":
+                            result.Add(string.Format("{0}='{1}'", "BARCODE", container.Barcode));
+                            break;
+                        case "PONumber":
+                            result.Add(string.Format("{0}='{1}'", "PO_NUMBER", container.PONumber));
+                            break;
+                        case "RequestNumber":
+                            result.Add(string.Format("{0}='{1}'", "REQ_NUMBER", container.RequestNumber));
+                            break;
+                        case "Density":
+                            if (container.Density.Value.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DENSITY", container.Density.Value.Value));
+                            }
+                            if (container.Density.Id > 0)
+                            {
+                                result.Add(string.Format("{0}={1}", "UNIT_OF_DENSITY_ID_FK", container.Density.Id));
+                            }
+                            break;
+                        case "POLineNumber":
+                            result.Add(string.Format("{0}='{1}'", "PO_LINE_NUMBER", container.POLineNumber));
+                            break;
+                        case "Field1":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_1", container.Field1));
+                            break;
+                        case "Field2":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_2", container.Field2));
+                            break;
+                        case "Field3":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_3", container.Field3));
+                            break;
+                        case "Field4":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_4", container.Field4));
+                            break;
+                        case "Field5":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_5", container.Field5));
+                            break;
+                        case "Field6":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_6", container.Field6));
+                            break;
+                        case "Field7":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_7", container.Field7));
+                            break;
+                        case "Field8":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_8", container.Field8));
+                            break;
+                        case "Field9":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_9", container.Field9));
+                            break;
+                        case "Field10":
+                            result.Add(string.Format("{0}='{1}'", "FIELD_10", container.Field10));
+                            break;
+                        case "Date1":
+                            if (container.Date1.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_1",
+                                            string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.Date1.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "Date2":
+                            if (container.Date2.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_2",
+                                        string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.Date2.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "Date3":
+                            if (container.Date3.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_3",
+                                        string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.Date3.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "Date4":
+                            if (container.Date4.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_4",
+                                        string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.Date4.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "Date5":
+                            if (container.Date5.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "DATE_5",
+                                        string.Format("TO_DATE('{0}', 'MM/DD/YYYY')", container.Date5.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))));
+                            }
+                            break;
+                        case "PrincipalId":
+                            if (container.PrincipalId.HasValue)
+                            {
+                                result.Add(string.Format("{0}={1}", "PRINCIPAL_ID_FK", container.PrincipalId.Value));
+                            }
+                            break;
+                    }
                 }
             }
 

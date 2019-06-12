@@ -175,7 +175,7 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Barcode = element.BARCODE,
                 ContainerName = element.CONTAINER_NAME,
                 CurrentUser = element.CURRENT_USER_ID_FK,
-                DateCreated = element.DATE_CREATED,
+                DateCreated = new DateTime(element.DATE_CREATED.Ticks, DateTimeKind.Utc),
                 Compound = new CompoundMapper().Map(element.INV_COMPOUNDS),
                 Location = new LocationMapper().Map(element.INV_LOCATIONS1),
                 BatchNumber = element.BATCH_NUMBER_FK,
@@ -190,16 +190,6 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Field8 = element.FIELD_8,
                 Field9 = element.FIELD_9,
                 Field10 = element.FIELD_10,
-                Date1 = element.DATE_1,
-                Date2 = element.DATE_2,
-                Date3 = element.DATE_3,
-                Date4 = element.DATE_4,
-                Date5 = element.DATE_5,
-                DateOrdered = element.DATE_ORDERED,
-                DateProduced = element.DATE_PRODUCED,
-                DateReceived = element.DATE_RECEIVED,
-                ExpirationDate = element.DATE_EXPIRES,
-                DateApproved = element.DATE_APPROVED,
                 Description = element.CONTAINER_DESCRIPTION,
                 FinalWeight = element.FINAL_WGHT,
                 TareWeight = element.TARE_WEIGHT,
@@ -225,8 +215,70 @@ namespace PerkinElmer.COE.Inventory.DAL.Mapper
                 Purity = (element.PURITY.HasValue) ? new UnitData() { Value = element.PURITY } : null,
                 Weight = (element.WEIGHT.HasValue) ? new UnitData() { Value = element.WEIGHT } : null,
                 Density = (element.DENSITY.HasValue) ? new UnitData() { Value = element.DENSITY } : null,
-
+                ParentContainerId = element.PARENT_CONTAINER_ID_FK,
+                Family = element.FAMILY,
+                BatchId = element.BATCH_ID_FK,
+                QuantityMinStock = (element.QTY_MINSTOCK.HasValue) ? new UnitData() { Value = element.QTY_MINSTOCK } : null,
+                QuantityMaxStock = (element.QTY_MAXSTOCK.HasValue) ? new UnitData() { Value = element.QTY_MAXSTOCK } : null,
+                WellNumber = element.WELL_NUMBER,
+                WellRow = element.WELL_ROW,
+                WellColumn = element.WELL_COLUMN,
+                OrderedById = element.ORDERED_BY_ID_FK,
+                DateCertified = element.DATE_CERTIFIED,
+                ReceivedById = element.RECEIVED_BY_ID_FK,
+                QuantityReserved = (element.QTY_RESERVED.HasValue) ? new UnitData() { Value = element.QTY_RESERVED } : null,
+                PhysicalStateId = element.PHYSICAL_STATE_ID_FK,
             };
+
+            if (element.DATE_1.HasValue)
+            {
+                container.Date1 = new DateTime(element.DATE_1.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_2.HasValue)
+            {
+                container.Date2 = new DateTime(element.DATE_2.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_3.HasValue)
+            {
+                container.Date3 = new DateTime(element.DATE_3.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_4.HasValue)
+            {
+                container.Date4 = new DateTime(element.DATE_4.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_5.HasValue)
+            {
+                container.Date5 = new DateTime(element.DATE_5.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_ORDERED.HasValue)
+            {
+                container.DateOrdered = new DateTime(element.DATE_ORDERED.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_PRODUCED.HasValue)
+            {
+                container.DateProduced = new DateTime(element.DATE_PRODUCED.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_RECEIVED.HasValue)
+            {
+                container.DateReceived = new DateTime(element.DATE_RECEIVED.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_EXPIRES.HasValue)
+            {
+                container.ExpirationDate = new DateTime(element.DATE_EXPIRES.Value.Ticks, DateTimeKind.Utc);
+            }
+
+            if (element.DATE_APPROVED.HasValue)
+            {
+                container.DateApproved = new DateTime(element.DATE_APPROVED.Value.Ticks, DateTimeKind.Utc);
+            }
 
             if (element.INV_CONTAINER_TYPES != null)
             {
