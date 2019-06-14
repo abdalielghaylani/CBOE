@@ -19,10 +19,10 @@ namespace PerkinElmer.COE.Inventory.API
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            var project = "Inventory.API";
-            var path = "Scripts";
-            var file = "api-key-header-auth.js";
-            var javascriptResourceLocation = $"{project}.{path}.{file}";
+            //var project = "Inventory.API";
+            //var path = "Scripts";
+            //var file = "api-key-header-auth.js";
+            //var javascriptResourceLocation = $"{project}.{path}.{file}";
 
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
@@ -109,7 +109,11 @@ namespace PerkinElmer.COE.Inventory.API
                         // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
-                        c.IncludeXmlComments(GetXmlCommentsPath());
+                        var baseDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+                        var commentsFileName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + ".XML";
+                        var commentsFile = System.IO.Path.Combine(baseDirectory, "bin", commentsFileName);
+                        c.IncludeXmlComments(commentsFile);
+                        //c.IncludeXmlComments(GetXmlCommentsPath());
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -202,7 +206,7 @@ namespace PerkinElmer.COE.Inventory.API
                         // "Logical Name" is passed to the method as shown above.
                         //
                         //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
-                        c.InjectJavaScript(thisAssembly, javascriptResourceLocation);
+                        //c.InjectJavaScript(thisAssembly, javascriptResourceLocation);
 
                         // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
                         // strings as the possible choices. You can use this option to change these to something else,

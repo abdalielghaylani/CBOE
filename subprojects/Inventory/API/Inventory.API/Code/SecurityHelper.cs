@@ -43,14 +43,21 @@ namespace PerkinElmer.COE.Inventory.API.Code
         /// <returns>True if it is a valid token</returns>
         public static bool IsValidToken(string secret, string token)
         {
-            char[] delimiter = { ':' };
-            var split = token.Split(delimiter);
-            var iterations = Int32.Parse(split[IterationIndex]);
-            var salt = Convert.FromBase64String(split[SaltIndex]);
-            var hash = Convert.FromBase64String(split[Pbkdf2Index]);
+            try
+            {
+                char[] delimiter = { ':' };
+                var split = token.Split(delimiter);
+                var iterations = Int32.Parse(split[IterationIndex]);
+                var salt = Convert.FromBase64String(split[SaltIndex]);
+                var hash = Convert.FromBase64String(split[Pbkdf2Index]);
 
-            var testHash = GetPbkdf2Bytes(secret, salt, iterations, hash.Length);
-            return SlowEquals(hash, testHash);
+                var testHash = GetPbkdf2Bytes(secret, salt, iterations, hash.Length);
+                return SlowEquals(hash, testHash);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static byte[] GetPbkdf2Bytes(string secret, byte[] salt, int iterations, int outputBytes)

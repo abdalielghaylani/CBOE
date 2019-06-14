@@ -1,9 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace PerkinElmer.COE.Inventory.Model
 {
+    /// <summary>
+    /// Container Data
+    /// </summary>
     public class ContainerData
     {
         /// <summary>
@@ -34,6 +38,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the current user.
         /// </summary>
         [JsonProperty(PropertyName = "currentUser")]
+        [Required]
         public string CurrentUser { get; set; }
 
         /// <summary>
@@ -52,6 +57,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the status of the container.
         /// </summary>
         [JsonProperty(PropertyName = "status")]
+        [Required]
         public ContainerStatusData Status { get; set; }
 
         /// <summary>
@@ -88,18 +94,21 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the location
         /// </summary>
         [JsonProperty(PropertyName = "location")]
+        [Required]
         public LocationData Location { get; set; }
 
         /// <summary>
         /// Gets or sets the initial quantity
         /// </summary>
         [JsonProperty(PropertyName = "quantityInitial")]
+        [Required]
         public UnitData QuantityInitial { get; set; }
 
         /// <summary>
         /// Gets or sets the max quantity
         /// </summary>
         [JsonProperty(PropertyName = "quantityMax")]
+        [Required]
         public UnitData QuantityMax { get; set; }
 
         /// <summary>
@@ -112,6 +121,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the container type
         /// </summary>
         [JsonProperty(PropertyName = "containerType")]
+        [Required]
         public ContainerTypeData ContainerType { get; set; }
 
         /// <summary>

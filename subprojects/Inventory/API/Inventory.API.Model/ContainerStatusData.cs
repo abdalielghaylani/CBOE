@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace PerkinElmer.COE.Inventory.Model
 {
+    /// <summary>
+    /// Container Status Data
+    /// </summary>
     public class ContainerStatusData
     {
         /// <summary>
