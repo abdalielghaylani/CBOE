@@ -2267,7 +2267,7 @@ End function
 function GetOwnerShipUserList()
     
 	Call GetInvConnection()
-	SQL = "select b.PRINCIPAL_ID ,Upper(a.Last_Name||' '||a.First_Name)/*a.user_code||DECODE(a.First_Name, NULL, '', ', '||a.First_Name)*/ as USer_ID from coedb.PEOPLE a,coedb.COEPRINCIPAL b where a.Person_ID=b.Person_ID order by lower(a.Last_Name)"
+	SQL = "select b.PRINCIPAL_ID ,Upper(a.Last_Name||' '||a.First_Name)/*a.user_code||DECODE(a.First_Name, NULL, '', ', '||a.First_Name)*/ as USer_ID from coedb.PEOPLE a,coedb.COEPRINCIPAL b where a.Person_ID=b.Person_ID and a.ACTIVE=1 order by lower(a.Last_Name)"
 	if bDebugPrint then
 		Response.Write sql
 		Response.end

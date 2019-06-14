@@ -612,7 +612,7 @@ end if
 			<%=LocationText%> Owner:
 		</td>
 		<td>
-			<%=ShowSelectBox2("LocationOwnerID", LocationOwnerID, "SELECT User_ID AS Value, Last_Name||DECODE(First_Name, NULL, '', ', '||First_Name) AS DisplayText FROM CS_SECURITY.People ORDER BY lower(Last_Name) ASC", 55, "Unknown", "Unknown")%>
+			<%=ShowSelectBox2("LocationOwnerID", LocationOwnerID, "SELECT User_ID AS Value, Last_Name||DECODE(First_Name, NULL, '', ', '||First_Name) AS DisplayText FROM CS_SECURITY.People WHERE ACTIVE=1 ORDER BY lower(Last_Name) ASC", 55, "Unknown", "Unknown")%>
 		</td>
 	</tr>
 	<tr>
