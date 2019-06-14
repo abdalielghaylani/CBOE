@@ -7988,6 +7988,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>ProgressType3</td><td>installs</td><td/></row>
 		<row><td>R</td><td>0</td><td/></row>
 		<row><td>RBG1</td><td>2</td><td/></row>
+		<row><td>REBOOT</td><td>ReallySuppress</td><td/></row>
 		<row><td>REINSTALLMODE</td><td>amus</td><td/></row>
 		<row><td>RebootYesNo</td><td>Yes</td><td/></row>
 		<row><td>ReinstallModeText</td><td>omus</td><td/></row>
