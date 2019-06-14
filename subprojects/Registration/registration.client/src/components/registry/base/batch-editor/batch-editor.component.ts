@@ -29,6 +29,7 @@ export class RegBatchEditor implements OnChanges {
   private items: any[];
   private formData: any;
   private colCount: number = 4;
+  private customHeight: string;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -55,6 +56,7 @@ export class RegBatchEditor implements OnChanges {
       this.formData[i.dataField] = undefined;
     });
     this.changeDetector.markForCheck();
+    this.customHeight = ((validItems.length / this.colCount) * 60 + 120).toString() + 'px';
   }
 
   protected onValueUpdated(e) {
