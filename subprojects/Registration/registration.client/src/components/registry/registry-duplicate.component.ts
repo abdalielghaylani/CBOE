@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
@@ -34,6 +34,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   @Input() sourceRecordIsTemporary: boolean;
+  private fetchLimit = 15;
+  private dataStore: CustomStore;
 
   private columns = [{
     cellTemplate: 'commandCellTemplate',
@@ -92,6 +94,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.duplicateData$ = this.ngRedux.select(['registry', 'duplicateRecords']);
+    console.log(this.ngRedux.select(['registry', 'previousRecordDetail']));
     this.recordsSubscription = this.duplicateData$.subscribe((value: number[]) => this.loadData(value));
   }
 
@@ -126,7 +129,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
-      this.datasource = e.DuplicateRecords;
+      //this.datasource = e.DuplicateRecords;
+      this.dataStore = this.createCustomStore(this);
       this.duplicateActions = e.DuplicateActions;
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
@@ -193,6 +197,51 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   cancelDuplicateResolution(e) {
     this.onClose.emit('cancel');
+  }
+
+  private createCustomStore(ref: any) {
+    // const systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+    return new CustomStore({
+      key: ref.idField,
+      load: function (loadOptions) {
+        let deferred = jQuery.Deferred();
+        if (loadOptions.take) {
+          
+        }
+        
+       /* if (loadOptions.take) {
+          let sortCriteria;
+          if (loadOptions.sort != null) {
+            sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+            ref.sortCriteria = sortCriteria;
+          }
+          let url = `${apiUrlPrefix}records`;
+          let params = '';
+          if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
+          let take = loadOptions.take != null ? loadOptions.take : this.fetchLimit;
+          if (take) { params += `${params ? '&' : '?'}count=${take}`; }
+          if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
+          if (ref.marksShown) {
+            params += `${params ? '&' : '?'}hitListId=${ref.markedHitListId}`;
+          }
+          url += params;
+          ref.http.post(url)
+            .toPromise()
+            .then(result => {
+              let response = result.json();
+              ref.recordsTotalCount = response.totalCount;
+              ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
+              ref.setProgressBarVisibility(false);
+              deferred.resolve(response.rows, { totalCount: response.totalCount });
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
+              deferred.reject(message);
+            });
+        }*/
+        return deferred.promise();
+      }
+    });
   }
 
 }

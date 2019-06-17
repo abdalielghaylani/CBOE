@@ -10,7 +10,7 @@
         <span aria-hidden="true" (click)="dismissAlert()">×</span></button>
       <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already exists. Review the list of conflicts and choose a duplicate action.</p>
     </reg-alert>
-    <dx-data-grid [columns]="columns" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dx-data-grid [columns]="columns" [dataSource]="dataStore" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-sorting mode="single"></dxo-sorting>
       <dxo-filter-row [visible]="true"></dxo-filter-row>
       <dxo-scrolling mode="infinite"></dxo-scrolling>
