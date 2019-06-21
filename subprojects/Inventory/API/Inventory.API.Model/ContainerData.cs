@@ -26,6 +26,7 @@ namespace PerkinElmer.COE.Inventory.Model
         /// Gets or sets the name of the container.
         /// </summary>
         [JsonProperty(PropertyName = "containerName")]
+        [Required]
         public string ContainerName { get; set; }
 
         /// <summary>

@@ -432,14 +432,19 @@ namespace PerkinElmer.COE.Inventory.DAL
                 throw new Exception("LocationID is a required parameter");
             }
 
-            if (container.QuantityMax == null || container.QuantityMax.Value == null)
+            if (string.IsNullOrEmpty(container.ContainerName))
             {
-                throw new Exception("QuantityMax is a required parameter");
+                throw new Exception("ContainerName is a required parameter");
             }
 
-            if (container.QuantityInitial == null || container.QuantityInitial.Value == null)
+            if (container.QuantityMax == null || container.QuantityMax.Value == null || container.QuantityMax.Id <= 0)
             {
-                throw new Exception("QuantityInitial is a required parameter");
+                throw new Exception("QuantityMax is a required parameter, the value and id of the unit must be entered");
+            }
+
+            if (container.QuantityInitial == null || container.QuantityInitial.Value == null || container.QuantityInitial.Id <= 0)
+            {
+                throw new Exception("QuantityInitial is a required parameter, the value and id of the unit must be entered");
             }
 
             if (container.ContainerType == null)

@@ -362,7 +362,7 @@ curl -X GET --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 {
   "containerId": 1765,
   "barcode": "C1023",
-  "containerName": "1765",
+  "containerName": "New Container Example",
   "supplier": null,
   "currentUser": "INVADMIN",
   "quantityAvailable": {
@@ -518,7 +518,7 @@ curl -X GET --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 	{
   "containerId": 1765,
   "barcode": "C1023",
-  "containerName": "1765",
+  "containerName": "New Container Example",
   "supplier": null,
   "currentUser": "INVADMIN",
   "quantityAvailable": {
@@ -723,7 +723,7 @@ curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 	{
   "containerId": 1765,
   "barcode": "C1023",
-  "containerName": "1765",
+  "containerName": "New Container Example",
   "supplier": null,
   "currentUser": "INVADMIN",
   "quantityAvailable": {
@@ -1436,10 +1436,10 @@ curl -X GET --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 | quantityInitial 	   | [UnitData](#unitdata-definition)							       | true       |
 | quantityMax          | [UnitData](#unitdata-definition)								   | true       |
 | containerType        | [ContainerTypeData](#containertypedata-definition)				   | true       |
+| containerName | string | true       |
 | status | [ContainerStatusData](#containerstatus-definition) | true |
 | containerId | integer | false       |
 | barcode | string | false       |
-| containerName | string | false       |
 | supplier | [SupplierData](#supplierdata-definition) | false       |
 | quantityAvailable | [UnitData](#unitdata-definition) | false       |
 | dateCreated | date-time | false       |
