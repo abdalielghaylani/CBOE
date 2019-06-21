@@ -21,15 +21,15 @@ A valid API Key must be submitted with every http request via a custom X-Api-Key
 ### Container
 | Type | Method | Path |
 |----|----|----|
-| **DeleteContainer** | `DELETE` | [/api/v1/containers/{id}](#deletecontainer) |
-| **GetContainerById** | `GET` | [/api/v1/containers/{id}](#getcontainerbyid) |
+| **DeleteContainer** | `DELETE` | [/api/v1/containers/{containerId}](#deletecontainer) |
+| **GetContainerById** | `GET` | [/api/v1/containers/{containerId}](#getcontainerbyid) |
 | **GetContainersByLocationId** | `GET` | [/api/v1/containers/location/{locationId}](#getcontainersbylocationid) |
 | **GetContainerByBarcode** | `GET` | [/api/v1/containers/barcode/{barcode}](#getcontainerbybarcode) |
 | **CreateContainer** | `POST` | [/api/v1/containers](#createcontainer) |
-| **UpdateContainer** | `PUT` | [/api/v1/containers](#updatecontainer) |
-| **UpdateContainerRemainingQuantity** | `PUT` | [/api/v1/containers/remainingQuantity](#updatecontainerremainingquantity) |
-| **UpdateContainerStatus** | `PUT` | [/api/v1/containers/status](#updateContainerstatus) |
-| **MoveContainer** | `PUT` | [/api/v1/container/moveContainer](#movecontainer) |
+| **UpdateContainer** | `PUT` | [/api/v1/containers/{containerId}](#updatecontainer) |
+| **UpdateContainerRemainingQuantity** | `PUT` | [/api/v1/containers/remainingQuantity/{containerId}](#updatecontainerremainingquantity) |
+| **UpdateContainerStatus** | `PUT` | [/api/v1/containers/status/{containerId}](#updateContainerstatus) |
+| **MoveContainer** | `PUT` | [/api/v1/container/moveContainer/{containerId}](#movecontainer) |
 | **GetContainerStatus** | `GET` | [/api/v1/containers/status](#getcontainerstatus) |
 | **GetContainerTypes** | `GET` | [/api/v1/containers/types](#getcontainertypes) |
 | **GetContainerUnits** | `GET` | [/api/v1/containers/units](#getcontainerunits) |
@@ -80,13 +80,13 @@ Move a container to a particular location
 
 | Method | Path |
 |----|----|
-| `PUT` | /api/v1/container/moveContainer |
+| `PUT` | /api/v1/container/moveContainer/{containerId} |
 
 ### Example Request
 
 ```
 curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/container/moveContainer?containerId=<containerId>&locationId=<locationId>'
+'http://<Server-Address>/Inventory.API/api/v1/container/moveContainer/<containerId>?locationId=<locationId>'
 ```
 
 ### Expected Response Types
@@ -119,7 +119,7 @@ Update a container
 
 | Method | Path |
 |----|----|
-| `PUT` | /api/v1/containers |
+| `PUT` | /api/v1/containers/{containerId} |
 
 ### Example Request
 
@@ -128,7 +128,7 @@ curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 -d '{ \ 
  "barcode": "A001" \ 
  }' 
-'http://<Server-Address>/Inventory.API/api/v1/containers?containerId=<containerId>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/<containerId>'
 ```
 
 ### Expected Response Types
@@ -644,13 +644,13 @@ Update a container with the remaining quantity
 
 | Method | Path |
 |----|----|
-| `PUT` | /api/v1/containers/remainingQuantity |
+| `PUT` | /api/v1/containers/remainingQuantity/{containerId} |
 
 ### Example Request
 
 ```
 curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/containers/remainingQuantity?containerId=<containerId>&remainingQuantity=<remainingQuantity>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/remainingQuantity/<containerId>?remainingQuantity=<remainingQuantity>'
 ```
 
 ### Expected Response Types
@@ -975,13 +975,13 @@ Update the staus of a particular container
 
 | Method | Path |
 |----|----|
-| `PUT` | /api/v1/contaianers/status |
+| `PUT` | /api/v1/contaianers/status/{containerId} |
 
 ### Example Request
 
 ```
 curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/containers/status?containerId=<containerId>&containerStatusId=<containerStatusId>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/status/<containerId>?containerStatusId=<containerStatusId>'
 ```
 
 ### Expected Response Types
@@ -1112,13 +1112,13 @@ Get container by internal id
 
 | Method | Path |
 |----|----|
-| `GET` | /api/v1/containers/{id} |
+| `GET` | /api/v1/containers/{containerId} |
 
 ### Example Request
 
 ```
 curl -X GET --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/containers/<id>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/<containerId>'
 ```
 
 ### Expected Response Types
@@ -1291,13 +1291,13 @@ Delete container
 
 | Method | Path |
 |----|----|
-| `DELETE` | /api/v1/containers/delete/{id} |
+| `DELETE` | /api/v1/containers/delete/{containerId} |
 
 ### Example Request
 
 ```
 curl -X DELETE --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/containers/delete/<id>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/delete/<containerId>'
 ```
 
 ### Expected Response Types
