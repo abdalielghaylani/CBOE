@@ -62,6 +62,9 @@ export class RegistryEpics {
         let temporary = !payload.saveToPermanent && (id < 0 || payload.temporary);
         let record = registryUtils.serializeData(payload.recordDoc);
         payload.recordData.data = record;
+        if (!temporary) {
+          sessionStorage.setItem('registerRecordData', JSON.stringify(payload.recordData));
+        }
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (createRecordAction
@@ -69,7 +72,7 @@ export class RegistryEpics {
           : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, payload.recordData, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            if ((responseData.data) && (responseData.data.DuplicateRecords || responseData.data.copyActions)) {
+            if ((responseData.data) && (responseData.data.TotalDuplicateCount || responseData.data.copyActions)) {
               return RecordDetailActions.loadDuplicateRecordSuccessAction(responseData.data);
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';

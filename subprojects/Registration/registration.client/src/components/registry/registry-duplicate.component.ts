@@ -27,15 +27,17 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private gridHeight: number;
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
-  private datasource: any[];
+  private duplicateRecoreCount;
   private currentRecord: { ID: number, REGNUMBER: string };
-  private duplicateActions: any[];
+  private duplicateActions = [];
   private duplicateButtonVisibility: boolean = false;
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   @Input() sourceRecordIsTemporary: boolean;
-  private fetchLimit = 15;
   private dataStore: CustomStore;
+  private fetchLimit = 20;
+  private sort = 'REGNUMBER';
+  private sortOrder = 'ASC';
 
   private columns = [{
     cellTemplate: 'commandCellTemplate',
@@ -94,7 +96,6 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.duplicateData$ = this.ngRedux.select(['registry', 'duplicateRecords']);
-    console.log(this.ngRedux.select(['registry', 'previousRecordDetail']));
     this.recordsSubscription = this.duplicateData$.subscribe((value: number[]) => this.loadData(value));
   }
 
@@ -129,9 +130,9 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
-      //this.datasource = e.DuplicateRecords;
+      this.duplicateRecoreCount = e.TotalDuplicateCount;
       this.dataStore = this.createCustomStore(this);
-      this.duplicateActions = e.DuplicateActions;
+      // this.duplicateActions = e.DuplicateActions;
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
@@ -200,45 +201,52 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }
 
   private createCustomStore(ref: any) {
-    // const systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     return new CustomStore({
-      key: ref.idField,
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
+        /*if (loadOptions.skip <= 5) {
+          alert(loadOptions.take+3);
+          alert(loadOptions.skip);
+          deferred.resolve(ref.datasource.DuplicateRecords, { totalCount: ref.datasource.TotalDuplicatesCountIdentified });
+        } else {
+          alert(loadOptions.take);
+          alert(loadOptions.skip);
+        }*/
         if (loadOptions.take) {
-          
-        }
-        
-       /* if (loadOptions.take) {
           let sortCriteria;
           if (loadOptions.sort != null) {
             sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
             ref.sortCriteria = sortCriteria;
           }
-          let url = `${apiUrlPrefix}records`;
+          let url = `${apiUrlPrefix}get-duplicate-records`;
           let params = '';
           if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
           let take = loadOptions.take != null ? loadOptions.take : this.fetchLimit;
           if (take) { params += `${params ? '&' : '?'}count=${take}`; }
-          if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
-          if (ref.marksShown) {
-            params += `${params ? '&' : '?'}hitListId=${ref.markedHitListId}`;
-          }
-          url += params;
-          ref.http.post(url)
+          let data = JSON.parse(sessionStorage.getItem('registerRecordData'));
+          // if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
+          // url += params;
+          data.skip = loadOptions.skip;
+          data.count = loadOptions.take;
+          data.sort = ref.sort;
+          data.sortOrder = ref.sortOrder;
+          ref.http.post(url, data)
             .toPromise()
             .then(result => {
               let response = result.json();
-              ref.recordsTotalCount = response.totalCount;
-              ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
-              ref.setProgressBarVisibility(false);
-              deferred.resolve(response.rows, { totalCount: response.totalCount });
+              // ref.recordsTotalCount = response.totalCount;
+              // ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
+              // ref.setProgressBarVisibility(false);
+              // ref.duplicateActions = Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
+              Array.prototype.push.apply(ref.duplicateActions,response.data.DuplicateActions);
+              deferred.resolve(response.data.DuplicateRecords
+                , { totalCount: ref.duplicateRecoreCount });
             })
             .catch(error => {
               let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
               deferred.reject(message);
             });
-        }*/
+        }
         return deferred.promise();
       }
     });

@@ -13,14 +13,19 @@
     <dx-data-grid [columns]="columns" [dataSource]="dataStore" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-sorting mode="single"></dxo-sorting>
       <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxo-scrolling mode="infinite"></dxo-scrolling>
+      <dxo-load-panel [enabled]="true"></dxo-load-panel>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>
+      <dxo-paging [pageSize]="20"></dxo-paging>
+      <dxo-sorting mode="single"></dxo-sorting>
+      <dxo-filter-row [visible]="false"></dxo-filter-row>
       <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
       <dxo-selection mode="single"></dxo-selection>
       <div *dxTemplate="let data of 'toolbarContents'">
         <div class="count tan pull-left">
           <div class="count-type">Resolving Component</div>
           <div class="count-type-amount border-tan round border-2 padding-xs">
-            {{ datasource ? datasource.length : '' }}
+            {{ duplicateRecoreCount }}
             <i class="fa fa-book" aria-hidden="true"></i>
           </div>
         </div>
