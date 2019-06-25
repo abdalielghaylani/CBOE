@@ -1,7 +1,7 @@
 <command-button id="add-batch-command" testid="edit-batch-command" (onClick)="showForm($event)" iconName="edit"
   title="Edit Batch" [pullRight]="false"></command-button>
 <div class="absolute">
-  <dx-popup showCloseButton=false [fullScreen]="false" width="90%" [height]="customHeight" title="Edit Batch"
+  <dx-popup *ngIf="formVisible" showCloseButton=false [fullScreen]="false" width="90%" [height]="auto" title="Edit Batch"
     [shading]="true" [closeOnOutsideClick]="false" contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
       <reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error'
