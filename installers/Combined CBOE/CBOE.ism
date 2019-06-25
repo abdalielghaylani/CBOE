@@ -1220,10 +1220,10 @@
 		<row><td>PatchWelcome</td><td>Next</td><td>EndDialog</td><td>Return</td><td>1</td><td>3</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>ReinstallMode</td><td>omus</td><td>PATCH And REINSTALLMODE=""</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>4</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>2</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>NewDialog</td><td>OutOfSpace</td><td>OutOfNoRbDiskSpace = 1</td><td>1</td></row>
@@ -1252,7 +1252,8 @@
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType1]</td><td>Uninstalling</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType2]</td><td>uninstalled</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType3]</td><td>uninstalls</td><td>1</td><td>0</td></row>
-		<row><td>SettingCDD</td><td>Back</td><td>NewDialog</td><td>DestinationFolder</td><td>1</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Not Installed</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>3</td></row>
 		<row><td>SettingCDD</td><td>Back</td><td>[IS_BROWSE_FILEBROWSED]</td><td>[SERVER_SSL_PATH]</td><td>1</td><td>2</td></row>
 		<row><td>SettingCDD</td><td>Canel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1 </td><td>1</td></row>
 		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>443</td><td>SERVER_TYPE="https"</td><td>2</td></row>
@@ -9562,7 +9563,7 @@ Set shell = Nothing
 		<row><td>NEW_STRING14</td><td>1033</td><td/><td>0</td><td/><td>1931253954</td></row>
 		<row><td>NEW_STRING15</td><td>1033</td><td>{&amp;MSSansBold8}License Agreement</td><td>0</td><td/><td>1537352677</td></row>
 		<row><td>NEW_STRING16</td><td>1033</td><td>Please read the following license agreement carefully.</td><td>0</td><td/><td>1537401829</td></row>
-		<row><td>NEW_STRING17</td><td>1033</td><td>{&amp;MSSansBold8}WebSite Informations</td><td>0</td><td/><td>1805791665</td></row>
+		<row><td>NEW_STRING17</td><td>1033</td><td>WebSite Informations</td><td>0</td><td/><td>-1423479578</td></row>
 		<row><td>NEW_STRING18</td><td>1033</td><td>Please enter website informations</td><td>0</td><td/><td>1805789649</td></row>
 		<row><td>NEW_STRING19</td><td>1033</td><td>Yes</td><td>0</td><td/><td>606428903</td></row>
 		<row><td>NEW_STRING2</td><td>1033</td><td>Install Web/Virtual Files to:</td><td>0</td><td/><td>1495214935</td></row>
