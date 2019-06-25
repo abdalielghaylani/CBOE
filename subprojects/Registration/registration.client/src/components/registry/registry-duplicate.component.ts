@@ -36,8 +36,6 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   @Input() sourceRecordIsTemporary: boolean;
   private dataStore: CustomStore;
   private fetchLimit = 20;
-  private sort = 'REGNUMBER';
-  private sortOrder = 'ASC';
 
   private columns = [{
     cellTemplate: 'commandCellTemplate',
@@ -213,22 +211,19 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
           alert(loadOptions.skip);
         }*/
         if (loadOptions.take) {
-          let sortCriteria;
+          let sortCriteria, sortOrder;
           if (loadOptions.sort != null) {
-            sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+            ref.sortOrder = (loadOptions.sort[0].desc === false) ? 'ASC' : 'DESC';
             ref.sortCriteria = sortCriteria;
           }
           let url = `${apiUrlPrefix}get-duplicate-records`;
           let params = '';
           if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
           let take = loadOptions.take != null ? loadOptions.take : this.fetchLimit;
-          if (take) { params += `${params ? '&' : '?'}count=${take}`; }
           let data = JSON.parse(sessionStorage.getItem('registerRecordData'));
-          // if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
-          // url += params;
           data.skip = loadOptions.skip;
           data.count = loadOptions.take;
-          data.sort = ref.sort;
+          data.sort = ref.sortCriteria ? ref.sortCriteria : 'REGNUMBER';
           data.sortOrder = ref.sortOrder;
           ref.http.post(url, data)
             .toPromise()
@@ -238,7 +233,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
               // ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
               // ref.setProgressBarVisibility(false);
               // ref.duplicateActions = Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
-              Array.prototype.push.apply(ref.duplicateActions,response.data.DuplicateActions);
+              Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
               deferred.resolve(response.data.DuplicateRecords
                 , { totalCount: ref.duplicateRecoreCount });
             })
