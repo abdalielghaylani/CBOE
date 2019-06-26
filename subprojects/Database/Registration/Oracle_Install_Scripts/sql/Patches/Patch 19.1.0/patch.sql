@@ -46,6 +46,12 @@ Connect &&schemaName/&&schemaPass@&&serverName
 Connect &&schemaName/&&schemaPass@&&serverName
 --CBOE-8144. CBOE-8011. New index was added to improve most slow query.
 create index reg_num_low_case on reg_numbers (lower(reg_number));
+
+--CBOE-8861. For some unknown reasons, searching for temporary structures now uses TEMPORARY_BATCH table instead of TEMPORARY_COMPOUND table. So have to recreate index for new used table.
+drop index MX2;
+ 
+CREATE INDEX MX2 ON TEMPORARY_BATCH (STRUCTUREAGGREGATION) INDEXTYPE IS CSCARTRIDGE.MOLECULEINDEXTYPE  PARAMETERS ('TABLESPACE=T_REGDB_CSCART,FULLEXACT=INDEX');
+  
 --#########################################################
 --CONSTRAINTS
 --#########################################################
