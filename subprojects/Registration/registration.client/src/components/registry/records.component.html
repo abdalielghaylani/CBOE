@@ -98,5 +98,5 @@
     <reg-record-search [totalSearchableCount]="isRefine ? recordsTotalCount : totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine"
         [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
-<dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
+<dx-load-panel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

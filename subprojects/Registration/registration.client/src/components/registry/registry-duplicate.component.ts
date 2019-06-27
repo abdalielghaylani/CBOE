@@ -35,7 +35,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   @Output() onClose = new EventEmitter<any>();
   @Input() sourceRecordIsTemporary: boolean;
   private dataStore: CustomStore;
-  private fetchLimit = 20;
+  private noDataText: string;
+  private loadIndicatorVisible = false;
 
   private columns = [{
     cellTemplate: 'commandCellTemplate',
@@ -198,41 +199,36 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     this.onClose.emit('cancel');
   }
 
+  setProgressBarVisibility(visible: boolean) {
+    this.loadIndicatorVisible = visible;
+    this.changeDetector.markForCheck();
+  }
+
   private createCustomStore(ref: any) {
     return new CustomStore({
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
-        /*if (loadOptions.skip <= 5) {
-          alert(loadOptions.take+3);
-          alert(loadOptions.skip);
-          deferred.resolve(ref.datasource.DuplicateRecords, { totalCount: ref.datasource.TotalDuplicatesCountIdentified });
-        } else {
-          alert(loadOptions.take);
-          alert(loadOptions.skip);
-        }*/
         if (loadOptions.take) {
           let sortCriteria, sortOrder;
           if (loadOptions.sort != null) {
-            ref.sortOrder = (loadOptions.sort[0].desc === false) ? 'ASC' : 'DESC';
-            ref.sortCriteria = sortCriteria;
+            sortOrder = (loadOptions.sort[0].desc === false) ? 'ASC' : 'DESC';
+            sortCriteria = loadOptions.sort[0].selector;
           }
           let url = `${apiUrlPrefix}get-duplicate-records`;
-          let params = '';
-          if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
-          let take = loadOptions.take != null ? loadOptions.take : this.fetchLimit;
           let data = JSON.parse(sessionStorage.getItem('registerRecordData'));
+          if (loadOptions.skip <= 20) {
+            ref.setProgressBarVisibility(true);
+          }
           data.skip = loadOptions.skip;
-          data.count = loadOptions.take;
-          data.sort = ref.sortCriteria ? ref.sortCriteria : 'REGNUMBER';
-          data.sortOrder = ref.sortOrder;
+          data.count = loadOptions.take != null ? loadOptions.take : 20;
+          data.sort = sortCriteria ? sortCriteria : 'REGNUMBER';
+          data.sortOrder = sortOrder;
           ref.http.post(url, data)
             .toPromise()
             .then(result => {
               let response = result.json();
-              // ref.recordsTotalCount = response.totalCount;
-              // ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
-              // ref.setProgressBarVisibility(false);
-              // ref.duplicateActions = Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
+              ref.noDataText = ref.duplicateRecoreCount === 0 ? 'Search returned no hit!' : '';
+              ref.setProgressBarVisibility(false);
               Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
               deferred.resolve(response.data.DuplicateRecords
                 , { totalCount: ref.duplicateRecoreCount });
@@ -240,6 +236,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
             .catch(error => {
               let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
               deferred.reject(message);
+              ref.setProgressBarVisibility(false);
             });
         }
         return deferred.promise();
