@@ -131,7 +131,6 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
       this.gridHeight = this.parentHeight - 80;
       this.duplicateRecoreCount = e.TotalDuplicateCount;
       this.dataStore = this.createCustomStore(this);
-      // this.duplicateActions = e.DuplicateActions;
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
@@ -221,7 +220,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
           }
           data.skip = loadOptions.skip;
           data.count = loadOptions.take != null ? loadOptions.take : 20;
-          data.sort = sortCriteria ? sortCriteria : 'REGNUMBER';
+          data.sort = sortCriteria
           data.sortOrder = sortOrder;
           ref.http.post(url, data)
             .toPromise()
