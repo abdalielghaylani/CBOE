@@ -11,7 +11,10 @@ using PerkinElmer.COE.Inventory.API.Code;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL;
 using Swashbuckle.Swagger.Annotations;
+using Swashbuckle.SwaggerUi;
 using PerkinElmer.COE.Inventory.API.Filters;
+using iTextSharp.text.pdf;
+using System.Drawing;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
@@ -471,6 +474,51 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 containerDAL.DeleteContainer(containerId);
 
                 responseMessage = Request.CreateResponse(statusCode, "The container was deleted successfully!");
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        /// <summary>
+        /// Get barcode image for the container
+        /// </summary>
+        /// <param name="containerId">The internal id of the container</param>
+        /// <returns>Barcode imagein PNG format</returns>
+        [HttpGet]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/barcode/{containerId:int}")]
+        [SwaggerOperation("Containers")]
+        [SwaggerResponse(200, type: typeof(byte[]))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetPrintableBarcode(int containerId)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                ContainerData container = containerDAL.GetContainerById(containerId);
+                if (container == null)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", containerId));
+
+                var barcode = new Barcode128();
+                barcode.Code = container.Barcode;
+
+                var imageBarcode = barcode.CreateDrawingImage(Color.Black, Color.White);
+
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    imageBarcode.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+
+                    responseMessage = new HttpResponseMessage(HttpStatusCode.OK);
+                    responseMessage.Content = new StreamContent(new System.IO.MemoryStream(stream.ToArray()));
+                    responseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
+                }
             }
             catch (Exception ex)
             {
