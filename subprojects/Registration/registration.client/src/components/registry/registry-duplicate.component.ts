@@ -220,7 +220,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
           }
           data.skip = loadOptions.skip;
           data.count = loadOptions.take != null ? loadOptions.take : 20;
-          data.sort = sortCriteria
+          data.sort = sortCriteria;
           data.sortOrder = sortOrder;
           ref.http.post(url, data)
             .toPromise()
