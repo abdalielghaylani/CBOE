@@ -65,6 +65,9 @@ PACKAGE "COMPOUNDREGISTRY" AS
   PROCEDURE  GetCompoundLockStatus(ACompoundid NUMBER,AStatusID OUT NOCOPY NUMBER);
   PROCEDURE  GetLockedRegsiteryList (vRegNumbers IN varchar2 , O_RS OUT CURSOR_TYPE);
   PROCEDURE SetApprovePerson(ATempID IN NUMBER, AStatusID IN NUMBER, APersonID IN NUMBER);
+  
+    --return duplicates of structure
+    PROCEDURE ReturnRegistryDup(AXml IN CLOB, AMessage OUT CLOB);
 
     -- UTILITY
     PROCEDURE InsertLog(ALogProcedure CLOB, ALogComment CLOB);

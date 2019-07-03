@@ -2033,6 +2033,7 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
   ) RETURN CLOB IS
     PRAGMA AUTONOMOUS_TRANSACTION;
     LResult              CLOB;
+    LReg                 CLOB;
     LDuplicateCount      Number;
     LParameters          Varchar2(1000);
     LCompoundID          VW_Compound.CompoundID%Type;
@@ -2042,7 +2043,7 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
     LResultXMLType       XMLType;
     LScanCtx             cscartridge.moleculeindexmethods;
     CURSOR C_RegNumbers(ACoumpoundID in VW_Compound.CompoundID%type) IS
-      SELECT RegNumber
+      SELECT RegNumber,RN.RegID
       FROM VW_RegistryNumber RN,VW_Mixture M,VW_Mixture_Component MC
       WHERE RN.RegID=M.RegID AND M.MixtureID=MC.MixtureID AND MC.CompoundID=ACoumpoundID
 	  --CBOE-8421
@@ -2050,8 +2051,8 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
 	  --CBOE-8421.End
       ORDER BY MC.CompoundID;
     cursor C_REGNUMBERSONLYSINGLEREGISTRY(ACOUMPOUNDID in VW_COMPOUND.COMPOUNDID%type) is
-      select REGNUMBER
-      FROM (SELECT REGNUMBER, COUNT(*) OVER  (partition by MC.MIXTUREID) as cnt
+      select REGNUMBER,RegID
+      FROM (SELECT REGNUMBER,RN.RegID, COUNT(*) OVER  (partition by MC.MIXTUREID) as cnt
       FROM
        VW_REGISTRYNUMBER RN,VW_MIXTURE M,VW_MIXTURE_COMPONENT MC where RN.REGID=
         M.REGID AND M.MIXTUREID=MC.MIXTUREID AND MC.COMPOUNDID=ACoumpoundID
@@ -2125,16 +2126,32 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
             vAllowUnregistCompInMix:=GetAllowUnregistCompInMix;
             if UPPER(vAllowUnregistCompInMix)='TRUE' THEN
                 for R_RegNumbers IN C_RegNumbers(LCompoundID) loop
+                select ' NAME="' || m.name || '" CREATED="' || to_char(m.CREATED,'MM/DD/YYYY HH:MI:SS AM')
+                      || '" MODIFIED="' || to_char(m.MODIFIED,'MM/DD/YYYY HH:MI:SS AM') || '" PERSONCREATED="' || 
+                      (select user_id from people p where p.person_id = m.PERSONCREATED)|| '" APPROVED="' ||
+                       nvl((select user_id from people p where p.person_id = m.PERSONAPPROVED),m.APPROVED)|| '" STATUSID="' || to_char(statusid) into LReg
+                      from vw_mixture m where m.regid = R_RegNumbers.regid;
                       dbms_lob.append(LResult,to_clob('<REGNUMBER count="' || LCount
                       || '" CompoundID="' || LCompoundID
-                      || '" '||LFragmentsData || '>'
+                      || '" '||LFragmentsData  
+                      || LReg
+                      || '" REGID="' || R_RegNumbers.regid
+                      || '">'
                       || R_RegNumbers.RegNumber || '</REGNUMBER>'));
                 end loop;
             else
                 for R_RegNumbersOnlySingleRegistry IN C_RegNumbersOnlySingleRegistry(LCompoundID) loop
+                  select ' NAME="' || m.name || '" CREATED="' || to_char(m.CREATED,'MM/DD/YYYY HH:MI:SS AM')
+                    || '" MODIFIED="' || to_char(m.MODIFIED,'MM/DD/YYYY HH:MI:SS AM') || '" PERSONCREATED="' || 
+                    (select user_id from people p where p.person_id = m.PERSONCREATED)|| '" APPROVED="' ||
+                     nvl((select user_id from people p where p.person_id = m.PERSONAPPROVED),m.APPROVED)|| '" STATUSID="' || to_char(statusid) into LReg
+                    from vw_mixture m where m.regid = R_RegNumbersOnlySingleRegistry.regid;
                   dbms_lob.append(LResult,to_clob('<REGNUMBER count="' || LCount
                     || '" CompoundID="' || LCompoundID
-                    || '" '||LFragmentsData || '>'
+                    || '" '||LFragmentsData 
+                    || LReg
+                    || '" REGID="' || R_RegNumbersOnlySingleRegistry.regid                    
+                    || '">'
                     || R_RegNumbersOnlySingleRegistry.RegNumber || '</REGNUMBER>'));
                 end loop;
             end if;
@@ -14561,6 +14578,184 @@ PROCEDURE SaveDuplicates(AXMLDuplicated IN clob,APersonID IN VARCHAR2:=null) IS
     RETURN vApprovalsEnabled;
   END;
 
+  PROCEDURE ReturnRegistryDup(
+    AXml IN CLOB
+    , AMessage OUT CLOB
+  ) IS
+    ADuplicateCheck Varchar2(1) := 'C';
+    LXmlTables                XmlType;
+    LXslTablesTransformed     XmlType;
+    LXmlCompReg               CLOB;
+    LXmlRows                  CLOB;
+    LXmlTypeRows              XmlType;
+    LXmlSequenceType          XmlSequenceType;
+
+    LIndex                    Number:=0;
+    LRowsInserted             Number:=0;
+    AConfigurationID          Number:= 1;
+    LTableName                CLOB;
+    LBriefMessage             CLOB;
+    LMessage                  CLOB:='';
+
+    LStructureValue           CLOB;
+    LRegNumberRegID           Number:=0;
+    LDuplicatedCompoundID     Number;
+    LDuplicatedStructures     CLOB;
+    LListDulicatesCompound    CLOB;
+    LDuplicateComponentCount  Number:=0;
+
+    LStructuresList            CLOB;
+    LStructuresToValidateList  CLOB;
+    LFragmentXmlValue          CLOB;
+    LNormalizedStructureList   CLOB;
+    LNormalizedStructureValue  CLOB;
+    LStructureAggregationList  CLOB;
+    LStructureAggregationValue CLOB;
+    LXMLRegistryRecord         CLOB;
+
+    LXMLCompound                  XmlType;
+    LXMLFragmentEquivalent        XmlType;
+    LXMLRegNumberDuplicated       XmlType;
+
+    LRegDBIdsValue         Varchar2(4000);
+    LDuplicatedMixtureCount   Number;
+    LDuplicatedMixtureRegIds  Varchar2(4000);
+    LDuplicatedAuxStructureID Number:=0;
+
+    LRegID                      Number:=0;
+    LNewRegID                   Number:=0;
+    LBatchID                    Number:=0;
+    LCompoundID                 Number:=0;
+    LFragmentID                 Number:=0;
+    LStructureID                Number:=0;
+    LMixtureID                  Number:=0;
+    LBatchNumber                Number:=0;
+    LMixtureComponentID         Number:=0;
+    LBatchComponentID           Number:=0;
+    LCompoundFragmentID         Number:=0;
+    LCreateNewStructure        Boolean:=false;
+    LRegNumber                  VW_REGISTRYNUMBER.RegNumber%Type;
+    LSequenceNumber             VW_REGISTRYNUMBER.SequenceNumber%Type;
+    LFullRegNumber              VW_BATCH.FullRegNumber%Type;
+
+    LTempID                        VW_TEMPORARYBATCH.TEMPBATCHID%TYPE;
+
+    LSequenceID                   Number:=0;
+    LProcessingMixture            Varchar2(1);
+
+    LRegIDAux                      Number:=0;
+    LExistentComponentIndex        Number:=0;
+
+    LXslTables XmlType := XslMcrrCreate;
+    LNewBatchList tNumericIdList;
+     mod1 varchar2(100);
+     act varchar2(100);
+
+
+  BEGIN
+    dbms_application_info.read_module(mod1, act); TraceWrite( act||'ReturnRegistryDup_started', $$plsql_line,'start' );
+     TraceWrite( 'ReturnRegistryDup_in_param', $$plsql_line,
+     to_clob( 'AConfigurationID: ' || to_char(AConfigurationID) ||
+      ', AXml: ') || AXml
+     );
+
+    SetSessionParameter;
+
+    if AXml is null then
+        TraceWrite('ReturnRegistryDup', $$plsql_line, 'Return because AXml is null');
+        return;
+    end if;
+
+    LXmlCompReg := AXml;
+    TraceWrite('ReturnRegistryDup_0_InputXml', $$plsql_line, AXml);
+
+    -- Take Out the Structures because XmlType don't suport > 64k.
+    LStructuresList := TakeOffAndGetClobsList(LXmlCompReg,'<Structure ','Structure','<BaseFragment>',NULL,FALSE);
+    LStructuresToValidateList := LStructuresList;
+    LNormalizedStructureList := TakeOffAndGetClobslist(LXmlCompReg,'<NormalizedStructure','<Structure>');
+    LStructureAggregationList := TakeOffAndGetClobsList(LXmlCompReg,'<StructureAggregation');
+
+    -- Convert the remaining string to XMLTYPE
+    LXmlTables := XmlType.createXML(LXmlCompReg);
+    TraceWrite('ReturnRegistryDup_1_StructureStrippedXml', $$plsql_line, LXmlTables.GetClobVal());
+
+    -- Test the SameBatchesIdentity setting
+    -- !! throws exception if it fails
+    ValidateIdentityBetweenBatches(LXmlTables);
+    TraceWrite('ReturnRegistryDup_2_SameBatchesIdentityPass', $$plsql_line, null);
+
+    SELECT EXTRACTVALUE(LXmlTables, '/MultiCompoundRegistryRecord/ID') into LTempID from dual;
+
+    -- Perform duplicate-checking
+    IF UPPER(GetDuplicateCheckEnable)='TRUE' THEN
+      TraceWrite('ReturnRegistryDup_DuplicateCheckSetting=TRUE', $$plsql_line, null);
+
+      -- First at the compound level
+      IF Upper(ADuplicateCheck)='C' OR Upper(ADuplicateCheck)='V' THEN
+        -- Get the XML for each component
+        LOOP
+          LIndex := LIndex + 1;
+          SELECT extract(
+            LXmlTables
+            , '/MultiCompoundRegistryRecord/ComponentList/Component[' || LIndex || ']'
+          ) INTO LXMLCompound FROM dual;
+        EXIT WHEN LXMLCompound IS NULL;
+          SELECT
+            extractValue(LXMLCompound, '/Component/Compound/RegNumber/RegID')
+            , extractValue(LXMLCompound,'/Component/Compound/BaseFragment/Structure/StructureID')
+          INTO LRegNumberRegID, LDuplicatedAuxStructureID FROM dual;
+
+          -- Extract the compound's structure value
+          LStructureValue := TakeOffAndGetClob(LStructuresToValidateList, 'Clob');
+
+          -- Bypass matching for wildcard (ID < 0) and new (ID = 0) structures
+          IF NVL(LRegNumberRegID, 0) = 0 AND NVL(LDuplicatedAuxStructureID, 0) >= 0 THEN
+            SELECT
+              extractValue(LXMLCompound, '/Component/Compound/CompoundID')
+              , extractValue(LXMLCompound, '/Component/ComponentIndex')
+            INTO LDuplicatedCompoundID, LExistentComponentIndex FROM dual;
+
+            -- Get the XML for the compound's BatchComponentFragmentList
+            IF LDuplicatedCompoundID IS NOT NULL THEN
+              SELECT extract(
+                LXmlTables
+                ,'/MultiCompoundRegistryRecord/BatchList/Batch/BatchComponentList/BatchComponent[ComponentIndex='||LExistentComponentIndex||']/BatchComponentFragmentList'
+              ) INTO LXMLFragmentEquivalent FROM dual;
+
+              -- Perform 'compound' (structure AND fragments) duplicate-checking
+              --  "Is there already a compound with this structure and these associated fragments?"
+              LDuplicatedStructures := ValidateCompoundMulti(
+                LStructureValue, NULL, AConfigurationID, LXMLCompound, LXMLFragmentEquivalent
+              );
+
+              TraceWrite('ReturnRegistryDup_AFTER_ValidateCompoundMulti', $$plsql_line, LDuplicatedStructures);
+
+              IF LDuplicatedStructures IS NOT NULL
+                AND LDuplicatedStructures <> '<REGISTRYLIST></REGISTRYLIST>' THEN
+
+                LListDulicatesCompound := LListDulicatesCompound||'<COMPOUND>'||'<TEMPCOMPOUNDID>'||LDuplicatedCompoundID||'</TEMPCOMPOUNDID>'||LDuplicatedStructures||'</COMPOUND>';
+                LDuplicateComponentCount := LDuplicateComponentCount + 1;
+              END IF;
+
+            END IF;
+          END IF;
+        END LOOP;
+
+        -- If compound-matches were found, create a response-XML and return
+        IF LListDulicatesCompound IS NOT NULL THEN
+          LListDulicatesCompound := '<COMPOUNDLIST>' || LListDulicatesCompound || '</COMPOUNDLIST>';
+		  AMessage := LListDulicatesCompound;
+
+          TraceWrite( act||'ReturnRegistryDup_AMessage', $$plsql_line,'AMessage '||AMessage );
+          TraceWrite( act||'ReturnRegistryDup_ended', $$plsql_line,'end' );
+          ------------
+          RETURN;
+        END IF;
+      END IF;
+      
+      end if;
+    end;
+    
 begin
  --CBOE-6299. Move it to first line for correct logs. This sequence is used for log table
  select run_for_log_seq.nextval into log_run_seq from dual;
