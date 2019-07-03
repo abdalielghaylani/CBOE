@@ -3,20 +3,15 @@
 <%@ Register TagPrefix="igtbar" Namespace="Infragistics.WebUI.UltraWebToolbar" Assembly="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
  <script type="text/javascript">
 
-
-   
-function Confirmation() {
-        var answer = confirm("Are you sure you want to delete this user?")
-        if (answer){
-	        return true;
+     function Confirm() {
+         if (confirm("Are you sure you want to delete this user?")) {
+             return true;
+         } else {
+             return false;
         }
-        else{
-	        return false;
-        }
-    
-}
+    }
 
-var dcTime=250;    // doubleclick time
+ var dcTime=250;    // doubleclick time
  var dcDelay=100;   // no clicks after doubleclick
  var dcAt=0;        // time of doubleclick
  var savEvent=null; // save Event for handling doClick().
@@ -83,11 +78,23 @@ var dcTime=250;    // doubleclick time
         document.getElementById('<%= this.AddButton.GetButtonClientID() %>').disabled = false;
     if(document.getElementById('<%= this.EditButton.GetButtonClientID() %>') != null)
         document.getElementById('<%= this.EditButton.GetButtonClientID() %>').disabled = false;
-    if(document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>') != null)
-        document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').disabled = false;
+     if (document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>') != null) {
+         document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.remove("btn-disable");
+         document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.add("ImageButton");
+     }
  }
 </script>
- 
+ <style type="text/css">
+    .btn-disable
+        {
+        cursor: not-allowed;
+        pointer-events: none;
+        border:none;
+        color: #c0c0c0;
+        background-color: #ffffff;
+        margin-top: 5px;
+        }
+</style>
  
 
 <asp:UpdatePanel ID="ManageUsersUpdatePanel" ChildrenAsTriggers="true" UpdateMode="Conditional" runat="server">
@@ -98,7 +105,7 @@ var dcTime=250;    // doubleclick time
     <ul>
         <li><COEManager:ImageButton enabled="true" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Add_User.png" HoverImageURL="../../../App_Themes/Common/Images/Add_User.png" ImageCssClass="SecurityImage" TypeOfButton="AddUser"  ID="AddButton" OnButtonClicked="AddButtonAction" runat="server" /></li>
         <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Edit.png" HoverImageURL="../../../App_Themes/Common/Images/Edit.png" ImageCssClass="SecurityImage"  TypeOfButton="Edit" ID="EditButton" OnButtonClicked="EditButtonAction" runat="server" /></li>
-        <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Delete.png" HoverImageURL="../../../App_Themes/Common/Images/Delete.png" ImageCssClass="SecurityImage"   TypeOfButton="Delete"  ID="DeleteButton" OnClientClick="return Confirmation();" OnButtonClicked="DeleteButtonAction" runat="server" /></li>
+        <li><COEManager:ImageButton ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Delete.png" HoverImageURL="../../../App_Themes/Common/Images/Delete.png" ImageCssClass="SecurityImage"   TypeOfButton="Delete"  ID="DeleteButton" OnButtonClicked="DeleteButtonAction" OnClientClick="return Confirm();" runat="server" ButtonCssClass="btn-disable" /></li>
     </ul>
 </div>
 </asp:Panel>

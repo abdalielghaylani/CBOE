@@ -87,14 +87,14 @@ public partial class ManageUsers : System.Web.UI.UserControl
     {
         this.AddButton.Enabled = true;
         this.EditButton.Enabled = true;
-        this.DeleteButton.Enabled = true;
+        this.DeleteButton.ButtonCssClass = "btn-disable";
     }
 
     private void DisableUserEditAndDeleteButtons()
     {
         this.AddButton.Enabled = true;
         this.EditButton.Enabled = false;
-        this.DeleteButton.Enabled = false;
+        this.DeleteButton.ButtonCssClass = "ImageButton";
     }
 
 
