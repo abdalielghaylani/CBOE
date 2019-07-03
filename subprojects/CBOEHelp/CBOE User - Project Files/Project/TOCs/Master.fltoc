@@ -1441,7 +1441,8 @@
   </TocEntry>
   <TocEntry
     Title="E-Notebook - COE Integration"
-    Link="/Content/ELN2014-COE Integration/E-Notebook - COE Integration.htm">
+    Link="/Content/ELN2014-COE Integration/E-Notebook - COE Integration.htm"
+    StartSection="false">
     <TocEntry
       Title="Retrieving Data from ChemOffice Enterprise Applications"
       Link="/Content/ELN2014-COE Integration/Retrieving Data from ChemOffice Enterprise Applications.htm">
