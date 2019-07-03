@@ -27,7 +27,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private gridHeight: number;
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
-  private duplicateRecoreCount;
+  private duplicateRecordCount;
   private currentRecord: { ID: number, REGNUMBER: string };
   private duplicateActions = [];
   private duplicateButtonVisibility: boolean = false;
@@ -129,7 +129,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
-      this.duplicateRecoreCount = e.TotalDuplicateCount;
+      this.duplicateRecordCount = e.TotalDuplicateCount;
       this.dataStore = this.createCustomStore(this);
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
@@ -226,11 +226,11 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
             .toPromise()
             .then(result => {
               let response = result.json();
-              ref.noDataText = ref.duplicateRecoreCount === 0 ? 'Search returned no hit!' : '';
+              ref.noDataText = ref.duplicateRecordCount === 0 ? 'Search returned no hit!' : '';
               ref.setProgressBarVisibility(false);
               Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
               deferred.resolve(response.data.DuplicateRecords
-                , { totalCount: ref.duplicateRecoreCount });
+                , { totalCount: ref.duplicateRecordCount });
             })
             .catch(error => {
               let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
