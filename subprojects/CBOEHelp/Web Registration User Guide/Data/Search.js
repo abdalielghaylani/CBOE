@@ -1,1 +1,1 @@
-define({r:0.5,st:'Stem',n:1,t:[0],u:['../Content/Logging In to CBOE Manager.htm'],s:['+','them'],p:[['+',20],['created',1],['list',12],['retrieves',9],['view',34]]});
+define({r:0.5,st:'Stem',n:1,t:[0],u:['../Content/Logging In to CBOE Manager.htm'],s:['+','the'],p:[['+',20],['create',38],['liquid',25],['retrieve',38],['values',45]]});
