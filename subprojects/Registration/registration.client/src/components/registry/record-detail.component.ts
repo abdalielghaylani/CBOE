@@ -220,7 +220,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   duplicateData(e) {
     if (e) {
       this.loadingVisible = false;
-      if (e.DuplicateRecords) {
+      if (e.TotalDuplicateCount) {
         // if duplicate records returned after clicking the duplicate action (continue) from popup window,
         // make sure that duplicate popup is hidden before displaying duplicate resolution options
         this.isDuplicatePopupVisible = false;

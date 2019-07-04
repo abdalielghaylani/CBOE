@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Net;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
+using System.Xml.Linq;
 using Csla.Validation;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
@@ -81,6 +83,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return mixtureID;
         }
 
+        /// <summary>
+        /// Gets regid of a record using register number
+        /// </summary>
+        /// <param name="regNumber">register number</param>
+        private long GetPermanentRecordRegId(string regNumber)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":regNumber", regNumber);
+            var regId = Convert.ToInt32(ExtractValue("SELECT regid FROM vw_mixture_regnumber WHERE regnumber=:regNumber", args));
+            if (regId == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find registration number, {0}", regNumber));
+
+            return regId;
+        }
+
         private void ValidateUpdatedRecord(RegistryRecord registryRecord)
         {
             if (registryRecord.ID == 0 || !string.IsNullOrEmpty(registryRecord.RedBoxWarning))
@@ -89,8 +106,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new RegistrationException(message.Replace(@"<br />", " "));
             }
         }
-
-        private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
+        
+        /// <summary>
+        /// Gets details of duplciate records
+        /// </summary>
+        /// <param name="sourceRegistryRecord">source registry record</param>
+        /// <param name="recordColumns">record columns; optional</param>
+        /// <param name="sortField">sort field; optional</param>
+        /// <param name="sortOrder">sort order; optional</param>
+        /// <returns>details of duplciate records</returns>
+        private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord, RecordColumn[] recordColumns = null, string sortField = "modified", string sortOrder = "desc")
         {
             if (string.IsNullOrWhiteSpace(sourceRegistryRecord.FoundDuplicates))
                 return null;
@@ -102,12 +127,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var duplicateActionList = new JArray();
             foreach (XmlNode node in nodeList)
             {
-                RegistryRecord duplicateRegistryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                duplicateRegIds.Add(duplicateRegistryRecord.ID.ToString());
-
+                long regId = GetPermanentRecordRegId(node.InnerText);
+                duplicateRegIds.Add(regId.ToString());
                 DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(sourceRegistryRecord,
                     sourceRegistryRecord.FoundDuplicates,
-                    duplicateRegistryRecord.RegNum,
+                    node.InnerText,
                     string.Empty);
 
                 duplicatesResolver.DetermineAvailableActions();
@@ -115,10 +139,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 // Override 'AddBatch' button visibility for permanant record
                 // for permanant record 'AddBatch' option(Move Batchs) should be available ony if, 'EnableMoveBatch = true, in system settings
                 bool canAddBatch = sourceRegistryRecord.IsTemporal ? duplicatesResolver.CanAddBatch : RegUtilities.GetAllowMoveBatch();
-
                 var duplicateActions = new JObject(
-                   new JProperty("ID", duplicateRegistryRecord.ID),
-                   new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
+                   new JProperty("ID", regId),
+                   new JProperty("REGNUMBER", node.InnerText),
                    new JProperty("canAddBatch", canAddBatch),
                    new JProperty("canUseCompound", duplicatesResolver.CanCreateCompoundForm),
                    new JProperty("canUseStructure", duplicatesResolver.CanUseStructure)
@@ -127,13 +150,192 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             var tableName = string.Format("vw_mixture_regnumber WHERE regid IN ({0})", string.Join(",", duplicateRegIds));
-            var query = GetQuery(tableName, RecordColumns, null, "modified", "regid");
+
+            var query = string.Empty;
+            if (recordColumns == null) recordColumns = RecordColumns;
+            sortField = sortField.ToLower();
+            if (sortOrder.ToUpper().Trim().Equals("DESC"))
+            {
+                // null for sortTerms which sorts in DESC by default.
+                query = GetQuery(tableName, recordColumns, null, sortField, "regid");
+            }
+            else
+            {
+                // can specify sort terms as each sortby field with sort order, separated by comma.. e.g.: "regnumber asc"
+                sortOrder = sortField + " " + sortOrder;
+                query = GetQuery(tableName, recordColumns, sortOrder, string.Empty, "regid");
+            }
 
             var responseMessage = new JObject(
                 new JProperty("DuplicateRecords", ExtractData(query, null, null, null)),
                 new JProperty("DuplicateActions", duplicateActionList)
             );
             return responseMessage;
+        }
+
+        /// <summary>
+        /// Gets the same document with elements sorted based on attribute value/element text
+        /// </summary>
+        /// <param name="xDoc">input document</param>
+        /// <param name="isAscending">is ascending or not</param>
+        /// <param name="columnP">primary sort column name</param>
+        /// <param name="columnPType">primary sort column type</param>
+        /// <param name="columnS">secondary sort column name</param>
+        /// <param name="columnSType">secondary sort column type</param>
+        /// <returns>Returns document with elements sorted</returns>
+        private XDocument SortDuplicateXmlNodes(XDocument xDoc, bool isAscending, string columnPrimary, Type columnTypePrimary, string columnSecondary, Type columnTypeSecondary)
+        {
+            const string REGNUMBER = "REGNUMBER";
+            const string REGISTRYLIST = "REGISTRYLIST";
+            const string COMPOUNDLIST = "COMPOUNDLIST";
+            const string COMPOUND = "COMPOUND";
+            const string STRING = "string";
+            const string INT32 = "int32";
+            const string DATETIME = "datetime";
+            IOrderedEnumerable<XElement> empty = null;
+            var firstSortedData = empty;
+            var finalSortedData = empty;
+            IEnumerable<XElement> regnumberElements = xDoc.Element(COMPOUNDLIST).Element(COMPOUND).Element(REGISTRYLIST).Elements(REGNUMBER);
+            XElement registryListElement = xDoc.Element(COMPOUNDLIST).Element(COMPOUND).Element(REGISTRYLIST);
+
+
+            if (columnTypePrimary.Name.ToLower().Equals(REGNUMBER.ToLower()))
+            {
+                if (isAscending)
+                    firstSortedData = regnumberElements.OrderBy(element => (string)element.Value);
+                else
+                    firstSortedData = regnumberElements.OrderByDescending(element => (string)element.Value);
+            }
+            else
+            {
+                if (columnTypePrimary.Name.ToLower().Equals(STRING))
+                {
+                    if (isAscending)
+                        firstSortedData = regnumberElements.OrderBy(element => (string)element.Attribute(columnPrimary));
+                    else
+                        firstSortedData = regnumberElements.OrderByDescending(element => (string)element.Attribute(columnPrimary));
+                }
+                else if (columnTypePrimary.Name.ToLower().Equals(INT32))
+                {
+                    if (isAscending)
+                        firstSortedData = regnumberElements.OrderBy(element => (int)element.Attribute(columnPrimary));
+                    else
+                        firstSortedData = regnumberElements.OrderByDescending(element => (int)element.Attribute(columnPrimary));
+                }
+                else if (columnTypePrimary.Name.ToLower().Equals(DATETIME))
+                {
+                    if (isAscending)
+                        firstSortedData = regnumberElements.OrderBy(element => (DateTime)element.Attribute(columnPrimary));
+                    else
+                        firstSortedData = regnumberElements.OrderByDescending(element => (DateTime)element.Attribute(columnPrimary));
+                }
+            }
+
+            if (columnTypeSecondary.Name.ToLower().Equals(STRING))
+            {
+                if (isAscending)
+                    finalSortedData = firstSortedData.ThenBy(element => (string)element.Attribute(columnSecondary));
+                else
+                    finalSortedData = firstSortedData.ThenByDescending(element => (string)element.Attribute(columnSecondary));
+            }
+            else if (columnTypeSecondary.Name.ToLower().Equals(INT32))
+            {
+                if (isAscending)
+                    finalSortedData = firstSortedData.ThenBy(element => (int)element.Attribute(columnSecondary));
+                else
+                    finalSortedData = firstSortedData.ThenByDescending(element => (int)element.Attribute(columnSecondary));
+            }
+            else if (columnTypeSecondary.Name.ToLower().Equals(DATETIME))
+            {
+                if (isAscending)
+                    finalSortedData = firstSortedData.ThenBy(element => (DateTime)element.Attribute(columnSecondary));
+                else
+                    finalSortedData = firstSortedData.ThenByDescending(element => (DateTime)element.Attribute(columnSecondary));
+            }
+
+            XElement compoundElement = xDoc.Element(COMPOUNDLIST).Element(COMPOUND);
+            compoundElement.Element(REGISTRYLIST).Remove();
+            registryListElement = new XElement(REGISTRYLIST, finalSortedData);
+            compoundElement.Add(registryListElement);
+
+            return xDoc;
+        }
+
+        /// <summary>
+        /// Just initialize and return a record object using provided record xml
+        /// </summary>
+        /// <param name="data">xml data</param>
+        /// <returns>registry record object</returns>
+        private RegistryRecord InitializeRecordFromXml(string data)
+        {
+            const string REGIDXPATH = "/MultiCompoundRegistryRecord/ID";
+            int regId = 0;
+            var doc = new XmlDocument();
+            doc.LoadXml(data);
+            XmlNode regNode = doc.SelectSingleNode(REGIDXPATH);
+            
+            int.TryParse(regNode.InnerText.Trim(), out regId);
+            RegistryRecord registryRecord;
+            if (regId > 0)
+            {
+                registryRecord = RegistryRecord.GetRegistryRecord(regId);
+                registryRecord.InitializeFromXml(data, false, false);
+            }
+            else
+            {
+                registryRecord = RegistryRecord.NewRegistryRecord();
+                registryRecord.InitializeFromXml(data, true, false);
+                registryRecord.IsDirectReg = true;
+            }
+
+            return registryRecord;
+        }
+
+        /// <summary>
+        /// Return only the required list of sorted duplicate reg records in xml from the entire list
+        /// </summary>
+        /// <param name="duplicateSummaryDoc">xml document contains list of duplicate reg records</param>
+        /// <param name="duplicatesRetrieveCount">required number of duplicates</param>
+        /// <param name="duplicatesSkipCount">node position in xml after which required number of duplicates are to be retrieved</param>
+        /// <param name="countAfterTrim">count of actual records returned after trimming</param>
+        /// <returns>required list of duplicate reg records</returns>
+        private string GetTrimmedDuplicateSummary(XmlDocument duplicateSummaryDoc, int duplicatesRetrieveCount, int duplicatesSkipCount, out int countAfterTrim)
+        {
+            countAfterTrim = 0;
+            XmlNode regListNode = null;
+            XmlNodeList requiredDuplicateNodes = duplicateSummaryDoc.SelectNodes(
+                "//COMPOUNDLIST/COMPOUND/REGISTRYLIST/REGNUMBER[position()>" + duplicatesSkipCount.ToString() +
+                " and position()<=" + (duplicatesSkipCount + duplicatesRetrieveCount).ToString() + "]");
+
+            if (requiredDuplicateNodes != null && requiredDuplicateNodes.Count > 1)
+            {
+                XmlNode parentNode = duplicateSummaryDoc.DocumentElement as XmlNode ;
+                XmlDocument documentClone = new XmlDocument();
+                documentClone.AppendChild(documentClone.ImportNode(parentNode, true));
+                regListNode = documentClone.SelectSingleNode("//COMPOUNDLIST/COMPOUND/REGISTRYLIST");
+                regListNode.RemoveAll();
+                foreach (XmlNode regNode in requiredDuplicateNodes)
+                {
+                    regListNode.AppendChild(documentClone.ImportNode(regNode, true));
+                    countAfterTrim++;
+                }
+                string trimmedDuplicatesString = regListNode.OwnerDocument.InnerXml;
+                documentClone = null; parentNode = null; regListNode = null;
+
+                return trimmedDuplicatesString;
+            }
+            countAfterTrim = GetDuplicatesCountFromXml(duplicateSummaryDoc);
+            return duplicateSummaryDoc.InnerXml;
+        }
+
+        /// <summary>
+        /// Returns the count of duplicates identified
+        /// </summary>
+        /// <param name="duplicateSummaryDoc">xml document contains list of duplicate reg records</param>
+        /// <returns>count of duplicates</returns>
+        private int GetDuplicatesCountFromXml(XmlDocument duplicateSummaryDoc)
+        {
+            return duplicateSummaryDoc.SelectNodes("//COMPOUNDLIST/COMPOUND/REGISTRYLIST/REGNUMBER").Count;
         }
 
         #region Permanent Records
@@ -323,10 +525,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
+                RegistryRecord regRecord = null;
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
                     inputData.DuplicateCheckOption = "N";
 
-                RegistryRecord regRecord = null;
                 try
                 {
                     regRecord = RegisterRecord(inputData.Data, inputData.DuplicateCheckOption);
@@ -350,9 +552,110 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    // duplicate records found, return list of duplicate records
-                    return new ResponseData(null, null, null, GetDuplicateRecords(regRecord));
+                    XmlDocument duplicateSummaryDoc = new XmlDocument();
+                    try
+                    {
+                        duplicateSummaryDoc.LoadXml(regRecord.FoundDuplicates);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    JObject duplicateInfo = new JObject();
+                    duplicateInfo.Add("TotalDuplicateCount", GetDuplicatesCountFromXml(duplicateSummaryDoc));
+
+                    return new ResponseData(null, null, null, duplicateInfo);
                 }
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "get-duplicate-records")]
+        [SwaggerOperation("GetDuplicateRegRecordsOnDemand")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDuplicateRegRecordsOnDemand(FetchDuplicatesOnDemandOptions inputDataAndOptions)
+        {
+            return await CallMethod(() =>
+            {
+                int countAfterTrim;
+                const string CREATOR = "CREATOR";
+                const string ID = "ID";
+                const string REGID = "REGID";
+                RegistryRecord regRecord = null;
+                Dictionary<string, string> regRecordDBTablePropertyMappings = new Dictionary<string, string>() {
+                    {"NAME", "name"}, {"CREATED", "created"}, {"MODIFIED", "modified"}, {CREATOR, "personcreated"}, 
+                    {"REGNUMBER", "regnumber"}, {"STATUS", "statusid"}, {"APPROVED", "approved"}, {ID, "regid"}
+                };
+                Dictionary<string, Type> regRecordDBTablePropertyTypeMappings = new Dictionary<string, Type>() {
+                    {"NAME", typeof(string)}, {"CREATED", typeof(DateTime)}, {"MODIFIED", typeof(DateTime)}, {"PERSONCREATED", typeof(string)}, 
+                    {"REGNUMBER", typeof(string)}, {"STATUSID", typeof(int)}, {"APPROVED", typeof(string)}, {REGID, typeof(int)}
+                };
+
+                if (string.IsNullOrEmpty(inputDataAndOptions.Sort))
+                    inputDataAndOptions.Sort = "MODIFIED";
+                if (string.IsNullOrEmpty(inputDataAndOptions.SortOrder))
+                    inputDataAndOptions.SortOrder = "DESC";
+                inputDataAndOptions.Sort = inputDataAndOptions.Sort.Trim();
+                inputDataAndOptions.SortOrder = inputDataAndOptions.SortOrder.Trim().ToUpper();
+                
+                XmlDocument duplicateSummaryDoc = new XmlDocument();
+                try
+                {
+                    // Just initialize a rcord boject with given data
+                    regRecord = InitializeRecordFromXml(inputDataAndOptions.Data);
+
+                    // Call stored procedure and get duplicate summary xml
+                    string duplicateSummaryXml = RegDal.GetRegRecordDuplicatesSummary(regRecord.Xml);
+
+                    var xDoc = XDocument.Parse(duplicateSummaryXml);
+                    string sortColumn;
+                    if (!regRecordDBTablePropertyMappings.TryGetValue(inputDataAndOptions.Sort.ToUpper(), out sortColumn))
+                        throw new Exception(@"Error: Sort column '" + inputDataAndOptions.Sort.ToUpper() + @"' is not identified.");
+
+                    inputDataAndOptions.Sort = sortColumn;
+                    // Sort the regnumber nodes in the xml based on the sort columns and sort order
+                    XDocument sortedDocument = SortDuplicateXmlNodes(xDoc, 
+                        (inputDataAndOptions.SortOrder.Equals("ASC")),
+                        inputDataAndOptions.Sort.ToUpper(), 
+                        regRecordDBTablePropertyTypeMappings[inputDataAndOptions.Sort.ToUpper()],
+                        regRecordDBTablePropertyMappings[ID].ToUpper(),
+                        regRecordDBTablePropertyTypeMappings[REGID]);
+
+                    duplicateSummaryXml = string.Join(string.Empty, sortedDocument.Elements().Select(element => element.ToString()));
+                    duplicateSummaryDoc.LoadXml(duplicateSummaryXml);
+                    
+                    // Get only required range of sorted records
+                    regRecord.FoundDuplicates = GetTrimmedDuplicateSummary(duplicateSummaryDoc, inputDataAndOptions.Count, inputDataAndOptions.Skip, 
+                        out countAfterTrim);
+                }
+                catch (Exception ex)
+                {
+                    if (ex is RegistrationException)
+                        throw new RegistrationException(ex.Message.Replace(@"<br />", " "), ex);
+                    throw ex;
+                }
+
+                string creatorNameRetrievingQuery = @"(select userid from vw_people where personid=" + regRecordDBTablePropertyMappings[CREATOR] + @")";
+                if (inputDataAndOptions.Sort.ToUpper().Equals(CREATOR))
+                    inputDataAndOptions.Sort = creatorNameRetrievingQuery;
+
+                int sourceArrayLength = RecordColumns.Length;
+                RecordColumn[] recordColumnsCustomized = new RecordColumn[sourceArrayLength + 1];
+                Array.Copy(RecordColumns, recordColumnsCustomized, sourceArrayLength);
+                recordColumnsCustomized[sourceArrayLength] = new RecordColumn()
+                {
+                    Definitions = creatorNameRetrievingQuery,
+                    Label = "creatorName", Sortable = true
+                };
+                JObject duplicateRecords = GetDuplicateRecords(regRecord, recordColumnsCustomized, inputDataAndOptions.Sort, inputDataAndOptions.SortOrder);
+                duplicateRecords.Add("TotalDuplicateCount", GetDuplicatesCountFromXml(duplicateSummaryDoc));
+                duplicateRecords.Add("RequestedDuplicateCount", inputDataAndOptions.Count);
+                duplicateRecords.Add("ReturningDuplicateCount", countAfterTrim);
+
+                return new ResponseData(null, null, null, duplicateRecords);
             });
         }
 

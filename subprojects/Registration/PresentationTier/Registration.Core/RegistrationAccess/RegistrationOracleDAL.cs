@@ -3227,6 +3227,42 @@ and b.regid = m.regid" +
 
         }
 
+        /// <summary>
+        /// Method that retrieves summary of registry record duplicates on accepting a registry record xml
+        /// </summary>
+        /// <param name="regRecordXml">registry record xml</param>
+        /// <returns>summary of registry record duplicates</returns>
+        public string GetRegRecordDuplicatesSummary(string regRecordXml)
+        {
+            string duplicateSummaryXml = string.Empty;
+            DbCommand cmd = null;
+
+            try
+            {
+                cmd = CreateCommand("COMPOUNDREGISTRY.ReturnRegistryDup", CommandType.StoredProcedure);
+                using (DbTransaction txn = cmd.Connection.BeginTransaction())
+                {
+                    cmd.Parameters.Add(new OracleParameter("AXml", OracleDbType.Clob, regRecordXml, ParameterDirection.Input));
+                    cmd.Parameters.Add(new OracleParameter("AMessage", OracleDbType.Clob, duplicateSummaryXml, ParameterDirection.Output));
+                    cmd.ExecuteNonQuery();
+                    duplicateSummaryXml = ((OracleClob)cmd.Parameters["AMessage"].Value).Value as string;
+                    txn.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionContext currentContext = new ExceptionContext();
+                currentContext.Command = cmd;
+                COEExceptionDispatcher.HandleDALException(ex, currentContext);
+            }
+            finally
+            {
+                DestroyCommand(cmd);
+            }
+
+            return duplicateSummaryXml;
+        }
+
         [Description(BulkSupportDescription)]
         public string GetRegistryRecord(string regNum)
         {

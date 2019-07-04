@@ -1,26 +1,34 @@
 <div id="duplicate-record-view">
   <div [hidden]="editRowIndex!=-1">
-    <command-button testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
-    <command-button *ngIf="duplicateButtonVisibility" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord('Duplicate',0)"></command-button>
+    <command-button testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel"
+      (onClick)="cancelDuplicateResolution()"></command-button>
+    <command-button *ngIf="duplicateButtonVisibility" testid="create-duplicate-record-button" iconName="clone"
+      title="Duplicate" (onClick)="createDuplicateRecord('Duplicate',0)"></command-button>
     <reg-header testid="templates-heading" id="templates-heading">
       Duplicate Resolution
     </reg-header>
     <reg-alert qaid="qa-alert" testid="alert-error" status='error'>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true" (click)="dismissAlert()">×</span></button>
-      <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already exists. Review the list of conflicts and choose a duplicate action.</p>
+      <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already
+        exists. Review the list of conflicts and choose a duplicate action.</p>
     </reg-alert>
-    <dx-data-grid [columns]="columns" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dx-data-grid [columns]="columns" [noDataText]="noDataText" [dataSource]="dataStore" rowAlternationEnabled="true"
+      [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-sorting mode="single"></dxo-sorting>
-      <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxo-scrolling mode="infinite"></dxo-scrolling>
-      <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+      <dxo-load-panel [enabled]="false"></dxo-load-panel>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>
+      <dxo-paging [pageSize]="20"></dxo-paging>
+      <dxo-sorting mode="single"></dxo-sorting>
+      <dxo-filter-row [visible]="false"></dxo-filter-row>
+      <dxo-search-panel [visible]="false" placeholder="Search..."></dxo-search-panel>
       <dxo-selection mode="single"></dxo-selection>
       <div *dxTemplate="let data of 'toolbarContents'">
         <div class="count tan pull-left">
           <div class="count-type">Resolving Component</div>
           <div class="count-type-amount border-tan round border-2 padding-xs">
-            {{ datasource ? datasource.length : '' }}
+            {{ duplicateRecordCount }}
             <i class="fa fa-book" aria-hidden="true"></i>
           </div>
         </div>
@@ -29,27 +37,44 @@
         <a class="fa fa-expand grid-icon" aria-hidden="true" title='Show detail view' (click)="edit(data)"></a>&nbsp;
       </div>
       <div *dxTemplate="let data of 'cellTemplate'">
-        <reg-structure-image [src]="data.value" width="215" ></reg-structure-image>
+        <reg-structure-image [src]="data.value" width="215"></reg-structure-image>
       </div>
       <div *dxTemplate="let data of 'resolutionOptionTemplate'">
-        <a *ngIf="setButtonVisibility('AddBatch', data.value)" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch', data.value)" title={{addBatchButtonTitle}}></a>&nbsp;
-        <a *ngIf="setButtonVisibility('UseComponent', data.value)" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent', data.value)" title='Use Component'></a>&nbsp;
-        <a *ngIf="setButtonVisibility('UseStructure', data.value)" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure', data.value)" title='Use Structure'></a>&nbsp;
+        <a *ngIf="setButtonVisibility('AddBatch', data.value)" class="fa fa-object-ungroup grid-icon" aria-hidden="true"
+          (click)="createDuplicateRecord('AddBatch', data.value)" title={{addBatchButtonTitle}}></a>&nbsp;
+        <a *ngIf="setButtonVisibility('UseComponent', data.value)" class="fa fa-calendar-plus-o grid-icon"
+          aria-hidden="true" (click)="createDuplicateRecord('UseComponent', data.value)"
+          title='Use Component'></a>&nbsp;
+        <a *ngIf="setButtonVisibility('UseStructure', data.value)" class="fa fa-code-fork grid-icon" aria-hidden="true"
+          (click)="createDuplicateRecord('UseStructure', data.value)" title='Use Structure'></a>&nbsp;
       </div>
     </dx-data-grid>
+    <dx-load-panel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true"
+      [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="false" [closeOnOutsideClick]="false">
+    </dx-load-panel>
   </div>
   <div *ngIf="editRowIndex!=-1">
-    <command-button testid="cancel-duplicate-record-detail" iconName="backward" title="Back" (onClick)="cancel()"></command-button>
-    <command-button *ngIf="setButtonVisibility('UseStructure', currentRecord.REGNUMBER)" testid="use-structure-button" iconName="code-fork" title="Use Structure" (onClick)="createDuplicateRecord('UseStructure', currentRecord.REGNUMBER)"></command-button>
-    <command-button *ngIf="setButtonVisibility('UseComponent', currentRecord.REGNUMBER)" testid="use-component-button" iconName="calendar-plus-o" title="Use Component" (onClick)="createDuplicateRecord('UseComponent', currentRecord.REGNUMBER)"></command-button>
-    <command-button *ngIf="setButtonVisibility('AddBatch', currentRecord.REGNUMBER)" testid="add-batch-button" iconName="ungroup" title={{addBatchButtonTitle}} (onClick)="createDuplicateRecord('AddBatch', currentRecord.REGNUMBER)"></command-button>
-    <command-button *ngIf="setButtonVisibility" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord('Duplicate',0)"></command-button>
+    <command-button testid="cancel-duplicate-record-detail" iconName="backward" title="Back" (onClick)="cancel()">
+    </command-button>
+    <command-button *ngIf="setButtonVisibility('UseStructure', currentRecord.REGNUMBER)" testid="use-structure-button"
+      iconName="code-fork" title="Use Structure"
+      (onClick)="createDuplicateRecord('UseStructure', currentRecord.REGNUMBER)"></command-button>
+    <command-button *ngIf="setButtonVisibility('UseComponent', currentRecord.REGNUMBER)" testid="use-component-button"
+      iconName="calendar-plus-o" title="Use Component"
+      (onClick)="createDuplicateRecord('UseComponent', currentRecord.REGNUMBER)"></command-button>
+    <command-button *ngIf="setButtonVisibility('AddBatch', currentRecord.REGNUMBER)" testid="add-batch-button"
+      iconName="ungroup" title={{addBatchButtonTitle}}
+      (onClick)="createDuplicateRecord('AddBatch', currentRecord.REGNUMBER)"></command-button>
+    <command-button *ngIf="setButtonVisibility" testid="create-duplicate-record-button" iconName="clone"
+      title="Duplicate" (onClick)="createDuplicateRecord('Duplicate',0)"></command-button>
     <reg-header testid="templates-heading" id="templates-heading" isMenu="false">
       Registry Record:{{currentRecord.REGNUMBER}}
     </reg-header>
-    <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+    <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true"
+      showScrollbar="true">
       <span class="form-inline">
-        <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" displayMode="view" [activated]="true"></reg-record-detail-base>
+        <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" displayMode="view"
+          [activated]="true"></reg-record-detail-base>
       </span>
     </dx-scroll-view>
   </div>

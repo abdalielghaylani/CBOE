@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
@@ -27,13 +27,16 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private gridHeight: number;
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
-  private datasource: any[];
+  private duplicateRecordCount;
   private currentRecord: { ID: number, REGNUMBER: string };
-  private duplicateActions: any[];
+  private duplicateActions = [];
   private duplicateButtonVisibility: boolean = false;
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   @Input() sourceRecordIsTemporary: boolean;
+  private dataStore: CustomStore;
+  private noDataText: string;
+  private loadIndicatorVisible = false;
 
   private columns = [{
     cellTemplate: 'commandCellTemplate',
@@ -126,8 +129,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
-      this.datasource = e.DuplicateRecords;
-      this.duplicateActions = e.DuplicateActions;
+      this.duplicateRecordCount = e.TotalDuplicateCount;
+      this.dataStore = this.createCustomStore(this);
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
@@ -193,6 +196,51 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   cancelDuplicateResolution(e) {
     this.onClose.emit('cancel');
+  }
+
+  setProgressBarVisibility(visible: boolean) {
+    this.loadIndicatorVisible = visible;
+    this.changeDetector.markForCheck();
+  }
+
+  private createCustomStore(ref: any) {
+    return new CustomStore({
+      load: function (loadOptions) {
+        let deferred = jQuery.Deferred();
+        if (loadOptions.take) {
+          let sortCriteria, sortOrder;
+          if (loadOptions.sort != null) {
+            sortOrder = (loadOptions.sort[0].desc === false) ? 'ASC' : 'DESC';
+            sortCriteria = loadOptions.sort[0].selector;
+          }
+          let url = `${apiUrlPrefix}get-duplicate-records`;
+          let data = JSON.parse(sessionStorage.getItem('registerRecordData'));
+          if (loadOptions.skip <= 20) {
+            ref.setProgressBarVisibility(true);
+          }
+          data.skip = loadOptions.skip;
+          data.count = loadOptions.take != null ? loadOptions.take : 20;
+          data.sort = sortCriteria;
+          data.sortOrder = sortOrder;
+          ref.http.post(url, data)
+            .toPromise()
+            .then(result => {
+              let response = result.json();
+              ref.noDataText = ref.duplicateRecordCount === 0 ? 'Search returned no hit!' : '';
+              ref.setProgressBarVisibility(false);
+              Array.prototype.push.apply(ref.duplicateActions, response.data.DuplicateActions);
+              deferred.resolve(response.data.DuplicateRecords
+                , { totalCount: ref.duplicateRecordCount });
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
+              deferred.reject(message);
+              ref.setProgressBarVisibility(false);
+            });
+        }
+        return deferred.promise();
+      }
+    });
   }
 
 }

@@ -424,11 +424,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         protected static string CleanupSortTerm(RecordColumn[] columns, string sortTerm)
         {
             var desc = sortTerm.EndsWith(sortDesc);
+            var asc = sortTerm.EndsWith(sortAsc);
             var t = sortTerm.Replace(sortDesc, string.Empty).Replace(sortAsc, string.Empty).Trim();
             var dc = columns.FirstOrDefault(c => c.Definitions.Equals(t));
             if (dc == null) dc = columns.FirstOrDefault(c => c.Label != null && c.Label.Equals(t));
-            t = dc == null ? string.Empty : dc.Definitions;
+            if (dc == null)
+                t = string.Empty;
+            else
+            {
+                // use alias label in sort term if available
+                if (!string.IsNullOrEmpty(dc.Label))
+                    t = dc.Label;
+                else
+                    t = dc.Definitions;
+            }
             if (desc) t += sortDesc;
+            if (asc) t += sortAsc;
             return t;
         }
 

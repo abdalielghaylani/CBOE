@@ -167,6 +167,7 @@
     <Compile Include="Models\DuplicateActionData.cs" />
     <Compile Include="Models\BatchData.cs" />
     <Compile Include="Models\ExportTemplateData.cs" />
+	<Compile Include="Models\FetchDuplicatesOnDemandOptions.cs" />
     <Compile Include="Models\HitlistExportData.cs" />
     <Compile Include="Models\MoveBatchData.cs" />
     <Compile Include="Models\RecordData.cs" />
