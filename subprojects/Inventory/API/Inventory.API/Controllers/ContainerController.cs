@@ -11,7 +11,10 @@ using PerkinElmer.COE.Inventory.API.Code;
 using PerkinElmer.COE.Inventory.Model;
 using PerkinElmer.COE.Inventory.DAL;
 using Swashbuckle.Swagger.Annotations;
+using Swashbuckle.SwaggerUi;
 using PerkinElmer.COE.Inventory.API.Filters;
+using iTextSharp.text.pdf;
+using System.Drawing;
 
 namespace PerkinElmer.COE.Inventory.API.Controllers
 {
@@ -59,27 +62,27 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <summary>
         /// Get container by internal id
         /// </summary>
-        /// <param name="id">Internal id</param>
+        /// <param name="containerId">The internal id of the container</param>
         /// <returns>Container</returns>
         [HttpGet]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers/{id:int}")]
+        [Route(Consts.apiPrefix + "containers/{containerId:int}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetContainerById(int id)
+        public async Task<IHttpActionResult> GetContainerById(int containerId)
         {
             HttpResponseMessage responseMessage;
             try
             {
                 var statusCode = HttpStatusCode.OK;
 
-                ContainerData container = containerDAL.GetContainerById(id);
+                ContainerData container = containerDAL.GetContainerById(containerId);
                 if (container == null)
-                    throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", id));
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", containerId));
 
                 responseMessage = Request.CreateResponse(statusCode, container);
             }
@@ -94,7 +97,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <summary>
         /// Get containers by location id
         /// </summary>
-        /// <param name="locationId">Internal location id</param>
+        /// <param name="locationId">Internal location id of the container</param>
         /// <returns>List of Containers</returns>
         [HttpGet]
         [ApiKeyAuthenticationFilter]
@@ -113,7 +116,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
                 var statusCode = HttpStatusCode.OK;
 
                 List<ContainerData> containers = containerDAL.GetContainersByLocationId(locationId);
-                
+
                 responseMessage = Request.CreateResponse(statusCode, containers);
             }
             catch (Exception ex)
@@ -127,7 +130,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <summary>
         /// Get container by barcode
         /// </summary>
-        /// <param name="barcode">Barcode</param>
+        /// <param name="barcode">The container barcode</param>
         /// <returns>Container</returns>
         [HttpGet]
         [ApiKeyAuthenticationFilter]
@@ -195,12 +198,12 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <summary>
         /// Update a container
         /// </summary>
-        /// <param name="containerId"></param>
-        /// <param name="container"></param>
+        /// <param name="containerId">The container id to be updated</param>
+        /// <param name="container">The container fields to be updated</param>
         /// <returns>Container</returns>
         [HttpPut]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers")]
+        [Route(Consts.apiPrefix + "containers/{containerId:int}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
@@ -233,7 +236,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <returns>Container</returns>
         [HttpPut]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers/remainingQuantity")]
+        [Route(Consts.apiPrefix + "containers/remainingQuantity/{containerId:int}")]
         [SwaggerOperation("UpdateContainerRemainingQuantity")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
@@ -266,7 +269,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <returns>Container</returns>
         [HttpPut]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "container/moveContainer")]
+        [Route(Consts.apiPrefix + "container/moveContainer/{containerId:int}")]
         [SwaggerOperation("MoveContainer")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
@@ -299,7 +302,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <returns>Container</returns>
         [HttpPut]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers/status")]
+        [Route(Consts.apiPrefix + "containers/status/{containerId:int}")]
         [SwaggerOperation("UpdateContainerStatus")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
@@ -451,26 +454,71 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <summary>
         /// Delete container
         /// </summary>
-        /// <param name="id">The container id to be deleted</param>
+        /// <param name="containerId">The container id to be deleted</param>
         /// <returns>Container</returns>
         [HttpDelete]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers/{id:int}")]
+        [Route(Consts.apiPrefix + "containers/{containerId:int}")]
         [SwaggerOperation("DeleteContainer")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteContainer(int id)
+        public async Task<IHttpActionResult> DeleteContainer(int containerId)
         {
             HttpResponseMessage responseMessage;
             try
             {
                 var statusCode = HttpStatusCode.OK;
 
-                containerDAL.DeleteContainer(id);
+                containerDAL.DeleteContainer(containerId);
 
                 responseMessage = Request.CreateResponse(statusCode, "The container was deleted successfully!");
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        /// <summary>
+        /// Get barcode image for the container
+        /// </summary>
+        /// <param name="containerId">The internal id of the container</param>
+        /// <returns>Barcode imagein PNG format</returns>
+        [HttpGet]
+        [ApiKeyAuthenticationFilter]
+        [Route(Consts.apiPrefix + "containers/barcode/{containerId:int}")]
+        [SwaggerOperation("Containers")]
+        [SwaggerResponse(200, type: typeof(byte[]))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetPrintableBarcode(int containerId)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                ContainerData container = containerDAL.GetContainerById(containerId);
+                if (container == null)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the container, {0}", containerId));
+
+                var barcode = new Barcode128();
+                barcode.Code = container.Barcode;
+
+                var imageBarcode = barcode.CreateDrawingImage(Color.Black, Color.White);
+
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    imageBarcode.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+
+                    responseMessage = new HttpResponseMessage(HttpStatusCode.OK);
+                    responseMessage.Content = new StreamContent(new System.IO.MemoryStream(stream.ToArray()));
+                    responseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
+                }
             }
             catch (Exception ex)
             {

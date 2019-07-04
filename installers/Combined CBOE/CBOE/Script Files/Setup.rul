@@ -824,7 +824,7 @@ end;
 function InstallCDJS(hMSI)
     // To Do:  Declare local variables.
     STRING  szVirtualName,strProgram,strInstallDir,strMSI,strWebSite,strCBOE,strComuser,strAppPass,strMSICBOE,strMSICDJS;
-    STRING strCDJSParameter,strCDJS;
+    STRING strCDJSParameter,strCDJS,strServerPort,strServerVPath,strFileBrowse,strServerHName,strServerSSL,strServerType;
     NUMBER nBuf;
  begin            
    
@@ -835,10 +835,22 @@ function InstallCDJS(hMSI)
         LongPathToQuote(strInstallDir,TRUE);                  
         strMSICDJS=strMSI + "\\ChemDraw-JS-Setup-18.1.exe";                 
         LongPathFromShortPath(strMSICDJS);
-        LongPathToQuote(strMSICDJS,TRUE);         
-        strCDJSParameter="\""+"/qb SERVER_PORT=80 SERVER_VIRPATH=cdjs";   
-        strCDJS= " /s /v" + strCDJSParameter;      
-        LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);    
+        LongPathToQuote(strMSICDJS,TRUE);    
+        MsiGetProperty(hMSI,"SERVER_PORT",strServerPort,nBuf);
+        MsiGetProperty(hMSI,"SERVER_VIRPATH",strServerVPath,nBuf);
+        MsiGetProperty(hMSI,"IS_BROWSE_FILEBROWSED",strFileBrowse,nBuf);   
+        MsiGetProperty(hMSI,"SERVER_HOST_NAME",strServerHName,nBuf);
+        MsiGetProperty(hMSI,"SERVER_TYPE",strServerType,nBuf);
+        MsiGetProperty(hMSI,"SERVER_SSL_PWD",strServerSSL,nBuf);
+        if strServerType=="http" then
+              strCDJSParameter="\""+"/qb SERVER_PORT="+strServerPort +" SERVER_VIRPATH="+strServerVPath;   
+              strCDJS= " /s /v" + strCDJSParameter;      
+              LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);    
+        else  
+              strCDJSParameter="\""+"/qb SERVER_PORT="+strServerPort +" SERVER_VIRPATH="+strServerVPath +" SERVER_HOST_NAME="+strServerHName + "  SERVER_SSL_PATH="+strFileBrowse +" SERVER_TYPE="+strServerType +" SERVER_SSL_PWD="+strServerSSL;  
+              strCDJS= " /s /v" + strCDJSParameter; 
+              LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);  
+        endif;
  end;
 
 

@@ -1303,11 +1303,20 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
             string exceptionMessage = string.Empty;
             this._addInsAssemblyList = new AssemblyList();
 
-            AppDomain domain = AppDomain.CurrentDomain;
+            string companyName = ((AssemblyCompanyAttribute)Attribute.GetCustomAttribute
+                (typeof(ConfigurationRegistryRecord).Assembly, typeof(AssemblyCompanyAttribute), false)).Company.ToUpper();
+            Assembly[] domainAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+            List<Assembly> newList = new List<Assembly>();
+            AssemblyCompanyAttribute companyAttrib = null;
+            for (int index = 0; index < domainAssemblies.Length; index++)
+            {
+                companyAttrib = ((AssemblyCompanyAttribute)Attribute.GetCustomAttribute(domainAssemblies[index], typeof(AssemblyCompanyAttribute), false));
+                if (companyAttrib != null)
+                    if (companyAttrib.Company.ToString().ToUpper().Equals(companyName))
+                        newList.Add(domainAssemblies[index]);
+            }
 
-            Assembly[] asseblyList = domain.GetAssemblies();
-
-            foreach (Assembly ass in asseblyList)
+            foreach (Assembly ass in newList)
             {
                 //Temporary try catch to get more information about the exception
                 try
@@ -1333,6 +1342,7 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
                                     addInAssembly = new AddInAssembly(ass);
 
                                     _addInsAssemblyList.Assemblies.Add(addInAssembly);
+                                    break;
                                 }
                             }
                         }

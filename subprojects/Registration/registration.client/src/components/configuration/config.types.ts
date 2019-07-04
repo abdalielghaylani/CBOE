@@ -200,15 +200,6 @@ export const CONFIG_FORMS_COLUMNS = [
         }
       ]
   },
-  {
-    dataField: 'controlType',
-    cellTemplate: 'controlTypeTemplate',
-    editCellTemplate: 'editControlTypeTemplate'
-  },
-  {
-    dataField: 'cssClass',
-    editCellTemplate: 'editCssClassTemplate'
-  },
   { dataField: 'visible' }
 ];
 

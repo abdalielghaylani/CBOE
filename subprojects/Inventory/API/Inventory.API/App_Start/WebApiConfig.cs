@@ -28,6 +28,13 @@ namespace PerkinElmer.COE.Inventory.API
             config.AddApiVersioning();
 
             config.Routes.MapHttpRoute(
+            name: "Swagger UI",
+            routeTemplate: "",
+            defaults: null,
+            constraints: null,
+            handler: new Swashbuckle.Application.RedirectHandler(Swashbuckle.Application.SwaggerDocsConfig.DefaultRootUrlResolver, "swagger/ui/index"));
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/v{version:apiVersion}/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

@@ -17,6 +17,7 @@ pipeline
         PUBLISH_PATH = "\\\\Amercmbdevfs01.perkinelmer.net\\Installers\\Development\\ChemBioOfficeEnterprise\\${PROD_VERSION}"
         STAGE_INSTALLER="Staging"
         NOTIFY_LIST = "jeeva.Sayan@PERKINELMER.COM"
+		DEFENDER = '"C:\\Program Files\\Windows Defender\\MpCmdRun.exe"'
     }
     options
     {
@@ -34,6 +35,20 @@ pipeline
                 """
             }
         }
+		stage('Scan Virus')
+		{
+		    when
+			{
+			    expression
+                {
+                    return env.BRANCH_NAME.startsWith('release/v') || env.BRANCH_NAME == "master"
+                }
+            }
+			steps
+			{
+				bat "${DEFENDER} -Scan -ScanType 3 -File ${WORKSPACE}"
+			}
+		}
         stage ('CBOE-Build')
         {
             steps
@@ -147,10 +162,10 @@ pipeline
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
             deleteDir()
         }
-        //success 
-       // {
-            //slackSend (color: 'GREEN', message: "SUCCESS: Job '${env.JOB_NAME} [${FULL_VERSION}]' (${env.BUILD_URL}) (${env.PUBLISH_PATH})",channel: "#cboe-qa-dev")
-       // }
+        success 
+        {
+            slackSend (color: 'GREEN', message: "SUCCESS: Job '${env.JOB_NAME} [${FULL_VERSION}]' (${env.BUILD_URL}) (${env.PUBLISH_PATH})",channel: "#cboe-devops")
+        }
     }
 }
 

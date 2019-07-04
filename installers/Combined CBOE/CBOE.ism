@@ -256,6 +256,7 @@
 		<col key="yes" def="s72">Name</col>
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
+		<row><td>FileBrowse.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\FileBrowse.dll</td></row>
 		<row><td>ISCOMSRV.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\iscomsrv.dll</td></row>
 		<row><td>ISLockPermissions.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\ISLockPermissions.dll</td></row>
 		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
@@ -323,6 +324,8 @@
 		<col def="L64">Text</col>
 		<row><td>ADMINUSERNAME</td><td>2</td><td>Value</td><td/></row>
 		<row><td>IPADDRESS</td><td>3</td><td>Value</td><td>##ID_STRING17##</td></row>
+		<row><td>SERVER_TYPE</td><td>1</td><td>http</td><td>##SERVER_TYPE_HTTP##</td></row>
+		<row><td>SERVER_TYPE</td><td>2</td><td>https</td><td>##SERVER_TYPE_HTTPS##</td></row>
 		<row><td>WEBSITE</td><td>1</td><td>Value</td><td/></row>
 	</table>
 
@@ -787,6 +790,29 @@
 		<row><td>ReadyToRemove</td><td>DlgText2</td><td>Text</td><td>21</td><td>102</td><td>330</td><td>24</td><td>3</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>ReadyToRemove</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsVerifyRemoveAllDlg_RemoveProgram##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>8388611</td><td/><td>##IDS__IsVerifyRemoveAllDlg_Remove##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##NEW_STRING11##</td><td>Next</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Banner</td><td>Bitmap</td><td>1</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td>NewBinary1</td></row>
+		<row><td>SettingCDD</td><td>Branding1</td><td>Text</td><td>4</td><td>229</td><td>50</td><td>13</td><td>3</td><td/><td>{&amp;MSSWhiteSerif8}InstallShield</td><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Branding2</td><td>Text</td><td>3</td><td>228</td><td>50</td><td>13</td><td>65537</td><td/><td>{&amp;Tahoma8}InstallShield</td><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Canel</td><td>PushButton</td><td>300</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##NEW_STRING13##</td><td>Edit_SSLPath</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>ComboBox</td><td>40</td><td>70</td><td>65</td><td>34</td><td>196611</td><td>SERVER_TYPE</td><td/><td>Edit_hostName</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Edit_SSLPath</td><td>Edit</td><td>40</td><td>155</td><td>180</td><td>17</td><td>5</td><td>IS_BROWSE_FILEBROWSED</td><td/><td>ComboBox_server_type</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Edit_hostName</td><td>Edit</td><td>110</td><td>70</td><td>110</td><td>17</td><td>7</td><td>SERVER_HOST_NAME</td><td/><td>Edit_serverPort</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Edit_serverPort</td><td>Edit</td><td>40</td><td>110</td><td>65</td><td>17</td><td>7</td><td>SERVER_PORT</td><td/><td>Edit_virtualDirectory</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Edit_sslPwd</td><td>Edit</td><td>40</td><td>195</td><td>180</td><td>17</td><td>2097159</td><td>SERVER_SSL_PWD</td><td/><td>Text_sslCert</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Edit_virtualDirectory</td><td>Edit</td><td>110</td><td>110</td><td>110</td><td>17</td><td>5</td><td>SERVER_VIRPATH</td><td/><td>PushButton_ssl</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Line1</td><td>Line</td><td>1</td><td>44</td><td>374</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##NEW_STRING12##</td><td>Canel</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>PushButton</td><td>226</td><td>155</td><td>66</td><td>17</td><td>8388611</td><td/><td>##NEW_STRING62##</td><td>Edit_sslPwd</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>TextDescription</td><td>Text</td><td>25</td><td>23</td><td>292</td><td>25</td><td>65539</td><td/><td>##SETTING_CDD##</td><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>TextTitle</td><td>Text</td><td>17</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##SETTING_WEB_TITLE##</td><td/><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_hostName</td><td>Text</td><td>112</td><td>55</td><td>87</td><td>13</td><td>65539</td><td/><td>##TEXT_HOST_NAME##</td><td>Text_serverPort</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_serverPort</td><td>Text</td><td>42</td><td>94</td><td>48</td><td>10</td><td>3</td><td/><td>##LABEL_PORT##</td><td>Back</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_serverType</td><td>Text</td><td>42</td><td>55</td><td>55</td><td>13</td><td>65539</td><td/><td>##NEW_STRING60##</td><td>Text_sslPwd</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Text</td><td>42</td><td>140</td><td>73</td><td>16</td><td>65539</td><td/><td>##LABEL_SSL_CERT##</td><td>Text_serverType</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Text</td><td>42</td><td>180</td><td>60</td><td>12</td><td>65539</td><td/><td>##LABEL_SSL_PWD##</td><td>Text_virtualDirectory</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_virtualDirectory</td><td>Text</td><td>112</td><td>95</td><td>87</td><td>13</td><td>65539</td><td/><td>##LABEL_VIRTUAL_DIRECTORY##</td><td>Text_hostName</td><td/><td/><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_BACK##</td><td>Finish</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Cancel</td><td>PushButton</td><td>301</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_CANCEL##</td><td>Back</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>CheckShowMsiLog</td><td>CheckBox</td><td>151</td><td>172</td><td>10</td><td>9</td><td>2</td><td>ISSHOWMSILOG</td><td/><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
@@ -981,6 +1007,18 @@
 		<row><td>ReadyToInstall</td><td>InstallPerMachine</td><td>Show</td><td>VersionNT &gt;= "601" AND ISSupportPerUser AND NOT Installed</td></row>
 		<row><td>ReadyToInstall</td><td>InstallPerUser</td><td>Hide</td><td>VersionNT &lt; "601" OR NOT ISSupportPerUser OR Installed</td></row>
 		<row><td>ReadyToInstall</td><td>InstallPerUser</td><td>Show</td><td>VersionNT &gt;= "601" AND ISSupportPerUser AND NOT Installed</td></row>
+		<row><td>SettingCDD</td><td>Edit_SSLPath</td><td>Hide</td><td>SERVER_TYPE="http"</td></row>
+		<row><td>SettingCDD</td><td>Edit_SSLPath</td><td>Show</td><td>SERVER_TYPE="https"</td></row>
+		<row><td>SettingCDD</td><td>Edit_sslPwd</td><td>Hide</td><td>SERVER_TYPE="http"</td></row>
+		<row><td>SettingCDD</td><td>Edit_sslPwd</td><td>Show</td><td>SERVER_TYPE="https"</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>Disable</td><td>NOT ( SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535 )</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>Enable</td><td> SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535</td></row>
+		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>Hide</td><td>SERVER_TYPE="http"</td></row>
+		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>Show</td><td>SERVER_TYPE="https"</td></row>
+		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Hide</td><td>SERVER_TYPE="http"</td></row>
+		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Show</td><td>SERVER_TYPE="https"</td></row>
+		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Hide</td><td>SERVER_TYPE="http"</td></row>
+		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Show</td><td>SERVER_TYPE="https"</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>Default</td><td>UpdateStarted</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>Disable</td><td>NOT UpdateStarted</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>Enable</td><td>UpdateStarted</td></row>
@@ -1098,8 +1136,8 @@
 		<row><td>CreateUser</td><td>Next</td><td>DoAction</td><td>USERSETUP</td><td>BUILDAUSER="True" AND CREATENEWUSER = "True"</td><td>4</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>DoAction</td><td>ValidateUser</td><td>CREATENEWUSER = "False"</td><td>2</td></row>
 		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>PasswordMismatch</td><td>PASSWORDMISMATCH = "True"</td><td>6</td></row>
-		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>Installed And _IsMaintenance = "Change" And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>11</td></row>
-		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>NOT Installed And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>9</td></row>
+		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>Installed And _IsMaintenance = "Change" And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>11</td></row>
+		<row><td>CreateUser</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>NOT Installed And PASSWORDMISMATCH = "False" AND (USERBUILT="True" OR BUILDAUSER="True")</td><td>9</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed</td><td>1</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>SetupType</td><td>NOT Installed</td><td>2</td></row>
 		<row><td>CustomSetup</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -1182,10 +1220,10 @@
 		<row><td>PatchWelcome</td><td>Next</td><td>EndDialog</td><td>Return</td><td>1</td><td>3</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>ReinstallMode</td><td>omus</td><td>PATCH And REINSTALLMODE=""</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>4</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SettingCDD</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>2</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>NewDialog</td><td>OutOfSpace</td><td>OutOfNoRbDiskSpace = 1</td><td>1</td></row>
@@ -1214,6 +1252,15 @@
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType1]</td><td>Uninstalling</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType2]</td><td>uninstalled</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>[ProgressType3]</td><td>uninstalls</td><td>1</td><td>0</td></row>
+		<row><td>SettingCDD</td><td>Back</td><td>NewDialog</td><td>CreateUser</td><td>Not Installed</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>SettingCDD</td><td>Back</td><td>[IS_BROWSE_FILEBROWSED]</td><td>[SERVER_SSL_PATH]</td><td>1</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>Canel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1 </td><td>1</td></row>
+		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>443</td><td>SERVER_TYPE="https"</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>81</td><td>SERVER_TYPE="http"</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>[SERVER_SSL_PATH]</td><td>[IS_BROWSE_FILEBROWSED]</td><td>1</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>DoAction</td><td>SelectPFX</td><td>1</td><td>1</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>EndDialog</td><td>Return</td><td>1</td><td>2</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>[Suspend]</td><td>{}</td><td>1</td><td>1</td></row>
 		<row><td>SetupCompleteError</td><td>Cancel</td><td>EndDialog</td><td>Return</td><td>1</td><td>2</td></row>
@@ -2990,6 +3037,7 @@ END FUNCTION</td><td/><td/></row>
 		<row><td>MachineName</td><td>38</td><td/><td>Dim WSH  
 Set WSH = CreateObject("WScript.Shell")  
 Session.Property("MACHINENAME") =  WSH.RegRead("HKLM\SYSTEM\CurrentControlSet\Control\Computername\ActiveComputername\Computername")  
+Session.Property("SERVER_HOST_NAME")=Session.Property("MACHINENAME")
 Set WSH = Nothing  </td><td/><td/></row>
 		<row><td>NewCustomAction1</td><td>34</td><td/><td/><td/><td/></row>
 		<row><td>RegisterCowsUtilsDll</td><td>38</td><td/><td>On error resume next
@@ -3721,6 +3769,7 @@ shell.run "adsutil.vbs set W3SVC/1/Root/MimeMap "".sdf,chemical/x-mdl-sdfile"""
 'shell.run("%comspec% /c InstallServices.bat"),Hidden,True
 Set shell = Nothing   
 </td><td/><td/></row>
+		<row><td>SelectPFX</td><td>1</td><td>FileBrowse.dll</td><td>FileBrowse</td><td/><td/></row>
 		<row><td>ServerDrive</td><td>38</td><td/><td> Dim DirPath
  
  DirPath = Session.Property("IISROOTFOLDER")  
@@ -4125,6 +4174,7 @@ Set shell = Nothing
 		<row><td>PatchWelcome</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS__IsPatchDlg_PatchWizard##</td><td>Next</td><td>Next</td><td>Cancel</td><td>Patch Panel</td><td/><td>0</td><td/></row>
 		<row><td>ReadyToInstall</td><td>50</td><td>50</td><td>374</td><td>266</td><td>35</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>InstallNow</td><td>InstallNow</td><td>Cancel</td><td>Ready to Install</td><td/><td>0</td><td/></row>
 		<row><td>ReadyToRemove</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>RemoveNow</td><td>RemoveNow</td><td>Cancel</td><td>Verify Remove</td><td/><td>0</td><td/></row>
+		<row><td>SettingCDD</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##NEW_STRING17##</td><td>Back</td><td/><td>Canel</td><td/><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>Finish</td><td>Finish</td><td>Finish</td><td>Fatal Error</td><td/><td>0</td><td/></row>
 		<row><td>SetupCompleteSuccess</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>OK</td><td>OK</td><td>OK</td><td>Exit</td><td/><td>0</td><td/></row>
 		<row><td>SetupError</td><td>50</td><td>50</td><td>270</td><td>110</td><td>65543</td><td>##IDS__IsErrorDlg_InstallerInfo##</td><td>ErrorText</td><td>O</td><td>C</td><td>Error</td><td/><td>0</td><td/></row>
@@ -9501,15 +9551,19 @@ Set shell = Nothing
 		<row><td>ID_STRING98</td><td>1033</td><td>sample.ini</td><td>0</td><td/><td>-1054893369</td></row>
 		<row><td>ID_STRING99</td><td>1033</td><td>BASE_CONNECTION</td><td>0</td><td/><td>-1054893369</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>337537312</td></row>
+		<row><td>LABEL_PORT</td><td>1033</td><td>Port:</td><td>0</td><td/><td>883107305</td></row>
+		<row><td>LABEL_SSL_CERT</td><td>1033</td><td>SSL certificate:</td><td>0</td><td/><td>1956899282</td></row>
+		<row><td>LABEL_SSL_PWD</td><td>1033</td><td>SSL password:</td><td>0</td><td/><td>-1809594710</td></row>
+		<row><td>LABEL_VIRTUAL_DIRECTORY</td><td>1033</td><td>Virtual path:</td><td>0</td><td/><td>1956869586</td></row>
 		<row><td>NEW_STRING1</td><td>1033</td><td>{&amp;ArialBlue10}NOTE: If you are performing this installation via Remote Desktop access to the server you must ensure to connect via the "console session".  To acomplish this, use the following syntax in the Remote Desktop "Computer name" box:                                                                                             YourServerName /console                                    YourServerName /admin                                       The installer may rollback after completion if not executed under the console session!</td><td>0</td><td/><td>1629450756</td></row>
 		<row><td>NEW_STRING10</td><td>1033</td><td>IP Address (Required):</td><td>0</td><td/><td>1931225186</td></row>
-		<row><td>NEW_STRING11</td><td>1033</td><td>Port No. (Required) :</td><td>0</td><td/><td>1931262050</td></row>
-		<row><td>NEW_STRING12</td><td>1033</td><td>Is it a Domain User?</td><td>0</td><td/><td>1285293418</td></row>
-		<row><td>NEW_STRING13</td><td>1033</td><td/><td>0</td><td/><td>1931266178</td></row>
+		<row><td>NEW_STRING11</td><td>1033</td><td>&lt; &amp;Back</td><td>0</td><td/><td>-2094572754</td></row>
+		<row><td>NEW_STRING12</td><td>1033</td><td>&amp;Next &gt;</td><td>0</td><td/><td>-2094548178</td></row>
+		<row><td>NEW_STRING13</td><td>1033</td><td>Cancel</td><td>0</td><td/><td>-2094585010</td></row>
 		<row><td>NEW_STRING14</td><td>1033</td><td/><td>0</td><td/><td>1931253954</td></row>
 		<row><td>NEW_STRING15</td><td>1033</td><td>{&amp;MSSansBold8}License Agreement</td><td>0</td><td/><td>1537352677</td></row>
 		<row><td>NEW_STRING16</td><td>1033</td><td>Please read the following license agreement carefully.</td><td>0</td><td/><td>1537401829</td></row>
-		<row><td>NEW_STRING17</td><td>1033</td><td>{&amp;MSSansBold8}WebSite Informations</td><td>0</td><td/><td>1805791665</td></row>
+		<row><td>NEW_STRING17</td><td>1033</td><td>[ProductName] - InstallShield Wizard</td><td>0</td><td/><td>329751525</td></row>
 		<row><td>NEW_STRING18</td><td>1033</td><td>Please enter website informations</td><td>0</td><td/><td>1805789649</td></row>
 		<row><td>NEW_STRING19</td><td>1033</td><td>Yes</td><td>0</td><td/><td>606428903</td></row>
 		<row><td>NEW_STRING2</td><td>1033</td><td>Install Web/Virtual Files to:</td><td>0</td><td/><td>1495214935</td></row>
@@ -9522,6 +9576,8 @@ Set shell = Nothing
 		<row><td>NEW_STRING4</td><td>1033</td><td>&amp;Change...</td><td>0</td><td/><td>1495214935</td></row>
 		<row><td>NEW_STRING5</td><td>1033</td><td>Oracle Service Name: (Required)</td><td>0</td><td/><td>1495214935</td></row>
 		<row><td>NEW_STRING6</td><td>1033</td><td>Create new Website</td><td>0</td><td/><td>1394441621</td></row>
+		<row><td>NEW_STRING60</td><td>1033</td><td>Type:</td><td>0</td><td/><td>-1809591062</td></row>
+		<row><td>NEW_STRING62</td><td>1033</td><td>Select...</td><td>0</td><td/><td>-1809588502</td></row>
 		<row><td>NEW_STRING7</td><td>1033</td><td>Select existing WebSite(Recommended)</td><td>0</td><td/><td>1394470293</td></row>
 		<row><td>NEW_STRING8</td><td>1033</td><td>Select type User:</td><td>0</td><td/><td>1285303562</td></row>
 		<row><td>NEW_STRING84</td><td>1033</td><td>[ProductName] - InstallShield Wizard</td><td>0</td><td/><td>328669356</td></row>
@@ -9540,6 +9596,11 @@ Set shell = Nothing
 		<row><td>NEW_STRING96</td><td>1033</td><td>{20}</td><td>0</td><td/><td>328694544</td></row>
 		<row><td>NEW_STRING97</td><td>1033</td><td>Confirm Password:</td><td>0</td><td/><td>328663856</td></row>
 		<row><td>NEW_STRING98</td><td>1033</td><td>{20}</td><td>0</td><td/><td>328678224</td></row>
+		<row><td>SERVER_TYPE_HTTP</td><td>1033</td><td>http</td><td>0</td><td/><td>-1809609430</td></row>
+		<row><td>SERVER_TYPE_HTTPS</td><td>1033</td><td>https</td><td>0</td><td/><td>-1809595062</td></row>
+		<row><td>SETTING_CDD</td><td>1033</td><td>Specify a service binding and a virtual path.</td><td>0</td><td/><td>1956890098</td></row>
+		<row><td>SETTING_WEB_TITLE</td><td>1033</td><td>{&amp;MSSansBold8}Setting ChemDraw JS</td><td>0</td><td/><td>950459382</td></row>
+		<row><td>TEXT_HOST_NAME</td><td>1033</td><td>Host name/IP address:</td><td>0</td><td/><td>1956846130</td></row>
 	</table>
 
 	<table name="ISSwidtagProperty">
@@ -9749,7 +9810,7 @@ Set shell = Nothing
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
 		<row><td>COWSOURCEDIR</td><td>Not Installed And CBOE="no"</td><td>1004</td><td/><td/></row>
 		<row><td>CSCOMMONS</td><td>Not Installed And CBOE="no"</td><td>1005</td><td/><td/></row>
-		<row><td>CheckCBOE</td><td>Not Installed</td><td>6</td><td/><td/></row>
+		<row><td>CheckCBOE</td><td>Not Installed</td><td>7</td><td/><td/></row>
 		<row><td>CheckUserAcct</td><td>CREATENEWUSER = "True" And Not Installed And INSTALLUI="No" And CBOE="no"</td><td>1009</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
@@ -9760,7 +9821,7 @@ Set shell = Nothing
 		<row><td>DeleteCDXScriptMaps</td><td>Not Installed And INSTALLWSUI="No" And CBOE="no"</td><td>1017</td><td/><td/></row>
 		<row><td>DeleteChemInvObsolote</td><td>Not Installed</td><td>6737</td><td/><td/></row>
 		<row><td>DeleteServices</td><td>VersionNT</td><td>2000</td><td>DeleteServices</td><td/></row>
-		<row><td>DisableRollback</td><td/><td>5</td><td/><td/></row>
+		<row><td>DisableRollback</td><td/><td>6</td><td/><td/></row>
 		<row><td>DuplicateFiles</td><td/><td>4210</td><td>DuplicateFiles</td><td/></row>
 		<row><td>EditAppVBSFiles</td><td>Not Installed And &amp;CBVN &gt; 2 And CBOE="no"</td><td>6602</td><td/><td/></row>
 		<row><td>EditCoeFrameworkConfig</td><td>Not Installer And Not PATCH And CBOE="no"</td><td>6608</td><td/><td/></row>
@@ -9811,6 +9872,7 @@ Set shell = Nothing
 		<row><td>InstallValidate</td><td/><td>1400</td><td>InstallValidate</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
 		<row><td>LaunchConditions</td><td>Not Installed</td><td>410</td><td>LaunchConditions</td><td/></row>
+		<row><td>MachineName</td><td>Not Installed</td><td>5</td><td/><td/></row>
 		<row><td>MigrateFeatureStates</td><td/><td>1024</td><td>MigrateFeatureStates</td><td/></row>
 		<row><td>MoveFiles</td><td/><td>3800</td><td>MoveFiles</td><td/></row>
 		<row><td>MsiConfigureServices</td><td>VersionMsi &gt;= "5.00"</td><td>5850</td><td>MSI5 MsiConfigureServices</td><td/></row>
@@ -10262,6 +10324,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>ISENABLEDWUSFINISHDIALOG</td><td/><td/></row>
 		<row><td>ISSHOWMSILOG</td><td/><td/></row>
 		<row><td>ISVROOT_PORT_NO</td><td>0</td><td/></row>
+		<row><td>IS_BROWSE_FILEBROWSED</td><td/><td/></row>
 		<row><td>IS_COMPLUS_PROGRESSTEXT_COST</td><td>##IDS_COMPLUS_PROGRESSTEXT_COST##</td><td/></row>
 		<row><td>IS_COMPLUS_PROGRESSTEXT_INSTALL</td><td>##IDS_COMPLUS_PROGRESSTEXT_INSTALL##</td><td/></row>
 		<row><td>IS_COMPLUS_PROGRESSTEXT_UNINSTALL</td><td>##IDS_COMPLUS_PROGRESSTEXT_UNINSTALL##</td><td/></row>
@@ -10335,8 +10398,13 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SADDRESS</td><td/><td/></row>
 		<row><td>SERVERNAME</td><td/><td/></row>
+		<row><td>SERVER_HOST_NAME</td><td/><td/></row>
+		<row><td>SERVER_PORT</td><td>80</td><td/></row>
+		<row><td>SERVER_SSL_PWD</td><td/><td/></row>
+		<row><td>SERVER_TYPE</td><td>http</td><td/></row>
+		<row><td>SERVER_VIRPATH</td><td>cdjs</td><td/></row>
 		<row><td>SITENUMBER</td><td>0</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;INSTALLDIR;IIS_VERSION;IISROOTFOLDER;EAPPUSERPASSWORD;CREATENEWUSER;APPUSERPASSWORD2;APPUSERNAME;existinguserrbdesc;ADMINUSERNAME;DOMAINUSER;APPUSERPASSWORD;NewProperty32334;dlgdesccreateuser;dlgtitlecreateuser;passwordeditlabel;apppwdconfirm;newuserrbdesc;NewProperty1011;usernamelable;NewProperty13;NewProperty10;NewProperty12;PORTNO;WEBSITE;IPADDRESS;NewProperty2;NewProperty3;HOSTHEADER;WEBSITEN;CREATEWEBSITE;NewProperty4;ORACLESERVICE;IEVERSION;WEBSITENAME;REGINSTALL</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;INSTALLDIR;IIS_VERSION;IISROOTFOLDER;EAPPUSERPASSWORD;CREATENEWUSER;APPUSERPASSWORD2;APPUSERNAME;existinguserrbdesc;ADMINUSERNAME;DOMAINUSER;APPUSERPASSWORD;NewProperty32334;dlgdesccreateuser;dlgtitlecreateuser;passwordeditlabel;apppwdconfirm;newuserrbdesc;NewProperty1011;usernamelable;NewProperty13;NewProperty10;NewProperty12;PORTNO;WEBSITE;IPADDRESS;NewProperty2;NewProperty3;HOSTHEADER;WEBSITEN;CREATEWEBSITE;NewProperty4;ORACLESERVICE;IEVERSION;WEBSITENAME;REGINSTALL;SERVER_TYPE;IS_BROWSE_FILEBROWSED;SERVER_PORT;SERVER_HOST_NAME;SERVER_VIRPATH;SERVER_SSL_PWD</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>USERDESC</td><td>ChemOffice WebServer Administrator Account</td><td/></row>
 		<row><td>USERDOMAIN</td><td/><td/></row>

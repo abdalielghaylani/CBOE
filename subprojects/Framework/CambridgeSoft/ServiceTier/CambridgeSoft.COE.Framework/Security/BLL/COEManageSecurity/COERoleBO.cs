@@ -769,11 +769,11 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                         {
                             if (newUsersToGrant == string.Empty)
                             {
-                                newUsersToGrant = user.UserID;
+                                newUsersToGrant = "\"" + user.UserID + "\"";
                             }
                             else
                             {
-                                newUsersToGrant = newUsersToGrant + "," + user.UserID;
+                                newUsersToGrant = newUsersToGrant + "," + "\"" + user.UserID + "\"";
                             }
                         }
                     }
@@ -813,11 +813,11 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                         {
                             if (newUsersToRevoke == string.Empty)
                             {
-                                newUsersToRevoke = user.UserID;
+                                newUsersToRevoke = "\"" + user.UserID + "\"";
                             }
                             else
                             {
-                                newUsersToRevoke = newUsersToRevoke + "," + user.UserID;
+                                newUsersToRevoke = newUsersToRevoke + "," + "\"" + user.UserID + "\"";
                             }
                         }
                     }

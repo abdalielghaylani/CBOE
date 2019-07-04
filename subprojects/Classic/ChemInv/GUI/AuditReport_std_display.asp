@@ -98,7 +98,12 @@ if docmgr_tabname = "''" then docmgr_tabname = "NULL"
 if act = "''" then act = "NULL"
 if lo_rid = "" then lo_rid = "NULL"
 if hi_rid = "" then hi_rid = "NULL"
-if column_name = "''" then column_name = "NULL"
+if column_name = "''" then 
+	column_name = "NULL"
+	bColumnNameNull = false
+elseif lcase(column_name) = "'null'" then
+	bColumnNameNull = true
+end if
 if old_value = "''" then 
 	old_value = "NULL"
 	bOldValueNull = false
@@ -161,7 +166,11 @@ if app = "inv" then
 			sql = sql & " AND v.rid = (SELECT rid from inv_compounds where compound_id =?)"
 	End if
 	if act = "'U'" then	
-		if column_name <> "NULL" then sql = sql &	" AND upper(c.column_name) LIKE NVL(upper(" & column_name & "),'%')"
+		if bColumnNameNull then
+			sql = sql & " AND upper(c.column_name) is null"		
+		elseif column_name <> "NULL" then
+			sql = sql &	" AND upper(c.column_name) LIKE NVL(upper(" & column_name & "),'%')"
+		end if
 		if bOldValueNull then
 			sql = sql & " AND upper(c.old_value) is null"		
 		elseif old_value <> "NULL" then
