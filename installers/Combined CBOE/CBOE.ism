@@ -9563,7 +9563,7 @@ Set shell = Nothing
 		<row><td>NEW_STRING14</td><td>1033</td><td/><td>0</td><td/><td>1931253954</td></row>
 		<row><td>NEW_STRING15</td><td>1033</td><td>{&amp;MSSansBold8}License Agreement</td><td>0</td><td/><td>1537352677</td></row>
 		<row><td>NEW_STRING16</td><td>1033</td><td>Please read the following license agreement carefully.</td><td>0</td><td/><td>1537401829</td></row>
-		<row><td>NEW_STRING17</td><td>1033</td><td>WebSite Informations</td><td>0</td><td/><td>-1423479578</td></row>
+		<row><td>NEW_STRING17</td><td>1033</td><td>[ProductName] - InstallShield Wizard</td><td>0</td><td/><td>329751525</td></row>
 		<row><td>NEW_STRING18</td><td>1033</td><td>Please enter website informations</td><td>0</td><td/><td>1805789649</td></row>
 		<row><td>NEW_STRING19</td><td>1033</td><td>Yes</td><td>0</td><td/><td>606428903</td></row>
 		<row><td>NEW_STRING2</td><td>1033</td><td>Install Web/Virtual Files to:</td><td>0</td><td/><td>1495214935</td></row>
