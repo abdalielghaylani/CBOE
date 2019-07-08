@@ -54,6 +54,31 @@ function ResetHeaderCheckBox(CheckBox)
          Inputs[n].checked = false;
 }
 
+function EnableMoveUserBtn(CheckBox) {
+    var TargetBaseControl =
+        document.getElementById('<%= this.UserListGrid.ClientID %>');
+    var TargetChildControl = "chkBxHeader";
+    //Get all the control of the type INPUT in the base control.
+    var Inputs = TargetBaseControl.getElementsByTagName("input");
+    var utb = igtbar_getToolbarById(userListToolBarID);
+    var item5 = utb.Items.fromKey("UsersMove");
+    var item7 = utb.Items.fromKey("UsersRemove");
+    if (CheckBox.checked) {
+        item5.setEnabled(true);
+        item7.setEnabled(true);
+        return;
+    }
+    //Checked/Unchecked all the checkBoxes in side the GridView.
+    for (var n = 0; n < Inputs.length; ++n)
+        if (Inputs[n].type == 'checkbox' && Inputs[n].checked == true) {
+            item5.setEnabled(true);
+            item7.setEnabled(true);
+            return;
+        }
+    item5.setEnabled(false);
+    item7.setEnabled(false);
+}
+
 function OnInitializeGroupToolBar(oToolBar){
     groupToolBarID = oToolBar.Id;
 }
@@ -105,17 +130,17 @@ function AfterNodeSelectionChange(treeId, nodeId) {
 			    item2.setEnabled(true);
 			    item3.setEnabled(false);
 			    item4.setEnabled(false);
-			    item5.setEnabled(true);
+			    item5.setEnabled(false);
 			    item6.setEnabled(true);
-			    item7.setEnabled(true);
+			    item7.setEnabled(false);
 			}else{
 			item.setEnabled(true);
 			item2.setEnabled(true);
 			item3.setEnabled(true);
 			item4.setEnabled(true);
-			item5.setEnabled(true);
+			item5.setEnabled(false);
 			item6.setEnabled(true);
-			item7.setEnabled(true);
+			item7.setEnabled(false);
 			}
 		}else{
 			item.setEnabled(false);
@@ -296,11 +321,11 @@ function AfterNodeSelectionChange(treeId, nodeId) {
                                     
                                     <asp:TemplateField >
                                     <ItemTemplate>
-                                    <asp:CheckBox   ID="chkSelect" runat="server" onclick="javascript: if (this.checked == false) {ResetHeaderCheckBox(this)};"/>
+                                    <asp:CheckBox   ID="chkSelect" runat="server" onclick="javascript: if (this.checked == false) {ResetHeaderCheckBox(this)}EnableMoveUserBtn(this);"/>
                                     <asp:HiddenField   ID="personIDHidden"  Value='<%# DataBinder.Eval(Container.DataItem, "PersonID") %>' runat="server" />
                                     </ItemTemplate>
                                     <HeaderTemplate>
-                                    <asp:CheckBox ID="chkBxHeader" onclick="javascript:ToggleSelectAll(this);" runat="server" />
+                                    <asp:CheckBox ID="chkBxHeader" onclick="javascript:ToggleSelectAll(this);EnableMoveUserBtn(this);" runat="server" />
                                     </HeaderTemplate>
                                     </asp:TemplateField>
 
