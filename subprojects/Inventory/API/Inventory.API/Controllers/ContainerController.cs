@@ -205,6 +205,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         [ApiKeyAuthenticationFilter]
         [Route(Consts.apiPrefix + "containers/{containerId:int}")]
         [SwaggerOperation("Containers")]
+        [SwaggerResponse(200, type: typeof(ContainerData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
@@ -215,10 +216,10 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
             try
             {
                 var statusCode = HttpStatusCode.OK;
+                
+                var updatedContainer = containerDAL.UpdateContainer(containerId, container);
 
-                containerDAL.UpdateContainer(containerId, container);
-
-                responseMessage = Request.CreateResponse(statusCode, "The container was updated successfully!");
+                responseMessage = Request.CreateResponse(statusCode, updatedContainer);
             }
             catch (Exception ex)
             {

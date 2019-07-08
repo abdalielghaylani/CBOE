@@ -152,7 +152,127 @@ curl -X PUT --header 'Accept: application/json' --header 'api-key: <Api-Key>'
 ### Example Response
 
 ```
-"The container was updated successfully!"
+{
+  "containerId": 1765,
+  "barcode": "C1023",
+  "containerName": "1765",
+  "supplier": null,
+  "currentUser": "INVADMIN",
+  "quantityAvailable": {
+    "id": 6,
+    "value": 500,
+    "unit": "mg",
+    "description": null,
+    "unitType": null
+  },
+  "dateCreated": "2019-06-13T00:00:00Z",
+  "status": {
+    "statusId": 1,
+    "name": "Available"
+  },
+  "concentration": null,
+  "weight": null,
+  "density": null,
+  "purity": null,
+  "compound": null,
+  "location": {
+    "id": 1,
+    "parentId": 0,
+    "name": "On Order",
+    "description": "On Order Location",
+    "locationType": {
+      "locationTypeId": 501,
+      "name": "On Order"
+    },
+    "barcode": "1"
+  },
+  "quantityInitial": {
+    "id": 6,
+    "value": 500,
+    "unit": "mg",
+    "description": null,
+    "unitType": null
+  },
+  "quantityMax": {
+    "id": 6,
+    "value": 500,
+    "unit": "mg",
+    "description": null,
+    "unitType": null
+  },
+  "quantityRemaining": {
+    "id": 6,
+    "value": 500,
+    "unit": "mg",
+    "description": null,
+    "unitType": null
+  },
+  "containerType": {
+    "containerTypeId": 1,
+    "name": "bottle"
+  },
+  "regId": null,
+  "batchNumber": null,
+  "minStockQty": null,
+  "maxStockQty": null,
+  "expirationDate": null,
+  "description": null,
+  "tareWeight": null,
+  "netWeight": null,
+  "finalWeight": null,
+  "solventId": "",
+  "grade": null,
+  "comments": null,
+  "storageConditions": null,
+  "handlingProcedures": null,
+  "lotNumber": null,
+  "dateProduced": null,
+  "dateOrdered": null,
+  "dateReceived": null,
+  "containerCost": {
+    "id": 0,
+    "value": null,
+    "unit": null,
+    "description": null,
+    "unitType": null
+  },
+  "poNumber": null,
+  "poLineNumber": "",
+  "requestNumber": null,
+  "ownerId": null,
+  "numberOfCopies": null,
+  "field1": null,
+  "field2": null,
+  "field3": null,
+  "field4": null,
+  "field5": null,
+  "field6": null,
+  "field7": null,
+  "field8": null,
+  "field9": null,
+  "field10": null,
+  "date1": null,
+  "date2": null,
+  "date3": null,
+  "date4": null,
+  "date5": null,
+  "principalId": null,
+  "barcodeDescriptionId": null,
+  "dateApproved": null,
+  "parentContainerId": null,
+  "family": 1765,
+  "batchId": null,
+  "quantityMinStock": null,
+  "quantityMaxStock": null,
+  "wellNumber": null,
+  "wellRow": null,
+  "wellColumn": null,
+  "orderedById": null,
+  "dateCertified": null,
+  "receivedById": null,
+  "quantityReserved": null,
+  "physicalStateId": null
+}
 ```
 
 ### CreateContainer
