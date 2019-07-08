@@ -443,7 +443,7 @@
 		<row><td>RLSConfig</td><td>{A5138564-211F-4AB2-BC92-30FE5DE4C3CC}</td><td>RLSCONFIGURATIONTOOL</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RSHelpWebAdmin</td><td>{26F0D9EF-426E-4D91-BE28-9EC6E05537F8}</td><td>WEB_REGISTRATION_ADMIN_GUIDE</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RSHelpWebUser</td><td>{1A74933C-6BA5-46F1-A3FB-68DFA2D8688B}</td><td>WEB_REGISTRATION_USER_GUIDE</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>RegDBInstallScripts</td><td>{98609AFD-8AEF-4410-8862-7E76E51FB6CC}</td><td>DBINSTALLSCRIPTS1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>RegDBInstallScripts</td><td>{98609AFD-8AEF-4410-8862-7E76E51FB6CC}</td><td>ORACLE_INSTALL_SCRIPTS1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegPythonScripts</td><td>{DF016F47-C76F-435D-8F9D-C84616CE71A4}</td><td>PYTHONSCRIPTS1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerAppGlobal</td><td>{BA49AACF-663A-4B10-84DB-9F702D4D858F}</td><td>APP_GLOBALRESOURCES1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerAssets</td><td>{0F00D8F8-B28A-4319-96C5-B0952264601C}</td><td>ASSETS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -992,11 +992,12 @@
 		<row><td>SplashBitmap</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>PortLabel</td><td>Text</td><td>16</td><td>152</td><td>126</td><td>12</td><td>65539</td><td>NewProperty4</td><td>##NEW_STRING11##</td><td>WSSelect</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>PortText</td><td>Edit</td><td>143</td><td>148</td><td>200</td><td>17</td><td>3</td><td>PORTNO</td><td/><td>HostText</td><td/><td/><td/><td/><td/></row>
-		<row><td>SplashBitmap</td><td>Text1</td><td>Text</td><td>13</td><td>11</td><td>146</td><td>25</td><td>65539</td><td>NewProperty16</td><td>##NEW_STRING17##</td><td>Text2</td><td/><td/><td/><td/><td/></row>
-		<row><td>SplashBitmap</td><td>Text2</td><td>Text</td><td>28</td><td>28</td><td>233</td><td>13</td><td>65539</td><td>NewProperty17</td><td>##NEW_STRING18##</td><td>PortLabel</td><td/><td/><td/><td/><td/></row>
+		<row><td>SplashBitmap</td><td>Text1</td><td>Text</td><td>205</td><td>10</td><td>6</td><td>25</td><td>65538</td><td>NewProperty16</td><td>##NEW_STRING17##</td><td>PortLabel</td><td/><td/><td/><td/><td/></row>
+		<row><td>SplashBitmap</td><td>Text2</td><td>Text</td><td>28</td><td>28</td><td>233</td><td>13</td><td>65539</td><td>NewProperty17</td><td>##NEW_STRING18##</td><td>Text1</td><td/><td/><td/><td/><td/></row>
+		<row><td>SplashBitmap</td><td>Text3</td><td>Text</td><td>13</td><td>11</td><td>146</td><td>25</td><td>65539</td><td>NewProperty11</td><td>##NEW_STRING24##</td><td>Text2</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>WSCombo</td><td>ComboBox</td><td>143</td><td>121</td><td>200</td><td>100</td><td>196611</td><td>WEBSITE</td><td/><td>PortText</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>WSLabel</td><td>Text</td><td>16</td><td>124</td><td>150</td><td>12</td><td>65539</td><td>NewProperty13</td><td>##NEW_STRING23##</td><td>HHLabel</td><td/><td/><td/><td/><td/></row>
-		<row><td>SplashBitmap</td><td>WSNameLabel</td><td>Text</td><td>16</td><td>95</td><td>126</td><td>12</td><td>65539</td><td>NewProperty2</td><td>##NEW_STRING9##</td><td>Text1</td><td/><td/><td/><td/><td/></row>
+		<row><td>SplashBitmap</td><td>WSNameLabel</td><td>Text</td><td>16</td><td>95</td><td>126</td><td>12</td><td>65539</td><td>NewProperty2</td><td>##NEW_STRING9##</td><td>Text3</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>WSNameText</td><td>Edit</td><td>143</td><td>93</td><td>200</td><td>17</td><td>2</td><td>WEBSITEN</td><td>##NEW_STRING14##</td><td>IPText</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>WSSelect</td><td>RadioButtonGroup</td><td>113</td><td>55</td><td>232</td><td>41</td><td>3</td><td>CREATEWEBSITE</td><td/><td>WSNameText</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>WSSelectText</td><td>Text</td><td>16</td><td>70</td><td>80</td><td>12</td><td>65539</td><td>NewProperty12</td><td>##NEW_STRING22##</td><td>IPText1</td><td/><td/><td/><td/><td/></row>
@@ -3713,6 +3714,58 @@ Loop
 
 
 </td><td/><td/></row>
+		<row><td>RemoveOldCOMPlus</td><td>38</td><td/><td>On Error resume next
+
+strFolder=Session.Property("ProgramFilesFolder") &amp; "COMPlus Applications\{1D9E94BC-2B52-438D-A2D2-55BD45EA7FD5}"
+dim filesys
+Set filesys = CreateObject("Scripting.FileSystemObject") 
+
+If filesys.FolderExists(strFolder) Then  
+	filesys.DeleteFolder(strFolder)
+End If 
+Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
+	Set applications = catalog.GetCollection("Applications")
+	Call applications.Populate
+	For i = applications.Count - 1 to 0 step -1
+		if ucase(applications.Item(i).Name) = "REPORTQ" then 
+			catalog.ShutdownApplication("REPORTQ")
+			if Err.Number &gt; 0 then
+				SetLog "Error in shutting down REPORTQ: " &amp; Err.Description
+			else
+				SetLog "REPORTQ shutdown successfully"
+			end if
+			applications.Remove (i) 
+			if Err.Number &gt; 0 then
+				SetLog "Error in removing REPORTQ: " &amp; Err.Description
+			else
+				SetLog "REPORTQ removed successfully"
+			end if
+			Exit For
+		End If 
+	Next 
+	Call applications.SaveChanges 
+	
+	Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
+	Set applications = catalog.GetCollection("Applications")
+	Call applications.Populate
+	For i = applications.Count - 1 to 0 step -1
+		if ucase(applications.Item(i).Name) = "CSDO17" then 
+			catalog.ShutdownApplication("CSDO17")
+			if Err.Number &gt; 0 then
+				SetLog "Error in shutting down CSDO17: " &amp; Err.Description
+			else
+				SetLog "CSDO17 shutdown successfully"
+			end if
+			applications.Remove (i) 
+			if Err.Number &gt; 0 then
+				SetLog "Error in removing CSDO17: " &amp; Err.Description
+			else
+				SetLog "CSDO17 removed successfully"
+			end if
+			Exit For
+		End If 
+	Next 
+	Call applications.SaveChanges </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
 Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711,strReg, strCBOE181
 Dim WSHShell
@@ -4467,7 +4520,7 @@ Set shell = Nothing
 		<row><td>SetupProgress</td><td>50</td><td>50</td><td>374</td><td>266</td><td>5</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>Cancel</td><td>Cancel</td><td>Cancel</td><td>Progress</td><td/><td>0</td><td/></row>
 		<row><td>SetupResume</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>Next</td><td>Next</td><td>Cancel</td><td>Resume</td><td/><td>0</td><td/></row>
 		<row><td>SetupType</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>RadioGroup</td><td>Next</td><td>Cancel</td><td>Setup Type</td><td/><td>0</td><td/></row>
-		<row><td>SplashBitmap</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>PortLabel</td><td>Next</td><td>Cancel</td><td>Welcome Bitmap</td><td/><td>0</td><td/></row>
+		<row><td>SplashBitmap</td><td>50</td><td>50</td><td>374</td><td>266</td><td>3</td><td>##IDS_PRODUCTNAME_INSTALLSHIELD##</td><td>PortLabel</td><td>Next</td><td/><td>Welcome Bitmap</td><td/><td>0</td><td/></row>
 	</table>
 
 	<table name="Directory">
@@ -4614,6 +4667,7 @@ Set shell = Nothing
 		<row><td>NEW_DIRECTORY8</td><td>_71BED3E7_85CA_4BAC_B418_83777C191D66_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY9</td><td>_1D9E94BC_2B52_438D_A2D2_55BD45EA7FD5_</td><td>.:Server</td><td/><td>0</td><td/></row>
 		<row><td>ORACLE_INSTALL_SCRIPTS</td><td>COEDB</td><td>ORACLE~1|Oracle_Install_Scripts</td><td/><td>0</td><td/></row>
+		<row><td>ORACLE_INSTALL_SCRIPTS1</td><td>DBINSTALLSCRIPTS1</td><td>ORACLE~1|Oracle_Install_Scripts</td><td/><td>0</td><td/></row>
 		<row><td>ORAINI</td><td>CONFIG9</td><td>OraINI</td><td/><td>0</td><td/></row>
 		<row><td>PERKINELMER</td><td>CommonAppDataFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
 		<row><td>PRESENTATIONTIER</td><td>REGISTRATION2</td><td>PRESEN~1|PresentationTier</td><td/><td>0</td><td/></row>
@@ -5747,6 +5801,7 @@ Set shell = Nothing
 		<row><td>microsoft.practices.objectbu1</td><td>RegServerBin</td><td>MICROS~1.PDB|Microsoft.Practices.ObjectBuilder.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.ObjectBuilder.pdb</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.objectbu2</td><td>RegServerBin</td><td>MICROS~1.XML|Microsoft.Practices.ObjectBuilder.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.ObjectBuilder.xml</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.objectbu3</td><td>RegServerBin</td><td>MICROS~1.DLL|Microsoft.Practices.ObjectBuilder2.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.ObjectBuilder2.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.web.infrastructure</td><td>RegServerBin</td><td>MICROS~1.DLL|Microsoft.Web.Infrastructure.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.web.services3.dll</td><td>RegServerBin</td><td>MICROS~1.DLL|Microsoft.Web.Services3.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.Web.Services3.dll</td><td>1</td><td/></row>
 		<row><td>molparser.dll</td><td>MolParser.dll</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
 		<row><td>molparser.dll1</td><td>MolParser_Server_File</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
@@ -8405,7 +8460,7 @@ Set shell = Nothing
 		<row><td>ISIISProperty102</td><td>IisItem10</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty103</td><td>IisItem10</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty104</td><td>IisItem10</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING15##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty105</td><td>IisItem11</td><td/><td>Path</td><td/><td/><td/><td/><td>DATALOADER</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty105</td><td>IisItem11</td><td/><td>Path</td><td/><td/><td/><td/><td>DATALOADER_CLICKONCE</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty106</td><td>IisItem9</td><td/><td>Attributes</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty107</td><td>IisItem9</td><td/><td>RecycleMinutes</td><td/><td/><td/><td/><td>1740</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty108</td><td>IisItem9</td><td/><td>RecycleRequests</td><td/><td/><td/><td/><td>-1</td><td>0</td><td>0</td></row>
@@ -11055,13 +11110,13 @@ Set shell = Nothing
 		<row><td>LABEL_VIRTUAL_DIRECTORY</td><td>1033</td><td>Virtual path:</td><td>0</td><td/><td>1956869586</td></row>
 		<row><td>NEW_STRING1</td><td>1033</td><td>{&amp;ArialBlue10}NOTE: If you are performing this installation via Remote Desktop access to the server you must ensure to connect via the "console session".  To acomplish this, use the following syntax in the Remote Desktop "Computer name" box:                                                                                             YourServerName /console                                    YourServerName /admin                                       The installer may rollback after completion if not executed under the console session!</td><td>0</td><td/><td>1629450756</td></row>
 		<row><td>NEW_STRING10</td><td>1033</td><td>IP Address (Required):</td><td>0</td><td/><td>1931225186</td></row>
-		<row><td>NEW_STRING11</td><td>1033</td><td>&lt; &amp;Back</td><td>0</td><td/><td>-2094572754</td></row>
+		<row><td>NEW_STRING11</td><td>1033</td><td>Port No. (Required) :</td><td>0</td><td/><td>732401062</td></row>
 		<row><td>NEW_STRING12</td><td>1033</td><td>&amp;Next &gt;</td><td>0</td><td/><td>-2094548178</td></row>
 		<row><td>NEW_STRING13</td><td>1033</td><td>Cancel</td><td>0</td><td/><td>-2094585010</td></row>
 		<row><td>NEW_STRING14</td><td>1033</td><td/><td>0</td><td/><td>1931253954</td></row>
 		<row><td>NEW_STRING15</td><td>1033</td><td>{&amp;MSSansBold8}License Agreement</td><td>0</td><td/><td>1537352677</td></row>
 		<row><td>NEW_STRING16</td><td>1033</td><td>Please read the following license agreement carefully.</td><td>0</td><td/><td>1537401829</td></row>
-		<row><td>NEW_STRING17</td><td>1033</td><td>[ProductName] - InstallShield Wizard</td><td>0</td><td/><td>195508582</td></row>
+		<row><td>NEW_STRING17</td><td>1033</td><td>[ProductName] - InstallShield Wizard</td><td>0</td><td/><td>732390918</td></row>
 		<row><td>NEW_STRING18</td><td>1033</td><td>Please enter website informations</td><td>0</td><td/><td>1805789649</td></row>
 		<row><td>NEW_STRING19</td><td>1033</td><td>Yes</td><td>0</td><td/><td>606428903</td></row>
 		<row><td>NEW_STRING2</td><td>1033</td><td>Install Web/Virtual Files to:</td><td>0</td><td/><td>1495214935</td></row>
@@ -11069,6 +11124,7 @@ Set shell = Nothing
 		<row><td>NEW_STRING21</td><td>1033</td><td>Host Header : </td><td>0</td><td/><td>2090623283</td></row>
 		<row><td>NEW_STRING22</td><td>1033</td><td>Select an Option:</td><td>0</td><td/><td>-727970775</td></row>
 		<row><td>NEW_STRING23</td><td>1033</td><td>Select Web Site (Required):</td><td>0</td><td/><td>-862159308</td></row>
+		<row><td>NEW_STRING24</td><td>1033</td><td>{&amp;MSSansBold8}WebSite Informations</td><td>0</td><td/><td>732411494</td></row>
 		<row><td>NEW_STRING3</td><td>1033</td><td>[IISROOTFOLDER]</td><td>0</td><td/><td>1495214935</td></row>
 		<row><td>NEW_STRING30</td><td>1033</td><td>{20}</td><td>0</td><td/><td>-2112007133</td></row>
 		<row><td>NEW_STRING4</td><td>1033</td><td>&amp;Change...</td><td>0</td><td/><td>1495214935</td></row>
@@ -11424,6 +11480,7 @@ Set shell = Nothing
 		<row><td>RemoveFolders</td><td/><td>3600</td><td>RemoveFolders</td><td/></row>
 		<row><td>RemoveIniValues</td><td/><td>3100</td><td>RemoveIniValues</td><td/></row>
 		<row><td>RemoveODBC</td><td/><td>2400</td><td>RemoveODBC</td><td/></row>
+		<row><td>RemoveOldCOMPlus</td><td>Not Installed</td><td>6662</td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>Not Installed and CBOE="yes"</td><td>6687</td><td/><td/></row>
 		<row><td>RemovePython2</td><td/><td>1016</td><td/><td/></row>
 		<row><td>RemoveRegistryValues</td><td/><td>2600</td><td>RemoveRegistryValues</td><td/></row>
@@ -11875,6 +11932,8 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>MSIFASTINSTALL</td><td>3</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>NewProperty1</td><td>0</td><td/></row>
+		<row><td>NewProperty10</td><td>0</td><td/></row>
+		<row><td>NewProperty11</td><td>0</td><td/></row>
 		<row><td>NewProperty2</td><td>0</td><td/></row>
 		<row><td>NewProperty3</td><td/><td/></row>
 		<row><td>NewProperty32334</td><td/><td/></row>
