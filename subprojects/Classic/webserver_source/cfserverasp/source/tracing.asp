@@ -102,10 +102,15 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
  Purpose: To change servername to include portnumber information
 */
 	var serverName = window.location.host; //End of Change	
+	var pageURL = window.location.href;
+	var res_HTTP = pageURL.substr(0,5);
 	function DeleteTrace(dbkey){
 		var bContinue = true;
 		bcontinue = confirm('Are you sure you want to delete the ' + dbkey + ' trace file?');
 		if (bcontinue){ 
+			if(res_HTTP == 'https'){
+			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=deleteTrace&dbKey=" + dbkey;
+			}
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=deleteTrace&dbKey=" + dbkey;
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
@@ -131,7 +136,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		bContinue = confirm('Are you sure you want to start tracing for ' + dbkey + ' with ' + scope + ' scope and level ' + level + '?');
 
 		if (bContinue){ 
-
+			if(res_HTTP == 'https'){
+			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StartTracing&level=" + level + "&scope=" + scope;
+			}
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StartTracing&level=" + level + "&scope=" + scope;
 			var httpResponse = JsHTTPGet(strURL);
 			if (httpResponse == '1'){
@@ -153,7 +160,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		var bContinue;
 		bcontinue = confirm('Are you sure you want to stop tracing for ' + dbkey + '?');
 		if (bcontinue){ 
-
+			if(res_HTTP == 'https'){
+			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StopTracing";
+			}
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StopTracing";
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
@@ -200,7 +209,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 		bcontinue = confirm('Are you sure you want to turn the page timer ' + state + ' for ' + dbkey + '?');
 		if (bcontinue){
 			var scope = GetRadioSelection(document.getElementsByName("traceScope"));
-			 
+			if(res_HTTP == 'https'){
+			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=SetPageTimer&state=" + state + "&scope=" + scope;
+			}
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=SetPageTimer&state=" + state + "&scope=" + scope;
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
