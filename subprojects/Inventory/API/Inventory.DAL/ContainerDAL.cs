@@ -165,7 +165,7 @@ namespace PerkinElmer.COE.Inventory.DAL
             return container.ContainerId;
         }
 
-        public void UpdateContainer(int containerId, ContainerData container)
+        public ContainerData UpdateContainer(int containerId, ContainerData container)
         {
             IsValidContainer(containerId);
 
@@ -191,6 +191,8 @@ namespace PerkinElmer.COE.Inventory.DAL
                     throw new Exception("The update of the container failed.", ex);
                 }
             }
+            RefreshDBContext();
+            return GetContainerById(containerId);
         }
 
         public void UpdateContainerRemainingQuantity(int containerId, decimal remainingQuantity)
