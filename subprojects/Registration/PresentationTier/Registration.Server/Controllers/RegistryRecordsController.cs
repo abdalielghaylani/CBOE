@@ -1351,8 +1351,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
                 int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
-                bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
-                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+                int userID = UserIdentity.ID;
+                bool isLoggedInUserOwner = userID == personCreatedId ? true : false;
+                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == userID ? true : false;
 
                 if (id < 0) 
                 {
