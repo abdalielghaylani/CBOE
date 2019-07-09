@@ -482,7 +482,7 @@ create or replace PACKAGE BODY             "COMPOUNDREGISTRY" IS
           case
             when existsNode(metaData."markup", '/Property/text()') = 1 then
               updateXML(metaData."markup", '/Property/text()', propInfo."value")
-            when trim(propInfo."value") is null then
+            when replace((propInfo."value").getclobval(),' ','') is null then
               metaData."markup"
             else
               appendChildXML( metaData."markup", '/Property', extract(propInfo."value", '//text()') )
