@@ -301,7 +301,7 @@ public partial class ManageRoles : System.Web.UI.UserControl
         this.EditButton.Enabled = true;
         this.EditUsersButton.Enabled = true;
         this.EditRolesButton.Enabled = true;
-        this.DeleteButton.Enabled = true;
+        this.DeleteButton.ButtonCssClass = "btn-disable";
        
 
        
@@ -312,7 +312,7 @@ public partial class ManageRoles : System.Web.UI.UserControl
         this.EditButton.Enabled = false;
         this.EditUsersButton.Enabled = false;
         this.EditRolesButton.Enabled = false;
-        this.DeleteButton.Enabled = false;
+        this.DeleteButton.ButtonCssClass = "ImageButton";
 
     }
 

@@ -4,8 +4,8 @@
  <script type="text/javascript">
 
      function Confirm() {
-         if (confirm("Are you sure you want to delete this user?")) {
-             return true;
+         if (confirm("Confirm Delete \n\n\n\n Are you sure you want to delete this user?")) {
+            return true;
          } else {
              return false;
         }

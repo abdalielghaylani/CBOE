@@ -10,14 +10,11 @@ var userListToolBarID;
 
 
    function Confirmation() {
-        var answer = confirm("Are you sure you want to delete this role?")
-        if (answer){
-	        return true;
+        if (confirm("Confirm Delete \n\n\n\n Are you sure you want to delete this role?")) {
+            return true;
+        } else {
+            return false;
         }
-        else{
-	        return false;
-        }
-    
     }
     
     var dcTime=250;    // doubleclick time
@@ -89,9 +86,21 @@ function EnableManageRoleButtons()
     document.getElementById('<%= this.EditButton.GetButtonClientID() %>').disabled = false;
     document.getElementById('<%= this.EditUsersButton.GetButtonClientID() %>').disabled = false;
     document.getElementById('<%= this.EditRolesButton.GetButtonClientID() %>').disabled = false;
-    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').disabled = false;
+    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.remove("btn-disable");
+    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.add("ImageButton");
  }
 </script>
+ <style type="text/css">
+    .btn-disable
+        {
+        cursor: not-allowed;
+        pointer-events: none;
+        border:none;
+        color: #c0c0c0;
+        background-color: #ffffff;
+        margin-top: 5px;
+        }
+</style>
 
 <asp:UpdatePanel ID="ManageRoleUpdatePanel" ChildrenAsTriggers="true" UpdateMode="Conditional" runat="server">
 <ContentTemplate>
@@ -103,7 +112,7 @@ function EnableManageRoleButtons()
         <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Edit.png" HoverImageURL="../../../App_Themes/Common/Images/Edit.png" ImageCssClass="SecurityImage"  TypeOfButton="Edit" ID="EditButton" OnButtonClicked="EditButtonAction" runat="server" /></li>
         <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Edit_User.png" HoverImageURL="../../../App_Themes/Common/Images/Edit_User.png" ImageCssClass="SecurityImage"  TypeOfButton="EditRoleUsers" ID="EditUsersButton" OnButtonClicked="EditUsersButtonAction" runat="server" /><br /></li>
         <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Edit_Role.png" HoverImageURL="../../../App_Themes/Common/Images/Edit_Role.png" ImageCssClass="SecurityImage"  TypeOfButton="EditRoleRoles" ID="EditRolesButton" OnButtonClicked="EditRolesButtonAction" runat="server" /></li>
-        <li><COEManager:ImageButton enabled="false" ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Delete.png" HoverImageURL="../../../App_Themes/Common/Images/Delete.png" ImageCssClass="SecurityImage"   TypeOfButton="Delete"  ID="DeleteButton" OnClientClick="return Confirmation();" OnButtonClicked="DeleteButtonAction" runat="server" /></li> 
+        <li><COEManager:ImageButton ButtonMode="ImgAndTxt" ImageURL="../../../App_Themes/Common/Images/Delete.png" HoverImageURL="../../../App_Themes/Common/Images/Delete.png" ImageCssClass="SecurityImage"   TypeOfButton="Delete"  ID="DeleteButton" OnClientClick="return Confirmation();" OnButtonClicked="DeleteButtonAction" runat="server" ButtonCssClass="btn-disable" /></li> 
      </ul>   
 </div>        
 </asp:Panel>
