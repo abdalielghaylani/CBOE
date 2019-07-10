@@ -351,6 +351,7 @@ begin
   	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -s \"Application Files\\DataLoader_"  + szVer+"\\DataLoader.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
   	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberC, REPLACE);
   	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberD, REPLACE);
+  	
 end; 
   	
 
@@ -663,17 +664,6 @@ end;
 
 
 
-  
-function InstallAbsent(hMSI)
-    // To Do:  Declare local variables.
-    STRING  szVirtualName,strProgram,strInstallDir,strMSI;
-    NUMBER nBuf;
- begin            
-   
-        MsiSetFeatureState(hMSI,"COE",INSTALLSTATE_ABSENT);
-        MsiSetFeatureState(hMSI,"Classic",INSTALLSTATE_ABSENT);
-       
-end;
 
 function DelayMessageStart(hMSI)
     // To Do:  Declare local variables.

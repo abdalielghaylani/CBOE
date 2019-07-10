@@ -848,7 +848,7 @@
 		<row><td>ReadyToRemove</td><td>DlgText2</td><td>Text</td><td>21</td><td>102</td><td>330</td><td>24</td><td>3</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>ReadyToRemove</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsVerifyRemoveAllDlg_RemoveProgram##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>ReadyToRemove</td><td>RemoveNow</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>8388611</td><td/><td>##IDS__IsVerifyRemoveAllDlg_Remove##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>SettingCDD</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##NEW_STRING11##</td><td>Next</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Back</td><td>PushButton</td><td>163</td><td>242</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Banner</td><td>Bitmap</td><td>1</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td>NewBinary1</td></row>
 		<row><td>SettingCDD</td><td>Branding1</td><td>Text</td><td>4</td><td>229</td><td>50</td><td>13</td><td>3</td><td/><td>{&amp;MSSWhiteSerif8}InstallShield</td><td/><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Branding2</td><td>Text</td><td>3</td><td>228</td><td>50</td><td>13</td><td>65537</td><td/><td>{&amp;Tahoma8}InstallShield</td><td/><td/><td/><td/><td/><td/></row>
@@ -990,7 +990,7 @@
 		<row><td>SplashBitmap</td><td>IPText</td><td>ComboBox</td><td>143</td><td>121</td><td>200</td><td>100</td><td>196610</td><td>IPADDRESS</td><td/><td>WSCombo</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>IPText1</td><td>Edit</td><td>144</td><td>121</td><td>200</td><td>17</td><td>2</td><td>IPADDRESS</td><td/><td>IPLabel</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>SplashBitmap</td><td>PortLabel</td><td>Text</td><td>16</td><td>152</td><td>126</td><td>12</td><td>65539</td><td>NewProperty4</td><td>##NEW_STRING11##</td><td>WSSelect</td><td/><td/><td/><td/><td/></row>
+		<row><td>SplashBitmap</td><td>PortLabel</td><td>Text</td><td>16</td><td>152</td><td>126</td><td>12</td><td>65539</td><td>NewProperty4</td><td>##ID_STRING584##</td><td>WSSelect</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>PortText</td><td>Edit</td><td>143</td><td>148</td><td>200</td><td>17</td><td>3</td><td>PORTNO</td><td/><td>HostText</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>Text1</td><td>Text</td><td>205</td><td>10</td><td>6</td><td>25</td><td>65538</td><td>NewProperty16</td><td>##NEW_STRING17##</td><td>PortLabel</td><td/><td/><td/><td/><td/></row>
 		<row><td>SplashBitmap</td><td>Text2</td><td>Text</td><td>28</td><td>28</td><td>233</td><td>13</td><td>65539</td><td>NewProperty17</td><td>##NEW_STRING18##</td><td>Text1</td><td/><td/><td/><td/><td/></row>
@@ -1245,9 +1245,8 @@
 		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>1</td><td>1</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>CBOE="yes"</td><td>2</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -2954,7 +2953,6 @@ Set WSH = Nothing  </td><td/><td/></row>
 		<row><td>ISXmlInstall</td><td>3073</td><td>ISXMLCFG.DLL</td><td>ISXmlInstall</td><td/><td/></row>
 		<row><td>ISXmlRollback</td><td>3329</td><td>ISXMLCFG.DLL</td><td>ISXmlRollback</td><td/><td/></row>
 		<row><td>ISXmlUnInstall</td><td>3073</td><td>ISXMLCFG.DLL</td><td>ISXmlUnInstall</td><td/><td/></row>
-		<row><td>InstallAbsent</td><td>1</td><td>ISSetup.dll</td><td>f18</td><td/><td/></row>
 		<row><td>InstallApplicationMimeType</td><td>38</td><td/><td>Dim MIMEobj, myMIMEs, i, showMIMEs
 Dim newMIME, newtype
 Const ADS_PROPERTY_UPDATE=2
@@ -3296,8 +3294,7 @@ Next
 For Each oNode11 In oRootNodeList11
 	If oNode11.nodeName = "deploymentProvider" Then
 	 Session.Property("DLSADDRESS")=oNode11.Attributes.getNamedItem("codebase").Text
-	 
-	End If
+    End If
 Next
 
 'Save back to the document
@@ -5598,8 +5595,8 @@ Set shell = Nothing
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>ajaxcontroltoolkit.dll</td><td>RegServerBin</td><td>AJAXCO~1.DLL|AjaxControlToolkit.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\AjaxControlToolkit.dll</td><td>1</td><td/></row>
 		<row><td>ajaxextensionstoolbox.dll</td><td>RegServerBin</td><td>AJAXEX~1.DLL|AJAXExtensionsToolbox.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\AJAXExtensionsToolbox.dll</td><td>1</td><td/></row>
-		<row><td>appl.vbs1</td><td>DataLoader_Click</td><td>Appl.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>1</td><td/></row>
-		<row><td>appl1.vbs1</td><td>DataLoader_Click</td><td>Appl1.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>1</td><td/></row>
+		<row><td>appl.vbs1</td><td>DataLoader_Click</td><td>Appl.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\Appl.vbs</td><td>1</td><td/></row>
+		<row><td>appl1.vbs1</td><td>DataLoader_Click</td><td>Appl1.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\Appl1.vbs</td><td>1</td><td/></row>
 		<row><td>assemblysettings.dll</td><td>RegServerBin</td><td>ASSEMB~1.DLL|AssemblySettings.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\AssemblySettings.dll</td><td>1</td><td/></row>
 		<row><td>axinterop.chemdrawcontrol12.</td><td>RegServerBin</td><td>AXINTE~1.DLL|AxInterop.ChemDrawControl12.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\AxInterop.ChemDrawControl12.dll</td><td>1</td><td/></row>
 		<row><td>axinterop.chemdrawcontrol14.</td><td>RegServerBin</td><td>AXINTE~1.DLL|AxInterop.ChemDrawControl14.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\AxInterop.ChemDrawControl14.dll</td><td>1</td><td/></row>
@@ -5758,7 +5755,8 @@ Set shell = Nothing
 		<row><td>log4net.xml</td><td>RegServerBin</td><td>log4net.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\log4net.xml</td><td>1</td><td/></row>
 		<row><td>logoff.aspx</td><td>Manager</td><td>LOGOFF~1.ASP|Logoff.aspx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\Logoff.aspx</td><td>1</td><td/></row>
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage.exe</td><td>1</td><td/></row>
-		<row><td>mage_dataloader.bat</td><td>DataLoader_Click</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>1</td><td/></row>
+		<row><td>mage.exe1</td><td>DataLoader_Click</td><td>mage.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\mage.exe</td><td>1</td><td/></row>
+		<row><td>mage_dataloader.bat</td><td>DataLoader_Click</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\mage_DataLoader.bat</td><td>1</td><td/></row>
 		<row><td>microsoft.aspnet.webapi.vers</td><td>RegServerBin</td><td>MICROS~1.DLL|Microsoft.AspNet.WebApi.Versioning.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.AspNet.WebApi.Versioning.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.aspnet.webapi.vers1</td><td>RegServerBin</td><td>MICROS~1.XML|Microsoft.AspNet.WebApi.Versioning.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.AspNet.WebApi.Versioning.xml</td><td>1</td><td/></row>
 		<row><td>microsoft.office.interop.exc</td><td>RegServerBin</td><td>MICROS~1.DLL|Microsoft.Office.Interop.Excel.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Microsoft.Office.Interop.Excel.dll</td><td>1</td><td/></row>
@@ -5812,9 +5810,9 @@ Set shell = Nothing
 		<row><td>msvcp71.dll1</td><td>MVC7132</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>mswcrun.dll</td><td>mswrun</td><td>mswcrun.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>1</td><td/></row>
 		<row><td>mswcrun.dll1</td><td>mswcrun.dll</td><td>mswcrun.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source\cfserveradmin\AdminSource\mswcrun.dll</td><td>17</td><td/></row>
-		<row><td>mykey.cer</td><td>DataLoader_Click</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
-		<row><td>mykey.pvk</td><td>DataLoader_Click</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
-		<row><td>mypfx.pfx</td><td>DataLoader_Click</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
+		<row><td>mykey.cer</td><td>DataLoader_Click</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
+		<row><td>mykey.pvk</td><td>DataLoader_Click</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
+		<row><td>mypfx.pfx</td><td>DataLoader_Click</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\InstallSupportFiles\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.dll</td><td>RegServerBin</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.xml</td><td>RegServerBin</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\Newtonsoft.Json.xml</td><td>1</td><td/></row>
 		<row><td>nunit.framework.dll</td><td>RegServerBin</td><td>NUNITF~1.DLL|nunit.framework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Registration\PresentationTier\Registration.Server\bin\nunit.framework.dll</td><td>1</td><td/></row>
@@ -5859,7 +5857,6 @@ Set shell = Nothing
 		<row><td>setdcompermission.cmd</td><td>Dlls2</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
 		<row><td>singlesignon.asmx</td><td>Security</td><td>SINGLE~1.ASM|SingleSignOn.asmx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\SingleSignOn.asmx</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
-		<row><td>singlesignoncom.reg</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.REG|SingleSignOnCom.reg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.reg</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb</td><td>COESSO_Server_File1</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>srvany.exe</td><td>SRVANY.EXE</td><td>SRVANY.EXE</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\SRVANY.EXE</td><td>1</td><td/></row>
@@ -8840,7 +8837,6 @@ Set shell = Nothing
 		<row><td>f15</td><td>0</td><td>EditAppVBS</td><td/></row>
 		<row><td>f16</td><td>0</td><td>SetScriptMaps</td><td/></row>
 		<row><td>f17</td><td>0</td><td>InstallPatch</td><td/></row>
-		<row><td>f18</td><td>0</td><td>InstallAbsent</td><td/></row>
 		<row><td>f2</td><td>0</td><td>EditDataLoaderMageBatchFile</td><td/></row>
 		<row><td>f20</td><td>0</td><td>InstallCDJS</td><td/></row>
 		<row><td>f21</td><td>0</td><td>DeleteVirtuals</td><td/></row>
@@ -9125,7 +9121,7 @@ Set shell = Nothing
 		<col def="S255">MsiCommandLine</col>
 		<col def="I4">ISSetupPrerequisiteLocation</col>
 		<row><td>Copy of Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>\\165.88.210.101\c$\Users\Administrator\Desktop</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2019 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
-		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2019 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td/><td>1</td></row>
+		<row><td>Release 1</td><td>Product Configuration 1</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>1</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td>© Copyright 1998-2019 PerkinElmer Informatics, Inc.</td><td>8922125</td><td/><td/><td>REINSTALLMODE=amus</td><td>1</td></row>
 	</table>
 
 	<table name="ISReleaseASPublishInfo">
@@ -11058,6 +11054,7 @@ Set shell = Nothing
 		<row><td>ID_STRING581</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-483977693</td></row>
 		<row><td>ID_STRING582</td><td>1033</td><td>DATABA~1|Database Upgrade Scripts</td><td>0</td><td/><td>-483922333</td></row>
 		<row><td>ID_STRING583</td><td>1033</td><td>SERVER~1|Server Configuration Tool</td><td>0</td><td/><td>-483938653</td></row>
+		<row><td>ID_STRING584</td><td>1033</td><td>Port No. (Required) :</td><td>0</td><td/><td>1269288645</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
 		<row><td>ID_STRING60</td><td>1033</td><td>SETUPL~1|Setup Logs</td><td>0</td><td/><td>-1457540204</td></row>
@@ -11110,7 +11107,7 @@ Set shell = Nothing
 		<row><td>LABEL_VIRTUAL_DIRECTORY</td><td>1033</td><td>Virtual path:</td><td>0</td><td/><td>1956869586</td></row>
 		<row><td>NEW_STRING1</td><td>1033</td><td>{&amp;ArialBlue10}NOTE: If you are performing this installation via Remote Desktop access to the server you must ensure to connect via the "console session".  To acomplish this, use the following syntax in the Remote Desktop "Computer name" box:                                                                                             YourServerName /console                                    YourServerName /admin                                       The installer may rollback after completion if not executed under the console session!</td><td>0</td><td/><td>1629450756</td></row>
 		<row><td>NEW_STRING10</td><td>1033</td><td>IP Address (Required):</td><td>0</td><td/><td>1931225186</td></row>
-		<row><td>NEW_STRING11</td><td>1033</td><td>Port No. (Required) :</td><td>0</td><td/><td>732401062</td></row>
+		<row><td>NEW_STRING11</td><td>1033</td><td>{\Tahoma8}</td><td>0</td><td/><td>1269274277</td></row>
 		<row><td>NEW_STRING12</td><td>1033</td><td>&amp;Next &gt;</td><td>0</td><td/><td>-2094548178</td></row>
 		<row><td>NEW_STRING13</td><td>1033</td><td>Cancel</td><td>0</td><td/><td>-2094585010</td></row>
 		<row><td>NEW_STRING14</td><td>1033</td><td/><td>0</td><td/><td>1931253954</td></row>
@@ -11396,7 +11393,7 @@ Set shell = Nothing
 		<row><td>EditCoeSharedAssemblyConfig</td><td>Not Installed And &amp;COE &gt; 2 And CBOE="no"</td><td>6610</td><td/><td/></row>
 		<row><td>EditCoreUDLs</td><td>Not Installed And &amp;Classic &gt; 2 And CBOE="no"</td><td>6630</td><td/><td/></row>
 		<row><td>EditDataLoaderAppManifest</td><td>Not Installer And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6611</td><td/><td/></row>
-		<row><td>EditDataLoaderMageBatchFile</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6614</td><td/><td/></row>
+		<row><td>EditDataLoaderMageBatchFile</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6623</td><td/><td/></row>
 		<row><td>EditDataManagerAppConfig</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6616</td><td/><td/></row>
 		<row><td>EditDataManagerAppConfig_ClickOnce</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6617</td><td/><td/></row>
 		<row><td>EditINVUDL</td><td>Not Installed And &amp;Classic &gt; 2 And CBOE="no"</td><td>6632</td><td/><td/></row>
@@ -11934,6 +11931,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>NewProperty1</td><td>0</td><td/></row>
 		<row><td>NewProperty10</td><td>0</td><td/></row>
 		<row><td>NewProperty11</td><td>0</td><td/></row>
+		<row><td>NewProperty12</td><td>0</td><td/></row>
 		<row><td>NewProperty2</td><td>0</td><td/></row>
 		<row><td>NewProperty3</td><td/><td/></row>
 		<row><td>NewProperty32334</td><td/><td/></row>
@@ -11982,6 +11980,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>R</td><td>0</td><td/></row>
 		<row><td>RBG1</td><td>2</td><td/></row>
 		<row><td>REGINSTALL</td><td>1</td><td/></row>
+		<row><td>RESINSTALLMODE</td><td>amus</td><td/></row>
 		<row><td>RebootYesNo</td><td>Yes</td><td/></row>
 		<row><td>ReinstallModeText</td><td>omus</td><td/></row>
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
