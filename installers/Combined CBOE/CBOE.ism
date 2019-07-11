@@ -423,6 +423,7 @@
 		<row><td>FrameworkOracleInstallScripts</td><td>{5E7A1DFF-7101-4D56-AE97-0D4B5E4C50BA}</td><td>ORACLE_INSTALL_SCRIPTS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IISRoot</td><td>{1B19E14B-CEB7-45A4-9553-0752ED95DAA9}</td><td>IISROOTFOLDER</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISRegistryComponent</td><td>{14E10E08-8B3B-438E-B4EC-DC5E713E8854}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>IniChange</td><td>{49F236D6-2F8B-444E-8922-D2A304030FAB}</td><td>CHEMOFFICE</td><td>0</td><td>CBOE="yes"</td><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MVC71</td><td>{EA0E55F8-FFE1-461E-A5BE-347F315E54AE}</td><td>System64Folder</td><td>8</td><td/><td>msvcp71.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MVC7132</td><td>{9FA6C012-6613-4423-A6A3-57C5B31209BC}</td><td>SystemFolder</td><td>8</td><td/><td>msvcp71.dll1</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Manager</td><td>{4CEB5243-901D-4F11-B887-5F8483CB5C9B}</td><td>MANAGER</td><td>8</td><td/><td>web.config3</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1368,6 +1369,7 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>CHEMOFFICE</td><td>ChemOffice</td></row>
+		<row><td>CHEMOFFICE</td><td>IniChange</td></row>
 		<row><td>CHEMOFFICEENTERPRISE1</td><td>AllOtherFiles</td></row>
 		<row><td>CHEMOFFICE_DATA</td><td>ChemOffice_Data</td></row>
 		<row><td>INSTALLDIR</td><td>AppPoolComponent</td></row>
@@ -3294,7 +3296,7 @@ Next
 For Each oNode11 In oRootNodeList11
 	If oNode11.nodeName = "deploymentProvider" Then
 	 Session.Property("DLSADDRESS")=oNode11.Attributes.getNamedItem("codebase").Text
-    End If
+	End If
 Next
 
 'Save back to the document
@@ -5536,6 +5538,7 @@ Set shell = Nothing
 		<row><td>Classic</td><td>ClassicComon</td></row>
 		<row><td>Classic</td><td>Common</td></row>
 		<row><td>Classic</td><td>Config</td></row>
+		<row><td>Classic</td><td>IniChange</td></row>
 		<row><td>Classic</td><td>MolParser_Server</td></row>
 		<row><td>Classic</td><td>MolParser_Server_File</td></row>
 		<row><td>Classic</td><td>NewComponent6</td></row>
@@ -8147,6 +8150,7 @@ Set shell = Nothing
 		<row><td>FrameworkOracleInstallScripts</td><td/><td/><td>_493CE2AD_CA4E_4B04_BA67_E6B20B3CE630_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IISRoot</td><td/><td/><td>_405DCD3B_B404_415F_B56F_3689BC24C99B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISRegistryComponent</td><td/><td/><td>_57E1FC69_6208_458B_B643_7FA5DF91A72A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>IniChange</td><td/><td/><td>_C453F079_9DE2_48DB_AB32_3B4B265E34DA_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MVC71</td><td/><td/><td>_4C1ACFF6_F50B_4D89_A914_93B151C22555_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MVC7132</td><td/><td/><td>_EB10489F_8D6B_47F3_853E_E37F5C8C94E7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Manager</td><td/><td/><td>_781B2953_CFED_422D_9A96_5F8173E6831F_FILTER</td><td/><td/><td/><td/></row>
@@ -8354,7 +8358,7 @@ Set shell = Nothing
 		<row><td>SignONBin</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\bin</td><td>4</td><td/><td>*.pdb,*.xml</td><td>10</td></row>
 		<row><td>SignOnHelp</td><td>&lt;PATH_TO_SINGLESIGNON_FILES&gt;\Help</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>WebAppAGlobal</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\App_GlobalResources</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>WebServer_Source</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source</td><td>4</td><td/><td>web.config,PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_18.1.msi,ChemBioVizExcelAddin1240.exe,SendToE-Notebook 18.1.exe</td><td>10</td></row>
+		<row><td>WebServer_Source</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\webserver_source</td><td>4</td><td/><td>ChemBioVizExcelAddin1240.exe</td><td>10</td></row>
 		<row><td>WebServiceBin</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\bin\Release</td><td>4</td><td/><td>*.pdb</td><td>10</td></row>
 		<row><td>WebServiceHost</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.WebServiceHost</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>cfwtemp</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\CFWTemp</td><td>4</td><td/><td/><td>10</td></row>
@@ -11298,7 +11302,7 @@ Set shell = Nothing
 		<row><td>IniTableKey1</td><td>##ID_STRING458##</td><td>CONFIG1</td><td>##ID_STRING459##</td><td>##ID_STRING541##</td><td>http://[SERVERNAMEHOST]/cdjs/js/chemdrawweb/chemdrawweb.js</td><td>0</td><td>ChemOffice</td></row>
 		<row><td>IniTableKey10</td><td>##ID_STRING412##</td><td>CONFIG9</td><td>##ID_STRING413##</td><td>##ID_STRING414##</td><td>"[IISROOTFOLDER]ChemOffice\cs_security\config\cs_security.udl"</td><td>0</td><td>ChemOffice</td></row>
 		<row><td>IniTableKey132</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING371##</td><td>ChemOffice</td><td>0</td><td>ChemOffice</td></row>
-		<row><td>IniTableKey133</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING372##</td><td>17.1</td><td>0</td><td>ChemOffice</td></row>
+		<row><td>IniTableKey133</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING372##</td><td>19.1</td><td>0</td><td>ChemOffice</td></row>
 		<row><td>IniTableKey134</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING373##</td><td>wwwroot</td><td>0</td><td>ChemOffice</td></row>
 		<row><td>IniTableKey135</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING374##</td><td>Inetpub</td><td>0</td><td>ChemOffice</td></row>
 		<row><td>IniTableKey136</td><td>##ID_STRING368##</td><td>WindowsFolder</td><td>##ID_STRING369##</td><td>##ID_STRING375##</td><td>[SERVERDIR]:</td><td>0</td><td>ChemOffice</td></row>
@@ -11393,7 +11397,7 @@ Set shell = Nothing
 		<row><td>EditCoeSharedAssemblyConfig</td><td>Not Installed And &amp;COE &gt; 2 And CBOE="no"</td><td>6610</td><td/><td/></row>
 		<row><td>EditCoreUDLs</td><td>Not Installed And &amp;Classic &gt; 2 And CBOE="no"</td><td>6630</td><td/><td/></row>
 		<row><td>EditDataLoaderAppManifest</td><td>Not Installer And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6611</td><td/><td/></row>
-		<row><td>EditDataLoaderMageBatchFile</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6623</td><td/><td/></row>
+		<row><td>EditDataLoaderMageBatchFile</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6624</td><td/><td/></row>
 		<row><td>EditDataManagerAppConfig</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6616</td><td/><td/></row>
 		<row><td>EditDataManagerAppConfig_ClickOnce</td><td>Not Installed And &amp;DataLoader &gt; 2 And CBOE="no"</td><td>6617</td><td/><td/></row>
 		<row><td>EditINVUDL</td><td>Not Installed And &amp;Classic &gt; 2 And CBOE="no"</td><td>6632</td><td/><td/></row>
@@ -11458,7 +11462,7 @@ Set shell = Nothing
 		<row><td>PublishFeatures</td><td/><td>6300</td><td>PublishFeatures</td><td/></row>
 		<row><td>PublishProduct</td><td/><td>6400</td><td>PublishProduct</td><td/></row>
 		<row><td>RMCCPSearch</td><td>Not CCP_SUCCESS And CCP_TEST</td><td>600</td><td>RMCCPSearch</td><td/></row>
-		<row><td>ReadDataLoaderAppManifest</td><td>Not Installed</td><td>1002</td><td/><td/></row>
+		<row><td>ReadDataLoaderAppManifest</td><td>Not Installed</td><td>6623</td><td/><td/></row>
 		<row><td>RegisterClassInfo</td><td/><td>4600</td><td>RegisterClassInfo</td><td/></row>
 		<row><td>RegisterComPlus</td><td/><td>5700</td><td>RegisterComPlus</td><td/></row>
 		<row><td>RegisterCowsUtilsDll</td><td>Not Installed And &amp;Classic &gt; 2 And CBOE="no"</td><td>6621</td><td/><td/></row>
@@ -11489,7 +11493,7 @@ Set shell = Nothing
 		<row><td>ScheduleReboot</td><td>ISSCHEDULEREBOOT</td><td>6410</td><td>ScheduleReboot</td><td/></row>
 		<row><td>SelfRegModules</td><td/><td>5600</td><td>SelfRegModules</td><td/></row>
 		<row><td>SelfUnregModules</td><td/><td>2200</td><td>SelfUnregModules</td><td/></row>
-		<row><td>ServerDrive</td><td>Not Installed And CBOE="no"</td><td>1003</td><td/><td/></row>
+		<row><td>ServerDrive</td><td>Not Installed</td><td>1003</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td/><td>1100</td><td>SetARPINSTALLLOCATION</td><td/></row>
 		<row><td>SetASPMetabaseProperties</td><td>Not Installed And VersionNT &lt; 510 And VersionNT64 &lt; 510 And CBOE="no"</td><td>1023</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>VersionNT = 400</td><td>970</td><td/><td/></row>
