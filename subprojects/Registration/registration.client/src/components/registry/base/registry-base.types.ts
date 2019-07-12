@@ -104,6 +104,9 @@ export class CViewGroup implements IViewGroup {
         item.editorOptions = {
           dropDownItemsSelect: fe.configInfo.fieldConfig.dropDownItemsSelect
         };
+        if (fe.searchCriteriaItem && fe.searchCriteriaItem._fieldid) {
+          item.editorOptions.fieldid = fe.searchCriteriaItem._fieldid + '_' + (fe.searchCriteriaItem._id ? fe.searchCriteriaItem._id : '0');
+        }
       }
     } else if (type.indexOf('COEStateControl') > 0) {
       item.template = 'dropDownTemplate';

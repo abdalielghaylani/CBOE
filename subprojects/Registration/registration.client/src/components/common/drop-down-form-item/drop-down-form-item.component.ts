@@ -132,18 +132,26 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     let deferred = jQuery.Deferred();
     let url = `${apiUrlPrefix}${'ViewConfig/query'}`;
     let body = { 'sql': query };
+    if (sessionStorage.getItem(control.viewModel.editorOptions.fieldid) === null) {
+      this.http.post(url, body)
+        .toPromise()
+        .then(result => {
+          let data = result.json().data.data;
+          if (control.viewModel.editorOptions.fieldid) {
+            sessionStorage.setItem(control.viewModel.editorOptions.fieldid, JSON.stringify(data));
+          }
+          control.dataSource = data;
+          control.changeDetector.markForCheck();
+          deferred.resolve(false);
+        })
+        .catch(error => deferred.resolve(true));
+    } else {
+      control.dataSource = JSON.parse(sessionStorage.getItem(control.viewModel.editorOptions.fieldid));
+    }
+    control.valueExpr = 'KEY';
+    control.displayExpr = 'VALUE';
+    control.setValue(options);
+    control.changeDetector.markForCheck();
 
-    this.http.post(url, body)
-      .toPromise()
-      .then(result => {
-        let data = result.json().data.data;
-        control.dataSource = data;
-        control.valueExpr = 'KEY';
-        control.displayExpr = 'VALUE';
-        control.setValue(options);
-        control.changeDetector.markForCheck();
-        deferred.resolve(false);
-      })
-      .catch(error => deferred.resolve(true));
   }
 }

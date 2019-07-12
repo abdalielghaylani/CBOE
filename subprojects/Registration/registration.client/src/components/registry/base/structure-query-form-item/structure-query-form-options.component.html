@@ -8,7 +8,6 @@
           <div *dxTemplate="let data of 'item'">
             {{data.name}}
             <img [src]="tetrahedralSameImage" class="pref-image">
-            <img *ngIf="data.name==='Same'" [src]="tetrahedralSameImage" class="pref-image">
             <img *ngIf="data.name==='Either'||data.name==='Any'" [src]="tetrahedralEitherImage" class="pref-image">
             <img *ngIf="data.name==='Any'" [src]="tetrahedralAnyImage" class="pref-image">
           </div>
@@ -25,7 +24,6 @@
           <div *dxTemplate="let data of 'item'">
             {{data}}
             <img [src]="doubleBondSameImage" class="pref-image">
-            <img *ngIf="data==='Same'" [src]="doubleBondSameImage" class="pref-image">
             <img *ngIf="data==='Any'" [src]="doubleBondAnyFirstImage" class="pref-image">
             <img *ngIf="data==='Any'" [src]="doubleBondAnySecondImage" class="pref-image">
           </div>
