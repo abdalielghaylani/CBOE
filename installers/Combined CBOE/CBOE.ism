@@ -374,6 +374,7 @@
 		<row><td>Base64Decoder_Server_File</td><td>{D881AAA7-ECF5-4223-971A-162F32461055}</td><td>NEW_DIRECTORY1</td><td>0</td><td/><td>base64decode.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Binary.dll</td><td>{8081CD86-09B5-4A39-8519-37D41E44ED54}</td><td>DLLS</td><td>8</td><td/><td>binary.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Blob.dll</td><td>{4D801907-C1E4-4841-AC0E-BBC90D9A659D}</td><td>DLLS</td><td>8</td><td/><td>blob.dll1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CBOEAdminHelp</td><td>{3594D9CC-A4C6-4434-B138-994641FF91B1}</td><td>CBOEADMINHELP</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CBOEHelpCBOEContextHelp</td><td>{94C02CE1-107A-4BA9-BB86-447F6EC48871}</td><td>CBOECONTEXTHELP</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CBOEUserHelp</td><td>{60D4960B-FF7D-40AA-BAA7-17096AE1F691}</td><td>CBOEUSERHELP</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>COEHeaderServer_Server</td><td>{A7C84181-4951-4BFC-863F-C05C247A59C9}</td><td>_5E699E74_0681_47B6_AF46_24D5B10DF576_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -499,32 +500,6 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="i2">Level</col>
 		<col def="S255">Condition</col>
-		<row><td>BioSARBrowser</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>BioSARBrowser</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>CBV</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>CBV</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>CBVN</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>CBVN</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>CFWTemp</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>CFWTemp</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>ChemACX</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>ChemACX</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>ChemInv</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>ChemInv</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>DataLoader</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>DataLoader</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>DataLoader2</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>DataLoader2</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>DocManager</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>DocManager</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>Framework</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>Framework</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>Manager</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>Manager</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>Registration</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>Registration</td><td>1000</td><td>CBOE="yes"</td></row>
-		<row><td>Security</td><td>1</td><td>CBOE="no"</td></row>
-		<row><td>Security</td><td>1000</td><td>CBOE="yes"</td></row>
 	</table>
 
 	<table name="Control">
@@ -1368,6 +1343,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>CBOEADMINHELP</td><td>CBOEAdminHelp</td></row>
 		<row><td>CHEMOFFICE</td><td>ChemOffice</td></row>
 		<row><td>CHEMOFFICE</td><td>IniChange</td></row>
 		<row><td>CHEMOFFICEENTERPRISE1</td><td>AllOtherFiles</td></row>
@@ -4030,7 +4006,13 @@ If filesys.FolderExists(strPath) Then
 	str = "cmd /c rmdir /S /Q " &amp; Chr(34) &amp;  strPath &amp; Chr(34)
 	oShell.Run str
 End If
-</td><td/><td/></row>
+'terminating Report Service
+strComputer = "."
+Set objWMIService = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" &amp; strComputer &amp; "\root\cimv2")
+Set colListOfProcesses = objWMIService.ExecQuery ("SELECT * FROM Win32_Process WHERE Name = 'Reports.exe'")
+For Each objProcess In colListOfProcesses
+ objProcess.Terminate()   
+Next</td><td/><td/></row>
 		<row><td>RunASPNet_Regiis</td><td>34</td><td>[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319</td><td>aspnet_regiis.exe -s W3SVC/[SITENUMBER]/Root</td><td/><td/></row>
 		<row><td>RunCBVNBatchMageFile</td><td>38</td><td/><td>dim strSource,strSourcePath       
 strSource = Session.Property("INSTALLDIR")
@@ -4552,6 +4534,7 @@ Set shell = Nothing
 		<row><td>BUILDS</td><td>DIRPROPERTY1</td><td>builds</td><td/><td>0</td><td/></row>
 		<row><td>CAMBRIDGESOFT</td><td>ProgramFilesFolder</td><td>PERKIN~1|PerkinElmer</td><td/><td>0</td><td/></row>
 		<row><td>CBOE</td><td>BUILDS</td><td>CBOE</td><td/><td>0</td><td/></row>
+		<row><td>CBOEADMINHELP</td><td>CBOEHELP</td><td>CBOEAD~1|CBOEAdminHelp</td><td/><td>0</td><td/></row>
 		<row><td>CBOECONTEXTHELP</td><td>CBOEHELP</td><td>CBOECO~1|CBOEContextHelp</td><td/><td>0</td><td/></row>
 		<row><td>CBOEHELP</td><td>CHEMOFFICEENTERPRISE</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CBOEHELP1</td><td>REGISTRATION.SERVER</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
@@ -4735,12 +4718,8 @@ Set shell = Nothing
 		<row><td>_WindowsFolder_Microsoft.NET_Framework_v2.0.50727</td><td>TARGETDIR</td><td>_WindowsFolder_Microsoft.NET_Framework_v2.0.50727</td><td/><td>0</td><td/></row>
 		<row><td>_WindowsFolder_aspnet_regiis.exe__s_W3SVC_1_ROOT</td><td>TARGETDIR</td><td>_WindowsFolder_aspnet_regiis.exe__s_W3SVC_1_ROOT</td><td/><td>0</td><td/></row>
 		<row><td>newfolder1</td><td>ProgramMenuFolder</td><td>##ID_STRING53##</td><td/><td>1</td><td/></row>
-		<row><td>newfolder10</td><td>newfolder1</td><td>##ID_STRING78##</td><td/><td>1</td><td/></row>
 		<row><td>newfolder2</td><td>newfolder1</td><td>##ID_STRING70##</td><td/><td>1</td><td/></row>
-		<row><td>newfolder5</td><td>newfolder1</td><td>##ID_STRING73##</td><td/><td>1</td><td/></row>
-		<row><td>newfolder7</td><td>newfolder1</td><td>##ID_STRING75##</td><td/><td>1</td><td/></row>
 		<row><td>newfolder8</td><td>newfolder1</td><td>##ID_STRING76##</td><td/><td>1</td><td/></row>
-		<row><td>newfolder9</td><td>newfolder1</td><td>##ID_STRING77##</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -5474,6 +5453,7 @@ Set shell = Nothing
 		<row><td>COE</td><td>AppPoolInstallDir2</td></row>
 		<row><td>COE</td><td>AppPoolInstallDir3</td></row>
 		<row><td>COE</td><td>AppPoolIntallDir</td></row>
+		<row><td>COE</td><td>CBOEAdminHelp</td></row>
 		<row><td>COE</td><td>CBOEHelpCBOEContextHelp</td></row>
 		<row><td>COE</td><td>CBOEUserHelp</td></row>
 		<row><td>COE</td><td>COELogViewer</td></row>
@@ -8101,6 +8081,7 @@ Set shell = Nothing
 		<row><td>Base64Decoder_Server_File</td><td/><td/><td>_AF1DC690_AD56_4A2E_9575_5356DFD4EF4E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Binary.dll</td><td/><td/><td>_2D77281E_EEDB_4ADC_913A_AEC3FCF73D0F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Blob.dll</td><td/><td/><td>_383D049B_F556_4E5F_8B21_71F16A7277E0_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CBOEAdminHelp</td><td/><td/><td>_D85221BC_57CD_409A_9D04_94A480A773F7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CBOEHelpCBOEContextHelp</td><td/><td/><td>_A080706F_7DAC_432A_A35A_84808994C149_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CBOEUserHelp</td><td/><td/><td>_ED4C50F7_A36B_4A85_9CFB_40519929EFD0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>COEHeaderServer_Server</td><td/><td/><td>_64618613_EE82_4BDC_AB87_64B0C008DC34_FILTER</td><td/><td/><td/><td/></row>
@@ -8323,7 +8304,7 @@ Set shell = Nothing
 		<row><td>ChemACX</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\chemacx</td><td>4</td><td/><td>web.config</td><td>10</td></row>
 		<row><td>ChemBioVizBin</td><td>&lt;PATH_TO_BIN_FILES&gt;</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>ChemBioVizForms</td><td>&lt;PATH_TO_FORMS_FILES&gt;</td><td>4</td><td/><td/><td>10</td></row>
-		<row><td>ChemInv</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\ChemInv</td><td>4</td><td/><td>web.config,TBarCode_x64_Setup.msi</td><td>10</td></row>
+		<row><td>ChemInv</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\ChemInv</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>ClassicComon</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\Common</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>Common</td><td>&lt;WORKSPACE_ROOT&gt;\ChemOffice\Common</td><td>4</td><td/><td>web.config,CSDO.dll, CSDO10.dll,  CSDO11.dll, MolServer.dll,CSDO17.dll,CSDO14.dll,CSDO15.dll</td><td>10</td></row>
 		<row><td>CommonRes</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\CommonResources</td><td>4</td><td/><td/><td>10</td></row>
@@ -11059,6 +11040,7 @@ Set shell = Nothing
 		<row><td>ID_STRING582</td><td>1033</td><td>DATABA~1|Database Upgrade Scripts</td><td>0</td><td/><td>-483922333</td></row>
 		<row><td>ID_STRING583</td><td>1033</td><td>SERVER~1|Server Configuration Tool</td><td>0</td><td/><td>-483938653</td></row>
 		<row><td>ID_STRING584</td><td>1033</td><td>Port No. (Required) :</td><td>0</td><td/><td>1269288645</td></row>
+		<row><td>ID_STRING585</td><td>1033</td><td>CONFIG~1|Config Loader</td><td>0</td><td/><td>1806116910</td></row>
 		<row><td>ID_STRING59</td><td>1033</td><td>DATABA~1|Database Creation Scripts</td><td>0</td><td/><td>-1457540204</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>ChemBioViz .Net</td><td>0</td><td/><td>-929077613</td></row>
 		<row><td>ID_STRING60</td><td>1033</td><td>SETUPL~1|Setup Logs</td><td>0</td><td/><td>-1457540204</td></row>
@@ -11270,24 +11252,21 @@ Set shell = Nothing
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\Images\ARPIcon.ico</td><td>0</td></row>
 		<row><td>DataCreat_D7F5FD7ADEE24351BAAF242003BCB059.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut10_6810897C8637412F9D5AD922C67F5502.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
-		<row><td>NewShortcut11_B4B3F566FA6349B9A43B10DCAC4C973B.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
+		<row><td>NewShortcut121_B713D856BD294C1C88F5CF96274BF2D8.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\subprojects\ConfigLoader\bin\Release\ConfigLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut12_63E93F6CBD6F42C090D62D1E858EDE38.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\subprojects\DataLoader\bin\Release\DataLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut13_CB430019565C496087E7A2ED2B446D9B.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\ChemBioViz.NET\bin\Release\ChemBioViz.NET.exe</td><td>0</td></row>
 		<row><td>NewShortcut14_BD195F06F3A2435987D10F12736D3551.exe</td><td/><td>&lt;New Path Variable&gt;\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\ConfigLoader\bin\Release\ConfigLoader.exe</td><td>0</td></row>
-		<row><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut16_7AAD1165DFB446B395667760166449B1.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut2_986FB7C3104D4C0990DF5C80B0A94447.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut3_CAE912D443824125AE490CF2A3018190.exe</td><td/><td>&lt;SystemFolder&gt;\shell32.dll</td><td>126</td></row>
 		<row><td>NewShortcut3_E4994E1F0D8546F4AFCB3F2DDE72E85C.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
-		<row><td>NewShortcut4_06CA7823C1944AB3825310E3A37A906E.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut5_5A28C647F1694BAFB67BD1B35E70B5FE.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut5_65415513128D4CDF921C438D7D0DF66B.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut6_6CAFB4D780574BCABA310389A6EAD09B.exe</td><td/><td>&lt;WORKSPACE_ROOT&gt;\Install\install9\UserInterface\ICON_db_win.ico</td><td>0</td></row>
 		<row><td>NewShortcut7_6BC2D4DE29B94708867BA43BF4D85343.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut8_2DB07C7DBB9340BB960D0867999C261B.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
-		<row><td>NewShortcut9_9BA3DE1672344219BCD332FBDD5BB136.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -12102,6 +12081,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>NewShortcut1</td><td>DataCreatedeTool</td><td/><td>newfolder1</td><td>2</td></row>
+		<row><td>NewShortcut121</td><td>DataLoader</td><td/><td>newfolder1</td><td>2</td></row>
 		<row><td>NewShortcut2</td><td>DataCreationTool</td><td/><td>newfolder8</td><td>2</td></row>
 		<row><td>NewShortcut3</td><td>DataUpgradeTooll</td><td/><td>newfolder1</td><td>2</td></row>
 		<row><td>NewShortcut5</td><td>ServerConfigTooll</td><td/><td>newfolder1</td><td>2</td></row>
@@ -12193,13 +12173,10 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
 		<row><td>DataCreat</td><td>newfolder1</td><td>##ID_STRING581##</td><td>DataCreatedeTool</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseInstall.hta</td><td/><td/><td/><td>DataCreat_D7F5FD7ADEE24351BAAF242003BCB059.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut11</td><td>newfolder7</td><td>##ID_STRING68##</td><td>ChemInv</td><td>[HELP4]Inventory Manager User's Guide.chm</td><td/><td/><td/><td>NewShortcut11_B4B3F566FA6349B9A43B10DCAC4C973B.exe</td><td>1</td><td>1</td><td>HELP4</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut12</td><td>newfolder2</td><td>##ID_STRING69##</td><td>DataLoader</td><td>[DATALOADER]DataLoader.exe</td><td/><td/><td/><td>NewShortcut12_63E93F6CBD6F42C090D62D1E858EDE38.exe</td><td>1</td><td>1</td><td>DATALOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut15</td><td>newfolder2</td><td>##ID_STRING54##</td><td>DataLoader</td><td>[HELP2]DataLoader.chm</td><td/><td/><td/><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td>1</td><td>1</td><td>HELP2</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut121</td><td>newfolder1</td><td>##ID_STRING585##</td><td>DataLoader</td><td>[CONFIGLOADER]ConfigLoader.exe</td><td/><td/><td/><td>NewShortcut121_B713D856BD294C1C88F5CF96274BF2D8.exe</td><td>1</td><td>1</td><td>CONFIGLOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut3</td><td>newfolder1</td><td>##ID_STRING582##</td><td>DataUpgradeTooll</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseUpgrade.hta</td><td/><td/><td/><td>NewShortcut3_E4994E1F0D8546F4AFCB3F2DDE72E85C.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut4</td><td>newfolder1</td><td>##ID_STRING61##</td><td>WebServer_Source</td><td>[HELP3]ChemOffice WebServer User's Guide.chm</td><td/><td/><td/><td>NewShortcut4_06CA7823C1944AB3825310E3A37A906E.exe</td><td>1</td><td>1</td><td>HELP3</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut5</td><td>newfolder1</td><td>##ID_STRING583##</td><td>ServerConfigTooll</td><td>[CONFIGURATION_AND_DB_TOOLS]COEConfigurationTool.hta</td><td/><td/><td/><td>NewShortcut5_5A28C647F1694BAFB67BD1B35E70B5FE.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut9</td><td>newfolder5</td><td>##ID_STRING66##</td><td>ChemACX</td><td>[HELP12]ChemACX User's Guide.chm</td><td/><td/><td/><td>NewShortcut9_9BA3DE1672344219BCD332FBDD5BB136.exe</td><td>1</td><td>1</td><td>HELP12</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
