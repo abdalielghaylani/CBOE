@@ -30,14 +30,15 @@ export prototype CheckWebSite(HWND);
 export prototype EditCBVNMageBatchFile(HWND);
 export prototype EditDataLoaderMageBatchFile(HWND);
 export prototype CreateRegKey(HWND);
+
 export prototype EditDThreeUDL(HWND);
 export prototype EditDrugDegUDL(HWND);
 export prototype EditCoreUDL(HWND);
 export prototype EditInvUDL(HWND);
 export prototype EditAppVBS(HWND);
 export prototype SetScriptMaps(HWND);
+export prototype InstallPatch(HWND);
 export prototype InstallCDJS(HWND);
-export prototype DeleteVirtuals(HWND);
 // To Do:  Declare global variables, define constants, and prototype user-
 //         defined and DLL functions here.
 
@@ -329,32 +330,39 @@ function EditDataLoaderMageBatchFile(hMSI)
     STRING szSAdd,svReturnLine,svReturnLineA,svReturnLineB,svReturnLineC,svReturnLineD,szVersion, szVer, svResult;
     NUMBER nBuff,nvLineNumber,nvLineNumberA,nvLineNumberB,nvLineNumberC,nvLineNumberD,nvFileHandle;
 begin             
-    nBuff=256;
-    MsiGetProperty(ISMSI_HANDLE,"CBVNBUILDNUMBER",szVersion,nBuff);
-    nBuff=256;
-    MsiGetProperty(ISMSI_HANDLE,"CBVNFOLDERVERSION",szVer,nBuff);
-    nBuff=256;
-    MsiGetProperty(ISMSI_HANDLE,"DLSADDRESS",szSAdd,nBuff);
-    OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "SADDRESS" , szSAdd, nBuff); 
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNBUILDNUMBER" , szVersion, nBuff);
+    nBuff=256; 
+    MsiGetProperty(ISMSI_HANDLE, "CBVNFOLDERVERSION" , szVer, nBuff);
+    //szVersion = szVer;
+    //StrReplace(szVersion,".","_",0);
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
   	if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "mage_DataLoader.bat") < 0) then
-   	  MessageBox ("Unable to edit mage_DataLoader.bat. Please contact the administrator.", SEVERE);              
+   	  MessageBox ("Unable to edit mage_DataLoader.bat. Please contact the administrator.", SEVERE);
+     // abort;                    
   	else     
-	  FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "http:",svReturnLine,nvLineNumber, RESTART);
-  	  FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
-  	  FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "DataLoader.exe.manifest\" -cf",svReturnLineB,nvLineNumberB, RESTART);
-  	  FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_0",svReturnLineC,nvLineNumberC, RESTART);
-  	  FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_10",svReturnLineD,nvLineNumberD, RESTART);
-  	  CloseFile (nvFileHandle);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "http:",svReturnLine,nvLineNumber, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "-fd",svReturnLineA,nvLineNumberA, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "DataLoader.exe.manifest\" -cf",svReturnLineB,nvLineNumberB, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_0",svReturnLineC,nvLineNumberC, RESTART);
+  	FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_11_0_1_10",svReturnLineD,nvLineNumberD, RESTART);
+  	// Close the File  
+  	CloseFile (nvFileHandle);
   	endif;
-  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u DataLoader.application -appm \"Application Files\\DataLoader_"+szVer+"\\DataLoader.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu " + szSAdd, nvLineNumber, REPLACE);
-  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u \"Application Files\\DataLoader_" + szVer + "\\DataLoader.exe.manifest\" -fd \"Application Files\\DataLoader_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
-  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -s \"Application Files\\DataLoader_"  + szVer+"\\DataLoader.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
-  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberC, REPLACE);
-  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd Application Files\\DataLoader_"  + szVer, nvLineNumberD, REPLACE);
+  	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u DataLoader.application -appm \"DataLoader_"+szVer+"\\DataLoader.exe.manifest\" -v "+szVersion+" -mv "+szVersion+" -pu http://" + szSAdd + "/DataLoader/DataLoader.application", nvLineNumber, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -u \"DataLoader_" + szVer + "\\DataLoader.exe.manifest\" -fd \"DataLoader_"+szVer+"\" -v "+szVersion, nvLineNumberA, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "mage -s \"DataLoader_"  + szVer+"\\DataLoader.exe.manifest\" -cf MyPFX.pfx -pwd mykey ", nvLineNumberB, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_"  + szVer, nvLineNumberC, REPLACE);
+  	FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\mage_DataLoader.bat", "cd DataLoader_"  + szVer, nvLineNumberD, REPLACE);
   	
+  	
+        
 end; 
-  	
-
 function CreateRegKey(hMSI)
      STRING szKey;
   begin
@@ -622,27 +630,104 @@ function EditAppVBS(hMSI)
     NUMBER nvFileHandle, nvLineNumber, nvResult, nStart, nBuff, nFlag,nBuffer, ret;  
  begin 
  nBuff=256;
-  
-   
-  	 OpenFileMode (FILE_MODE_APPEND_UNICODE);
-     if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl.vbs") < 0) then
+      // open the file in Unicode mode.   
+   /* OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs", "D:\\CBVN110X_Deployment\\ChemBioViz.Net.application\"",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit CBVN APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs", "D:\CBVN110X_Deployment\ChemBioViz.Net.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\ChemBioViz.Net_Client\\ChemBioViz.Net_ClickOnce\\ChemBioViz.Net.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	*/
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl.vbs") < 0) then
         MessageBox ("Unable to edit DataLoader APP VBS file. Please contact the administrator.", SEVERE);
-     else     
+       // abort;
+    else     
    		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
-   	    CloseFile (nvFileHandle); 
-  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
-  	endif;  	
-  	OpenFileMode (FILE_MODE_APPEND_UNICODE);    
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
     if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce", "Appl1.vbs") < 0) then
         MessageBox ("Unable to edit DataLoader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
     else     
    		FileGrep(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
-   	    CloseFile (nvFileHandle); 
-  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
-  endif;		
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise\\DataLoader\\DataLoader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise\DataLoader\\DataLoader_ClickOnce\\DataLoader.application\"" ,nvLineNumber,REPLACE);
+  endif;	
+  	//DataUploader
+ /* OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs", "D:\\DataUploader110X_Deployment\\COEDataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  	endif;
+  	
+  	OpenFileMode (FILE_MODE_APPEND_UNICODE);
+    
+    if (OpenFile(nvFileHandle, INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce", "Appl1.vbs") < 0) then
+        MessageBox ("Unable to edit DataUploader APP1 VBS file. Please contact the administrator.", SEVERE);
+       // abort;
+    else     
+   		FileGrep(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\Data Loader\\DataLoader_ClickOnce\\Appl1.vbs", "D:\\DataLoader110X_Deployment\\DataLoader.application",svReturnLine,nvLineNumber, RESTART);
+   	//MessageBox(svReturnLine, INFORMATION); 
+  	//MsiGetProperty(ISMSI_HANDLE, "OracleService" , szOraServiceName, nBuff);
+  	//MessageBox(szOraServiceName, INFORMATION);
+  	// Close the File           
+  		CloseFile (nvFileHandle); 
+  		FileInsertLine(INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\Appl1.vbs","sFile = \"" + INSTALLDIR^"ChemOfficeEnterprise12.1.0.0\\DataLoader2\\DataUploader_ClickOnce\\COEDataLoader.application\"" ,nvLineNumber,REPLACE);
+  
+  	
+  	endif;
+  	*/
+  	
+  	
 end;
-	
-
 
 function SetScriptMaps(hMSI)
     // To Do:  Declare local variables.
@@ -651,7 +736,7 @@ function SetScriptMaps(hMSI)
  begin            
      nBuff=256;
      MsiGetProperty(ISMSI_HANDLE,"SITENUMBER",svSiteNum,nBuff);
-     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v4.0.30319\\aspnet_regiis.exe";
+     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v2.0.50727\\aspnet_regiis.exe";
      com = "-s W3SVC/" + svSiteNum + "/ROOT";
      com1= "-s W3SVC";
      if (LaunchAppAndWait(regAspnet, com, WAIT) < 0) then
@@ -662,8 +747,52 @@ function SetScriptMaps(hMSI)
      endif;
 end;
 
+function InstallPatch(hMSI)
+    // To Do:  Declare local variables.
+    STRING  szVirtualName,strProgram,strInstallDir,strMSI,strWebSite,strCBOE,strComuser,strAppPass,strMSICBOE,strMSICDJS;
+    STRING strCDJSParameter,strCDJS,strMSIChem,strInstall;
+    NUMBER nBuf;
+ begin            
+   
+        nBuf=256;
+        MsiGetProperty(hMSI,"SUPPORTDIR",strMSI,nBuf);
+        MsiGetProperty(hMSI,"INSTALLDIR",strInstallDir,nBuf);
+        MsiGetProperty(hMSI,"WEBSITENAME",strWebSite,nBuf);
+        MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
+        MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
+        MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);      
+        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi";                 
+        LongPathFromShortPath(strMSIChem);
+        LongPathToQuote(strMSIChem,TRUE);         
+        strMSIChem ="/i " +strMSIChem + " /qb";      
+        LaunchAppAndWait("msiexec",strMSIChem,WAIT);                         
+        strMSICBOE=strMSI + "\\CBOE 19.1.msi";        
+        LongPathFromShortPath(strMSICBOE);
+        LongPathToQuote(strMSICBOE,TRUE);
+        LongPathToQuote(strInstallDir,TRUE);        
+        //Change        
+        if (strCBOE="yes") then
+          MsiGetProperty(hMSI,"CBOEDIR",strInstall,nBuf);
+          LongPathToQuote(strInstall,TRUE);
+		  strProgram=  " /i " +strMSICBOE+" /qb" + " INSTALLDIR="+strInstall;
+	    else
+		  strProgram=  " /i " +strMSICBOE+" /qb" + " INSTALLDIR="+strInstallDir +" APPUSERNAME="+strComuser+" APPUSERPASSWORD="+strAppPass;
+	    endif;  	
+		//Change      
+        LaunchAppAndWait ("msiexec", strProgram, WAIT);  
+ end;
 
-
+  
+function InstallAbsent(hMSI)
+    // To Do:  Declare local variables.
+    STRING  szVirtualName,strProgram,strInstallDir,strMSI;
+    NUMBER nBuf;
+ begin            
+   
+        MsiSetFeatureState(hMSI,"COE",INSTALLSTATE_ABSENT);
+        MsiSetFeatureState(hMSI,"Classic",INSTALLSTATE_ABSENT);
+       
+end;
 
 function DelayMessageStart(hMSI)
     // To Do:  Declare local variables.
@@ -723,27 +852,6 @@ function InstallCDJS(hMSI)
               LaunchAppAndWait(strMSICDJS,strCDJS,WAIT);  
         endif;
  end;
- 
- function DeleteVirtuals(hMsi)
-    OBJECT objIIS_Root, objIISVirtual;
-    STRING szSiteNum,regAspnet,com;
-    NUMBER nBuff;
-begin
-     nBuff=256;
-     MsiGetProperty(ISMSI_HANDLE,"SITENUMBER",szSiteNum,nBuff);
-     regAspnet = WINDIR ^ "\\microsoft.net\\framework\\v4.0.30319\\aspnet_regiis.exe";
-     com = "-s W3SVC/" + szSiteNum + "/ROOT/";
-     LaunchAppAndWait(regAspnet, com + "COEFrameworkServices", WAIT);
-     LaunchAppAndWait(regAspnet, com + "COEWebServiceHost", WAIT);
-     LaunchAppAndWait(regAspnet, com + "COECommonResources", WAIT);
-     LaunchAppAndWait(regAspnet, com + "DataLoader", WAIT);
-     LaunchAppAndWait(regAspnet, com + "COESingleSignOn", WAIT);
-     LaunchAppAndWait(regAspnet, com + "CBVNClickOnce", WAIT);
-     LaunchAppAndWait(regAspnet, com + "COEManager", WAIT);
-     LaunchAppAndWait(regAspnet, com + "COERegistration", WAIT);
-     LaunchAppAndWait(regAspnet, com + "ChemBioViz", WAIT);
- 
-end;
 
 
 
