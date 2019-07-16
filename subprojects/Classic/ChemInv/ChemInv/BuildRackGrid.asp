@@ -579,7 +579,7 @@ response.Write "</span>"
                     tr.appendChild(th); 
                     for (j = 1; j <= columns; j++) {
                         col = "col" + j;
-                        name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
+                        var name = RootNode[i].getElementsByTagName(col)[0].childNodes[0].nodeValue;
                         var td = document.createElement("td");
                         td.align = "center";
                         td.valign = "center";
