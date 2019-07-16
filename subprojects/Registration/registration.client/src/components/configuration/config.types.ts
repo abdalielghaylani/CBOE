@@ -730,6 +730,11 @@ export const CONFIG_ADDIN_COLUMNS = {
     dataField: 'events',
     caption: 'Event List (Event Name = Event Handler)',
     cellTemplate: 'eventTemplate'
+  }, {
+    dataField: 'enable',
+    caption: 'Enabled',
+    dataType: 'boolean',
+    width: '100px'
   }],
   editColumn: {
     addIn: [{
