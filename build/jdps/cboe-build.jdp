@@ -117,6 +117,8 @@ pipeline
             {
                 bat """
                     set WORKSPACE_PATH_ROOT=${WORKSPACE}
+                    "${ISCMD}" -p ${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller.ism -r "Release 1" -o "C:\\Program Files (x86)\\InstallShield\\2013\\Modules\\i386" -z "ProductVersion=${FULL_VERSION}" -z "CBVNBUILDNUMBER=${FULL_VERSION}" -z "CBVNFOLDERVERSION=${FOLDER_VERSION_NAME}" -z "BUILDVERSION=${FOLDER_VERSION_NAME}"
+                    xcopy /Y /I /S "${WORKSPACE}\\Installers\\CBOEInstaller\\CBOEInstaller\\Product Configuration 1\\Release 1\\DiskImages\\DISK1\\*.*" "${WORKSPACE}\\installers\\SubInstaller"
                     set WORKSPACE_ROOT=${WORKSPACE}
                     "${ISCMD}" -p "${WORKSPACE}\\installers\\Combined CBOE\\CBOE.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${FULL_VERSION}"
                     xcopy "${WORKSPACE}\\installers\\Combined CBOE\\CBOE\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}" /I /Y /S
