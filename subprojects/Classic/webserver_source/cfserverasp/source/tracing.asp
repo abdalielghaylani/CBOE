@@ -111,7 +111,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 			if(res_HTTP == 'https'){
 			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=deleteTrace&dbKey=" + dbkey;
 			}
+			else{
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=deleteTrace&dbKey=" + dbkey;
+			}
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
 				alert('File deleted');		
@@ -139,7 +141,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 			if(res_HTTP == 'https'){
 			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StartTracing&level=" + level + "&scope=" + scope;
 			}
+			else{
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StartTracing&level=" + level + "&scope=" + scope;
+			}
 			var httpResponse = JsHTTPGet(strURL);
 			if (httpResponse == '1'){
 				DisableStatusAndLevel(true)
@@ -163,7 +167,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 			if(res_HTTP == 'https'){
 			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StopTracing";
 			}
+			else{
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=StopTracing";
+			}
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
 				DisableStatusAndLevel(false)
@@ -212,7 +218,9 @@ TOP_NAV = "<a href=""/cfserveradmin/AdminSource/webeditor.asp""><b>Administrativ
 			if(res_HTTP == 'https'){
 			var strURL = "https://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=SetPageTimer&state=" + state + "&scope=" + scope;
 			}
+			else{
 			var strURL = "http://" + serverName + "/" + dbkey + "/user_info.asp?manageTracing=1&action=SetPageTimer&state=" + state + "&scope=" + scope;
+			}
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == '1'){
 				alert('Timer: ' + state + '\r');		
