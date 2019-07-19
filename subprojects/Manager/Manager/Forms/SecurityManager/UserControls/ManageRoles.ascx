@@ -10,7 +10,7 @@ var userListToolBarID;
 
 
    function Confirmation() {
-        if (confirm("Confirm Delete \n\n\n\n Are you sure you want to delete this role?")) {
+        if (confirm("Confirm Delete \n Are you sure you want to delete this role?")) {
             return true;
         } else {
             return false;
@@ -86,8 +86,8 @@ function EnableManageRoleButtons()
     document.getElementById('<%= this.EditButton.GetButtonClientID() %>').disabled = false;
     document.getElementById('<%= this.EditUsersButton.GetButtonClientID() %>').disabled = false;
     document.getElementById('<%= this.EditRolesButton.GetButtonClientID() %>').disabled = false;
-    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.remove("btn-disable");
-    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.add("ImageButton");
+    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').className = "btn-disable";
+    document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').className = "ImageButton";
  }
 </script>
  <style type="text/css">
