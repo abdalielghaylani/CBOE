@@ -4,7 +4,7 @@
  <script type="text/javascript">
 
      function Confirm() {
-         if (confirm("Confirm Delete \n\n\n\n Are you sure you want to delete this user?")) {
+         if (confirm("Confirm Delete \n Are you sure you want to delete this user?")) {
             return true;
          } else {
              return false;
@@ -79,8 +79,8 @@
     if(document.getElementById('<%= this.EditButton.GetButtonClientID() %>') != null)
         document.getElementById('<%= this.EditButton.GetButtonClientID() %>').disabled = false;
      if (document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>') != null) {
-         document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.remove("btn-disable");
-         document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').classList.add("ImageButton");
+		document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').className = "btn-disable";
+		document.getElementById('<%= this.DeleteButton.GetButtonClientID() %>').className = "ImageButton";
      }
  }
 </script>
