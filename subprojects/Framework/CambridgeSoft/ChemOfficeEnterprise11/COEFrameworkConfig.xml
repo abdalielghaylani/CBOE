@@ -1230,6 +1230,14 @@
           <add name="InventoryTasks" display="Tasks" tip="Inventory Tasks" privilege="INV_CREATE_LOCATION" url="/cheminv/gui/menu.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="history.png"/>
         </links>
       </add>
+	  <add name="UtilitiesChrome" enabled="true" coeIdentifier="UtilitiesChrome" display="Applications &amp; Utilities" newWindow="false" color="darkBlue" helpText="Launch and or install rich client applications and utilites.">
+		<links>
+			<add name="ENClient" display="Launch ENotebook" tip="Launch the E-Notebook application" url="/ClickOnce/ENotebook.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
+			<add name="DLClient" display="DataLoader Client" tip="Launch the DataLoader application" url="/DataLoader/DataLoader.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+			<add name="BioAssayClient" display="BioAssay Client" tip="Install the BioAssay Enterpise application (installation requires admin privileges on the client system)" url="/cfserverasp/clients/BioAssayClient10.1.6/setup.exe" privilege="HTS_LOGIN" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="manage_substances.png"/>
+			<add name="SendToEnotebook" display="SendToEnotebook Driver" tip="Install the SendToEnotebook v1 printer driver (installation requires admin privileges on the client system)" url="/cfserverasp/clients/SendToEnotebookV1/SendToE-Notebook 18.1.exe" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
+		</links>
+		</add>
       <add name="Utilities" enabled="true" coeIdentifier="Utilities" display="Applications &amp; Utilities" newWindow="false" color="darkBlue" helpText="Launch and or install rich client applications and utilites">
         <links>
           <add name="ENClient" display="Launch ENotebook" tip="Launch the E-Notebook application" url="/ClickOnce/ENotebook.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>         

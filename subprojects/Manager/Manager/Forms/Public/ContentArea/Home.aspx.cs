@@ -110,7 +110,12 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                 bool isIE = browser.Type.ToUpper().Contains("IE") || browser.Type.ToUpper().Contains("INTERNETEXPLORER");
                 if (myGroup != null && myGroup.Name != "COEMANAGER_DV")
                     {
-                        if ((isIE ? true : (myGroup.COEIdentifier != "Registration"))) {
+                        if ((isIE ? true : (myGroup.COEIdentifier != "Registration")))
+                        {
+                            if ((isIE && myGroup.COEIdentifier == "UtilitiesChrome") || (!isIE && myGroup.COEIdentifier == "Utilities"))
+                            {
+                                 continue;
+                            }
                         // Make sure the DataView Manager is not displayed for non-SpotfireUsers 
                         //if ((SpotfireSetting.SpotfireUser != "" ) || (SpotfireSetting.SpotfireUser == "" && myGroup.Name != "COEMANAGER_DV"))
                         //{
