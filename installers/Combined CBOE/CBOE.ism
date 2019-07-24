@@ -2952,12 +2952,15 @@ Dim objView
 Dim objRecord
 Dim objW3SVC, objIisWebSite
 Dim lngOrder,version, versionNT  
+
 version=Session.Property("VersionNT")
 versionNT=Session.Property("VersionNT64")                        
 'Session.Property("DATABASEDIR")=Session.Property("ProgramFilesFolder") + "CambridgeSoft"
 Session.Property("WEBSITE")=""
 Set objView=Nothing
 Set objRecord=Nothing
+
+
 
 Set objView = Session.Database.OpenView("select * from ComboBox Where Property='WEBSITE'")
 
@@ -2971,7 +2974,10 @@ objView.Modify 6, objRecord ' delete whole record
 'if CInt(version) &lt; 550 Or CInt(versionNT) &lt; 550 then 
 	Set objW3SVC = GetObject("IIS://localhost/W3SVC")
 	lngOrder = 1
-
+    Set shell = CreateObject("WScript.Shell")
+    strCmd="%windir%\system32\inetsrv\appcmd list sites"
+    shell.run strCmd 
+    Set x= shell.Exec(strCmd)
 	For Each objIisWebSite In objW3SVC
 		If objIisWebSite.Class = "IIsWebServer" Then
 			If LCase(objIisWebSite.ServerComment) &lt;&gt; "administration web site" Then
@@ -2994,11 +3000,27 @@ objView.Modify 6, objRecord ' delete whole record
 				Next  
 				objRecord.StringData(3) = objIisWebSite.Name &amp; "#" &amp; portN + "#" + objIisWebSite.ServerComment' value
 				objRecord.StringData(4) = objIisWebSite.ServerComment ' text
-				objView.Modify 7, objRecord ' (7 = msiViewModifyInsertTemporary)
+				objView.Modify 7, objRecord ' (7 = msiViewModifyInsertTemporary)				              
 				If lngOrder = 1 then 
 					Session.Property("WEBSITE")=objIisWebSite.Name &amp; "#" &amp; portN + "#" + objIisWebSite.ServerComment
+					'MsgBox Session.Property("WEBSITE")
+				 If Session.Property("WEBSITE")= Null then
+					'MsgBox x				  
+					Do Until x.StdOut.AtEndOfStream
+						strSite =x.StdOut.ReadLine() 
+						strS=Replace(strSite," (","#")
+						strS=Split(strS,"#")
+						strSite=Mid(strS(0),5,Len(strS(0)))
+						strSite=Left(strSite,Len(strSite)-1)
+						strSite=Right(strSite,Len(StrSite)-2)
+						
+						Session.Property("WEBSITE")=strSite
+						lngOrder = lngOrder + 1
+					Loop
+					Set shell = Nothing 
+				 End if
 				End If
-				lngOrder = lngOrder + 1
+				
 			End If
 		End If
 	Next    
