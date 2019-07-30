@@ -19,6 +19,7 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
   private dataSource: CustomStore;
   private popup = { visible: false, title: '', data: '', key: {} };
   private loadingVisible: boolean = false;
+  public isEditable: boolean = false;
 
   constructor(elementRef: ElementRef, http: HttpService) {
     super(elementRef, http);
@@ -49,8 +50,27 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
   }
 
   onEditingStart(e) {
+    this.isEditable = false;
     this.popup = { visible: true, data: e.data.data, title: e.data.name, key: e.key };
     e.cancel = true;
+  }
+
+  onCellPrepared(e) {
+    if (e.rowType === 'data' && e.column.command === 'edit') {
+      let isEditing = e.row.isEditing;
+      let $links = e.cellElement.find('.dx-link');
+      $links.text('');
+      if (!isEditing) {
+        // For Edit
+        let $editIcon = $links.filter('.dx-link-edit');
+        $editIcon.addClass('fa fa-info-circle');
+        $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'XML Detail view' });
+      }
+    }
+  }
+
+  editXML(e) {
+    this.isEditable = e;
   }
 
   private createCustomStore(parent: RegConfigXmlForms): CustomStore {

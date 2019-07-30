@@ -48,6 +48,7 @@ import { RegTextFormItem } from './text-form-item';
 import { RegFileUploaderFormItem } from './file-uploader-form-item';
 import { CStructureImageService } from './structure-image.service';
 import { CStructureImagePrintService } from './structure-image-print.service';
+import { RegXmlViewer } from './xml-viewer/xml-viewer.component';
 
 export * from './common.types';
 export * from './base-column-item';
@@ -106,7 +107,7 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
-    RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem
+    RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem, RegXmlViewer
   ],
   exports: [
     ChemDrawWeb,
@@ -117,7 +118,7 @@ export * from './modal';
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
     RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem,
-    RegCommonModule, RegServicesModule
+    RegCommonModule, RegServicesModule, RegXmlViewer
   ],
   providers: [
     CStructureImageService,

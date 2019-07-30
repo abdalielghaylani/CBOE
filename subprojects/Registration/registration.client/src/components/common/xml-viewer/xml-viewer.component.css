@@ -1,0 +1,60 @@
+
+/deep/ .simpleXML ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 32px;
+}
+
+/deep/ .simpleXML {
+    font-family: 'Courier New';
+}
+
+/deep/ .simpleXML-comment {
+    color: green;
+}
+
+/deep/ .simpleXML-tagHeader {
+    color: blue;
+}
+
+/deep/ .simpleXML-cdata {
+    color: gray;
+}
+
+/deep/ .simpleXML-tagValue {
+    color: darkred;
+}
+
+/deep/ .simpleXML-collapsedText {
+    color: lightgray;
+}
+
+/deep/ .simpleXML-attrName {
+    color: red;
+}
+
+/deep/ .simpleXML-attrValue {
+    color: blue;
+}
+
+/deep/ .simpleXML span.simpleXML-expander,
+/deep/.simpleXML span.simpleXML-expanderClose {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+}
+
+/deep/ .simpleXML span.simpleXML-expanderHeader {
+    cursor: pointer;
+}
+
+/deep/ .simpleXML span.simpleXML-expander-expanded {
+    background-image: url('../../../assets/simpleXML-images.png');
+    transform: scale(0.55);
+}
+
+/deep/ .simpleXML span.simpleXML-expander-collapsed {
+    background-image: url('../../../assets/simpleXML-images.png');
+    background-position-x: -12px;
+    transform: scale(0.55);
+}
