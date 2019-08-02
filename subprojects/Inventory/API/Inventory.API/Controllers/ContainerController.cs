@@ -491,7 +491,7 @@ namespace PerkinElmer.COE.Inventory.API.Controllers
         /// <returns>Barcode imagein PNG format</returns>
         [HttpGet]
         [ApiKeyAuthenticationFilter]
-        [Route(Consts.apiPrefix + "containers/barcode/{containerId:int}")]
+        [Route(Consts.apiPrefix + "containers/print/barcode/{containerId:int}")]
         [SwaggerOperation("Containers")]
         [SwaggerResponse(200, type: typeof(byte[]))]
         [SwaggerResponse(400, type: typeof(Exception))]

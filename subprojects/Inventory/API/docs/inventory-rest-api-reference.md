@@ -34,7 +34,7 @@ A valid API Key must be submitted with every http request via a custom X-Api-Key
 | **GetContainerTypes** | `GET` | [/api/v1/containers/types](#getcontainertypes) |
 | **GetContainerUnits** | `GET` | [/api/v1/containers/units](#getcontainerunits) |
 | **SearchContainers** | `POST` | [/api/v1/containers/search](#searchcontainers) |
-| **GetPrintableBarcode** | `GET` | [/api/v1/containers/barcode/{containerId:int}](#getprintablebarcode) |
+| **GetPrintableBarcode** | `GET` | [/api/v1/containers/print/barcode/{containerId:int}](#getprintablebarcode) |
 
 ### Location
 | Type | Method | Path |
@@ -1447,13 +1447,13 @@ Get barcode image for the container in PNG format
 
 | Method | Path |
 |----|----|
-| `GET` | /api/v1/containers/barcode/{containerId:int} |
+| `GET` | /api/v1/containers/print/barcode/{containerId:int} |
 
 ### Example Request
 
 ```
 curl -X GET --header 'Accept: application/json' --header 'api-key: <Api-Key>' 
-'http://<Server-Address>/Inventory.API/api/v1/containers/barcode/<containerId>'
+'http://<Server-Address>/Inventory.API/api/v1/containers/print/barcode/<containerId>'
 ```
 
 ## Expected Response Types
