@@ -237,7 +237,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                     switch (transformation)
                     {
                         case Calculation.Transformation.FindNameByStructure:
-                            retVal = GetNameByStructure(GetStructureValue(_registryRecord.ComponentList[0].Compound.BaseFragment.Structure));
+                            retVal = GetNameByStructure(GetStructureValue(component.Compound.BaseFragment.Structure));
                             break;
                     }
 
