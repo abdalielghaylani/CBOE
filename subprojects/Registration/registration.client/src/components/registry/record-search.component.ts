@@ -8,7 +8,7 @@ import {
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList, ViewChild
 } from '@angular/core';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
@@ -47,6 +47,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private displayMode: string = 'query';
   private cddActivated: boolean = false;
   private optionData = { isHighLightSubstructure: undefined };
+  public scrollViewHeight: string;
 
   constructor(
     private router: Router,
@@ -93,6 +94,11 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
+    this.scrollViewHeight = (Number(this.parentHeight) - 50).toString();
+  }
+
+  onResize(e) {
+    this.scrollViewHeight = (Number(this.parentHeight) - 50).toString();
   }
 
   private search() {
@@ -113,9 +119,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
       this.http.post(url, queryData).toPromise()
         .then(res => {
           let response = res.json();
-          if (this.isRefine) { 
+          if (this.isRefine) {
             this.onRefine.emit(response);
-          } else { 
+          } else {
             this.onSearch.emit(response);
           }
         })

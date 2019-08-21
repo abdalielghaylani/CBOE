@@ -1,3 +1,4 @@
+<div (window:resize)="onResize($event)">
 <command-button testid="close-search-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
 <command-button testid="clear-search-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
 <command-button testid="search-button" (onClick)="search()" iconName="search" title="Search"></command-button>
@@ -22,9 +23,10 @@
   </dxi-item>
 </dx-form>
 <badge-count color="green" icon="book" text="Total Searchable Records" [count]="totalSearchableCount"></badge-count>
-<dx-scroll-view id="scrollview" [height]="parentHeight" scrollByThumb=true showScrollbar=true>
   <form class="form-inline" role="form" ng-submit="search(query)">
-    <reg-search-form-group-view [viewModel]="searchCriteria" [viewConfig]="viewGroups" [editMode]="true" [displayMode]="displayMode"
+    <dx-scroll-view id="scrollview" [height]="scrollViewHeight" scrollByThumb=true showScrollbar="onHover" >
+      <reg-search-form-group-view [viewModel]="searchCriteria" [viewConfig]="viewGroups" [editMode]="true" [displayMode]="displayMode"
       [activated]="cddActivated" (valueUpdated)="onValueUpdated($event)"></reg-search-form-group-view>
+    </dx-scroll-view>
   </form>
-</dx-scroll-view>
+</div>

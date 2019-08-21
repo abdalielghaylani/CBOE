@@ -8,7 +8,7 @@
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{popup.title}} - XML
   </reg-header>
-  <dx-scroll-view *ngIf="!isEditable" id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+  <dx-scroll-view *ngIf="!isEditable" id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="onHover" >
       <reg-xml-viewer [xml]="popup.data"></reg-xml-viewer>
   </dx-scroll-view>
   <dx-text-area *ngIf="isEditable" [height]="gridHeight" [(value)]="popup.data"></dx-text-area>

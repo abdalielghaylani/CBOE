@@ -71,7 +71,7 @@
       Registry Record:{{currentRecord.REGNUMBER}}
     </reg-header>
     <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true"
-      showScrollbar="true">
+      showScrollbar="onHover" >
       <span class="form-inline">
         <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" displayMode="view"
           [activated]="true"></reg-record-detail-base>
