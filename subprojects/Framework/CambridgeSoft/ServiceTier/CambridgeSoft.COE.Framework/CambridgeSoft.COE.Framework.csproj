@@ -291,8 +291,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.111.7.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>True</SpecificVersion>
+    <Reference Include="Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <HintPath>..\..\CommonRuntimeLibraries\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="QuickGraph, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=aa4871b6f938aabe, processorArchitecture=MSIL">
