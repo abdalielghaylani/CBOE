@@ -972,12 +972,12 @@ public partial class ManageGroups : System.Web.UI.UserControl
 
             //AddGroupPanel
             script += "YAHOO.coemanager.security.AddGroupPanel = new YAHOO.widget.Panel(\"addGroupPanel\",";
-            script += "{width:\"600px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.AddGroupPanel.render();";
 
             //EditGroupPanel
             script += "YAHOO.coemanager.security.EditGroupPanel = new YAHOO.widget.Panel(\"editGroupPanel\",";
-            script += "{width:\"600px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.EditGroupPanel.render();";
 
             //MoveGroupPanel
