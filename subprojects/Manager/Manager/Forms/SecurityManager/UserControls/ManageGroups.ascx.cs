@@ -982,27 +982,27 @@ public partial class ManageGroups : System.Web.UI.UserControl
 
             //MoveGroupPanel
             script += "YAHOO.coemanager.security.MoveGroupPanel = new YAHOO.widget.Panel(\"moveGroupPanel\",";
-            script += "{width:\"277px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.MoveGroupPanel.render();";
 
             //DeleteGroupPanel
             script += "YAHOO.coemanager.security.DeleteGroupPanel = new YAHOO.widget.Panel(\"deleteGroupPanel\",";
-            script += "{width:\"400px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.DeleteGroupPanel.render();";
 
             //AddUsersPanel
             script += "YAHOO.coemanager.security.AddUsersPanel = new YAHOO.widget.Panel(\"addUsersPanel\",";
-            script += "{width:\"400px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.AddUsersPanel.render();";
 
             //RemoveUsersPanel
             script += "YAHOO.coemanager.security.RemoveUsersPanel = new YAHOO.widget.Panel(\"removeUsersPanel\",";
-            script += "{width:\"400px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.RemoveUsersPanel.render();";
 
             //MoveUsersPanel
             script += "YAHOO.coemanager.security.MoveUsersPanel = new YAHOO.widget.Panel(\"moveUsersPanel\",";
-            script += "{width:\"400px\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
+            script += "{width:\"100%\",fixedcenter:true,visible:false,draggable:true,close:false,modal:true,constraintoviewport:true});";
             script += "YAHOO.coemanager.security.MoveUsersPanel.render();}";
 
 
