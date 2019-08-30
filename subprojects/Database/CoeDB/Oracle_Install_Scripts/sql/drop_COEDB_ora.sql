@@ -17,8 +17,8 @@ CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 @@Drops.sql
 @@Drops_N.sql
 
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\Parameters.sql"
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\Drop_CsSecurity.sql"
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\Parameters.sql"
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\Drop_CsSecurity.sql"
 
 spool off;
 exit

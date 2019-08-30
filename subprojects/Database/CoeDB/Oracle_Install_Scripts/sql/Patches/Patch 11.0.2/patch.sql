@@ -37,7 +37,9 @@ CREATE TABLE &&schemaName..COEREPORT
 --#########################################################
 
 --Report
-CREATE SEQUENCE &&schemaName..COEREPORT_SEQ INCREMENT BY 1 START WITH 1;
+
+
+CREATE SEQUENCE &&schemaName..COEREPORT_SEQ INCREMENT BY 1 START WITH 1;
 
 --#########################################################
 --INDEXES
@@ -54,7 +56,8 @@ ALTER TABLE &&schemaName..COEREPORT ADD
   CONSTRAINT FK_COEREPORT_COEDATAVIEW FOREIGN KEY(DATAVIEW_ID) REFERENCES &&schemaName..COEDATAVIEW(ID);
 ALTER TABLE &&schemaName..COEREPORT ADD
   CONSTRAINT FK_COEREPORT_PEOPLE FOREIGN KEY(USER_ID) REFERENCES &&schemaName..PEOPLE(USER_ID);
-
+
+
 --#########################################################
 --VIEWS
 --#########################################################
@@ -228,7 +231,7 @@ SELECT	CASE
 	END	AS setNextPatch 
 FROM	DUAL;
 
-@&&setNextPatch 
+
 
 
 

@@ -13,7 +13,7 @@ ACCEPT sysPass CHAR DEFAULT 'manager2' PROMPT 'Enter the above oracle account pa
 --ACCEPT UpgradeCsSecurity CHAR DEFAULT 'N' PROMPT 'Do you want to upgrade existing CS_SECURITY information? (N):'
 
 
-@@&&InstallUser
+@&&InstallUser
 
 
 
