@@ -348,14 +348,14 @@ function AfterNodeSelectionChange(treeId, nodeId) {
                             <ClientSideEvents InitializeToolbar="OnInitializeUserListToolBar" ></ClientSideEvents>
                             <Items>
                                
-                                <igtbar:TBarButton Key="UsersAdd"  Enabled="false"   Text="Add" ToolTip="Add users to this group" TargetURL="javascript:showAddUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
+                                <igtbar:TBarButton Key="UsersAdd"  Enabled="false"   Text="Add User" ToolTip="Add users to this group" TargetURL="javascript:showAddUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
                                         <images   DisabledImage-Url="../../../App_Themes/Common/Images/Add_User_d.png" HoverImage-Url="../../../App_Themes/Common/Images/Add_User.png" DefaultImage-Url="../../../App_Themes/Common/Images/Add_User.png" ></images>
                                 </igtbar:TBarButton>
                              
-                                <igtbar:TBarButton Key="UsersMove" Enabled="false"   Text="Move" ToolTip="Move or duplicate users this displayed group" TargetURL="javascript:showMoveUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
+                                <igtbar:TBarButton Key="UsersMove" Enabled="false"   Text="Move User" ToolTip="Move or duplicate users this displayed group" TargetURL="javascript:showMoveUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
                                     <images   DisabledImage-Url="../../../App_Themes/Common/Images/Edit_Role_d.png" HoverImage-Url="../../../App_Themes/Common/Images/Edit_Role.png" DefaultImage-Url="../../../App_Themes/Common/Images/Edit_Role.png" ></images>
                                 </igtbar:TBarButton>
-                                 <igtbar:TBarButton Key="UsersRemove" Enabled="false"  Text="Remove" ToolTip="Remove users this displayed group" TargetURL="javascript:showRemoveUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
+                                 <igtbar:TBarButton Key="UsersRemove" Enabled="false"  Text="Remove User" ToolTip="Remove users this displayed group" TargetURL="javascript:showRemoveUsersPanel()" DefaultStyle-Padding-Left="50"  HoverStyle-Padding-Left="50" SelectedStyle-Padding-Left="50">
                                     <images   DisabledImage-Url="../../../App_Themes/Common/Images/Delete_d.png" HoverImage-Url="../../../App_Themes/Common/Images/Delete.png" DefaultImage-Url="../../../App_Themes/Common/Images/Delete.png" ></images>
                                 </igtbar:TBarButton>
                             </Items>
