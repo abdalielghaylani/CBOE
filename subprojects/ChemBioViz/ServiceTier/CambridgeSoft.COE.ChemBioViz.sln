@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.ChemBioViz.Services", "ChemBioViz.Services\CambridgeSoft.COE.ChemBioViz.Services.csproj", "{E5685243-A3FC-4A26-A4F0-3F7397E553D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.ChemBioVizWebApp", "..\PresentationTier\ChemBioVizWebApp\CambridgeSoft.COE.ChemBioVizWebApp.csproj", "{AE6D5D2A-27A8-4727-884D-CF6FFE1643F1}"
@@ -8,22 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 4
-		SccProjectName0 = Perforce\u0020Project
-		SccLocalPath0 = ..
-		SccProvider0 = MSSCCI:Perforce\u0020SCM
-		SccProjectFilePathRelativizedFromConnection0 = ServiceTier\\
-		SccProjectUniqueName1 = ..\\..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
-		SccLocalPath1 = ..\\..\\Framework\\CambridgeSoft
-		SccProjectFilePathRelativizedFromConnection1 = ServiceTier\\CambridgeSoft.COE.Framework\\
-		SccProjectUniqueName2 = ChemBioViz.Services\\CambridgeSoft.COE.ChemBioViz.Services.csproj
-		SccLocalPath2 = ..
-		SccProjectFilePathRelativizedFromConnection2 = ServiceTier\\ChemBioViz.Services\\
-		SccProjectUniqueName3 = ..\\PresentationTier\\ChemBioVizWebApp\\CambridgeSoft.COE.ChemBioVizWebApp.csproj
-		SccLocalPath3 = ..
-		SccProjectFilePathRelativizedFromConnection3 = PresentationTier\\ChemBioVizWebApp\\
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -44,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9336A1F9-424A-4EF2-94DA-91552056D628}
 	EndGlobalSection
 EndGlobal

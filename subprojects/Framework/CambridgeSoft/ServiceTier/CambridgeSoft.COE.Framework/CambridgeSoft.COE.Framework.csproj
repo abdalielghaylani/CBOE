@@ -735,9 +735,7 @@
     <Compile Include="HitList\DAL\SystemDataSqlClientDAL.cs" />
     <Compile Include="DataView\COEDataViewUtilities.cs" />
     <Compile Include="DataView\DAL\DAL.cs" />
-    <Compile Include="DatabasePublishing\DAL\DAL.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="DatabasePublishing\DAL\DAL.cs" />
     <Compile Include="Form\DAL\DAL.cs" />
     <Compile Include="Form\COEFormUtlities.cs" />
     <Compile Include="HitList\DAL\DAL.cs" />
@@ -745,6 +743,7 @@
     <Compile Include="HitList\DAL\OracleDataAccessClientDAL.cs" />
     <Compile Include="HitList\HitListUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoConst.cs" />
     <Compile Include="Properties\AssemblyMinClientVersion.cs" />
     <Compile Include="Properties\AssemblyMinSchemaVersion.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -844,9 +843,7 @@
     <Compile Include="Search\BLL\COESearch.cs" />
     <Compile Include="Search\BLL\SearchManager.cs" />
     <Compile Include="Search\DAL\KeepAliveHolder.cs" />
-    <Compile Include="Search\DAL\DAL.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Search\DAL\DAL.cs" />
     <Compile Include="Search\Enums.cs" />
     <Compile Include="Search\Processors\FormulaProcessor.cs" />
     <Compile Include="Search\Processors\GenericProcessor.cs" />
