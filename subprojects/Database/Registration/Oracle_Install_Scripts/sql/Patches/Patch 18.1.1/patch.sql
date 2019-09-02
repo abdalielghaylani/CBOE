@@ -123,5 +123,4 @@ SELECT	CASE
 	END	AS setNextPatch 
 FROM	DUAL;
 
-@&&setNextPatch 
 
