@@ -19,7 +19,7 @@ Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA;
 	exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 	--To support wm_concat function in Oracle12c; creating a user defined function for the same
 Connect &&schemaName/&&schemaPass@&&serverName
-	@@"sql\t_wm_concat.sql"
+	@"sql\t_wm_concat.sql"
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 
 	@"sql\Patches\Patch &&fromVersion\parameters.sql"

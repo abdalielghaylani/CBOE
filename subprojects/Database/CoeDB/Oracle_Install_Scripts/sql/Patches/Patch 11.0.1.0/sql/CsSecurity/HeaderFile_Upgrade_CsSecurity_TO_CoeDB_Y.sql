@@ -7,7 +7,7 @@ prompt
 --Upgrade CoeDb 
 
 @"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\parameters.sql"
-@@&&InstallUser
+@&&InstallUser
 
 Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 @"sql\Patches\Patch 11.0.1.0\sql\cssecurity\Upgrade_CsSecurity_to_CoeDB_ora.sql"

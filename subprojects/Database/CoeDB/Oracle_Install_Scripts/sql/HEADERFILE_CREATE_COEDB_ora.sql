@@ -16,13 +16,15 @@ exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 @@drops.sql
 @@drops_&&UpgradeCsSecurity
 @@tablespaces.sql
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\createTempTableSpace_&&OraVersionNumber"
+
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\createTempTableSpace_&&OraVersionNumber"
+
 @@users.sql
 @@CREATE_COEDB_ora.sql
 --@@synonyms.sql
 @@coeuser.sql
 --Upgrade or Create the CsSecurity Schema
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\HeaderFile_Upgrade_CsSecurity_TO_CoeDB_&&UpgradeCsSecurity"
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\HeaderFile_Upgrade_CsSecurity_TO_CoeDB_&&UpgradeCsSecurity"
 @@inserts.sql
 @@inserts_&&UpgradeCsSecurity 
 @@grants.sql
@@ -30,9 +32,48 @@ exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 --@@roles_&&UpgradeCsSecurity 
 @@roles.sql
 
-@@sql\Patches\Parameters.sql
-@@"sql\Patches\Patch 11.0.1.0\Parameters.sql"
-@@"sql\Patches\Patch 11.0.2\patch.sql"
+@sql\Patches\Parameters.sql
+@"sql\Patches\Patch 11.0.1.0\Parameters.sql"
+@"sql\Patches\Patch 11.0.2\patch.sql"
+
+--11.0.3
+@&&setNextPatch 
+--11.0.4
+@&&setNextPatch 
+--12.1.0
+@&&setNextPatch 
+--12.1.3
+@&&setNextPatch 
+--12.3.0
+@&&setNextPatch 
+--12.4.0
+@&&setNextPatch 
+--12.5.0
+@&&setNextPatch 
+--12.5.2
+@&&setNextPatch 
+--12.5.3
+@&&setNextPatch 
+--12.6.0
+@&&setNextPatch 
+--12.6.1
+@&&setNextPatch 
+--12.6.2
+@&&setNextPatch 
+--12.6.3
+@&&setNextPatch 
+--17.1.0
+@&&setNextPatch 
+--17.1.1
+@&&setNextPatch 
+--18.1.0
+@&&setNextPatch 
+--18.1.1
+@&&setNextPatch 
+--19.1.0
+@&&setNextPatch 
+
+
 
 SET serveroutput on
 BEGIN

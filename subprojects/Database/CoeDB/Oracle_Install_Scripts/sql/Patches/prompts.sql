@@ -12,7 +12,7 @@ ACCEPT serverName CHAR PROMPT 'Enter the target Oracle service name:'
 ACCEPT InstallUser CHAR DEFAULT 'system' PROMPT 'Enter the name of an Oracle account with system privileges (system):'
 ACCEPT sysPass CHAR DEFAULT 'manager2' PROMPT 'Enter the above oracle account password (manager2):' hide
 
-@@&&InstallUser
+@&&InstallUser
 
 
 

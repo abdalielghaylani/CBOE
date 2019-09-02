@@ -27,8 +27,8 @@ exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 @"sql\Patches\Patch 11.0.1.0\sql\roles.sql"
 
 Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
-@@drop_CsSecurity.sql
-@@CREATE_CsSecurity_ora.sql
+@drop_CsSecurity.sql
+@CREATE_CsSecurity_ora.sql
 
 SET serveroutput on
 BEGIN
