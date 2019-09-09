@@ -36,19 +36,52 @@ COL fromVersion new_value fromVersion NOPRINT
 Connect &&schemaName/&&schemaPass@&&serverName
 	
 	@"Patches\Patch &&fromVersion\parameters.sql"
-	@"Patches\Patch &&nextPatch\patch.sql"
---When 17.1.0 is reached, we end the script execution and continue the remaining patch scripts as a fresh nested script to avoid problem.
---This is to avoid the oracle error SP2-0309: SQL*Plus command procedures may only be nested to a depth of 20.
---This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
-	column setNextPatch noprint new_value setNextPatch
-	SELECT	CASE
-		WHEN  '&&CurrentPatch' = '17.1.0'
-		THEN  '"Patches\Patch &&nextPatch\patch.sql"'
-		ELSE  'Patches\stop.sql'
-	END	AS setNextPatch 
-	FROM	DUAL;
 
-	@&&setNextPatch
+-- There we run patches. IT works fine. For example, if we need update from 17.1 to 17.1.1, it executes only 
+-- first patch. Others "setNextPatch" Variables will be = 'sql\Patches\stop.sql'
+--For each new version of Inventory need to add new record @&&setNextPatch 
+	@"Patches\Patch &&nextPatch\patch.sql"
+
+--11.0.3
+@&&setNextPatch 
+--11.0.4
+@&&setNextPatch 
+--12.1.0
+@&&setNextPatch 
+--12.1.1
+@&&setNextPatch 
+--12.1.3
+@&&setNextPatch 
+--12.3.0
+@&&setNextPatch 
+--12.3.1
+@&&setNextPatch 
+--12.3.2
+@&&setNextPatch 
+--12.5.0
+@&&setNextPatch 
+--12.5.1
+@&&setNextPatch 
+--12.5.2
+@&&setNextPatch 
+--12.5.3
+@&&setNextPatch 
+--12.6.0
+@&&setNextPatch 
+--12.6.1
+@&&setNextPatch 
+--12.6.2
+@&&setNextPatch 
+--12.6.3
+@&&setNextPatch 
+--17.1.0
+@&&setNextPatch 
+--18.1.0
+@&&setNextPatch 
+--18.1.1
+@&&setNextPatch 
+--19.1.0
+@&&setNextPatch 
 
 	SET serveroutput on
 	VAR toVersion VARCHAR2(100); 			
