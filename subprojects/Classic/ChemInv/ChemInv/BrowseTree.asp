@@ -466,7 +466,7 @@ if isRack then
     cntContainersInRack = 0
     FldArray = split(lcase(displayFields),",")
     xmlHtml = ""
-    xmlHtml = xmlHtml & "<xml ID=""xmlDoc""><rack>" & vbcrlf
+    xmlHtml.Append("<xml ID=""xmlDoc""><rack>" & vbcrlf)
     For currRow = 1 to numRows
 	    For i = 0 to Ubound(FldArray)
 		    FldName = FldArray(i)
@@ -474,8 +474,8 @@ if isRack then
 		    RS.Movefirst
 		    RS.filter = "ROW_INDEX=" & currRow
 		    rowName = RS("ROWNAME") 
-		    xmlHtml = xmlHtml & "<" & FldName & ">" & vblf
-		    xmlHtml = xmlHtml & "<rowname>" & rowname & "</rowname>"
+		    xmlHtml.Append("<" & FldName & ">" & vblf)
+		    xmlHtml.Append("<rowname>" & rowname & "</rowname>")
 		    rackCriterion = Request("RackCriterion")
 		    if len(rackCriterion) > 0 then
 			    key = left(rackCriterion,instr(rackCriterion,",")-1)
@@ -513,13 +513,13 @@ if isRack then
     			
 			    theValue = "<![CDATA[" & WrapRackContents(FldName, GridID, RS("name"), GridBarcode, GridType, theValue, Title, cellWidthLucidaChars, isSelected) & "]]>"
 			    colIndex = RS("COL_INDEX")
-			    xmlHtml = xmlHtml & "<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf
+			    xmlHtml.Append("<col" & colIndex & ">" & theValue & "</col" & colIndex & ">" & vblf)
 			    RS.MoveNext		
 		    Wend
-		    xmlHtml = xmlHtml & "</" & FldName & ">" & vblf
+		    xmlHtml.Append("</" & FldName & ">" & vblf)
 	    Next
     Next
-    xmlHtml = xmlHtml & "</rack></xml>"
+    xmlHtml.Append("</rack></xml>")
 %>
 <div style="display: none">
             <%=xmlHtml%>
