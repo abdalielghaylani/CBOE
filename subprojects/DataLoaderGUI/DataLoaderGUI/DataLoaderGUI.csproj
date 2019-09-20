@@ -13,8 +13,8 @@
     <Win32Resource>
     </Win32Resource>
     <ApplicationIcon>Resources\DL.ico</ApplicationIcon>
-    <ManifestCertificateThumbprint>45B8EFF6987EAF94233F4E800F19EA50BD999946</ManifestCertificateThumbprint>
-    <ManifestKeyFile>DataLoaderGUI_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>EA7F6EB2A5839602A0A391A150ADF6C6E4CF1ABB</ManifestCertificateThumbprint>
+    <ManifestKeyFile>DataLoaderGUI_1_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>true</IsWebBootstrapper>
@@ -266,6 +266,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DataLoaderGUI_1_TemporaryKey.pfx" />
     <None Include="DataLoaderGUI_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

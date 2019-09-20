@@ -42,15 +42,14 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <InstallUrl>http://coebuildhv2/dataloader1230/</InstallUrl>
-    <SupportUrl>http://www.cambridgesoft.com/</SupportUrl>
     <TargetCulture>en</TargetCulture>
     <ProductName>COE DataLoader</ProductName>
-    <PublisherName>ChemBioOffice Enterprise 2010</PublisherName>
+    <PublisherName>ChemBioOffice Enterprise</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>58</ApplicationRevision>
-    <ApplicationVersion>18.1.0.58</ApplicationVersion>
+    <ApplicationRevision>51</ApplicationRevision>
+    <ApplicationVersion>19.1.0.51</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
