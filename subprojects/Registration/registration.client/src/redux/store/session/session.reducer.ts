@@ -59,11 +59,10 @@ export function sessionReducer(
 
 
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
-      {
-        if (action.payload.status !== 404) {
-          return handleError(state, action.payload);
-        }
+      if (action.payload.status !== 404) {
+        return handleError(state, action.payload);
       }
+      return state;
 
     case RecordDetailActions.SAVE_RECORD_ERROR:
       return handleError(state, action.payload.error);
