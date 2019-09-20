@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 2015
+VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration.Server", "Registration.Server\Registration.Server.csproj", "{C84AA381-49B1-4BD8-82FD-8433F9308A68}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Registrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration.Core", "Registration.Core\Registration.Core.csproj", "{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationWebApp.2013", "RegistrationWebApp\RegistrationWebApp.2013.csproj", "{0AF2D977-5B4C-40E9-9AF1-CE93F3C92CF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationWebApp", "RegistrationWebApp\RegistrationWebApp.csproj", "{0AF2D977-5B4C-40E9-9AF1-CE93F3C92CF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

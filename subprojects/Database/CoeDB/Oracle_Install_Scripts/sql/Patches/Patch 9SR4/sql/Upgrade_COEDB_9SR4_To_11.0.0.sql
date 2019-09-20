@@ -2,8 +2,8 @@
 
 spool Upgrade_COEDB_9SR4_To_11.0.0.txt
 
-@@parameters.sql
-@@prompts.sql
+@parameters.sql
+@prompts.sql
 
 CONNECT &&InstallUser/&&sysPass@&&serverName
 
@@ -12,10 +12,10 @@ VAR End VARCHAR2(20);
 VAR Elapsed VARCHAR2(100);
 exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 
-@@drops.sql
-@@tablespaces.sql
-@@CreateTempTablespace_9.sql
-@@users.sql
+@drops.sql
+@tablespaces.sql
+@CreateTempTablespace_9.sql
+@users.sql
 
 host imp &&InstallUser/&&sysPass@&&serverName FILE="CoeDB.dmp" LOG="log_ImpCoeDB.txt" fromuser=COEDB touser=COEDB TABLES=COEGLOBALS IGNORE=YES
 

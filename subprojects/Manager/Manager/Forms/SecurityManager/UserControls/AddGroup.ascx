@@ -89,7 +89,7 @@
             <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <div style="margin-bottom:3px;">
-                                <COEManager:ImageButton ID="SaveButton" runat="server"  ButtonMode="ImgAndTxt" TypeOfButton="Save" ButtonCssClass="EditRoleSave" ImageURL="../../../App_Themes/BLUE/Images/IconLibrary/Vista_Business_Collection/PNG/24/Save.png" HoverImageURL="../../../App_Themes/BLUE/Images/IconLibrary/Vista_Business_Collection/PNG/24/Save.png" />
+                                <COEManager:ImageButton ID="SaveButton" runat="server"  ButtonText="Add Group" ButtonMode="ImgAndTxt" TypeOfButton="Save" ButtonCssClass="EditRoleSave" ImageURL="../../../App_Themes/BLUE/Images/IconLibrary/Vista_Business_Collection/PNG/24/Save.png" HoverImageURL="../../../App_Themes/BLUE/Images/IconLibrary/Vista_Business_Collection/PNG/24/Save.png" />
                                 <COEManager:ImageButton ID="CancelButton" runat="server" ButtonMode="ImgAndTxt" OnClientClick="hideAddGroupPanel(); ClearForm(); return false;" TypeOfButton="Cancel" ButtonCssClass="EditRoleCancel" ImageURL="../../../App_Themes/Common/Images/Cancel.png" HoverImageURL="../../../App_Themes/Common/Images/Cancel.png" CausesValidation="false" />
                             </div>
                         </ItemTemplate>

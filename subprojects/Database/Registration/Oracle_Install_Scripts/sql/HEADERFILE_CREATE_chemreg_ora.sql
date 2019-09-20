@@ -50,21 +50,59 @@ Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA;
 	@@Grant_schemauser_for_oracle12c.sql
 	@@Grants.sql
 
-	@@sql\Patches\Parameters.sql
-	@@"sql\Patches\Patch 11.0.1\Parameters.sql"
-	@@"sql\Patches\Patch 11.0.2\patch.sql"
+	@sql\Patches\Parameters.sql
+	@"sql\Patches\Patch 11.0.1\Parameters.sql"
+	@"sql\Patches\Patch 11.0.2\patch.sql"
 
---When 12.6.2 is reached, we end the script execution and continue the remaining patch scripts as a fresh nested script to avoid.
---This is to avoid the oracle error SP2-0309: SQL*Plus command procedures may only be nested to a depth of 20.
---This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
-	SELECT	CASE
-		WHEN  '&&currentPatch' = '12.6.2'
-		THEN  '"sql\Patches\Patch &&nextPatch\patch.sql"'
-		ELSE  'sql\Patches\stop.sql'
-	END	AS setNextPatch 
-	FROM	DUAL;
+--11.0.3
+@&&setNextPatch 
+--11.0.4
+@&&setNextPatch 
+--12.1.0
+@&&setNextPatch 
+--12.1.1
+@&&setNextPatch 
+--12.1.2
+@&&setNextPatch 
+--12.1.3
+@&&setNextPatch 
+--12.3.0
+@&&setNextPatch 
+--12.3.1
+@&&setNextPatch 
+--12.3.2
+@&&setNextPatch 
+--12.4.0
+@&&setNextPatch 
+--12.5.0
+@&&setNextPatch 
+--12.5.1
+@&&setNextPatch 
+--12.5.2
+@&&setNextPatch 
+--12.5.3
+@&&setNextPatch 
+--12.6.0
+@&&setNextPatch 
+--12.6.1
+@&&setNextPatch 
+--12.6.2
+@&&setNextPatch 
+--12.6.3
+@&&setNextPatch 
+--17.1.0
+@&&setNextPatch 
+--17.1.1
+@&&setNextPatch 
+--18.1.0
+@&&setNextPatch 
+--18.1.1
+@&&setNextPatch 
+--19.1.0
+@&&setNextPatch 
 
-	@&&setNextPatch 
+
+
 
 	SET serveroutput on
 	BEGIN

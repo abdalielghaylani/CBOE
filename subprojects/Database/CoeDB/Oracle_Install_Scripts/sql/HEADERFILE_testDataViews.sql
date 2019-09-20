@@ -3,8 +3,8 @@
 spool ON
 spool sql\log_testdataviews.txt
 
-@@parameters.sql
-@@promptsForTestDataViews.sql
+@parameters.sql
+@promptsForTestDataViews.sql
 
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 
@@ -13,10 +13,10 @@ CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 
 
 
-@@chemacxDB_DV.sql
-@@cheminvDB2_DV.sql
-@@regDB_DV.sql
-@@sampleDB_DV.sql
+@chemacxDB_DV.sql
+@cheminvDB2_DV.sql
+@regDB_DV.sql
+@sampleDB_DV.sql
 
 
 

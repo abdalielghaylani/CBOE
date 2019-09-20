@@ -29,7 +29,7 @@ CREATE SEQUENCE LogSeq
   NOCYCLE
   NOORDER;
 
-@@sql\triggers\coedb_log.trg;
+@sql\triggers\coedb_log.trg;
 
 
 --#########################################################
@@ -311,11 +311,11 @@ CREATE SEQUENCE PEOPLE_SEQ 			  INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SECURITY_ROLES_SEQ 	  INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE PRIVILEGE_TABLES_SEQ  INCREMENT BY 1 START WITH 1;
 
-@@sql\triggers\coedb_sites.trg;
-@@sql\triggers\coedb_people.trg;
-@@sql\triggers\coedb_security_roles.trg;
-@@sql\triggers\coedb_privilege_tables.trg;
-@@sql\triggers\coedb_coepagecontrol.trg;
+@sql\triggers\coedb_sites.trg;
+@sql\triggers\coedb_people.trg;
+@sql\triggers\coedb_security_roles.trg;
+@sql\triggers\coedb_privilege_tables.trg;
+@sql\triggers\coedb_coepagecontrol.trg;
 
 --#########################################################
 --INDEXES
@@ -440,14 +440,14 @@ CREATE OR REPLACE TYPE obj_privilege AS OBJECT(priv_scope VARCHAR2(100), priv_na
 CREATE OR REPLACE TYPE obj_privilege_table IS TABLE OF obj_privilege
 /
 --To support wm_concat function in Oracle12c; creating a user defined function for the same
-@@"sql\t_wm_concat.sql"
+@"sql\t_wm_concat.sql"
 
 
 --#########################################################
 --Create Audit Tables
 --#########################################################
 
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\CREATE_Audit_Tables.sql"
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\CREATE_Audit_Tables.sql"
 
 
 --#########################################################

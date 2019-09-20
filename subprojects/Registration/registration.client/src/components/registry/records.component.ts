@@ -122,7 +122,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.getMarkedHitList();
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
-
+    sessionStorage.setItem('previousRoutes', '');
     window.NewRegWindowHandle = window.NewRegWindowHandle || {};
     window.NewRegWindowHandle.closePrintPage = this.closePrintPage.bind(this);
   }

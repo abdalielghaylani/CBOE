@@ -49,7 +49,6 @@ SELECT	CASE
 FROM	DUAL;
  
 prompt ****&&setNextPatch ***
-@&&setNextPatch 
 
 
 

@@ -19,11 +19,54 @@ Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA;
 	exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 	--To support wm_concat function in Oracle12c; creating a user defined function for the same
 Connect &&schemaName/&&schemaPass@&&serverName
-	@@"sql\t_wm_concat.sql"
+	@"sql\t_wm_concat.sql"
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 
 	@"sql\Patches\Patch &&fromVersion\parameters.sql"
+	
+-- There we run patches. IT works fine. For example, if we need update from 17.1 to 17.1.1, it executes only 
+-- first patch. Others "setNextPatch" Variables will be = 'sql\Patches\stop.sql'
+--For each new version of Security need to add new record @&&setNextPatch 
 	@"sql\Patches\Patch &&nextPatch\patch.sql"
+
+--11.0.3
+@&&setNextPatch 
+--11.0.4
+@&&setNextPatch 
+--12.1.0
+@&&setNextPatch 
+--12.1.3
+@&&setNextPatch 
+--12.3.0
+@&&setNextPatch 
+--12.4.0
+@&&setNextPatch 
+--12.5.0
+@&&setNextPatch 
+--12.5.2
+@&&setNextPatch 
+--12.5.3
+@&&setNextPatch 
+--12.6.0
+@&&setNextPatch 
+--12.6.1
+@&&setNextPatch 
+--12.6.2
+@&&setNextPatch 
+--12.6.3
+@&&setNextPatch 
+--17.1.0
+@&&setNextPatch 
+--17.1.1
+@&&setNextPatch 
+--18.1.0
+@&&setNextPatch 
+--18.1.1
+@&&setNextPatch 
+--19.1.0
+@&&setNextPatch 
+
+
 
 
 	SET serveroutput on

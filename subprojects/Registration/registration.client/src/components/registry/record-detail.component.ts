@@ -297,8 +297,12 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   back() {
+    let preRoute = sessionStorage.previousRoutes;
+    sessionStorage.setItem('previousRoutes', '');
     if (this.bulkreg) {
       this.router.navigate([`records/bulkreg`]);
+    } else if (preRoute === 'temp-register-success') {
+      this.router.navigate([`records/temp`]);
     } else {
       this.location.back();
     }
@@ -311,6 +315,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   register() {
+    if (this.router.url.includes('records/temp/') &&
+      Number(this.router.url.replace(/^\D+/g, '')) > 0) {
+      sessionStorage.setItem('previousRoutes', 'temp-register');
+    }
     if (this.recordDetailView.register()) {
       this.getSaveResponse();
     }

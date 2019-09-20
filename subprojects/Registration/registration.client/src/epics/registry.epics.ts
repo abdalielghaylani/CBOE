@@ -81,6 +81,9 @@ export class RegistryEpics {
               let regNum = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? regNum : ''} successfully!`;
+              if (sessionStorage.previousRoutes === 'temp-register' && payload.saveToPermanent) {
+                  sessionStorage.setItem('previousRoutes', 'temp-register-success');
+              }
               notifySuccess(message, 5000);
               let searchTempPrivilege = true;
               if (temporary) {

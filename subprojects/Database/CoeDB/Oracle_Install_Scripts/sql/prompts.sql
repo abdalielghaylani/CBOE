@@ -15,7 +15,3 @@ ACCEPT sysPass CHAR DEFAULT 'manager2' PROMPT 'Enter the above oracle account pa
 
 @@&&InstallUser
 
-
-
-
-

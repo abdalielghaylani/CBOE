@@ -588,8 +588,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CambridgeSoft.COE.DataLoader_1_TemporaryKey.pfx" />
-    <None Include="CambridgeSoft.COE.DataLoader_2_TemporaryKey.pfx" />
     <None Include="CambridgeSoft.COE.DataLoader_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\DataLoader_02.png" />

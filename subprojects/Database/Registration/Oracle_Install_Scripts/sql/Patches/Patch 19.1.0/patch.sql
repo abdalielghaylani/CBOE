@@ -131,5 +131,5 @@ SELECT	CASE
 	END	AS setNextPatch 
 FROM	DUAL;
 
-@&&setNextPatch 
+--Next patch execution must be in HEADERFILE_CREATE_chemreg_ora.sql
 
