@@ -126,7 +126,9 @@ export class RegistryEpics {
             let message = `The record was registered in the registry`
               + `${newRegNo} successfully!`;
             notifySuccess(message, 5000);
-
+            if (sessionStorage.previousRoutes === 'temp-register' && responseData.regNumber) {
+              sessionStorage.setItem('previousRoutes', 'temp-register-success');
+            }
             this.ngRedux.dispatch(RecordDetailActions.duplicateRecordSuccessAction(new CSaveResponseData(recordId, false, null, true)));
             return createAction(UPDATE_LOCATION)(`records/${recordId}`);
           })

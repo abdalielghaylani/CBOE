@@ -53,15 +53,22 @@ export function sessionReducer(
       return state.update('lookups', () => action.payload);
 
     case RegistryActions.BULK_REGISTER_RECORD_ERROR:
-    case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:
       return handleError(state, action.payload);
 
+
+    case RecordDetailActions.RETRIEVE_RECORD_ERROR:
+      {
+        if (action.payload.status !== 404) {
+          return handleError(state, action.payload);
+        }
+      }
+
     case RecordDetailActions.SAVE_RECORD_ERROR:
       return handleError(state, action.payload.error);
 
-      default:
+    default:
       return state;
   }
 }
