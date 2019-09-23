@@ -160,7 +160,7 @@ pipeline
                 to: "${NOTIFY_LIST}",
                 replyTo: "${NOTIFY_LIST}",
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-            deleteDir()
+           // deleteDir()
         }
         success 
         {

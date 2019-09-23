@@ -11,6 +11,11 @@ using System.Web.Security;
 using System.Runtime.InteropServices;
 using System.Xml;
 using CambridgeSoft.COE.Security.Services.Utlities;
+//using System.IdentityModel.Tokens.Jwt;
+//using Microsoft.IdentityModel.Protocols;
+//using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+//using Microsoft.IdentityModel.Tokens;
+
 
 namespace CambridgeSoft.COE.Security.Services
 {
@@ -82,8 +87,15 @@ namespace CambridgeSoft.COE.Security.Services
 				FormsAuthenticationTicket authTicket;
 				string userData = "Good";                
 
-
-                password = GetCSPassword(userName, password);
+                string audience = ConfigurationManager.AppSettings["Audience"];
+                if (string.IsNullOrEmpty(audience))
+                {
+                    password = GetCSPassword(userName, password);
+                }
+                else
+                {
+                    password = GetCSPassword(userName, "AzureAD");
+                }
 
 				if((SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"] != null) && (SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"].Value.ToUpper() == "YES"))
 				{
@@ -668,7 +680,17 @@ namespace CambridgeSoft.COE.Security.Services
 			}
             try
             {
-                returnVal = objSSO.ValidateUser(userName, password);
+                string audience = ConfigurationManager.AppSettings["Audience"];
+                string issuer = ConfigurationManager.AppSettings["Issuer"];
+                if (!string.IsNullOrEmpty(audience))
+                {
+                    returnVal = Validate(password, issuer, audience, userName);
+                }
+                else
+                {
+                    returnVal = objSSO.ValidateUser(userName, password);
+                }
+
             }
             catch (Exception ex)
             {
@@ -676,6 +698,36 @@ namespace CambridgeSoft.COE.Security.Services
             }
             return returnVal;
 		}
+
+        private bool Validate(string token, string issuer, string audience, string userName)
+        {
+            //try
+            //{
+            //    ConfigurationManager<OpenIdConnectConfiguration> configManager = new ConfigurationManager<OpenIdConnectConfiguration>(issuer, new OpenIdConnectConfigurationRetriever());
+            //    OpenIdConnectConfiguration config = configManager.GetConfigurationAsync().Result;
+            //    string tenant = ConfigurationManager.AppSettings["Tenant"];
+            //    TokenValidationParameters validationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateAudience = false,
+            //        ValidateIssuer = false,
+            //        IssuerSigningKeys = config.SigningKeys, //.net core calls it "IssuerSigningKeys" and "SigningKeys"
+            //        ValidateLifetime = false
+            //    };
+            //    JwtSecurityTokenHandler tokendHandler = new JwtSecurityTokenHandler();
+            //    SecurityToken jwt = null;
+            //    var result = tokendHandler.ValidateToken(token, validationParameters, out jwt);
+            //    Dictionary<string, object> valueColl = ((JwtSecurityToken)jwt).Payload;
+            //    if (valueColl["upn"].ToString().Split('@')[0].ToUpper() != userName.ToUpper())
+            //    {
+            //        return false;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+            return true;
+        }
 		private bool CheckIsExemptUser(string userName)
 		{
 			if (exemptUsersList[userName.ToUpper()] == null)

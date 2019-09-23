@@ -11,12 +11,33 @@ using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.Controls;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.COELoggingService;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OpenIdConnect;
+using CambridgeSoft.COE.Framework.COESecurityService;
 
 public partial class Forms_Public_UserControls_Login : System.Web.UI.UserControl
 {
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            if (string.IsNullOrEmpty(Utilities.token))
+            {
+                HttpContext.Current.GetOwinContext().Authentication.Challenge(
+                   new AuthenticationProperties { RedirectUri = redirectUri },
+                   OpenIdConnectAuthenticationDefaults.AuthenticationType);
+            }
+            else
+            {
+                COEMembershipProvider sso = new COEMembershipProvider();
+                if (sso.ValidateUser(Utilities.user, Utilities.token))
+                {
+                    Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
+                }
+            }
+        }
         Control ctl = Login1.FindControl("LoginButton");
         Login1.Attributes.Add("onkeypress", String.Format("javascript:return WebForm_FireDefaultButton(event, '{0}')", ctl.ClientID));
         if (!Page.IsPostBack)
@@ -24,6 +45,7 @@ public partial class Forms_Public_UserControls_Login : System.Web.UI.UserControl
             this.SetControlsAttributes();
             this.InactivityMessage.Visible = !string.IsNullOrEmpty(Page.Request.QueryString[Constants.InactivityURLParam]) && bool.Parse(Page.Request.QueryString[Constants.InactivityURLParam]);
         }
+
     }
 
     private void SetControlsAttributes()

@@ -1,6 +1,8 @@
 @echo off
 SET MSBUILD_PATH=%1
 SET WORKSPACE=%2
+nuget.exe update -self
+nuget.exe restore "%WORKSPACE%\subprojects\Manager\Manager.sln"
 %MSBUILD_PATH% %WORKSPACE%\subprojects\Security\SingleSignOn\SingleSignOn.sln /t:Build /p:Configuration=Release
 %MSBUILD_PATH% %WORKSPACE%\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.sln /t:Build /p:Configuration=Release
 %MSBUILD_PATH% %WORKSPACE%\subprojects\Registration\PresentationTier\RegistrationWebApp.sln  /t:Build /p:Configuration=Release

@@ -23,6 +23,9 @@ using Infragistics.WebUI.UltraWebGrid;
 /// </summary>
 public class Utilities
 {
+    public static string token;
+    public static string user;
+
     public Utilities() { }
 
     /// <summary>

