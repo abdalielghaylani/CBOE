@@ -56,7 +56,7 @@ pipeline
                 bat """
                     cd ${WORKSPACE}\\Installers\\InstallSupportFiles
                     EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
-                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH} ${WORKSPACE}
+                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH17} ${WORKSPACE}
                 """
             }
         }
@@ -78,7 +78,7 @@ pipeline
         {
             steps
             {
-                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD}"
+                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17}"
             }
         }
         stage ('Registration-Client-Build')
@@ -160,7 +160,7 @@ pipeline
                 to: "${NOTIFY_LIST}",
                 replyTo: "${NOTIFY_LIST}",
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-           // deleteDir()
+            deleteDir()
         }
         success 
         {
