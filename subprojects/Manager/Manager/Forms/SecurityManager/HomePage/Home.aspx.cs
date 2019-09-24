@@ -15,6 +15,9 @@ using System.Data;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using Infragistics.WebUI.Misc;
 using CambridgeSoft.COE.Framework.Controls.ChemDraw;
+using System.Configuration;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
 
 public partial class Forms_ContentArea_SecHome : GUIShellPage
 {
@@ -85,6 +88,14 @@ public partial class Forms_ContentArea_SecHome : GUIShellPage
     protected void DoLogOff(object sender, EventArgs e)
     {
         GUIShellUtilities.DoLogout();
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                    OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                    CookieAuthenticationDefaults.AuthenticationType);
+            Utilities.token = string.Empty;
+        }
     }
 
     private void SetHomeWebParts()

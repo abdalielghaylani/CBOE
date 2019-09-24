@@ -15,6 +15,9 @@ using System.Data;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using Infragistics.WebUI.Misc;
 using CambridgeSoft.COE.Framework.Controls.ChemDraw;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
+using System.Configuration;
 
 public partial class Forms_ContentArea_DVHome : GUIShellPage
 {
@@ -26,7 +29,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
     protected void Page_Load(object sender, EventArgs e)
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-        if(!Page.IsPostBack)
+        if (!Page.IsPostBack)
         {
             this.SetControlsAttributtes();
             this.SetHomeWebParts();
@@ -44,21 +47,21 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
     {
         base.OnPreRender(e);
 
-        if(Session["isCDP"] == null)
+        if (Session["isCDP"] == null)
         {
-            if(Page.Request.Cookies.Get("isCDP") != null)
+            if (Page.Request.Cookies.Get("isCDP") != null)
             {
                 Session["isCDP"] = bool.Parse(Page.Request.Cookies.Get("isCDP").Value);
             }
             else
             {
                 string url = "/cfserverasp/source/chemdraw.js";
-                if(!Page.ClientScript.IsClientScriptIncludeRegistered("chemdraw"))
+                if (!Page.ClientScript.IsClientScriptIncludeRegistered("chemdraw"))
                 {
                     Page.ClientScript.RegisterClientScriptInclude("chemdraw", url);
                 }
 
-                if(!Page.ClientScript.IsClientScriptBlockRegistered("cdpJavascriptDetection"))
+                if (!Page.ClientScript.IsClientScriptBlockRegistered("cdpJavascriptDetection"))
                 {
                     string cdpDetectionScript = @"
 
@@ -70,7 +73,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
         }
         else
         {
-            if(Page.ClientScript.IsClientScriptBlockRegistered("cdpJavascriptDetection"))
+            if (Page.ClientScript.IsClientScriptBlockRegistered("cdpJavascriptDetection"))
             {
                 string cdpDetectionScript = @"";
                 Page.ClientScript.RegisterClientScriptBlock(typeof(Forms_ContentArea_Home), "cdpJavascriptDetection", cdpDetectionScript, true);
@@ -83,6 +86,14 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
 
     protected void DoLogOff(object sender, EventArgs e)
     {
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                    OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                    CookieAuthenticationDefaults.AuthenticationType);
+            Utilities.token = string.Empty;
+        }
         GUIShellUtilities.DoLogout();
     }
 
@@ -92,24 +103,24 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
         int numberOfColumns = 1;
         WebPartManager webmgr = WebPartManager1;
         int wpUsed = 0;
-        for(int i = 0; i < homeData.Groups.Count; i++)
+        for (int i = 0; i < homeData.Groups.Count; i++)
         {
             Group myGroup = homeData.Groups.Get(i);
 
-            if((myGroup != null) && (myGroup.COEIdentifier == "COEMANAGER_DV")) //isolate just to dvmanager panels
+            if ((myGroup != null) && (myGroup.COEIdentifier == "COEMANAGER_DV")) //isolate just to dvmanager panels
             {
                 HomeWebPart webpartPreCheck = new HomeWebPart();
                 webpartPreCheck.Group = myGroup;
-                if(webpartPreCheck.HasLinks())
+                if (webpartPreCheck.HasLinks())
                 {
                     string webPartNumber = string.Empty;
                     HomeWebPart webpart = null;
-                    switch(myGroup.PageSectionTarget.ToUpper())
+                    switch (myGroup.PageSectionTarget.ToUpper())
                     {
                         case "PANEL":
                             webPartNumber = GetWebPartNumber(numberOfColumns, wpUsed);
                             //the webpart will figure out what links can be shown base on the users permissions
-                            webpart = (HomeWebPart) webmgr.WebParts["PanelWebPart" + webPartNumber];
+                            webpart = (HomeWebPart)webmgr.WebParts["PanelWebPart" + webPartNumber];
                             webpart.Hidden = false;
                             webpart.Group = myGroup;
                             wpUsed = wpUsed + 1;
@@ -117,7 +128,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
                         case "DASHBOARD":
                             webPartNumber = GetWebPartNumber(numberOfColumns, wpUsed);
                             //the webpart will figure out what links can be shown base on the users permissions
-                            webpart = (HomeWebPart) webmgr.WebParts["DashWebPart" + webPartNumber];
+                            webpart = (HomeWebPart)webmgr.WebParts["DashWebPart" + webPartNumber];
                             webpart.Hidden = false;
                             webpart.Group = myGroup;
                             wpUsed = wpUsed + 1;
@@ -133,7 +144,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
         counter = counter + 1; // increment by one since we started at 0
         int curRow = -1;
         int curColumn = -1;
-        if(counter % totalColumns == 0)
+        if (counter % totalColumns == 0)
         {
             curRow = rowCounter;
             rowCounter = rowCounter + 1;

@@ -3,7 +3,7 @@ import dxNotify from 'devextreme/ui/notify';
 
 const notificationDuration = 2000;
 
-export function getExceptionMessage(baseMessage: string, error): string {
+export function getExceptionMessage(baseMessage: string, error, isTitleRequired = false): any {
   let errorResult;
   let reason: string;
   if (error._body) {
@@ -19,9 +19,11 @@ export function getExceptionMessage(baseMessage: string, error): string {
   }
 
   if (!reason) {
-    return 'Your session has expired. Please login to continue.';
+    const text = 'Your session has expired. Please login to continue.';
+    return isTitleRequired ? { message: text, title: 'Session Expired' } : text;
   }
-  return baseMessage + ((reason) ? ': ' + reason : '!');
+  const text = baseMessage + ((reason) ? ': ' + reason : '!');
+  return isTitleRequired ? { message: text, title: 'Error' } : text;
 }
 
 export function notify(message: string, type: string, duration: number = notificationDuration) {
@@ -43,7 +45,8 @@ export function notifyWarning(message: string, duration: number = notificationDu
 }
 
 export function notifyException(message: string, error, duration: number = notificationDuration) {
-  dxDialog.alert(getExceptionMessage(message, error), 'Error');
+  let res = getExceptionMessage(message, error, true);
+  dxDialog.alert(res.message, res.title);
 }
 
 export function notifySuccess(message: string, duration: number = notificationDuration) {

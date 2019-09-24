@@ -15,6 +15,9 @@ using System.Data;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using Infragistics.WebUI.Misc;
 using CambridgeSoft.COE.Framework.Controls.ChemDraw;
+using System.Configuration;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
 
 public partial class Forms_ContentArea_Home : GUIShellPage
 {
@@ -93,6 +96,14 @@ public partial class Forms_ContentArea_Home : GUIShellPage
     #region Methods
     protected void DoLogOff(object sender, EventArgs e)
     {
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                    OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                    CookieAuthenticationDefaults.AuthenticationType);
+            Utilities.token = string.Empty;
+        }
         GUIShellUtilities.DoLogout();
     }
 
@@ -110,7 +121,12 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                 bool isIE = browser.Type.ToUpper().Contains("IE") || browser.Type.ToUpper().Contains("INTERNETEXPLORER");
                 if (myGroup != null && myGroup.Name != "COEMANAGER_DV")
                     {
-                        if ((isIE ? true : (myGroup.COEIdentifier != "Registration"))) {
+                        if ((isIE ? true : (myGroup.COEIdentifier != "Registration")))
+                        {
+                            if ((isIE && myGroup.COEIdentifier == "UtilitiesChrome") || (!isIE && myGroup.COEIdentifier == "Utilities"))
+                            {
+                                 continue;
+                            }
                         // Make sure the DataView Manager is not displayed for non-SpotfireUsers 
                         //if ((SpotfireSetting.SpotfireUser != "" ) || (SpotfireSetting.SpotfireUser == "" && myGroup.Name != "COEMANAGER_DV"))
                         //{

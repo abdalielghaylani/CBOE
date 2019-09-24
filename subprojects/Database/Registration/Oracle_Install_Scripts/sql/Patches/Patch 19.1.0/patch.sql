@@ -29,6 +29,11 @@ where id = 2;
 
 Connect &&securitySchemaName/&&securitySchemaPass@&&serverName
 
+--CBOE-9005.COEDB.CONFIGURATIONCOMPOUNDREGISTRY (PACKAGE BODY), COEDB.GUI_UTIL (PACKAGE BODY) were created in COEDB by mistake. Need to drop them
+drop package body &&securitySchemaName..CONFIGURATIONCOMPOUNDREGISTRY;
+drop package body &&securitySchemaName..GUI_UTIL;
+--CBOE-9005. end
+
 update &&securitySchemaName..COECONFIGURATION set
 classname = replace(classname, 'Version=18.1.1.0','Version=19.1.0.0')
 where description = 'Registration';
@@ -126,5 +131,5 @@ SELECT	CASE
 	END	AS setNextPatch 
 FROM	DUAL;
 
-@&&setNextPatch 
+--Next patch execution must be in HEADERFILE_CREATE_chemreg_ora.sql
 

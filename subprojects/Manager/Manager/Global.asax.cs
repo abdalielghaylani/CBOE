@@ -9,6 +9,9 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using System.IO;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using System.IO.Compression;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
 
 public class Global : System.Web.HttpApplication
 {
@@ -167,13 +170,28 @@ public class Global : System.Web.HttpApplication
 
     void Session_Start(object sender, EventArgs e)
     {
-        DoLogin();
-
-        if(Request["ticket"] == null && Request.Headers["Cookie"] != null && Request.Headers["Cookie"].IndexOf("ASP.NET_SessionId") >= 0 && (Request.Cookies["DisableInactivity"] == null || string.IsNullOrEmpty(Request.Cookies["DisableInactivity"].Value)) && !Request.Url.Query.Contains("Inactivity=true"))
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
         {
-            DoLogout();
-            Response.Redirect("/COEManager/Forms/Public/ContentArea/Login.aspx?Inactivity=true&ReturnURL=" + RemoveLoginPageFromReturnUrl(HttpContext.Current.Request.Url.ToString()));
-            
+            if (!Request.IsAuthenticated)
+            {
+                HttpContext.Current.GetOwinContext().Authentication.Challenge(
+                   new AuthenticationProperties { RedirectUri = redirectUri },
+                   OpenIdConnectAuthenticationDefaults.AuthenticationType);
+                HttpCookie azureCookie = new HttpCookie("CS_SEC_Azure");
+                azureCookie.Value = "Azure";
+                Response.Cookies.Add(azureCookie);
+            }
+            DoLogin();
+        }
+        else
+        {
+            DoLogin();
+            if (Request["ticket"] == null && Request.Headers["Cookie"] != null && Request.Headers["Cookie"].IndexOf("ASP.NET_SessionId") >= 0 && (Request.Cookies["DisableInactivity"] == null || string.IsNullOrEmpty(Request.Cookies["DisableInactivity"].Value)) && !Request.Url.Query.Contains("Inactivity=true"))
+            {
+                DoLogout();
+                Response.Redirect("/COEManager/Forms/Public/ContentArea/Login.aspx?Inactivity=true&ReturnURL=" + RemoveLoginPageFromReturnUrl(HttpContext.Current.Request.Url.ToString()));
+            }
         }
     }
 

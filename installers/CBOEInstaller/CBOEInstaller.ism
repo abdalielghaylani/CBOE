@@ -2531,6 +2531,7 @@ End If
 		<row><td>APP_THEMES1</td><td>MANAGER</td><td>APP_TH~1|App_Themes</td><td/><td>0</td><td/></row>
 		<row><td>APP_THEMES2</td><td>WEBAPP</td><td>APP_TH~1|App_Themes</td><td/><td>0</td><td/></row>
 		<row><td>ASSETS</td><td>REGISTRATION.SERVER</td><td>Assets</td><td/><td>0</td><td/></row>
+		<row><td>ASSETS1</td><td>REGISTRATION.CLIENT</td><td>Assets</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
 		<row><td>BIN</td><td>CHEMBIOVIZ</td><td>bin</td><td/><td>0</td><td/></row>
@@ -2672,6 +2673,7 @@ End If
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>REGISTRATION</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
+		<row><td>REGISTRATION.CLIENT</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration.Client</td><td/><td>0</td><td/></row>
 		<row><td>REGISTRATION.SERVER</td><td>CHEMOFFICEENTERPRISE</td><td>REGIST~1|Registration.Server</td><td/><td>0</td><td/></row>
 		<row><td>REGISTRATION1</td><td>CHEMOFFICEENTERPRISE11.0.1.0</td><td>REGIST~1|Registration</td><td/><td>0</td><td/></row>
 		<row><td>RLSCONFIGURATIONTOOL</td><td>CONFIG12</td><td>RLSCON~1|RLSConfigurationTool</td><td/><td>0</td><td/></row>

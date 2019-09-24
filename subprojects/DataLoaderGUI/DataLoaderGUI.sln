@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Registration.Services", "..\Registration\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj", "{C7998560-8704-4DE0-B00E-A4657273B022}"
@@ -20,29 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemControls", "..\CBVN\ChemBioViz.Net\ChemControls\ChemControls.csproj", "{6DC80E63-F0D9-4349-AF23-F8002B69B354}"
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 9
-		SccProjectUniqueName0 = ..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
-		SccLocalPath0 = ..\\Framework\\CambridgeSoft
-		SccProjectFilePathRelativizedFromConnection0 = ServiceTier\\CambridgeSoft.COE.Framework\\
-		SccProjectUniqueName1 = ..\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\CambridgeSoft.COE.Registration.Services.csproj
-		SccLocalPath1 = ..\\Registration\\ServiceTier\\CambridgeSoft.COE.Registration.Services
-		SccProjectUniqueName2 = ..\\Registration\\ServiceTier\\RegistrationAddins\\CambridgeSoft.COE.Registration.RegistrationAddins.csproj
-		SccLocalPath2 = ..\\Registration\\ServiceTier\\RegistrationAddins
-		SccProjectUniqueName3 = ..\\Registration\\PresentationTier\\Registration.Core\\Registration.Core.csproj
-		SccLocalPath3 = ..\\Registration\\PresentationTier\\Registration.Core
-		SccProjectUniqueName4 = ..\\DataUploader\\DataUploader.Core\\DataUploader.Core.csproj
-		SccLocalPath4 = ..\\DataUploader\\DataUploader.Core
-		SccProjectUniqueName5 = ..\\DataLoader\\Calculation\\CambridgeSoft.COE.DataLoader.Calculation.csproj
-		SccLocalPath5 = ..\\DataLoader
-		SccProjectFilePathRelativizedFromConnection5 = Calculation\\
-		SccProjectUniqueName6 = ..\\DataLoader\\Common\\CambridgeSoft.COE.DataLoader.Common.csproj
-		SccLocalPath6 = ..\\DataLoader
-		SccProjectFilePathRelativizedFromConnection6 = Common\\
-		SccLocalPath7 = .
-		SccProjectUniqueName8 = DataLoaderGUI\\DataLoaderGUI.csproj
-		SccLocalPath8 = DataLoaderGUI
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
@@ -171,5 +150,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F3980DB-8974-4ED4-979F-82E447232BE9}
 	EndGlobalSection
 EndGlobal

@@ -35,10 +35,6 @@ Source: ..\Installer\MolServer18.dll; Destdir: {app}; Flags: regserver sharedfil
 Source: ..\Installer\InvLoader.exe; DestDir: {app}; Flags: ignoreversion
 Source: ..\Installer\invloader.pdf; DestDir: {app}
 Source: ..\Installer\reg_fields.xls; DestDir: {app}
-Source: ..\Installer\msxml.msi; DestDir: {app}
-
-[Run]
-Filename: "{sys}\msiexec.exe"; Parameters: "/i ""{app}\msxml.msi"" /qb"; 
 
 
 [Icons]

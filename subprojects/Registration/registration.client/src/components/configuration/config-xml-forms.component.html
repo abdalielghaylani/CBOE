@@ -1,12 +1,17 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!popup.visible">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
-  <command-button testid="save-button" (onClick)="saveXml($event)"  iconName="save" title="Save Xml"></command-button>
-  <command-button testid="save-button" (onClick)="copyToClipboard($event)"  iconName="copy" title="Copy to Clipboard"></command-button>
-  <command-button testid="paste-button" (onClick)="pasteFromClipboard($event)"  iconName="paste" title="Paste From Clipboard"></command-button>
+  <command-button *ngIf="isEditable" testid="save-button" (onClick)="saveXml($event)"  iconName="save" title="Save Xml"></command-button>
+  <command-button *ngIf="isEditable" testid="copy-button" (onClick)="copyToClipboard($event)"  iconName="copy" title="Copy to Clipboard"></command-button>
+  <command-button *ngIf="isEditable" testid="paste-button" (onClick)="pasteFromClipboard($event)"  iconName="paste" title="Paste From Clipboard"></command-button>
+  <command-button *ngIf="isEditable" testid="view-xml" (onClick)="editXML(false)"  iconName="eye" title="Swithc to View Mode"></command-button>
+  <command-button *ngIf="!isEditable" testid="edit-xml" (onClick)="editXML(true)"  iconName="edit" title="Edit XML"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{popup.title}} - XML
   </reg-header>
-  <dx-text-area [height]="gridHeight" [(value)]="popup.data"></dx-text-area>
+  <dx-scroll-view *ngIf="!isEditable" id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="onHover" >
+      <reg-xml-viewer [xml]="popup.data"></reg-xml-viewer>
+  </dx-scroll-view>
+  <dx-text-area *ngIf="isEditable" [height]="gridHeight" [(value)]="popup.data"></dx-text-area>
 </div>
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="popup.visible">
   <reg-settings-page-header>Edit Form XML</reg-settings-page-header>

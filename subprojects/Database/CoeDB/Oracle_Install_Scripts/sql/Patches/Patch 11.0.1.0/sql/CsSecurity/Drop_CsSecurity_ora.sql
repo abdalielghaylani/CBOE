@@ -9,12 +9,12 @@
 SPOOL ON
 spool "sql\Patches\Patch 11.0.1.0\sql\CsSecurity\log_drop_CSSecurity_ora.txt"
 
-@@sql\Parameters.sql
-@@sql\Prompts.sql
+@sql\Parameters.sql
+@sql\Prompts.sql
 
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 
-@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\drop_CsSecurity.sql"
+@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\drop_CsSecurity.sql"
 
 spool off;
 exit

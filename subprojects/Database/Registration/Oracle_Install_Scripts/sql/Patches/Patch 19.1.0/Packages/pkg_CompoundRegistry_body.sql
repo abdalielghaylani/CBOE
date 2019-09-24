@@ -7199,15 +7199,17 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                                   or (UPPER(lvTableName)='VW_COMPOUND' and upper(cur_upd.FieldToUpdate)='NORMALIZEDSTRUCTURE')) then
                                     null;
                                  else
-                                 if dbms_lob.getlength(cur_upd.val) =0 then
-                                               Larr_idc:=Larr_idc+1;
-                                               Lclobtable(Larr_idc):=cur_upd.val;
-                                               Lvartable(Larr_idc):=cur_upd.FieldToUpdate;
+                                 -- CBOE-9029. Only if CLOB value not empty, so dbms_lob.getlength(cur_upd.val)>0 we generate bind value for updating. It is Lclobtable1 and Lvartable1 array. Else we don't need it, because column value was set as empy_clob() before
+                                   Larr_idc:=Larr_idc+1;
+                                   Lclobtable(Larr_idc):=cur_upd.val;
+                                   Lvartable(Larr_idc):=cur_upd.FieldToUpdate;
+                                    if dbms_lob.getlength(cur_upd.val)>0 then
+                                        Larr_idc1:=Larr_idc1+1;
+                                        Lclobtable1(Larr_idc1):=cur_upd.val;
+                                        Lvartable1(Larr_idc1):=cur_upd.FieldToUpdate;
                                     end if;
-                                    Larr_idc1:=Larr_idc1+1;
-                                    Lclobtable1(Larr_idc1):=cur_upd.val;
-                                    Lvartable1(Larr_idc1):=cur_upd.FieldToUpdate;
                                  end if;
+                                 -- CBOE-9029. End 
 
 
 
@@ -7239,8 +7241,9 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
                 when 'VARCHAR2'
                       then
                       begin
+                        --CBOE-9029. I just added alias "a" for better view of query
                         lstmt2 := lstmt2 ||case when dbms_lob.getlength(cur_upd.val)=0 then  ' a.'||cur_upd.FieldToUpdate || ' is null '
-                                                            else cur_upd.FieldToUpdate||'= to_char(:'|| cur_upd.FieldToUpdate ||')'  end || ' and ';
+                                                            else ' a.'||cur_upd.FieldToUpdate||'= to_char(:'|| cur_upd.FieldToUpdate ||')'  end || ' and ';
                         lstmt3 := lstmt3 || ', a.'||cur_upd.FieldToUpdate||'=to_char(:'|| cur_upd.FieldToUpdate ||')';
                         --lstmt4 := lstmt4 || ' and a.'||cur_upd.FieldToUpdate||'='||q'[']'||to_char(cur_upd.val)||q'[']';
                          if dbms_lob.getlength(cur_upd.val) !=0 then
@@ -7342,6 +7345,8 @@ TraceWrite('UpdateMcrr_LFieldToUpdate', $$plsql_line, LFieldToUpdate);
 
                 IF Larr_idc1>-1 THEN
                   for i in 0..Larr_idc1    loop
+                  -- CBOE-9029. Just for tracing if need
+--                      TraceWrite('UpdateMcrr_lstmt3_err', $$plsql_line, 'Lvartable1('||i||')'||Lvartable1(i)||'; Lclobtable1('||i||')'||Lclobtable1(i));
 
                       DBMS_SQL.BIND_VARIABLE(source_cursor, Lvartable1(i), Lclobtable1(i));
                   end loop;

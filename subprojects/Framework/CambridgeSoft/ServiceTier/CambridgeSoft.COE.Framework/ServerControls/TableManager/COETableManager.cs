@@ -2710,7 +2710,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void uwdChildTable_PageIndexChanged(object sender, PageEventArgs e)
+        void uwdChildTable_PageIndexChanged(object sender, Infragistics.WebUI.UltraWebGrid.PageEventArgs e)
         {
             BindWebgrid();
             BindWebgridChildTable(CurrentRowPK.ToString());

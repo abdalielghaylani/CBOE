@@ -5,7 +5,7 @@
     </ol>
   </div>
 </reg-alert>
-<dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByThumb="true" showScrollbar="true">
+<dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByThumb=true showScrollbar="onHover" >
   <reg-form-group-view (valueUpdated)="onValueUpdated($event)" [id]="viewId" [viewConfig]="viewGroupContainers" [viewModel]="regRecord" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [template]="template" [updatable]="updatable"
     [invIntegrationEnabled]="invIntegrationEnabled" [sendToInventoryEnabled]="sendToInventoryEnabled" [invContainers]="invContainers"></reg-form-group-view>
   <dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">

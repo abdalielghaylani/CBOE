@@ -15,6 +15,6 @@ ACCEPT InstallUser CHAR DEFAULT 'sys' PROMPT 'Enter the name of an Oracle accoun
 ACCEPT sysPass CHAR DEFAULT 'manager2' PROMPT 'Enter the above oracle account password (manager2):' hide
 
 
-@@&&InstallUser
+@&&InstallUser
 
 

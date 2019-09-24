@@ -296,7 +296,7 @@ end if
 		
 		<%end if        ' if action <> "cancel" then %>
 		  
-        <%if Application("ENABLE_OWNERSHIP")="TRUE"  then%>    
+        <%if Application("ENABLE_OWNERSHIP")="TRUE" and action <> "cancel" then%>    
 		     if(GetAuthorizedLocation(document.form1.LocationID.value,document.getElementById("tempCsUserName").value,document.getElementById("tempCsUserID").value)==0 && document.form1.LocationID.value != <%=LocationID %>)
             {
                 errmsg = errmsg + "- Not authorized for this location.\r";

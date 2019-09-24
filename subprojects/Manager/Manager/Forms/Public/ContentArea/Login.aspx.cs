@@ -6,6 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CambridgeSoft.COE.Framework.Common;
 using System.Xml;
+using System.Web;
+using System.Configuration;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
 
 public partial class Forms_Public_ContentArea_Login : GUIShellPage
 {
@@ -13,13 +18,30 @@ public partial class Forms_Public_ContentArea_Login : GUIShellPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-        //if (!Page.IsPostBack)
-        //{
-            this.SetControlsAttributtes();            
-        //}
-        this.SubscribeToEventsInLeftPanel();
-        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            if (!Request.IsAuthenticated)
+            {
+                HttpContext.Current.GetOwinContext().Authentication.Challenge(
+                   new AuthenticationProperties { RedirectUri = redirectUri },
+                   OpenIdConnectAuthenticationDefaults.AuthenticationType);
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
+            //if (!Page.IsPostBack)
+            //{
+            this.SetControlsAttributtes();
+            //}
+            this.SubscribeToEventsInLeftPanel();
+            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        }
     }
 
     protected override void OnInit(EventArgs e)

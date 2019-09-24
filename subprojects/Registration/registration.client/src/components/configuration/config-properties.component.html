@@ -181,7 +181,7 @@
               <dxo-filter-row [visible]="true"></dxo-filter-row>
               <dxo-scrolling mode="virtual"></dxo-scrolling>
               <div *dxTemplate="let data of 'parameterTemplate'">
-                <dx-list [items]="data.data.parameters" [height]="65" noDataText="" showScrollbar="always">
+                <dx-list [items]="data.data.parameters" [height]="65" noDataText="" showScrollbar="onHover" >
                   <dxi-item *ngFor="let item of data.data.parameters">
                     <div style="white-space: normal;">{{item.name}} = {{item.value}}</div>
                   </dxi-item>

@@ -95,13 +95,11 @@ prompt **** Patch &&currentPatch Applied ****
 --When 12.6.2 is reached, we end the script execution and go back to the header file and continue the remaining patch scripts as a fresh nested script.
 COL setNextPatch NEW_VALUE setNextPatch NOPRINT
 SELECT	CASE
-		WHEN  '&&toVersion'='&&currentPatch' OR '&&currentPatch' = '12.6.2'
+		WHEN  '&&toVersion'='&&currentPatch'
 		THEN  'sql\Patches\stop.sql'
 		ELSE  '"sql\Patches\Patch &&nextPatch\patch.sql"'
 	END	AS setNextPatch 
 FROM	DUAL;
-
-@&&setNextPatch 
 
 
 

@@ -1,7 +1,7 @@
 --Copyright 1999-2010 CambridgeSoft Corporation. All rights reserved
 
 @"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\parameters.sql"
-@@&&InstallUser
+@&&InstallUser
 
 Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 

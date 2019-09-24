@@ -12,6 +12,8 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using Infragistics.WebUI.UltraWebToolbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
 
 namespace Manager.Forms.SecurityManager.UserControls
 {
@@ -90,6 +92,14 @@ namespace Manager.Forms.SecurityManager.UserControls
 
         protected void DoLogOff(object sender, EventArgs e)
         {
+            string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+            if (!string.IsNullOrEmpty(redirectUri))
+            {
+                HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                        OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                        CookieAuthenticationDefaults.AuthenticationType);
+                Utilities.token = string.Empty;
+            }
             GUIShellUtilities.DoLogout();
         }
 
