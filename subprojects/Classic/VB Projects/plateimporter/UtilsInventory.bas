@@ -45,10 +45,10 @@ Public Enum EnumStatementIds
 End Enum
 
 Public Function ExecuteStatement(ByVal StatementId As Long, Optional ByVal Params As String = "")
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & INVLOADER_SQL_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     'sURL = Protocol(mbUseSSL) & msServerName & INVLOADER_SQL_URL
@@ -106,10 +106,10 @@ End Function
 
 Public Function AuthenticateUser(ByVal ServerName As String, ByVal UserID As String, ByVal Password As String)
 
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & ServerName & AUTHENTICATE_USER_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     sContent = "UserID=" & UserID & "&Password=" & Password & "&PrivTables=cheminv_privileges"
@@ -156,8 +156,8 @@ End Function
 Public Function CreatePlateXML(PlateXML As String, ByVal bRegisterCompounds As Boolean) As String
     ' use MSXML to make calls to Inventory API
     Dim sReq As String
-    Dim oHTTP As MSXML2.XMLHTTP40
-    Dim oPlateXML As MSXML2.DOMDocument40
+    Dim oHTTP As MSXML2.XMLHTTP60
+    Dim oPlateXML As MSXML2.DOMDocument60
     Dim oPlatesElement As MSXML2.IXMLDOMElement
     Dim oAttribute As MSXML2.IXMLDOMAttribute
     Dim sURL As String
@@ -166,8 +166,8 @@ Public Function CreatePlateXML(PlateXML As String, ByVal bRegisterCompounds As B
     Dim lTimeTaken As Long
     Dim sRet As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
-    Set oPlateXML = New MSXML2.DOMDocument40
+    Set oHTTP = New MSXML2.XMLHTTP60
+    Set oPlateXML = New MSXML2.DOMDocument60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & CREATE_PLATE_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     oPlateXML.loadXML (PlateXML)
@@ -230,8 +230,8 @@ End Function
 Public Function CreateSubstanceXML(CompoundXML As String) As String
     ' use MSXML to make calls to Inventory API
     Dim sReq As String
-    Dim oHTTP As MSXML2.XMLHTTP40
-    Dim oCompoundXML As MSXML2.DOMDocument40
+    Dim oHTTP As MSXML2.XMLHTTP60
+    Dim oCompoundXML As MSXML2.DOMDocument60
     Dim oCompoundsElement As MSXML2.IXMLDOMElement
     Dim oAttribute As MSXML2.IXMLDOMAttribute
     Dim sURL As String
@@ -240,8 +240,8 @@ Public Function CreateSubstanceXML(CompoundXML As String) As String
     Dim tmCurr As Date
     Dim lTimeTaken As Long
     
-    Set oHTTP = New MSXML2.XMLHTTP40
-    Set oCompoundXML = New MSXML2.DOMDocument40
+    Set oHTTP = New MSXML2.XMLHTTP60
+    Set oCompoundXML = New MSXML2.DOMDocument60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & CREATE_SUBSTANCE_URL & "?CSuserName=" & msUserID & "&CSUserID=" & msPassword
     oCompoundXML.loadXML (CompoundXML)
@@ -297,7 +297,7 @@ Public Function CreateSubstanceXML(CompoundXML As String) As String
 End Function
 
 
-Private Sub addAttribute(ByRef oDOM As MSXML2.DOMDocument40, ByRef oElement As MSXML2.IXMLDOMElement, ByVal attribName As String, ByVal attribValue As String)
+Private Sub addAttribute(ByRef oDOM As MSXML2.DOMDocument60, ByRef oElement As MSXML2.IXMLDOMElement, ByVal attribName As String, ByVal attribValue As String)
     Dim oAttribute As MSXML2.IXMLDOMAttribute
     Set oAttribute = oDOM.createAttribute(attribName)
     oAttribute.Text = attribValue
@@ -315,8 +315,8 @@ End Sub
 Public Function CreateContainerXML(ContainerXML As String, ByVal bRegisterCompounds As Boolean) As String
     ' use MSXML to make calls to Inventory API
     Dim sReq As String
-    Dim oHTTP As MSXML2.XMLHTTP40
-    Dim oContainerXML As MSXML2.DOMDocument40
+    Dim oHTTP As MSXML2.XMLHTTP60
+    Dim oContainerXML As MSXML2.DOMDocument60
     Dim oContainerElement As MSXML2.IXMLDOMElement
     Dim oAttribute As MSXML2.IXMLDOMAttribute
     Dim sURL As String
@@ -325,8 +325,8 @@ Public Function CreateContainerXML(ContainerXML As String, ByVal bRegisterCompou
     Dim lTimeTaken As Long
     Dim sRet As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
-    Set oContainerXML = New MSXML2.DOMDocument40
+    Set oHTTP = New MSXML2.XMLHTTP60
+    Set oContainerXML = New MSXML2.DOMDocument60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & PROCESS_ACTION_BATCH_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     oContainerXML.loadXML (ContainerXML)
@@ -374,10 +374,10 @@ Public Function CreateContainerXML(ContainerXML As String, ByVal bRegisterCompou
 End Function
 
 Public Function GetPrimaryKeyIDs(TableName As String, TableValues As String) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & GET_PRIMARY_KEY_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     sContent = "TableName=" & TableName & "&TableValues=" & URLEncode(TableValues)
@@ -411,10 +411,10 @@ Public Function GetPrimaryKeyIDs(TableName As String, TableValues As String) As 
 End Function
 
 Public Function LookUpValue(TableName As String, TableValue As String) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & LOOKUPVALUE_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     If UCase(TableName) = "INV_SOLVENTS" Then
@@ -451,10 +451,10 @@ Public Function LookUpValue(TableName As String, TableValue As String) As String
 End Function
 
 Public Function GetLocationFromID(LocationID As Long) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & GETLOCATIONFROMID_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     sContent = "LocationID=" & CStr(LocationID)
@@ -488,10 +488,10 @@ Public Function GetLocationFromID(LocationID As Long) As String
 End Function
 
 Public Function GetLocationFromBarcode(LocationBarcode As String) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & GETLOCATIONFROMBARCODE_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     sContent = "LocationBarcode=" & CStr(LocationBarcode)
@@ -524,10 +524,10 @@ Public Function GetLocationFromBarcode(LocationBarcode As String) As String
     Set oHTTP = Nothing
 End Function
 Public Function IsValidCompoundID(CompoundID As Long) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
     
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & ISVALIDCOMPOUNDID_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     sContent = "compoundID=" & CStr(CompoundID)
@@ -624,9 +624,9 @@ Function shiftChr(str, s)
 End Function
 
 Public Function GetApplicationVariables()
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim sURL As String, sContent As String
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     'CSBR 141387
     sURL = Protocol(mbUseSSL) & msServerName & GETAPPLICATIONVARIABLES_URL & "?CSUserName=" & msUserID & "&CSUserID=" & msPassword
     
