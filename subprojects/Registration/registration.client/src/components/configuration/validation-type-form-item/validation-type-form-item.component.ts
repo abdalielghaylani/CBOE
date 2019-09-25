@@ -20,7 +20,7 @@ export class RegValidationFormItem extends RegBaseFormItem {
     let propertyType = (this.viewConfig.type as string).toUpperCase();
     this.items = propertyType === 'DATE' || propertyType === 'PICKLISTDOMAIN' ? ['requiredField']
       : propertyType === 'NUMBER' ? ['requiredField', 'numericRange', 'positiveInteger', 'integer', 'double', 'textLength']
-        : ['requiredField', 'textLength', 'wordListEnumeration', 'notEmptyStructure', 'notEmptyStructureAndNoText'];
+        : propertyType === 'TEXT' ? ['requiredField', 'textLength', 'wordListEnumeration'] : ['requiredField', 'textLength', 'wordListEnumeration', 'notEmptyStructure', 'notEmptyStructureAndNoText'];
     this.items = this.items.concat(['custom']);
     let options = this.viewModel.editorOptions;
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
