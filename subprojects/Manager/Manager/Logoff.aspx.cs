@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
 
 
     public partial class Logoff : System.Web.UI.Page
@@ -18,6 +20,14 @@ using System.Web.UI.HtmlControls;
 
         protected override void OnInit(EventArgs e)
         {
+            string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+            if (!string.IsNullOrEmpty(redirectUri))
+            {
+                HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                        OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                        CookieAuthenticationDefaults.AuthenticationType);
+                Utilities.token = string.Empty;
+            }
             CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider memProvider = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider(); 
             memProvider.LogOut();
         }
