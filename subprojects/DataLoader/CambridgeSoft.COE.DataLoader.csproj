@@ -42,7 +42,7 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>false</MapFileExtensions>
+    <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://coebuildhv2/dataloader1230/</InstallUrl>
     <TargetCulture>en</TargetCulture>
     <ProductName>COE DataLoader</ProductName>

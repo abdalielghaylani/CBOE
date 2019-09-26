@@ -70,7 +70,7 @@ pipeline
                     "${BC}" "@${WORKSPACE}\\Installers\\InstallSupportFiles\\bc.txt" "${WORKSPACE}\\subprojects\\Classic" "${WORKSPACE}\\Base\\ChemOffice" "${WORKSPACE}\\ChemOffice" /silent
                     ${REGASM} "${WORKSPACE}\\subprojects\\Classic\\Common\\Dlls\\SingleSignoncom.dll" /tlb:SingleSignOnCom.tlb /codebase
                     xcopy /Y "${WORKSPACE}\\subprojects\\Classic\\VB Projects\\InvLoader\\Inno Installer\\Output\\InvLoaderSetup.exe" "${WORKSPACE}\\ChemOffice\\ChemInv\\Installation\\InvLoader"
-                    call "${WORKSPACE}\\build\\jdps\\RemoveFolder.bat" ${WORKSPACE}
+                    call "${WORKSPACE}\\build\\jdps\\RemoveFolder.bat" ${WORKSPACE} ${CBOE_BUILD_NUMBER}
                 """
             }
         }

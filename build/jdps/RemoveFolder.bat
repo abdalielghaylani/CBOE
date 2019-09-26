@@ -1,5 +1,6 @@
 @echo off
 SET WORKSPACE=%1
+SET BUILD=%2
 IF ERRORLEVEL 1 GOTO skip1
 RD /S /Q "%WORKSPACE%\subprojects\CBOEHelp\CBOE Admin - Project Files"
 IF ERRORLEVEL 1 GOTO skip1
@@ -33,5 +34,14 @@ RD /S /Q "%WORKSPACE%\ChemOffice\Project_Doc"
 IF ERRORLEVEL 1 GOTO skip1
 RD /S /Q "%WORKSPACE%\ChemOffice\wwwroot"
 IF ERRORLEVEL 1 GOTO skip1
+cd %WORKSPACE%\subprojects\DataLoader\bin\Release\app.publish\Application Files\DataLoader_19_1_0_%BUILD%
+del *.dll
+del *.config
+del *.application
+del *.exe
+cd %WORKSPACE%\subprojects\DataLoader\bin\Release\app.publish\Application Files\DataLoader_19_1_0_%BUILD%\Resources
+del *.gif
+del *.ico
+del *.png
 
 :skip1
