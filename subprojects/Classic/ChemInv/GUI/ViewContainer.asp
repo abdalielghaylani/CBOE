@@ -134,7 +134,7 @@ end if
 Select Case sTab
 	Case "Summary"
 
-		Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		oTemplate.load(server.MapPath("/" & Application("AppKey") & "/config/xml_templates/ViewContainer_Summary.xml"))
 		Set mainTable = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT")
 		'Response.Write mainTable.xml & "=xml<BR>"
@@ -509,7 +509,7 @@ Case "RegSubstance"
 '-- SUPPLIER TAB
 '-- -----------------------------------------------------------------------
 	Case "Supplier"
-		Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		oTemplate.load(server.MapPath("/" & Application("AppKey") & "/config/xml_templates/ViewContainer_Supplier.xml"))
 		'only show supplier contact information to users with
 		if Session("INV_EDIT_CONTAINER" & dbkey) then

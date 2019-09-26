@@ -863,7 +863,7 @@ Function GetFipsEnabled ()
 	Dim COEFrameworkConfigPath
 	Dim FipsEnabled
 	
-	Set oXML = server.CreateObject("MSXML2.DOMDOCUMENT.4.0")
+	Set oXML = server.CreateObject("MSXML2.DOMDOCUMENT.6.0")
 	COEFrameworkConfigPath = GetConfigFilePath()
 	If COEFrameworkConfigPath = "File Not Found" Then
 	    FipsEnabled = false

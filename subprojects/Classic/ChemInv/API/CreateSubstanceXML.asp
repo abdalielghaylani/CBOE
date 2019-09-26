@@ -17,7 +17,7 @@ bWriteError = False
 strError = "Error:CreateSubstanceXML<BR>"
 InvServerName = Application("InvServerName")
 
-Set oCompoundXML = Server.CreateObject("MSXML2.DOMDocument.4.0")
+Set oCompoundXML = Server.CreateObject("MSXML2.DOMDocument.6.0")
 oCompoundXML.load(request)
 If bXMLDebug then oCompoundXML.save(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/debug01_CreateSubstanceXML.xml")) 
 'If bXMLDebug then oCompoundXML.save(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/debug" & replace(replace(time,":","")," ","") & "_CreatePlateXML.xml"))

@@ -132,7 +132,7 @@ Cols = clng(RS("col_count"))
 plateNum = 0	
 Set oHTTP = Server.CreateObject("MSXML2.serverXMLHTTP")
 oHTTP.setTimeouts 600000, 600000, 600000, 600000
-Set oPlates = server.CreateObject("MSXML2.DOMDocument.4.0")
+Set oPlates = server.CreateObject("MSXML2.DOMDocument.6.0")
 bNewPlate = true
 bFirst = true
 bNewSourcePlate = true
@@ -191,7 +191,7 @@ if ActionType="target" then
 						'CreateErrorBarcodes = CreatErrorBarcodes &  currTargetPlate & ","
 						errCount = errCount + 1
 					end if
-					Set oPlates = server.CreateObject("MSXML2.DOMDocument.4.0")
+					Set oPlates = server.CreateObject("MSXML2.DOMDocument.6.0")
 				end if
 				currTargetPlate = TargetPlateBarcode
 				bNewPlate = true
@@ -429,7 +429,7 @@ elseif ActionType = "source" then
 							CreateErrorBarcodes = CreatErrorBarcodes &  currSourcePlate & ","
 							errCount = errCount + 1
 						end if
-						Set oPlates = server.CreateObject("MSXML2.DOMDocument.4.0")
+						Set oPlates = server.CreateObject("MSXML2.DOMDocument.6.0")
 					end if
 				end if
 				currSourcePlate = SourcePlateBarcode

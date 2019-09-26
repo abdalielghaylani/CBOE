@@ -154,7 +154,7 @@ if not bFileTemplateError and not bFileParseError then
 	plateNum = 0	
 	Set oHTTP = Server.CreateObject("MSXML2.serverXMLHTTP")
 	oHTTP.setTimeouts 600000, 600000, 600000, 600000
-	Set oPlates = server.CreateObject("MSXML2.DOMDocument.4.0")
+	Set oPlates = server.CreateObject("MSXML2.DOMDocument.6.0")
 	bCreatePlate = false
 	bNewPlate = true
 	bFirst = true
@@ -266,7 +266,7 @@ if not bFileTemplateError and not bFileParseError then
 						if not oProblemBarcodes2.Exists(currPlateBarcode) then oProblemBarcodes2.Add currPlateBarcode,1
 						errCount = errCount + 1
 					end if
-					Set oPlates = server.CreateObject("MSXML2.DOMDocument.4.0")
+					Set oPlates = server.CreateObject("MSXML2.DOMDocument.6.0")
 				end if
 				
 				'--increment plate counter and plate barcode

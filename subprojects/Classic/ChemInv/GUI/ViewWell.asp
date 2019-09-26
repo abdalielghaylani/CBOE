@@ -97,7 +97,7 @@ function ParentWellLink(LocationID, TreeViewOpenNodes1, PlateID, WellID) {
 	CompoundCount = rsWell("CompoundCount")
 
 	'Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument")
-	Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+	Set oTemplate = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 	if (cint(ParentCount) > 1 or (cint(CompoundCount)>1 and cint(ParentCount) = 1)) then
 		oTemplate.load(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/ViewMixtureWell_Summary.xml"))
 		Set mainTable = oTemplate.selectSingleNode("/DOCUMENT/DISPLAY/TABLE_ELEMENT/TABLE_ELEMENT")

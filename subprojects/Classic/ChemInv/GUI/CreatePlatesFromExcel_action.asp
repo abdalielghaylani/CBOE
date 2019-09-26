@@ -91,7 +91,7 @@ Set rsData = cnExcel.Execute("SELECT * FROM [" & sSheetName & "]")
 ' If records were returned the save the file
 If rsData.RecordCount > 0 Then
 	'use DOM doc to get around file already exists error
-    Set oTransforms = server.CreateObject("MSXML2.DOMDOCUMENT.4.0")
+    Set oTransforms = server.CreateObject("MSXML2.DOMDOCUMENT.6.0")
     'rsData.Save sPath&".xml", adPersistXML
     'Response.End
     rsData.Save oTransforms, 1 'adPersistXML

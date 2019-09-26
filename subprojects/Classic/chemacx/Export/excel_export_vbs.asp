@@ -47,7 +47,7 @@ Function ExportNestedExcel(ByVal dbkey, ByVal formgroup, ByVal fieldstoexport_in
 				
 				InitializeProgressBar true, ""
 				Set fso = Server.CreateObject("Scripting.FileSystemObject")
-				Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+				Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 				oData.validateOnParse=true
 				oData.async=false
 				
@@ -198,8 +198,8 @@ Function ExportNestedExcel(ByVal dbkey, ByVal formgroup, ByVal fieldstoexport_in
 					
 					finaldoc = "/CFWTemp/" & Application("Appkey")  & "/" & dbkey & "temp/sessiondir/" & session.sessionid & "/TempTransformRS.xml"
 					oData.save(server.MapPath(finaldoc))
-					Set oXSL = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
-					Set oFinalData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+					Set oXSL = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
+					Set oFinalData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 					XSLpath = "/" & Application("Appkey")  & "/export/convert_nested.xsl"
 					oXSL.load(Server.MapPath(XSLpath))
 					oFinalData.load(Server.MapPath(finaldoc))
@@ -678,7 +678,7 @@ Function exportFlatExcel(ByVal dbkey, ByVal formgroup, ByVal fieldstoexport_inpu
 				
 				InitializeProgressBar true, ""
 				Set fso = Server.CreateObject("Scripting.FileSystemObject")
-				Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+				Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 				oData.validateOnParse=true
 				oData.async=false
 				'save as xml
@@ -759,8 +759,8 @@ Function exportFlatExcel(ByVal dbkey, ByVal formgroup, ByVal fieldstoexport_inpu
 					
 					finaldoc = "/CFWTemp/" & Application("Appkey")  & "/" & dbkey & "temp/sessiondir/" & session.sessionid & "/TempTransformRS.xml"
 					oData.save(server.MapPath(finaldoc))
-					Set oXSL = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
-					Set oFinalData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+					Set oXSL = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
+					Set oFinalData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 					XSLpath = "/" & Application("Appkey")  & "/export/convert_flat.xsl"
 					oXSL.load(Server.MapPath(XSLpath))
 					oFinalData.load(Server.MapPath(finaldoc))

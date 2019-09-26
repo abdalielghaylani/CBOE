@@ -85,7 +85,7 @@ rsGridPositionID.Close()
 Set rsGridPositiontID = Nothing
 gridPositionID = cint(startingGridPositionID)
 
-Set oMap = server.CreateObject("MSXML2.DomDocument.4.0")
+Set oMap = server.CreateObject("MSXML2.DomDocument.6.0")
 '-- create reformat map
 
 '-- create base map 
