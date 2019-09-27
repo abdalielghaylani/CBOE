@@ -22,3 +22,4 @@ INSERT INTO inv_custom_fields VALUES(860,1,105,'P361+P364: Take off immediately 
 INSERT INTO inv_custom_fields VALUES(861,1,105,'P362+P364: Take off contaminated clothing and wash it before reuse.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(862,1,105,'P370+P372+P380+P373: In case of fire: Explosion risk. Evacuate area. DO NOT fight fire when fire reaches explosives.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(863,1,105,'P370+P380+P375[+P378]: In case of fire: Evacuate area. Fight fire remotely due to the risk of explosion. [Use … to extinguish].',0,1,null);
+commit;
