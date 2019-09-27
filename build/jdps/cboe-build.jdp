@@ -56,7 +56,7 @@ pipeline
                 bat """
                     cd ${WORKSPACE}\\Installers\\InstallSupportFiles
                     EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
-                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH} ${WORKSPACE}
+                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH17} ${WORKSPACE}
                 """
             }
         }
@@ -70,7 +70,7 @@ pipeline
                     "${BC}" "@${WORKSPACE}\\Installers\\InstallSupportFiles\\bc.txt" "${WORKSPACE}\\subprojects\\Classic" "${WORKSPACE}\\Base\\ChemOffice" "${WORKSPACE}\\ChemOffice" /silent
                     ${REGASM} "${WORKSPACE}\\subprojects\\Classic\\Common\\Dlls\\SingleSignoncom.dll" /tlb:SingleSignOnCom.tlb /codebase
                     xcopy /Y "${WORKSPACE}\\subprojects\\Classic\\VB Projects\\InvLoader\\Inno Installer\\Output\\InvLoaderSetup.exe" "${WORKSPACE}\\ChemOffice\\ChemInv\\Installation\\InvLoader"
-                    call "${WORKSPACE}\\build\\jdps\\RemoveFolder.bat" ${WORKSPACE}
+                    call "${WORKSPACE}\\build\\jdps\\RemoveFolder.bat" ${WORKSPACE} ${CBOE_BUILD_NUMBER}
                 """
             }
         }
@@ -78,7 +78,7 @@ pipeline
         {
             steps
             {
-                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD}"
+                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17}"
             }
         }
         stage ('Registration-Client-Build')
@@ -160,7 +160,7 @@ pipeline
                 to: "${NOTIFY_LIST}",
                 replyTo: "${NOTIFY_LIST}",
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-           // deleteDir()
+            deleteDir()
         }
         success 
         {

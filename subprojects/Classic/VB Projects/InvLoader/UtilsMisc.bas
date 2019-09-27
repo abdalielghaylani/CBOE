@@ -582,12 +582,12 @@ End Function
 '*  OUTPUT: The raw http response from the server
 '****************************************************************************************
 Public Function HTTPRequest(pMethod, pHostName, bIsSSL As Boolean, pTarget, pUserAgent, pData) As String
-    Dim oHTTP As MSXML2.XMLHTTP40
+    Dim oHTTP As MSXML2.XMLHTTP60
     Dim httpResponse, URL, StatusCode As String
     Screen.MousePointer = vbHourglass
     URL = Protocol(bIsSSL) & pHostName & "/" & pTarget
     ' This is the server safe version from MSXML3.
-    Set oHTTP = New MSXML2.XMLHTTP40
+    Set oHTTP = New MSXML2.XMLHTTP60
     oHTTP.open pMethod, URL, False
     oHTTP.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
     oHTTP.setRequestHeader "User-Agent", pUserAgent
@@ -652,7 +652,7 @@ Public Sub GetAllFieldMappings()
     Dim fso As New FileSystemObject
     Dim oMappingsFolder As Folder
     Dim oFile As File
-    Dim oXMLFile As MSXML2.DOMDocument40
+    Dim oXMLFile As MSXML2.DOMDocument60
     Dim oParentNode As IXMLDOMNode
     Dim oNameAttrib As MSXML2.IXMLDOMNode
     Dim oFieldMapping As FieldMapping
@@ -667,7 +667,7 @@ Public Sub GetAllFieldMappings()
         Exit Sub
     End If
     
-    Set oXMLFile = New MSXML2.DOMDocument40
+    Set oXMLFile = New MSXML2.DOMDocument60
         
     Set oMappingsFolder = fso.GetFolder(App.Path & MAPPINGS_FOLDER)
     For Each oFile In oMappingsFolder.Files
@@ -711,7 +711,7 @@ Public Sub GetAllFieldMappings()
 End Sub
 
 Public Sub LoadFieldMappings(grdObject As VSFlexGrid, oCFWImporter As DataImporter, eMappingType As MappingType, NameToIndexMapping As Dictionary)
-    Dim oMappingXML As MSXML2.DOMDocument40
+    Dim oMappingXML As MSXML2.DOMDocument60
     Dim oFieldNodes As MSXML2.IXMLDOMNodeList
     Dim oField As MSXML2.IXMLDOMNode
     Dim oParentNode As MSXML2.IXMLDOMNode
@@ -744,7 +744,7 @@ Public Sub LoadFieldMappings(grdObject As VSFlexGrid, oCFWImporter As DataImport
     ' Set this so we don't get validation error messages when setting the mappings
     bLoadMappingsFromXML = True
         
-    Set oMappingXML = New MSXML2.DOMDocument40
+    Set oMappingXML = New MSXML2.DOMDocument60
     If oMappingXML.load(sXMLFilePath) Then
     
         Set oParentNode = oMappingXML.documentElement
@@ -813,7 +813,7 @@ End Sub
 Public Sub SaveFieldMappings(grdObject As VSFlexGrid, oCFWImporter As DataImporter, eMappingType As MappingType)
     Dim fso As FileSystemObject
     Dim sMappingsPath As String
-    Dim oMappingXML As MSXML2.DOMDocument40
+    Dim oMappingXML As MSXML2.DOMDocument60
     Dim oRootNode As MSXML2.IXMLDOMElement
     Dim oFieldNode As MSXML2.IXMLDOMElement
     Dim oFieldMapping As FieldMapping
@@ -837,7 +837,7 @@ Public Sub SaveFieldMappings(grdObject As VSFlexGrid, oCFWImporter As DataImport
     
     Set oFieldMapping = New FieldMapping
     oFieldMapping.eMappingType = eMappingType
-    Set oMappingXML = New MSXML2.DOMDocument40
+    Set oMappingXML = New MSXML2.DOMDocument60
     
     Select Case (eMappingType)
         Case eInventoryPlates

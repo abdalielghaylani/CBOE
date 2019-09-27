@@ -122,11 +122,11 @@ Function RS2HTML(ByRef rsXML, ByRef fieldTemplate, pageSize, pageNum, rowNum, ro
 	end if
 
 
-	Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+	Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 	rsXML.Save oData, 1
 
 	'check for structures that need to be written to files, write the files and update the xml
-	Set oDisplayInfo = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+	Set oDisplayInfo = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 	if isObject(fieldTemplate) then
 		oDisplayInfo.loadXML(fieldTemplate.xml)
 	else
@@ -211,13 +211,13 @@ Function DOM2HTML(oData, ByRef fieldTemplate)
 	bTimer = false
 	if Not isObject(Application("oDataTemp")) then
 		Application.Lock
-		Set Application("oDataTemp") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
-		Set Application("oMergeDoc1") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
-		Set Application("oMergeDoc2") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set Application("oDataTemp") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
+		Set Application("oMergeDoc1") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
+		Set Application("oMergeDoc2") = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		
-		Set oFilterColumnsTransformTemp = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set oFilterColumnsTransformTemp = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		oFilterColumnsTransformTemp.async = false
-		Set oHTMLTransformTemp = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set oHTMLTransformTemp = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		oHTMLTransformTemp.async = false
 		
 		oFilterColumnsTransformTemp.load(Server.MapPath("/cfserverasp/source/xml_source/FilterColumns.xsl"))
@@ -229,9 +229,9 @@ Function DOM2HTML(oData, ByRef fieldTemplate)
 		else
 			oHTMLTransformTemp.load(Server.MapPath("/biosar_browser/config/xml_templates/XML2HTML.xsl"))
 		end if
-		Set oFilterTransformTemplate = Server.CreateObject("Msxml2.XSLTemplate.4.0")
+		Set oFilterTransformTemplate = Server.CreateObject("Msxml2.XSLTemplate.6.0")
 		oFilterTransformTemplate.stylesheet = oFilterColumnsTransformTemp
-		Set oHTMLTransformTemplate = Server.CreateObject("Msxml2.XSLTemplate.4.0")
+		Set oHTMLTransformTemplate = Server.CreateObject("Msxml2.XSLTemplate.6.0")
 		oHTMLTransformTemplate.stylesheet = oHTMLTransformTemp
 
 		'Set Application("oFilterColumnsTransform") = oFilterColumnsTransformTemp
@@ -262,7 +262,7 @@ Function DOM2HTML(oData, ByRef fieldTemplate)
 	if isObject(fieldTemplate) then
 		oMergeDoc1.documentElement.appendChild(fieldTemplate.documentElement)
 	else
-		Set oDisplayInfo = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+		Set oDisplayInfo = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 		if left(fieldTemplate,5) = "<?xml" then
 			oDisplayInfo.loadXML(fieldTemplate)	
 		else

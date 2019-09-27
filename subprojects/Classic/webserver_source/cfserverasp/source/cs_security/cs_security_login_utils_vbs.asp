@@ -847,7 +847,7 @@ Function IsValidLDAPUser(UserId, Password)
 	Dim COEFrameworkConfigPath
 	Dim sAuthentication
 	
-	Set oXML = server.CreateObject("MSXML2.DOMDOCUMENT.4.0")
+	Set oXML = server.CreateObject("MSXML2.DOMDOCUMENT.6.0")
 	COEFrameworkConfigPath = GetConfigFilePath()
 	If COEFrameworkConfigPath = "File Not Found" Then
 	    isValidUser = 0

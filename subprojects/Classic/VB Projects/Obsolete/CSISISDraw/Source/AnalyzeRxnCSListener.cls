@@ -414,7 +414,7 @@ Private Sub IENObject_Save(ByVal Contents As IXMLDOMElement, ByVal ResultParent 
         mField.ConfigurationChanged Me
         
         With mConnection.ADOConnection
-            Set nameDataDoc = New DOMDocument40
+            Set nameDataDoc = New DOMDocument60
             Set rootNode = nameDataDoc.createElement("fieldListener")
             
             If (mReactantsFieldKey = 0 And Len(mReactantsFieldName) > 0) Then

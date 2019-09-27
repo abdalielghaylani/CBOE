@@ -328,7 +328,7 @@ End Sub
 
 ' Low-level editing of the cdxml to make the arrow narrow.
 Private Function NarrowArrowCDxml(cdxml As String) As String
-    Dim CDxmlDOM As MSXML2.DOMDocument40
+    Dim CDxmlDOM As MSXML2.DOMDocument60
     Dim ret As Boolean
     Dim pageNode As MSXML2.IXMLDOMElement
     Dim oNode As MSXML2.IXMLDOMElement
@@ -340,7 +340,7 @@ Private Function NarrowArrowCDxml(cdxml As String) As String
 
     NarrowArrowCDxml = cdxml ' In case of an error (like no arrow present), return the input.
     On Error GoTo CatchError
-    Set CDxmlDOM = New MSXML2.DOMDocument40
+    Set CDxmlDOM = New MSXML2.DOMDocument60
     CDxmlDOM.async = False
     CDxmlDOM.validateOnParse = False
     ret = CDxmlDOM.loadXML(cdxml)

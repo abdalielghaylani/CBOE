@@ -182,6 +182,12 @@ Sub GetRegConnection()
 		Response.Write "Credentials Error"
 		Response.end
 	End if
+	
+	if(Request.Cookies("CS_SEC_Azure").Item <> "") then
+		UserName = Application("CHEMINV_USERNAME")
+		UserID = Application("CHEMINV_PWD")
+    end if
+	
 	connection_array = Application("base_connection" & "invreg")
 	'Cannot use the oledb connection because it truncates the Base64_cdx Long field
 	'ConnStr =  "dsn=chem_reg;UID=" & UserName & ";PWD=" & UserID

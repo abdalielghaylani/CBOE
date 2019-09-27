@@ -324,7 +324,7 @@ Sub SetContainerSessionVarsFromDb(pContainerID)
 	Set RS= Conn.Execute(SQL)
 	'Response.write RS.GetString(,,"&nbsp;","<BR>")
 	'Response.end
-	Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.4.0")
+	Set oData = Server.CreateObject("MSXML2.FreeThreadedDOMDocument.6.0")
 	RS.Save oData, 1
 	Set Session("oViewContainerData") = oData
 	Set oData = nothing

@@ -85,7 +85,7 @@ strError = "Error:CreatePlateXML<BR>"
 RegServerName = Application("RegServerName")
 InvServerName = Application("InvServerName")
 
-Set oPlateXML = Server.CreateObject("MSXML2.DOMDocument.4.0")
+Set oPlateXML = Server.CreateObject("MSXML2.DOMDocument.6.0")
 oPlateXML.load(request)
 If bXMLDebug then oPlateXML.save(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/debug01_CreatePlateXML.xml")) 
 'If bXMLDebug then oPlateXML.save(Server.MapPath("/" & Application("AppKey") & "/config/xml_Templates/debug" & replace(replace(time,":","")," ","") & "_CreatePlateXML.xml"))

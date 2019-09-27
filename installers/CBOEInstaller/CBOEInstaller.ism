@@ -418,6 +418,7 @@
 		<row><td>AppPoolComponent3</td><td>{080417B6-6E6D-4769-AEC2-A8B316AD7AC2}</td><td>INSTALLDIR</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>App_GlobalResources</td><td>{517C71F0-DB9A-40F8-993B-B7C0FD4C0698}</td><td>APP_GLOBALRESOURCES4</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Assets</td><td>{0E50ED5F-23E3-4E4E-AF3F-573721EFD9D0}</td><td>ASSETS</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>AzureComp</td><td>{3CAA48C7-9C79-444D-BE31-82C65CDFF792}</td><td>BIN1</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Bin</td><td>{3BEEDDBD-F52D-4BB0-87EC-FAD24F07DE75}</td><td>BIN16</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CBOEHelp</td><td>{4E0FE0F7-6E5E-45DF-848E-BD8D47ADA1D3}</td><td>CBOEHELP1</td><td>8</td><td/><td>web_registration_qsg.pdf</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>CSDO18</td><td>{AEEE52B1-0C27-476B-855C-462C4B244983}</td><td>DLLS</td><td>8</td><td/><td>csdo18.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -3516,6 +3517,7 @@ End If
 		<row><td>Manager</td><td>AllOtherFiles19</td></row>
 		<row><td>Manager</td><td>AllOtherFiles4</td></row>
 		<row><td>Manager</td><td>AllOtherFiles78</td></row>
+		<row><td>Manager</td><td>AzureComp</td></row>
 		<row><td>Registration</td><td>AllOtherFiles20</td></row>
 		<row><td>Registration</td><td>AllOtherFiles21</td></row>
 		<row><td>Registration</td><td>AllOtherFiles22</td></row>
@@ -3643,6 +3645,17 @@ End If
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\mage.exe</td><td>17</td><td/></row>
 		<row><td>mage_dataloader.bat</td><td>AllOtherFiles50</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>21</td><td/></row>
 		<row><td>microsoft.aspnet.webapi.vers</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.AspNet.WebApi.Versioning.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.AspNet.WebApi.Versioning.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identity.client.dl</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Identity.Client.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Identity.Client.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identitymodel.json</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.IdentityModel.JsonWebTokens.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.IdentityModel.JsonWebTokens.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identitymodel.logg</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.IdentityModel.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.IdentityModel.Logging.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identitymodel.prot</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.IdentityModel.Protocols.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.IdentityModel.Protocols.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identitymodel.prot1</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.identitymodel.toke</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.IdentityModel.Tokens.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.IdentityModel.Tokens.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.owin.dll</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Owin.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Owin.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.owin.host.systemwe</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Owin.Host.SystemWeb.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Owin.Host.SystemWeb.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.owin.security.cook</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Owin.Security.Cookies.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Owin.Security.Cookies.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.owin.security.dll</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Owin.Security.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Owin.Security.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.owin.security.open</td><td>AzureComp</td><td>MICROS~1.DLL|Microsoft.Owin.Security.OpenIdConnect.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Microsoft.Owin.Security.OpenIdConnect.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri</td><td>Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Caching.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri1</td><td>Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.practices.enterpri10</td><td>Bin</td><td>MICROS~1.DLL|Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll</td><td>1</td><td/></row>
@@ -3661,7 +3674,9 @@ End If
 		<row><td>mykey.pvk</td><td>AllOtherFiles50</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
 		<row><td>mypfx.pfx</td><td>AllOtherFiles50</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.dll</td><td>Bin</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.dll1</td><td>AzureComp</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>oracle.dataaccess.dll</td><td>Bin</td><td>ORACLE~1.DLL|Oracle.DataAccess.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Oracle.DataAccess.dll</td><td>1</td><td/></row>
+		<row><td>owin.dll</td><td>AzureComp</td><td>Owin.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\Owin.dll</td><td>1</td><td/></row>
 		<row><td>packages.config</td><td>Registration.Server</td><td>PACKAG~1.CON|packages.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\packages.config</td><td>1</td><td/></row>
 		<row><td>pe_background_dd.png</td><td>Assets</td><td>PE_BAC~1.PNG|pe_background_dd.png</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\registration.client\dist\assets\pe_background_dd.png</td><td>17</td><td/></row>
 		<row><td>perkinelmer.coe.registration</td><td>Bin</td><td>PERKIN~1.DLL|PerkinElmer.COE.Registration.Server.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.dll</td><td>1</td><td/></row>
@@ -3688,6 +3703,7 @@ End If
 		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>swashbuckle.core.dll</td><td>Bin</td><td>SWASHB~1.DLL|Swashbuckle.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Swashbuckle.Core.dll</td><td>1</td><td/></row>
+		<row><td>system.identitymodel.tokens.</td><td>AzureComp</td><td>SYSTEM~1.DLL|System.IdentityModel.Tokens.Jwt.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BIN_FILES1&gt;\System.IdentityModel.Tokens.Jwt.dll</td><td>1</td><td/></row>
 		<row><td>system.linq.dynamic.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Linq.Dynamic.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Linq.Dynamic.dll</td><td>1</td><td/></row>
 		<row><td>system.net.http.formatting.d</td><td>Bin</td><td>SYSTEM~1.DLL|System.Net.Http.Formatting.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Net.Http.Formatting.dll</td><td>1</td><td/></row>
 		<row><td>system.web.http.dll</td><td>Bin</td><td>SYSTEM~1.DLL|System.Web.Http.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\System.Web.Http.dll</td><td>1</td><td/></row>
@@ -4472,6 +4488,7 @@ End If
 		<row><td>AppPoolComponent3</td><td/><td/><td>_7A91C60E_BFFD_4EC7_9F38_0C88E1B58FCE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>App_GlobalResources</td><td/><td/><td>_6FA5C3F5_D085_4D4F_B331_D14FE0461751_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Assets</td><td/><td/><td>_64AD0EAF_8270_4FB3_B795_6D37A8097CF9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>AzureComp</td><td/><td/><td>_84FBAFE9_DC0D_4447_A249_75B11628371B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Bin</td><td/><td/><td>_5FBC7188_A2DC_4C0E_A3C7_AC4663D7BA52_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CBOEHelp</td><td/><td/><td>_4ABEB334_7F46_4242_B45A_E9328F558268_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>CSDO18</td><td/><td/><td>_55F39456_A4D8_4107_9522_8D0123C65F7E_FILTER</td><td/><td/><td/><td/></row>

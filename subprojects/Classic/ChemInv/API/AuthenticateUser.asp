@@ -131,7 +131,7 @@ if bValidUser then
 	end if
 	if Not(RS.BOF AND RS.EOF) THEN
 		privXML = RS("privXML")	
-		Set oReturnXML = server.CreateObject("MSXML2.DOMDOCUMENT.4.0")
+		Set oReturnXML = server.CreateObject("MSXML2.DOMDOCUMENT.6.0")
 		oReturnXML.loadXML(privXML)
 		Set oDocElement = oReturnXML.documentElement
 		oDocElement.setAttribute "ORASERVICENAME", Application("ORA_SERVICENAME")
