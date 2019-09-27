@@ -1054,7 +1054,7 @@ Public Function CreateMoveContainerXML() As String
     End With
 
     
-    Set XMLContainer = New DOMDocument40
+    Set XMLContainer = New DOMDocument60
     With XMLContainer
         Set objPI = XMLContainer.createProcessingInstruction("xml", "version=""1.0""")
         .appendChild objPI

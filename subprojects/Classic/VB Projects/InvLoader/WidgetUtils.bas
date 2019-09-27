@@ -412,7 +412,7 @@ End Function
 'End Function
 
 Public Function DictFromRegPicklistXML(ByVal sXML As String) As Dictionary
-    Dim oDoc As DOMDocument40
+    Dim oDoc As DOMDocument60
     Dim oNodeList As IXMLDOMNodeList
     Dim oDocNode As IXMLDOMElement
     Dim oNode As IXMLDOMElement
@@ -420,7 +420,7 @@ Public Function DictFromRegPicklistXML(ByVal sXML As String) As Dictionary
     Dim sID As String
     Dim bFirst As Boolean
 
-    Set oDoc = New DOMDocument40
+    Set oDoc = New DOMDocument60
     oDoc.loadXML (sXML)
     If oDoc.parseError.errorCode <> 0 Then
         Err.Raise vbError + 1, "Reg Picklist XML Parse", oDoc.parseError.reason

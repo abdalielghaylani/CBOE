@@ -4567,7 +4567,7 @@ Private Sub CreateContainerXML()
         bNewFile = True
         Do Until rs.EOF
             If bNewFile Then
-                Set XMLContainer = New DOMDocument40
+                Set XMLContainer = New DOMDocument60
                 With XMLContainer
                     Set objPI = XMLContainer.createProcessingInstruction("xml", "version=""1.0""")
                     .appendChild objPI
@@ -4798,7 +4798,7 @@ Private Sub CreateSubstanceXML()
     
     Set rs = moCFWImporter.Recordset2(moCFWImporter.SelectSTR)
     Dim XMLCompounds As DOMDocument
-    Set XMLCompounds = New DOMDocument40
+    Set XMLCompounds = New DOMDocument60
     With XMLCompounds
         Set objPI = .createProcessingInstruction("xml", "version=""1.0""")
         .appendChild objPI
@@ -4963,7 +4963,7 @@ Private Sub CreatePlateXML()
         If bNewPlate Then
             Row = 1
             Col = 0
-            Set XMLPlate = New DOMDocument40
+            Set XMLPlate = New DOMDocument60
             l = 1
             bNewPlate = False
             bUpdated = False
