@@ -53,6 +53,13 @@ public partial class _Default : System.Web.UI.Page
 
                     Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
                 }
+                else
+                {
+                    HttpContext.Current.GetOwinContext().Authentication.SignOut(
+                       OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                       CookieAuthenticationDefaults.AuthenticationType);
+                    Utilities.token = string.Empty;
+                }
             }
         }
         else
