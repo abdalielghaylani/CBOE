@@ -27,6 +27,10 @@ prompt '#########################################################'
 prompt 'Updating Functions, Procedures and Packages...'
 prompt '#########################################################'
 
+prompt '#########################################################'
+prompt 'Inserting/Updating data...'
+prompt '#########################################################'
+@"Patches\Patch &&currentpatch\Data\GHS_Hazards.sql"
 
 prompt '#########################################################'
 prompt 'Providing additional grants to &&schemaName...'
