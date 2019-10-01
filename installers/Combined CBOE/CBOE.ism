@@ -1189,7 +1189,7 @@
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>3</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>

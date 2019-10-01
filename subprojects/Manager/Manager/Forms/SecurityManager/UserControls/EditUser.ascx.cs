@@ -125,6 +125,22 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     saveButton.Enabled = false;
                     /*CBOE-1375 COE Security:User cannot type in Password and throws ldap error once wrong confirm paswword entered - End*/
                 }
+                else if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
+                {
+                    getLDAPUserButton.Visible = false;
+                    selectOracleUserLinkButton.Visible = false;
+                    selectOracleUserLinkButton.Enabled = false;
+                    password.BackColor = System.Drawing.Color.LightGray;
+                    confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                    password.Enabled = false;
+                    confirmPassword.Enabled = false;
+                    if (String.IsNullOrEmpty(password.Attributes["value"]))
+                    {
+                        password.Attributes["value"] = "@@@@@@@@@@AZ";
+                        confirmPassword.Attributes["value"] = "@@@@@@@@@@AZ";
+                    }
+                    saveButton.Enabled = true;
+                }
                 else
                 {
                     getLDAPUserButton.Visible = false;
@@ -153,18 +169,44 @@ public partial class EditUserUC : System.Web.UI.UserControl
 
                 if (user.IsLDAP == false)
                 {
-                    selectOracleUserLinkButton.Visible = true;
-                    selectOracleUserLinkButton.Enabled = true;
-                    getLDAPUserButton.Visible = false;
-                    CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
-                    LDAPUserValidator.Enabled = false;
-                    ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Add User");
-                    ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
-                    ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
-                    password.BackColor = System.Drawing.Color.White;
-                    confirmPassword.BackColor = System.Drawing.Color.White;
-                    password.Enabled = true;
-                    confirmPassword.Enabled = true;
+                    if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
+                    {
+                        selectOracleUserLinkButton.Visible = false;
+                        selectOracleUserLinkButton.Enabled = false;
+                        getLDAPUserButton.Visible = false;
+                        CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
+                        LDAPUserValidator.Enabled = false;
+                        ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Add User");
+                        ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
+                        ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
+                        password.BackColor = System.Drawing.Color.LightGray;
+                        confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                        password.Enabled = false;
+                        confirmPassword.Enabled = false;
+                        password.Attributes["value"] = "@@@@@@@@@@AZ";
+                        confirmPassword.Attributes["value"] = "@@@@@@@@@@AZ";
+                        password.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                        confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                        RequiredFieldValidator passwordValidator = (RequiredFieldValidator)((DetailsView)sender).Controls[0].FindControl("PasswordRequiredField");
+                        passwordValidator.Enabled = false;
+                        RequiredFieldValidator confirmPasswordValidator = (RequiredFieldValidator)((DetailsView)sender).Controls[0].FindControl("ConfirmPasswordRequiredField");
+                        confirmPasswordValidator.Enabled = false;
+                    }
+                    else
+                    {
+                        selectOracleUserLinkButton.Visible = true;
+                        selectOracleUserLinkButton.Enabled = true;
+                        getLDAPUserButton.Visible = false;
+                        CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
+                        LDAPUserValidator.Enabled = false;
+                        ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Add User");
+                        ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
+                        ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
+                        password.BackColor = System.Drawing.Color.White;
+                        confirmPassword.BackColor = System.Drawing.Color.White;
+                        password.Enabled = true;
+                        confirmPassword.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -311,15 +353,32 @@ public partial class EditUserUC : System.Web.UI.UserControl
 
             if (user.IsLDAP == false)
             {
-                CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
-                LDAPUserValidator.Enabled = false;
-                ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Edit User");
-                ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
-                ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
-                password.BackColor = System.Drawing.Color.White;
-                confirmPassword.BackColor = System.Drawing.Color.White;
-                password.Enabled = true;
-                confirmPassword.Enabled = true;
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
+                {
+                    CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
+                    LDAPUserValidator.Enabled = false;
+                    ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Edit User");
+                    ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
+                    ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
+                    password.BackColor = System.Drawing.Color.LightGray;
+                    confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                    password.Enabled = false;
+                    confirmPassword.Enabled = false;
+                    password.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                    confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                }
+                else
+                {
+                    CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
+                    LDAPUserValidator.Enabled = false;
+                    ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Edit User");
+                    ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
+                    ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.Red;
+                    password.BackColor = System.Drawing.Color.White;
+                    confirmPassword.BackColor = System.Drawing.Color.White;
+                    password.Enabled = true;
+                    confirmPassword.Enabled = true;
+                }
             }
             else
             {
@@ -348,7 +407,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
                 }
             }
         }
-        
+
     }
 
     //Bug ID: csbr-133690 and csbr-132972
@@ -607,6 +666,16 @@ public partial class EditUserUC : System.Web.UI.UserControl
         user.Address = (string)e.Values["Address"];
         user.Active = (bool)e.Values["Active"];
 
+        if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]) && user.Password == "@@@@@@@@@@AZ")
+        {
+            Array arr = user.UserCode.ToUpper().ToCharArray();
+            Array.Reverse(arr); // reverse the string
+            char[] c = (char[])arr;
+            string newString = (new string(c));
+
+            user.Password = newString;
+            user.ConfirmPassword = newString;
+        }
         e.RowsAffected = SaveUser("UPDATE", user, user.IsLDAP);
 
         if (e.RowsAffected == 1)
@@ -660,7 +729,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
         }
         //end comments
     }
-  
+
     private int SaveUser(string saveType, COEUserBO user, bool isLDAP)
     {
 
@@ -670,7 +739,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
         userCurrentRoles.Clear();
         foreach (ListItem lt in workingListRight.Items)
             if (!userCurrentRoles.Contains(lt.Text))    //CBOE-1793 COE Security-Add User-Observed available roles duplication for multiple times  ASV 05SEP13
-            userCurrentRoles.Add(lt.Text);
+                userCurrentRoles.Add(lt.Text);
         Session["UserCurrentRoles"] = userCurrentRoles;
         user.Roles = COERoleBOList.NewList(userCurrentRoles);
 
@@ -753,7 +822,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
                 ResetLDAPInsert();
             }
             Session["CurrentUser"] = null;
-             user = GetUser();
+            user = GetUser();
         }
         return rowsAffected;
     }

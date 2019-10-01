@@ -50,6 +50,15 @@ public partial class ChangePasswordUC : System.Web.UI.UserControl
             LDAPMessageDoneButton.Visible = true;
 
         }
+        else if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
+        {
+            ChangePassword1.Visible = false;
+            LDAPMessagePanel.Visible = true;
+            LDAPEnabledMessage.Visible = true;
+            LDAPMessageDoneButton.Visible = true;
+            LDAPEnabledMessage.Text = "Password cannot be changed here because Azure authentication is enabled on the server.<br /> " +
+                    "Please contact the system Adminstrator for instructions on how to change the Azure password.";
+        }
         else
         {
             ChangePassword1.Visible = true;
