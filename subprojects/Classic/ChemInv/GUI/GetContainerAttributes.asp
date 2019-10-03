@@ -573,7 +573,12 @@ Sub SetContainerSessionVarsFromRegWebService()
     soapClient.ClientProperty("ServerHTTPRequest") = True
 
      on error resume next
-    call soapClient.MSSoapInit(Application("SERVER_TYPE") & Application("RegServerName") & "/COERegistration/webservices/COERegistrationServices.asmx?wsdl")
+	 if Application("SERVER_TYPE") = "https://" then
+       url = "http://"
+	   else
+	   url = Application("SERVER_TYPE")
+    end if
+    call soapClient.MSSoapInit(Application("SERVER_TYPE") & Application("RegServerName") & "/COERegistration/webservices/COERegistrationServices.asmx?wsdl", "COERegistrationServices")
 
     'if there is an error in retrieving the regxml we should log the error
     if err.number <> 0 then
