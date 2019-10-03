@@ -14,8 +14,8 @@ namespace CambridgeSoft.COE.DataLoader.Windows.Forms
 {
 	public partial class AboutBox : Form
     {
-        const String INSTITUTIONAL_LINK = "http://www.cambridgesoft.com/";
-        const String INSTITUTIONAL_SUPPORT_LINK = "http://www.cambridgesoft.com/support/";
+        const String INSTITUTIONAL_LINK = "http://www.perkinelmer.com/";
+        const String INSTITUTIONAL_SUPPORT_LINK = "http://www.perkinelmer.com/support/";
 
         private Assembly _assembly;
 
@@ -115,6 +115,6 @@ namespace CambridgeSoft.COE.DataLoader.Windows.Forms
         {
             this.Close();
         }
-
+        
     }
 }
