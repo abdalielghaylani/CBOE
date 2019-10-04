@@ -11,11 +11,8 @@ using System.Web.Security;
 using System.Runtime.InteropServices;
 using System.Xml;
 using CambridgeSoft.COE.Security.Services.Utlities;
-//using System.IdentityModel.Tokens.Jwt;
-//using Microsoft.IdentityModel.Protocols;
-//using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-//using Microsoft.IdentityModel.Tokens;
-
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace CambridgeSoft.COE.Security.Services
 {
@@ -701,31 +698,31 @@ namespace CambridgeSoft.COE.Security.Services
 
         private bool Validate(string token, string issuer, string audience, string userName)
         {
-            //try
-            //{
-            //    ConfigurationManager<OpenIdConnectConfiguration> configManager = new ConfigurationManager<OpenIdConnectConfiguration>(issuer, new OpenIdConnectConfigurationRetriever());
-            //    OpenIdConnectConfiguration config = configManager.GetConfigurationAsync().Result;
-            //    string tenant = ConfigurationManager.AppSettings["Tenant"];
-            //    TokenValidationParameters validationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateAudience = false,
-            //        ValidateIssuer = false,
-            //        IssuerSigningKeys = config.SigningKeys, //.net core calls it "IssuerSigningKeys" and "SigningKeys"
-            //        ValidateLifetime = false
-            //    };
-            //    JwtSecurityTokenHandler tokendHandler = new JwtSecurityTokenHandler();
-            //    SecurityToken jwt = null;
-            //    var result = tokendHandler.ValidateToken(token, validationParameters, out jwt);
-            //    Dictionary<string, object> valueColl = ((JwtSecurityToken)jwt).Payload;
-            //    if (valueColl["upn"].ToString().Split('@')[0].ToUpper() != userName.ToUpper())
-            //    {
-            //        return false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    return false;
-            //}
+            try
+            {
+                TokenValidationParameters validationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidateIssuerSigningKey = false,
+                    ValidIssuer = issuer,
+                    ValidAudience = audience,
+                    ValidateLifetime = true,
+                    RequireSignedTokens = false
+                };
+                JwtSecurityTokenHandler tokendHandler = new JwtSecurityTokenHandler();
+                SecurityToken jwt = null;
+                var result = tokendHandler.ValidateToken(token, validationParameters, out jwt);
+                Dictionary<string, object> valueColl = ((JwtSecurityToken)jwt).Payload;
+                if (valueColl["upn"].ToString().Split('@')[0].ToUpper() != userName.ToUpper())
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
             return true;
         }
 		private bool CheckIsExemptUser(string userName)

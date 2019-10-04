@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Notifications;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
+using System.IdentityModel.Tokens.Jwt;
 
 [assembly: OwinStartup(typeof(Manager.Startup))]
 
@@ -96,16 +97,18 @@ namespace Manager
         /// <returns>Task</returns>
         private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification notification)
         {
+
             var idClient = ConfidentialClientApplicationBuilder.Create(clientId)
                 .WithRedirectUri(redirectUri)
                 .WithClientSecret(clientSecret)
                 .Build();
 
             string[] scopes = this.scopes.Split(new char[] { ' ' });
+            var handler = new JwtSecurityTokenHandler();
 
             AuthenticationResult result = await idClient.AcquireTokenByAuthorizationCode(
                 scopes, notification.Code).ExecuteAsync();
-            Utilities.token = result.AccessToken;
+            Utilities.token = handler.WriteToken(notification.JwtSecurityToken);
             Utilities.user = result.Account.Username.Split('@')[0];
         }
     }
