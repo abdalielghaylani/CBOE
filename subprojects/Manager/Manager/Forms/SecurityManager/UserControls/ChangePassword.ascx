@@ -82,7 +82,7 @@
 </asp:ChangePassword>
 <asp:Panel ID="LDAPMessagePanel" runat="server">
     <asp:Label SkinID="ChangePassword" ID="LDAPEnabledMessage" runat="server">Password cannot be changed here because LDAP authentication is enabled on the server.<br />
-				    Please contact the system Adminstrator for instructions on how to change the LDAP password.</asp:Label>
+				    Please contact the system Administrator for instructions on how to change the LDAP password.</asp:Label>
     <COEManager:ImageButton ID="LDAPMessageDoneButton" runat="server" ButtonMode="ImgAndTxt"
         TypeOfButton="Done"></COEManager:ImageButton>
 </asp:Panel>
