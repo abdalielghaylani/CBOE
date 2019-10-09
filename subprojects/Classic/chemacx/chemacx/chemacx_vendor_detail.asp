@@ -20,7 +20,7 @@ GetACXConnection()
 
 'Set Conn = Server.CreateObject("ADODB.Connection")
 
-	SQLQuery = "SELECT SupplierAddr.Addr1, SupplierAddr.Addr2, SupplierAddr.City, SupplierAddr.State, SupplierAddr.Code, SupplierAddr.Country, SupplierAddr.Type FROM SupplierAddr WHERE  SupplierAddr.Type Is Null AND  SupplierAddr.SupplierID=" & request.querystring("supid")
+	SQLQuery = "SELECT SupplierAddr.Addr1, SupplierAddr.Addr2, SupplierAddr.City, SupplierAddr.State, SupplierAddr.Code, SupplierAddr.Country, SupplierAddr.Type FROM SupplierAddr WHERE  SupplierAddr.Type Is Not Null AND  SupplierAddr.SupplierID=" & request.querystring("supid")
 	'Conn.Open ConnStr
 	set AddrRS = Conn.Execute(SQLQuery)
 	
