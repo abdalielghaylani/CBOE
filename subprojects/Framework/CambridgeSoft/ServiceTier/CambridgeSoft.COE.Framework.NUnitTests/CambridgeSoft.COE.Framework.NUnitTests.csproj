@@ -255,7 +255,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tools\NUnit\2.6.2\tools\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.102.2.20, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+    <Reference Include="Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonRuntimeLibraries\Oracle.DataAccess.dll</HintPath>
     </Reference>
@@ -315,7 +315,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TECIT.TBarCode, Version=9.3.7.0, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=x86">
+    <Reference Include="TECIT.TBarCode, Version=11.1.4.14556, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonRuntimeLibraries\TECIT.TBarCode.dll</HintPath>
     </Reference>

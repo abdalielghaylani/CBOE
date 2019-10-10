@@ -1027,7 +1027,7 @@ namespace Utilities
             int tableID = bHasDVT ? formdbMgr.SelectedDataViewTable.Id : 0;
             int sessionID = formdbMgr.SessionID;
             int recCount = formdbMgr.BaseTableRecordCount;
-            String defDataSource = bIs2Tier ? ConfigurationUtilities.GetDefaultDataSource() : "";
+            String defDataSource = bIs2Tier ? ConfigurationUtilities.GetDefaultDataSource(0) : "";
             String ssu = String.Empty;
             if (bIs2Tier)
                 ssu = ConfigurationUtilities.GetSingleSignOnURL();  // CSBR-118406: crashes in 3T

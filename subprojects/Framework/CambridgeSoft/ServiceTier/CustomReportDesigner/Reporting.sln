@@ -1,60 +1,51 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.CustomReportDesigner", "CambridgeSoft.COE.CustomReportDesigner.csproj", "{94AA723D-1345-4215-A69C-E7E0BABA5CF6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.ReportViewerSample", "..\ReportViewerSample\CambridgeSoft.COE.ReportViewerSample.csproj", "{DBE50400-93E1-4939-A816-A31BCBDF970B}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 4
-		SccProjectUniqueName0 = ..\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
-		SccLocalPath0 = ..\\..
-		SccProjectFilePathRelativizedFromConnection0 = ServiceTier\\CambridgeSoft.COE.Framework\\
-		SccProjectName1 = Perforce\u0020Project
-		SccLocalPath1 = ..
-		SccProvider1 = MSSCCI:Perforce\u0020SCM
-		SccProjectFilePathRelativizedFromConnection1 = CustomReportDesigner\\
-		SccProjectUniqueName2 = CambridgeSoft.COE.CustomReportDesigner.csproj
-		SccLocalPath2 = ..
-		SccProjectFilePathRelativizedFromConnection2 = CustomReportDesigner\\
-		SccProjectUniqueName3 = ..\\ReportViewerSample\\CambridgeSoft.COE.ReportViewerSample.csproj
-		SccLocalPath3 = ..
-		SccProjectFilePathRelativizedFromConnection3 = ReportViewerSample\\
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Debug|x64.ActiveCfg = Debug|x64
+		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Debug|x64.Build.0 = Debug|x64
 		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Release|x64.ActiveCfg = Release|x64
+		{94AA723D-1345-4215-A69C-E7E0BABA5CF6}.Release|x64.Build.0 = Release|x64
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x64.ActiveCfg = Debug|x64
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x64.Build.0 = Debug|x64
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x64.ActiveCfg = Release|x64
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x64.Build.0 = Release|x64
 		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Debug|x64.ActiveCfg = Debug|x64
+		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Debug|x64.Build.0 = Debug|x64
 		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Release|x64.ActiveCfg = Release|x64
+		{DBE50400-93E1-4939-A816-A31BCBDF970B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {521647FD-BDF1-42D8-86E9-E85586C744C6}
 	EndGlobalSection
 EndGlobal

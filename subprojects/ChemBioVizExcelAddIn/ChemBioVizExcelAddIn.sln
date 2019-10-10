@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemBioVizExcelAddIn", "ChemBioVizExcelAddIn\ChemBioVizExcelAddIn.csproj", "{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}"
@@ -10,47 +12,60 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetSecurity", "SetSecurity\SetSecurity.csproj", "{56E8E807-0807-45E0-B19A-98912AE47630}"
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 5
-		SccProjectName0 = Perforce\u0020Project
-		SccLocalPath0 = ..
-		SccProvider0 = MSSCCI:Perforce\u0020SCM
-		SccProjectFilePathRelativizedFromConnection0 = ChemBioVizExcelAddIn\\
-		SccProjectUniqueName1 = ..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
-		SccLocalPath1 = ..\\Framework\\CambridgeSoft
-		SccProjectFilePathRelativizedFromConnection1 = ServiceTier\\CambridgeSoft.COE.Framework\\
-		SccProjectUniqueName2 = ChemBioVizExcelAddIn\\ChemBioVizExcelAddIn.csproj
-		SccLocalPath2 = ChemBioVizExcelAddIn
-		SccProjectUniqueName3 = ChemBioVizExcelAddInSetup\\ChemBioVizExcelAddInSetup
-		SccLocalPath3 = ..
-		SccProjectFilePathRelativizedFromConnection3 = ChemBioVizExcelAddIn\\ChemBioVizExcelAddInSetup\\
-		SccProjectUniqueName4 = SetSecurity\\SetSecurity.csproj
-		SccLocalPath4 = ..
-		SccProjectFilePathRelativizedFromConnection4 = ChemBioVizExcelAddIn\\SetSecurity\\
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x64.ActiveCfg = Debug|x64
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x64.Build.0 = Debug|x64
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x64.ActiveCfg = Release|x64
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x64.Build.0 = Release|x64
 		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Debug|x64.ActiveCfg = Debug|x64
+		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Debug|x64.Build.0 = Debug|x64
 		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Release|x64.ActiveCfg = Release|x64
+		{88258A74-B1D8-4FFF-BD7C-69D91CE0ED78}.Release|x64.Build.0 = Release|x64
 		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Debug|Any CPU.ActiveCfg = Debug
 		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Debug|Any CPU.Build.0 = Debug
+		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Debug|x64.ActiveCfg = Debug
 		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Release|Any CPU.ActiveCfg = Release
 		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Release|Any CPU.Build.0 = Release
+		{CDD1F359-FD83-4441-BDB0-51688B20292E}.Release|x64.ActiveCfg = Release
 		{56E8E807-0807-45E0-B19A-98912AE47630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56E8E807-0807-45E0-B19A-98912AE47630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E8E807-0807-45E0-B19A-98912AE47630}.Debug|x64.ActiveCfg = Debug|x64
+		{56E8E807-0807-45E0-B19A-98912AE47630}.Debug|x64.Build.0 = Debug|x64
 		{56E8E807-0807-45E0-B19A-98912AE47630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E8E807-0807-45E0-B19A-98912AE47630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E8E807-0807-45E0-B19A-98912AE47630}.Release|x64.ActiveCfg = Release|x64
+		{56E8E807-0807-45E0-B19A-98912AE47630}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {965DF077-E7BE-48F0-9C8E-E563EF5E3A5D}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectUniqueName0 = ChemBioVizExcelAddIn\\ChemBioVizExcelAddIn.csproj
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = ChemBioVizExcelAddIn
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		SccProjectUniqueName1 = ChemBioVizExcelAddInSetup\\ChemBioVizExcelAddInSetup
+		SccProjectName1 = Perforce\u0020Project
+		SccLocalPath1 = ..
+		SccProvider1 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection1 = ChemBioVizExcelAddIn\\ChemBioVizExcelAddInSetup\\
 	EndGlobalSection
 EndGlobal

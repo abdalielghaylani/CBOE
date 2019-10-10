@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,8 +15,19 @@
     <ManifestCertificateThumbprint>D2A81F149A59A4020D80AC77569478459E6F8F3A</ManifestCertificateThumbprint>
     <ManifestKeyFile>NCDS DataLoader_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>http://localhost/CambridgeSoft.NCDS_DataLoader/</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
@@ -27,12 +38,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,16 +61,38 @@
     <WarningLevel>4</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.ChemDrawControlConst11, Version=12.0.0.0, Culture=neutral, PublicKeyToken=785e2d108c66144a, processorArchitecture=MSIL">
+    <Reference Include="AxInterop.ChemDrawControlConst11, Version=18.0.0.0, Culture=neutral, PublicKeyToken=785e2d108c66144a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise11.0.1.0\ChemBioViz.Net_Client\AxInterop.ChemDrawControlConst11.dll</HintPath>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AxInterop.ChemDrawControlConst11.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Interop.MolServer12, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise11.0.1.0\Data Loader\Interop.MolServer12.dll</HintPath>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer12.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -276,6 +307,11 @@
       <ProductName>.NET Framework 2.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
@@ -319,9 +355,21 @@
     <None Include="Web References\NCDSDataLoaderService\Service.disco" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataLoader\Calculation\CambridgeSoft.COE.DataLoader.Calculation.csproj">
+      <Project>{dc4203e1-2258-421d-b7c9-3424135a13db}</Project>
+      <Name>CambridgeSoft.COE.DataLoader.Calculation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataLoader\CambridgeSoft.COE.DataLoader.csproj">
       <Project>{EE2D6048-7C24-4971-8F47-1B6E7236B88B}</Project>
       <Name>CambridgeSoft.COE.DataLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLoader\Common\CambridgeSoft.COE.DataLoader.Common.csproj">
+      <Project>{a9447298-484b-480a-8646-dfa347c95b5a}</Project>
+      <Name>CambridgeSoft.COE.DataLoader.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataUploader\DataUploader.Core\DataUploader.Core.csproj">
+      <Project>{a2c8e16c-e9f4-421b-906f-f36f9afa6f3c}</Project>
+      <Name>DataUploader.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DataUploader\DataUploader\DataUploader.csproj">
       <Project>{C84FE218-CACE-4D2F-9943-270EA87EECCC}</Project>
@@ -330,6 +378,10 @@
     <ProjectReference Include="..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
       <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
       <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Registration\PresentationTier\Registration.Core\Registration.Core.csproj">
+      <Project>{16a590fa-fa5e-411f-b824-4b8e2e6e9f56}</Project>
+      <Name>Registration.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Registration\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
       <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>

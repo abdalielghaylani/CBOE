@@ -160,7 +160,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v11.1.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl18, Version=18.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+    <Reference Include="Interop.ChemDrawControl18, Version=18.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl18.dll</HintPath>

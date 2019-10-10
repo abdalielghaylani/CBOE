@@ -670,7 +670,7 @@
     End Sub
      
     Sub CheckRequiredDSNs()
-        TestODBCConnection("chem_inv")
+        'TestODBCConnection("chem_inv")
     End Sub
 
     Sub TestODBCConnection(DSNName)
@@ -875,7 +875,7 @@
 	        msgbox "Oracle Service Name is required.  Please retry."
 	        Exit SUB  '==============>  EXIT POINT
 	    Else
-			TestOraServiceName OracleServiceName	
+			'TestOraServiceName OracleServiceName	
 	    End if
 		COEHTTPHostName = document.all.txtHTTPHostName.value
 		If COEHTTPHostName = "" then
@@ -3311,10 +3311,10 @@ End Function
 		
 		on error resume next 'error handling added here for CSBR 124407 on 11-Aug-2010 by Soorya Anwar
 		path = ENotebookClickOncePath & "ENContainer_11_0_3_1\ENContainer.exe.manifest"
-		UpdateAssembyVersionInManifest Path, "AxInterop.ChemDrawControlConst11", "12.0.0.0"
-		UpdateAssembyVersionInManifest Path, "Interop.ChemDrawControlConst11", "12.0.0.0"
-		UpdateAssembyVersionInManifest Path, "Interop.CSCombiConst11", "12.0.0.0"
-		UpdateAssembyVersionInManifest Path, "Interop.MolServerConst11", "12.0.0.0"
+		UpdateAssembyVersionInManifest Path, "AxInterop.ChemDrawControlConst11", "18.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.ChemDrawControlConst11", "18.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.CSCombiConst11", "18.0.0.0"
+		UpdateAssembyVersionInManifest Path, "Interop.MolServerConst11", "18.0.0.0"
 		if err.number <> 0 then				
 			TraceLogError ERRORMSG , "UpdateENConst11Interops", "Error while updating " & path & ". Error Info: " & err.Source & " " & err.number & " " & err.Description				
 				err.clear

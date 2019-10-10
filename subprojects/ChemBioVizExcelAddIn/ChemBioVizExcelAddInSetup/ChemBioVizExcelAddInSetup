@@ -2804,7 +2804,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Oracle.DataAccess, Version=2.111.7.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
                     "_82C28A53CECBFE98B2789E4856EEF901"
@@ -3540,7 +3540,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TECIT.TBarCode, Version=9.3.7.0, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:TECIT.TBarCode, Version=11.1.4.14556, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
                     "_DE2BC3AB20A547A4D904B80CDBF45CD3"
