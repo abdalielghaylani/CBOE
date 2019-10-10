@@ -886,6 +886,7 @@
     <Content Include="App_Themes\GREEN\Images\Test_Green.png" />
     <Content Include="App_Themes\GREEN\Images\watermark.jpg" />
     <Content Include="App_Themes\GREEN\StyleSheet.css" />
+    <Content Include="CloseWindow.html" />
     <Content Include="Default.aspx" />
     <Content Include="Forms\Public\ContentArea\JScripts\CommonScripts.js" />
     <Content Include="Forms\Public\ContentArea\WebRegistration.aspx" />

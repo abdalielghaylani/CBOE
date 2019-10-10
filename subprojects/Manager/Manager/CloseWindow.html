@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script language="javascript" type="text/javascript">
+        window.onload = doLogOff;
+        function doLogOff() {
+            if (typeof (window.opener) != 'undefined')
+            {
+                if (window.opener != null) {
+                    if (window.opener.top.opener != null) {
+                        //reload grand parent window
+                        window.opener.top.opener.location.reload();
+                        //parent window should be closed
+                        window.opener.top.close();
+                        //close popup window
+                        if (window.name != "") {
+                            self.opener = this;
+                            self.close();
+                        }
+                    }
+                    else {
+                        //there was no granparent
+                        if (window.opener.location != null) {
+                            //reload parent which will go to home page
+                            window.opener.location.reload();
+
+                            //close popup window
+                            if (window.name != "") {
+                                self.opener = this;
+                                self.close();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    window.location = "Default.aspx";
+                }
+            }
+            else if (typeof (top.opener) != 'undefined')
+            {
+                if (top.opener.location != null)
+                {
+                    top.opener.location.reload();
+                    if (top.name != "")
+                    {
+                        top.opener = this;
+                        top.close();
+                    }
+                }
+            }
+            else
+            {
+                window.location = "Default.aspx";
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
