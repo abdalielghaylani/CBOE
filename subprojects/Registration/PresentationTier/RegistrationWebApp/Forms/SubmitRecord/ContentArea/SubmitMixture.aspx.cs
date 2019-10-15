@@ -2406,7 +2406,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
                     }
                     break;
                 case PageState.DisplayUserPreference: // User Preference pagestate changes
-                     _mixtureCOEFormGroup.CurrentDisplayMode = FormGroup.DisplayMode.Add;
+                    _mixtureCOEFormGroup.CurrentDisplayMode = FormGroup.DisplayMode.Edit;
                     _mixtureCOEFormGroup.CurrentDisplayGroup = FormGroup.CurrentFormEnum.DetailForm;
                     this.DefineMixtureImageMenuButton.Visible = false;
                     this.SavePreferenceButton.Visible = true;
