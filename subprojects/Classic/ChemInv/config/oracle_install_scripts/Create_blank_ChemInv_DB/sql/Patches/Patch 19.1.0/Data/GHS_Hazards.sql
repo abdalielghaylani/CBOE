@@ -5,7 +5,7 @@ INSERT INTO inv_custom_fields VALUES(843,1,104,'H420: Harms public health and th
 INSERT INTO inv_custom_fields VALUES(844,1,104,'H300+H310: Fatal if swallowed or in contact with skin.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(845,1,104,'H300+H330: Fatal if swallowed or if inhaled.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(846,1,104,'H310+H330: Fatal in contact with skin or if inhaled.',0,1,null);
-INSERT INTO inv_custom_fields VALUES(847,1,104,'H310+H310+H330: Fatal if swallowed, in contact with skin or if inhaled.',0,1,null);
+INSERT INTO inv_custom_fields VALUES(847,1,104,'H300+H310+H330: Fatal if swallowed, in contact with skin or if inhaled.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(848,1,104,'H301+H311: Toxic if swallowed or in contact with skin.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(849,1,104,'H301+H331: Toxic if swallowed or if inhaled.',0,1,null);
 INSERT INTO inv_custom_fields VALUES(850,1,104,'H311+H331: Toxic in contact with skin or if inhaled.',0,1,null);
