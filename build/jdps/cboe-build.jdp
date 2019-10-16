@@ -78,7 +78,7 @@ pipeline
         {
             steps
             {
-                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17}"
+                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17} ${MSBUILD64}"
             }
         }
         stage ('Registration-Client-Build')
