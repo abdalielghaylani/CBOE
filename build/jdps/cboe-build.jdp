@@ -56,7 +56,7 @@ pipeline
                 bat """
                     cd ${WORKSPACE}\\Installers\\InstallSupportFiles
                     EditDataLoaderProj.vbs ${WORKSPACE}\\subprojects\\DataLoader\\CambridgeSoft.COE.DataLoader.csproj ${CBOE_BUILD_NUMBER}
-                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH17} ${WORKSPACE}
+                    call ${WORKSPACE}\\build\\jdps\\BuildingProjects.bat ${MSBUILD_PATH17} ${WORKSPACE} ${MSBUILD64}
                 """
             }
         }
@@ -78,7 +78,7 @@ pipeline
         {
             steps
             {
-                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17} ${MSBUILD64}"
+                bat "${WORKSPACE}\\build\\jdps\\CompileAndCopyGoods ${WORKSPACE} ${MSBUILD_PATH17}"
             }
         }
         stage ('Registration-Client-Build')
