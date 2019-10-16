@@ -21,4 +21,5 @@ nuget.exe restore "%WORKSPACE%\subprojects\Registration\PresentationTier\Registr
 %MSBUILD% %WORKSPACE%\subprojects\Registration\PresentationTier\Registration.Server.2013.Build.sln /p:CreatePackageOnPublish=true /p:DeployOnBuild=true /p:Platform=x64
 xcopy /Y/S "%WORKSPACE%\subprojects\Framework\CambridgeSoft\CommonRuntimeLibraries\*.*" "%WORKSPACE%\subprojects\Registration\PresentationTier\Registration.Server\bin\"
 xcopy /Y/S "%WORKSPACE%\CBOE17.1\*.*" "%WORKSPACE%\subprojects\Registration\PresentationTier\Registration.Server\bin\"
-xcopy /Y/S "%WORKSPACE%\subprojects\ChemBioViz\ServiceTier\ChemBioViz.Services\bin\Release\Interop.ChemDrawControl18.dll" "%WORKSPACE%\subprojects\Registration\PresentationTier\Registration.Server\bin"
+xcopy /Y/S "%WORKSPACE%\subprojects\ChemBioViz\ServiceTier\ChemBioViz.Services\bin\x64\Release\Interop.ChemDrawControl18.dll" "%WORKSPACE%\subprojects\Registration\PresentationTier\Registration.Server\bin"
+
