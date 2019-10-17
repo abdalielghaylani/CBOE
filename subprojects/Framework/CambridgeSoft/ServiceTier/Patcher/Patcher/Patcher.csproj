@@ -410,6 +410,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Framework.snk" />
   </ItemGroup>
   <ItemGroup>
