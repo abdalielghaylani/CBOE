@@ -37,6 +37,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
         {
             Session["CurrentUser"] = null;
             Session["CurrentUserList"] = null;
+            COERoleBO.roleUser = false;
             ApplyAuthorizationRules();
         }
         this.SetControlsAttributes();
