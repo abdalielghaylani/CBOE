@@ -1188,8 +1188,8 @@
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -3317,26 +3317,26 @@ For Each strSubkey In arrSubkeys
                GUID =  Mid(str, instr(str, "{"), 38)
 			   If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(300000000)          
-					Exit For
+					Sleep(300000000)    
+					dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop
+           		    Exit For
 			   End If
 		End If 
 Next
 
-dteWait = DateAdd("s", 10, Now())
-Do Until (Now() &gt; dteWait)
-Loop
 
 </td><td/><td/></row>
 		<row><td>RemoveChemDraw</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait,CDVersion
+Dim strK ,strorVal,dteWait,CDVersion,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer="."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
-CDVersion = "PerkinElmer ChemDraw ActiveX Enterprise Constant NA 18.0"
+CDVersion = "PerkinElmer ChemDraw ActiveX Enterprise Constant 18.0"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys 
 strValue1=""
@@ -3349,9 +3349,12 @@ For Each strSubkey In arrSubkeys
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-			   If GUID&lt;&gt;"" then
+               If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-                    Sleep(30000000)   
+                    Sleep(300000000)   
+                    delKey="HKLM\"&amp;strKey&amp;strSubKey
+                    delKey="reg delete " &amp;delKey &amp; " /f"                               
+                    WshShell.Run(delKey)
                Exit For
 	           End If
         End If
@@ -3394,8 +3397,25 @@ Set objVirtualDir = objWebServer.Delete("IISWebVirtualDir", "CBOEHelp")
 
 
 </td><td/><td/></row>
+		<row><td>RemoveChemOfficeSupport</td><td>38</td><td/><td>On Error resume next
+Dim strK ,strorVal,dteWait,delKey
+Dim WSHShell
+Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
+strComputer="."
+strValue1=""
+Set WSHShell = CreateObject("WScript.Shell")
+GUID = "reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{730CDFD0-74B5-4677-AAA0-1DB120211A9A}  /f"
+WSHShell.Exec(GUID)
+
+
+			
+		
+
+
+</td><td/><td/></row>
+		<row><td>RemoveChemSupport</td><td>1</td><td>ISSetup.dll</td><td>f21</td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer="."
@@ -3405,7 +3425,7 @@ strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys   
  For Each strSubkey In arrSubkeys
-        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1                                                 
+        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
         If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018")) then
                strEntry1b = "UninstallString"        
@@ -3413,30 +3433,16 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-               If GUID&lt;&gt;"" then
-					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)
+			   If GUID&lt;&gt;"" then
+					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")								                          
+                    Sleep(300000000)
+                    dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop
                Exit For
 			   End If
 		End If
  Next 
- 
-  For Each strSubkey In arrSubkeys
-        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-        If ((strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0")) then
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)
-			   If GUID&lt;&gt;"" then
-					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)
-               Exit For
-			   End If
-		End If
- Next
 strValue1=""
 strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
@@ -3446,7 +3452,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 For Each strSubkey In arrSubkeys
       objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
       Set WSHShell = CreateObject("WScript.Shell")
-      If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018") Or (strValue1 = "CambridgeSoft ChemDraw Ultra 12.0")) then
+      If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018")) then
 			strEntry1b = "UninstallString"
 			RawGUID = ""
 			GUID = ""
@@ -3454,39 +3460,13 @@ For Each strSubkey In arrSubkeys
             GUID =  Mid(str, instr(str, "{"), 38)
             If GUID&lt;&gt;"" then
 				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-				Sleep(300000000)
-			Exit For
-			End If
-     End If
-Next
-
-strValue1=""
-strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
-strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
-objReg.EnumKey HKLM, strKey, arrSubkeys   
-For Each strSubkey In arrSubkeys
-      objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-      Set WSHShell = CreateObject("WScript.Shell")
-      If ((strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0")) then
-			strEntry1b = "UninstallString"
-			RawGUID = ""
-			GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-            GUID =  Mid(str, instr(str, "{"), 38)
-            If GUID&lt;&gt;"" then
-				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-				Sleep(300000000)
+				Sleep(30000000)
 			Exit For
 			End If
      End If
 Next
 
 
-dteWait = DateAdd("s", 10, Now())
-Do Until (Now() &gt; dteWait)
-Loop
 
 
 
@@ -3749,7 +3729,7 @@ For Each strSubkey In arrSubkeys
 
 Next</td><td/><td/></row>
 		<row><td>Removechemscript</td><td>38</td><td/><td>On Error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 Set filesys = CreateObject("Scripting.FileSystemObject")                  
@@ -3773,7 +3753,12 @@ For Each strSubkey In arrSubkeys
                GUID =  Mid(str, instr(str, "{"), 38)
 			   If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)          
+					dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop    
+                    delKey="HKLM\"&amp;strKey&amp;strSubKey
+                    delKey="reg delete " &amp;delKey &amp; " /f"                               
+                    WshShell.Run(delKey)      
 					Exit For
 			   End If
 		End If 
@@ -7426,6 +7411,7 @@ Set shell = Nothing
 		<row><td>f19</td><td>0</td><td>InstallPatch</td><td/></row>
 		<row><td>f2</td><td>0</td><td>EditDataLoaderMageBatchFile</td><td/></row>
 		<row><td>f20</td><td>0</td><td>InstallCDJS</td><td/></row>
+		<row><td>f21</td><td>0</td><td>RemoveChemSupport</td><td/></row>
 		<row><td>f3</td><td>0</td><td>LaunchUserSetup</td><td/></row>
 		<row><td>f4</td><td>0</td><td>ValidateUser</td><td/></row>
 		<row><td>f5</td><td>0</td><td>CreateTlb</td><td/></row>
@@ -9908,7 +9894,7 @@ Set shell = Nothing
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
 		<row><td>COWSOURCEDIR</td><td>Not Installed And CBOE="no"</td><td>1004</td><td/><td/></row>
 		<row><td>CSCOMMONS</td><td>Not Installed And CBOE="no"</td><td>1005</td><td/><td/></row>
-		<row><td>CheckCBOE</td><td>Not Installed</td><td>7</td><td/><td/></row>
+		<row><td>CheckCBOE</td><td>Not Installed</td><td>8</td><td/><td/></row>
 		<row><td>CheckUserAcct</td><td>CREATENEWUSER = "True" And Not Installed And INSTALLUI="No" And CBOE="no"</td><td>1009</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
@@ -9919,7 +9905,7 @@ Set shell = Nothing
 		<row><td>DeleteCDXScriptMaps</td><td>Not Installed And INSTALLWSUI="No" And CBOE="no"</td><td>1017</td><td/><td/></row>
 		<row><td>DeleteChemInvObsolote</td><td>Not Installed</td><td>6737</td><td/><td/></row>
 		<row><td>DeleteServices</td><td>VersionNT</td><td>2000</td><td>DeleteServices</td><td/></row>
-		<row><td>DisableRollback</td><td/><td>6</td><td/><td/></row>
+		<row><td>DisableRollback</td><td/><td>7</td><td/><td/></row>
 		<row><td>DuplicateFiles</td><td/><td>4210</td><td>DuplicateFiles</td><td/></row>
 		<row><td>EditAppVBSFiles</td><td>Not Installed And &amp;CBVN &gt; 2 And CBOE="no"</td><td>6602</td><td/><td/></row>
 		<row><td>EditCoeFrameworkConfig</td><td>Not Installer And Not PATCH And CBOE="no"</td><td>6608</td><td/><td/></row>
@@ -9970,7 +9956,7 @@ Set shell = Nothing
 		<row><td>InstallValidate</td><td/><td>1400</td><td>InstallValidate</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
 		<row><td>LaunchConditions</td><td>Not Installed</td><td>410</td><td>LaunchConditions</td><td/></row>
-		<row><td>MachineName</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>MachineName</td><td>Not Installed</td><td>6</td><td/><td/></row>
 		<row><td>MigrateFeatureStates</td><td/><td>1024</td><td>MigrateFeatureStates</td><td/></row>
 		<row><td>MoveFiles</td><td/><td>3800</td><td>MoveFiles</td><td/></row>
 		<row><td>MsiConfigureServices</td><td>VersionMsi &gt;= "5.00"</td><td>5850</td><td>MSI5 MsiConfigureServices</td><td/></row>
@@ -10112,6 +10098,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PatchWelcome</td><td>Installed And PATCH And Not IS_MAJOR_UPGRADE</td><td>1205</td><td>Patch Panel</td><td/></row>
 		<row><td>RMCCPSearch</td><td>Not CCP_SUCCESS And CCP_TEST</td><td>600</td><td>RMCCPSearch</td><td/></row>
 		<row><td>RemoveCDJS18.0</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>RemoveChemSupport</td><td>CBOE="yes"</td><td>1301</td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>Not Installed</td><td>7</td><td/><td/></row>
 		<row><td>RemovePython</td><td>Not Installed</td><td>750</td><td/><td/></row>
 		<row><td>ResolveSource</td><td>Installed</td><td>990</td><td>ResolveSource</td><td/></row>

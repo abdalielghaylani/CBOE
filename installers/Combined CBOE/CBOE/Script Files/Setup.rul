@@ -30,7 +30,7 @@ export prototype CheckWebSite(HWND);
 export prototype EditCBVNMageBatchFile(HWND);
 export prototype EditDataLoaderMageBatchFile(HWND);
 export prototype CreateRegKey(HWND);
-
+export prototype RemoveChemSupport(HWND);
 export prototype EditDThreeUDL(HWND);
 export prototype EditDrugDegUDL(HWND);
 export prototype EditCoreUDL(HWND);
@@ -372,6 +372,15 @@ function CreateRegKey(hMSI)
     RegDBSetKeyValueEx(szKey,"Application",REGDB_STRING,IISROOTFOLDER^"ChemOffice\\Webserver_Source\\cfserverasp\\RPT\\reports.exe",-1);
   end;
   
+  function RemoveChemSupport(hMSI)
+     STRING szKey;
+
+begin
+    szKey   = "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{730CDFD0-74B5-4677-AAA0-1DB120211A9A}\\";
+    RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+    REGDB_OPTIONS = REGDB_OPTION_WOW64_64KEY;
+    RegDBDeleteKey (szKey) ;
+end;
    //
  
 
