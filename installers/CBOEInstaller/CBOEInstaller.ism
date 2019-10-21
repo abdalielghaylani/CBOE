@@ -4754,7 +4754,7 @@ End If
 		<col def="I4">ISAttributes</col>
 		<row><td>ISIISProperty1</td><td>IisItem1</td><td/><td>Path</td><td/><td/><td/><td/><td>IISROOTFOLDER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty10</td><td>IisItem1</td><td/><td>ServerBindings</td><td/><td/><td/><td/><td>*:[PORTNO]:</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty100</td><td>IisItem9</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty100</td><td>IisItem9</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty101</td><td>IisItem2</td><td/><td>AspVer</td><td/><td/><td/><td/><td>4.0.30319</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty102</td><td>IisItem3</td><td/><td>AspVer</td><td/><td/><td/><td/><td>4.0.30319</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty103</td><td>IisItem4</td><td/><td>AspVer</td><td/><td/><td/><td/><td>4.0.30319</td><td>0</td><td>0</td></row>
@@ -4793,7 +4793,7 @@ End If
 		<row><td>ISIISProperty133</td><td>IisItem11</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty134</td><td>IisItem11</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty135</td><td>IisItem11</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty136</td><td>IisItem11</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty136</td><td>IisItem11</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty137</td><td>IisItem11</td><td/><td>AspVer</td><td/><td/><td/><td/><td>4.0.30319</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty138</td><td>IisItem11</td><td/><td>AspNetVerBitness</td><td/><td/><td/><td/><td>x86</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty139</td><td>IisItem12</td><td/><td>Path</td><td/><td/><td/><td/><td>REGISTRATION.SERVER</td><td>0</td><td>0</td></row>
@@ -4818,7 +4818,9 @@ End If
 		<row><td>ISIISProperty156</td><td>IisItem13</td><td/><td>MaxProc</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty157</td><td>IisItem13</td><td/><td>managedRuntimeVersion</td><td/><td/><td/><td/><td>v4.0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty158</td><td>IisItem13</td><td/><td>managedPipelineMode</td><td/><td/><td/><td/><td>Integrated</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty159</td><td>IisItem10</td><td/><td>Enable32bitAppOnWin64</td><td/><td/><td/><td/><td>true</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty16</td><td>IisItem2</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty160</td><td>IisItem13</td><td/><td>Enable32bitAppOnWin64</td><td/><td/><td/><td/><td>true</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty17</td><td>IisItem2</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty18</td><td>IisItem2</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty19</td><td>IisItem2</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
@@ -4826,7 +4828,7 @@ End If
 		<row><td>ISIISProperty20</td><td>IisItem2</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty21</td><td>IisItem2</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty22</td><td>IisItem2</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty23</td><td>IisItem2</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty23</td><td>IisItem2</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty24</td><td>IisItem3</td><td/><td>Path</td><td/><td/><td/><td/><td>MANAGER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty25</td><td>IisItem3</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING548##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty26</td><td>IisItem3</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
@@ -4838,7 +4840,7 @@ End If
 		<row><td>ISIISProperty31</td><td>IisItem3</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty32</td><td>IisItem3</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty33</td><td>IisItem3</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty34</td><td>IisItem3</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty34</td><td>IisItem3</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty35</td><td>IisItem4</td><td/><td>Path</td><td/><td/><td/><td/><td>CBOEHELP</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty36</td><td>IisItem4</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING570##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty37</td><td>IisItem4</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
@@ -4862,7 +4864,7 @@ End If
 		<row><td>ISIISProperty53</td><td>IisItem5</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty54</td><td>IisItem5</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty55</td><td>IisItem5</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty56</td><td>IisItem5</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty56</td><td>IisItem5</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty57</td><td>IisItem6</td><td/><td>Path</td><td/><td/><td/><td/><td>DATALOADER_CLICKONCE</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty58</td><td>IisItem6</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING552##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty59</td><td>IisItem6</td><td/><td>AppFriendlyName</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
@@ -4874,7 +4876,7 @@ End If
 		<row><td>ISIISProperty64</td><td>IisItem6</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty65</td><td>IisItem6</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty66</td><td>IisItem6</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty67</td><td>IisItem6</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty67</td><td>IisItem6</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty68</td><td>IisItem7</td><td/><td>Path</td><td/><td/><td/><td/><td>COMMONRESOURCES</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty69</td><td>IisItem7</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING553##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty7</td><td>IisItem1</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
@@ -4886,7 +4888,7 @@ End If
 		<row><td>ISIISProperty75</td><td>IisItem7</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty76</td><td>IisItem7</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty77</td><td>IisItem7</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty78</td><td>IisItem7</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty78</td><td>IisItem7</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty79</td><td>IisItem8</td><td/><td>Path</td><td/><td/><td/><td/><td>WEBSERVICEHOST</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty8</td><td>IisItem1</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty80</td><td>IisItem8</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING554##</td><td>0</td><td>0</td></row>
@@ -4898,7 +4900,7 @@ End If
 		<row><td>ISIISProperty86</td><td>IisItem8</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty87</td><td>IisItem8</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty88</td><td>IisItem8</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty89</td><td>IisItem8</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty89</td><td>IisItem8</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING556##</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty9</td><td>IisItem1</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty90</td><td>IisItem9</td><td/><td>Path</td><td/><td/><td/><td/><td>WEBSERVICE</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty91</td><td>IisItem9</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td>##ID_STRING555##</td><td>0</td><td>0</td></row>
@@ -7325,7 +7327,7 @@ End If
 		<row><td>NewShortcut11_B4B3F566FA6349B9A43B10DCAC4C973B.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut12_056D2EC3AFF443A09C56A05DEFC70C9C.exe</td><td/><td>&lt;BUILDPROJECTROOT&gt;\DataLoader\bin\Release\DataLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut13_CB430019565C496087E7A2ED2B446D9B.exe</td><td/><td>&lt;BUILDPROJECTROOT&gt;\CBVN\ChemBioViz.Net\ChemBioViz.NET\bin\Release\ChemBioViz.NET.exe</td><td>0</td></row>
-		<row><td>NewShortcut14_17F1DF869819449E96E2BEE15A06A164.exe</td><td/><td>&lt;BUILDPROJECTROOT&gt;\ConfigLoader\bin\Release\ConfigLoader.exe</td><td>0</td></row>
+		<row><td>NewShortcut14_2A2294FAF2EE437F80441EDBC2BE6E7D.exe</td><td/><td>&lt;BUILDPROJECTROOT&gt;\ConfigLoader\bin\x64\Release\ConfigLoader.exe</td><td>0</td></row>
 		<row><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut16_7AAD1165DFB446B395667760166449B1.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
 		<row><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td/><td>&lt;SystemFolder&gt;\Shell32.dll</td><td>154</td></row>
@@ -8207,7 +8209,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<col def="I4">ISAttributes</col>
 		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING59##</td><td>invconfigini</td><td>[CONFIGURATION_AND_DB_TOOLS]COEDatabaseInstall.hta</td><td/><td/><td/><td>NewShortcut1_F27119FFDF8B4BF4850F20CEB93CDC31.exe</td><td>0</td><td>1</td><td>CONFIGURATION_AND_DB_TOOLS</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut12</td><td>newfolder2</td><td>##ID_STRING69##</td><td>AllOtherFiles48</td><td>[DATALOADER]DataLoader.exe</td><td/><td/><td/><td>NewShortcut12_056D2EC3AFF443A09C56A05DEFC70C9C.exe</td><td>1</td><td>1</td><td>DATALOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut14</td><td>newfolder8</td><td>##ID_STRING55##</td><td>AllOtherFiles65</td><td>[CONFIGLOADER]ConfigLoader.exe</td><td/><td/><td/><td>NewShortcut14_17F1DF869819449E96E2BEE15A06A164.exe</td><td>1</td><td>1</td><td>CONFIGLOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut14</td><td>newfolder8</td><td>##ID_STRING55##</td><td>AllOtherFiles65</td><td>[CONFIGLOADER]ConfigLoader.exe</td><td/><td/><td/><td>NewShortcut14_2A2294FAF2EE437F80441EDBC2BE6E7D.exe</td><td>1</td><td>1</td><td>CONFIGLOADER</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut15</td><td>newfolder2</td><td>##ID_STRING54##</td><td>AllOtherFiles48</td><td>[HELP2]DataLoader.chm</td><td/><td/><td/><td>NewShortcut15_12418B25404E46F9A9CDCFE25D3DBAE0.exe</td><td>1</td><td>1</td><td>HELP2</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut16</td><td>newfolder9</td><td>##ID_STRING58##</td><td>AllOtherFiles16</td><td>[HELP8]default.htm</td><td/><td/><td/><td>NewShortcut16_7AAD1165DFB446B395667760166449B1.exe</td><td>1</td><td>1</td><td>HELP8</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut17</td><td>newfolder10</td><td>##ID_STRING57##</td><td>AllOtherFiles21</td><td>[HELP9]default.htm</td><td/><td/><td/><td>NewShortcut17_C5D702100ADF4803BC0BA09880D8FC52.exe</td><td>1</td><td>1</td><td>HELP9</td><td/><td/><td/><td/><td/><td/><td/></row>
