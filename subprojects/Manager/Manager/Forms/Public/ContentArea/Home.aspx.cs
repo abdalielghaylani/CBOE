@@ -44,6 +44,11 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "WindowOpenScript", WindowOpenScript, true);
             }
             //if we're in catalog mode, show our special catalog
+            string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+            if(!string.IsNullOrEmpty(redirectUri) && Request.Cookies["COESSO"] == null)
+            {
+                Response.Redirect(redirectUri);
+            }
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
