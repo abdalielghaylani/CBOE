@@ -9,8 +9,29 @@ if (window.name != "" && self.opener != null)
     self.opener = this;
     self.close();
 }
-</script>
+var isIE = false || !!document.documentMode;
+if (window.location.href.toString().indexOf('isIE') < 0) {
+    insertParam('isIE', isIE.toString());
+}
+function insertParam(key, value) {
+    key = encodeURI(key); value = encodeURI(value);
+    var kvp = document.location.search.substr(1).split('&');
 
+    var i = kvp.length; var x; while (i--) {
+        x = kvp[i].split('=');
+
+        if (x[0] == key) {
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+    if (i < 0) { kvp[kvp.length] = [key, value].join('='); }
+    document.location.search = kvp.join('&');
+}
+
+</script>
+    
     <div id="wrapper" class="PublicContentContainer">
         <div id="content">
             <p class="info">Welcome to ChemBioOffice Enterprise.  To begin, select a task below.<br /><br />

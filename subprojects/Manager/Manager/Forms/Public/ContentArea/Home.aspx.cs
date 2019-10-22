@@ -115,6 +115,11 @@ public partial class Forms_ContentArea_Home : GUIShellPage
     private void SetHomeWebParts()
     {
             //COESpotFireSettingsBO SpotfireSetting = ConfigurationUtilities.GetSpotFireSettings(false);
+            string isIEFromClient="";
+            if (Request.QueryString["isIE"] != null)
+            {
+                isIEFromClient = Request.QueryString["isIE"];
+            }
             COEHomeSettings homeData = ConfigurationUtilities.GetHomeData();
             int numberOfColumns = Convert.ToInt16(homeData.GridColumns);
             WebPartManager webmgr = WebPartManager1;
@@ -123,7 +128,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
             {                
                 Group myGroup = homeData.Groups.Get(i);
                 var browser = (HttpBrowserCapabilities) Master.COERequestBrowser;
-                bool isIE = browser.Type.ToUpper().Contains("IE") || browser.Type.ToUpper().Contains("INTERNETEXPLORER");
+                bool isIE = (browser.Type.ToUpper().Contains("IE") || browser.Type.ToUpper().Contains("INTERNETEXPLORER")) && isIEFromClient.ToLower() == "true";
                 if (myGroup != null && myGroup.Name != "COEMANAGER_DV")
                     {
                         if ((isIE ? true : (myGroup.COEIdentifier != "Registration")))
