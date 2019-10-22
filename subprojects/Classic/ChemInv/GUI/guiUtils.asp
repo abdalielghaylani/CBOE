@@ -35,8 +35,6 @@ End Select
 
 
 'SM-Fixing CSBR-149133
-UserName = Request.Cookies("CS_SEC_UserName")
-UserID = Request.Cookies("CS_SEC_UserID")
 'UserID = CryptVBS(Request.Cookies("CS_SEC_UserID").Item, Request.Cookies("CS_SEC_UserName").Item)
 SSOticket= Request.Cookies("COESSO")
 if isObject(session) then 
@@ -47,12 +45,14 @@ if isObject(session) then
     if SSOticket<>"" and (len(UserName) = 0 or len(UserID) = 0) then 
         set SSOobj1 = Server.CreateObject("CambridgeSoft.COE.Security.Services.SingleSignOnCom")
         UserName = SSOobj1.GetUserFromTicket(SSOticket)
-        UserID = getUserIDfromString(SSOobj1.GetUserDataFromTicket(SSOticket))
-        UserID = CryptVBS(UserID, UserID)
+        UserID = getUserIDfromString(SSOobj1.GetUserDataFromTicket(SSOticket))        
         Response.Cookies("CS_SEC_UserName")=UserName
         Response.Cookies("CS_SEC_UserID")=UserID
     end if
-end if 
+end if
+UserName = Request.Cookies("CS_SEC_UserName")
+UserID = Request.Cookies("CS_SEC_UserID")
+Session("UserIDcheminv") = UserID
 'Restamp Credentials cookie
 if Len(UserName) > 0 then ProlongCookie "CS_SEC_UserName", UserName, Application("CookieExpiresMinutes")
 if Len(UserID) > 0 then ProlongCookie "CS_SEC_UserID", UserID, Application("CookieExpiresMinutes")
