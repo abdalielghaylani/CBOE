@@ -380,6 +380,10 @@ begin
     RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
     REGDB_OPTIONS = REGDB_OPTION_WOW64_64KEY;
     RegDBDeleteKey (szKey) ;
+    szKey   = "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B0F2DA79-AE4A-4EA3-8B42-1419F5047FEE}\\";
+    RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+    REGDB_OPTIONS = REGDB_OPTION_WOW64_64KEY;
+    RegDBDeleteKey (szKey) ;
 end;
    //
  
@@ -770,7 +774,7 @@ function InstallPatch(hMSI)
         MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
         MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);      
-        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi";                 
+        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_19.0.msi";                 
         LongPathFromShortPath(strMSIChem);
         LongPathToQuote(strMSIChem,TRUE);         
         strMSIChem ="/i " +strMSIChem + " /qb";      
