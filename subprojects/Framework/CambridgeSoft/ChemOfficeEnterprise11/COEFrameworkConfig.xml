@@ -47,7 +47,7 @@
       </searchService>
       <chemDrawEmbed>
         <add name="showPluginDownload" value="YES"/>
-        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_18.1.msi"/>
+        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_19.0.msi"/>
       </chemDrawEmbed>
 	  <caching>
 		<dataview>
@@ -1241,7 +1241,7 @@
       <add name="Utilities" enabled="true" coeIdentifier="Utilities" display="Applications &amp; Utilities" newWindow="false" color="darkBlue" helpText="Launch and or install rich client applications and utilites">
         <links>
           <add name="ENClient" display="Launch ENotebook" tip="Launch the E-Notebook application" url="/ClickOnce/ENotebook.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>         
-          <add name="CDAX18.1" display="CDAX18.1 Plugin" tip="Install the ChemDraw 18.1 ActiveX Control recommended for ChemOffice Enterprise Applications" url="/cfserverasp/clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_18.1.msi" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
+          <add name="CDAX19.0" display="CDAX19.0 Plugin" tip="Install the ChemDraw 19.0 ActiveX Control recommended for ChemOffice Enterprise Applications" url="/cfserverasp/clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_19.0.msi" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
           <add name="DLClient" display="DataLoader Client" tip="Launch the DataLoader application" url="/DataLoader/DataLoader.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
           <add name="BioAssayClient" display="BioAssay Client" tip="Install the BioAssay Enterpise application (installation requires admin privileges on the client system)" url="/cfserverasp/clients/BioAssayClient10.1.6/setup.exe" privilege="HTS_LOGIN" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="manage_substances.png"/>
           <add name="SendToEnotebook" display="SendToEnotebook Driver" tip="Install the SendToEnotebook v1 printer driver (installation requires admin privileges on the client system)" url="/cfserverasp/clients/SendToEnotebookV1/SendToE-Notebook 18.1.exe" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
