@@ -1,5 +1,4 @@
 <%@ Language=VBScript %>
-<!--#INCLUDE VIRTUAL = "/cheminv/GUI/guiutils.asp" -->
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/ado.inc" -->
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_utils_vbs.asp"-->
 <!--#INCLUDE VIRTUAL = "/cfserverasp/source/cs_security/cs_security_login_utils_vbs.asp"-->
@@ -15,7 +14,7 @@ perform_validate = Request.QueryString("perform_validate")
 forceManualLogin = CBool(Request("forceManualLogin"))
 if  forceManualLogin then bAllowCookieLogin = false
 CS_SEC_UserName = Request.Cookies("CS_SEC_UserName") 
-CS_SEC_UserID = Request.Cookies("CS_SEC_UserID")
+CS_SEC_UserID = CryptVBS(Request.Cookies("CS_SEC_UserID").Item, Request.Cookies("CS_SEC_UserName").Item)
 
 if (Len(CS_SEC_UserName)>0 AND bAllowCookieLogin) then
 	perform_validate = 1
