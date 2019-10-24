@@ -170,8 +170,13 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   }
 
   getIdentifierName(e) {
-    return e.column.items ?
-      e.column.items.find(i => i[e.column.lookup.valueExpr] === e.value)[e.column.lookup.displayExpr] : '';
+    try {
+      return e.column.items ?
+        e.column.items.find(i => i[e.column.lookup.valueExpr] === e.value)[e.column.lookup.displayExpr] : '';
+    } catch (e) {
+      console.trace(e);
+      return '';
+    }
   }
 
 }
