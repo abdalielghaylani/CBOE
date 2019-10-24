@@ -133,6 +133,8 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     selectOracleUserLinkButton.Enabled = false;
                     password.BackColor = System.Drawing.Color.LightGray;
                     confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                    confirmPassword.ForeColor = System.Drawing.Color.LightGray;
+                    password.ForeColor = System.Drawing.Color.LightGray;
                     password.Enabled = false;
                     confirmPassword.Enabled = false;
                     if (String.IsNullOrEmpty(password.Attributes["value"]))
@@ -181,7 +183,9 @@ public partial class EditUserUC : System.Web.UI.UserControl
                         ((System.Web.UI.WebControls.DataControlField)(passwordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
                         ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
                         password.BackColor = System.Drawing.Color.LightGray;
+                        password.ForeColor = System.Drawing.Color.LightGray;
                         confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                        confirmPassword.ForeColor = System.Drawing.Color.LightGray;
                         password.Enabled = false;
                         confirmPassword.Enabled = false;
                         password.Attributes["value"] = "@@@@@@@@@@AZ";
@@ -363,6 +367,8 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     ((System.Web.UI.WebControls.DataControlField)(confirmPasswordTemplate)).HeaderStyle.ForeColor = System.Drawing.Color.LightGray;
                     password.BackColor = System.Drawing.Color.LightGray;
                     confirmPassword.BackColor = System.Drawing.Color.LightGray;
+                    confirmPassword.ForeColor = System.Drawing.Color.LightGray;
+                    password.ForeColor = System.Drawing.Color.LightGray;
                     password.Enabled = false;
                     confirmPassword.Enabled = false;
                     password.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
