@@ -64,6 +64,12 @@
     <Reference Include="Microsoft.IdentityModel.Logging">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.3.0\lib\net45\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
+	<Reference Include="Microsoft.IdentityModel.Protocols">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.5.3.0\lib\net45\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.5.3.0\lib\net45\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.3.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
