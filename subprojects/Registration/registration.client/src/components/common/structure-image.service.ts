@@ -17,34 +17,39 @@ export class CStructureImageService {
   }
 
   generateImage(value: string): Promise<string> {
-    let hash = crypto.createHmac('sha256', CStructureImageService.HASH_KEY).update(value).digest('hex');
-    let queue = CStructureImageService.queue;
-    let found = queue.find(e => e.hash === hash);
-    if (found) {
-      return Promise.resolve(found.imageData);
-    }
-    let data: any = {
-      chemData: value,
-      chemDataType: 'CDXML',
-      resolution: '300',
-      imageType: 'png'
-    };
-    let headers = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: 'Basic VTlueFA3VzM/XlE4bVE6VFF6SzNlMyllNDNlQEE=',
-      Accept: 'image/png'
-    });
-    let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer });
-    let lookups = this.ngRedux.getState().session.lookups;
-    return this.http.post(lookups.systemInformation.CDJSUrl + '/rest/generateImage', data, options)
-      .toPromise()
-      .then(result => {
-        let imageData = 'data:image/png;base64,' + b64Encode(new Uint8Array(result.arrayBuffer()));
-        queue.push({ hash, imageData });
-        if (queue.length > CStructureImageService.QUEUE_SIZE) {
-          queue.shift();
-        }
-        return imageData;
+    try {
+      let hash = crypto.createHmac('sha256', CStructureImageService.HASH_KEY).update(value).digest('hex');
+      let queue = CStructureImageService.queue;
+      let found = queue.find(e => e.hash === hash);
+      if (found) {
+        return Promise.resolve(found.imageData);
+      }
+      let data: any = {
+        chemData: value,
+        chemDataType: 'CDXML',
+        resolution: '300',
+        imageType: 'png'
+      };
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: 'Basic VTlueFA3VzM/XlE4bVE6VFF6SzNlMyllNDNlQEE=',
+        Accept: 'image/png'
       });
+      let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer });
+      let lookups = this.ngRedux.getState().session.lookups;
+      return this.http.post(lookups.systemInformation.CDJSUrl + '/rest/generateImage', data, options)
+        .toPromise()
+        .then(result => {
+          let imageData = 'data:image/png;base64,' + b64Encode(new Uint8Array(result.arrayBuffer()));
+          queue.push({ hash, imageData });
+          if (queue.length > CStructureImageService.QUEUE_SIZE) {
+            queue.shift();
+          }
+          return imageData;
+        });
+    } catch (e) {
+      console.trace(e);
+      return null;
+    }
   }
 }
