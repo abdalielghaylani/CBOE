@@ -3522,6 +3522,27 @@ Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
 			Exit For
 		End If 
 	Next 
+	Call applications.SaveChanges 
+	Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
+	Set applications = catalog.GetCollection("Applications")
+	Call applications.Populate
+	For i = applications.Count - 1 to 0 step -1
+		if ucase(applications.Item(i).Name) = "CSDO18" then 
+			catalog.ShutdownApplication("CSDO18")
+			if Err.Number &gt; 0 then
+				SetLog "Error in shutting down CSDO18: " &amp; Err.Description
+			else
+				SetLog "CSDO18 shutdown successfully"
+			end if
+			applications.Remove (i) 
+			if Err.Number &gt; 0 then
+				SetLog "Error in removing CSDO18: " &amp; Err.Description
+			else
+				SetLog "CSDO18 removed successfully"
+			end if
+			Exit For
+		End If 
+	Next 
 	Call applications.SaveChanges </td><td/><td/></row>
 		<row><td>RemoveOlderVersions</td><td>38</td><td/><td>On error resume next
 Dim strK ,strorVal,dteWait,strCBOE17,strCBOE1711,strReg, strCBOE181
