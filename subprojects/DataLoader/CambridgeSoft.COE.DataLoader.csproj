@@ -103,9 +103,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.MolServer18, Version=18.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
-      <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer18.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Interop.MolServer19, Version=19.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+      <HintPath>..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer19.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">

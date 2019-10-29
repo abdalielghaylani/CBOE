@@ -78,11 +78,11 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.ChemDrawControl17">
-      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AxInterop.ChemDrawControl17.dll</HintPath>
+    <Reference Include="AxInterop.ChemDrawControl19, Version=19.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AxInterop.ChemDrawControl19.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl17">
-      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl17.dll</HintPath>
+    <Reference Include="Interop.ChemDrawControl19, Version=19.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl19.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />

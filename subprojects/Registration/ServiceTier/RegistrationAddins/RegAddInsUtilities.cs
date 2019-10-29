@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-using ChemDrawControl18;
+using ChemDrawControl19;
 using CambridgeSoft.COE.Framework.Caching;
 using CambridgeSoft.COE.Framework.COESearchService;
 using CambridgeSoft.COE.Registration.Services.AddIns;
