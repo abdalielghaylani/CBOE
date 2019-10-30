@@ -113,7 +113,7 @@ if lview > 0 then
 End if
 
 if lview = 3 then 
-	WriteTableHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 6
+	WriteTableHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 15
 	nameLength = 50
 end if
 %>
@@ -164,7 +164,7 @@ Set ListView = Server.CreateObject("VASPLV.ASPListView")
 	ListView.Licensekey = "1C71-2CE6-A49C"
 
 if lview = 3 then
-	BuildListViewHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 6
+	BuildListViewHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 15
 End if	
 
 '!DGB! make the pagesize huge when roconciling containers
@@ -289,7 +289,8 @@ Else
 	'Response.End
  '  Linecount is one greater than pagesize so we can detect there is another page
      Cmd.Parameters.Append Cmd.CreateParameter(, 131, 1, 0, tmin)
-     Cmd.CommandText = SQL1
+	 SQL1 = SQL1 & " ORDER BY " & SortbyFieldName & " " & SortDirectionTxt
+	 Cmd.CommandText = SQL1
 	'MCD: end changes
 	If bDebugPrint then
 		Response.Write "<BR><BR><BR><BR><BR><BR><BR>" & SQL
@@ -399,7 +400,7 @@ Else
 			chkboxStr = "<span id=""_" & RS("Barcode") & """><input type=checkbox name=""selectChckBox"" " & chckedStr &  " value=""" & ContainerID & """ onclick=""Removals('" & ContainerID & "', this.checked);SelectMarked();""" & disableChkBoxes &  "></span>" & RS("Barcode")
 			Set Listx = ListView.ListItems.Add(, , chkboxStr, Con_Icon_lrg_clsd, , , "TabFrame", RS("Container_Name"))
 		Else
-			Set Listx = ListView.ListItems.Add(, , RS("Barcode"), Con_Icon_lrg_clsd, Con_Icon_sml_clsd, , "TabFrame", RS("Container_Name"))
+			Set Listx = ListView.ListItems.Add(, , RS("Container_ID"), Con_Icon_lrg_clsd, Con_Icon_sml_clsd, , "TabFrame", RS("Container_Name"))
 			Listx.URL="View container details"
 			Listx.Key = ContainerID
 			Listx.DHTML = "id=""e" & ContainerID & """ onclick=""SelectContainer(this, " & ContainerID & ", " & RS("Location_ID_FK") & "); return false;"" onmouseover=""javascript:this.style.cursor='hand'"" onmouseout=""javascript:this.style.cursor='default'"" name=""" & ContainerID & """"
