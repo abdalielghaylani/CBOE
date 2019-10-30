@@ -226,9 +226,9 @@
       <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
       <Name>Registration.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RegistrationWebApp\RegistrationWebApp.2013.csproj">
+    <ProjectReference Include="..\RegistrationWebApp\RegistrationWebApp.csproj">
       <Project>{0af2d977-5b4c-40e9-9af1-ce93f3c92cf4}</Project>
-      <Name>RegistrationWebApp.2013</Name>
+      <Name>RegistrationWebApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
