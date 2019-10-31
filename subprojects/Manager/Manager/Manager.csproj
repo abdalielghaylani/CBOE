@@ -853,6 +853,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AccessDenied.html" />
     <Content Include="App_Themes\Blue\SkinFile.skin" />
     <Content Include="App_Themes\GREEN\SkinFile.skin" />
   </ItemGroup>

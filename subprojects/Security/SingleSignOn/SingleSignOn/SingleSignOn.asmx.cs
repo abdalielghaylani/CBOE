@@ -833,17 +833,24 @@ namespace CambridgeSoft.COE.Security.Services
 
         private int GetExpiryDate(string userName, string password)
         {
-            if (CheckIsExemptUser(userName))
+            string audience = ConfigurationManager.AppSettings["Audience"];
+            if (string.IsNullOrEmpty(audience))
             {
-                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+                if (CheckIsExemptUser(userName))
+                {
+                    objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+                }
+                else
+                {
+                    objSSO = ssop.SSOChoose();
+                }
+                return objSSO.GetCSExpiryDate(userName, password);
             }
             else
             {
-                objSSO = ssop.SSOChoose();
+                return Convert.ToInt16(ConfigurationManager.AppSettings.Get("DaysToExpire"));
             }
-            return objSSO.GetCSExpiryDate(userName, password);
         }
-
     }
 }
 

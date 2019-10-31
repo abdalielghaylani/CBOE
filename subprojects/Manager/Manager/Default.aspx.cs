@@ -55,10 +55,8 @@ public partial class _Default : System.Web.UI.Page
                 }
                 else
                 {
-                    HttpContext.Current.GetOwinContext().Authentication.SignOut(
-                       OpenIdConnectAuthenticationDefaults.AuthenticationType,
-                       CookieAuthenticationDefaults.AuthenticationType);
                     Utilities.token = string.Empty;
+                    Response.Redirect(this.Page.ResolveUrl("~/AccessDenied.html"));
                 }
             }
         }
