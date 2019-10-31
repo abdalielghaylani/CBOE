@@ -37,6 +37,8 @@ public partial class _Default : System.Web.UI.Page
                 COEMembershipProvider sso = new COEMembershipProvider();
                 if (sso.ValidateUser(Utilities.user, Utilities.token))
                 {
+                    HttpContext.Current.Session["UserName"] = Utilities.user;
+                    HttpContext.Current.Session["UserID"] = Utilities.token;
                     HttpCookie authCookie = FormsAuthentication.GetAuthCookie(Utilities.user, false);
                     if (!String.IsNullOrEmpty(HttpContext.Current.Session["SSOTicket"].ToString()))
                     {
