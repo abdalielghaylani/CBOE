@@ -3592,7 +3592,7 @@ End If
 		<row><td>coeregistrationservicestesti</td><td>WebServices</td><td>COEREG~1.HTM|COERegistrationServicesTesting.htm</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;PATH_TO_REGISTRATIONWEB_FI&gt;\Webservices\COERegistrationServicesTesting.htm</td><td>17</td><td/></row>
 		<row><td>coesharedassemblyconfig.xml</td><td>AllOtherFiles33</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>5</td><td/></row>
 		<row><td>csdo19.dll</td><td>CSDO19</td><td>CSDO19.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSDO19.dll</td><td>1</td><td/></row>
-		<row><td>csdo19.dll1</td><td>CSDO19_Server_File</td><td>CSDO19.dll</td><td>0</td><td/><td/><td/><td>1</td><td>\\165.88.128.47\c$\builds\CBOE\Jeeva-CBOE-9255@2\subprojects\Classic\Common\dlls\CSDO19.dll</td><td>1</td><td/></row>
+		<row><td>csdo19.dll1</td><td>CSDO19_Server_File</td><td>CSDO19.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\CSDO19.dll</td><td>1</td><td/></row>
 		<row><td>csla.compression.dll</td><td>Csla.Compression.dll</td><td>CSLACO~1.DLL|Csla.Compression.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_COMMONRUNTIMELI_FI&gt;\Csla.Compression.dll</td><td>1</td><td/></row>
 		<row><td>csla.dll</td><td>Bin</td><td>Csla.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\Csla.dll</td><td>1</td><td/></row>
 		<row><td>cswebmenu5.dll</td><td>CSWebMenu5.dll</td><td>CSWEBM~1.DLL|CSWebMenu5.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Classic\Common\dlls\CSWebMenu5.dll</td><td>1</td><td/></row>
@@ -3819,7 +3819,7 @@ End If
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>ConstructionEnabled</td><td>0</td></row>
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>ConstructorString</td><td/></row>
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>DLL</td><td>\\165.88.128.47\c$\builds\CBOE\Jeeva-CBOE-9255@2\subprojects\Classic\Common\dlls\CSDO19.dll</td></row>
+		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>DLL</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\CSDO19.dll</td></row>
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>Description</td><td>CSDO19.Connection</td></row>
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>EventTrackingEnabled</td><td>-1</td></row>
 		<row><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>ExceptionClass</td><td/></row>
@@ -3861,7 +3861,7 @@ End If
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>ConstructionEnabled</td><td>0</td></row>
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>ConstructorString</td><td/></row>
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>DLL</td><td>\\165.88.128.47\c$\builds\CBOE\Jeeva-CBOE-9255@2\subprojects\Classic\Common\dlls\CSDO19.dll</td></row>
+		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>DLL</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\CSDO19.dll</td></row>
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>Description</td><td>CSDO19.Request</td></row>
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>EventTrackingEnabled</td><td>-1</td></row>
 		<row><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>ExceptionClass</td><td/></row>
@@ -4383,8 +4383,8 @@ End If
 		<col def="S0">DLL</col>
 		<col def="S0">AlterDLL</col>
 		<row><td>_04FAF47C68DFB874AF6AAA60B2C542E4</td><td>_D45F9465FA31990DFD26D14BA1B61000</td><td>_20F1BE08FA86B3C46F76CB86A42F0973</td><td>{568BD271-58E5-4EBB-9432-2F397AD35D0A}</td><td>ReportQ.CReportQ</td><td>C:\builds\workspace\TBR-CBOE17.1\ChemOffice\Common\dlls\REPORTQ.dll</td><td/></row>
-		<row><td>_49F688C27FAC351867D4A6BA20F668A3</td><td>_99DDAC82DEC29AF462DE920C39CBCA4D</td><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>{6659A1DA-272E-4A0C-A958-C996BAFF54E6}</td><td>CSDO19.Connection</td><td>\\165.88.128.47\c$\builds\CBOE\Jeeva-CBOE-9255@2\subprojects\Classic\Common\dlls\CSDO19.dll</td><td/></row>
-		<row><td>_5F27DB834EF4F3571A00D0416A855146</td><td>_99DDAC82DEC29AF462DE920C39CBCA4D</td><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>{C05D4543-5700-4D7B-8ECF-7E4D13CBBA4F}</td><td>CSDO19.Request</td><td>\\165.88.128.47\c$\builds\CBOE\Jeeva-CBOE-9255@2\subprojects\Classic\Common\dlls\CSDO19.dll</td><td/></row>
+		<row><td>_49F688C27FAC351867D4A6BA20F668A3</td><td>_99DDAC82DEC29AF462DE920C39CBCA4D</td><td>_0EF4A4A37C49C4AC8E75371ECC1C1202</td><td>{6659A1DA-272E-4A0C-A958-C996BAFF54E6}</td><td>CSDO19.Connection</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\CSDO19.dll</td><td/></row>
+		<row><td>_5F27DB834EF4F3571A00D0416A855146</td><td>_99DDAC82DEC29AF462DE920C39CBCA4D</td><td>_1136F8074F71E44160A8759DD1DA56E6</td><td>{C05D4543-5700-4D7B-8ECF-7E4D13CBBA4F}</td><td>CSDO19.Request</td><td>&lt;WORKSPACEPATH&gt;\subprojects\Classic\Common\dlls\CSDO19.dll</td><td/></row>
 	</table>
 
 	<table name="ISComPlusProxy">
