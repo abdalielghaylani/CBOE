@@ -1,7 +1,9 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configAddIn.window.viewIndex==='list')">
     <reg-settings-page-header>{{configAddIn.window.title}}</reg-settings-page-header>
-    <dx-data-grid [dataSource]="dataSource" [columns]="configAddIn.columns.grdColumn" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }' [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
-        [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)">
+    <dx-data-grid [dataSource]="dataSource" [columns]="configAddIn.columns.grdColumn" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true"
+        (onContentReady)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+        (onEditingStart)="onEditingStart($event)">
         <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
         <dxo-scrolling mode="infinite"></dxo-scrolling>
         <div *dxTemplate="let data of 'addInTemplate'">
@@ -22,10 +24,14 @@
     </dx-data-grid>
 </div>
 <div class="viewcontainer" *ngIf="(configAddIn.window.viewIndex==='add'||configAddIn.window.viewIndex==='edit')">
-    <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
-    <command-button testid="close-button" (onClick)="save($event)" iconName="save" title="Save"></command-button>
-    <reg-settings-page-header [isMenu]='false'>{{configAddIn.window.title}}</reg-settings-page-header>
-    <dx-scroll-view id="scrollview" [height]="gridHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
+    <div class="row padding-md">
+        <div class="col-md-12" id="addinHeader">
+            <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+            <command-button testid="close-button" (onClick)="save($event)" iconName="save" title="Save"></command-button>
+            <reg-settings-page-header [isMenu]='false'>{{configAddIn.window.title}}</reg-settings-page-header>
+        </div>
+    </div>
+    <dx-scroll-view id="scrollview" [height]="gridHeight" scrollByContent=true scrollByThumb=true showScrollbar="onHover">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
@@ -46,7 +52,8 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse in">
                     <div class="p2">
-                        <reg-addin-events-template [disabled]="!(configAddIn.editRow && configAddIn.editRow.className)" [eventSource]="configAddIn.editRow" [addinName]="configAddIn.editRow.className" [addinAssemblies]="configAddIn.addinAssemblies"></reg-addin-events-template>
+                        <reg-addin-events-template [disabled]="!(configAddIn.editRow && configAddIn.editRow.className)" [eventSource]="configAddIn.editRow"
+                            [addinName]="configAddIn.editRow.className" [addinAssemblies]="configAddIn.addinAssemblies"></reg-addin-events-template>
                     </div>
                 </div>
             </div>
@@ -55,13 +62,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
                     <a class="list-header tan" data-toggle="collapse" href="#collapseThree">Configuration</a>
-                    <command-button class="right mr3" [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()" iconName="close" title="Cancel Edit"></command-button>
-                    <command-button class="right mr3" [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()" iconName="edit" title="Edit Config"></command-button>
-                    <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()" iconName="save" title="Save Config"></command-button>
+                    <command-button class="right mr3" [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()"
+                        iconName="close" title="Cancel Edit"></command-button>
+                    <command-button class="right mr3" [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()"
+                        iconName="edit" title="Edit Config"></command-button>
+                    <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()"
+                        iconName="save" title="Save Config"></command-button>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse in">
                     <div class="p2">
-                        <dx-text-area id='addinConfigTextArea' *ngIf="configAddIn.configView==='view'" [readOnly]="true" [autoResizeEnabled]="true" [(value)]="configAddIn.editRow.Configuration"></dx-text-area>
+                        <dx-text-area id='addinConfigTextArea' *ngIf="configAddIn.configView==='view'" [readOnly]="true" [autoResizeEnabled]="true"
+                            [(value)]="configAddIn.editRow.Configuration"></dx-text-area>
                         <dx-form minColWidth=300 *ngIf="configAddIn.configView==='edit'" [colCount]="1" [formData]="configAddIn.editRow" [items]="configAddIn.columns.editColumn.config"></dx-form>
                     </div>
                 </div>
