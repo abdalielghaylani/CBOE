@@ -64,13 +64,8 @@ formgroup = Request("formgroup")
 	    //alert(formmode.toLowerCase())
 	    var win;
 	    
-	    if (formmode.toLowerCase() == "edit") {
-	        top.main.TabFrame.focus();
-	        win = top.main.TabFrame;
-	    } else {
-	        parent.frames["main"].focus();
-	        win = parent.frames["main"];
-	    }
+	    parent.frames["main"].focus();
+	    win = parent.frames["main"];	    
 		
 	    if (/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)) {
 	        win.print();
