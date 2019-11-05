@@ -64,7 +64,12 @@ Sub GetSubstanceAttributesFromDb(pCompoundID)
 		end if
 	
 		' Substance attributes
+		if IsNull(RS("base64_cdx")) or IsEmpty(RS("base64_cdx")) then
+		'set the structure to blank cdx if no structure in substance
+		dbStructure = BlankBase64CDX
+		else
 		dbStructure = RS("base64_cdx")
+		end if
 		dbRegisterIfConflicts = "false"
 		dBCompoundID = Cstr(RS("Compound_ID").value)
 		Location_Description = RS("Location_Description").value
