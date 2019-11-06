@@ -318,9 +318,7 @@ If bHitsFound then
 	'CSBR 148717 SJ Sorting the date for search results
 	'Start of change
 	If LCase(Left(SortByFieldName,5))="date_" then	
-        SQL = SQL & " ORDER BY to_date(" & SortbyFieldName & ",'" & dateFormatString & "') " & SortDirectionTxt  
-     Else
-        SQL = SQL & " ORDER BY Upper(" & SortbyFieldName & " ) " & SortDirectionTxt
+        SQL = SQL & " ORDER BY to_date(" & SortbyFieldName & ",'" & dateFormatString & "') " & SortDirectionTxt     
      End If
      'End of change			  
 	' DGB Execute via command
