@@ -64,8 +64,20 @@ formgroup = Request("formgroup")
 	    //alert(formmode.toLowerCase())
 	    var win;
 	    
+	    if(formmode.toLowerCase() == "edit" && formgroup.toLowerCase() != "substances_form_group") {
+		if(formgroup.toLowerCase() == "plates_form_group") {
+		top.main.TabFrame.plateFrame.focus();
+		win = top.main.TabFrame.plateFrame;	
+		}
+		else {
+		top.main.TabFrame.focus();
+		win = top.main.TabFrame;
+		}
+		}
+		else {
 	    parent.frames["main"].focus();
 	    win = parent.frames["main"];	    
+		}	    
 		
 	    if (/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)) {
 	        win.print();
