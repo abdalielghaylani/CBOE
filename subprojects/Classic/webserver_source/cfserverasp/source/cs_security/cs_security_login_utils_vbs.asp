@@ -121,7 +121,11 @@ Sub AuthenticateUserFromRequest(dbKey)
 	
 	End if
 	
-	
+
+	if(Request.Cookies("Azure_Token").Item <> "") then
+		Session("UserID" & dbKey) = Request.Cookies("Azure_Token").Item 
+	end if
+		
 	' Credentials found.  Try to authenticate
 	if Len(Session("UserName" & dbKey))>0 AND Len(Session("UserID" & dbKey))>0 then
 		isValid = 0

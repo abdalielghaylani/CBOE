@@ -51,6 +51,11 @@ public partial class _Default : System.Web.UI.Page
 
                         Response.Cookies.Add(authCookie);
                         Response.Cookies["COESSO"].Value = ticket.ToString();
+
+                        HttpCookie azureCookie = new HttpCookie("Azure_Token");
+                        azureCookie.Value = Utilities.token;
+                        Response.Cookies.Add(azureCookie);
+                        
                     }
 
                     Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));

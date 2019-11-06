@@ -51,8 +51,15 @@ End Function
 Function GetCS_SecurityConnection(dbKey)
 	Dim ConnStr
 	Dim Conn
-	ConnStr = "FILE NAME=" & Application("CS_SECURITY_UDL_PATH") & ";User ID=" & Session("UserName" & dbkey) & ";Password=" & Session("UserID" & dbkey)
-	'Response.Write "ConnString=" & ConnStr
+	if(Request.Cookies("CS_SEC_Azure").Item <> "") then
+		UserName =  Application("SEC_USERNAME")
+		UserID = Application("SEC_PWD")
+	else
+		UserName = Session("UserName" & dbkey)
+		UserID = Session("UserID" & dbkey)
+    end if
+	ConnStr = "FILE NAME=" & Application("CS_SECURITY_UDL_PATH") & ";User ID=" & UserName & ";Password=" & UserID
+	
 	'Response.End
 	Set Conn = Server.CreateObject("ADODB.Connection")
 	Conn.Open ConnStr
