@@ -3568,6 +3568,7 @@ End If
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>accessdenied.html</td><td>AllOtherFiles4</td><td>ACCESS~1.HTM|AccessDenied.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_MANAGER_FILES&gt;\AccessDenied.html</td><td>1</td><td/></row>
 		<row><td>appl.vbs1</td><td>AllOtherFiles50</td><td>Appl.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>21</td><td/></row>
 		<row><td>appl1.vbs1</td><td>AllOtherFiles50</td><td>Appl1.vbs</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>21</td><td/></row>
 		<row><td>cambridgesoft.coe.chembioviz</td><td>Bin</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.ChemBioViz.Services.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BUILDPROJECTROOT&gt;\Registration\PresentationTier\Registration.Server\bin\CambridgeSoft.COE.ChemBioViz.Services.dll</td><td>1</td><td/></row>
