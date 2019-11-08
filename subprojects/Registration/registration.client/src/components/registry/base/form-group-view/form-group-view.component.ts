@@ -6,6 +6,8 @@ import { CViewGroup, CViewGroupContainer, IRegistryRecord } from '../registry-ba
 import { IViewControl } from '../../../common';
 import { IFormGroup, IForm, ICoeForm, PrivilegeUtils } from '../../../../common';
 import { IAppState } from '../../../../redux';
+import { CdjsService } from '../../../../services';
+
 
 @Component({
   selector: 'reg-form-group-view',
@@ -28,7 +30,8 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Input() invContainers: IInventoryContainerList;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {
+  constructor(private ngRedux: NgRedux<IAppState>, public cdjsService: CdjsService) {
+    this.cdjsService.loadCdjsScript();
   }
 
   ngOnChanges() {

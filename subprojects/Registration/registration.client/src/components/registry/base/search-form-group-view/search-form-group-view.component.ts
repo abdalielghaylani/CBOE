@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 import { RegFormGroupView } from '../form-group-view';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
+import { CdjsService } from '../../../../services';
+
 
 @Component({
   selector: 'reg-search-form-group-view',
@@ -11,7 +13,7 @@ import { IAppState } from '../../../../redux';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegSearchFormGroupView extends RegFormGroupView {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    super(ngRedux);
+  constructor(ngRedux: NgRedux<IAppState>, public cdjsService: CdjsService) {
+    super(ngRedux, cdjsService);
   }
 }
