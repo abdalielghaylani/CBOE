@@ -54,6 +54,9 @@ Function GetCS_SecurityConnection(dbKey)
 	if(Request.Cookies("CS_SEC_Azure").Item <> "") then
 		UserName =  Application("SEC_USERNAME")
 		UserID = Application("SEC_PWD")
+		if( Application("CS_SEC_Azure") = "") then
+			Application("CS_SEC_Azure") = "Azure"
+		end if
 	else
 		UserName = Session("UserName" & dbkey)
 		UserID = Session("UserID" & dbkey)
