@@ -73,7 +73,12 @@ body
                          break;
                  }
              }
-             document.attachEvent("onkeydown", onkeydown_handler);
+             if (navigator.userAgent.toLowerCase().indexOf('msie') != -1) {
+                 document.attachEvent("onkeydown", onkeydown_handler);
+             }
+             else {
+                 document.addEventListener("keydown", onkeydown_handler,false);
+             }
     </script> 
         <iframe id="ParentDiv" class="BackgroundHidden" frameborder="0" scrolling="no"></iframe>
         <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="false" DisplayAfter="20">
