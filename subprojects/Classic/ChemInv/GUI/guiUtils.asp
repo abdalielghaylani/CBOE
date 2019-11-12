@@ -48,11 +48,11 @@ if isObject(session) then
         set SSOobj1 = Server.CreateObject("CambridgeSoft.COE.Security.Services.SingleSignOnCom")
         UserName = SSOobj1.GetUserFromTicket(SSOticket)
         UserID = getUserIDfromString(SSOobj1.GetUserDataFromTicket(SSOticket))
-        UserID = CryptVBS(UserID, UserID)
+		UserID = CryptVBS(UserID, UserID)	
         Response.Cookies("CS_SEC_UserName")=UserName
         Response.Cookies("CS_SEC_UserID")=UserID
     end if
-end if 
+end if
 'Restamp Credentials cookie
 if Len(UserName) > 0 then ProlongCookie "CS_SEC_UserName", UserName, Application("CookieExpiresMinutes")
 if Len(UserID) > 0 then ProlongCookie "CS_SEC_UserID", UserID, Application("CookieExpiresMinutes")

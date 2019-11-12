@@ -37,6 +37,8 @@ public partial class _Default : System.Web.UI.Page
                 COEMembershipProvider sso = new COEMembershipProvider();
                 if (sso.ValidateUser(Utilities.user, Utilities.token))
                 {
+                    HttpContext.Current.Session["UserName"] = Utilities.user;
+                    HttpContext.Current.Session["UserID"] = Utilities.token;
                     HttpCookie authCookie = FormsAuthentication.GetAuthCookie(Utilities.user, false);
                     if (!String.IsNullOrEmpty(HttpContext.Current.Session["SSOTicket"].ToString()))
                     {
@@ -49,16 +51,19 @@ public partial class _Default : System.Web.UI.Page
 
                         Response.Cookies.Add(authCookie);
                         Response.Cookies["COESSO"].Value = ticket.ToString();
+
+                        HttpCookie azureCookie = new HttpCookie("Azure_Token");
+                        azureCookie.Value = Utilities.token;
+                        Response.Cookies.Add(azureCookie);
+                        
                     }
 
                     Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
                 }
                 else
                 {
-                    HttpContext.Current.GetOwinContext().Authentication.SignOut(
-                       OpenIdConnectAuthenticationDefaults.AuthenticationType,
-                       CookieAuthenticationDefaults.AuthenticationType);
                     Utilities.token = string.Empty;
+                    Response.Redirect(this.Page.ResolveUrl("~/AccessDenied.html"));
                 }
             }
         }

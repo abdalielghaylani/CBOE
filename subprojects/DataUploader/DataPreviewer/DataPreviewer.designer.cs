@@ -60,7 +60,7 @@ namespace DataPreviewer
             this.rtbParsedStructure = new System.Windows.Forms.RichTextBox();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.splitHRight = new System.Windows.Forms.SplitContainer();
-            this.axChemDrawCtl2 = new AxChemDrawControl17.AxChemDrawCtl();
+            this.axChemDrawCtl2 = new AxChemDrawControl19.AxChemDrawCtl();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParsedData)).BeginInit();
@@ -388,7 +388,7 @@ namespace DataPreviewer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsBtn_ParseSpecific;
         private System.Windows.Forms.ToolStripMenuItem recreateSDRecToolStripMenuItem;
-        private AxChemDrawControl17.AxChemDrawCtl axChemDrawCtl2;
+        private AxChemDrawControl19.AxChemDrawCtl axChemDrawCtl2;
         private System.Windows.Forms.ToolStripTextBox tsText_Indices;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripComboBox tsCbo_Files;

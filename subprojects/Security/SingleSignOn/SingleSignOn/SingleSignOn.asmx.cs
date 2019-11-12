@@ -13,76 +13,78 @@ using System.Xml;
 using CambridgeSoft.COE.Security.Services.Utlities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace CambridgeSoft.COE.Security.Services
 {
 
-	/// <summary>
-	/// The SingleSignOn allows you to Authenticate a user and receive an authentication ticket.
-	/// It then allows you to get data from that ticket.
-	/// </summary>
-	/// 
-	/// <example>
-	/// <code>
-	/// // Create the class for single sign on
-	/// SingleSignOn.SingleSignOn aws = new SingleSignOn.SingleSignOn();
-	/// 
-	/// // Authenticate user named John with his password but don't get a ticket
-	/// bool authenticated = aws.Authenticate("John", "password");
-	/// 
-	/// // Authenticate user named John with his password and get a ticket
-	/// string encryptedAuth = aws.GetAuthenticatedTicket("John", "password");
-	///
-	/// //Get the expiration date of the ticket
-	/// string expiration = aws.GetTicketExpirationDate(encryptedAuth).ToString();
-	/// </code>
-	/// </example>
+    /// <summary>
+    /// The SingleSignOn allows you to Authenticate a user and receive an authentication ticket.
+    /// It then allows you to get data from that ticket.
+    /// </summary>
+    /// 
+    /// <example>
+    /// <code>
+    /// // Create the class for single sign on
+    /// SingleSignOn.SingleSignOn aws = new SingleSignOn.SingleSignOn();
+    /// 
+    /// // Authenticate user named John with his password but don't get a ticket
+    /// bool authenticated = aws.Authenticate("John", "password");
+    /// 
+    /// // Authenticate user named John with his password and get a ticket
+    /// string encryptedAuth = aws.GetAuthenticatedTicket("John", "password");
+    ///
+    /// //Get the expiration date of the ticket
+    /// string expiration = aws.GetTicketExpirationDate(encryptedAuth).ToString();
+    /// </code>
+    /// </example>
 
 
-	[WebService(Namespace = "http://cambridgesoft.com/")]
-	[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-	public class SingleSignOn : System.Web.Services.WebService
-	{
+    [WebService(Namespace = "http://cambridgesoft.com/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    public class SingleSignOn : System.Web.Services.WebService
+    {
 
-		SingleSignOnProvider ssop = new SingleSignOnProvider();
-		ICOESSO objSSO;
-		private SSOConfigurationExemptUsersCollection exemptUsersList =  SSOConfigurationProvider.GetConfig().ExemptUsers;
-		static readonly Int32 _timeOut = GetTimeOut();
+        SingleSignOnProvider ssop = new SingleSignOnProvider();
+        ICOESSO objSSO;
+        private SSOConfigurationExemptUsersCollection exemptUsersList = SSOConfigurationProvider.GetConfig().ExemptUsers;
+        static readonly Int32 _timeOut = GetTimeOut();
 
 
 
-		private Int32 TimeOut = 20;
+        private Int32 TimeOut = 20;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SingleSignOn"/> class.
-		/// </summary>
-		//public SingleSignOn()
-		//{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleSignOn"/> class.
+        /// </summary>
+        //public SingleSignOn()
+        //{
 
-			//Uncomment the following line if using designed components 
-			//InitializeComponent(); 
-		//}
-		
-		/// <summary>
-		/// Get an encrypted authentication ticket.
-		/// </summary>
-		/// <param name="userName">The userName you wish to authenticate.</param>
-		/// <param name="password">The password for the userName you wish to authenticate.</param>
-		/// <returns><c>Encrypted Ticket</c> as a string for a valid user</returns>
-		[WebMethod(Description = "Takes a userName and generates and encrypted ticket.")]
-		public string GetAuthenticationTicket(string userName, string password)
-		{
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+        //}
+
+        /// <summary>
+        /// Get an encrypted authentication ticket.
+        /// </summary>
+        /// <param name="userName">The userName you wish to authenticate.</param>
+        /// <param name="password">The password for the userName you wish to authenticate.</param>
+        /// <returns><c>Encrypted Ticket</c> as a string for a valid user</returns>
+        [WebMethod(Description = "Takes a userName and generates and encrypted ticket.")]
+        public string GetAuthenticationTicket(string userName, string password)
+        {
             bool isValidUser = ValidateUser(userName, password);
-            
-            if (isValidUser)
-			{
-				if ((_timeOut  > 0) && (_timeOut < 500))
-				{
-					TimeOut = _timeOut;
-				}
 
-				FormsAuthenticationTicket authTicket;
-				string userData = "Good";                
+            if (isValidUser)
+            {
+                if ((_timeOut > 0) && (_timeOut < 500))
+                {
+                    TimeOut = _timeOut;
+                }
+
+                FormsAuthenticationTicket authTicket;
+                string userData = "Good";
 
                 string audience = ConfigurationManager.AppSettings["Audience"];
                 if (string.IsNullOrEmpty(audience))
@@ -94,35 +96,35 @@ namespace CambridgeSoft.COE.Security.Services
                     password = GetCSPassword(userName, "AzureAD");
                 }
 
-				if((SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"] != null) && (SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"].Value.ToUpper() == "YES"))
-				{
+                if ((SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"] != null) && (SSOConfigurationProvider.GetConfig().GetSettings["ENCRYPT_USER_PASSWORDS"].Value.ToUpper() == "YES"))
+                {
                     //this is not implemented currently
-					password = password;
-					
-				}
+                    password = password;
+
+                }
                 //leaving this here in case it turns out it was used, but I don't think so
-				//userData += " | password=" + password;
+                //userData += " | password=" + password;
 
                 userData += " | cssecuritypassword=" + password;
-                
-				authTicket = new FormsAuthenticationTicket(1,
-				  userName,
-				  DateTime.Now,
-				  DateTime.Now.AddMinutes(TimeOut),
-				  true, userData, FormsAuthentication.FormsCookiePath);
-				//try putting in password
-				
-				string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-				return encryptedTicket;
-			}
-			else
-			{
 
-				//throw new Exception("Not a valid user");
-				return "INVALID_USER";
-			}
-		
-		}
+                authTicket = new FormsAuthenticationTicket(1,
+                  userName,
+                  DateTime.Now,
+                  DateTime.Now.AddMinutes(TimeOut),
+                  true, userData, FormsAuthentication.FormsCookiePath);
+                //try putting in password
+
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                return encryptedTicket;
+            }
+            else
+            {
+
+                //throw new Exception("Not a valid user");
+                return "INVALID_USER";
+            }
+
+        }
 
         /// <summary>
         /// Get an expiry date of SSO authentication.
@@ -138,27 +140,27 @@ namespace CambridgeSoft.COE.Security.Services
             return expirydate;
         }
 
-		/// <summary>
-		/// Authenticates the specified user against the default provider or specified exempt provider.
-		/// </summary>
-		/// <param name="userName">Name of the user.</param>
-		/// <param name="password">The password.</param>
-		/// <returns><c>true</c> if the user has been authenticated; otherwise returns <c>false</c></returns>
-		[WebMethod(Description = "Tells you whether a user is authenticated or not.")]
-		public bool Authenticate(string userName, string password)
-		{
+        /// <summary>
+        /// Authenticates the specified user against the default provider or specified exempt provider.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="password">The password.</param>
+        /// <returns><c>true</c> if the user has been authenticated; otherwise returns <c>false</c></returns>
+        [WebMethod(Description = "Tells you whether a user is authenticated or not.")]
+        public bool Authenticate(string userName, string password)
+        {
 
-			bool isValidUser = ValidateUser(userName, password);
+            bool isValidUser = ValidateUser(userName, password);
 
-			if (isValidUser)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+            if (isValidUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Takes a Single Sign On ticket and get the unencrypted password from it.
@@ -166,38 +168,38 @@ namespace CambridgeSoft.COE.Security.Services
         /// </summary>
         /// <param name="encryptedTicket">The encrypted ticket.</param>
         /// <returns>Unencrypted password used for classic cssecurity</returns>
-		[WebMethod(Description = "Verifies an encrypted ticket and returns cs secrutiy password (unencrypted) )")]
-		public string GetCSSecurityPwd(string encryptedTicket)
-		{
+        [WebMethod(Description = "Verifies an encrypted ticket and returns cs secrutiy password (unencrypted) )")]
+        public string GetCSSecurityPwd(string encryptedTicket)
+        {
             string password = string.Empty;
 
-			try
-			{
-				//if ticket is valid
-				if (ValidateTicket(encryptedTicket))
-				{
-					try
-					{
-						password = GetCSPasswordFromTicket(encryptedTicket);
-					}
-					catch
-					{
-						return "ERROR: NO_PASSWORD_IN_TICKET";
-					}
-				}
-				//if not then return an error
-				else
-				{
-					return "ERROR: INVALID_TICKET";
-				}
-			}
-			catch
-			{
-				return "ERROR: UNSPECIFIED";
-			}
+            try
+            {
+                //if ticket is valid
+                if (ValidateTicket(encryptedTicket))
+                {
+                    try
+                    {
+                        password = GetCSPasswordFromTicket(encryptedTicket);
+                    }
+                    catch
+                    {
+                        return "ERROR: NO_PASSWORD_IN_TICKET";
+                    }
+                }
+                //if not then return an error
+                else
+                {
+                    return "ERROR: INVALID_TICKET";
+                }
+            }
+            catch
+            {
+                return "ERROR: UNSPECIFIED";
+            }
 
             return password;
-		}
+        }
 
         private string GetCSPasswordFromTicket(string encryptedTicket)
         {
@@ -208,11 +210,11 @@ namespace CambridgeSoft.COE.Security.Services
             try
             {
                 decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-                string[] userDataArray = decryptedTicket.UserData.Split(new string[]{"|"},StringSplitOptions.RemoveEmptyEntries) ;
-                
+                string[] userDataArray = decryptedTicket.UserData.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+
                 foreach (string v in userDataArray)
                 {
-                     if (v.IndexOf("cssecuritypassword=") > 0)
+                    if (v.IndexOf("cssecuritypassword=") > 0)
                     {
                         password = v.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[1].ToString();
                         break;
@@ -227,227 +229,227 @@ namespace CambridgeSoft.COE.Security.Services
                 throw new System.Exception("Not a valid user");
             }
 
-            
+
         }
 
 
-		/// <summary>
-		/// Determines whether the specified encrypted ticket is valid.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>
-		/// 	<c>true</c> if the specified encrypted ticket is authenticated; otherwise, <c>false</c>.
-		/// </returns>
-		[WebMethod(Description = "Can be used to confrim Authentication.  Will return false if the ticket is not valid or if it is expired.")]
-		public bool ValidateTicket(string encryptedTicket)
-		{
+        /// <summary>
+        /// Determines whether the specified encrypted ticket is valid.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>
+        /// 	<c>true</c> if the specified encrypted ticket is authenticated; otherwise, <c>false</c>.
+        /// </returns>
+        [WebMethod(Description = "Can be used to confrim Authentication.  Will return false if the ticket is not valid or if it is expired.")]
+        public bool ValidateTicket(string encryptedTicket)
+        {
 
-			if (encryptedTicket.Trim().Length <= 0)
-				return false;
+            if (encryptedTicket.Trim().Length <= 0)
+                return false;
 
-			FormsAuthenticationTicket decryptedTicket;
+            FormsAuthenticationTicket decryptedTicket;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch
-			{
-				//log reason for failure or whatever here if you like
-				return false;
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch
+            {
+                //log reason for failure or whatever here if you like
+                return false;
+            }
 
-			if (decryptedTicket.Expired)
-				return false;
+            if (decryptedTicket.Expired)
+                return false;
 
-			return true;
+            return true;
 
-		}
+        }
 
 
-		/// <summary>
-		/// Renews the ticket if it is old.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>A new encrypted ticket, which should be used in place of the old one.</returns>
-		[WebMethod(Description = "Used to renew an authentication ticket to keep it alive. Returns a new ticket.")]
-		public string RenewTicketIfOld(string encryptedTicket)
-		{
+        /// <summary>
+        /// Renews the ticket if it is old.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>A new encrypted ticket, which should be used in place of the old one.</returns>
+        [WebMethod(Description = "Used to renew an authentication ticket to keep it alive. Returns a new ticket.")]
+        public string RenewTicketIfOld(string encryptedTicket)
+        {
             string returnTicket = string.Empty;
 
-			if (encryptedTicket.Trim().Length <= 0)
-				return "This is an invalid ticket";
+            if (encryptedTicket.Trim().Length <= 0)
+                return "This is an invalid ticket";
 
-			FormsAuthenticationTicket decryptedTicket;
+            FormsAuthenticationTicket decryptedTicket;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch (System.Exception err)
-			{
-				//log reason for failure or whatever here if you like
-				throw err;
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch (System.Exception err)
+            {
+                //log reason for failure or whatever here if you like
+                throw err;
+            }
 
-			if (decryptedTicket.Expired)
-			{
-			
-				returnTicket = FormsAuthentication.Encrypt(FormsAuthentication.RenewTicketIfOld(decryptedTicket));
-			}
-			else
-			{
+            if (decryptedTicket.Expired)
+            {
+
+                returnTicket = FormsAuthentication.Encrypt(FormsAuthentication.RenewTicketIfOld(decryptedTicket));
+            }
+            else
+            {
                 this.ThrowSoapEx("Your ticket was not expired.");
-			}
+            }
             return returnTicket;
-		}
+        }
 
-		/// <summary>
-		/// Renews the ticket no matter what.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>A new encrypted ticket, which should be used in place of the old one.</returns>
-		[WebMethod(Description = "Used to renew an authentication ticket to keep it alive. Returns a new ticket.")]
-		public string RenewTicket(string encryptedTicket)
-		{
+        /// <summary>
+        /// Renews the ticket no matter what.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>A new encrypted ticket, which should be used in place of the old one.</returns>
+        [WebMethod(Description = "Used to renew an authentication ticket to keep it alive. Returns a new ticket.")]
+        public string RenewTicket(string encryptedTicket)
+        {
             string returnTicket = string.Empty;
 
-			if (encryptedTicket.Trim().Length <= 0)
-				return "This is an invalid ticket";
+            if (encryptedTicket.Trim().Length <= 0)
+                return "This is an invalid ticket";
 
-			FormsAuthenticationTicket decryptedTicket;
+            FormsAuthenticationTicket decryptedTicket;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch (System.Exception err)
-			{
-				//log reason for failure or whatever here if you like
-				throw err;
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch (System.Exception err)
+            {
+                //log reason for failure or whatever here if you like
+                throw err;
+            }
 
-			try 
-			{
-				returnTicket = FormsAuthentication.Encrypt(FormsAuthentication.RenewTicketIfOld(decryptedTicket));
-			}
-			catch (System.Exception err)
-			{
-				this.ThrowSoapEx(err.Message);
-			}
+            try
+            {
+                returnTicket = FormsAuthentication.Encrypt(FormsAuthentication.RenewTicketIfOld(decryptedTicket));
+            }
+            catch (System.Exception err)
+            {
+                this.ThrowSoapEx(err.Message);
+            }
             return returnTicket;
-		}
+        }
 
-		/// <summary>
-		/// Gets the user from ticket.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>The userName from the ticket.</returns>
-		[WebMethod(Description = "Get a userName from an encrypted ticket.")]
-		public string GetUserFromTicket(string encryptedTicket)
-		{
-			FormsAuthenticationTicket decryptedTicket = null;
+        /// <summary>
+        /// Gets the user from ticket.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>The userName from the ticket.</returns>
+        [WebMethod(Description = "Get a userName from an encrypted ticket.")]
+        public string GetUserFromTicket(string encryptedTicket)
+        {
+            FormsAuthenticationTicket decryptedTicket = null;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch
-			{
-				//log reason for failure or whatever here if you like
-				this.ThrowSoapEx("Not a valid user");
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch
+            {
+                //log reason for failure or whatever here if you like
+                this.ThrowSoapEx("Not a valid user");
+            }
             return decryptedTicket.Name;
-		}
+        }
 
-		/// <summary>
-		/// Gets the user from ticket.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>The userName from the ticket.</returns>
-		[WebMethod(Description = "Get the userData from an encrypted ticket.")]
-		public string GetUserDataFromTicket(string encryptedTicket)
-		{
-			FormsAuthenticationTicket decryptedTicket = null;
+        /// <summary>
+        /// Gets the user from ticket.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>The userName from the ticket.</returns>
+        [WebMethod(Description = "Get the userData from an encrypted ticket.")]
+        public string GetUserDataFromTicket(string encryptedTicket)
+        {
+            FormsAuthenticationTicket decryptedTicket = null;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch
-			{
-				//log reason for failure or whatever here if you like
-				this.ThrowSoapEx("Not a valid user");
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch
+            {
+                //log reason for failure or whatever here if you like
+                this.ThrowSoapEx("Not a valid user");
+            }
             return decryptedTicket.UserData;
-		}
+        }
 
-		/// <summary>
-		/// Gets the expiration date/time of the authentication ticket as a string.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>The expiration date and time of the ticket</returns>
-		[WebMethod(Description = "Get a userName from an encrypted ticket.")]
-		public DateTime GetTicketExpirationDate(string encryptedTicket)
-		{
-			FormsAuthenticationTicket decryptedTicket = null;
+        /// <summary>
+        /// Gets the expiration date/time of the authentication ticket as a string.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>The expiration date and time of the ticket</returns>
+        [WebMethod(Description = "Get a userName from an encrypted ticket.")]
+        public DateTime GetTicketExpirationDate(string encryptedTicket)
+        {
+            FormsAuthenticationTicket decryptedTicket = null;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch (System.Exception e)
-			{
-				//log reason for failure or whatever here if you like
-				this.ThrowSoapEx(e.Message);
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch (System.Exception e)
+            {
+                //log reason for failure or whatever here if you like
+                this.ThrowSoapEx(e.Message);
+            }
 
             return decryptedTicket.Expiration;
-		}
+        }
 
-		/// <summary>
-		/// Gets the date date/time that the ticket was issued as a string.
-		/// </summary>
-		/// <param name="encryptedTicket">The encrypted ticket as a string.</param>
-		/// <returns>The issue date and time of the ticket</returns>
-		[WebMethod(Description = "Get a userName from an encrypted ticket.")]
-		public DateTime GetTicketIssueDate(string encryptedTicket)
-		{
-			FormsAuthenticationTicket decryptedTicket = null;
+        /// <summary>
+        /// Gets the date date/time that the ticket was issued as a string.
+        /// </summary>
+        /// <param name="encryptedTicket">The encrypted ticket as a string.</param>
+        /// <returns>The issue date and time of the ticket</returns>
+        [WebMethod(Description = "Get a userName from an encrypted ticket.")]
+        public DateTime GetTicketIssueDate(string encryptedTicket)
+        {
+            FormsAuthenticationTicket decryptedTicket = null;
 
-			try
-			{
-				decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-			}
-			catch (System.Exception e)
-			{
-				//log reason for failure or whatever here if you like
-				this.ThrowSoapEx(e.Message);
-			}
+            try
+            {
+                decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            }
+            catch (System.Exception e)
+            {
+                //log reason for failure or whatever here if you like
+                this.ThrowSoapEx(e.Message);
+            }
             return decryptedTicket.IssueDate;
-		}
+        }
 
-		/// <summary>
-		/// Confirm you can connect to the webservice
-		/// </summary>
-		/// <param name="s">The s that you are passing in.</param>
-		/// <returns>The string you input.</returns>
-		[WebMethod(Description = "I am here to make sure you can connect to me.")]
-		public string EchoString(string s)
-		{
-			return s;
-		}
+        /// <summary>
+        /// Confirm you can connect to the webservice
+        /// </summary>
+        /// <param name="s">The s that you are passing in.</param>
+        /// <returns>The string you input.</returns>
+        [WebMethod(Description = "I am here to make sure you can connect to me.")]
+        public string EchoString(string s)
+        {
+            return s;
+        }
 
-		/// <summary>
-		/// Gets the name of the cookie used for SingleSignOn from configuration.
-		/// </summary>
-		/// <returns>The name of the cookie used for the authentication.</returns>
+        /// <summary>
+        /// Gets the name of the cookie used for SingleSignOn from configuration.
+        /// </summary>
+        /// <returns>The name of the cookie used for the authentication.</returns>
         /// <remarks>This cookie is needed to be shared from classic and .Net implementations.</remarks>
-		[WebMethod(Description = "This will be used by web based applications for storing the authentication info.")]
-		public string GetCookieName()
-		{
-			return FormsAuthentication.FormsCookieName.ToString();
-		}
+        [WebMethod(Description = "This will be used by web based applications for storing the authentication info.")]
+        public string GetCookieName()
+        {
+            return FormsAuthentication.FormsCookieName.ToString();
+        }
 
         /// <summary>
         /// Checks whether the user exists in the configured provider.
@@ -456,34 +458,34 @@ namespace CambridgeSoft.COE.Security.Services
         /// <returns>
         /// <c>true</c> if the user can be found via the provider; otherwise, <c>false</c>.
         /// </returns>
-		[WebMethod(Description = "This will be used to make sure a username exists without authentication")]
-		public bool UserExists(string userName)
-		{
-			return checkUserExists(userName);
-		}
+        [WebMethod(Description = "This will be used to make sure a username exists without authentication")]
+        public bool UserExists(string userName)
+        {
+            return checkUserExists(userName);
+        }
 
-		//these are for debugging
-		///// <summary>
-		///// Test Encryption
-		///// </summary>
-		///// <param name="p">The string to encypt.</param>
-		///// <returns>encrytped string</returns>
-		//[WebMethod(Description = "Encrypt a string")]
-		//public string Encrypt(string p)
-		//{
-		//    return CambridgeSoft.COE.Security.Services.Utlities.Encryptor.Encrypt(p);
-		//}
+        //these are for debugging
+        ///// <summary>
+        ///// Test Encryption
+        ///// </summary>
+        ///// <param name="p">The string to encypt.</param>
+        ///// <returns>encrytped string</returns>
+        //[WebMethod(Description = "Encrypt a string")]
+        //public string Encrypt(string p)
+        //{
+        //    return CambridgeSoft.COE.Security.Services.Utlities.Encryptor.Encrypt(p);
+        //}
 
-		///// <summary>
-		///// Test Decryption
-		///// </summary>
-		///// <param name="p">The string to decrypt.</param>
-		///// <returns>true/false</returns>
-		//[WebMethod(Description = "Decrypt a string")]
-		//public string Decrypt(string p)
-		//{
-		//    return CambridgeSoft.COE.Security.Services.Utlities.Encryptor.Decrypt(p);
-		//}
+        ///// <summary>
+        ///// Test Decryption
+        ///// </summary>
+        ///// <param name="p">The string to decrypt.</param>
+        ///// <returns>true/false</returns>
+        //[WebMethod(Description = "Decrypt a string")]
+        //public string Decrypt(string p)
+        //{
+        //    return CambridgeSoft.COE.Security.Services.Utlities.Encryptor.Decrypt(p);
+        //}
 
         /// <summary>
         /// Gets the user information used to populate ChemBioOfficeEnterprise security interface.
@@ -499,18 +501,18 @@ namespace CambridgeSoft.COE.Security.Services
         /// <item>Middle Name</item>
         /// </list>
         /// </returns>
-		[WebMethod(Description = "Get User Information so you can manipulate locally")]
-		public XmlDocument GetUserInfo(string userName)
-		{
+        [WebMethod(Description = "Get User Information so you can manipulate locally")]
+        public XmlDocument GetUserInfo(string userName)
+        {
             XmlDocument result = new XmlDocument();
-			if (IsExemptUser(userName))
-			{
-				objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
-			}
-			else
-			{
-				objSSO = ssop.SSOChoose();
-			}
+            if (IsExemptUser(userName))
+            {
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
             try
             {
                 result = objSSO.GetUserInfo(userName);
@@ -521,26 +523,26 @@ namespace CambridgeSoft.COE.Security.Services
             }
 
             return result;
-		}
+        }
 
         /// <summary>
         ///     Same call as <see cref="GetUserInfo"/> but returns a string
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <returns>Information about the user. <see cref="GetUserInfo"/> for details.</returns>
-		[WebMethod(Description = "Get User Information so you can manipulate locally")]
-		public string GetUserInfoAsString(string userName)
-		{
+        [WebMethod(Description = "Get User Information so you can manipulate locally")]
+        public string GetUserInfoAsString(string userName)
+        {
             XmlDocument userInfo = new XmlDocument();
-			if (IsExemptUser(userName))
-			{
-				
-				objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
-			}
-			else
-			{
-				objSSO = ssop.SSOChoose();
-			}
+            if (IsExemptUser(userName))
+            {
+
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
             try
             {
                 userInfo = objSSO.GetUserInfo(userName);
@@ -549,8 +551,8 @@ namespace CambridgeSoft.COE.Security.Services
             {
                 this.ThrowSoapEx(ex.Message);
             }
-			return userInfo.InnerXml.ToString();
-		}
+            return userInfo.InnerXml.ToString();
+        }
 
         /// <summary>
         /// Determines whether a user is an exempt user based on the specified user name.
@@ -559,11 +561,11 @@ namespace CambridgeSoft.COE.Security.Services
         /// <returns>
         /// 	<c>true</c> if the user is exempt; otherwise, <c>false</c>.
         /// </returns>
-		[WebMethod(Description = "Checks whether a user is exempt")]
-		public bool IsExemptUser(string userName)
-		{
-			return CheckIsExemptUser(userName);
-		}
+        [WebMethod(Description = "Checks whether a user is exempt")]
+        public bool IsExemptUser(string userName)
+        {
+            return CheckIsExemptUser(userName);
+        }
 
         /// <summary>
         /// Looks at configuration for the default authentication provider used by SSO
@@ -574,11 +576,11 @@ namespace CambridgeSoft.COE.Security.Services
         /// <item>COELDAP</item>
         /// </list>
         /// </returns>
-		[WebMethod(Description = "Gets the default authentication provider")]
-		public string GetDefaultAuthenticationProvider()
-		{
-			return SSOConfigurationProvider.GetConfig().GetSettings["DEFAULT_PROVIDER"].Value.ToString();
-		}
+        [WebMethod(Description = "Gets the default authentication provider")]
+        public string GetDefaultAuthenticationProvider()
+        {
+            return SSOConfigurationProvider.GetConfig().GetSettings["DEFAULT_PROVIDER"].Value.ToString();
+        }
 
 
         /// <summary>
@@ -594,40 +596,40 @@ namespace CambridgeSoft.COE.Security.Services
         /// The username and password are used to authenticate against the provider before 
         /// being added to the exempt users, so the user must exist.
         /// </remarks>
-		[WebMethod(Description = "Adds an exempt user to the list")]
-		public string AddExemptUser(string userName, string password, string provider)
-		{
-			//make sure it is a valid provider
-			if (!(ssop.IsValidProvider(provider)))
-			{
-				return "ERROR: INVALID PROVIDER";
-			}
-			//objSSO = ssop.SSOChoose(provider);
-			if (!(this.ValidateUser(userName, password)))
-			{
-				return "ERROR: USER COULD NOT BE VALIDATED";
-			}
+        [WebMethod(Description = "Adds an exempt user to the list")]
+        public string AddExemptUser(string userName, string password, string provider)
+        {
+            //make sure it is a valid provider
+            if (!(ssop.IsValidProvider(provider)))
+            {
+                return "ERROR: INVALID PROVIDER";
+            }
+            //objSSO = ssop.SSOChoose(provider);
+            if (!(this.ValidateUser(userName, password)))
+            {
+                return "ERROR: USER COULD NOT BE VALIDATED";
+            }
 
-			//the make sure the user can be authenticated
-			
-			//then add it to the list
-			SSOConfigurationExemptUsersCollection euc = new SSOConfigurationExemptUsersCollection();
-			euc = exemptUsersList;
+            //the make sure the user can be authenticated
 
-			SSOConfigurationExemptUser eu = new SSOConfigurationExemptUser();
-			eu.userName = userName.ToUpper();
-			eu.ssoProvider = provider;
+            //then add it to the list
+            SSOConfigurationExemptUsersCollection euc = new SSOConfigurationExemptUsersCollection();
+            euc = exemptUsersList;
 
-			euc.Add(eu);
-			Configuration config = SSOConfig.OpenConfig();
-			SSOConfigurationProvider ssoProviderConfig = (SSOConfigurationProvider)config.GetSection("SSOConfiguration/ProviderConfiguration");
-			ssoProviderConfig.ExemptUsers = euc;
-			config.Save();
-			ConfigurationManager.RefreshSection("SSOConfiguration/ProviderConfiguration");
-			//exemptUsersList = SSOConfigurationProvider.GetConfig().ExemptUsers;
-			//exemptUsersList = euc;
-			return userName.ToUpper();
-		}
+            SSOConfigurationExemptUser eu = new SSOConfigurationExemptUser();
+            eu.userName = userName.ToUpper();
+            eu.ssoProvider = provider;
+
+            euc.Add(eu);
+            Configuration config = SSOConfig.OpenConfig();
+            SSOConfigurationProvider ssoProviderConfig = (SSOConfigurationProvider)config.GetSection("SSOConfiguration/ProviderConfiguration");
+            ssoProviderConfig.ExemptUsers = euc;
+            config.Save();
+            ConfigurationManager.RefreshSection("SSOConfiguration/ProviderConfiguration");
+            //exemptUsersList = SSOConfigurationProvider.GetConfig().ExemptUsers;
+            //exemptUsersList = euc;
+            return userName.ToUpper();
+        }
 
         /// <summary>
         /// Encrypts the string.
@@ -641,17 +643,17 @@ namespace CambridgeSoft.COE.Security.Services
             return Encryptor.Encrypt(password);
         }
 
-		private bool checkUserExists(string userName)
-		{
+        private bool checkUserExists(string userName)
+        {
             bool result = false;
-			if (CheckIsExemptUser(userName))
-			{
-				objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
-			}
-			else
-			{
-				objSSO = ssop.SSOChoose();
-			}
+            if (CheckIsExemptUser(userName))
+            {
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
             try
             {
                 result = objSSO.checkUserExists(userName);
@@ -662,26 +664,28 @@ namespace CambridgeSoft.COE.Security.Services
             }
 
             return result;
-			
-		}
-		private bool ValidateUser(string userName, string password)
-		{
+
+        }
+        private bool ValidateUser(string userName, string password)
+        {
             bool returnVal = false;
-			if (CheckIsExemptUser(userName))
-			{
-				objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
-			}
-			else
-			{
-				objSSO = ssop.SSOChoose();
-			}
+            if (CheckIsExemptUser(userName))
+            {
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
             try
             {
                 string audience = ConfigurationManager.AppSettings["Audience"];
                 string issuer = ConfigurationManager.AppSettings["Issuer"];
+                string elnAudience = ConfigurationManager.AppSettings["ELNAudience"];
+                string elnIssuer = ConfigurationManager.AppSettings["ELNIssuer"];
                 if (!string.IsNullOrEmpty(audience))
                 {
-                    returnVal = Validate(password, issuer, audience, userName);
+                    returnVal = Validate(password, issuer, audience, elnIssuer, elnAudience, userName);
                 }
                 else
                 {
@@ -694,9 +698,9 @@ namespace CambridgeSoft.COE.Security.Services
                 this.ThrowSoapEx(ex.Message);
             }
             return returnVal;
-		}
+        }
 
-        private bool Validate(string token, string issuer, string audience, string userName)
+        private bool Validate(string token, string issuer, string audience, string elnIssuer, string elnAudience, string userName)
         {
             try
             {
@@ -719,34 +723,72 @@ namespace CambridgeSoft.COE.Security.Services
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return false;
+                if (string.IsNullOrEmpty(elnIssuer))
+                {
+                    return objSSO.ValidateUser(userName, token);
+                }
+                else
+                {
+                    try
+                    {
+                        JwtSecurityToken jwt = Validate(token, elnIssuer, elnAudience);
+                        Dictionary<string, object> valueColl = jwt.Payload;
+                        if (valueColl["upn"].ToString().Split('@')[0].ToUpper() != userName.ToUpper())
+                        {
+                            return false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return objSSO.ValidateUser(userName, token);
+                    }
+                }
             }
             return true;
         }
-		private bool CheckIsExemptUser(string userName)
-		{
-			if (exemptUsersList[userName.ToUpper()] == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+
+        private JwtSecurityToken Validate(string token, string issuer, string audience)
+        {
+            ConfigurationManager<OpenIdConnectConfiguration> configManager = new ConfigurationManager<OpenIdConnectConfiguration>(issuer, new OpenIdConnectConfigurationRetriever());
+            OpenIdConnectConfiguration config = configManager.GetConfigurationAsync().Result;
+            TokenValidationParameters validationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = true,
+                ValidateIssuer = false,
+                IssuerSigningKeys = config.SigningKeys, //.net core calls it "IssuerSigningKeys" and "SigningKeys"
+                ValidateLifetime = true,
+                ValidAudience = audience
+            };
+            JwtSecurityTokenHandler tokendHandler = new JwtSecurityTokenHandler();
+            SecurityToken jwt;
+            var result = tokendHandler.ValidateToken(token, validationParameters, out jwt);
+            return jwt as JwtSecurityToken;
+        }
+
+        private bool CheckIsExemptUser(string userName)
+        {
+            if (exemptUsersList[userName.ToUpper()] == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private string GetCSPassword(string userName, string password)
         {
             string pwd = string.Empty;
-			if (CheckIsExemptUser(userName))
-			{
-				objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
-			}
-			else
-			{
-				objSSO = ssop.SSOChoose();
-			}
+            if (CheckIsExemptUser(userName))
+            {
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
             try
             {
                 pwd = objSSO.GetCSSecurityPassword(userName, password);
@@ -757,21 +799,21 @@ namespace CambridgeSoft.COE.Security.Services
             }
             return pwd;
         }
-		private string GetExemptUserProvider(string userName)
-		{
-			return exemptUsersList[userName.ToUpper()].ssoProvider;
-		}
-		private static int GetTimeOut()
-		{
-			Int32 tout = 20;
-			if (SSOConfigurationProvider.GetConfig().GetSettings["TICKET_TIMEOUT"] != null)
-			{
-				tout = Convert.ToInt32(SSOConfigurationProvider.GetConfig().GetSettings["TICKET_TIMEOUT"].Value.ToString());
-			} 
+        private string GetExemptUserProvider(string userName)
+        {
+            return exemptUsersList[userName.ToUpper()].ssoProvider;
+        }
+        private static int GetTimeOut()
+        {
+            Int32 tout = 20;
+            if (SSOConfigurationProvider.GetConfig().GetSettings["TICKET_TIMEOUT"] != null)
+            {
+                tout = Convert.ToInt32(SSOConfigurationProvider.GetConfig().GetSettings["TICKET_TIMEOUT"].Value.ToString());
+            }
 
-			return tout;
-		
-		}
+            return tout;
+
+        }
 
         private void ThrowSoapEx(string message)
         {
@@ -791,17 +833,24 @@ namespace CambridgeSoft.COE.Security.Services
 
         private int GetExpiryDate(string userName, string password)
         {
-            if (CheckIsExemptUser(userName))
+            string audience = ConfigurationManager.AppSettings["Audience"];
+            if (string.IsNullOrEmpty(audience))
             {
-                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+                if (CheckIsExemptUser(userName))
+                {
+                    objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+                }
+                else
+                {
+                    objSSO = ssop.SSOChoose();
+                }
+                return objSSO.GetCSExpiryDate(userName, password);
             }
             else
             {
-                objSSO = ssop.SSOChoose();
+                return Convert.ToInt16(ConfigurationManager.AppSettings.Get("DaysToExpire"));
             }
-            return objSSO.GetCSExpiryDate(userName,password);
         }
-    
     }
 }
 

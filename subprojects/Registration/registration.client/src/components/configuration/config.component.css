@@ -1,3 +1,7 @@
+/deep/ #addinHeader .btn-group.btn-group-xs.pull-right.m1 {
+  margin-top: 25px !important;
+}
+
 /deep/ #configTable .dx-texteditor-buttons-container .dx-clear-button-area {
   display: none;
 }

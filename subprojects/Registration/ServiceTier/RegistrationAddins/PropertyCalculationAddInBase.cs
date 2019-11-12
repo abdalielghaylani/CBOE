@@ -5,7 +5,7 @@ using System.Text;
 
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Registration.Services.AddIns;
-using ChemDrawControl18;
+using ChemDrawControl19;
 
 namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
 {

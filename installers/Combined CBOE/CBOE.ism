@@ -362,7 +362,7 @@
 		<row><td>BLOB_Server_File</td><td>{0C417950-8B04-43E0-A91A-4E3FC48CAA68}</td><td>NEW_DIRECTORY2</td><td>0</td><td/><td>blob.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>BLOB_Server_File1</td><td>{51DBE9C0-A7BD-47E0-951B-0B4DC07C444B}</td><td>NEW_DIRECTORY12</td><td>8</td><td/><td>blob.dll2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Base64Decoder_Server</td><td>{14A04A95-6125-4789-B430-9B6D8140489C}</td><td>_E449D8AD_0E1F_4BF4_A290_01277DBFA9D7_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Base64Decoder_Server_File</td><td>{D881AAA7-ECF5-4223-971A-162F32461055}</td><td>NEW_DIRECTORY1</td><td>0</td><td/><td>base64decode.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Base64Decoder_Server_File</td><td>{D881AAA7-ECF5-4223-971A-162F32461055}</td><td>NEW_DIRECTORY1</td><td>24</td><td/><td>base64decode.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Binary.dll</td><td>{8081CD86-09B5-4A39-8519-37D41E44ED54}</td><td>DLLS</td><td>8</td><td/><td>binary.dll</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Blob.dll</td><td>{4D801907-C1E4-4841-AC0E-BBC90D9A659D}</td><td>DLLS</td><td>8</td><td/><td>blob.dll1</td><td>20</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>COEHeaderServer_Server</td><td>{A7C84181-4951-4BFC-863F-C05C247A59C9}</td><td>_5E699E74_0681_47B6_AF46_24D5B10DF576_</td><td>0</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -810,8 +810,8 @@
 		<row><td>SettingCDD</td><td>Text_hostName</td><td>Text</td><td>112</td><td>55</td><td>87</td><td>13</td><td>65539</td><td/><td>##TEXT_HOST_NAME##</td><td>Text_serverPort</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_serverPort</td><td>Text</td><td>42</td><td>94</td><td>48</td><td>10</td><td>3</td><td/><td>##LABEL_PORT##</td><td>Back</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_serverType</td><td>Text</td><td>42</td><td>55</td><td>55</td><td>13</td><td>65539</td><td/><td>##NEW_STRING60##</td><td>Text_sslPwd</td><td/><td/><td/><td/><td/></row>
-		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Text</td><td>42</td><td>140</td><td>73</td><td>16</td><td>65539</td><td/><td>##LABEL_SSL_CERT##</td><td>Text_serverType</td><td/><td/><td/><td/><td/></row>
-		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Text</td><td>42</td><td>180</td><td>60</td><td>12</td><td>65539</td><td/><td>##LABEL_SSL_PWD##</td><td>Text_virtualDirectory</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Text</td><td>41</td><td>141</td><td>121</td><td>16</td><td>65539</td><td/><td>##LABEL_SSL_CERT##</td><td>Text_serverType</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Text</td><td>42</td><td>180</td><td>100</td><td>12</td><td>65539</td><td/><td>##LABEL_SSL_PWD##</td><td>Text_virtualDirectory</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_virtualDirectory</td><td>Text</td><td>112</td><td>95</td><td>87</td><td>13</td><td>65539</td><td/><td>##LABEL_VIRTUAL_DIRECTORY##</td><td>Text_hostName</td><td/><td/><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_BACK##</td><td>Finish</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Cancel</td><td>PushButton</td><td>301</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_CANCEL##</td><td>Back</td><td/><td>0</td><td/><td/><td/></row>
@@ -1188,8 +1188,8 @@
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>InstallAbsent</td><td>CBOE="yes"</td><td>2</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>4</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>DoAction</td><td>Removechemscript</td><td>Not Installed</td><td>3</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SettingCDD</td><td>CBOE="yes"</td><td>4</td></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>SplashBitmap</td><td>AgreeToLicense = "Yes"</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>1</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
@@ -1258,9 +1258,10 @@
 		<row><td>SettingCDD</td><td>Back</td><td>[IS_BROWSE_FILEBROWSED]</td><td>[SERVER_SSL_PATH]</td><td>1</td><td>2</td></row>
 		<row><td>SettingCDD</td><td>Canel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1 </td><td>1</td></row>
 		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>443</td><td>SERVER_TYPE="https"</td><td>2</td></row>
-		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>81</td><td>SERVER_TYPE="http"</td><td>1</td></row>
-		<row><td>SettingCDD</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535</td><td>1</td></row>
-		<row><td>SettingCDD</td><td>Next</td><td>[SERVER_SSL_PATH]</td><td>[IS_BROWSE_FILEBROWSED]</td><td>1</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>80</td><td>SERVER_TYPE="http"</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>DoAction</td><td>ValidationCheck</td><td>1</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535 AND NEXTUI="yes"</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>[SERVER_SSL_PATH]</td><td>[IS_BROWSE_FILEBROWSED]</td><td>1</td><td>3</td></row>
 		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>DoAction</td><td>SelectPFX</td><td>1</td><td>1</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>EndDialog</td><td>Return</td><td>1</td><td>2</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>[Suspend]</td><td>{}</td><td>1</td><td>1</td></row>
@@ -3317,41 +3318,44 @@ For Each strSubkey In arrSubkeys
                GUID =  Mid(str, instr(str, "{"), 38)
 			   If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(300000000)          
-					Exit For
+					Sleep(300000000)    
+					dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop
+           		    Exit For
 			   End If
 		End If 
 Next
 
-dteWait = DateAdd("s", 10, Now())
-Do Until (Now() &gt; dteWait)
-Loop
 
 </td><td/><td/></row>
 		<row><td>RemoveChemDraw</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait,CDVersion
+Dim strK ,strorVal,dteWait,CDVersion,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer="."
 strKey = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
 strEntry1b = "QuietDisplayName"
-CDVersion = "PerkinElmer ChemDraw ActiveX Enterprise Constant NA 18.0"
+CDVersion = "PerkinElmer ChemDraw ActiveX Enterprise Constant 18.0"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys 
 strValue1=""
 For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-        If strValue1 = CDVersion  then
+        If ((strValue1 = CDVersion ) Or (strValeu1= "PerkinElmer ChemDraw ActiveX Enterprise Constant 18.1")) then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-			   If GUID&lt;&gt;"" then
+               If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-                    Sleep(30000000)   
+                    Sleep(300000000)   
+                    delKey="HKLM\"&amp;strKey&amp;strSubKey
+                    delKey="reg delete " &amp;delKey &amp; " /f"                               
+                    WshShell.Run(delKey)
                Exit For
 	           End If
         End If
@@ -3365,7 +3369,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 For Each strSubkey In arrSubkeys
      objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
      Set WSHShell = CreateObject("WScript.Shell")
-     If strValue1 = CDVersion then
+     If  ((strValue1 = CDVersion ) Or (strValeu1= "PerkinElmer ChemDraw ActiveX Enterprise Constant 18.1")) then
 		 strEntry1b = "UninstallString"
        	 RawGUID = ""
 		 GUID = ""
@@ -3394,8 +3398,25 @@ Set objVirtualDir = objWebServer.Delete("IISWebVirtualDir", "CBOEHelp")
 
 
 </td><td/><td/></row>
+		<row><td>RemoveChemOfficeSupport</td><td>38</td><td/><td>On Error resume next
+Dim strK ,strorVal,dteWait,delKey
+Dim WSHShell
+Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
+strComputer="."
+strValue1=""
+Set WSHShell = CreateObject("WScript.Shell")
+GUID = "reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{730CDFD0-74B5-4677-AAA0-1DB120211A9A}  /f"
+WSHShell.Exec(GUID)
+
+
+			
+		
+
+
+</td><td/><td/></row>
+		<row><td>RemoveChemSupport</td><td>1</td><td>ISSetup.dll</td><td>f21</td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>38</td><td/><td>On error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 strComputer="."
@@ -3405,7 +3426,7 @@ strEntry1b = "QuietDisplayName"
 Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
 objReg.EnumKey HKLM, strKey, arrSubkeys   
  For Each strSubkey In arrSubkeys
-        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1                                                 
+        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
         If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018")) then
                strEntry1b = "UninstallString"        
@@ -3413,30 +3434,16 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
                GUID = ""
                objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
                GUID =  Mid(str, instr(str, "{"), 38)
-               If GUID&lt;&gt;"" then
-					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)
+			   If GUID&lt;&gt;"" then
+					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")								                          
+                    Sleep(300000000)
+                    dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop
                Exit For
 			   End If
 		End If
  Next 
- 
-  For Each strSubkey In arrSubkeys
-        objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-        Set WSHShell = CreateObject("WScript.Shell")
-        If ((strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0")) then
-               strEntry1b = "UninstallString"        
-               RawGUID = ""
-               GUID = ""
-               objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-               GUID =  Mid(str, instr(str, "{"), 38)
-			   If GUID&lt;&gt;"" then
-					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)
-               Exit For
-			   End If
-		End If
- Next
 strValue1=""
 strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
 strEntry1a = "DisplayName"
@@ -3446,7 +3453,7 @@ objReg.EnumKey HKLM, strKey, arrSubkeys
 For Each strSubkey In arrSubkeys
       objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
       Set WSHShell = CreateObject("WScript.Shell")
-      If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018") Or (strValue1 = "CambridgeSoft ChemDraw Ultra 12.0")) then
+      If ((strValue1 = "PerkinElmer ChemOffice Professional 2015") Or (strValue1 = "PerkinElmer ChemOffice Professional 2017") Or (strValue1 = "PerkinElmer ChemOffice Suite 2018")) then
 			strEntry1b = "UninstallString"
 			RawGUID = ""
 			GUID = ""
@@ -3454,39 +3461,13 @@ For Each strSubkey In arrSubkeys
             GUID =  Mid(str, instr(str, "{"), 38)
             If GUID&lt;&gt;"" then
 				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-				Sleep(300000000)
-			Exit For
-			End If
-     End If
-Next
-
-strValue1=""
-strKey = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"
-strEntry1a = "DisplayName"
-strEntry1b = "QuietDisplayName"
-Set objReg = GetObject("winmgmts://" &amp; strComputer &amp; "/root/default:StdRegProv")
-objReg.EnumKey HKLM, strKey, arrSubkeys   
-For Each strSubkey In arrSubkeys
-      objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
-      Set WSHShell = CreateObject("WScript.Shell")
-      If ((strValue1 = "PerkinElmer ChemOffice 64-bit Support 18.0")) then
-			strEntry1b = "UninstallString"
-			RawGUID = ""
-			GUID = ""
-        	objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1b, str
-            GUID =  Mid(str, instr(str, "{"), 38)
-            If GUID&lt;&gt;"" then
-				WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-				Sleep(300000000)
+				Sleep(30000000)
 			Exit For
 			End If
      End If
 Next
 
 
-dteWait = DateAdd("s", 10, Now())
-Do Until (Now() &gt; dteWait)
-Loop
 
 
 
@@ -3538,6 +3519,27 @@ Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
 				SetLog "Error in removing CSDO17: " &amp; Err.Description
 			else
 				SetLog "CSDO17 removed successfully"
+			end if
+			Exit For
+		End If 
+	Next 
+	Call applications.SaveChanges 
+	Set catalog = CreateObject("COMAdmin.COMAdminCatalog")
+	Set applications = catalog.GetCollection("Applications")
+	Call applications.Populate
+	For i = applications.Count - 1 to 0 step -1
+		if ucase(applications.Item(i).Name) = "CSDO18" then 
+			catalog.ShutdownApplication("CSDO18")
+			if Err.Number &gt; 0 then
+				SetLog "Error in shutting down CSDO18: " &amp; Err.Description
+			else
+				SetLog "CSDO18 shutdown successfully"
+			end if
+			applications.Remove (i) 
+			if Err.Number &gt; 0 then
+				SetLog "Error in removing CSDO18: " &amp; Err.Description
+			else
+				SetLog "CSDO18 removed successfully"
 			end if
 			Exit For
 		End If 
@@ -3749,7 +3751,7 @@ For Each strSubkey In arrSubkeys
 
 Next</td><td/><td/></row>
 		<row><td>Removechemscript</td><td>38</td><td/><td>On Error resume next
-Dim strK ,strorVal,dteWait
+Dim strK ,strorVal,dteWait,delKey
 Dim WSHShell
 Const HKLM = &amp;H80000002 'HKEY_LOCAL_MACHINE
 Set filesys = CreateObject("Scripting.FileSystemObject")                  
@@ -3765,7 +3767,7 @@ strValue1=""
 For Each strSubkey In arrSubkeys
   objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
         Set WSHShell = CreateObject("WScript.Shell")
-        If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") ) Then
+        If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") Or (strValue1= "PerkinElmer ChemScript 18.1")) Then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
@@ -3773,7 +3775,12 @@ For Each strSubkey In arrSubkeys
                GUID =  Mid(str, instr(str, "{"), 38)
 			   If GUID&lt;&gt;"" then
 					WshShell.Run("msiexec /x " &amp; GUID &amp; " /q")
-					Sleep(30000000)          
+					dteWait = DateAdd("s", 10, Now())
+                    Do Until (Now() &gt; dteWait)
+                    Loop    
+                    delKey="HKLM\"&amp;strKey&amp;strSubKey
+                    delKey="reg delete " &amp;delKey &amp; " /f"                               
+                    WshShell.Run(delKey)      
 					Exit For
 			   End If
 		End If 
@@ -3787,7 +3794,7 @@ strValue1=""
 For Each strSubkey In arrSubkeys
  objReg.GetStringValue HKLM, strKey &amp; strSubkey, strEntry1a, strValue1
      Set WSHShell = CreateObject("WScript.Shell")        
-      If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0") ) then
+      If ((strValue1 = "PerkinElmer ChemScript 17.0") Or  (strValue1= "PerkinElmer ChemScript 17.1" ) Or (strValue1= "PerkinElmer ChemScript 18.0")  Or (strValue1= "PerkinElmer ChemScript 18.1") ) then
                strEntry1b = "UninstallString"        
                RawGUID = ""
                GUID = ""
@@ -4200,6 +4207,20 @@ Set shell = Nothing
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
 		<row><td>USERSETUP</td><td>1</td><td>ISSetup.dll</td><td>f3</td><td/><td/></row>
 		<row><td>ValidateUser</td><td>1</td><td>ISSetup.dll</td><td>f4</td><td/><td/></row>
+		<row><td>ValidationCheck</td><td>38</td><td/><td>On Error resume next
+Dim strSSLCer ,strSSLPass,strServerType
+strSSLCer = Session.Property("IS_BROWSE_FILEBROWSED")
+strSSLPass = Session.Property("SERVER_SSL_PWD")
+strServerType = Session.Property("SERVER_TYPE")
+If (strServerType="https") then
+    If (strSSLCer &lt;&gt; "" AND strSSLPass &lt;&gt; "" ) then 
+  	   Session.Property("NEXTUI")="yes"
+	else
+		Session.Property("NEXTUI") ="no"
+		Ret=MsgBox("Please fill all the required fields",48+0,"Warning")
+	End If	
+End If
+</td><td/><td/></row>
 		<row><td>WarningMessage</td><td>38</td><td/><td>MsgBox("This installer will proceed after a little bit delay ,Please stay on")</td><td/><td/></row>
 		<row><td>setAllUsersProfile2K</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%ALLUSERSPROFILE]</td><td/><td/></row>
 		<row><td>setEnableParentPaths</td><td>38</td><td/><td>
@@ -5323,8 +5344,8 @@ Set shell = Nothing
 		<col def="S255">ISReleaseFlags</col>
 		<col def="S72">DisplayName</col>
 		<row><td>Pkg1</td><td>py25.msi</td><td>{0A2C5854-557E-48C8-835A-3B9F074BDCAA}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td>INSTALLDIR="[CBOEDIR]Python25\" TARGETDIR="[CBOEDIR]Python25\" ALLUSERS=1</td><td/><td/><td>PY25</td></row>
-		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_18.1.msi</td><td>{27DBCD9A-46A5-4F78-9751-4BECCF698DC0}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemScript</td></row>
-		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>{58CD6304-94CB-4547-BA5E-39BA1CD6E9F8}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemOffice</td></row>
+		<row><td>Pkg3</td><td>PerkinElmer_ChemScript_19.0.msi</td><td>{2A057CF8-9221-40FA-991C-4FF21550BFEF}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemScript</td></row>
+		<row><td>Pkg4</td><td>PerkinElmer_ChemOffice_Suite_2019.msi</td><td>{59C3E988-295B-4CEE-817A-476869FD8BA0}</td><td>1</td><td>0</td><td>Not Installed</td><td>REMOVE="ALL"</td><td/><td/><td/><td>ChemOffice</td></row>
 	</table>
 
 	<table name="ISChainPackageData">
@@ -5335,8 +5356,8 @@ Set shell = Nothing
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>Pkg1</td><td>_87D0AEC869CB17F8E51813AA918A0F82</td><td>py25.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\Goods\py25.msi</td></row>
-		<row><td>Pkg3</td><td>_69E0E66C5389C57724EB6D1673E79E66</td><td>PerkinElmer_ChemScript_18.1.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_18.1.msi</td></row>
-		<row><td>Pkg4</td><td>_AEE8E3AB14D1579B20EB0E51F8BED7AD</td><td>PerkinElmer_ChemOffice_Suite_2018.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_Suite_2018.msi</td></row>
+		<row><td>Pkg3</td><td>_444E2D8707027FA1FFDE863C9CFBA43C</td><td>PerkinElmer_ChemScript_19.0.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemScript\PerkinElmer_ChemScript_19.0.msi</td></row>
+		<row><td>Pkg4</td><td>_E40991BC854FEB6A0509CD0BFA2AACAB</td><td>PerkinElmer_ChemOffice_Suite_2019.msi</td><td>0</td><td/><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_Suite_2019.msi</td></row>
 	</table>
 
 	<table name="ISClrWrap">
@@ -7426,6 +7447,7 @@ Set shell = Nothing
 		<row><td>f19</td><td>0</td><td>InstallPatch</td><td/></row>
 		<row><td>f2</td><td>0</td><td>EditDataLoaderMageBatchFile</td><td/></row>
 		<row><td>f20</td><td>0</td><td>InstallCDJS</td><td/></row>
+		<row><td>f21</td><td>0</td><td>RemoveChemSupport</td><td/></row>
 		<row><td>f3</td><td>0</td><td>LaunchUserSetup</td><td/></row>
 		<row><td>f4</td><td>0</td><td>ValidateUser</td><td/></row>
 		<row><td>f5</td><td>0</td><td>CreateTlb</td><td/></row>
@@ -7953,7 +7975,7 @@ Set shell = Nothing
 		<row><td>SetupFile10</td><td>Data1.cab</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Data1.cab</td></row>
 		<row><td>SetupFile11</td><td>Setup.ini</td><td/><td>0</td><td>0</td><td>&lt;WORKSPACE_ROOT&gt;\Installers\SubInstaller\Setup.ini</td></row>
 		<row><td>SetupFile12</td><td>ChemDraw-JS-Setup-18.1.exe</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\CDJS18.1\ChemDraw-JS-Setup-18.1.exe</td></row>
-		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi</td></row>
+		<row><td>SetupFile13</td><td>PerkinElmer_ChemOffice_64-bit_Support_19.0.msi</td><td/><td>0</td><td>0</td><td>&lt;New Path Variable&gt;\CBOE\Installers\PerkinElmer\ChemOffice\PerkinElmer_ChemOffice_64-bit_Support_19.0.msi</td></row>
 		<row><td>SetupFile2</td><td>ScriptMaps.vbs</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ScriptMaps.vbs</td></row>
 		<row><td>SetupFile3</td><td>ssplogon.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\ssplogon.exe</td></row>
 		<row><td>SetupFile4</td><td>usersetup.exe</td><td/><td>1033</td><td>0</td><td>&lt;New Path Variable&gt;\configiis8\usersetup\usersetup.exe</td></row>
@@ -9649,8 +9671,8 @@ Set shell = Nothing
 		<row><td>ID_STRING99</td><td>1033</td><td>BASE_CONNECTION</td><td>0</td><td/><td>-1054893369</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>337537312</td></row>
 		<row><td>LABEL_PORT</td><td>1033</td><td>Port:</td><td>0</td><td/><td>883107305</td></row>
-		<row><td>LABEL_SSL_CERT</td><td>1033</td><td>SSL certificate:</td><td>0</td><td/><td>1956899282</td></row>
-		<row><td>LABEL_SSL_PWD</td><td>1033</td><td>SSL password:</td><td>0</td><td/><td>-1809594710</td></row>
+		<row><td>LABEL_SSL_CERT</td><td>1033</td><td>SSL certificate (Required) :</td><td>0</td><td/><td>1034382276</td></row>
+		<row><td>LABEL_SSL_PWD</td><td>1033</td><td>SSL password (Required) :</td><td>0</td><td/><td>1034367940</td></row>
 		<row><td>LABEL_VIRTUAL_DIRECTORY</td><td>1033</td><td>Virtual path:</td><td>0</td><td/><td>1956869586</td></row>
 		<row><td>NEW_STRING1</td><td>1033</td><td>{&amp;ArialBlue10}NOTE: If you are performing this installation via Remote Desktop access to the server you must ensure to connect via the "console session".  To acomplish this, use the following syntax in the Remote Desktop "Computer name" box:                                                                                             YourServerName /console                                    YourServerName /admin                                       The installer may rollback after completion if not executed under the console session!</td><td>0</td><td/><td>1629450756</td></row>
 		<row><td>NEW_STRING10</td><td>1033</td><td>IP Address (Required):</td><td>0</td><td/><td>1931225186</td></row>
@@ -9908,7 +9930,7 @@ Set shell = Nothing
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
 		<row><td>COWSOURCEDIR</td><td>Not Installed And CBOE="no"</td><td>1004</td><td/><td/></row>
 		<row><td>CSCOMMONS</td><td>Not Installed And CBOE="no"</td><td>1005</td><td/><td/></row>
-		<row><td>CheckCBOE</td><td>Not Installed</td><td>7</td><td/><td/></row>
+		<row><td>CheckCBOE</td><td>Not Installed</td><td>8</td><td/><td/></row>
 		<row><td>CheckUserAcct</td><td>CREATENEWUSER = "True" And Not Installed And INSTALLUI="No" And CBOE="no"</td><td>1009</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
@@ -9919,7 +9941,7 @@ Set shell = Nothing
 		<row><td>DeleteCDXScriptMaps</td><td>Not Installed And INSTALLWSUI="No" And CBOE="no"</td><td>1017</td><td/><td/></row>
 		<row><td>DeleteChemInvObsolote</td><td>Not Installed</td><td>6737</td><td/><td/></row>
 		<row><td>DeleteServices</td><td>VersionNT</td><td>2000</td><td>DeleteServices</td><td/></row>
-		<row><td>DisableRollback</td><td/><td>6</td><td/><td/></row>
+		<row><td>DisableRollback</td><td/><td>7</td><td/><td/></row>
 		<row><td>DuplicateFiles</td><td/><td>4210</td><td>DuplicateFiles</td><td/></row>
 		<row><td>EditAppVBSFiles</td><td>Not Installed And &amp;CBVN &gt; 2 And CBOE="no"</td><td>6602</td><td/><td/></row>
 		<row><td>EditCoeFrameworkConfig</td><td>Not Installer And Not PATCH And CBOE="no"</td><td>6608</td><td/><td/></row>
@@ -9970,7 +9992,7 @@ Set shell = Nothing
 		<row><td>InstallValidate</td><td/><td>1400</td><td>InstallValidate</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
 		<row><td>LaunchConditions</td><td>Not Installed</td><td>410</td><td>LaunchConditions</td><td/></row>
-		<row><td>MachineName</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>MachineName</td><td>Not Installed</td><td>6</td><td/><td/></row>
 		<row><td>MigrateFeatureStates</td><td/><td>1024</td><td>MigrateFeatureStates</td><td/></row>
 		<row><td>MoveFiles</td><td/><td>3800</td><td>MoveFiles</td><td/></row>
 		<row><td>MsiConfigureServices</td><td>VersionMsi &gt;= "5.00"</td><td>5850</td><td>MSI5 MsiConfigureServices</td><td/></row>
@@ -10112,6 +10134,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>PatchWelcome</td><td>Installed And PATCH And Not IS_MAJOR_UPGRADE</td><td>1205</td><td>Patch Panel</td><td/></row>
 		<row><td>RMCCPSearch</td><td>Not CCP_SUCCESS And CCP_TEST</td><td>600</td><td>RMCCPSearch</td><td/></row>
 		<row><td>RemoveCDJS18.0</td><td>Not Installed</td><td>5</td><td/><td/></row>
+		<row><td>RemoveChemSupport</td><td>CBOE="yes"</td><td>1301</td><td/><td/></row>
 		<row><td>RemoveChenBioOfficeUltra</td><td>Not Installed</td><td>7</td><td/><td/></row>
 		<row><td>RemovePython</td><td>Not Installed</td><td>750</td><td/><td/></row>
 		<row><td>ResolveSource</td><td>Installed</td><td>990</td><td>ResolveSource</td><td/></row>
@@ -10443,6 +10466,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>MSIFASTINSTALL</td><td>3</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
+		<row><td>NEXTUI</td><td>yes</td><td/></row>
 		<row><td>NewProperty1</td><td>0</td><td/></row>
 		<row><td>NewProperty10</td><td>0</td><td/></row>
 		<row><td>NewProperty2</td><td>0</td><td/></row>

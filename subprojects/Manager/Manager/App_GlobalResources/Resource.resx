@@ -423,6 +423,9 @@
   <data name="GetLDAPUser_Button_Text" xml:space="preserve">
     <value>Get LDAP User</value>
   </data>
+  <data name="GetAzureUser_Button_Text" xml:space="preserve">
+    <value>Validate Azure User</value>
+  </data>
   <data name="GoTo_MenuItem_Text" xml:space="preserve">
     <value>GoTo</value>
   </data>
@@ -675,6 +678,15 @@
   <data name="PasswordCannotBeChangedLDAP_Tooptip_Text" xml:space="preserve">
     <value>Password cannot be changed here. Contact your ldap administrator.</value>
   </data>
+
+  <data name="PasswordCannotBeChangedAzure_Tooptip_Text" xml:space="preserve">
+    <value>Password cannot be changed here. Contact your Azure administrator.</value>
+  </data>
+
+  <data name="AzureValidation_Message" xml:space="preserve">
+    <value>Please validate user with Azure AD.</value>
+  </data>
+  
   <data name="PasswordRequired_Label_Text" xml:space="preserve">
     <value>Password cannot be empty</value>
   </data>

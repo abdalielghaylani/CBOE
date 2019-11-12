@@ -751,9 +751,11 @@ function CSDOGetCSDOConnection(ByVal dbkey, byval formgroup)
 			Case "17"
 				Set csconn = Server.CreateObject("CSDO17.Connection")
 			Case "18"
-				Set csconn = Server.CreateObject("CSDO18.Connection")	
+				Set csconn = Server.CreateObject("CSDO18.Connection")			
+			Case "19"
+				Set csconn = Server.CreateObject("CSDO19.Connection")	
 			Case Else
-				Set csconn = Server.CreateObject("CSDO18.Connection")
+				Set csconn = Server.CreateObject("CSDO19.Connection")
 		End Select
 
 		CSDOFillChemLinks csconn.CSChemLinks, dbkey, formgroup

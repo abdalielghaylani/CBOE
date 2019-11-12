@@ -93,6 +93,10 @@ Sub GetInvConnection()
 		Response.redirect "/ChemInv/login.asp"
 		Response.end
 	End if
+	if(Request.Cookies("CS_SEC_Azure").Item <> "" OR Application("CS_SEC_Azure") <> "" ) then
+		UserName = Application("CHEMINV_USERNAME")
+		UserID = Application("CHEMINV_PWD")
+    end if
 	connection_array = Application("base_connection" & "cheminv")
 	ConnStr =  connection_array(0) & "="  & connection_array(1) & ";" & Application("UserIDKeyword") & "=" & UserName & ";" & Application("PWDKeyword") & "=" & UserID
 	'Response.Write "<br><br><br><br>" & ConnStr

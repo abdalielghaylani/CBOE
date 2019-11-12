@@ -122,6 +122,8 @@ pipeline
                     set WORKSPACE_ROOT=${WORKSPACE}
                     "${ISCMD}" -p "${WORKSPACE}\\installers\\Combined CBOE\\CBOE.ism" -a "Product Configuration 1" -r "Release 1" -z "ProductVersion=${FULL_VERSION}"
                     xcopy "${WORKSPACE}\\installers\\Combined CBOE\\CBOE\\Product Configuration 1\\Release 1\\DiskImages\\Disk1" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}" /I /Y /S
+                    xcopy /Y "%WORKSPACE%\\subprojects\\CBOE 19.1 Hardware Software Guide.docx" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}"
+                    xcopy /Y "${WORKSPACE}\\subprojects\\CBOE 19.1 Installation Guide.docx" "${PUBLISH_PATH}\\Dev\\Release\\CBOE_${FULL_VERSION}" 
                 """
             }
         }

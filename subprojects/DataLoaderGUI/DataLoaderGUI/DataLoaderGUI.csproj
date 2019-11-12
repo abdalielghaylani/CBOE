@@ -105,9 +105,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v8.2.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.MolServer18">
-      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer18.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Interop.MolServer19, Version=19.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.MolServer19.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

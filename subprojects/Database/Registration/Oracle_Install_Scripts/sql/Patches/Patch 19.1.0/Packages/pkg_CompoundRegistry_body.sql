@@ -14714,7 +14714,8 @@ PROCEDURE SaveDuplicates(AXMLDuplicated IN clob,APersonID IN VARCHAR2:=null) IS
           LStructureValue := TakeOffAndGetClob(LStructuresToValidateList, 'Clob');
 
           -- Bypass matching for wildcard (ID < 0) and new (ID = 0) structures
-          IF NVL(LRegNumberRegID, 0) = 0 AND NVL(LDuplicatedAuxStructureID, 0) >= 0 THEN
+		      --CBOE-9298. "NVL(LRegNumberRegID, 0) = 0 AND" we removed this condition to avoid issue with showing of duplicates during update permanent record
+          IF /*NVL(LRegNumberRegID, 0) = 0 AND*/ NVL(LDuplicatedAuxStructureID, 0) >= 0 THEN
             SELECT
               extractValue(LXMLCompound, '/Component/Compound/CompoundID')
               , extractValue(LXMLCompound, '/Component/ComponentIndex')

@@ -1867,7 +1867,7 @@ Function GetContainerFieldMap()
 	fieldMapArray(3,1) = "Catalog Num"
 	fieldMapArray(4,1) = "Comments"
 	fieldMapArray(5,1) = "Concentration" 
-	fieldMapArray(6,1) = "Container ID"
+	fieldMapArray(6,1) = "Container ID/Barcode"
 	fieldMapArray(7,1) = "Cost"	 
 	fieldMapArray(8,1) = "Created"
 	fieldMapArray(9,1) = "Current User"  
@@ -1920,8 +1920,8 @@ Function GetContainerFieldMap()
 	'ColumnID is the first index from fieldMapArray above
 	'ColumnWidth is expressed in characters 
 	'The columns originally shown are: Location, Name, CAS, Status, Supplier, Size, Remaining
-	Application("ContainerReportColDef1") = "16:12|20:14|2:12|39:12|35:18|31:14|29:14"
-	Application("ContainerReportColDef2") = "16:12|20:14|2:12|39:12|35:18|31:14|29:14"
+	Application("ContainerReportColDef1") = "6:16|16:12|20:14|2:12|39:12|35:18|31:14|29:14"
+	Application("ContainerReportColDef2") = "6:16|16:12|20:14|2:12|39:12|35:18|31:14|29:14"
 	
 	GetContainerFieldMap = fieldMapArray
 End Function

@@ -31,7 +31,7 @@ using CambridgeSoft.COE.Framework.Common.Validation;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
-using ChemDrawControl18;
+using ChemDrawControl19;
 
 namespace CambridgeSoft.COE.Registration.Services.Types
 {

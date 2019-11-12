@@ -19,7 +19,7 @@ document.location.href = "/cheminv/login.asp";
 else if(check == 1 && userSessionValue == 0)
 {
 alert("Application has timed out");
-document.location.href = "/cheminv/logoff.asp";
+document.location.href = "/cheminv/Timeout.asp";
 }
 </script>
 

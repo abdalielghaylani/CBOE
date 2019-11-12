@@ -559,6 +559,13 @@ Private Sub Class_Initialize()
     'MolTable = MOL_TABLE
     bSelectMolTable = False
 	
+	' try version 19
+	Err.Clear
+    Set moMS = CreateObject("MolServer19.Document")
+    If Err.Number = 0 Then
+        miStatus = eMolServer19
+        msChemOffice = "Molserver19"
+    Else
 	' try version 18
 	Err.Clear
     Set moMS = CreateObject("MolServer18.Document")
@@ -640,6 +647,7 @@ Private Sub Class_Initialize()
 	End If
 	End If
 	End If
+	End If
 	
     
     ' Create the ChemDraw object.
@@ -648,6 +656,12 @@ Private Sub Class_Initialize()
     ' Version 10 of ChemDrawControl seems to cause crashing problems with VB6 and the GDI.  This is
     ' being enabled to fix CSBR-90766, since they are not testing with version 9.  Whether this
     ' breaks or not remains to be seen.
+	Err.Clear
+	Set moChemDraw = CreateObject("ChemDrawControl19.ChemDrawCtl")
+    If Err.Number = 0 Then
+        mbHasChemDraw = True
+        msChemOffice = msChemOffice & "ChemDraw19"
+	Else
 	Err.Clear
 	Set moChemDraw = CreateObject("ChemDrawControl18.ChemDrawCtl")
     If Err.Number = 0 Then
@@ -718,7 +732,8 @@ Private Sub Class_Initialize()
     End If
 	End If
 	End If
-	End If	
+	End If
+	End If
     
     On Error GoTo 0
     ' Set moCSDO = New CSDO7.Connection

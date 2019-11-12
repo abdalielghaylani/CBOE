@@ -17,7 +17,11 @@ using System.Reflection;
 using Csla.Web;
 using Csla.Properties;
 using CambridgeSoft.COE.Framework.Controls;
-
+using System.Threading.Tasks;
+using System.Globalization;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 public partial class EditUserUC : System.Web.UI.UserControl
 {
@@ -37,6 +41,7 @@ public partial class EditUserUC : System.Web.UI.UserControl
         {
             Session["CurrentUser"] = null;
             Session["CurrentUserList"] = null;
+            COERoleBO.roleUser = false;
             ApplyAuthorizationRules();
         }
         this.SetControlsAttributes();
@@ -134,11 +139,6 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     confirmPassword.BackColor = System.Drawing.Color.LightGray;
                     password.Enabled = false;
                     confirmPassword.Enabled = false;
-                    if (String.IsNullOrEmpty(password.Attributes["value"]))
-                    {
-                        password.Attributes["value"] = "@@@@@@@@@@AZ";
-                        confirmPassword.Attributes["value"] = "@@@@@@@@@@AZ";
-                    }
                     saveButton.Enabled = true;
                 }
                 else
@@ -173,7 +173,9 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     {
                         selectOracleUserLinkButton.Visible = false;
                         selectOracleUserLinkButton.Enabled = false;
-                        getLDAPUserButton.Visible = false;
+                        getLDAPUserButton.Visible = true;
+                        getLDAPUserButton.Enabled = true;
+                        getLDAPUserButton.Text = Resources.Resource.GetAzureUser_Button_Text;
                         CustomValidator LDAPUserValidator = (CustomValidator)((DetailsView)sender).Controls[0].FindControl("LDAPUserCustomValidator");
                         LDAPUserValidator.Enabled = false;
                         ((Forms_ContentArea_EditUser)this.Page).Master.SetPageTitle("Add User");
@@ -183,12 +185,11 @@ public partial class EditUserUC : System.Web.UI.UserControl
                         confirmPassword.BackColor = System.Drawing.Color.LightGray;
                         password.Enabled = false;
                         confirmPassword.Enabled = false;
-                        password.Attributes["value"] = "@@@@@@@@@@AZ";
-                        confirmPassword.Attributes["value"] = "@@@@@@@@@@AZ";
-                        password.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
-                        confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                        password.ToolTip = Resources.Resource.PasswordCannotBeChangedAzure_Tooptip_Text;
+                        confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedAzure_Tooptip_Text;
                         RequiredFieldValidator passwordValidator = (RequiredFieldValidator)((DetailsView)sender).Controls[0].FindControl("PasswordRequiredField");
-                        passwordValidator.Enabled = false;
+                        passwordValidator.Enabled = true;
+                        passwordValidator.ErrorMessage = Resources.Resource.AzureValidation_Message;
                         RequiredFieldValidator confirmPasswordValidator = (RequiredFieldValidator)((DetailsView)sender).Controls[0].FindControl("ConfirmPasswordRequiredField");
                         confirmPasswordValidator.Enabled = false;
                     }
@@ -364,8 +365,8 @@ public partial class EditUserUC : System.Web.UI.UserControl
                     confirmPassword.BackColor = System.Drawing.Color.LightGray;
                     password.Enabled = false;
                     confirmPassword.Enabled = false;
-                    password.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
-                    confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedLDAP_Tooptip_Text;
+                    password.ToolTip = Resources.Resource.PasswordCannotBeChangedAzure_Tooptip_Text;
+                    confirmPassword.ToolTip = Resources.Resource.PasswordCannotBeChangedAzure_Tooptip_Text;
                 }
                 else
                 {
@@ -1077,7 +1078,88 @@ public partial class EditUserUC : System.Web.UI.UserControl
     #region LDAP
     protected void LDAPButton_Clicked(object sender, EventArgs e)
     {
+        if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
+        {
+            this.DisplayErrorMessage(string.Empty);
+            TextBox UserTextBox = (TextBox)DetailsView1.Controls[0].FindControl("UserID");
+            Button getLDAPButton = (Button)DetailsView1.Controls[0].FindControl("GetLDAPUser");
+            TextBox password = (TextBox)DetailsView1.Controls[0].FindControl("Password");
+            TextBox confirmPassword = (TextBox)DetailsView1.Controls[0].FindControl("ConfirmPassword");
 
+            if (getLDAPButton.Text == Resources.Resource.Cancel_Button_Text)
+            {
+                UserTextBox.Enabled = true;
+                getLDAPButton.Text = Resources.Resource.GetAzureUser_Button_Text;
+                password.Attributes["value"] = string.Empty;
+                confirmPassword.Attributes["value"] = string.Empty;
+            }
+            else
+            {
+                ValidateUser(UserTextBox, getLDAPButton, password, confirmPassword).Wait();
+
+            }
+        }
+    }
+
+    private async Task ValidateUser(TextBox UserTextBox, Button getLDAPButton, TextBox password, TextBox confirmPassword)
+    {
+        var token = await GetTokenForApplication();
+        string userId = UserTextBox.Text + "@" + ConfigurationManager.AppSettings["Tenant"];
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var userExist = await DoesUserExistsAsync(client, userId);
+            if (userExist)
+            {
+                UserTextBox.Enabled = false;
+                getLDAPButton.Text = Resources.Resource.Cancel_Button_Text;
+                password.Attributes["value"] = GenerateAzurePassword(UserTextBox.Text);
+                confirmPassword.Attributes["value"] = GenerateAzurePassword(UserTextBox.Text);
+            }
+            else
+            {
+                this.DisplayErrorMessage("Invalid Azure user, please contact Azure Administrator"); 
+            }
+        }
+    }
+
+    private async Task<bool> DoesUserExistsAsync(HttpClient client, string user)
+    {
+        try
+        {
+            var payload = await client.GetStringAsync(ConfigurationManager.AppSettings["GraphUserAPI"] + user);
+            return true;
+        }
+        catch (HttpRequestException)
+        {
+            return false;
+        }
+    }
+
+    private static string GenerateAzurePassword(string userName)
+    {
+        Array arr = userName.ToUpper().ToCharArray();
+        Array.Reverse(arr); // reverse the string
+        char[] c = (char[])arr;
+        string newString = (new string(c));
+
+        return "7" + newString + "11C";
+    }
+
+    private static async Task<string> GetTokenForApplication()
+    {
+        string authority = String.Format(CultureInfo.InvariantCulture, ConfigurationManager.AppSettings["Authority"], ConfigurationManager.AppSettings["Tenant"]);
+        AuthenticationContext authenticationContext = new AuthenticationContext(
+            authority,
+            false);
+        Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential clientCred = new Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential(
+            ConfigurationManager.AppSettings["ClientId"],
+            ConfigurationManager.AppSettings["ClientSecret"]);
+        Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationResult authenticationResult =
+            await authenticationContext.AcquireTokenAsync(ConfigurationManager.AppSettings["GraphAPIEndPoint"], clientCred);
+        var TokenForApplication = authenticationResult.AccessToken;
+        return TokenForApplication;
     }
 
     private string ResetLDAPInsert()

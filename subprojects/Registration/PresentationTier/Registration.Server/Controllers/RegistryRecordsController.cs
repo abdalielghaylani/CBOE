@@ -278,7 +278,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             RegistryRecord registryRecord;
             if (regId > 0)
             {
-                registryRecord = RegistryRecord.GetRegistryRecord(regId);
+                string regNum = string.Empty;
+                const string REGNUMBERXPATH = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                regNode = doc.SelectSingleNode(REGNUMBERXPATH);
+                regNum = regNode.InnerText.Trim();
+                if (!string.IsNullOrEmpty(regNum))
+                {
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);                    
+                }
+                else
+                {
+                    registryRecord = RegistryRecord.GetRegistryRecord(regId);               
+                }
                 registryRecord.InitializeFromXml(data, false, false);
             }
             else
@@ -1083,7 +1094,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             switch (duplicateType)
             {
                 case RegUtilities.DuplicateType.Compound:
-                    return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
+                    XmlDocument duplicateSummaryDoc = new XmlDocument();
+                    try
+                    {
+                        duplicateSummaryDoc.LoadXml(registryRecord.FoundDuplicates);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    JObject duplicateInfo = new JObject();
+                    duplicateInfo.Add("TotalDuplicateCount", GetDuplicatesCountFromXml(duplicateSummaryDoc));
+                    return new ResponseData(null, null, null, duplicateInfo);
                 case RegUtilities.DuplicateType.Mixture:
                     duplicateActions = new JObject(new JProperty("caption", "There are duplicates of this record"),
                         new JProperty("message", "You are about to duplicate records. Do you want to proceed?"),

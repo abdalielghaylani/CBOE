@@ -30,7 +30,7 @@ export prototype CheckWebSite(HWND);
 export prototype EditCBVNMageBatchFile(HWND);
 export prototype EditDataLoaderMageBatchFile(HWND);
 export prototype CreateRegKey(HWND);
-
+export prototype RemoveChemSupport(HWND);
 export prototype EditDThreeUDL(HWND);
 export prototype EditDrugDegUDL(HWND);
 export prototype EditCoreUDL(HWND);
@@ -372,6 +372,19 @@ function CreateRegKey(hMSI)
     RegDBSetKeyValueEx(szKey,"Application",REGDB_STRING,IISROOTFOLDER^"ChemOffice\\Webserver_Source\\cfserverasp\\RPT\\reports.exe",-1);
   end;
   
+  function RemoveChemSupport(hMSI)
+     STRING szKey;
+
+begin
+    szKey   = "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{730CDFD0-74B5-4677-AAA0-1DB120211A9A}\\";
+    RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+    REGDB_OPTIONS = REGDB_OPTION_WOW64_64KEY;
+    RegDBDeleteKey (szKey) ;
+    szKey   = "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B0F2DA79-AE4A-4EA3-8B42-1419F5047FEE}\\";
+    RegDBSetDefaultRoot(HKEY_LOCAL_MACHINE); 
+    REGDB_OPTIONS = REGDB_OPTION_WOW64_64KEY;
+    RegDBDeleteKey (szKey) ;
+end;
    //
  
 
@@ -761,7 +774,7 @@ function InstallPatch(hMSI)
         MsiGetProperty(hMSI,"CBOE",strCBOE,nBuf);
         MsiGetProperty(hMSI,"COMUSERNAME",strComuser,nBuf);
         MsiGetProperty(hMSI,"APPUSERPASSWORD",strAppPass,nBuf);      
-        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_18.1.msi";                 
+        strMSIChem=strMSI + "\\PerkinElmer_ChemOffice_64-bit_Support_19.0.msi";                 
         LongPathFromShortPath(strMSIChem);
         LongPathToQuote(strMSIChem,TRUE);         
         strMSIChem ="/i " +strMSIChem + " /qb";      

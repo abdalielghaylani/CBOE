@@ -1,0 +1,17 @@
+CSFunctions = 0, 0, 0, 0, C
+CSFields = 0, 0, 0, 0, C
+CSCommands = 0, 0, 0, 0, C
+SQLLDR = 0, 0, 0, 0, C
+ADOOptions = 4, 27, 807, 433, C
+Filesystem = 0, 0, 0, 0, C
+XML = 0, 0, 0, 0, C
+SyncProcessing = 0, 0, 0, 0, C
+Base64 = -34, 11, 796, 613, C
+CSChemLinks = 176, 232, 1006, 834, C
+CSField = 198, 261, 1028, 863, C
+CSFunction = 44, 58, 874, 660, C
+CSCommand = 66, 87, 896, 689, C
+CSChemLink = 154, 203, 984, 805, C
+ChemSearchOptions = 110, 145, 940, 747, Z
+Connection = 139, 127, 639, 674, C
+Request = -8, 30, 822, 632, 

@@ -70,12 +70,11 @@ Sub WriteTableHeaderFromFieldArray2(fieldArray,  byref fieldMapArray, firstColum
 	elseif ShowBatches then
 		defaultField = "BATCHID"
 	Else
-		defaultField = "BARCODE"
+		defaultField = "CONTAINER_ID"
 	End if	
 
 	for i = 0 to Ubound(fieldMapArray)
-		if ucase(fieldMapArray(i,0)) = defaultField then 	defaultColumnIndex = i
-		i = i + 1
+		if ucase(fieldMapArray(i,0)) = defaultField then 	defaultColumnIndex = i		
 	next
 	'fieldMapArray = Application("ContainerFieldMap")
 	FirstColFieldName = fieldMapArray(defaultColumnIndex,0)

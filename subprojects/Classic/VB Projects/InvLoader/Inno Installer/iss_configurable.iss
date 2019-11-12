@@ -27,11 +27,7 @@ Source: ..\Installer\MSComCtl.ocx; DestDir: {sys}; Flags: restartreplace sharedf
 Source: ..\Installer\base64.dll; DestDir: {app}
 Source: ..\Installer\base64Decode.dll; DestDir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\RegCodeCOM11.dll; Destdir: {app}; Flags: regserver sharedfile
-Source: ..\Installer\MolServer11.dll; Destdir: {app}; Flags: regserver sharedfile
-Source: ..\Installer\MolServer14.dll; Destdir: {app}; Flags: regserver sharedfile
-Source: ..\Installer\MolServer15.dll; Destdir: {app}; Flags: regserver sharedfile
-Source: ..\Installer\MolServer17.dll; Destdir: {app}; Flags: regserver sharedfile
-Source: ..\Installer\MolServer18.dll; Destdir: {app}; Flags: regserver sharedfile
+Source: ..\Installer\MolServer19.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\InvLoader.exe; DestDir: {app}; Flags: ignoreversion
 Source: ..\Installer\invloader.pdf; DestDir: {app}
 Source: ..\Installer\reg_fields.xls; DestDir: {app}

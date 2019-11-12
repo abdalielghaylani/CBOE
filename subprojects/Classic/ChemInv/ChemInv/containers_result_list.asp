@@ -252,7 +252,7 @@ If bHitsFound then
 			nameLength = 50
 			Icon_Open = Con_Icon_sml_open
 			Icon_Clsd = Con_Icon_sml_clsd
-			WriteTableHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"),6
+			WriteTableHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"),15
 		end if
 	%>
 	</div>
@@ -286,7 +286,7 @@ If bHitsFound then
 		ListView.Licensekey = "1C71-2CE6-A49C"
 
 	if lview = 3 then
-		BuildListViewHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 6
+		BuildListViewHeaderFromFieldArray fieldArray, Application("ContainerFieldMap"), 15
 	End if	
 	BaseIDList = ""
 End if
@@ -318,9 +318,7 @@ If bHitsFound then
 	'CSBR 148717 SJ Sorting the date for search results
 	'Start of change
 	If LCase(Left(SortByFieldName,5))="date_" then	
-        SQL = SQL & " ORDER BY to_date(" & SortbyFieldName & ",'" & dateFormatString & "') " & SortDirectionTxt  
-     Else
-        SQL = SQL & " ORDER BY Upper(" & SortbyFieldName & " ) " & SortDirectionTxt
+        SQL = SQL & " ORDER BY to_date(" & SortbyFieldName & ",'" & dateFormatString & "') " & SortDirectionTxt     
      End If
      'End of change			  
 	' DGB Execute via command
@@ -368,6 +366,7 @@ If bHitsFound then
 
         SQL = SQL & " ) WHERE rnum > ?"
         Cmd.Parameters.Append Cmd.CreateParameter(, 131, 1, 0, tmin)
+		SQL = SQL & " ORDER BY " & SortbyFieldName & " " & SortDirectionTxt
     end if
 	Cmd.CommandText = SQL
 	Set RS= Server.CreateObject("ADODB.Recordset")
@@ -409,7 +408,7 @@ If bHitsFound then
 			chkboxStr = "<span id=""_" & Barcode & """><input type=checkbox name=""selectChckBox"" " & chckedStr &  " value=""" & ContainerID & """ onclick=""Removals('" & ContainerID & "', this.checked);updateDict();""" & disableChkBoxes &  "></span>" & Barcode
 			Set Listx = ListView.ListItems.Add(, , chkboxStr, Con_Icon_lrg_clsd, , , , Container_Name)
 		Else
-			Set Listx = ListView.ListItems.Add(, , Barcode, Con_Icon_lrg_clsd, Con_Icon_sml_clsd, , , Container_Name)
+			Set Listx = ListView.ListItems.Add(, , ContainerID, Con_Icon_lrg_clsd, Con_Icon_sml_clsd, , , Container_Name)
 			Listx.URL = "javascript:goFormView('/cheminv/cheminv/cheminv_form_frset.asp?formgroup=" & formgroup &  "&dbname=cheminv&formmode=edit&unique_id=" & aindex + 1 &  "' ,'" & aindex + 1 & "')"
 			'Listx.DHTML = "id=""e" & ContainerID & """ onclick=""SelectContainer(this, " & ContainerID & ", " & RS("Location_ID_FK") & "); return false;"" onmouseover=""javascript:this.style.cursor='hand'"" onmouseout=""javascript:this.style.cursor='default'"""
 			

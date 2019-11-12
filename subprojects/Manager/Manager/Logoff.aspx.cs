@@ -28,8 +28,11 @@ using Microsoft.Owin.Security.Cookies;
                         CookieAuthenticationDefaults.AuthenticationType);
                 Utilities.token = string.Empty;
             }
-            CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider memProvider = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider(); 
-            memProvider.LogOut();
+            if (string.IsNullOrEmpty(redirectUri) || Request.Cookies["COESSO"] != null)
+            {
+                CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider memProvider = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider();
+                memProvider.LogOut();
+            }
         }
     }
 

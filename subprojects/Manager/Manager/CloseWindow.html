@@ -9,13 +9,29 @@
 			{
 				try
 				{
-					if(window.opener.document.title = "CBOE Manager")
+				    if (window.opener.document != null && window.opener.document.title == "CBOE Manager")
 					{
 						window.opener.location.reload();
 						self.opener = this;
 						self.close();
 					}
-					else
+					else if (window.opener.top.opener != null)
+					{
+					    if(window.opener.top.opener.document.title == "CBOE Manager")
+					    {
+					        window.opener.top.opener.location.reload();
+					        window.opener.top.close();
+					        if (window.name != "") {
+					            self.opener = this;
+					            self.close();
+					        }
+					    }
+					    else
+					    {
+					        window.location = "Default.aspx";
+					    }
+					}
+                    else
 					{
 						window.location = "Default.aspx";
 					}
@@ -27,9 +43,9 @@
 			}
 			else if (typeof(top.opener) != 'undefined')
 			{
-			try
+			    try
 				{
-					if(top.opener.document.title = "CBOE Manager")
+					if(top.opener.document.title == "CBOE Manager")
 					{
 						top.opener.location.reload();
 						top.close();
