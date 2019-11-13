@@ -887,12 +887,12 @@ function GetAuthorizedLocation(LocationID, tempCsUserName, tempCsUserID) {
 		var arrLocations = LocationID.split(",");
 		var invalidIds = ""
 		for (i = 0; i < arrLocations.length; i++) {
-			strURL = "http://" + serverName + "/cheminv/api/GetAuthorizedLocation.asp?LocationID=" + arrLocations[i] + "&tempCsUserName=" + tempCsUserName + "&tempCsUserID=" + tempCsUserID;
+			strURL = serverType + serverName + "/cheminv/api/GetAuthorizedLocation.asp?LocationID=" + arrLocations[i] + "&tempCsUserName=" + tempCsUserName + "&tempCsUserID=" + tempCsUserID;
 			var httpResponse = JsHTTPGet(strURL)
 			if (httpResponse == 0) return httpResponse;
 		}
 	} else {
-		var strURL = "http://" + serverName + "/cheminv/api/GetAuthorizedLocation.asp?LocationID=" + LocationID + "&tempCsUserName=" + tempCsUserName + "&tempCsUserID=" + tempCsUserID;
+		var strURL = serverType + serverName + "/cheminv/api/GetAuthorizedLocation.asp?LocationID=" + LocationID + "&tempCsUserName=" + tempCsUserName + "&tempCsUserID=" + tempCsUserID;
 		var httpResponse = JsHTTPGet(strURL)
 	}
 	return httpResponse;

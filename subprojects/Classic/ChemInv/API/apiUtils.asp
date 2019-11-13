@@ -93,7 +93,7 @@ Sub GetInvConnection()
 		Response.redirect "/ChemInv/login.asp"
 		Response.end
 	End if
-	if(Request.Cookies("CS_SEC_Azure").Item <> "") then
+	if(Request.Cookies("CS_SEC_Azure").Item <> "" OR Application("CS_SEC_Azure") <> "" ) then
 		UserName = Application("CHEMINV_USERNAME")
 		UserID = Application("CHEMINV_PWD")
     end if

@@ -295,6 +295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please validate user with Azure AD..
+        /// </summary>
+        internal static string AzureValidation_Message {
+            get {
+                return ResourceManager.GetString("AzureValidation_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string Back_Button_Text {
@@ -1128,6 +1137,15 @@ namespace Resources {
         internal static string FromTitleLabel {
             get {
                 return ResourceManager.GetString("FromTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate Azure User.
+        /// </summary>
+        internal static string GetAzureUser_Button_Text {
+            get {
+                return ResourceManager.GetString("GetAzureUser_Button_Text", resourceCulture);
             }
         }
         
@@ -2037,6 +2055,15 @@ namespace Resources {
         internal static string ParentTable_ColHeader_Caption {
             get {
                 return ResourceManager.GetString("ParentTable_ColHeader_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password cannot be changed here. Contact your Azure administrator..
+        /// </summary>
+        internal static string PasswordCannotBeChangedAzure_Tooptip_Text {
+            get {
+                return ResourceManager.GetString("PasswordCannotBeChangedAzure_Tooptip_Text", resourceCulture);
             }
         }
         

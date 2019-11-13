@@ -810,8 +810,8 @@
 		<row><td>SettingCDD</td><td>Text_hostName</td><td>Text</td><td>112</td><td>55</td><td>87</td><td>13</td><td>65539</td><td/><td>##TEXT_HOST_NAME##</td><td>Text_serverPort</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_serverPort</td><td>Text</td><td>42</td><td>94</td><td>48</td><td>10</td><td>3</td><td/><td>##LABEL_PORT##</td><td>Back</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_serverType</td><td>Text</td><td>42</td><td>55</td><td>55</td><td>13</td><td>65539</td><td/><td>##NEW_STRING60##</td><td>Text_sslPwd</td><td/><td/><td/><td/><td/></row>
-		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Text</td><td>42</td><td>140</td><td>73</td><td>16</td><td>65539</td><td/><td>##LABEL_SSL_CERT##</td><td>Text_serverType</td><td/><td/><td/><td/><td/></row>
-		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Text</td><td>42</td><td>180</td><td>60</td><td>12</td><td>65539</td><td/><td>##LABEL_SSL_PWD##</td><td>Text_virtualDirectory</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslCert</td><td>Text</td><td>41</td><td>141</td><td>121</td><td>16</td><td>65539</td><td/><td>##LABEL_SSL_CERT##</td><td>Text_serverType</td><td/><td/><td/><td/><td/></row>
+		<row><td>SettingCDD</td><td>Text_sslPwd</td><td>Text</td><td>42</td><td>180</td><td>100</td><td>12</td><td>65539</td><td/><td>##LABEL_SSL_PWD##</td><td>Text_virtualDirectory</td><td/><td/><td/><td/><td/></row>
 		<row><td>SettingCDD</td><td>Text_virtualDirectory</td><td>Text</td><td>112</td><td>95</td><td>87</td><td>13</td><td>65539</td><td/><td>##LABEL_VIRTUAL_DIRECTORY##</td><td>Text_hostName</td><td/><td/><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_BACK##</td><td>Finish</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupCompleteError</td><td>Cancel</td><td>PushButton</td><td>301</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_CANCEL##</td><td>Back</td><td/><td>0</td><td/><td/><td/></row>
@@ -1258,9 +1258,10 @@
 		<row><td>SettingCDD</td><td>Back</td><td>[IS_BROWSE_FILEBROWSED]</td><td>[SERVER_SSL_PATH]</td><td>1</td><td>2</td></row>
 		<row><td>SettingCDD</td><td>Canel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1 </td><td>1</td></row>
 		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>443</td><td>SERVER_TYPE="https"</td><td>2</td></row>
-		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>81</td><td>SERVER_TYPE="http"</td><td>1</td></row>
-		<row><td>SettingCDD</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535</td><td>1</td></row>
-		<row><td>SettingCDD</td><td>Next</td><td>[SERVER_SSL_PATH]</td><td>[IS_BROWSE_FILEBROWSED]</td><td>1</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>ComboBox_server_type</td><td>[SERVER_PORT]</td><td>80</td><td>SERVER_TYPE="http"</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>DoAction</td><td>ValidationCheck</td><td>1</td><td>1</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>SERVER_PORT&gt;0 AND  SERVER_PORT&lt;65535 AND NEXTUI="yes"</td><td>2</td></row>
+		<row><td>SettingCDD</td><td>Next</td><td>[SERVER_SSL_PATH]</td><td>[IS_BROWSE_FILEBROWSED]</td><td>1</td><td>3</td></row>
 		<row><td>SettingCDD</td><td>PushButton_ssl</td><td>DoAction</td><td>SelectPFX</td><td>1</td><td>1</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>EndDialog</td><td>Return</td><td>1</td><td>2</td></row>
 		<row><td>SetupCompleteError</td><td>Back</td><td>[Suspend]</td><td>{}</td><td>1</td><td>1</td></row>
@@ -4206,6 +4207,20 @@ Set shell = Nothing
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
 		<row><td>USERSETUP</td><td>1</td><td>ISSetup.dll</td><td>f3</td><td/><td/></row>
 		<row><td>ValidateUser</td><td>1</td><td>ISSetup.dll</td><td>f4</td><td/><td/></row>
+		<row><td>ValidationCheck</td><td>38</td><td/><td>On Error resume next
+Dim strSSLCer ,strSSLPass,strServerType
+strSSLCer = Session.Property("IS_BROWSE_FILEBROWSED")
+strSSLPass = Session.Property("SERVER_SSL_PWD")
+strServerType = Session.Property("SERVER_TYPE")
+If (strServerType="https") then
+    If (strSSLCer &lt;&gt; "" AND strSSLPass &lt;&gt; "" ) then 
+  	   Session.Property("NEXTUI")="yes"
+	else
+		Session.Property("NEXTUI") ="no"
+		Ret=MsgBox("Please fill all the required fields",48+0,"Warning")
+	End If	
+End If
+</td><td/><td/></row>
 		<row><td>WarningMessage</td><td>38</td><td/><td>MsgBox("This installer will proceed after a little bit delay ,Please stay on")</td><td/><td/></row>
 		<row><td>setAllUsersProfile2K</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%ALLUSERSPROFILE]</td><td/><td/></row>
 		<row><td>setEnableParentPaths</td><td>38</td><td/><td>
@@ -9656,8 +9671,8 @@ Set shell = Nothing
 		<row><td>ID_STRING99</td><td>1033</td><td>BASE_CONNECTION</td><td>0</td><td/><td>-1054893369</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>337537312</td></row>
 		<row><td>LABEL_PORT</td><td>1033</td><td>Port:</td><td>0</td><td/><td>883107305</td></row>
-		<row><td>LABEL_SSL_CERT</td><td>1033</td><td>SSL certificate:</td><td>0</td><td/><td>1956899282</td></row>
-		<row><td>LABEL_SSL_PWD</td><td>1033</td><td>SSL password:</td><td>0</td><td/><td>-1809594710</td></row>
+		<row><td>LABEL_SSL_CERT</td><td>1033</td><td>SSL certificate (Required) :</td><td>0</td><td/><td>1034382276</td></row>
+		<row><td>LABEL_SSL_PWD</td><td>1033</td><td>SSL password (Required) :</td><td>0</td><td/><td>1034367940</td></row>
 		<row><td>LABEL_VIRTUAL_DIRECTORY</td><td>1033</td><td>Virtual path:</td><td>0</td><td/><td>1956869586</td></row>
 		<row><td>NEW_STRING1</td><td>1033</td><td>{&amp;ArialBlue10}NOTE: If you are performing this installation via Remote Desktop access to the server you must ensure to connect via the "console session".  To acomplish this, use the following syntax in the Remote Desktop "Computer name" box:                                                                                             YourServerName /console                                    YourServerName /admin                                       The installer may rollback after completion if not executed under the console session!</td><td>0</td><td/><td>1629450756</td></row>
 		<row><td>NEW_STRING10</td><td>1033</td><td>IP Address (Required):</td><td>0</td><td/><td>1931225186</td></row>
@@ -10451,6 +10466,7 @@ UgBlAGwAZQBhAHMAZQAgADEAAQBQAHIAbwBkAHUAYwB0ACAAQwBvAG4AZgBpAGcAdQByAGEAdABpAG8A
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>MSIFASTINSTALL</td><td>3</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
+		<row><td>NEXTUI</td><td>yes</td><td/></row>
 		<row><td>NewProperty1</td><td>0</td><td/></row>
 		<row><td>NewProperty10</td><td>0</td><td/></row>
 		<row><td>NewProperty2</td><td>0</td><td/></row>
