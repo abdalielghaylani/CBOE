@@ -92,6 +92,7 @@ namespace Manager.Forms.SecurityManager.UserControls
 
         protected void DoLogOff(object sender, EventArgs e)
         {
+            GUIShellUtilities.DoLogout();
             string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
             if (!string.IsNullOrEmpty(redirectUri))
             {
@@ -100,7 +101,6 @@ namespace Manager.Forms.SecurityManager.UserControls
                         CookieAuthenticationDefaults.AuthenticationType);
                 Utilities.token = string.Empty;
             }
-            GUIShellUtilities.DoLogout();
         }
 
         #region ICOEHeaderUC Members

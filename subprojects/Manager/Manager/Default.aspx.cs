@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
         if (!string.IsNullOrEmpty(redirectUri))
         {
-            if (string.IsNullOrEmpty(Utilities.token))
+            if (string.IsNullOrEmpty(Utilities.token) || !Request.IsAuthenticated)
             {
                 HttpContext.Current.GetOwinContext().Authentication.Challenge(
                    new AuthenticationProperties { RedirectUri = redirectUri },
@@ -57,7 +57,7 @@ public partial class _Default : System.Web.UI.Page
                         Response.Cookies.Add(azureCookie);
                         
                     }
-
+                    Utilities.token = string.Empty;
                     Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
                 }
                 else
