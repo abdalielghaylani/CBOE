@@ -26,7 +26,9 @@ public partial class _Default : System.Web.UI.Page
         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
         if (!string.IsNullOrEmpty(redirectUri))
         {
-            if (string.IsNullOrEmpty(Utilities.token) || !Request.IsAuthenticated)
+            string AzToken = Utilities.token;
+            string AzUser = Utilities.user;
+            if (string.IsNullOrEmpty(AzToken) || !Request.IsAuthenticated || Request.Cookies["AzUser"] == null || Request.Cookies["AzUser"].Value != AzUser)
             {
                 HttpContext.Current.GetOwinContext().Authentication.Challenge(
                    new AuthenticationProperties { RedirectUri = redirectUri },
@@ -35,10 +37,10 @@ public partial class _Default : System.Web.UI.Page
             else
             {
                 COEMembershipProvider sso = new COEMembershipProvider();
-                if (sso.ValidateUser(Utilities.user, Utilities.token))
+                if (sso.ValidateUser(AzUser, AzToken))
                 {
-                    HttpContext.Current.Session["UserName"] = Utilities.user;
-                    HttpContext.Current.Session["UserID"] = Utilities.token;
+                    HttpContext.Current.Session["UserName"] = AzUser;
+                    HttpContext.Current.Session["UserID"] = AzToken;
                     HttpCookie authCookie = FormsAuthentication.GetAuthCookie(Utilities.user, false);
                     if (!String.IsNullOrEmpty(HttpContext.Current.Session["SSOTicket"].ToString()))
                     {
@@ -53,11 +55,10 @@ public partial class _Default : System.Web.UI.Page
                         Response.Cookies["COESSO"].Value = ticket.ToString();
 
                         HttpCookie azureCookie = new HttpCookie("Azure_Token");
-                        azureCookie.Value = Utilities.token;
+                        azureCookie.Value = AzToken;
                         Response.Cookies.Add(azureCookie);
-                        
+
                     }
-                    Utilities.token = string.Empty;
                     Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
                 }
                 else
@@ -72,4 +73,6 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect(this.Page.ResolveUrl("~/Forms/Public/ContentArea/Home.aspx"));
         }
     }
+
+
 }

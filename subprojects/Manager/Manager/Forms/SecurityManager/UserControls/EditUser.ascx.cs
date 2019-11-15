@@ -132,9 +132,11 @@ public partial class EditUserUC : System.Web.UI.UserControl
                 }
                 else if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["redirectUri"]))
                 {
-                    getLDAPUserButton.Visible = false;
                     selectOracleUserLinkButton.Visible = false;
                     selectOracleUserLinkButton.Enabled = false;
+                    getLDAPUserButton.Visible = true;
+                    getLDAPUserButton.Enabled = true;
+                    getLDAPUserButton.Text = Resources.Resource.GetAzureUser_Button_Text;
                     password.BackColor = System.Drawing.Color.LightGray;
                     confirmPassword.BackColor = System.Drawing.Color.LightGray;
                     password.Enabled = false;

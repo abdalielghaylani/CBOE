@@ -31,6 +31,7 @@ using Microsoft.Owin.Security.Cookies;
                 else
                 {
                     memProvider.AzureLogOut();
+                    Request.Cookies["AzUser"].Value = null;
                 }
             }
             if (!string.IsNullOrEmpty(redirectUri))

@@ -133,6 +133,10 @@ public class Global : System.Web.HttpApplication
                 Response.Cookies["DisableInactivity"].Expires = DateTime.Now.AddMinutes(25);
             }
         }
+        else if (!string.IsNullOrEmpty(HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name))
+        {
+            Response.Cookies["AzUser"].Value  = HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name.Split('@')[0];
+        }
     }
 
     void Application_PreRequestHandlerExecute(object sender, EventArgs e)
