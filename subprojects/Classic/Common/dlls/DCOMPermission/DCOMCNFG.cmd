@@ -1,0 +1,1 @@
+SetDCOMPermission.cmd <machine_name> <AdminAccountUserName> <AdminAccountPassword> <Informatics2004CommonDllPath>
