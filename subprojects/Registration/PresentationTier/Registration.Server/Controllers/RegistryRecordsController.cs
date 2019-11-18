@@ -299,6 +299,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 registryRecord.IsDirectReg = true;
             }
 
+            //Requires some additional handling for fragment and structure data
+            registryRecord.FixBatchesFragmentsEx();
+            registryRecord.ConvertStructureContentToCDX();
+            registryRecord.UpdateDrawingType();
+            registryRecord.UpdateNormalizedPriorToInsert();
+
             return registryRecord;
         }
 
@@ -615,11 +621,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 XmlDocument duplicateSummaryDoc = new XmlDocument();
                 try
                 {
-                    // Just initialize a rcord boject with given data
+                    // Just initialize a record object with given data and do some modifications
                     regRecord = InitializeRecordFromXml(inputDataAndOptions.Data);
 
                     // Call stored procedure and get duplicate summary xml
-                    string duplicateSummaryXml = RegDal.GetRegRecordDuplicatesSummary(regRecord.Xml);
+                    string duplicateSummaryXml = RegDal.GetRegRecordDuplicatesSummary(regRecord.XmlWithAddIns);
 
                     var xDoc = XDocument.Parse(duplicateSummaryXml);
                     string sortColumn;

@@ -1487,6 +1487,14 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             }
         }
 
+        /// <summary>
+        /// Exposing ConvertStructuresToCDX method
+        /// </summary>
+        public void ConvertStructureContentToCDX()
+        {
+            this.ConvertStructuresToCDX();
+        }
+
         private void CheckOtherMixturesAffected()
         {
             foreach (Component component in _componentList)
