@@ -1,0 +1,1 @@
+psexec \\xxx.xx.x.xx -u Administrator -i "d:\program files\chemoffice2002\common\dlls\FileBatchLoading_Solaris.exe"

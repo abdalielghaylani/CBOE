@@ -21,17 +21,25 @@ using Microsoft.Owin.Security.Cookies;
         protected override void OnInit(EventArgs e)
         {
             string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+            if (string.IsNullOrEmpty(redirectUri) || Request.Cookies["COESSO"] != null)
+            {
+                CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider memProvider = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider();
+                if (string.IsNullOrEmpty(redirectUri))
+                {
+                    memProvider.LogOut();
+                }
+                else
+                {
+                    memProvider.AzureLogOut();
+                    Request.Cookies["AzUser"].Value = null;
+                }
+            }
             if (!string.IsNullOrEmpty(redirectUri))
             {
                 HttpContext.Current.GetOwinContext().Authentication.SignOut(
                         OpenIdConnectAuthenticationDefaults.AuthenticationType,
                         CookieAuthenticationDefaults.AuthenticationType);
                 Utilities.token = string.Empty;
-            }
-            if (string.IsNullOrEmpty(redirectUri) || Request.Cookies["COESSO"] != null)
-            {
-                CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider memProvider = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider();
-                memProvider.LogOut();
             }
         }
     }

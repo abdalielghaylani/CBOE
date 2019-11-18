@@ -18,6 +18,7 @@ using CambridgeSoft.COE.Framework.Controls.ChemDraw;
 using System.Configuration;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security;
 
 public partial class Forms_ContentArea_Home : GUIShellPage
 {
@@ -28,6 +29,17 @@ public partial class Forms_ContentArea_Home : GUIShellPage
     #region Events Handlers
     protected void Page_Load(object sender, EventArgs e)
     {
+         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            if (!Request.IsAuthenticated)
+            {
+                HttpContext.Current.GetOwinContext().Authentication.Challenge(
+                   new AuthenticationProperties { RedirectUri = redirectUri },
+                   OpenIdConnectAuthenticationDefaults.AuthenticationType);
+            }
+        }
+
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         if (!Page.IsPostBack)
         {
@@ -44,7 +56,6 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "WindowOpenScript", WindowOpenScript, true);
             }
             //if we're in catalog mode, show our special catalog
-            string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
             if(!string.IsNullOrEmpty(redirectUri) && Request.Cookies["COESSO"] == null)
             {
                 Response.Redirect(redirectUri);
@@ -101,6 +112,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
     #region Methods
     protected void DoLogOff(object sender, EventArgs e)
     {
+        GUIShellUtilities.DoLogout();
         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
         if (!string.IsNullOrEmpty(redirectUri))
         {
@@ -109,7 +121,6 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                     CookieAuthenticationDefaults.AuthenticationType);
             Utilities.token = string.Empty;
         }
-        GUIShellUtilities.DoLogout();
     }
 
     private void SetHomeWebParts()

@@ -86,6 +86,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
 
     protected void DoLogOff(object sender, EventArgs e)
     {
+        GUIShellUtilities.DoLogout();
         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
         if (!string.IsNullOrEmpty(redirectUri))
         {
@@ -93,8 +94,7 @@ public partial class Forms_ContentArea_DVHome : GUIShellPage
                     OpenIdConnectAuthenticationDefaults.AuthenticationType,
                     CookieAuthenticationDefaults.AuthenticationType);
             Utilities.token = string.Empty;
-        }
-        GUIShellUtilities.DoLogout();
+        } 
     }
 
     private void SetHomeWebParts()

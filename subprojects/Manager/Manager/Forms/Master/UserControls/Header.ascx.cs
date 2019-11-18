@@ -80,6 +80,7 @@ public partial class Forms_Master_UserControls_Header : System.Web.UI.UserContro
 
     protected void DoLogOff(object sender, EventArgs e)
     {
+        GUIShellUtilities.DoLogout();
         string redirectUri = ConfigurationManager.AppSettings["redirectUri"];
         if (!string.IsNullOrEmpty(redirectUri))
         {
@@ -88,7 +89,6 @@ public partial class Forms_Master_UserControls_Header : System.Web.UI.UserContro
                     CookieAuthenticationDefaults.AuthenticationType);
             Utilities.token = string.Empty;
         }
-        GUIShellUtilities.DoLogout();
     }
 
     #region ICOEHeaderUC Members

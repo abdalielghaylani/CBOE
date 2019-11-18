@@ -355,6 +355,13 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                 HttpContext.Current.Response.Redirect("/COEManager"); //CBOE-1622 Windows Security Window is launched on logging out of CBOE Manager. : We are redirecting to home page to resolve this.
         }
 
+        public void AzureLogOut()
+        {
+            KillCookies();
+            KillSessions();
+            COEPrincipal.Logout();
+        }
+
         private void KillCookies()
         {
             if(HttpContext.Current != null)
