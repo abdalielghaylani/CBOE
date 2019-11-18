@@ -25,7 +25,7 @@ Source: ..\Installer\ActiveWizard.ocx; DestDir: {sys}; Flags: regserver sharedfi
 Source: ..\Installer\ComDLG32.ocx; DestDir: {sys}; Flags: restartreplace sharedfile regserver
 Source: ..\Installer\MSComCtl.ocx; DestDir: {sys}; Flags: restartreplace sharedfile regserver
 Source: ..\Installer\base64.dll; DestDir: {app}
-Source: ..\Installer\base64Decode.dll; DestDir: {app}; Flags: regserver sharedfile
+Source: ..\Installer\base64Decode.dll; DestDir: {app}; 
 Source: ..\Installer\RegCodeCOM11.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\MolServer19.dll; Destdir: {app}; Flags: regserver sharedfile
 Source: ..\Installer\InvLoader.exe; DestDir: {app}; Flags: ignoreversion
