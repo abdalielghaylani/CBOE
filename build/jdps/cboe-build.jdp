@@ -106,13 +106,13 @@ pipeline
         }
         stage('CBOE-Installer')
         {
-            when 
+            /*when 
             {
                 expression
                 {
                     return env.BRANCH_NAME.startsWith('release/v') || env.BRANCH_NAME == "master"
                 }
-            }
+            }*/
             steps 
             {
                 bat """
@@ -162,7 +162,7 @@ pipeline
                 to: "${NOTIFY_LIST}",
                 replyTo: "${NOTIFY_LIST}",
                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-            deleteDir()
+            //deleteDir()
         }
         success 
         {
