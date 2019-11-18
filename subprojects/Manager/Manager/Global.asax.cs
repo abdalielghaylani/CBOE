@@ -133,9 +133,19 @@ public class Global : System.Web.HttpApplication
                 Response.Cookies["DisableInactivity"].Expires = DateTime.Now.AddMinutes(25);
             }
         }
-        else if (!string.IsNullOrEmpty(HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name))
+        else 
         {
-            Response.Cookies["AzUser"].Value  = HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name.Split('@')[0];
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name))
+                {
+                    Response.Cookies["AzUser"].Value = HttpContext.Current.GetOwinContext().Authentication.User.Identity.Name.Split('@')[0];
+                }
+            }
+            catch
+            {
+                //do nothing
+            }
         }
     }
 
