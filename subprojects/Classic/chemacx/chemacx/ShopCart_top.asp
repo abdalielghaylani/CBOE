@@ -294,6 +294,7 @@ window.open('mailmerge_instructions.asp','CSVWindow','toolbar=0,location=0,direc
 
 
 function SendToChemInv(){
+	if(confirm("Shopping Cart will be cleared, Do you want to continue ?") == true) {
 	packageIDList = "";
 	qtyList = "";
 	for (var Row = 0; Row < top.opener.ShopcartWRS.getRowCount(); Row++){	
@@ -308,7 +309,9 @@ function SendToChemInv(){
 	//alert(qtyList);
 	parent.BottomFrame.document.cartform.action= "/cheminv/gui/ImportFromChemACX.asp?postrelay=1";
 	parent.BottomFrame.document.cartform.target= "ToINVWindow";
-	parent.BottomFrame.document.cartform.submit();	
+	parent.BottomFrame.document.cartform.submit();
+	DeleteAll();
+}	
 }
 
 
