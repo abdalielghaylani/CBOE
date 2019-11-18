@@ -5249,10 +5249,10 @@ Set shell = Nothing
 		<row><td>appl.vbs1</td><td>DataLoader_Click</td><td>Appl.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl.vbs</td><td>1</td><td/></row>
 		<row><td>appl1.vbs1</td><td>DataLoader_Click</td><td>Appl1.vbs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\Appl1.vbs</td><td>1</td><td/></row>
 		<row><td>base64decode.dll</td><td>Base64Decoder_Server_File</td><td>BASE64~1.DLL|Base64Decode.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Base64Decode.dll</td><td>1</td><td/></row>
-		<row><td>binary.dll</td><td>Binary.dll</td><td>Binary.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Binary.dll</td><td>1</td><td/></row>
-		<row><td>blob.dll</td><td>BLOB_Server_File</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
-		<row><td>blob.dll1</td><td>Blob.dll</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
-		<row><td>blob.dll2</td><td>BLOB_Server_File1</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td>1</td><td/></row>
+		<row><td>binary.dll</td><td>Binary.dll</td><td>Binary.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Binary.dll</td><td>1</td><td/></row>
+		<row><td>blob.dll</td><td>BLOB_Server_File</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Blob.dll</td><td>1</td><td/></row>
+		<row><td>blob.dll1</td><td>Blob.dll</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Blob.dll</td><td>1</td><td/></row>
+		<row><td>blob.dll2</td><td>BLOB_Server_File1</td><td>Blob.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\\Blob.dll</td><td>1</td><td/></row>
 		<row><td>cambridgesoft.coe.framework.</td><td>CambridgeSoft.COE.Framework.dll</td><td>CAMBRI~1.DLL|CambridgeSoft.COE.Framework.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Release\CambridgeSoft.COE.Framework.dll</td><td>21</td><td/></row>
 		<row><td>chembiooffice.html1</td><td>IISRoot</td><td>CHEMBI~1.HTM|ChemBioOffice.html</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\wwwroot\ChemBioOffice.html</td><td>1</td><td/></row>
 		<row><td>chemimp.dll</td><td>ChemImp_Server_File</td><td>ChemImp.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\ChemImp.dll</td><td>1</td><td/></row>
@@ -5263,20 +5263,20 @@ Set shell = Nothing
 		<row><td>coeheaderserver.dll</td><td>COEHeaderServer_Server_File</td><td>COEHEA~1.DLL|COEHeaderServer.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\COEHeaderServer.dll</td><td>1</td><td/></row>
 		<row><td>coesharedassemblyconfig.xml</td><td>ChemOfficeEnterprise</td><td>COESHA~1.XML|COESharedAssemblyConfig.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml</td><td>1</td><td/></row>
 		<row><td>cssecurityldap.dll</td><td>CSSecurityLDAP_Server_File</td><td>CSSECU~1.DLL|CSSecurityLDAP.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\CSSecurityLDAP.dll</td><td>1</td><td/></row>
-		<row><td>dcomcnfg.cmd</td><td>Dlls2</td><td>DCOMCNFG.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\DCOMCNFG.cmd</td><td>1</td><td/></row>
-		<row><td>dcomperm.exe</td><td>dcomperm.exe</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
-		<row><td>dcomperm.exe1</td><td>dcomperm.exe1</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dcomperm.exe</td><td>1</td><td/></row>
-		<row><td>deletefiles.bat</td><td>Dlls3</td><td>DELETE~1.BAT|DeleteFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DeleteFiles.bat</td><td>1</td><td/></row>
-		<row><td>dsofile.dll</td><td>dsofile.dll</td><td>dsofile.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\dsofile.dll</td><td>1</td><td/></row>
+		<row><td>dcomcnfg.cmd</td><td>Dlls2</td><td>DCOMCNFG.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\DCOMPermission\DCOMCNFG.cmd</td><td>1</td><td/></row>
+		<row><td>dcomperm.exe</td><td>dcomperm.exe</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\dcomperm.exe</td><td>1</td><td/></row>
+		<row><td>dcomperm.exe1</td><td>dcomperm.exe1</td><td>dcomperm.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\dcomperm.exe</td><td>1</td><td/></row>
+		<row><td>deletefiles.bat</td><td>Dlls3</td><td>DELETE~1.BAT|DeleteFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\DeleteFiles.bat</td><td>1</td><td/></row>
+		<row><td>dsofile.dll</td><td>dsofile.dll</td><td>dsofile.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\dsofile.dll</td><td>1</td><td/></row>
 		<row><td>exceptionshandling.xml</td><td>ChemOfficeEnterprise</td><td>EXCEPT~1.XML|ExceptionsHandling.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ChemOfficeEnterprise11\ExceptionsHandling.xml</td><td>1</td><td/></row>
-		<row><td>filebatchload.exe</td><td>FileBatchLoad.exe</td><td>FILEBA~1.EXE|FileBatchLoad.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\FileBatchLoad.exe</td><td>1</td><td/></row>
+		<row><td>filebatchload.exe</td><td>FileBatchLoad.exe</td><td>FILEBA~1.EXE|FileBatchLoad.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\FileBatchLoad.exe</td><td>1</td><td/></row>
 		<row><td>instsrv.exe</td><td>instsrv.exe</td><td>instsrv.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\instsrv.exe</td><td>1</td><td/></row>
-		<row><td>loadfiles.bat</td><td>Dlls</td><td>LOADFI~1.BAT|LoadFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\LoadFiles.bat</td><td>1</td><td/></row>
+		<row><td>loadfiles.bat</td><td>Dlls</td><td>LOADFI~1.BAT|LoadFiles.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\LoadFiles.bat</td><td>1</td><td/></row>
 		<row><td>mage.exe</td><td>mage.exe</td><td>mage.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage.exe</td><td>1</td><td/></row>
 		<row><td>mage_dataloader.bat</td><td>DataLoader_Click</td><td>MAGE_D~1.BAT|mage_DataLoader.bat</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\mage_DataLoader.bat</td><td>1</td><td/></row>
-		<row><td>molparser.dll</td><td>MolParser.dll</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
-		<row><td>molparser.dll1</td><td>MolParser_Server_File</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td>1</td><td/></row>
-		<row><td>molserver85.dll</td><td>MolServer85.dll</td><td>MOLSER~1.DLL|MolServer85.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolServer85.dll</td><td>1</td><td/></row>
+		<row><td>molparser.dll</td><td>MolParser.dll</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\MolParser.dll</td><td>1</td><td/></row>
+		<row><td>molparser.dll1</td><td>MolParser_Server_File</td><td>MOLPAR~1.DLL|MolParser.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\MolParser.dll</td><td>1</td><td/></row>
+		<row><td>molserver85.dll</td><td>MolServer85.dll</td><td>MOLSER~1.DLL|MolServer85.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\MolServer85.dll</td><td>1</td><td/></row>
 		<row><td>mssoap30.dll</td><td>COEHeaderServer_Server_File1</td><td>MSSOAP30.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;CommonFilesFolder&gt;\MSSoap\Binaries\MSSOAP30.dll</td><td>1</td><td/></row>
 		<row><td>msvcp71.dll</td><td>MVC71</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
 		<row><td>msvcp71.dll1</td><td>MVC7132</td><td>msvcp71.dll</td><td>0</td><td>65535.0.0.0</td><td/><td>0</td><td>1</td><td>&lt;New Path Variable&gt;\Perforce\Goods\SystemFolder\msvcp71.dll</td><td>17</td><td/></row>
@@ -5285,14 +5285,14 @@ Set shell = Nothing
 		<row><td>mykey.cer</td><td>DataLoader_Click</td><td>MyKey.cer</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.cer</td><td>1</td><td/></row>
 		<row><td>mykey.pvk</td><td>DataLoader_Click</td><td>MyKey.pvk</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyKey.pvk</td><td>1</td><td/></row>
 		<row><td>mypfx.pfx</td><td>DataLoader_Click</td><td>MyPFX.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\DL_ClickOnce\MyPFX.pfx</td><td>1</td><td/></row>
-		<row><td>setdcompermission.cmd</td><td>Dlls2</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
+		<row><td>setdcompermission.cmd</td><td>Dlls2</td><td>SETDCO~1.CMD|SetDCOMPermission.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\DCOMPermission\SetDCOMPermission.cmd</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.dll</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.DLL|SingleSignOnCom.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.dll</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.reg</td><td>SingleSignOnCom.dll</td><td>SINGLE~1.REG|SingleSignOnCom.reg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.reg</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb</td><td>COESSO_Server_File1</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>singlesignoncom.tlb1</td><td>SingleSignOnCom.tlb</td><td>SINGLE~1.TLB|SingleSignOnCom.tlb</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\SingleSignOnCom.tlb</td><td>1</td><td/></row>
 		<row><td>srvany.exe</td><td>SRVANY.EXE</td><td>SRVANY.EXE</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\SoftwareDownloads\SRVANY.EXE</td><td>1</td><td/></row>
-		<row><td>taskscheduler.dll</td><td>Scheduler_Server_File</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
-		<row><td>taskscheduler.dll1</td><td>Scheduler_Server_File1</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;New Path Variable&gt;\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td>1</td><td/></row>
+		<row><td>taskscheduler.dll</td><td>Scheduler_Server_File</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\TaskScheduler.dll</td><td>1</td><td/></row>
+		<row><td>taskscheduler.dll1</td><td>Scheduler_Server_File1</td><td>TASKSC~1.DLL|TaskScheduler.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\TaskScheduler.dll</td><td>1</td><td/></row>
 		<row><td>web.config4</td><td>WebService</td><td>WEB~1.CON|Web.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework.Web\Web.config</td><td>1</td><td/></row>
 	</table>
 
@@ -5470,7 +5470,7 @@ Set shell = Nothing
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>ConstructionEnabled</td><td>0</td></row>
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>ConstructorString</td><td/></row>
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>DLL</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td></row>
+		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>DLL</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Blob.dll</td></row>
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>Description</td><td>Blob.Handler</td></row>
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>EventTrackingEnabled</td><td>-1</td></row>
 		<row><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>ExceptionClass</td><td/></row>
@@ -6312,7 +6312,7 @@ Set shell = Nothing
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>ConstructionEnabled</td><td>0</td></row>
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>ConstructorString</td><td/></row>
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_E47936D542BD366A3E766A406018E874</td><td>DLL</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td></row>
+		<row><td>_E47936D542BD366A3E766A406018E874</td><td>DLL</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\TaskScheduler.dll</td></row>
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>Description</td><td>Scheduler.TaskScheduler</td></row>
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>EventTrackingEnabled</td><td>-1</td></row>
 		<row><td>_E47936D542BD366A3E766A406018E874</td><td>ExceptionClass</td><td/></row>
@@ -6417,7 +6417,7 @@ Set shell = Nothing
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>ConstructionEnabled</td><td>0</td></row>
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>ConstructorString</td><td/></row>
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>CreationTimeout</td><td>60000</td></row>
-		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>DLL</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td></row>
+		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>DLL</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\MolParser.dll</td></row>
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>Description</td><td>MolParser.Parser</td></row>
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>EventTrackingEnabled</td><td>-1</td></row>
 		<row><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>ExceptionClass</td><td/></row>
@@ -6872,11 +6872,11 @@ Set shell = Nothing
 		<col def="S0">AlterDLL</col>
 		<row><td>_203AFA73B65CC7341B1BB2A11EA25B82</td><td>_632B748DE80209FCF7033FE9A5901863</td><td>_1C27B6A598449B67D0DED17B36673583</td><td>{547BB77D-AD52-33D5-A683-2F662808A780}</td><td>CambridgeSoft.COE.Security.Services.SingleSignOnWebService.SingleSignOn</td><td>mscoree.dll</td><td>D:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.DLL</td></row>
 		<row><td>_281523BA4CE796C16C6713C2DBC57475</td><td>_8DE2682D2F3F4C9D6814FD2EFE26A848</td><td>_FAD00E50B44C2094BB9504D7024AC028</td><td>{8EEFA857-8644-46F3-8EC7-66EFC0C8B3B1}</td><td>ChemImp.Importer</td><td>D:\Goods\p4\ENotebook\EN1300\Classic\Common\dlls\ChemImp.dll</td><td/></row>
-		<row><td>_296B70042AD24FB88FE17406D388EE0C</td><td>_51E05B591059916BDD625A15F18DD114</td><td>_E47936D542BD366A3E766A406018E874</td><td>{AFCA1B21-2E61-41C7-A583-9804B622DD2B}</td><td>Scheduler.TaskScheduler</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\TaskScheduler.dll</td><td/></row>
+		<row><td>_296B70042AD24FB88FE17406D388EE0C</td><td>_51E05B591059916BDD625A15F18DD114</td><td>_E47936D542BD366A3E766A406018E874</td><td>{AFCA1B21-2E61-41C7-A583-9804B622DD2B}</td><td>Scheduler.TaskScheduler</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\TaskScheduler.dll</td><td/></row>
 		<row><td>_3A8AED17EAE5FEF5AEE93C98B46F760B</td><td>_620930315CC432313CA7452B0D09C6EA</td><td>_C223185A3356A66C46C44B20174E8240</td><td>{A78BED14-A61B-453B-B8C0-2478F6EAECD2}</td><td>CSSecurityLDAP.LDAPAuthenticator</td><td>D:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\CSSecurityLDAP.dll</td><td/></row>
-		<row><td>_47D0B470D5D446838730483A424C0292</td><td>_EFBDED08B1C11BDDAE4715FD8D7FF0E0</td><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>{172A7ED8-5239-4817-B4F6-26D77C161C63}</td><td>MolParser.Parser</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\MolParser.dll</td><td/></row>
+		<row><td>_47D0B470D5D446838730483A424C0292</td><td>_EFBDED08B1C11BDDAE4715FD8D7FF0E0</td><td>_F78AC89F6F43F12BDC08B82BBBCD453E</td><td>{172A7ED8-5239-4817-B4F6-26D77C161C63}</td><td>MolParser.Parser</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\MolParser.dll</td><td/></row>
 		<row><td>_5BF7F4C2C742A9CDBFAD8888F9780076</td><td>_632B748DE80209FCF7033FE9A5901863</td><td>_17274C4D49A02810BF433ECA1E15F6D4</td><td>{1326819B-E813-348F-A7A5-277CC4AD5689}</td><td>CambridgeSoft.COE.Security.Services.SingleSignOnCom</td><td>mscoree.dll</td><td>D:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\SingleSignOnCom.DLL</td></row>
-		<row><td>_872FE30C9148F99CD7C518A5F4F460C0</td><td>_893F4054C04BE6830660C527D855941A</td><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>{47E61D40-64DD-4326-8EFD-994044BFA74F}</td><td>Blob.Handler</td><td>D:\Goods\p4\Informatics\Classic\DocManager\8.0\Components\Blob.dll</td><td/></row>
+		<row><td>_872FE30C9148F99CD7C518A5F4F460C0</td><td>_893F4054C04BE6830660C527D855941A</td><td>_1587C775B0D77EEDA496C4CD5D4AEE29</td><td>{47E61D40-64DD-4326-8EFD-994044BFA74F}</td><td>Blob.Handler</td><td>&lt;WORKSPACE_ROOT&gt;\subprojects\Classic\Common\dlls\Blob.dll</td><td/></row>
 		<row><td>_A785A4B11F33B28C81D9B3FDEE71C1A4</td><td>_AB1FE07DAD9A5158FE12223C2EF4992A</td><td>_1ECD604123E97A6838204AADBEE44713</td><td>{2E784259-0DDD-11D4-854E-0080C7CAD69D}</td><td>Base64Decode.Decode</td><td>D:\Goods\p4\ENotebook\EN1300\Classic\Common\dlls\Base64Decode.dll</td><td/></row>
 		<row><td>_EC72656BEB634940D1B7F7B309037037</td><td>_3DEFB9643ACC41426FAA63CCD9F8FD7E</td><td>_004B09C9F545AC51FECF1CD444ADED18</td><td>{AB93DC4D-7F0E-425A-9E01-AAD807B4ED40}</td><td>COEHeaderServer.COEHeaderHandler</td><td>D:\Goods\p4\ENotebook\EN1300\Classic\Common\dlls\COEHeaderServer.dll</td><td/></row>
 		<row><td>_ED0880C3E9587C7E954CDBDA50B31A03</td><td>_620930315CC432313CA7452B0D09C6EA</td><td>_FDEC6C26503AD74470D49B27A8E2CD16</td><td>{FF643EE2-CF55-4977-B86D-F68E1C142E9C}</td><td>CSSecurityLDAP.LDAPResults</td><td>D:\Goods\p4\ENotebook\EN1210\ChemOfficeEnterprise\Classic\Common\dlls\CSSecurityLDAP.dll</td><td/></row>
@@ -10015,6 +10015,7 @@ Set shell = Nothing
 		<row><td>RegisterProgIdInfo</td><td/><td>4800</td><td>RegisterProgIdInfo</td><td/></row>
 		<row><td>RegisterTypeLibraries</td><td/><td>5500</td><td>RegisterTypeLibraries</td><td/></row>
 		<row><td>RegisterUser</td><td/><td>6000</td><td>RegisterUser</td><td/></row>
+		<row><td>RemoveChenBioOfficeUltra</td><td>Not Installed</td><td>6787</td><td/><td/></row>
 		<row><td>RemoveDuplicateFiles</td><td/><td>3400</td><td>RemoveDuplicateFiles</td><td/></row>
 		<row><td>RemoveEnvironmentStrings</td><td/><td>3300</td><td>RemoveEnvironmentStrings</td><td/></row>
 		<row><td>RemoveExistingProducts</td><td/><td>1410</td><td>RemoveExistingProducts</td><td/></row>
