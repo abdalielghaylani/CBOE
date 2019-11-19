@@ -4118,6 +4118,11 @@ Function GetADOConnString(ByVal dbkey, ByVal formgroup, ByVal conn_name)
 			end if
 	End Select
 	
+	if(Request.Cookies("CS_SEC_Azure").Item <> "" OR Application("CS_SEC_Azure") <> "" ) then 
+        conn_username = UserIDKeyword & "=" & Application("CHEMINV_USERNAME") 
+        conn_password = PWDKeyword & "=" & Application("CHEMINV_PWD") 
+    end if 
+
 	'create full connection string
 	if conn_type = "NULL" or conn_type = "" or conn_type= "OLEDB" then
 		full_conn_string = conn_string & "; " & conn_username & "; " & conn_password		
